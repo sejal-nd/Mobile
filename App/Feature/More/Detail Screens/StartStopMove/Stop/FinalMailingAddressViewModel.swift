@@ -12,9 +12,9 @@ import RxSwift
 
 public struct MailingAddress {
     let streetAddress: String
-    let City: String
-    let State: String
-    let ZipCode: String
+    let city: String
+    let state: String
+    let zipCode: String
 }
 
 class FinalMailingAddressViewModel {
@@ -38,5 +38,9 @@ class FinalMailingAddressViewModel {
     var isZipValid: Bool {
         guard let zip = zipCode, !zip.isEmpty, zip.count == 5 else { return false}
         return true
+    }
+    
+    var canEnableContinue: Bool {
+        return isStreetAddressValid && isCityValid && isZipValid
     }
 }

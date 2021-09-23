@@ -27,23 +27,7 @@ class FinalMailingAddressViewController: KeyboardAvoidingStickyFooterViewControl
     
     
     @IBAction func stateButtonTapped(_ sender: UIButton) {
-        print("State Button Tapped")
-        PickerView.showStringPicker(withTitle: NSLocalizedString("Select State", comment: ""),
-                                    data: USState.allCases.map { $0.rawValue },
-                                    selectedIndex: viewModel.stateSelectedIndex,
-                                    onDone: { [weak self] value, index in
-                                        DispatchQueue.main.async { [weak self] in
-                                            guard let self = self else { return }
-                                            self.viewModel.stateSelectedIndex = index
-                                            self.viewModel.state = value
-                                            self.selectedStateLabel.text = value
-                                            self.stateFloatingLabel.isHidden = false
-                                            self.selectedStateStackView.isHidden = false
-                                            self.statePlaceHolderLabel.isHidden = true
-                                            self.selectedStateLabel.textColor = .middleGray
-                                        }
-                                    },
-                                    onCancel: nil)
+        showStatePicker()
     }
     
     override func viewDidLoad() {
@@ -60,19 +44,35 @@ class FinalMailingAddressViewController: KeyboardAvoidingStickyFooterViewControl
     private func setupUI() {
         
         streetAddressTextField.placeholder = NSLocalizedString("Street Address*", comment: "")
+        streetAddressTextField.textField.text = mailingAddress?.streetAddress
+        
         cityTextField.placeholder = NSLocalizedString("City*", comment: "")
+        cityTextField.textField.text = mailingAddress?.city
+        
         zipTextField.placeholder = NSLocalizedString("Zip Code*", comment: "")
+        zipTextField.textField.text = mailingAddress?.zipCode
         
         statePlaceHolderLabel.font = SystemFont.regular.of(textStyle: .callout)
         statePlaceHolderLabel.textColor = .middleGray
+        statePlaceHolderLabel.text = NSLocalizedString("State*", comment: "")
         
         stateFloatingLabel.font = SystemFont.semibold.of(textStyle: .caption2)
         stateFloatingLabel.textColor = .middleGray
         
         selectedStateLabel.font = SystemFont.regular.of(textStyle: .callout)
-        selectedStateLabel.textColor = .primaryColor
+        selectedStateLabel.textColor = .middleGray
+        if let state = mailingAddress?.state {
+            selectedStateLabel.text = state
+            statePlaceHolderLabel.isHidden = true
+            selectedStateStackView.isHidden = false
+        } else {
+            selectedStateStackView.isHidden = true
+            statePlaceHolderLabel.isHidden = false
+            selectedStateLabel.text = nil
+        }
+        continueButton.isEnabled = viewModel.canEnableContinue
         
-        stateSelectionView.roundCorners(.allCorners, radius: 10.0, borderColor: UIColor(red: 216.0/255.0, green: 216.0/255.0, blue: 216.0/255.0, alpha: 1.0), borderWidth: 1.0)
+        colorStateBorderGray()
     }
     
     private func configureComponentBehavior() {
@@ -80,19 +80,56 @@ class FinalMailingAddressViewController: KeyboardAvoidingStickyFooterViewControl
         streetAddressTextField.textField.returnKeyType = .next
         streetAddressTextField.textField.autocorrectionType = .no
         streetAddressTextField.textField.delegate = self
+        zipTextField.textField.textContentType = .fullStreetAddress
         
-        cityTextField.textField.returnKeyType = .done
+        cityTextField.textField.returnKeyType = .next
         cityTextField.textField.autocorrectionType = .no
         cityTextField.textField.delegate = self
+        zipTextField.textField.textContentType = .addressCity
         
         zipTextField.textField.delegate = self
         zipTextField.textField.keyboardType = .numberPad
         zipTextField.setKeyboardType(.numberPad, doneActionTarget: self, doneActionSelector: #selector(zipCodeDonePressed))
+        zipTextField.textField.isShowingAccessory = true
+        zipTextField.textField.textContentType = .postalCode
         
+    }
+    
+    private func showStatePicker() {
+        
+        PickerView.showStringPicker(withTitle: NSLocalizedString("Select State", comment: ""),
+                                    data: USState.allCases.map { $0.rawValue },
+                                    selectedIndex: viewModel.stateSelectedIndex,
+                                    onDone: { [weak self] value, index in
+                                        DispatchQueue.main.async { [weak self] in
+                                            guard let self = self else { return }
+                                            self.viewModel.stateSelectedIndex = index
+                                            
+                                            switch index {
+                                            case 1...USState.allCases.count:
+                                                self.viewModel.state = value
+                                                self.selectedStateLabel.text = value
+                                                self.selectedStateStackView.isHidden = false
+                                                self.statePlaceHolderLabel.isHidden = true
+                                            default:
+                                                self.statePlaceHolderLabel.isHidden = false
+                                                self.selectedStateStackView.isHidden = true
+                                                self.selectedStateLabel.text = nil
+                                            }
+                                        }
+                                    },
+                                    onCancel: nil)
+    }
+    
+    private func colorStateBorderGray() {
+        stateSelectionView.roundCorners(.allCorners, radius: 10.0, borderColor:.accentGray, borderWidth: 1.0)
     }
     
     @objc func zipCodeDonePressed() {
         zipTextField.textField.resignFirstResponder()
+        if !viewModel.isZipValid {
+            zipTextField.setError(NSLocalizedString("Zip  Code must be 5 characters in length", comment: ""))
+        }
         scrollView.setContentOffset(CGPoint(x: 0, y: scrollView.contentInset.top), animated: true)
     }
 }
@@ -102,34 +139,41 @@ extension FinalMailingAddressViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
         
-        if textField == zipTextField.textField {
+        if textField == streetAddressTextField.textField {
+            viewModel.streetAddress = newString
+        } else if textField == cityTextField.textField {
+            viewModel.city = newString
+        } else if textField == zipTextField.textField {
             let components = newString.components(separatedBy: CharacterSet.decimalDigits.inverted)
-            
-            let decimalString = components.joined(separator: "") as NSString
-            let length = decimalString.length
+            let decimalString = components.joined(separator: "") as String
+            let length = decimalString.count
             
             if length > 5 {
-               return false
+                return false
+            } else {
+                viewModel.zipCode = decimalString
             }
         }
+        continueButton.isEnabled = viewModel.canEnableContinue
         return true
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField == streetAddressTextField.textField {
-            viewModel.streetAddress = textField.text
             cityTextField.textField.becomeFirstResponder()
-        } else if textField == cityTextField.textField {
-            viewModel.city = textField.text
-            textField.resignFirstResponder()
-        } else if textField == zipTextField.textField {
-            viewModel.zipCode = textField.text
+        } else {
             textField.resignFirstResponder()
         }
-        if viewModel.isStreetAddressValid, viewModel.isCityValid, viewModel.isZipValid {
-            continueButton.isEnabled = true
-        } else {
-            continueButton.isEnabled = false
+        continueButton.isEnabled = viewModel.canEnableContinue
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == streetAddressTextField.textField {
+            streetAddressTextField.setError(nil)
+        } else if textField == cityTextField.textField {
+            cityTextField.setError(nil)
+        } else if textField == zipTextField.textField {
+            zipTextField.setError(nil)
         }
     }
 }
