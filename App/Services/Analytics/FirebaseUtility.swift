@@ -421,6 +421,7 @@ enum RegisterParameter: String, EventParameter {
     case resend_email
     case ebill_enroll
     case account_verify
+    case complete
 }
 
 enum AccountPickerParameter: String, EventParameter {
