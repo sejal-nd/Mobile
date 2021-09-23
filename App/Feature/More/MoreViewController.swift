@@ -410,7 +410,14 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
                 }
             case 1:
                 if FeatureFlagUtility.shared.bool(forKey: .hasAuthenticatedISUM) {
-                    performSegue(withIdentifier: "stopServiceSegue", sender: nil)
+                    let currentAccount = AccountsStore.shared.currentAccount
+                    let isCommericalUser = !currentAccount.isResidential
+
+                    if isCommericalUser {
+                        UIApplication.shared.openUrlIfCan(viewModel.stopCommercialServiceWebURL)
+                    }else {
+                        performSegue(withIdentifier: "stopServiceSegue", sender: nil)
+                    }
                 } else {
                     FirebaseUtility.logEvent(.more(parameters: [.billing_videos]))
                     UIApplication.shared.openUrlIfCan(viewModel.billingVideosUrl)

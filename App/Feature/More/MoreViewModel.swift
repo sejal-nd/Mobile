@@ -75,5 +75,13 @@ class MoreViewModel {
             return nil
         }
     }()
+    let stopCommercialServiceWebURL: URL? = {
+         switch Configuration.shared.opco {
+         case .bge:
+             return URL(string: "https://\(Configuration.shared.associatedDomain)/accounts/login?TARGET=/CustomerServices/service/start")
+         default:
+             return nil
+         }
+     }()
     
 }
