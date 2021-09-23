@@ -69,7 +69,10 @@ class ReviewStopServiceViewController: UIViewController {
             self.finalMailingAddress.text = "Same as current service address"
         }
         
-        addCloseButton()
+        self.navigationItem.hidesBackButton = true
+        let newBackButton = UIBarButtonItem(image: UIImage(named: "ic_back`"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(ReviewStopServiceViewController.back(sender:)))
+        self.navigationItem.leftBarButtonItem = newBackButton
+
         submitButton.roundCorners(.allCorners, radius: 27.5, borderColor: UIColor(red: 216.0/255.0, green: 216.0/255.0, blue: 216.0/255.0, alpha: 1.0), borderWidth: 1.0)
 
         supplierAgreementButton.rx.tap
@@ -115,6 +118,11 @@ class ReviewStopServiceViewController: UIViewController {
             .subscribe(onNext: { _ in
 
             }).disposed(by: disposeBag)
+    }
+    
+    @objc func back(sender: UIBarButtonItem) {
+        
+        self.navigationController?.popViewController(animated: true)
     }
 }
 
