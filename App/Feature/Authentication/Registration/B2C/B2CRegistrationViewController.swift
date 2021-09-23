@@ -72,6 +72,8 @@ class B2CRegistrationViewController: UIViewController {
     }
     
     private func success() {
+        FirebaseUtility.logEvent(.register(parameters: [.complete]))
+
         GoogleAnalytics.log(event: .registerAccountComplete)
         
         delegate?.registrationViewControllerDidRegister(self)
