@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RxCocoa
+import RxSwift
 
 public struct MailingAddress {
     let streetAddress: String
@@ -16,15 +18,24 @@ public struct MailingAddress {
 }
 
 class FinalMailingAddressViewModel {
-    let currentMailingAddress: MailingAddress?
-    let isShownFromReviewScreen: Bool
     
-    var shouldPopulateMailingScreen: Bool {
-        return currentMailingAddress != nil && isShownFromReviewScreen
+    var streetAddress: String?
+    var city: String?
+    var zipCode: String?
+    var state: String?
+    
+    var isStreetAddressValid: Bool {
+        guard let address = streetAddress, !address.isEmpty else { return false}
+        return true
     }
     
-    init(mailingAddress: MailingAddress?, isLaunchedFromReviewScreen: Bool) {
-        currentMailingAddress = mailingAddress
-        isShownFromReviewScreen = isLaunchedFromReviewScreen
+    var isCityValid: Bool {
+        guard let city = city, !city.isEmpty else { return false}
+        return true
+    }
+    
+    var isZipValid: Bool {
+        guard let zip = zipCode, !zip.isEmpty, zip.count == 5 else { return false}
+        return true
     }
 }

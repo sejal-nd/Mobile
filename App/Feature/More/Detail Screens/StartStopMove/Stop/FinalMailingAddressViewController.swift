@@ -19,6 +19,7 @@ class FinalMailingAddressViewController: KeyboardAvoidingStickyFooterViewControl
     @IBOutlet weak var selectedStateLabel: UILabel!
     @IBOutlet weak var stateFloatingLabel: UILabel!
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var continueButton: PrimaryButton!
     
     private var viewModel: FinalMailingAddressViewModel!
     var mailingAddress: MailingAddress? = nil
@@ -31,7 +32,7 @@ class FinalMailingAddressViewController: KeyboardAvoidingStickyFooterViewControl
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel = FinalMailingAddressViewModel(mailingAddress: mailingAddress, isLaunchedFromReviewScreen: isLaunchedFromReviewScreen)
+        viewModel = FinalMailingAddressViewModel()
         setupUI()
         configureComponentBehavior()
     }
@@ -60,7 +61,7 @@ class FinalMailingAddressViewController: KeyboardAvoidingStickyFooterViewControl
     
     private func configureComponentBehavior() {
         
-        streetAddressTextField.textField.returnKeyType = .done
+        streetAddressTextField.textField.returnKeyType = .next
         streetAddressTextField.textField.autocorrectionType = .no
         streetAddressTextField.textField.delegate = self
         
@@ -81,6 +82,7 @@ class FinalMailingAddressViewController: KeyboardAvoidingStickyFooterViewControl
 }
 
 extension FinalMailingAddressViewController: UITextFieldDelegate {
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
         
@@ -97,4 +99,21 @@ extension FinalMailingAddressViewController: UITextFieldDelegate {
         return true
     }
     
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField == streetAddressTextField.textField {
+            viewModel.streetAddress = textField.text
+            cityTextField.textField.becomeFirstResponder()
+        } else if textField == cityTextField.textField {
+            viewModel.city = textField.text
+            textField.resignFirstResponder()
+        } else if textField == zipTextField.textField {
+            viewModel.zipCode = textField.text
+            textField.resignFirstResponder()
+        }
+        if viewModel.isStreetAddressValid, viewModel.isCityValid, viewModel.isZipValid {
+            continueButton.isEnabled = true
+        } else {
+            continueButton.isEnabled = false
+        }
+    }
 }

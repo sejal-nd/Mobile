@@ -678,6 +678,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="cityTextField" destination="g6D-0F-JU7" id="1OK-uJ-MaT"/>
+                        <outlet property="continueButton" destination="xiT-37-XNy" id="diU-aC-bQN"/>
                         <outlet property="scrollView" destination="Rzx-5Q-mfY" id="dP2-8u-9W0"/>
                         <outlet property="selectedStateLabel" destination="aQ0-XS-Doq" id="bNY-FE-fUI"/>
                         <outlet property="selectedStateStackView" destination="Naj-Z1-rgv" id="TiV-nj-8M7"/>
