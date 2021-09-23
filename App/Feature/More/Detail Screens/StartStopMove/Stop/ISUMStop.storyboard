@@ -540,32 +540,38 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="777"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4s8-6h-ZLg" userLabel="Content View">
-                                        <rect key="frame" x="20" y="0.0" width="374" height="641"/>
+                                        <rect key="frame" x="20" y="0.0" width="374" height="755"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="Os3-Dz-9FJ">
-                                                <rect key="frame" x="0.0" y="30" width="374" height="381"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="Os3-Dz-9FJ">
+                                                <rect key="frame" x="0.0" y="30" width="374" height="395"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please provide a mailing address for your final bill." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kwc-0n-FPt">
-                                                        <rect key="frame" x="0.0" y="0.0" width="374" height="41"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="374" height="55"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tPl-Iz-uWm" userLabel="Street Addres Float Text Field" customClass="FloatLabelTextField" customModule="EUMobile" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="71" width="374" height="55"/>
+                                                        <rect key="frame" x="0.0" y="85" width="374" height="55"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g6D-0F-JU7" userLabel="City Float Text Field" customClass="FloatLabelTextField" customModule="EUMobile" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="156" width="374" height="55"/>
+                                                        <rect key="frame" x="0.0" y="170" width="374" height="55"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oBv-Jr-jsf" userLabel="State Picker Label View">
-                                                        <rect key="frame" x="0.0" y="241" width="374" height="55"/>
+                                                        <rect key="frame" x="0.0" y="255" width="374" height="55"/>
                                                         <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UbE-g0-7NQ">
+                                                                <rect key="frame" x="0.0" y="0.0" width="374" height="55"/>
+                                                                <connections>
+                                                                    <action selector="stateButtonTapped:" destination="9fH-DP-RJW" eventType="touchUpInside" id="NO8-hb-Ls1"/>
+                                                                </connections>
+                                                            </button>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="State*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h6q-A9-Nzi">
                                                                 <rect key="frame" x="16" y="17.5" width="48" height="20.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                <color key="textColor" red="0.45098039220000002" green="0.45098039220000002" blue="0.45098039220000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_caret" translatesAutoresizingMaskIntoConstraints="NO" id="GHk-bd-JVC">
@@ -588,13 +594,6 @@
                                                                     </label>
                                                                 </subviews>
                                                             </stackView>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UbE-g0-7NQ">
-                                                                <rect key="frame" x="0.0" y="0.0" width="374" height="55"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                <connections>
-                                                                    <action selector="stateButtonTapped:" destination="9fH-DP-RJW" eventType="touchUpInside" id="NO8-hb-Ls1"/>
-                                                                </connections>
-                                                            </button>
                                                         </subviews>
                                                         <constraints>
                                                             <constraint firstAttribute="trailing" secondItem="UbE-g0-7NQ" secondAttribute="trailing" id="0Hc-4w-hqi"/>
@@ -602,7 +601,6 @@
                                                             <constraint firstItem="Naj-Z1-rgv" firstAttribute="centerY" secondItem="oBv-Jr-jsf" secondAttribute="centerY" id="Dfh-rn-EEp"/>
                                                             <constraint firstAttribute="bottom" secondItem="UbE-g0-7NQ" secondAttribute="bottom" id="EFK-8z-Vb9"/>
                                                             <constraint firstItem="h6q-A9-Nzi" firstAttribute="leading" secondItem="oBv-Jr-jsf" secondAttribute="leading" constant="16" id="JEM-lW-DMW"/>
-                                                            <constraint firstAttribute="height" constant="55" id="SL8-LN-raJ"/>
                                                             <constraint firstAttribute="trailing" secondItem="GHk-bd-JVC" secondAttribute="trailing" constant="20" id="Z2H-Id-WB4"/>
                                                             <constraint firstItem="h6q-A9-Nzi" firstAttribute="centerY" secondItem="oBv-Jr-jsf" secondAttribute="centerY" id="dms-eZ-agj"/>
                                                             <constraint firstItem="UbE-g0-7NQ" firstAttribute="leading" secondItem="oBv-Jr-jsf" secondAttribute="leading" id="kQH-sZ-80u"/>
@@ -611,7 +609,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ajX-d7-UPJ" userLabel="Zip Code Float Text Field" customClass="FloatLabelTextField" customModule="EUMobile" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="326" width="374" height="55"/>
+                                                        <rect key="frame" x="0.0" y="340" width="374" height="55"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     </view>
                                                 </subviews>
@@ -620,9 +618,9 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="7EB-sh-hs3"/>
+                                            <constraint firstAttribute="bottom" secondItem="Os3-Dz-9FJ" secondAttribute="bottom" constant="330" id="NT7-AS-YNA"/>
                                             <constraint firstAttribute="trailing" secondItem="Os3-Dz-9FJ" secondAttribute="trailing" id="Rwm-U4-CLQ"/>
                                             <constraint firstAttribute="width" priority="750" constant="460" id="SQT-qj-B4s"/>
-                                            <constraint firstAttribute="bottom" secondItem="Os3-Dz-9FJ" secondAttribute="bottom" constant="230" id="gZV-MV-Pnc"/>
                                             <constraint firstItem="Os3-Dz-9FJ" firstAttribute="leading" secondItem="4s8-6h-ZLg" secondAttribute="leading" id="kHF-ac-rUX"/>
                                             <constraint firstItem="Os3-Dz-9FJ" firstAttribute="top" secondItem="4s8-6h-ZLg" secondAttribute="top" constant="30" id="sgR-n7-i4K"/>
                                         </constraints>
@@ -680,9 +678,11 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="cityTextField" destination="g6D-0F-JU7" id="1OK-uJ-MaT"/>
+                        <outlet property="scrollView" destination="Rzx-5Q-mfY" id="dP2-8u-9W0"/>
                         <outlet property="selectedStateLabel" destination="aQ0-XS-Doq" id="bNY-FE-fUI"/>
                         <outlet property="selectedStateStackView" destination="Naj-Z1-rgv" id="TiV-nj-8M7"/>
-                        <outlet property="statePlaceHolderLabel" destination="h6q-A9-Nzi" id="xkg-JJ-f39"/>
+                        <outlet property="stateFloatingLabel" destination="fuh-tE-2a9" id="HwQ-PO-Fu6"/>
+                        <outlet property="statePlaceHolderLabel" destination="h6q-A9-Nzi" id="ZYm-B9-D4d"/>
                         <outlet property="stateSelectionView" destination="oBv-Jr-jsf" id="kKY-GI-GIg"/>
                         <outlet property="stickyFooterBottomConstraint" destination="Jzb-D5-Vke" id="9oc-D9-7Zd"/>
                         <outlet property="streetAddressTextField" destination="tPl-Iz-uWm" id="Es6-MH-9eY"/>

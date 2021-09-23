@@ -17,6 +17,8 @@ class FinalMailingAddressViewController: KeyboardAvoidingStickyFooterViewControl
     @IBOutlet weak var statePlaceHolderLabel: UILabel!
     @IBOutlet weak var selectedStateStackView: UIStackView!
     @IBOutlet weak var selectedStateLabel: UILabel!
+    @IBOutlet weak var stateFloatingLabel: UILabel!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     private var viewModel: FinalMailingAddressViewModel!
     var mailingAddress: MailingAddress? = nil
@@ -24,8 +26,9 @@ class FinalMailingAddressViewController: KeyboardAvoidingStickyFooterViewControl
     
     
     @IBAction func stateButtonTapped(_ sender: UIButton) {
-        
+        print("State Button Tapped")
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel = FinalMailingAddressViewModel(mailingAddress: mailingAddress, isLaunchedFromReviewScreen: isLaunchedFromReviewScreen)
@@ -42,6 +45,16 @@ class FinalMailingAddressViewController: KeyboardAvoidingStickyFooterViewControl
         streetAddressTextField.placeholder = NSLocalizedString("Street Address*", comment: "")
         cityTextField.placeholder = NSLocalizedString("City*", comment: "")
         zipTextField.placeholder = NSLocalizedString("Zip Code*", comment: "")
+        
+        statePlaceHolderLabel.font = SystemFont.regular.of(textStyle: .callout)
+        statePlaceHolderLabel.textColor = .middleGray
+        
+        stateFloatingLabel.font = SystemFont.semibold.of(textStyle: .caption2)
+        stateFloatingLabel.textColor = .middleGray
+        
+        selectedStateLabel.font = SystemFont.regular.of(textStyle: .callout)
+        selectedStateLabel.textColor = .primaryColor
+        
         stateSelectionView.roundCorners(.allCorners, radius: 10.0, borderColor: UIColor(red: 216.0/255.0, green: 216.0/255.0, blue: 216.0/255.0, alpha: 1.0), borderWidth: 1.0)
     }
     
@@ -63,6 +76,7 @@ class FinalMailingAddressViewController: KeyboardAvoidingStickyFooterViewControl
     
     @objc func zipCodeDonePressed() {
         zipTextField.textField.resignFirstResponder()
+        scrollView.setContentOffset(CGPoint(x: 0, y: scrollView.contentInset.top), animated: true)
     }
 }
 
