@@ -140,6 +140,7 @@ class LoginViewModel {
         }
     }
     
+    
     func disableBiometrics() {
         BiometricService.disableBiometrics()
         biometricsEnabled.accept(false)

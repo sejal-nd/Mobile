@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="gRa-nh-wfg">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -2057,35 +2056,72 @@
                                 <rect key="frame" x="177" y="415" width="60" height="12"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mcc-PY-1Q9">
-                                <rect key="frame" x="29" y="411" width="356" height="20.5"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3nW-Gh-0iR">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="7TG-ja-QxI">
+                                        <rect key="frame" x="26" y="334.5" width="362" height="173.5"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="error" translatesAutoresizingMaskIntoConstraints="NO" id="lcd-L6-wvW">
+                                                <rect key="frame" x="131" y="0.0" width="100" height="100"/>
+                                                <color key="tintColor" systemColor="systemOrangeColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="100" id="Xb2-WJ-hz4"/>
+                                                    <constraint firstAttribute="height" constant="100" id="qaa-UF-JGV"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unable to Process Your Request" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Px-vT-zIl">
+                                                <rect key="frame" x="59" y="108" width="244.5" height="24"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="24" id="Rxy-aA-e5w"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="An error occured and we weren't able to process your request. Please try again later" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qm8-EZ-3jo">
+                                                <rect key="frame" x="6" y="140" width="350" height="33.5"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="24" id="UVQ-W9-vF5"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="Wmk-WE-ax0"/>
+                                    <constraint firstItem="7TG-ja-QxI" firstAttribute="centerY" secondItem="3nW-Gh-0iR" secondAttribute="centerY" id="7YX-4P-LkG"/>
+                                    <constraint firstAttribute="trailing" secondItem="7TG-ja-QxI" secondAttribute="trailing" constant="26" id="POb-xT-I8y"/>
+                                    <constraint firstItem="7TG-ja-QxI" firstAttribute="centerX" secondItem="3nW-Gh-0iR" secondAttribute="centerX" id="WNA-Gr-yjs"/>
+                                    <constraint firstItem="7TG-ja-QxI" firstAttribute="leading" secondItem="3nW-Gh-0iR" secondAttribute="leading" constant="26" id="XXC-Kk-JaG"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Kw2-sk-KM2"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="mcc-PY-1Q9" firstAttribute="leading" secondItem="Kw2-sk-KM2" secondAttribute="leading" priority="999" constant="29" id="13O-c6-xUo"/>
+                            <constraint firstItem="3nW-Gh-0iR" firstAttribute="top" secondItem="bhJ-K0-Kys" secondAttribute="top" id="FDH-uO-6s8"/>
                             <constraint firstItem="Xjp-gB-FxJ" firstAttribute="top" secondItem="bhJ-K0-Kys" secondAttribute="top" id="OpQ-j2-Pii"/>
+                            <constraint firstAttribute="bottom" secondItem="3nW-Gh-0iR" secondAttribute="bottom" id="VyN-18-PQy"/>
                             <constraint firstItem="RLQ-Uy-SBC" firstAttribute="centerX" secondItem="Kw2-sk-KM2" secondAttribute="centerX" id="ZEL-Pi-i2g"/>
                             <constraint firstAttribute="bottom" secondItem="Xjp-gB-FxJ" secondAttribute="bottom" id="ZNN-IF-Blo"/>
                             <constraint firstItem="Kw2-sk-KM2" firstAttribute="trailing" secondItem="Xjp-gB-FxJ" secondAttribute="trailing" id="cRy-8w-dhm"/>
                             <constraint firstItem="Xjp-gB-FxJ" firstAttribute="leading" secondItem="Kw2-sk-KM2" secondAttribute="leading" id="dkk-74-Mr6"/>
+                            <constraint firstItem="3nW-Gh-0iR" firstAttribute="trailing" secondItem="Kw2-sk-KM2" secondAttribute="trailing" id="fYl-xQ-f8g"/>
                             <constraint firstItem="RLQ-Uy-SBC" firstAttribute="centerY" secondItem="bhJ-K0-Kys" secondAttribute="centerY" id="gcf-4v-hrk"/>
-                            <constraint firstItem="Kw2-sk-KM2" firstAttribute="trailing" secondItem="mcc-PY-1Q9" secondAttribute="trailing" priority="999" constant="29" id="guK-Wa-NZB"/>
-                            <constraint firstItem="mcc-PY-1Q9" firstAttribute="centerX" secondItem="Kw2-sk-KM2" secondAttribute="centerX" id="lL2-xM-VjW"/>
-                            <constraint firstItem="mcc-PY-1Q9" firstAttribute="centerY" secondItem="bhJ-K0-Kys" secondAttribute="centerY" id="urs-Ak-39f"/>
+                            <constraint firstItem="3nW-Gh-0iR" firstAttribute="leading" secondItem="Kw2-sk-KM2" secondAttribute="leading" id="zuY-So-LxF"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Usage" id="zx9-ul-EWD"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
-                        <outlet property="errorLabel" destination="mcc-PY-1Q9" id="g2y-FQ-phb"/>
+                        <outlet property="errorDescription" destination="Qm8-EZ-3jo" id="Om5-1Q-rxd"/>
+                        <outlet property="errorImage" destination="lcd-L6-wvW" id="kgy-Iv-Cbt"/>
+                        <outlet property="errorTitle" destination="5Px-vT-zIl" id="5oe-ze-xMB"/>
+                        <outlet property="errorView" destination="3nW-Gh-0iR" id="7L1-bw-NyY"/>
                         <outlet property="loadingIndicator" destination="RLQ-Uy-SBC" id="U0Q-4w-alU"/>
                         <outlet property="webView" destination="Xjp-gB-FxJ" id="7cH-Pq-Ubo"/>
                     </connections>
@@ -2100,6 +2136,7 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="bill_analysis_shadow_triangle" width="50" height="61"/>
+        <image name="error" width="98" height="98"/>
         <image name="ic_caret" width="8" height="13"/>
         <image name="ic_caret_left" width="8" height="13"/>
         <image name="ic_lock_opco" width="125" height="126"/>
@@ -2112,6 +2149,9 @@
         <image name="img_predictedstripes" width="300" height="300"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
