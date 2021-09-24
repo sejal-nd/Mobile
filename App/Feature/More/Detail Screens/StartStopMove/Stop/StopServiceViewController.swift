@@ -129,9 +129,11 @@ class StopServiceViewController: UIViewController {
         continueButton.rx.tap
             .subscribe(onNext: { [weak self] _ in
                 guard let `self` = self else { return }
+                
+                guard let selectedDate = self.viewModel.selectedDate.value, let currentPremise = AccountsStore.shared.currentAccount.currentPremise, let accountDetails = self.currentAccountDeatil else { return }
+                let stopFlowData = StopServiceFlowData(workDays: self.viewModel.workDays.value, selectedDate: selectedDate, currentPremise: currentPremise, currentAccount: AccountsStore.shared.currentAccount, currentAccountDetail: accountDetails, hasCurrentServiceAddressForBill: self.billAddressSegmentControl.selectedIndex.value == 0)
+                
                 if self.billAddressSegmentControl.selectedIndex.value == 0 {
-                    guard let selectedDate = self.viewModel.selectedDate.value, let currentPremise = AccountsStore.shared.currentAccount.currentPremise, let accountDetails = self.currentAccountDeatil else { return }
-                    let stopFlowData = StopServiceFlowData(workDays: self.viewModel.workDays.value, selectedDate: selectedDate, currentPremise: currentPremise, currentAccount: AccountsStore.shared.currentAccount, currentAccountDetail: accountDetails, hasCurrentServiceAddressForEbill: self.billAddressSegmentControl.selectedIndex.value == 0)
                     let storyboard = UIStoryboard(name: "ISUMStop", bundle: nil)
                     let reviewStopServiceViewController = storyboard.instantiateViewController(withIdentifier: "ReviewStopServiceViewController") as! ReviewStopServiceViewController
                     reviewStopServiceViewController.stopFlowData = stopFlowData
@@ -139,6 +141,7 @@ class StopServiceViewController: UIViewController {
                 } else {
                     let storyboard = UIStoryboard(name: "ISUMStop", bundle: nil)
                     let finalMailingAddressViewController = storyboard.instantiateViewController(withIdentifier: "FinalMailingAddressViewController") as! FinalMailingAddressViewController
+                    finalMailingAddressViewController.stopFlowData = stopFlowData
                     self.navigationController?.pushViewController(finalMailingAddressViewController, animated: true)
 
                 }

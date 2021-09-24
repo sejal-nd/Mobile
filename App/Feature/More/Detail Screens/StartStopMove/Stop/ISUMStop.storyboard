@@ -647,7 +647,7 @@
                                         </constraints>
                                         <state key="normal" title="Continue"/>
                                         <connections>
-                                            <action selector="BeginTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="e2z-CE-4gu"/>
+                                            <action selector="continueButtonTapped:" destination="9fH-DP-RJW" eventType="touchUpInside" id="Kyr-dD-amx"/>
                                         </connections>
                                     </button>
                                 </subviews>

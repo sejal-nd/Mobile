@@ -34,6 +34,7 @@ class ReviewStopServiceViewController: UIViewController {
     var stopFlowData: StopServiceFlowData!
     var viewModel = ReviewStopServiceViewModel()
     var disposeBag = DisposeBag()
+    var delegate: FinalMailingAddressDelegate? = nil
 
     override func viewDidLoad() {
         
@@ -48,30 +49,13 @@ class ReviewStopServiceViewController: UIViewController {
     
     func initialUIBinding() {
         
-        self.electricStackView.isHidden = !(stopFlowData.currentAccountDetail.serviceType?.contains("ELECTRIC") ?? false)
-        self.gasStackView.isHidden = !(stopFlowData.currentAccountDetail.serviceType?.contains("GAS") ?? false)
-        if let currPremise = stopFlowData.currentAccount.currentPremise, let address = currPremise.addressGeneral {
-            self.currentServiceAddressLabel.text = address
-        }else {
-            self.currentServiceAddressLabel.text = stopFlowData.currentAccount.address ?? ""
-        }
-        self.stopServiceDateLabel.text = DateFormatter.ddMMMMYYYYFormatter.string(from: stopFlowData.selectedDate)
-        self.finalBillAddressStackView.isHidden = stopFlowData.currentAccountDetail.isEBillEnrollment
-        self.ebillStackView.isHidden = !stopFlowData.currentAccountDetail.isEBillEnrollment
-        self.ebillUserInfoLabel.text = "Your final bill will be delivered by email to \(stopFlowData.currentAccountDetail.customerInfo.emailAddress ?? "")."
-        self.supplierAgreementStackView.isHidden = !stopFlowData.currentAccountDetail.hasThirdPartySupplier
-
-        self.submitButton.isUserInteractionEnabled = !stopFlowData.currentAccountDetail.hasThirdPartySupplier
-        self.submitButton.backgroundColor = !stopFlowData.currentAccountDetail.hasThirdPartySupplier ? UIColor(red: 0, green: 89.0/255.0, blue: 164.0/255.0, alpha: 1.0) : UIColor(red: 216.0/255.0, green: 216.0/255.0, blue: 216.0/255.0, alpha: 1.0)
-        self.submitButton.setTitleColor(!stopFlowData.currentAccountDetail.hasThirdPartySupplier ? UIColor.white : UIColor(red: 74.0/255.0, green: 74.0/255.0, blue: 74.0/255.0, alpha: 0.5), for: .normal)
-        
-        if stopFlowData.hasCurrentServiceAddressForEbill {
-            self.finalMailingAddress.text = "Same as current service address"
-        }
+        refreshData()
         
         self.navigationItem.hidesBackButton = true
-        let newBackButton = UIBarButtonItem(image: UIImage(named: "ic_back`"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(ReviewStopServiceViewController.back(sender:)))
+        let newBackButton = UIBarButtonItem(image: UIImage(named: "ic_back"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(ReviewStopServiceViewController.back(sender:)))
         self.navigationItem.leftBarButtonItem = newBackButton
+        
+        changeMailingAddressButton.isHidden = stopFlowData.hasCurrentServiceAddressForBill
 
         submitButton.roundCorners(.allCorners, radius: 27.5, borderColor: UIColor(red: 216.0/255.0, green: 216.0/255.0, blue: 216.0/255.0, alpha: 1.0), borderWidth: 1.0)
 
@@ -90,7 +74,12 @@ class ReviewStopServiceViewController: UIViewController {
                 guard let `self` = self else { return }
                 let storyboard = UIStoryboard(name: "ISUMStop", bundle: nil)
                 let finalMailingAddressViewController = storyboard.instantiateViewController(withIdentifier: "FinalMailingAddressViewController") as! FinalMailingAddressViewController
-                self.navigationController?.pushViewController(finalMailingAddressViewController, animated: true)
+                finalMailingAddressViewController.isLaunchedFromReviewScreen = true
+                finalMailingAddressViewController.delegate = self
+                finalMailingAddressViewController.stopFlowData = self.stopFlowData
+                let navigationController = LargeTitleNavigationController(rootViewController: finalMailingAddressViewController)
+                navigationController.modalPresentationStyle = .fullScreen
+                self.present(navigationController, animated: true, completion: nil)
             }).disposed(by: disposeBag)
         
         changeStopServiceDateButton.rx.tap
@@ -120,8 +109,39 @@ class ReviewStopServiceViewController: UIViewController {
             }).disposed(by: disposeBag)
     }
     
+    func refreshData() {
+        
+        self.electricStackView.isHidden = !(stopFlowData.currentAccountDetail.serviceType?.contains("ELECTRIC") ?? false)
+        self.gasStackView.isHidden = !(stopFlowData.currentAccountDetail.serviceType?.contains("GAS") ?? false)
+        if let currPremise = stopFlowData.currentAccount.currentPremise, let address = currPremise.addressGeneral {
+            self.currentServiceAddressLabel.text = address
+        }else {
+            self.currentServiceAddressLabel.text = stopFlowData.currentAccount.address ?? ""
+        }
+        self.stopServiceDateLabel.text = DateFormatter.ddMMMMYYYYFormatter.string(from: stopFlowData.selectedDate)
+        self.finalBillAddressStackView.isHidden = stopFlowData.currentAccountDetail.isEBillEnrollment
+        self.ebillStackView.isHidden = !stopFlowData.currentAccountDetail.isEBillEnrollment
+        self.ebillUserInfoLabel.text = "Your final bill will be delivered by email to \(stopFlowData.currentAccountDetail.customerInfo.emailAddress ?? "")."
+        self.supplierAgreementStackView.isHidden = !stopFlowData.currentAccountDetail.hasThirdPartySupplier
+
+        self.submitButton.isUserInteractionEnabled = !stopFlowData.currentAccountDetail.hasThirdPartySupplier
+        self.submitButton.backgroundColor = !stopFlowData.currentAccountDetail.hasThirdPartySupplier ? UIColor(red: 0, green: 89.0/255.0, blue: 164.0/255.0, alpha: 1.0) : UIColor(red: 216.0/255.0, green: 216.0/255.0, blue: 216.0/255.0, alpha: 1.0)
+        self.submitButton.setTitleColor(!stopFlowData.currentAccountDetail.hasThirdPartySupplier ? UIColor.white : UIColor(red: 74.0/255.0, green: 74.0/255.0, blue: 74.0/255.0, alpha: 0.5), for: .normal)
+        
+        if stopFlowData.hasCurrentServiceAddressForBill {
+            self.finalMailingAddress.text = "Same as current service address"
+        } else {
+            guard let address = stopFlowData.mailingAddress else { return }
+            self.finalMailingAddress.text = "\(address.streetAddress), \(address.city), \(address.state) \(address.zipCode)"
+        }
+
+    }
+    
     @objc func back(sender: UIBarButtonItem) {
         
+        if let address = stopFlowData.mailingAddress {
+            delegate?.mailingAddress(address)
+        }
         self.navigationController?.popViewController(animated: true)
     }
 }
@@ -136,5 +156,15 @@ extension ReviewStopServiceViewController: PDTSimpleCalendarViewDelegate {
         self.stopFlowData.selectedDate = date
         self.stopServiceDateLabel.text = DateFormatter.ddMMMMYYYYFormatter.string(from: date)
         controller.dismiss(animated: true, completion: nil)
+    }
+}
+
+// MARK: - FinalMailingAddressProtocol
+extension ReviewStopServiceViewController: FinalMailingAddressDelegate {
+    
+    func mailingAddress(_ address: MailingAddress) {
+        
+        self.stopFlowData.mailingAddress = address
+        refreshData()
     }
 }
