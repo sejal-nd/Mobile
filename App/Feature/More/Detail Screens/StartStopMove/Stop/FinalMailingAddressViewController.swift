@@ -8,6 +8,7 @@
 
 import UIKit
 
+//TODO: Handline of the Modal Presentation will be covered as part of the review story.
 class FinalMailingAddressViewController: KeyboardAvoidingStickyFooterViewController {
 
     @IBOutlet weak var stateSelectionView: UIView!
@@ -78,12 +79,10 @@ class FinalMailingAddressViewController: KeyboardAvoidingStickyFooterViewControl
     private func configureComponentBehavior() {
         
         streetAddressTextField.textField.returnKeyType = .next
-        streetAddressTextField.textField.autocorrectionType = .no
         streetAddressTextField.textField.delegate = self
         zipTextField.textField.textContentType = .fullStreetAddress
         
         cityTextField.textField.returnKeyType = .next
-        cityTextField.textField.autocorrectionType = .no
         cityTextField.textField.delegate = self
         zipTextField.textField.textContentType = .addressCity
         
@@ -96,7 +95,9 @@ class FinalMailingAddressViewController: KeyboardAvoidingStickyFooterViewControl
     }
     
     private func showStatePicker() {
-        
+        streetAddressTextField.textField.resignFirstResponder()
+        cityTextField.textField.resignFirstResponder()
+        zipTextField.textField.resignFirstResponder()
         PickerView.showStringPicker(withTitle: NSLocalizedString("Select State", comment: ""),
                                     data: USState.allCases.map { $0.rawValue },
                                     selectedIndex: viewModel.stateSelectedIndex,
@@ -116,9 +117,12 @@ class FinalMailingAddressViewController: KeyboardAvoidingStickyFooterViewControl
                                                 self.selectedStateStackView.isHidden = true
                                                 self.selectedStateLabel.text = nil
                                             }
+                                            self.continueButton.isEnabled = self.viewModel.canEnableContinue
                                         }
                                     },
-                                    onCancel: nil)
+                                    onCancel: {
+                                        self.continueButton.isEnabled = self.viewModel.canEnableContinue
+                                    })
     }
     
     private func colorStateBorderGray() {

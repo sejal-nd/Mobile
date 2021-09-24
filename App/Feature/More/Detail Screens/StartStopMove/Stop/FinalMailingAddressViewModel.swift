@@ -41,6 +41,6 @@ class FinalMailingAddressViewModel {
     }
     
     var canEnableContinue: Bool {
-        return isStreetAddressValid && isCityValid && isZipValid
+        return isStreetAddressValid && isCityValid && isZipValid && stateSelectedIndex != 0
     }
 }
