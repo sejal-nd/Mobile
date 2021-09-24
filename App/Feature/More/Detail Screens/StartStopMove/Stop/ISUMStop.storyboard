@@ -1162,12 +1162,17 @@
                         <outlet property="ebillUserInfoLabel" destination="WZ5-oq-Qry" id="0en-9I-Pcm"/>
                         <outlet property="electricStackView" destination="glc-jj-BR7" id="L2V-dY-Ky9"/>
                         <outlet property="finalBillAddressStackView" destination="cfM-rs-acU" id="bGu-2K-GSg"/>
+                        <outlet property="finalBillAddressStaticLabel" destination="csx-dI-If2" id="4L4-hK-QmV"/>
                         <outlet property="finalMailingAddress" destination="1sj-t6-LcE" id="ue1-JS-i9O"/>
                         <outlet property="gasStackView" destination="gW0-wV-Ido" id="oMs-lS-d0V"/>
+                        <outlet property="serviceDisconnectStaticLabel" destination="bGi-xo-eDE" id="001-pe-Yh6"/>
+                        <outlet property="serviceProvidedStaticLabel" destination="v8l-gP-IdI" id="Jf9-7O-vjR"/>
                         <outlet property="serviceProviderStackView" destination="U5N-g6-9Jh" id="2NH-dR-gy6"/>
                         <outlet property="stopCurrentServiceAddressStackView" destination="e76-kT-7LF" id="adg-0f-sML"/>
                         <outlet property="stopDateStackView" destination="XhS-MU-HGH" id="Di1-Xn-GTZ"/>
+                        <outlet property="stopServiceAddressStaticLabel" destination="p6t-2Y-s5R" id="ABP-5P-zCD"/>
                         <outlet property="stopServiceDateLabel" destination="qW6-iO-MwD" id="zXo-tp-KeL"/>
+                        <outlet property="stopServiceDateStaticLabel" destination="Zoc-6u-bXH" id="9Z0-9h-QTa"/>
                         <outlet property="submitButton" destination="3Hh-Z4-RIq" id="ypq-2R-yGL"/>
                         <outlet property="supplierAgreementButton" destination="3JQ-qp-Ri0" id="Jm9-OH-hsS"/>
                         <outlet property="supplierAgreementStackView" destination="HOU-Wx-NCD" id="yKG-mg-pKJ"/>

@@ -30,6 +30,13 @@ class ReviewStopServiceViewController: UIViewController {
     @IBOutlet weak var changeMailingAddressButton: UIButton!
     @IBOutlet weak var changeStopServiceDateButton: UIButton!
     @IBOutlet weak var submitButton: UIButton!
+    
+    @IBOutlet weak var stopServiceAddressStaticLabel: UILabel!
+    @IBOutlet weak var serviceProvidedStaticLabel: UILabel!
+    @IBOutlet weak var stopServiceDateStaticLabel: UILabel!
+    @IBOutlet weak var serviceDisconnectStaticLabel: UILabel!
+    @IBOutlet weak var finalBillAddressStaticLabel: UILabel!
+
 
     var stopFlowData: StopServiceFlowData!
     var viewModel = ReviewStopServiceViewModel()
@@ -54,6 +61,12 @@ class ReviewStopServiceViewController: UIViewController {
         self.navigationItem.hidesBackButton = true
         let newBackButton = UIBarButtonItem(image: UIImage(named: "ic_back"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(ReviewStopServiceViewController.back(sender:)))
         self.navigationItem.leftBarButtonItem = newBackButton
+        
+        stopServiceAddressStaticLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        serviceProvidedStaticLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        stopServiceDateStaticLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        serviceDisconnectStaticLabel.font = SystemFont.regular.of(textStyle: .caption1)
+        finalBillAddressStaticLabel.font = SystemFont.regular.of(textStyle: .footnote)
         
         changeMailingAddressButton.isHidden = stopFlowData.hasCurrentServiceAddressForBill
 
