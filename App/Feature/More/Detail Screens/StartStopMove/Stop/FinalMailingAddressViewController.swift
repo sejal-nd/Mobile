@@ -71,6 +71,11 @@ class FinalMailingAddressViewController: KeyboardAvoidingStickyFooterViewControl
             statePlaceHolderLabel.isHidden = false
             selectedStateLabel.text = nil
         }
+        if isLaunchedFromReviewScreen {
+            continueButton.setTitle(NSLocalizedString("Save Address", comment: ""), for: .normal)
+        } else {
+            continueButton.setTitle(NSLocalizedString("Continue", comment: ""), for: .normal)
+        }
         continueButton.isEnabled = viewModel.canEnableContinue
         
         colorStateBorderGray()
