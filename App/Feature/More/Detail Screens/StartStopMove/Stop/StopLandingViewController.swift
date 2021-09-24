@@ -13,7 +13,7 @@ class StopLandingViewController: UIViewController {
     @IBOutlet weak var headerMessageLabel: UILabel! {
         didSet {
             headerMessageLabel.textColor = .deepGray
-            headerMessageLabel.font = SystemFont.semibold.of(textStyle: .title3)
+            headerMessageLabel.font = OpenSans.semibold.of(textStyle: .title3)
             headerMessageLabel.text = NSLocalizedString("Permanently stop your current service", comment: "")
         }
     }
@@ -35,7 +35,7 @@ class StopLandingViewController: UIViewController {
     @IBOutlet weak var stopDateMessagingLabel: UILabel! {
         didSet {
             stopDateMessagingLabel.textColor = .deepGray
-            stopDateMessagingLabel.font = SystemFont.regular.of(textStyle: .body)
+            stopDateMessagingLabel.font = SystemFont.regular.of(textStyle: .subheadline)
             stopDateMessagingLabel.text = NSLocalizedString("Date to stop your service within 30 days, excluding holidays and Sundays.", comment: "")
         }
     }
