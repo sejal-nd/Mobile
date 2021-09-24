@@ -479,7 +479,7 @@ class HomeBillCardViewModel {
     }
     
     // MARK: - Assistance View States
-    private(set) lazy var paymentAssistanceValues: Driver<(title: String, description: String, ctaType: String, ctaURL: String)?> =
+    private(set) lazy var paymentAssistanceValues: Driver<(title: String, description: String, ctaType: String)?> =
         Driver.combineLatest(accountDetailDriver, showBgeDdeDpaEligibility.asDriver())
         { (accountDetail, bgeDdeDpaEligibilityChecked) in
             let isAccountTypeEligible = accountDetail.isResidential || accountDetail.isSmallCommercialCustomer
@@ -499,13 +499,11 @@ class HomeBillCardViewModel {
                     if Configuration.shared.opco.isPHI {
                         return (title: "You’re eligible for a One-Time Payment Delay",
                                 description: "Having trouble keeping up with your \(Configuration.shared.opco.displayString) bill? We’re here to help. Extend your upcoming bill due date by up to 30 calendar days with a One-Time Payment Delay.",
-                                ctaType: "Request One-Time Payment Delay",
-                                ctaURL: "")
+                                ctaType: "Request One-Time Payment Delay")
                     } else {
                         return (title: "You’re eligible for a Due Date Extension",
                                 description: "Having trouble keeping up with your \(Configuration.shared.opco.displayString) bill? We’re here to help. Extend your upcoming bill due date by up to 21 calendar days with a Due Date Extension.",
-                                ctaType: "Request Due Date Extension",
-                                ctaURL: "")
+                                ctaType: "Request Due Date Extension")
                     }
                     
                 } else if !accountDetail.isDueDateExtensionEligible &&
@@ -520,8 +518,7 @@ class HomeBillCardViewModel {
                     var title =  Configuration.shared.opco == .comEd && accountDetail.isLowIncome ? lowIncomeTitle : nonLowIncomeTitle
                     return (title: title,
                             description: "",
-                            ctaType: "Reinstate Payment Arrangement",
-                            ctaURL: "")
+                            ctaType: "Reinstate Payment Arrangement")
                 } else if !accountDetail.isDueDateExtensionEligible &&
                             accountDetail.billingInfo.pastDueAmount > 0 &&
                             accountDetail.is_dpa_eligible {
@@ -530,13 +527,11 @@ class HomeBillCardViewModel {
                     if Configuration.shared.opco.isPHI {
                         return (title: "You’re eligible for a Payment Arrangement.",
                                 description: "Having trouble keeping up with your \(Configuration.shared.opco.displayString) bill? We’re here to help. You can make monthly installments to bring your account up to date.",
-                                ctaType: "Learn More",
-                                ctaURL: "")
+                                ctaType: "Learn More")
                     } else {
                         return (title: "You’re eligible for a Deferred Payment Arrangement.",
                                 description: "Having trouble keeping up with your \(Configuration.shared.opco.displayString) bill? We’re here to help. You can make monthly installments to bring your account up to date.",
-                                ctaType: "Learn More",
-                                ctaURL: "")
+                                ctaType: "Learn More")
                     }
                     
                 } else if !accountDetail.isDueDateExtensionEligible &&
@@ -547,16 +542,15 @@ class HomeBillCardViewModel {
                     self.mobileAssistanceType = MobileAssistanceURL.none
                     return (title: "Having trouble keeping up with your \(Configuration.shared.opco.displayString) bill?",
                             description: "Check out the many Assistance Programs \(Configuration.shared.opco.displayString) offers to find one that’s right for you.",
-                            ctaType: "Learn More",
-                            ctaURL: "")
+                            ctaType: "Learn More")
                 }
             }
             return nil
     }
     
-    private func showBGEAssitanceCTA(accountDetail: AccountDetail) -> (title: String, description: String, ctaType: String, ctaURL: String) {
+    private func showBGEAssitanceCTA(accountDetail: AccountDetail) -> (title: String, description: String, ctaType: String) {
         guard let dueDate = accountDetail.billingInfo.dueByDate else {
-            return ("","","","")
+            return ("","","")
         }
         let netDueAmount = accountDetail.billingInfo.netDueAmount
         if accountDetail.billingInfo.currentDueAmount >= 0 &&
@@ -567,8 +561,7 @@ class HomeBillCardViewModel {
             self.mobileAssistanceType = MobileAssistanceURL.dde
             return (title: "You’re eligible for a Due Date Extension",
                     description: "Having trouble keeping up with your \(Configuration.shared.opco.displayString) bill? We’re here to help. Extend your upcoming bill due date by up to 30 calendar days with a Due Date Extension.",
-                    ctaType: "Request Due Date Extension",
-                    ctaURL: "")
+                    ctaType: "Request Due Date Extension")
         } else if accountDetail.billingInfo.pastDueAmount > 0 &&
                     netDueAmount >= 80 && netDueAmount <= 5000 &&
                     isBgeDpaEligible.value ?? false {
@@ -576,18 +569,16 @@ class HomeBillCardViewModel {
             self.mobileAssistanceType = MobileAssistanceURL.dpa
             return (title: "You’re eligible for a Deferred Payment Arrangement.",
                     description: "Having trouble keeping up with your \(Configuration.shared.opco.displayString) bill? We’re here to help. You can make monthly installments to bring your account up to date.",
-                    ctaType: "Learn More",
-                    ctaURL: "")
+                    ctaType: "Learn More")
             
         } else if accountDetail.billingInfo.pastDueAmount > 0  {
             self.mobileAssistanceURL.accept(MobileAssistanceURL.getMobileAssistnceURL(assistanceType: .none, stateJurisdiction: accountDetail.state))
             self.mobileAssistanceType = MobileAssistanceURL.none
             return (title: "Having trouble keeping up with your \(Configuration.shared.opco.displayString) bill?",
                     description: "Check out the many Assistance Programs \(Configuration.shared.opco.displayString) offers to find one that’s right for you.",
-                    ctaType: "Learn More",
-                    ctaURL: "")
+                    ctaType: "Learn More")
         }
-        return ("","","","")
+        return ("","","")
     }
 
     private(set) lazy var showAlertAnimation: Driver<Bool> = billState.map {
