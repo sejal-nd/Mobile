@@ -94,7 +94,7 @@ class FinalMailingAddressViewController: KeyboardAvoidingStickyFooterViewControl
         selectedStateLabel.font = SystemFont.regular.of(textStyle: .callout)
         selectedStateLabel.textColor = .middleGray
         if let state = viewModel?.state {
-            selectedStateLabel.text = state
+            selectedStateLabel.text = state.rawValue
             statePlaceHolderLabel.isHidden = true
             selectedStateStackView.isHidden = false
         } else {
@@ -159,7 +159,7 @@ class FinalMailingAddressViewController: KeyboardAvoidingStickyFooterViewControl
                                             
                                             switch index {
                                             case 1...USState.allCases.count:
-                                                self.viewModel.state = value
+                                                self.viewModel.state = USState.allCases[index]
                                                 self.selectedStateLabel.text = value
                                                 self.selectedStateStackView.isHidden = false
                                                 self.statePlaceHolderLabel.isHidden = true

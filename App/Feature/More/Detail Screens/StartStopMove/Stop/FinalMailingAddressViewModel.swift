@@ -13,7 +13,7 @@ import RxSwift
 public struct MailingAddress {
     let streetAddress: String
     let city: String
-    let state: String
+    let state: USState
     let zipCode: String
     var stateSelectedIndex: Int
 }
@@ -23,7 +23,7 @@ class FinalMailingAddressViewModel {
     var streetAddress: String?
     var city: String?
     var zipCode: String?
-    var state: String?
+    var state: USState?
     var stateSelectedIndex = 0
     
     var isStreetAddressValid: Bool {
