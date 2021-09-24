@@ -284,7 +284,7 @@ struct Configuration {
         var oPowerURLString: String
         switch Configuration.shared.environmentName {
         case .rc, .release:
-            oPowerURLString = "https://\(accountOpCo.urlDisplayString).com/pages/mobileopower.aspx"
+            oPowerURLString = "https://secure.\(accountOpCo.urlDisplayString).com/pages/mobileopower.aspx"
         default:
             let projectTierRawValue = UserDefaults.standard.string(forKey: "selectedProjectTier") ?? "Stage"
             let projectTier = ProjectTier(rawValue: projectTierRawValue) ?? .stage

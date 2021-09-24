@@ -91,6 +91,7 @@ extension B2CForgotPasswordViewController: WKScriptMessageHandler {
         
         if command == "logEvent",
            name == "ForgotPWDComplete" {
+            FirebaseUtility.logEvent(.forgotPassword(parameters: [.complete]))
             GoogleAnalytics.log(event: .forgotPasswordComplete)
         }
     }
