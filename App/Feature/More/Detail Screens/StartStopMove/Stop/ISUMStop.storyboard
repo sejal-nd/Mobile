@@ -517,11 +517,14 @@
                         <outlet property="loadingIndicator" destination="aJ3-Zh-98N" id="X2L-be-h8v"/>
                         <outlet property="scrollView" destination="MfW-s9-bzM" id="60v-uL-m9I"/>
                         <outlet property="selectedDateLabel" destination="xfV-t3-fI4" id="gTD-UP-DlZ"/>
+                        <outlet property="serviceDisconnectStaticLabel" destination="3JT-0k-cwb" id="Q19-a7-KaK"/>
+                        <outlet property="serviceProvidedStaticLabel" destination="Hit-GM-j2q" id="fZb-4i-Hpn"/>
                         <outlet property="serviceProviderStackView" destination="a0v-OV-6GN" id="CTv-8A-pOJ"/>
                         <outlet property="stopDateButton" destination="2Hh-nw-JwT" id="QIn-wb-dAY"/>
                         <outlet property="stopDateLabel" destination="A5E-Pu-tdl" id="oSp-G8-VtE"/>
                         <outlet property="stopDateSelectionView" destination="8Sv-kD-FC0" id="hF0-78-Zc4"/>
                         <outlet property="stopDateToolTipButton" destination="GSL-8g-Fme" id="yNR-6d-eiL"/>
+                        <outlet property="stopServiceAddressStaticLabel" destination="fDP-fI-Mn1" id="6Zj-hP-bwJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sXe-wt-slw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

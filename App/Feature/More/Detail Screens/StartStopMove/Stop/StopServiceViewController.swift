@@ -28,7 +28,10 @@ class StopServiceViewController: UIViewController {
     @IBOutlet weak var dateStackView: UIStackView!
     @IBOutlet weak var selectedDateLabel: UILabel!
     @IBOutlet weak var stopDateLabel: UILabel!
-    
+    @IBOutlet weak var stopServiceAddressStaticLabel: UILabel!
+    @IBOutlet weak var serviceProvidedStaticLabel: UILabel!
+    @IBOutlet weak var serviceDisconnectStaticLabel: UILabel!
+
     var accounts: [Account] {
         get { return AccountsStore.shared.accounts ?? [] }
     }
@@ -64,6 +67,10 @@ class StopServiceViewController: UIViewController {
         self.navigationItem.leftBarButtonItem = newBackButton
         self.scrollView.isHidden = true
         
+        stopServiceAddressStaticLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        serviceProvidedStaticLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        serviceDisconnectStaticLabel.font = SystemFont.regular.of(textStyle: .caption1)
+
         
         viewModel.showLoadingState
             .subscribe (onNext: { [weak self] status in
