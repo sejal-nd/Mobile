@@ -15,7 +15,8 @@ class MoreViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var superviewTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var safeAreaTopConstraint: NSLayoutConstraint!
-    
+
+
     @IBOutlet weak var signOutButton: UIButton! {
         didSet {
             signOutButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
@@ -46,6 +47,16 @@ class MoreViewController: UIViewController {
     private var biometricsPasswordRetryCount = 0
     
     private let disposeBag = DisposeBag()
+
+    lazy var isAccountResidential: Bool = {
+        if let currentAccount = viewModel.getAccountDetails(), let customerType = currentAccount.customerInfo.customerType {
+                if customerType == "COMM" {
+                  return false
+                }
+          }
+        return true
+      }()
+
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -86,6 +97,8 @@ class MoreViewController: UIViewController {
 
         if AccountsStore.shared.accounts == nil {
             fetchAccounts()
+        }else {
+            viewModel.getAccountDetailSubject.onNext(())
         }
         
         // Edge case: if user navigates to More before game data loads, we want the
@@ -95,7 +108,6 @@ class MoreViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
         AppRating.present()
     }
     
@@ -132,6 +144,7 @@ class MoreViewController: UIViewController {
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] _ in
                 self?.tableView.reloadData()
+                self?.viewModel.getAccountDetailSubject.onNext(())
             }).disposed(by: disposeBag)
     }
     
@@ -410,7 +423,12 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
                 }
             case 1:
                 if FeatureFlagUtility.shared.bool(forKey: .hasAuthenticatedISUM) {
-                    performSegue(withIdentifier: "stopServiceSegue", sender: nil)
+                    if isAccountResidential {
+                        performSegue(withIdentifier: "stopServiceSegue", sender: nil)
+                    }else {
+                        UIApplication.shared.openUrlIfCan(viewModel.stopCommercialServiceWebURL)
+                    }
+
                 } else {
                     FirebaseUtility.logEvent(.more(parameters: [.billing_videos]))
                     UIApplication.shared.openUrlIfCan(viewModel.billingVideosUrl)
