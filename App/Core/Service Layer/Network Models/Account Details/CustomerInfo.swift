@@ -15,9 +15,12 @@ public struct CustomerInfo: Decodable {
     public var lastName: String?
     public var nameCompressed: String?
     public var emailAddress: String?
-    
+    public var customerType: String?
+
+
     public var cellPhoneNumber: String?
     public var primaryPhoneNumber: String?
+
     
     enum CodingKeys: String, CodingKey {
         case customerInfo = "CustomerInfo"
@@ -27,6 +30,7 @@ public struct CustomerInfo: Decodable {
         case lastName
         case nameCompressed
         case emailAddress
+        case customerType
         
         case phoneInfo = "PhoneInfo"
         case cellPhoneNumber
@@ -48,6 +52,9 @@ public struct CustomerInfo: Decodable {
                                                    forKey: .nameCompressed)
         self.emailAddress = try container.decodeIfPresent(String.self,
                                                  forKey: .emailAddress)
+        self.customerType = try container.decodeIfPresent(String.self,
+                                                 forKey: .customerType)
+
         
         let phoneInfoContainer = try container.nestedContainer(keyedBy: CodingKeys.self,
                                                                forKey: .phoneInfo)
