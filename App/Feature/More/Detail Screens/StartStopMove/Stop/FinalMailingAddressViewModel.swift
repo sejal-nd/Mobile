@@ -13,8 +13,9 @@ import RxSwift
 public struct MailingAddress {
     let streetAddress: String
     let city: String
-    let state: String
+    let state: USState
     let zipCode: String
+    var stateSelectedIndex: Int
 }
 
 class FinalMailingAddressViewModel {
@@ -22,7 +23,7 @@ class FinalMailingAddressViewModel {
     var streetAddress: String?
     var city: String?
     var zipCode: String?
-    var state: String?
+    var state: USState?
     var stateSelectedIndex = 0
     
     var isStreetAddressValid: Bool {
@@ -42,5 +43,14 @@ class FinalMailingAddressViewModel {
     
     var canEnableContinue: Bool {
         return isStreetAddressValid && isCityValid && isZipValid && stateSelectedIndex != 0
+    }
+    
+    func setMailingData(stopDataFlow: StopServiceFlowData) {
+        
+        self.streetAddress = stopDataFlow.mailingAddress?.streetAddress
+        self.city = stopDataFlow.mailingAddress?.city
+        self.state = stopDataFlow.mailingAddress?.state
+        self.zipCode = stopDataFlow.mailingAddress?.zipCode
+        self.stateSelectedIndex = stopDataFlow.mailingAddress?.stateSelectedIndex ?? 0
     }
 }

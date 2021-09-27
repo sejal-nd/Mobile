@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol FinalMailingAddressDelegate {
+    func mailingAddress(_ address: MailingAddress)
+}
+
 //TODO: Handline of the Modal Presentation will be covered as part of the review story.
 class FinalMailingAddressViewController: KeyboardAvoidingStickyFooterViewController {
 
@@ -23,12 +27,30 @@ class FinalMailingAddressViewController: KeyboardAvoidingStickyFooterViewControl
     @IBOutlet weak var continueButton: PrimaryButton!
     
     private var viewModel: FinalMailingAddressViewModel!
-    var mailingAddress: MailingAddress? = nil
     var isLaunchedFromReviewScreen: Bool = false
-    
-    
+    var stopFlowData: StopServiceFlowData!
+    var delegate: FinalMailingAddressDelegate? = nil
+
     @IBAction func stateButtonTapped(_ sender: UIButton) {
         showStatePicker()
+    }
+    
+    @IBAction func continueButtonTapped(_ sender: UIButton) {
+        
+        guard  let streetAddress = viewModel.streetAddress, let city = viewModel.city, let state = viewModel.state, let zipCode = viewModel.zipCode  else { return }
+        let address = MailingAddress(streetAddress: streetAddress, city: city, state: state, zipCode: zipCode, stateSelectedIndex: viewModel.stateSelectedIndex)
+
+        if isLaunchedFromReviewScreen {
+            delegate?.mailingAddress(address)
+            self.dismiss(animated: true, completion: nil)
+        } else {
+            let storyboard = UIStoryboard(name: "ISUMStop", bundle: nil)
+            let reviewStopServiceViewController = storyboard.instantiateViewController(withIdentifier: "ReviewStopServiceViewController") as! ReviewStopServiceViewController
+            reviewStopServiceViewController.delegate = self
+            stopFlowData.mailingAddress = address
+            reviewStopServiceViewController.stopFlowData = stopFlowData
+            self.navigationController?.pushViewController(reviewStopServiceViewController, animated: true)
+        }
     }
     
     override func viewDidLoad() {
@@ -44,14 +66,23 @@ class FinalMailingAddressViewController: KeyboardAvoidingStickyFooterViewControl
     
     private func setupUI() {
         
+        refreshData()
+        colorStateBorderGray()
+        navigationFlowButton()
+    }
+    
+    func refreshData() {
+        
+        viewModel.setMailingData(stopDataFlow: stopFlowData)
+        
         streetAddressTextField.placeholder = NSLocalizedString("Street Address*", comment: "")
-        streetAddressTextField.textField.text = mailingAddress?.streetAddress
+        streetAddressTextField.textField.text = viewModel?.streetAddress
         
         cityTextField.placeholder = NSLocalizedString("City*", comment: "")
-        cityTextField.textField.text = mailingAddress?.city
+        cityTextField.textField.text = viewModel?.city
         
         zipTextField.placeholder = NSLocalizedString("Zip Code*", comment: "")
-        zipTextField.textField.text = mailingAddress?.zipCode
+        zipTextField.textField.text = viewModel?.zipCode
         
         statePlaceHolderLabel.font = SystemFont.regular.of(textStyle: .callout)
         statePlaceHolderLabel.textColor = .middleGray
@@ -62,8 +93,8 @@ class FinalMailingAddressViewController: KeyboardAvoidingStickyFooterViewControl
         
         selectedStateLabel.font = SystemFont.regular.of(textStyle: .callout)
         selectedStateLabel.textColor = .middleGray
-        if let state = mailingAddress?.state {
-            selectedStateLabel.text = state
+        if let state = viewModel?.state {
+            selectedStateLabel.text = state.rawValue
             statePlaceHolderLabel.isHidden = true
             selectedStateStackView.isHidden = false
         } else {
@@ -77,8 +108,23 @@ class FinalMailingAddressViewController: KeyboardAvoidingStickyFooterViewControl
             continueButton.setTitle(NSLocalizedString("Continue", comment: ""), for: .normal)
         }
         continueButton.isEnabled = viewModel.canEnableContinue
+    }
+    
+    private func navigationFlowButton() {
         
-        colorStateBorderGray()
+        self.navigationItem.hidesBackButton = true
+        let backButtonIconName = isLaunchedFromReviewScreen ? "ic_close" : "ic_back"
+        let newBackButton = UIBarButtonItem(image: UIImage(named: backButtonIconName), style: UIBarButtonItem.Style.plain, target: self, action: #selector(FinalMailingAddressViewController.back(sender:)))
+        self.navigationItem.leftBarButtonItem = newBackButton
+    }
+    
+    @objc func back(sender: UIBarButtonItem) {
+        
+        if isLaunchedFromReviewScreen {
+            self.dismiss(animated: true, completion: nil)
+        } else {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     
     private func configureComponentBehavior() {
@@ -113,7 +159,7 @@ class FinalMailingAddressViewController: KeyboardAvoidingStickyFooterViewControl
                                             
                                             switch index {
                                             case 1...USState.allCases.count:
-                                                self.viewModel.state = value
+                                                self.viewModel.state = USState.allCases[index]
                                                 self.selectedStateLabel.text = value
                                                 self.selectedStateStackView.isHidden = false
                                                 self.statePlaceHolderLabel.isHidden = true
@@ -184,5 +230,14 @@ extension FinalMailingAddressViewController: UITextFieldDelegate {
         } else if textField == zipTextField.textField {
             zipTextField.setError(nil)
         }
+    }
+}
+
+extension FinalMailingAddressViewController: FinalMailingAddressDelegate {
+    
+    func mailingAddress(_ address: MailingAddress) {
+        
+        self.stopFlowData.mailingAddress = address
+        refreshData()
     }
 }

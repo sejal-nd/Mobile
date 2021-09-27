@@ -28,7 +28,10 @@ class StopServiceViewController: UIViewController {
     @IBOutlet weak var dateStackView: UIStackView!
     @IBOutlet weak var selectedDateLabel: UILabel!
     @IBOutlet weak var stopDateLabel: UILabel!
-    
+    @IBOutlet weak var stopServiceAddressStaticLabel: UILabel!
+    @IBOutlet weak var serviceProvidedStaticLabel: UILabel!
+    @IBOutlet weak var serviceDisconnectStaticLabel: UILabel!
+
     var accounts: [Account] {
         get { return AccountsStore.shared.accounts ?? [] }
     }
@@ -36,6 +39,7 @@ class StopServiceViewController: UIViewController {
         return accounts.contains { $0.isMultipremise }
     }
     var currentAccount: Account?
+    var currentAccountDeatil: AccountDetail?
     var disposeBag = DisposeBag()
     let viewModel = StopServiceViewModel()
     var hasChangedData = false
@@ -63,6 +67,10 @@ class StopServiceViewController: UIViewController {
         self.navigationItem.leftBarButtonItem = newBackButton
         self.scrollView.isHidden = true
         
+        stopServiceAddressStaticLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        serviceProvidedStaticLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        serviceDisconnectStaticLabel.font = SystemFont.regular.of(textStyle: .caption1)
+
         
         viewModel.showLoadingState
             .subscribe (onNext: { [weak self] status in
@@ -128,13 +136,19 @@ class StopServiceViewController: UIViewController {
         continueButton.rx.tap
             .subscribe(onNext: { [weak self] _ in
                 guard let `self` = self else { return }
+                
+                guard let selectedDate = self.viewModel.selectedDate.value, let currentPremise = AccountsStore.shared.currentAccount.currentPremise, let accountDetails = self.currentAccountDeatil else { return }
+                let stopFlowData = StopServiceFlowData(workDays: self.viewModel.workDays.value, selectedDate: selectedDate, currentPremise: currentPremise, currentAccount: AccountsStore.shared.currentAccount, currentAccountDetail: accountDetails, hasCurrentServiceAddressForBill: self.billAddressSegmentControl.selectedIndex.value == 0)
+                
                 if self.billAddressSegmentControl.selectedIndex.value == 0 {
                     let storyboard = UIStoryboard(name: "ISUMStop", bundle: nil)
                     let reviewStopServiceViewController = storyboard.instantiateViewController(withIdentifier: "ReviewStopServiceViewController") as! ReviewStopServiceViewController
+                    reviewStopServiceViewController.stopFlowData = stopFlowData
                     self.navigationController?.pushViewController(reviewStopServiceViewController, animated: true)
                 } else {
                     let storyboard = UIStoryboard(name: "ISUMStop", bundle: nil)
                     let finalMailingAddressViewController = storyboard.instantiateViewController(withIdentifier: "FinalMailingAddressViewController") as! FinalMailingAddressViewController
+                    finalMailingAddressViewController.stopFlowData = stopFlowData
                     self.navigationController?.pushViewController(finalMailingAddressViewController, animated: true)
 
                 }
@@ -145,6 +159,7 @@ class StopServiceViewController: UIViewController {
             .compactMap { $0 }
             .subscribe(onNext: { [weak self] accountDetails in
                 LoadingView.hide()
+                self?.currentAccountDeatil = accountDetails
                 self?.electricStackView.isHidden = !(accountDetails.serviceType?.contains("ELECTRIC") ?? false)
                 self?.gasStackView.isHidden = !(accountDetails.serviceType?.contains("GAS") ?? false)
                 self?.finalBillStackView.isHidden = accountDetails.isEBillEnrollment
