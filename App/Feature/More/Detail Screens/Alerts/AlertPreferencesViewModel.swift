@@ -332,6 +332,7 @@ class AlertPreferencesViewModel {
         
         Observable.zip(observables)
             .observeOn(MainScheduler.instance)
+            .take(1)
             .subscribe(onError: { err in
                 onError(NSLocalizedString("We’re sorry, we could not update all of your preferences at this time. Please try again later or contact our Customer Care Center for assistance.", comment: ""))
             }, onCompleted: {
@@ -444,7 +445,6 @@ class AlertPreferencesViewModel {
     private(set) lazy var nonLanguagePrefsChanged = Observable // all alert prefs except language
         .combineLatest(booleanPrefsChanged, paymentDaysBeforeChanged, energyBuddyUpdatesPrefChanged, billThresholdPrefChanged, peakSavingsDayAlertChanged, peakTimeSavingsDayResultsChanged)
             { $0 || $1 || $2 || $3 || $4 || $5}
-        .startWith(false)
         .share(replay: 1, scope: .forever)
     
     private func saveAlertPreferences() -> Observable<Void> {

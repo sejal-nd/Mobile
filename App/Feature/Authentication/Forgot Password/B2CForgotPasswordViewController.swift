@@ -14,8 +14,10 @@ class B2CForgotPasswordViewController: UIViewController {
     
     @IBOutlet weak var webView: WKWebView!
     @IBOutlet weak var loadingIndicator: LoadingIndicator!
-    @IBOutlet weak var errorLabel: UILabel!
-    
+    @IBOutlet weak var errorView: UIView!
+    @IBOutlet weak var errorImage: UIImageView!
+    @IBOutlet weak var errorTitle: UILabel!
+    @IBOutlet weak var errorDescription: UILabel!
     weak var delegate: ChangePasswordViewControllerDelegate?
     
     override func viewDidLoad() {
@@ -26,10 +28,15 @@ class B2CForgotPasswordViewController: UIViewController {
         
         webView.navigationDelegate = self
         webView.isHidden = true
+        // Observe JS for analytics
+        webView.configuration.userContentController.add(self, name: "firebase")
         
-        errorLabel.font = SystemFont.regular.of(textStyle: .headline)
-        errorLabel.textColor = .blackText
-        errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
+        errorImage.tintColor = .attentionOrange
+        errorTitle.font = SystemFont.semibold.of(textStyle: .title3)
+        errorTitle.textColor = .deepGray
+        errorDescription.font = SystemFont.regular.of(textStyle: .footnote)
+        errorDescription.textColor = .deepGray
+        errorView.isHidden = true
         
         loadWebView()
     }
@@ -59,11 +66,33 @@ extension B2CForgotPasswordViewController: WKNavigationDelegate {
             
             // trigger native UI
             performSegue(withIdentifier: "forgotUsernameB2cSegue", sender: self)
-        }
+        } else if let urlString = webView.url?.absoluteString,
+                   urlString.contains("SelfAsserted/error") {
+             self.errorView.isHidden = false
+             self.loadingIndicator.isHidden = true
+             self.webView.isHidden = true
+         }
     }
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         self.loadingIndicator.isHidden = true
         webView.isHidden = false
+    }
+}
+
+// MARK: Analytics
+
+extension B2CForgotPasswordViewController: WKScriptMessageHandler {
+    func userContentController(_ userContentController: WKUserContentController,
+                               didReceive message: WKScriptMessage) {
+        guard let body = message.body as? [String: Any],
+              let command = body["command"] as? String,
+              let name = body["name"] as? String else { return }
+        
+        if command == "logEvent",
+           name == "ForgotPWDComplete" {
+            FirebaseUtility.logEvent(.forgotPassword(parameters: [.complete]))
+            GoogleAnalytics.log(event: .forgotPasswordComplete)
+        }
     }
 }

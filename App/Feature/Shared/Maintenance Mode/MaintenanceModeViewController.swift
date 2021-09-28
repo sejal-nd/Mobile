@@ -29,6 +29,7 @@ class MaintenanceModeViewController: UIViewController {
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var bodyTextView: ZeroInsetDataDetectorTextView!
     @IBOutlet weak var footerTextView: ZeroInsetDataDetectorTextView!
+    @IBOutlet weak var continueAsGuestButton: PrimaryButton!
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
