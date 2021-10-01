@@ -20,6 +20,7 @@ public struct CustomerInfo: Decodable {
 
     public var cellPhoneNumber: String?
     public var primaryPhoneNumber: String?
+    public var alternatePhoneNumber: String?
 
     
     enum CodingKeys: String, CodingKey {
@@ -35,6 +36,7 @@ public struct CustomerInfo: Decodable {
         case phoneInfo = "PhoneInfo"
         case cellPhoneNumber
         case primaryPhoneNumber
+        case alternatePhoneNumber
     }
     
     public init(from decoder: Decoder) throws {
@@ -62,7 +64,8 @@ public struct CustomerInfo: Decodable {
                                                              forKey: .cellPhoneNumber)
         self.primaryPhoneNumber = try phoneInfoContainer.decodeIfPresent(String.self,
                                                                 forKey: .primaryPhoneNumber)
-        
+        self.alternatePhoneNumber = try phoneInfoContainer.decodeIfPresent(String.self,
+                                                                           forKey: .alternatePhoneNumber)
     }
 }
 //

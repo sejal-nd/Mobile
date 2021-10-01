@@ -117,8 +117,14 @@ class ReviewStopServiceViewController: UIViewController {
             }).disposed(by: disposeBag)
 
         submitButton.rx.tap
+            .subscribe(onNext: { [weak self] _ in
+                guard let `self` = self else { return }
+                self.viewModel.onStopSubmit.onNext(self.stopFlowData)
+            }).disposed(by: disposeBag)
+        
+        viewModel.response
             .subscribe(onNext: { _ in
-
+                
             }).disposed(by: disposeBag)
     }
     
