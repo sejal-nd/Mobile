@@ -55,6 +55,7 @@ public enum Router {
     case setAccountNickname(request: AccountNicknameRequest)
     case passwordChange(request: ChangePasswordRequest)
     case workDays(request: WorkdaysRequest)
+    case validateZipCode(request: ValidateZipCodeRequest)
 
     // DDE
     case fetchDueDate(accountNumber: String)
@@ -189,7 +190,7 @@ public enum Router {
         switch self {
         case .weather, .getAzureToken, .fetchB2CJWT:
             return .none
-        case .minVersion, .maintenanceMode, .fetchToken, .refreshToken, .outageStatusAnon, .reportOutageAnon, .recoverUsername, .recoverMaskedUsername, .accountLookup, .validateRegistration, .checkDuplicateRegistration, .registrationQuestions, .registration, .sendConfirmationEmail, .recoverPassword, .bankName, .newsAndUpdates, .alertBanner, .meterPingAnon, .validateConfirmationEmail, .passwordChangeAnon, .getFeatureFlags, .workDays:
+        case .minVersion, .maintenanceMode, .fetchToken, .refreshToken, .outageStatusAnon, .reportOutageAnon, .recoverUsername, .recoverMaskedUsername, .accountLookup, .validateRegistration, .checkDuplicateRegistration, .registrationQuestions, .registration, .sendConfirmationEmail, .recoverPassword, .bankName, .newsAndUpdates, .alertBanner, .meterPingAnon, .validateConfirmationEmail, .passwordChangeAnon, .getFeatureFlags, .workDays, .validateZipCode:
             return .anon
         default:
             return .auth
@@ -208,6 +209,8 @@ public enum Router {
             return "\(basePath)/\(apiAccess.path)/accounts"
         case .workDays:
             return "\(basePath)/\(apiAccess.path)/service/workdays"
+        case .validateZipCode(let code):
+            return "\(basePath)/\(apiAccess.path)/zipcode/validate/\(code.zipCode)"
         case .getFeatureFlags:
             return "\(basePath)/\(apiAccess.path)/config/features"
         case .setDefaultAccount(let accountNumber):
@@ -370,7 +373,7 @@ public enum Router {
         switch self {
         case .outageStatusAnon, .fetchToken, .refreshToken, .wallet, .scheduledPayment, .billingHistory, .compareBill, .autoPayEnroll, .autoPayEnrollBGE, .scheduledPaymentDelete, .autoPayUnenroll, .budgetBillingUnenroll, .accountLookup, .recoverPassword, .recoverUsername, .recoverMaskedUsername, .reportOutage, .registration, .checkDuplicateRegistration, .validateRegistration, .sendConfirmationEmail, .fetchDailyUsage, .reportOutageAnon, .registerForAlerts, .addWalletItem, .deleteWalletItem, .walletEncryptionKey, .scheduleOverride, .updateDeviceSettings, .updateThermostatSchedule, .meterPingAnon, .setAccountNickname, .fetchDPA, .getAzureToken, .fetchB2CJWT, .workDays:
             return "POST"
-        case .maintenanceMode, .accountDetails, .accounts, .getFeatureFlags, .minVersion, .weather, .payments, .alertBanner, .newsAndUpdates, .billPDF, .autoPayInfo, .budgetBillingInfo, .forecastBill, .ssoData, .ffssoData, .iTronssoData, .energyTips, .energyTip, .homeProfileLoad, .energyRewardsLoad, .alertPreferencesLoad, .appointments, .outageStatus, .meterPing, .fetchGameUser, .registrationQuestions, .fetchAlertLanguage, .bankName, .peakRewardsSummary, .peakRewardsOverrides, .deviceSettings, .thermostatSchedule, .fetchDueDate:
+        case .maintenanceMode, .accountDetails, .accounts, .getFeatureFlags, .minVersion, .weather, .payments, .alertBanner, .newsAndUpdates, .billPDF, .autoPayInfo, .budgetBillingInfo, .forecastBill, .ssoData, .ffssoData, .iTronssoData, .energyTips, .energyTip, .homeProfileLoad, .energyRewardsLoad, .alertPreferencesLoad, .appointments, .outageStatus, .meterPing, .fetchGameUser, .registrationQuestions, .fetchAlertLanguage, .bankName, .peakRewardsSummary, .peakRewardsOverrides, .deviceSettings, .thermostatSchedule, .fetchDueDate, .validateZipCode :
             return "GET"
         case .paperlessEnroll, .scheduledPaymentUpdate, .passwordChangeAnon, .passwordChange, .homeProfileUpdate, .alertPreferencesUpdate, .updateGameUser,
              .updateReleaseOfInfo, .validateConfirmationEmail, .setDefaultAccount, .updateAutoPay, .updateAutoPayBGE, .setAlertLanguage, .updateWalletItem, .budgetBillingEnroll:

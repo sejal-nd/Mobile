@@ -14,6 +14,20 @@ class MoveLandingViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+
+        addCloseButton()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+
+        // Note :
+        // navigate to New Service Address Screen
+        // when Move Landing and Move Stop implemented
+        // make changes accordingly
+        //
+        performSegue(withIdentifier: "NewServiceAddressSegue", sender: self)
     }
 
 }
