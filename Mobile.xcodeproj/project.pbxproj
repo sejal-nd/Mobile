@@ -158,6 +158,8 @@
 		389B0C601F17C054005DD0F9 /* UnauthenticatedUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389B0C5F1F17C054005DD0F9 /* UnauthenticatedUserViewController.swift */; };
 		4465DE891F1FD07C0014537F /* TemplateCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4465DE881F1FD07C0014537F /* TemplateCardView.xib */; };
 		44A373431F211521005E227B /* TemplateCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4465DE861F1FD0090014537F /* TemplateCardView.swift */; };
+		4A12C2702706D3F6007FFEA6 /* ScheduleMoveServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A12C26F2706D3F6007FFEA6 /* ScheduleMoveServiceViewController.swift */; };
+		4A12C2722706D42A007FFEA6 /* ScheduleMoveServiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A12C2712706D42A007FFEA6 /* ScheduleMoveServiceViewModel.swift */; };
 		4A2607FA26F2080400B7AAB5 /* ReviewStopServiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A2607F926F2080400B7AAB5 /* ReviewStopServiceViewModel.swift */; };
 		4A631A8526E11A84006C3ACA /* StopServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A631A8426E11A84006C3ACA /* StopServiceViewController.swift */; };
 		4A631A8726E11AA0006C3ACA /* StopServiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A631A8626E11AA0006C3ACA /* StopServiceViewModel.swift */; };
@@ -1359,6 +1361,8 @@
 		48436D9E2AA6C236DDA2B13A /* Pods-EUMobile-Watch Extension.production beta-peco.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch Extension.production beta-peco.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch Extension/Pods-EUMobile-Watch Extension.production beta-peco.xcconfig"; sourceTree = "<group>"; };
 		48CAD1C641D85E5D906EF408 /* Pods-EUMobile.pepco-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile.pepco-release.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile/Pods-EUMobile.pepco-release.xcconfig"; sourceTree = "<group>"; };
 		49F8B3864DEA8DC2079BD2FD /* Pods-EUMobileUITests.staging-bge.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobileUITests.staging-bge.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobileUITests/Pods-EUMobileUITests.staging-bge.xcconfig"; sourceTree = "<group>"; };
+		4A12C26F2706D3F6007FFEA6 /* ScheduleMoveServiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleMoveServiceViewController.swift; sourceTree = "<group>"; };
+		4A12C2712706D42A007FFEA6 /* ScheduleMoveServiceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleMoveServiceViewModel.swift; sourceTree = "<group>"; };
 		4A2607F926F2080400B7AAB5 /* ReviewStopServiceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewStopServiceViewModel.swift; sourceTree = "<group>"; };
 		4A265B4A77D5F2CF40432C7C /* Pods-UnitTests.comed-rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnitTests.comed-rc.xcconfig"; path = "Pods/Target Support Files/Pods-UnitTests/Pods-UnitTests.comed-rc.xcconfig"; sourceTree = "<group>"; };
 		4A631A8426E11A84006C3ACA /* StopServiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopServiceViewController.swift; sourceTree = "<group>"; };
@@ -2900,10 +2904,12 @@
 		282B4F7826E7489D00ACD33C /* Move */ = {
 			isa = PBXGroup;
 			children = (
+				4A12C26F2706D3F6007FFEA6 /* ScheduleMoveServiceViewController.swift */,
 				282B4F7526E7488200ACD33C /* MoveLandingViewController.swift */,
 				282B4F7B26E7817F00ACD33C /* ISUMMove.storyboard */,
 				21D41E112705D95400A622F9 /* NewServiceAddressViewController.swift */,
 				21D41E132705DD7000A622F9 /* NewServiceAddressViewModel.swift */,
+				4A12C2712706D42A007FFEA6 /* ScheduleMoveServiceViewModel.swift */,
 			);
 			path = Move;
 			sourceTree = "<group>";
@@ -6679,6 +6685,7 @@
 				9CA4FA652385BFC700E33E7C /* GiftsViewController.swift in Sources */,
 				B039DB79225BD32D00BB5479 /* HomePrepaidCardViewModel.swift in Sources */,
 				C320FDDC24DDD3700012E4ED /* WalletEncryptionKeyRequest.swift in Sources */,
+				4A12C2702706D3F6007FFEA6 /* ScheduleMoveServiceViewController.swift in Sources */,
 				28C71DE326FB2961006148AA /* FinalMailingAddressViewModel.swift in Sources */,
 				82E9B60E1FA22FA000556C94 /* MyHomeProfileViewModel.swift in Sources */,
 				C338281624E1CEE100F133C5 /* PeakRewardsService+Rx.swift in Sources */,
@@ -6688,6 +6695,7 @@
 				675F4CD824AB828200A828F9 /* VoidDecodable.swift in Sources */,
 				E8C453151EF3293600F5C781 /* ToastView.swift in Sources */,
 				824A96691FB5F3480026FA4B /* AdjustThermostatViewModel.swift in Sources */,
+				4A12C2722706D42A007FFEA6 /* ScheduleMoveServiceViewModel.swift in Sources */,
 				E89518731F0A9ABE005E0E92 /* ReviewPaymentViewController.swift in Sources */,
 				C3087AA024B662C6005AE544 /* ReleaseOfInfoRequest.swift in Sources */,
 				C36C398224ED95A800BA83B6 /* Weekday.swift in Sources */,

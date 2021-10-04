@@ -20,14 +20,9 @@ class MoveLandingViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-
-
-        // Note :
-        // navigate to New Service Address Screen
-        // when Move Landing and Move Stop implemented
-        // make changes accordingly
-        //
-        performSegue(withIdentifier: "NewServiceAddressSegue", sender: self)
+        let storyboard = UIStoryboard(name: "ISUMMove", bundle: nil)
+        let scheduleMoveServiceViewController = storyboard.instantiateViewController(withIdentifier: "ScheduleMoveServiceViewController") as! ScheduleMoveServiceViewController
+        self.navigationController?.pushViewController(scheduleMoveServiceViewController, animated: true)
     }
 
 }
