@@ -119,6 +119,9 @@ class ReviewStopServiceViewController: UIViewController {
         submitButton.rx.tap
             .subscribe(onNext: { _ in
 
+                let storyboard = UIStoryboard(name: "ISUMStop", bundle: nil)
+                let stopConfirmationScreenViewController = storyboard.instantiateViewController(withIdentifier: "StopConfirmationScreenViewController") as! StopConfirmationScreenViewController
+                self.navigationController?.pushViewController(stopConfirmationScreenViewController, animated: true)
             }).disposed(by: disposeBag)
     }
     
