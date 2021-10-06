@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct StopServiceFlowData {
+public struct StopServiceFlowData {
     
     let workDays: [WorkdaysResponse.WorkDay]
     var selectedDate: Date
@@ -17,4 +17,5 @@ struct StopServiceFlowData {
     let currentAccountDetail: AccountDetail
     let hasCurrentServiceAddressForBill: Bool
     var mailingAddress: MailingAddress?
+    let verificationDetail: StopServiceVerificationResponse?
 }

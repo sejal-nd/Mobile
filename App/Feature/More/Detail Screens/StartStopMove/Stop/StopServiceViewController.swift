@@ -137,8 +137,8 @@ class StopServiceViewController: UIViewController {
             .subscribe(onNext: { [weak self] _ in
                 guard let `self` = self else { return }
                 
-                guard let selectedDate = self.viewModel.selectedDate.value, let currentPremise = AccountsStore.shared.currentAccount.currentPremise, let accountDetails = self.currentAccountDeatil else { return }
-                let stopFlowData = StopServiceFlowData(workDays: self.viewModel.workDays.value, selectedDate: selectedDate, currentPremise: currentPremise, currentAccount: AccountsStore.shared.currentAccount, currentAccountDetail: accountDetails, hasCurrentServiceAddressForBill: self.billAddressSegmentControl.selectedIndex.value == 0)
+                guard let selectedDate = self.viewModel.selectedDate.value, let currentPremise = AccountsStore.shared.currentAccount.currentPremise, let accountDetails = self.currentAccountDeatil, let verificationDetail = self.viewModel.accountVerificationResponse.value else { return }
+                let stopFlowData = StopServiceFlowData(workDays: self.viewModel.workDays.value, selectedDate: selectedDate, currentPremise: currentPremise, currentAccount: AccountsStore.shared.currentAccount, currentAccountDetail: accountDetails, hasCurrentServiceAddressForBill: self.billAddressSegmentControl.selectedIndex.value == 0, verificationDetail: verificationDetail)
                 
                 if self.billAddressSegmentControl.selectedIndex.value == 0 {
                     let storyboard = UIStoryboard(name: "ISUMStop", bundle: nil)

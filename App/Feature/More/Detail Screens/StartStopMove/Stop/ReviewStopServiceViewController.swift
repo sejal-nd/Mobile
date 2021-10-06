@@ -29,7 +29,7 @@ class ReviewStopServiceViewController: UIViewController {
     @IBOutlet weak var supplierAgreementButton: UIButton!
     @IBOutlet weak var changeMailingAddressButton: UIButton!
     @IBOutlet weak var changeStopServiceDateButton: UIButton!
-    @IBOutlet weak var submitButton: UIButton!
+    @IBOutlet weak var submitButton: PrimaryButton!
     
     @IBOutlet weak var stopServiceAddressStaticLabel: UILabel!
     @IBOutlet weak var serviceProvidedStaticLabel: UILabel!
@@ -117,11 +117,28 @@ class ReviewStopServiceViewController: UIViewController {
             }).disposed(by: disposeBag)
 
         submitButton.rx.tap
-            .subscribe(onNext: { _ in
-
+            .subscribe(onNext: { [weak self] _ in
+                guard let `self` = self else { return }
+                self.navigationController?.view.isUserInteractionEnabled = false
+                self.submitButton.setLoading()
+                self.viewModel.onStopSubmit.onNext(self.stopFlowData)
+            }).disposed(by: disposeBag)
+        
+        viewModel.response
+            .subscribe(onNext: { [weak self] _ in
+                guard let `self` = self else { return }
+                self.navigationController?.view.isUserInteractionEnabled = true
+                self.submitButton.reset()
                 let storyboard = UIStoryboard(name: "ISUMStop", bundle: nil)
                 let stopConfirmationScreenViewController = storyboard.instantiateViewController(withIdentifier: "StopConfirmationScreenViewController") as! StopConfirmationScreenViewController
                 self.navigationController?.pushViewController(stopConfirmationScreenViewController, animated: true)
+            }).disposed(by: disposeBag)
+        
+        viewModel.errorResponse
+            .subscribe(onNext: { [weak self]_ in
+                guard let `self` = self else { return }
+                self.navigationController?.view.isUserInteractionEnabled = true
+                self.submitButton.reset()
             }).disposed(by: disposeBag)
     }
     
