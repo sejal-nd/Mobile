@@ -18,11 +18,4 @@ class MoveLandingViewController: UIViewController {
         addCloseButton()
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        let storyboard = UIStoryboard(name: "ISUMMove", bundle: nil)
-        let scheduleMoveServiceViewController = storyboard.instantiateViewController(withIdentifier: "ScheduleMoveServiceViewController") as! ScheduleMoveServiceViewController
-        self.navigationController?.pushViewController(scheduleMoveServiceViewController, animated: true)
-    }
-
 }
