@@ -110,9 +110,9 @@ public struct StopServiceVerificationResponse: Decodable {
         let sAStatus: String
         let sAEndDate: String?
         let servicePointID: String
-        let meterNumber: String
+        let meterNumber: String?
         let location: String
-        let meterLocation: String
+        let meterLocation: String?
         let appointmentEnd: String?
         let appointmentStart: String?
         let errorMessage: String?

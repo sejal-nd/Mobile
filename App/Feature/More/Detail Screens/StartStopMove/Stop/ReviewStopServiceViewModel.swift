@@ -16,6 +16,7 @@ class ReviewStopServiceViewModel {
     var disposeBag = DisposeBag()
     private let isLoading = BehaviorRelay(value: true)
     var response = BehaviorRelay<StopServiceResponse?>(value: nil)
+    var errorResponse = BehaviorRelay<Error?>(value: nil)
 
     init() {
         
@@ -27,13 +28,15 @@ class ReviewStopServiceViewModel {
                     self.isLoading.accept(true)
                 }
                 return Observable.create { observer -> Disposable in
-                    StopService.stopService(stopFlowData: stopFlowData) { observer.handle(result: $0) }
+                    StopService.stopService(stopFlowData: stopFlowData, completion: { observer.handle(result: $0) }) 
                     
                     return Disposables.create()
                 }
             }.subscribe(onNext: { [weak self] result in
                 guard let `self` = self, let response = result.element else {return }
                 self.response.accept(response)
+            }, onError: { [weak self] error in
+                self?.errorResponse.accept(error)
             }).disposed(by: disposeBag)
     }
     
