@@ -36,7 +36,7 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
         self.navigationItem.backBarButtonItem?.title = ""
         // Do any additional setup after loading the view.
 
-       
+        navigationBackButton()
         configureTextField()
         setupUI()
 
@@ -44,6 +44,14 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+    }
+    private func navigationBackButton() {
+        self.navigationItem.hidesBackButton = true
+        let newBackButton = UIBarButtonItem(image: UIImage(named: "ic_back"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(NewServiceAddressViewController.back(sender:)))
+        self.navigationItem.leftBarButtonItem = newBackButton
+    }
+    @objc func back(sender: UIBarButtonItem) {
+        self.navigationController?.popViewController(animated: true)
     }
 
     private func configureTextField() {
