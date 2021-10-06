@@ -129,7 +129,10 @@ class ScheduleMoveServiceViewController: UIViewController {
         
         continueButton.rx.tap
             .subscribe(onNext: { _ in
-                
+                let storyboard = UIStoryboard(name: "ISUMMove", bundle: nil)
+                let newServiceAddressViewController = storyboard.instantiateViewController(withIdentifier: "NewServiceAddressViewController") as! NewServiceAddressViewController
+                self.navigationController?.pushViewController(newServiceAddressViewController, animated: true)
+
             }).disposed(by: disposeBag)
         
         // provides selected account details
