@@ -405,7 +405,6 @@ public enum Router {
         case .workDays, .stopServiceVerification, .stopISUMService:
             headers["Authorization"] = "Bearer \(token)"
             headers["Content-Type"] = "application/json"
-        // Content-type = application/json breaks MSFT API
         default:
             headers["Content-Type"] = "application/json"
         }
