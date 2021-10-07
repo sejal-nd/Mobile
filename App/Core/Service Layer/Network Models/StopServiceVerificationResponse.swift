@@ -61,7 +61,7 @@ public struct StopServiceVerificationResponse: Decodable {
         struct PrimaryCustInformation: Decodable {
 
             let billingAddress: BillingAddress
-            let email: String
+            let email: String?
 
             enum CodingKeys: String, CodingKey {
                 

@@ -170,6 +170,7 @@
 		4A12C2722706D42A007FFEA6 /* ScheduleMoveServiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A12C2712706D42A007FFEA6 /* ScheduleMoveServiceViewModel.swift */; };
 		4A25FA7326FC4A6C008026EA /* StopConfirmationScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A25FA7226FC4A6C008026EA /* StopConfirmationScreenViewController.swift */; };
 		4A2607FA26F2080400B7AAB5 /* ReviewStopServiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A2607F926F2080400B7AAB5 /* ReviewStopServiceViewModel.swift */; };
+		4A26E75D270EEFE10089EC0D /* StopConfirmationScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A26E75C270EEFE00089EC0D /* StopConfirmationScreenViewModel.swift */; };
 		4A631A8526E11A84006C3ACA /* StopServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A631A8426E11A84006C3ACA /* StopServiceViewController.swift */; };
 		4A631A8726E11AA0006C3ACA /* StopServiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A631A8626E11AA0006C3ACA /* StopServiceViewModel.swift */; };
 		4A8CE7582703604300C78B05 /* StopISUMServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8CE7572703604300C78B05 /* StopISUMServiceRequest.swift */; };
@@ -1380,6 +1381,7 @@
 		4A25FA7226FC4A6C008026EA /* StopConfirmationScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopConfirmationScreenViewController.swift; sourceTree = "<group>"; };
 		4A2607F926F2080400B7AAB5 /* ReviewStopServiceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewStopServiceViewModel.swift; sourceTree = "<group>"; };
 		4A265B4A77D5F2CF40432C7C /* Pods-UnitTests.comed-rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnitTests.comed-rc.xcconfig"; path = "Pods/Target Support Files/Pods-UnitTests/Pods-UnitTests.comed-rc.xcconfig"; sourceTree = "<group>"; };
+		4A26E75C270EEFE00089EC0D /* StopConfirmationScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopConfirmationScreenViewModel.swift; sourceTree = "<group>"; };
 		4A631A8426E11A84006C3ACA /* StopServiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopServiceViewController.swift; sourceTree = "<group>"; };
 		4A631A8626E11AA0006C3ACA /* StopServiceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopServiceViewModel.swift; sourceTree = "<group>"; };
 		4A8CE7572703604300C78B05 /* StopISUMServiceRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopISUMServiceRequest.swift; sourceTree = "<group>"; };
@@ -2914,6 +2916,7 @@
 				282B4F7226E7469500ACD33C /* StopLandingViewController.swift */,
 				4A2607F926F2080400B7AAB5 /* ReviewStopServiceViewModel.swift */,
 				4A25FA7226FC4A6C008026EA /* StopConfirmationScreenViewController.swift */,
+				4A26E75C270EEFE00089EC0D /* StopConfirmationScreenViewModel.swift */,
 			);
 			path = Stop;
 			sourceTree = "<group>";
@@ -6730,6 +6733,7 @@
 				C3087AA024B662C6005AE544 /* ReleaseOfInfoRequest.swift in Sources */,
 				C36C398224ED95A800BA83B6 /* Weekday.swift in Sources */,
 				4AE3467C26E8C76900F4155C /* FinalMailingAddressViewController.swift in Sources */,
+				4A26E75D270EEFE10089EC0D /* StopConfirmationScreenViewModel.swift in Sources */,
 				E876A8561ECDEF6800CA63BF /* WalletViewController.swift in Sources */,
 				C320FDA324DC62DE0012E4ED /* WalletRequest.swift in Sources */,
 				4AE3468726EDA1CC00F4155C /* StopService+Rx.swift in Sources */,

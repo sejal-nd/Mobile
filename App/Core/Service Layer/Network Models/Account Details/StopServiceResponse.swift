@@ -18,13 +18,16 @@ public struct StopServiceResponse: Decodable {
     let accountNumber: String?
     let finalBillEmail: String?
     let finalBillAddress: FinalBillAddress?
+    let isResolved: Bool?
+    let remoteShutoffCapable: Bool?
+    let appointmentRequested: Bool?
 
     enum CodingKeys: String, CodingKey {
         
         case confirmationNo = "ConfirmationNo"
         case isManualCallResult = "IsManualCallResult"
         case confirmationMessage = "ConfirmationMessage"
-        case stopDate, stopAddress, accountNumber, finalBillEmail, finalBillAddress
+        case stopDate, stopAddress, accountNumber, finalBillEmail, finalBillAddress, isResolved, remoteShutoffCapable, appointmentRequested
     }
     
     struct StopAddress: Decodable {

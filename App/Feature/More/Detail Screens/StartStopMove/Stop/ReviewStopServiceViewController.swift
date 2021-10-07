@@ -120,17 +120,19 @@ class ReviewStopServiceViewController: UIViewController {
             .subscribe(onNext: { [weak self] _ in
                 guard let `self` = self else { return }
                 self.navigationController?.view.isUserInteractionEnabled = false
-                self.submitButton.setLoading()
+                LoadingView.show()
                 self.viewModel.onStopSubmit.onNext(self.stopFlowData)
             }).disposed(by: disposeBag)
         
         viewModel.response
-            .subscribe(onNext: { [weak self] _ in
+            .subscribe(onNext: { [weak self] response in
                 guard let `self` = self else { return }
                 self.navigationController?.view.isUserInteractionEnabled = true
-                self.submitButton.reset()
+//                self.submitButton.reset()
+                LoadingView.hide()
                 let storyboard = UIStoryboard(name: "ISUMStop", bundle: nil)
                 let stopConfirmationScreenViewController = storyboard.instantiateViewController(withIdentifier: "StopConfirmationScreenViewController") as! StopConfirmationScreenViewController
+                stopConfirmationScreenViewController.viewModel = StopConfirmationScreenViewModel(stopServiceResponse: response)
                 self.navigationController?.pushViewController(stopConfirmationScreenViewController, animated: true)
             }).disposed(by: disposeBag)
         
@@ -138,7 +140,7 @@ class ReviewStopServiceViewController: UIViewController {
             .subscribe(onNext: { [weak self]_ in
                 guard let `self` = self else { return }
                 self.navigationController?.view.isUserInteractionEnabled = true
-                self.submitButton.reset()
+                LoadingView.hide()
             }).disposed(by: disposeBag)
     }
     

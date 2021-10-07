@@ -23,7 +23,9 @@ class StopConfirmationScreenViewController: UIViewController {
     @IBOutlet weak var accountNumberLabel: UILabel!
     @IBOutlet weak var serviceRequestView: UIView!
     @IBOutlet weak var accountNumberView: UIView!
-        
+    
+    var viewModel: StopConfirmationScreenViewModel!
+            
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -72,15 +74,13 @@ class StopConfirmationScreenViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    // TODO: Dynamic data binding and will cover in stop service submit functionality
     private func dataBinding() {
         
-        stopServiceDateTimeLabel.text = "November 19, 2021, 8:00 a.m."
-        stopServiceAddressLabel.text = "123 Anywhere Street, Apt. 123 – B Baltimore, MD 21215"
-        finalBillLabel.text = "The service address above"
-        nextStepsDescriptionLabel.text = "We will disconnect your service remotely through your smart meter. You will not need to be present. Please prepare for your service to be shut off as early as 8 a.m."
-        accountNumberLabel.text = "2345678910"
-        
+        stopServiceDateTimeLabel.text = viewModel.getStopServiceDate()
+        finalBillLabel.text = viewModel.getFinalBillAddress()
+        stopServiceAddressLabel.text = viewModel.getStopServiceAddress()
+        nextStepsDescriptionLabel.text = viewModel.getNextStepDescription()
+        accountNumberLabel.text = viewModel.stopServiceResponse.accountNumber
         let helplineDescription = "If you have any questions, please email myhomerep@bge.com and provide your account number. We will respond within 24-48 business hours."
         let range = (helplineDescription as NSString).range(of: "myhomerep@bge.com")
         let attributedString = NSMutableAttributedString(string: helplineDescription)
