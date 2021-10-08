@@ -406,7 +406,7 @@ public enum Router {
         case .getAzureToken:
             headers["content-type"] = "application/x-www-form-urlencoded"
         // Content-type = application/json breaks MSFT API
-        case .workDays, .streetAddress,.appartment,.addressLookup:
+        case .workDays:
             headers["Authorization"] = "Bearer \(token)"
             headers["Content-Type"] = "application/json"
         // Content-type = application/json breaks MSFT API
