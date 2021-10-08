@@ -24,6 +24,7 @@ public struct Account: Decodable, Equatable, Hashable {
     let utilityCode: String?
     let accountStatusCode: String?
     let isPasswordProtected: Bool
+    let customerNumber: String?
     
     enum CodingKeys: String, CodingKey {
         case accountNumber
@@ -39,6 +40,7 @@ public struct Account: Decodable, Equatable, Hashable {
         case utilityCode
         case isPasswordProtected
         case accountStatusCode
+        case customerNumber
     }
     
     public init(from decoder: Decoder) throws {
@@ -59,6 +61,7 @@ public struct Account: Decodable, Equatable, Hashable {
         utilityCode = try container.decodeIfPresent(String.self, forKey: .utilityCode)
         isPasswordProtected = try container.decodeIfPresent(Bool.self, forKey: .isPasswordProtected) ?? false
         accountStatusCode = try? container.decodeIfPresent(String.self, forKey: .accountStatusCode)
+        customerNumber = try? container.decodeIfPresent(String.self, forKey: .customerNumber)
         if status?.lowercased() == "inactive" {
             isFinaled = true
         }

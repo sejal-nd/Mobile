@@ -18,11 +18,13 @@ class StopServiceViewModel {
     var selectedDate = BehaviorRelay<Date?>(value: nil)
     var accountDetailEvents: Observable<AccountDetail?> { return currentAccountDetails.asObservable() }
     private var currentAccountDetails = BehaviorRelay<AccountDetail?>(value: nil)
+    var accountVerificationResponse = BehaviorRelay<StopServiceVerificationResponse?>(value: nil)
     var disposeBag = DisposeBag()
     var invalidDateAMI = [String]()
     private (set) lazy var showLoadingState: Observable<Bool> = isLoading.asObservable()
     private let isLoading = BehaviorRelay(value: true)
     private var getWorkdays = PublishSubject<Void>()
+    private var getAccountVerificationDetail = PublishSubject<Void>()
     private var currentAccountIndex = 0
 
     init() {
@@ -51,9 +53,16 @@ class StopServiceViewModel {
                     return AccountService.rx.fetchAccountDetails()
                 }
                 return Observable.empty()
-            }.subscribe(onNext: { [weak self] result in
-                guard let `self` = self, let accountDetails = result.element else {return }
+            }.flatMapLatest({ [weak self] result -> Observable<StopServiceVerificationResponse> in
+                guard let `self` = self, let accountDetails = result.element else { return Observable.empty() }
                 self.currentAccountDetails.accept(accountDetails)
+                return Observable.create { observer -> Disposable in
+                    StopService.stopServiceVerification(completion: { observer.handle(result: $0) })
+                    return Disposables.create()
+                }
+            }).subscribe(onNext: { [weak self] result in
+                guard let `self` = self else {return }
+                self.accountVerificationResponse.accept(result)
                 self.isLoading.accept(false)
             }).disposed(by: disposeBag)
 
