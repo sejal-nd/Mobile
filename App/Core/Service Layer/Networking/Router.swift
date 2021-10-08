@@ -193,7 +193,7 @@ public enum Router {
         switch self {
         case .weather, .getAzureToken, .fetchB2CJWT:
             return .none
-        case .minVersion, .maintenanceMode, .fetchToken, .refreshToken, .outageStatusAnon, .reportOutageAnon, .recoverUsername, .recoverMaskedUsername, .accountLookup, .validateRegistration, .checkDuplicateRegistration, .registrationQuestions, .registration, .sendConfirmationEmail, .recoverPassword, .bankName, .newsAndUpdates, .alertBanner, .meterPingAnon, .validateConfirmationEmail, .passwordChangeAnon, .getFeatureFlags, .workDays, .validateZipCode, .streetAddress,.appartment,.addressLookup:
+        case .minVersion, .maintenanceMode, .fetchToken, .refreshToken, .outageStatusAnon, .reportOutageAnon, .recoverUsername, .recoverMaskedUsername, .accountLookup, .validateRegistration, .checkDuplicateRegistration, .registrationQuestions, .registration, .sendConfirmationEmail, .recoverPassword, .bankName, .newsAndUpdates, .alertBanner, .meterPingAnon, .validateConfirmationEmail, .passwordChangeAnon, .getFeatureFlags, .workDays:
             return .anon
         default:
             return .auth
@@ -213,13 +213,13 @@ public enum Router {
         case .workDays:
             return "\(basePath)/\(apiAccess.path)/service/workdays"
         case .validateZipCode(let code):
-            return "\(basePath)/\(apiAccess.path)/zipcode/validate/\(code.zipCode)"
+            return "\(basePath)/\(ApiAccess.anon.path)/zipcode/validate/\(code.zipCode)"
         case .streetAddress:
-            return "\(basePath)/\(apiAccess.path)/address/streets"
+            return "\(basePath)/\(ApiAccess.anon.path)/address/streets"
         case .appartment:
-            return "\(basePath)/\(apiAccess.path)/address/units"
+            return "\(basePath)/\(ApiAccess.anon.path)/address/units"
         case .addressLookup:
-            return "\(basePath)/\(apiAccess.path)/address/lookup"
+            return "\(basePath)/\(ApiAccess.anon.path)/address/lookup"
 
         case .getFeatureFlags:
             return "\(basePath)/\(apiAccess.path)/config/features"
