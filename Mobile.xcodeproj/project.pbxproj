@@ -172,11 +172,23 @@
 		389B0C601F17C054005DD0F9 /* UnauthenticatedUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389B0C5F1F17C054005DD0F9 /* UnauthenticatedUserViewController.swift */; };
 		4465DE891F1FD07C0014537F /* TemplateCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4465DE881F1FD07C0014537F /* TemplateCardView.xib */; };
 		44A373431F211521005E227B /* TemplateCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4465DE861F1FD0090014537F /* TemplateCardView.swift */; };
+		4A12C26527038BD8007FFEA6 /* StopServiceVerificationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A12C26427038BD8007FFEA6 /* StopServiceVerificationRequest.swift */; };
+		4A12C26627038BD8007FFEA6 /* StopServiceVerificationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A12C26427038BD8007FFEA6 /* StopServiceVerificationRequest.swift */; };
+		4A12C26827039335007FFEA6 /* StopServiceVerificationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A12C26727039335007FFEA6 /* StopServiceVerificationResponse.swift */; };
+		4A12C26927039335007FFEA6 /* StopServiceVerificationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A12C26727039335007FFEA6 /* StopServiceVerificationResponse.swift */; };
+		4A12C26B27049034007FFEA6 /* StopServiceResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A12C26A27049034007FFEA6 /* StopServiceResponse.swift */; };
+		4A12C26C27049034007FFEA6 /* StopServiceResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A12C26A27049034007FFEA6 /* StopServiceResponse.swift */; };
+		4A12C26D2704B0BA007FFEA6 /* StopServiceFlowData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AEB19A626F387AA00879046 /* StopServiceFlowData.swift */; };
+		4A12C26E2704B0E9007FFEA6 /* FinalMailingAddressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C71DE226FB2961006148AA /* FinalMailingAddressViewModel.swift */; };
 		4A12C2702706D3F6007FFEA6 /* ScheduleMoveServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A12C26F2706D3F6007FFEA6 /* ScheduleMoveServiceViewController.swift */; };
 		4A12C2722706D42A007FFEA6 /* ScheduleMoveServiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A12C2712706D42A007FFEA6 /* ScheduleMoveServiceViewModel.swift */; };
+		4A25FA7326FC4A6C008026EA /* StopConfirmationScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A25FA7226FC4A6C008026EA /* StopConfirmationScreenViewController.swift */; };
 		4A2607FA26F2080400B7AAB5 /* ReviewStopServiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A2607F926F2080400B7AAB5 /* ReviewStopServiceViewModel.swift */; };
+		4A26E75D270EEFE10089EC0D /* StopConfirmationScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A26E75C270EEFE00089EC0D /* StopConfirmationScreenViewModel.swift */; };
 		4A631A8526E11A84006C3ACA /* StopServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A631A8426E11A84006C3ACA /* StopServiceViewController.swift */; };
 		4A631A8726E11AA0006C3ACA /* StopServiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A631A8626E11AA0006C3ACA /* StopServiceViewModel.swift */; };
+		4A8CE7582703604300C78B05 /* StopISUMServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8CE7572703604300C78B05 /* StopISUMServiceRequest.swift */; };
+		4A8CE7592703604300C78B05 /* StopISUMServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8CE7572703604300C78B05 /* StopISUMServiceRequest.swift */; };
 		4AD0C77E26FCAE9E009DB068 /* USState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD0C77D26FCAE9E009DB068 /* USState.swift */; };
 		4AD0C77F26FCAE9E009DB068 /* USState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD0C77D26FCAE9E009DB068 /* USState.swift */; };
 		4AE3467C26E8C76900F4155C /* FinalMailingAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE3467B26E8C76900F4155C /* FinalMailingAddressViewController.swift */; };
@@ -1384,12 +1396,18 @@
 		48436D9E2AA6C236DDA2B13A /* Pods-EUMobile-Watch Extension.production beta-peco.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch Extension.production beta-peco.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch Extension/Pods-EUMobile-Watch Extension.production beta-peco.xcconfig"; sourceTree = "<group>"; };
 		48CAD1C641D85E5D906EF408 /* Pods-EUMobile.pepco-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile.pepco-release.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile/Pods-EUMobile.pepco-release.xcconfig"; sourceTree = "<group>"; };
 		49F8B3864DEA8DC2079BD2FD /* Pods-EUMobileUITests.staging-bge.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobileUITests.staging-bge.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobileUITests/Pods-EUMobileUITests.staging-bge.xcconfig"; sourceTree = "<group>"; };
+		4A12C26427038BD8007FFEA6 /* StopServiceVerificationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopServiceVerificationRequest.swift; sourceTree = "<group>"; };
+		4A12C26727039335007FFEA6 /* StopServiceVerificationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopServiceVerificationResponse.swift; sourceTree = "<group>"; };
+		4A12C26A27049034007FFEA6 /* StopServiceResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopServiceResponse.swift; sourceTree = "<group>"; };
 		4A12C26F2706D3F6007FFEA6 /* ScheduleMoveServiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleMoveServiceViewController.swift; sourceTree = "<group>"; };
 		4A12C2712706D42A007FFEA6 /* ScheduleMoveServiceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleMoveServiceViewModel.swift; sourceTree = "<group>"; };
+		4A25FA7226FC4A6C008026EA /* StopConfirmationScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopConfirmationScreenViewController.swift; sourceTree = "<group>"; };
 		4A2607F926F2080400B7AAB5 /* ReviewStopServiceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewStopServiceViewModel.swift; sourceTree = "<group>"; };
 		4A265B4A77D5F2CF40432C7C /* Pods-UnitTests.comed-rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnitTests.comed-rc.xcconfig"; path = "Pods/Target Support Files/Pods-UnitTests/Pods-UnitTests.comed-rc.xcconfig"; sourceTree = "<group>"; };
+		4A26E75C270EEFE00089EC0D /* StopConfirmationScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopConfirmationScreenViewModel.swift; sourceTree = "<group>"; };
 		4A631A8426E11A84006C3ACA /* StopServiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopServiceViewController.swift; sourceTree = "<group>"; };
 		4A631A8626E11AA0006C3ACA /* StopServiceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopServiceViewModel.swift; sourceTree = "<group>"; };
+		4A8CE7572703604300C78B05 /* StopISUMServiceRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopISUMServiceRequest.swift; sourceTree = "<group>"; };
 		4AD0C77D26FCAE9E009DB068 /* USState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USState.swift; sourceTree = "<group>"; };
 		4ADF4FF916DE3B2844982F78 /* Pods_EUMobile_Watch_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EUMobile_Watch_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AE3467B26E8C76900F4155C /* FinalMailingAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalMailingAddressViewController.swift; sourceTree = "<group>"; };
@@ -2920,6 +2938,8 @@
 				282B4F7926E7490400ACD33C /* ISUMStop.storyboard */,
 				282B4F7226E7469500ACD33C /* StopLandingViewController.swift */,
 				4A2607F926F2080400B7AAB5 /* ReviewStopServiceViewModel.swift */,
+				4A25FA7226FC4A6C008026EA /* StopConfirmationScreenViewController.swift */,
+				4A26E75C270EEFE00089EC0D /* StopConfirmationScreenViewModel.swift */,
 			);
 			path = Stop;
 			sourceTree = "<group>";
@@ -4238,6 +4258,8 @@
 				357E2E9F26A839D800C0DEDF /* DPARequest.swift */,
 				67A482FE26C1800A00FBB0BB /* B2CJWTRequest.swift */,
 				4AE3468926EDA8BE00F4155C /* WorkdaysRequest.swift */,
+				4A8CE7572703604300C78B05 /* StopISUMServiceRequest.swift */,
+				4A12C26427038BD8007FFEA6 /* StopServiceVerificationRequest.swift */,
 				21D41E172706CA8F00A622F9 /* ValidateZipCodeRequest.swift */,
 				215A1B72270AE9DA003A4EE9 /* StreetAddressRequest.swift */,
 				215A1B75270B12DF003A4EE9 /* AppartmentRequest.swift */,
@@ -4319,6 +4341,7 @@
 				4AE3468326ED96E500F4155C /* WorkdaysResponse.swift */,
 				4AEB19A626F387AA00879046 /* StopServiceFlowData.swift */,
 				4AD0C77D26FCAE9E009DB068 /* USState.swift */,
+				4A12C26727039335007FFEA6 /* StopServiceVerificationResponse.swift */,
 				21D41E1B2706CE9700A622F9 /* ValidatedZipCodeResponse.swift */,
 				215A1B6F270AE9A5003A4EE9 /* StreetAddressResponse.swift */,
 				215A1B78270B12F6003A4EE9 /* AppartmentResponse.swift */,
@@ -4333,6 +4356,7 @@
 				675F4B0E24AB828000A828F9 /* PremiseInfo.swift */,
 				675F4B0F24AB828000A828F9 /* CustomerInfo.swift */,
 				675F4B1024AB828000A828F9 /* AccountDetails.swift */,
+				4A12C26A27049034007FFEA6 /* StopServiceResponse.swift */,
 			);
 			path = "Account Details";
 			sourceTree = "<group>";
@@ -6316,6 +6340,7 @@
 			files = (
 				C3055BDC2538FB11000DB89C /* CompareBillRequest.swift in Sources */,
 				C3055C092538FB38000DB89C /* Version.swift in Sources */,
+				4A12C26627038BD8007FFEA6 /* StopServiceVerificationRequest.swift in Sources */,
 				35F9DDBA2333D90400AAA2B2 /* Fillable.swift in Sources */,
 				C3055C0E2538FBEF000DB89C /* AnonymousService.swift in Sources */,
 				C3055C072538FB38000DB89C /* CreditCard.swift in Sources */,
@@ -6333,6 +6358,8 @@
 				357E2E8F26A838AF00C0DEDF /* DueDateElibility.swift in Sources */,
 				C3055C062538FB38000DB89C /* SubOpCo.swift in Sources */,
 				C3055B642538F81B000DB89C /* OutageStatusContainer.swift in Sources */,
+				4A12C26C27049034007FFEA6 /* StopServiceResponse.swift in Sources */,
+				4A8CE7592703604300C78B05 /* StopISUMServiceRequest.swift in Sources */,
 				357E2EA126A839D800C0DEDF /* DPARequest.swift in Sources */,
 				676434E425AF703C00DA6448 /* ProjectURLSuffix.swift in Sources */,
 				C3055BE22538FB11000DB89C /* ReleaseOfInfoRequest.swift in Sources */,
@@ -6348,6 +6375,7 @@
 				C3055C152538FBEF000DB89C /* UsageService.swift in Sources */,
 				C3055B542538F81B000DB89C /* UsageTip.swift in Sources */,
 				67247EF325D2D6750024467D /* WatchApp.swift in Sources */,
+				4A12C26D2704B0BA007FFEA6 /* StopServiceFlowData.swift in Sources */,
 				C3055C422538FCEE000DB89C /* AzureError.swift in Sources */,
 				67247F8325D2FE3C0024467D /* UsageFlowContainerView.swift in Sources */,
 				4AD0C77F26FCAE9E009DB068 /* USState.swift in Sources */,
@@ -6368,6 +6396,7 @@
 				C3055B572538F81B000DB89C /* StringResult.swift in Sources */,
 				C3055B472538F71C000DB89C /* Account.swift in Sources */,
 				C3055C252538FC6F000DB89C /* NetworkingLayer.swift in Sources */,
+				4A12C26E2704B0E9007FFEA6 /* FinalMailingAddressViewModel.swift in Sources */,
 				C3055B832538F81B000DB89C /* PeakRewardsSummary.swift in Sources */,
 				35F9DE4E2339152A00AAA2B2 /* Constants.swift in Sources */,
 				C3055B712538F81B000DB89C /* PaymentItem.swift in Sources */,
@@ -6474,6 +6503,7 @@
 				6797115425DD87E3008A0080 /* OutageAnimation.swift in Sources */,
 				C3055B4E2538F812000DB89C /* CustomerInfo.swift in Sources */,
 				C3055C032538FB38000DB89C /* PushNotification.swift in Sources */,
+				4A12C26927039335007FFEA6 /* StopServiceVerificationResponse.swift in Sources */,
 				67247F4D25D2DF1B0024467D /* ErrorState.swift in Sources */,
 				C3055BE72538FB11000DB89C /* AlertRegistrationRequest.swift in Sources */,
 				C3055C452538FCEE000DB89C /* ApigeeError.swift in Sources */,
@@ -6599,6 +6629,7 @@
 				B0E9EFFB21EE458F0086A82A /* Optional+Comparable.swift in Sources */,
 				824A96651FB5F30D0026FA4B /* AdjustThermostatViewController.swift in Sources */,
 				35A2B88824A1E0E0004B38BC /* RegistrationViewModel.swift in Sources */,
+				4A8CE7582703604300C78B05 /* StopISUMServiceRequest.swift in Sources */,
 				C3DC821F251A518B0014D571 /* AccountsStore.swift in Sources */,
 				C36C399A24ED95A800BA83B6 /* Version.swift in Sources */,
 				675F4BCA24AB828100A828F9 /* GameUserRequest.swift in Sources */,
@@ -6641,6 +6672,7 @@
 				675F4BE224AB828100A828F9 /* BillComparisonRequest.swift in Sources */,
 				82A18E981EB919B300BE9F21 /* ChangePasswordViewModel.swift in Sources */,
 				C33827FA24E18F8800F133C5 /* PeakRewardsService.swift in Sources */,
+				4A12C26527038BD8007FFEA6 /* StopServiceVerificationRequest.swift in Sources */,
 				6724812325D6F18E0024467D /* Constants.swift in Sources */,
 				675F4E0024B3A00800A828F9 /* AnonOutageStatus.swift in Sources */,
 				E876A85B1ECF377D00CA63BF /* WalletViewModel.swift in Sources */,
@@ -6686,6 +6718,7 @@
 				359BDB5D22D8DCA2007002B0 /* OutageViewController.swift in Sources */,
 				54AE06B51ED60236004A1FDA /* RegistrationCreateCredentialsViewController.swift in Sources */,
 				CEA215221F7900CC00689422 /* HomeBillCardView.swift in Sources */,
+				4A12C26B27049034007FFEA6 /* StopServiceResponse.swift in Sources */,
 				E8FF085A1F7EDC160030F1BF /* BillingHistoryViewModel.swift in Sources */,
 				82EAB3441F97F01B008B55B1 /* MyHomeProfileViewController.swift in Sources */,
 				21D41E122705D95400A622F9 /* NewServiceAddressViewController.swift in Sources */,
@@ -6741,6 +6774,7 @@
 				C3087AA024B662C6005AE544 /* ReleaseOfInfoRequest.swift in Sources */,
 				C36C398224ED95A800BA83B6 /* Weekday.swift in Sources */,
 				4AE3467C26E8C76900F4155C /* FinalMailingAddressViewController.swift in Sources */,
+				4A26E75D270EEFE10089EC0D /* StopConfirmationScreenViewModel.swift in Sources */,
 				E876A8561ECDEF6800CA63BF /* WalletViewController.swift in Sources */,
 				C320FDA324DC62DE0012E4ED /* WalletRequest.swift in Sources */,
 				4AE3468726EDA1CC00F4155C /* StopService+Rx.swift in Sources */,
@@ -6954,6 +6988,7 @@
 				B0B0840821710D9300B1C632 /* AppointmentDetailViewModel.swift in Sources */,
 				676434CC25AF692600DA6448 /* InfoLabel.swift in Sources */,
 				67D73AE2246C47EF00450B63 /* NoNetworkConnectionView.swift in Sources */,
+				4A12C26827039335007FFEA6 /* StopServiceVerificationResponse.swift in Sources */,
 				B0728E46215C149A0007C608 /* AlertPreferencesTableViewCell.swift in Sources */,
 				826773461FB2330400A8CFAA /* TemperatureSliderView.swift in Sources */,
 				8218988E1F2A30C00077D7A1 /* Binders.swift in Sources */,
@@ -7021,6 +7056,7 @@
 				E881B14F1F5F1A1700067BA1 /* UnauthenticatedOutageValidateAccountViewController.swift in Sources */,
 				E81CFFF41EC253E5004FDA7E /* ViewBillViewModel.swift in Sources */,
 				675F47D424AB748200A828F9 /* PaymentViewModel.swift in Sources */,
+				4A25FA7326FC4A6C008026EA /* StopConfirmationScreenViewController.swift in Sources */,
 				21D41E182706CA8F00A622F9 /* ValidateZipCodeRequest.swift in Sources */,
 				82A18E951EB919B300BE9F21 /* AccountLookupToolViewModel.swift in Sources */,
 				9CD3533922CABDBE00165F87 /* DisclosureCellButton.swift in Sources */,
