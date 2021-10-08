@@ -192,7 +192,7 @@ public enum Router {
         switch self {
         case .weather, .getAzureToken, .fetchB2CJWT:
             return .none
-        case .minVersion, .maintenanceMode, .fetchToken, .refreshToken, .outageStatusAnon, .reportOutageAnon, .recoverUsername, .recoverMaskedUsername, .accountLookup, .validateRegistration, .checkDuplicateRegistration, .registrationQuestions, .registration, .sendConfirmationEmail, .recoverPassword, .bankName, .newsAndUpdates, .alertBanner, .meterPingAnon, .validateConfirmationEmail, .passwordChangeAnon, .getFeatureFlags, .workDays, .stopServiceVerification, .stopISUMService, .validateZipCode:
+        case .minVersion, .maintenanceMode, .fetchToken, .refreshToken, .outageStatusAnon, .reportOutageAnon, .recoverUsername, .recoverMaskedUsername, .accountLookup, .validateRegistration, .checkDuplicateRegistration, .registrationQuestions, .registration, .sendConfirmationEmail, .recoverPassword, .bankName, .newsAndUpdates, .alertBanner, .meterPingAnon, .validateConfirmationEmail, .passwordChangeAnon, .getFeatureFlags, .validateZipCode:
             return .anon
         default:
             return .auth
@@ -210,11 +210,11 @@ public enum Router {
         case .accounts:
             return "\(basePath)/\(apiAccess.path)/accounts"
         case .workDays:
-            return "\(basePath)/\(apiAccess.path)/service/workdays"
+            return "\(basePath)/\(ApiAccess.anon.path)/service/workdays"
         case .stopServiceVerification:
-            return "\(basePath)/\(apiAccess.path)/service/stop/verification/commercial"
+            return "\(basePath)/\(ApiAccess.anon.path)/service/stop/verification/commercial"
         case .stopISUMService:
-            return "\(basePath)/\(apiAccess.path)/service/residential/stop"
+            return "\(basePath)/\(ApiAccess.anon.path)/service/residential/stop"
         case .validateZipCode(let code):
             return "\(basePath)/\(apiAccess.path)/zipcode/validate/\(code.zipCode)"
         case .getFeatureFlags:
@@ -401,10 +401,6 @@ public enum Router {
             headers["Accept"] = "application/json;odata=verbose"
         case .getAzureToken:
             headers["content-type"] = "application/x-www-form-urlencoded"
-        // Content-type = application/json breaks MSFT API
-        case .workDays, .stopServiceVerification, .stopISUMService:
-            headers["Authorization"] = "Bearer \(token)"
-            headers["Content-Type"] = "application/json"
         default:
             headers["Content-Type"] = "application/json"
         }
