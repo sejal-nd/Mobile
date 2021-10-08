@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		045E71F2270F40DE00589623 /* GeneralSubmitErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045E71F1270F40DE00589623 /* GeneralSubmitErrorViewController.swift */; };
 		04C329613DB0CC4C6391C318 /* Pods_EUMobile_Watch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 277650B6F85C6AC146C5F8C2 /* Pods_EUMobile_Watch.framework */; };
 		06EF941418076B8505D85358 /* Pods_UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F264461441121FBD4E0113E0 /* Pods_UITests.framework */; };
 		0D79C6C51F1D3360004793DD /* Maintenance.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0D79C6C41F1D3360004793DD /* Maintenance.storyboard */; };
@@ -1091,6 +1092,7 @@
 		03BAF012DCA4FE172D96935F /* Pods-UITests.pepco-rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UITests.pepco-rc.xcconfig"; path = "Pods/Target Support Files/Pods-UITests/Pods-UITests.pepco-rc.xcconfig"; sourceTree = "<group>"; };
 		03DA2DE4AA4D17C789D84AF6 /* Pods-UnitTests.ace-beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnitTests.ace-beta.xcconfig"; path = "Pods/Target Support Files/Pods-UnitTests/Pods-UnitTests.ace-beta.xcconfig"; sourceTree = "<group>"; };
 		043AD4137C4B870D0876711F /* Pods-UITests.peco-beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UITests.peco-beta.xcconfig"; path = "Pods/Target Support Files/Pods-UITests/Pods-UITests.peco-beta.xcconfig"; sourceTree = "<group>"; };
+		045E71F1270F40DE00589623 /* GeneralSubmitErrorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSubmitErrorViewController.swift; sourceTree = "<group>"; };
 		04DA65D561626DA7E9A0148C /* Pods-EUMobile.production beta-ace.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile.production beta-ace.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile/Pods-EUMobile.production beta-ace.xcconfig"; sourceTree = "<group>"; };
 		0604A049DEC3DC40A87CCCF8 /* Pods-EUMobileUITests.production beta-dpl.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobileUITests.production beta-dpl.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobileUITests/Pods-EUMobileUITests.production beta-dpl.xcconfig"; sourceTree = "<group>"; };
 		077CBE69EDB02D291A47648F /* Pods-EUMobileUnitTests.prodbeta-pepco.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobileUnitTests.prodbeta-pepco.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobileUnitTests/Pods-EUMobileUnitTests.prodbeta-pepco.xcconfig"; sourceTree = "<group>"; };
@@ -2897,6 +2899,7 @@
 				282B4F7926E7490400ACD33C /* ISUMStop.storyboard */,
 				282B4F7226E7469500ACD33C /* StopLandingViewController.swift */,
 				4A2607F926F2080400B7AAB5 /* ReviewStopServiceViewModel.swift */,
+				045E71F1270F40DE00589623 /* GeneralSubmitErrorViewController.swift */,
 			);
 			path = Stop;
 			sourceTree = "<group>";
@@ -6748,6 +6751,7 @@
 				E881B1531F607DD100067BA1 /* UnauthenticatedOutageViewModel.swift in Sources */,
 				B0B083B6216FCDCF00B1C632 /* ShortUUIDGenerator.swift in Sources */,
 				3559C8BA23030F9E00481A87 /* AutoPayReasonsForStoppingViewController.swift in Sources */,
+				045E71F2270F40DE00589623 /* GeneralSubmitErrorViewController.swift in Sources */,
 				679C6ED824D1F0A800535DE7 /* Appointment.swift in Sources */,
 				CEA2151D1F79005600689422 /* HomeBillCardViewModel.swift in Sources */,
 				C3381A042424060400EA7062 /* SERWebViewModel.swift in Sources */,

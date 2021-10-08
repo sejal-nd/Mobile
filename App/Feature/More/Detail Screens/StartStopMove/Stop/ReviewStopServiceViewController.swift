@@ -119,6 +119,9 @@ class ReviewStopServiceViewController: UIViewController {
         submitButton.rx.tap
             .subscribe(onNext: { _ in
 
+                let storyboard = UIStoryboard(name: "ISUMStop", bundle: nil)
+                let generalSubmitErrorViewController = storyboard.instantiateViewController(withIdentifier: "GeneralSubmitErrorViewController") as! GeneralSubmitErrorViewController
+                self.navigationController?.pushViewController(generalSubmitErrorViewController, animated: true)
             }).disposed(by: disposeBag)
     }
     
