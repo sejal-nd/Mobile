@@ -162,6 +162,7 @@
 		4A12C2702706D3F6007FFEA6 /* ScheduleMoveServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A12C26F2706D3F6007FFEA6 /* ScheduleMoveServiceViewController.swift */; };
 		4A12C2722706D42A007FFEA6 /* ScheduleMoveServiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A12C2712706D42A007FFEA6 /* ScheduleMoveServiceViewModel.swift */; };
 		4A2607FA26F2080400B7AAB5 /* ReviewStopServiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A2607F926F2080400B7AAB5 /* ReviewStopServiceViewModel.swift */; };
+		4A26E770271071F70089EC0D /* UITapGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A26E76F271071F70089EC0D /* UITapGestureRecognizer.swift */; };
 		4A631A8526E11A84006C3ACA /* StopServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A631A8426E11A84006C3ACA /* StopServiceViewController.swift */; };
 		4A631A8726E11AA0006C3ACA /* StopServiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A631A8626E11AA0006C3ACA /* StopServiceViewModel.swift */; };
 		4AD0C77E26FCAE9E009DB068 /* USState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD0C77D26FCAE9E009DB068 /* USState.swift */; };
@@ -1367,6 +1368,7 @@
 		4A12C2712706D42A007FFEA6 /* ScheduleMoveServiceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleMoveServiceViewModel.swift; sourceTree = "<group>"; };
 		4A2607F926F2080400B7AAB5 /* ReviewStopServiceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewStopServiceViewModel.swift; sourceTree = "<group>"; };
 		4A265B4A77D5F2CF40432C7C /* Pods-UnitTests.comed-rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnitTests.comed-rc.xcconfig"; path = "Pods/Target Support Files/Pods-UnitTests/Pods-UnitTests.comed-rc.xcconfig"; sourceTree = "<group>"; };
+		4A26E76F271071F70089EC0D /* UITapGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITapGestureRecognizer.swift; sourceTree = "<group>"; };
 		4A631A8426E11A84006C3ACA /* StopServiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopServiceViewController.swift; sourceTree = "<group>"; };
 		4A631A8626E11AA0006C3ACA /* StopServiceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopServiceViewModel.swift; sourceTree = "<group>"; };
 		4AD0C77D26FCAE9E009DB068 /* USState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USState.swift; sourceTree = "<group>"; };
@@ -4856,6 +4858,7 @@
 				9C5F096A23A801E100B73049 /* Array+OptionalLookup.swift */,
 				C300793B2436669F00A9BEB0 /* LocalizedString.swift */,
 				676434D325AF6D7200DA6448 /* Bundle+Version.swift */,
+				4A26E76F271071F70089EC0D /* UITapGestureRecognizer.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -6548,6 +6551,7 @@
 				67A482E826BC348000FBB0BB /* B2CForgotPasswordViewController.swift in Sources */,
 				67AE888225BF5274008519B4 /* ProjectTier.swift in Sources */,
 				9CA4FA692385D00100E33E7C /* ViewedTipsViewController.swift in Sources */,
+				4A26E770271071F70089EC0D /* UITapGestureRecognizer.swift in Sources */,
 				E8C4532F1EF44AE000F5C781 /* AutoPayChangeBankViewController.swift in Sources */,
 				9CD3531E22CABBB800165F87 /* DataDetectorTextView.swift in Sources */,
 				C364A87D2375DC9100C7D51B /* EmptyChildViewController.swift in Sources */,

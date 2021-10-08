@@ -9,9 +9,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="OpenSans-Regular.ttf">
-            <string>OpenSans</string>
-        </array>
         <array key="OpenSans-Semibold.ttf">
             <string>OpenSans-Semibold</string>
         </array>
@@ -1203,61 +1200,60 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="41" translatesAutoresizingMaskIntoConstraints="NO" id="lU9-8c-pRf">
-                                <rect key="frame" x="20" y="293.5" width="374" height="309"/>
+                                <rect key="frame" x="20" y="273.5" width="374" height="349"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vMx-1w-uaR">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="309"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="349"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_bigerror" translatesAutoresizingMaskIntoConstraints="NO" id="751-WS-5CZ">
-                                                <rect key="frame" x="127" y="0.0" width="120" height="120"/>
+                                                <rect key="frame" x="127" y="0.0" width="120" height="153"/>
                                                 <color key="tintColor" systemColor="systemRedColor"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We were unable to process your request." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s8M-RJ-xiN">
-                                                <rect key="frame" x="20" y="140" width="334" height="54.5"/>
+                                                <rect key="frame" x="30" y="173" width="314" height="54.5"/>
                                                 <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="20"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" text="Please call our Customer Care Center at 1-800-685-0123 Monday-Friday from 7 a.m. to 7 p.m. for more information." textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="wia-VX-unh">
-                                                <rect key="frame" x="20" y="217" width="334" height="84"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                <color key="textColor" systemColor="labelColor"/>
-                                                <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="17"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                            </textView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please call our Customer Care Center at 1-800-685-0123 Monday-Friday from 7 a.m. to 7 p.m. for more information." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="blN-jT-Nim">
+                                                <rect key="frame" x="40" y="247.5" width="294" height="81.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstItem="wia-VX-unh" firstAttribute="leading" secondItem="vMx-1w-uaR" secondAttribute="leading" constant="20" id="3cF-ar-Bbx"/>
-                                            <constraint firstItem="wia-VX-unh" firstAttribute="top" secondItem="s8M-RJ-xiN" secondAttribute="bottom" constant="10" id="7xr-Cc-P4E"/>
-                                            <constraint firstItem="s8M-RJ-xiN" firstAttribute="top" secondItem="751-WS-5CZ" secondAttribute="bottom" constant="20" id="BaW-ud-fGy"/>
-                                            <constraint firstItem="751-WS-5CZ" firstAttribute="top" secondItem="vMx-1w-uaR" secondAttribute="top" id="KyA-sO-oHU"/>
-                                            <constraint firstAttribute="trailing" secondItem="wia-VX-unh" secondAttribute="trailing" constant="20" id="bJ6-Ne-mmB"/>
-                                            <constraint firstItem="s8M-RJ-xiN" firstAttribute="leading" secondItem="vMx-1w-uaR" secondAttribute="leading" constant="20" id="dR0-MB-acw"/>
-                                            <constraint firstAttribute="bottom" secondItem="wia-VX-unh" secondAttribute="bottom" constant="10" id="i5K-lV-IDk"/>
-                                            <constraint firstItem="751-WS-5CZ" firstAttribute="centerX" secondItem="vMx-1w-uaR" secondAttribute="centerX" id="m0x-uZ-pA8"/>
-                                            <constraint firstAttribute="trailing" secondItem="s8M-RJ-xiN" secondAttribute="trailing" constant="20" id="pdV-yh-h67"/>
+                                            <constraint firstAttribute="trailing" secondItem="s8M-RJ-xiN" secondAttribute="trailing" constant="30" id="2RZ-kB-KFO"/>
+                                            <constraint firstItem="751-WS-5CZ" firstAttribute="centerX" secondItem="vMx-1w-uaR" secondAttribute="centerX" id="EwF-BD-THU"/>
+                                            <constraint firstItem="s8M-RJ-xiN" firstAttribute="leading" secondItem="vMx-1w-uaR" secondAttribute="leading" constant="30" id="JzQ-Io-HXk"/>
+                                            <constraint firstItem="751-WS-5CZ" firstAttribute="top" secondItem="vMx-1w-uaR" secondAttribute="top" id="PcI-8E-W1K"/>
+                                            <constraint firstItem="blN-jT-Nim" firstAttribute="leading" secondItem="vMx-1w-uaR" secondAttribute="leading" constant="40" id="Z1O-uV-0Ll"/>
+                                            <constraint firstAttribute="trailing" secondItem="blN-jT-Nim" secondAttribute="trailing" constant="40" id="fna-Hy-Fux"/>
+                                            <constraint firstAttribute="bottom" secondItem="blN-jT-Nim" secondAttribute="bottom" constant="20" id="kJz-Pr-wiL"/>
+                                            <constraint firstItem="s8M-RJ-xiN" firstAttribute="top" secondItem="751-WS-5CZ" secondAttribute="bottom" constant="20" id="l4K-jp-WP9"/>
+                                            <constraint firstItem="blN-jT-Nim" firstAttribute="top" secondItem="s8M-RJ-xiN" secondAttribute="bottom" constant="20" id="wIa-sc-3Qn"/>
                                         </constraints>
                                     </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="vMx-1w-uaR" firstAttribute="leading" secondItem="lU9-8c-pRf" secondAttribute="leading" id="o1s-zt-Mzo"/>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="465" id="6vP-rh-opp"/>
                                 </constraints>
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="GT6-Ok-gYB"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="GT6-Ok-gYB" firstAttribute="trailing" secondItem="lU9-8c-pRf" secondAttribute="trailing" constant="20" id="89Y-d6-dQd"/>
-                            <constraint firstItem="lU9-8c-pRf" firstAttribute="top" secondItem="GT6-Ok-gYB" secondAttribute="top" constant="249.5" id="Pda-Et-t0y"/>
-                            <constraint firstItem="lU9-8c-pRf" firstAttribute="leading" secondItem="GT6-Ok-gYB" secondAttribute="leading" constant="20" id="Son-lk-EUa"/>
-                            <constraint firstItem="lU9-8c-pRf" firstAttribute="centerX" secondItem="dra-Cc-sYg" secondAttribute="centerX" id="bLO-ZM-3RC"/>
-                            <constraint firstItem="lU9-8c-pRf" firstAttribute="centerY" secondItem="dra-Cc-sYg" secondAttribute="centerY" id="mbx-Wo-rT9"/>
+                            <constraint firstItem="lU9-8c-pRf" firstAttribute="leading" secondItem="GT6-Ok-gYB" secondAttribute="leading" priority="999" constant="20" id="0Ee-Fl-00A"/>
+                            <constraint firstItem="lU9-8c-pRf" firstAttribute="centerX" secondItem="dra-Cc-sYg" secondAttribute="centerX" id="CtJ-tp-YkR"/>
+                            <constraint firstItem="GT6-Ok-gYB" firstAttribute="trailing" secondItem="lU9-8c-pRf" secondAttribute="trailing" priority="999" constant="20" id="qdE-Zm-y5p"/>
+                            <constraint firstItem="lU9-8c-pRf" firstAttribute="centerY" secondItem="dra-Cc-sYg" secondAttribute="centerY" id="seg-4H-4FG"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Stop Service" id="V8e-eH-kXd"/>
                     <connections>
-                        <outlet property="helplineDescriptionLabel" destination="wia-VX-unh" id="ysf-BC-t0R"/>
+                        <outlet property="helplineDescriptionLabel" destination="blN-jT-Nim" id="GdI-ID-eYH"/>
+                        <outlet property="statusLabel" destination="s8M-RJ-xiN" id="imt-YA-3TZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CSp-nY-KBW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1277,9 +1273,6 @@
         <image name="ic_isum_stop_large_bge" width="125" height="126"/>
         <image name="ic_switchaccount_blue-change_account" width="30" height="30"/>
         <image name="ic_tooltip-new" width="24" height="24"/>
-        <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
