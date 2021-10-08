@@ -115,6 +115,7 @@ class AddressSearchViewController: UIViewController {
 
         streetAddressTextField.textField.rx.controlEvent(.editingChanged).asObservable()
             .filter{ self.searchType == .appartment}
+            .debounce(.milliseconds(500), scheduler: MainScheduler.asyncInstance)
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
 
