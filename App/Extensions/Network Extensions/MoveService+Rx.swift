@@ -18,5 +18,25 @@ extension Reactive where Base == MoveService {
             return Disposables.create()
         }
     }
+    static func fetchStreetAddress(address: String = "",zipcode:String = "") -> Observable<StreetAddressResponse> {
+        return Observable.create { observer -> Disposable in
+            MoveService.fetchStreetAddress(address: address, zipcode: zipcode){ observer.handle(result: $0) }
+            return Disposables.create()
+        }
+    }
+
+    static func fetchAppartment(address: String = "",zipcode:String = "") -> Observable<[AppartmentResponse]>  {
+        return Observable.create { observer -> Disposable in
+            MoveService.fetchAppartment(address: address, zipcode: zipcode){ observer.handle(result: $0) }
+            return Disposables.create()
+        }
+    }
+
+    static func lookupAddress(address: String = "",zipcode:String = "", premiseID:String = "") -> Observable<[AddressLookupResponse]> {
+        return Observable.create { observer -> Disposable in
+            MoveService.lookupAddress(address: address, zipcode: zipcode, premiseID: premiseID){ observer.handle(result: $0) }
+            return Disposables.create()
+        }
+    }
 }
 
