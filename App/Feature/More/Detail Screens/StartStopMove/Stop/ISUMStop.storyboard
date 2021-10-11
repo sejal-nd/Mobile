@@ -1617,9 +1617,79 @@
             </objects>
             <point key="canvasLocation" x="679.71014492753625" y="-587.27678571428567"/>
         </scene>
+        <!--Stop Service-->
+        <scene sceneID="5be-Fn-7rR">
+            <objects>
+                <viewController storyboardIdentifier="GeneralSubmitErrorViewController" id="JG8-iC-TPu" customClass="GeneralSubmitErrorViewController" customModule="EUMobile" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="OyS-Iq-vLf">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="41" translatesAutoresizingMaskIntoConstraints="NO" id="aAV-Ok-TLm">
+                                <rect key="frame" x="20" y="273.5" width="374" height="349"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6bF-an-Qba">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="349"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_bigerror" translatesAutoresizingMaskIntoConstraints="NO" id="DXz-ID-Yrt">
+                                                <rect key="frame" x="127" y="0.0" width="120" height="160.5"/>
+                                                <color key="tintColor" systemColor="systemRedColor"/>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We were unable to process your request." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6o2-tc-iKj">
+                                                <rect key="frame" x="30" y="180.5" width="314" height="47"/>
+                                                <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="20"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please call our Customer Care Center at 1-800-685-0123 Monday-Friday from 7 a.m. to 7 p.m. for more information." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rqb-hd-Bq6">
+                                                <rect key="frame" x="40" y="247.5" width="294" height="81.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="6o2-tc-iKj" firstAttribute="leading" secondItem="6bF-an-Qba" secondAttribute="leading" constant="30" id="377-hV-6z3"/>
+                                            <constraint firstItem="rqb-hd-Bq6" firstAttribute="top" secondItem="6o2-tc-iKj" secondAttribute="bottom" constant="20" id="Aqs-vM-9tj"/>
+                                            <constraint firstItem="rqb-hd-Bq6" firstAttribute="leading" secondItem="6bF-an-Qba" secondAttribute="leading" constant="40" id="I2E-4j-lnq"/>
+                                            <constraint firstItem="DXz-ID-Yrt" firstAttribute="top" secondItem="6bF-an-Qba" secondAttribute="top" id="Il8-Kl-EpA"/>
+                                            <constraint firstAttribute="bottom" secondItem="rqb-hd-Bq6" secondAttribute="bottom" constant="20" id="K4L-wn-Hea"/>
+                                            <constraint firstAttribute="trailing" secondItem="rqb-hd-Bq6" secondAttribute="trailing" constant="40" id="Xxu-mQ-DkO"/>
+                                            <constraint firstItem="DXz-ID-Yrt" firstAttribute="centerX" secondItem="6bF-an-Qba" secondAttribute="centerX" id="Y7H-h6-3Lg"/>
+                                            <constraint firstItem="6o2-tc-iKj" firstAttribute="top" secondItem="DXz-ID-Yrt" secondAttribute="bottom" constant="20" id="rCk-Hf-4W4"/>
+                                            <constraint firstAttribute="trailing" secondItem="6o2-tc-iKj" secondAttribute="trailing" constant="30" id="tq1-vR-c9v"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="465" id="vok-ex-kQf"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="MfU-Yb-S6F"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="MfU-Yb-S6F" firstAttribute="trailing" secondItem="aAV-Ok-TLm" secondAttribute="trailing" priority="999" constant="20" id="GcV-eG-hX4"/>
+                            <constraint firstItem="aAV-Ok-TLm" firstAttribute="centerX" secondItem="OyS-Iq-vLf" secondAttribute="centerX" id="N0C-dP-23n"/>
+                            <constraint firstItem="aAV-Ok-TLm" firstAttribute="centerY" secondItem="OyS-Iq-vLf" secondAttribute="centerY" id="SJ3-u9-zvw"/>
+                            <constraint firstItem="aAV-Ok-TLm" firstAttribute="leading" secondItem="MfU-Yb-S6F" secondAttribute="leading" priority="999" constant="20" id="dBn-gT-src"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Stop Service" id="1uN-aE-RHE"/>
+                    <connections>
+                        <outlet property="helplineDescriptionLabel" destination="rqb-hd-Bq6" id="Umj-1F-7lT"/>
+                        <outlet property="statusLabel" destination="6o2-tc-iKj" id="ZFc-Wx-iAT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BK5-0h-KxE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4018.8405797101454" y="85.714285714285708"/>
+        </scene>
     </scenes>
     <resources>
         <image name="ic_alert" width="36" height="36"/>
+        <image name="ic_bigerror" width="120" height="120"/>
         <image name="ic_caret" width="8" height="13"/>
         <image name="ic_checkbox_deselected" width="24" height="24"/>
         <image name="ic_checkbox_selected" width="24" height="24"/>
@@ -1633,6 +1703,9 @@
         <image name="img_confirmation" width="96" height="96"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
