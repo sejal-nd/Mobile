@@ -175,6 +175,8 @@
 		4A631A8726E11AA0006C3ACA /* StopServiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A631A8626E11AA0006C3ACA /* StopServiceViewModel.swift */; };
 		4A8CE7582703604300C78B05 /* StopISUMServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8CE7572703604300C78B05 /* StopISUMServiceRequest.swift */; };
 		4A8CE7592703604300C78B05 /* StopISUMServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8CE7572703604300C78B05 /* StopISUMServiceRequest.swift */; };
+		4AA4EAD02714428300B35F4D /* FinaledView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA4EACF2714428300B35F4D /* FinaledView.swift */; };
+		4AA4EAD2271442D400B35F4D /* PendingDisconnectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA4EAD1271442D400B35F4D /* PendingDisconnectView.swift */; };
 		4AD0C77E26FCAE9E009DB068 /* USState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD0C77D26FCAE9E009DB068 /* USState.swift */; };
 		4AD0C77F26FCAE9E009DB068 /* USState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD0C77D26FCAE9E009DB068 /* USState.swift */; };
 		4AE3467C26E8C76900F4155C /* FinalMailingAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE3467B26E8C76900F4155C /* FinalMailingAddressViewController.swift */; };
@@ -1385,6 +1387,8 @@
 		4A631A8426E11A84006C3ACA /* StopServiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopServiceViewController.swift; sourceTree = "<group>"; };
 		4A631A8626E11AA0006C3ACA /* StopServiceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopServiceViewModel.swift; sourceTree = "<group>"; };
 		4A8CE7572703604300C78B05 /* StopISUMServiceRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopISUMServiceRequest.swift; sourceTree = "<group>"; };
+		4AA4EACF2714428300B35F4D /* FinaledView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinaledView.swift; sourceTree = "<group>"; };
+		4AA4EAD1271442D400B35F4D /* PendingDisconnectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingDisconnectView.swift; sourceTree = "<group>"; };
 		4AD0C77D26FCAE9E009DB068 /* USState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USState.swift; sourceTree = "<group>"; };
 		4ADF4FF916DE3B2844982F78 /* Pods_EUMobile_Watch_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EUMobile_Watch_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AE3467B26E8C76900F4155C /* FinalMailingAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalMailingAddressViewController.swift; sourceTree = "<group>"; };
@@ -2917,6 +2921,8 @@
 				4A2607F926F2080400B7AAB5 /* ReviewStopServiceViewModel.swift */,
 				4A25FA7226FC4A6C008026EA /* StopConfirmationScreenViewController.swift */,
 				4A26E75C270EEFE00089EC0D /* StopConfirmationScreenViewModel.swift */,
+				4AA4EACF2714428300B35F4D /* FinaledView.swift */,
+				4AA4EAD1271442D400B35F4D /* PendingDisconnectView.swift */,
 			);
 			path = Stop;
 			sourceTree = "<group>";
@@ -6790,6 +6796,7 @@
 				B07269352127579C009B2BFF /* HomeUpdateView.swift in Sources */,
 				35C9139622E9E9D1009DD71A /* MiniWalletSheetViewController.swift in Sources */,
 				E87926DA1F8558AE00794CA9 /* BillBreakdownViewController.swift in Sources */,
+				4AA4EAD02714428300B35F4D /* FinaledView.swift in Sources */,
 				B094A63D210270830028F90F /* BillBreakdownViewModel.swift in Sources */,
 				30DFE8612492641900FEFDE4 /* EditNicknameViewModel.swift in Sources */,
 				B085C44720FFD49400CE0893 /* ReportedOutagesStore.swift in Sources */,
@@ -6857,6 +6864,7 @@
 				54B31A701EE0B8670002E657 /* RegistrationBGEAccountNumberViewController.swift in Sources */,
 				67A732AA24D35E0F00D0BF32 /* GovWeatherErrorTodo.swift in Sources */,
 				E8EEF7291E5777BA006804D4 /* MoreViewController.swift in Sources */,
+				4AA4EAD2271442D400B35F4D /* PendingDisconnectView.swift in Sources */,
 				C36C398E24ED95A800BA83B6 /* PushNotification.swift in Sources */,
 				679C6EE524D1FE7B00535DE7 /* WeatherService+Rx.swift in Sources */,
 				B0D7860D2285C3F4007C551F /* CommercialUsageAlertStore.swift in Sources */,
