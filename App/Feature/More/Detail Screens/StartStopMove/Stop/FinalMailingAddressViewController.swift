@@ -199,14 +199,19 @@ extension FinalMailingAddressViewController: UITextFieldDelegate {
         } else if textField == cityTextField.textField {
             viewModel.city = newString
         } else if textField == zipTextField.textField {
-            let components = newString.components(separatedBy: CharacterSet.decimalDigits.inverted)
-            let decimalString = components.joined(separator: "") as String
-            let length = decimalString.count
-            
-            if length > 5 {
-                return false
+            if string.rangeOfCharacter(from: CharacterSet.decimalDigits) != nil {
+                let components = newString.components(separatedBy: CharacterSet.decimalDigits.inverted)
+                let decimalString = components.joined(separator: "") as String
+                let length = decimalString.count
+
+                if length > 5 {
+                    return false
+                } else {
+                    viewModel.zipCode = decimalString
+                }
             } else {
-                viewModel.zipCode = decimalString
+                zipTextField.setError(NSLocalizedString("Only numbers allowed", comment: ""))
+                return false
             }
         }
         continueButton.isEnabled = viewModel.canEnableContinue
