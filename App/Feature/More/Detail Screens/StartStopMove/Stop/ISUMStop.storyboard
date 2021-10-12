@@ -178,10 +178,10 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="689"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DIC-Bq-LZw">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="721"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Ruj-Rn-1OH">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="721"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="xPJ-lx-2YT">
                                                         <rect key="frame" x="0.0" y="0.0" width="414" height="215"/>
@@ -424,61 +424,61 @@
                                                         </constraints>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ol4-VO-RBR">
-                                                        <rect key="frame" x="0.0" y="215" width="414" height="253"/>
+                                                        <rect key="frame" x="0.0" y="215" width="414" height="261"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="siX-lV-qPQ" customClass="PendingDisconnectView" customModule="EUMobile" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="414" height="253"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="414" height="261"/>
                                                                 <subviews>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_alert" translatesAutoresizingMaskIntoConstraints="NO" id="370-0L-bY5">
-                                                                        <rect key="frame" x="183" y="30" width="48" height="48"/>
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="height" constant="48" id="2Zy-O1-3ZE"/>
-                                                                            <constraint firstAttribute="width" constant="48" id="pJc-1T-hJZ"/>
-                                                                        </constraints>
+                                                                        <rect key="frame" x="189" y="30" width="36" height="36"/>
                                                                     </imageView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your service will be disconnected on September 20, 2021" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GZY-nU-m7i">
-                                                                        <rect key="frame" x="30" y="93" width="354" height="48"/>
+                                                                        <rect key="frame" x="30" y="81" width="354" height="48"/>
                                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R57-76-3Af">
-                                                                        <rect key="frame" x="30" y="161" width="354" height="72"/>
+                                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="DqI-ht-Dh6">
+                                                                        <rect key="frame" x="30" y="149" width="354" height="112"/>
+                                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                         <string key="text">If you didn’t make this request or if you want to make any changes, please call our Customer Care Center at 1-800-685-0123 Monday through Friday from 7 a.m to 7 p.m. for help and more information.</string>
+                                                                        <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                                        <nil key="textColor"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
+                                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                                        <dataDetectorType key="dataDetectorTypes" phoneNumber="YES"/>
+                                                                    </textView>
                                                                 </subviews>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                 <constraints>
-                                                                    <constraint firstItem="R57-76-3Af" firstAttribute="leading" secondItem="siX-lV-qPQ" secondAttribute="leading" priority="999" constant="30" id="0yQ-yN-8Ma"/>
-                                                                    <constraint firstItem="GZY-nU-m7i" firstAttribute="top" secondItem="370-0L-bY5" secondAttribute="bottom" constant="15" id="68H-lz-CGO"/>
+                                                                    <constraint firstItem="DqI-ht-Dh6" firstAttribute="top" secondItem="GZY-nU-m7i" secondAttribute="bottom" constant="20" id="4Ww-GE-Bk9"/>
+                                                                    <constraint firstItem="370-0L-bY5" firstAttribute="centerX" secondItem="siX-lV-qPQ" secondAttribute="centerX" id="5xw-2h-Dbz"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="DqI-ht-Dh6" secondAttribute="trailing" constant="30" id="8bX-SS-EqP"/>
                                                                     <constraint firstItem="GZY-nU-m7i" firstAttribute="leading" secondItem="siX-lV-qPQ" secondAttribute="leading" priority="999" constant="30" id="9eF-N0-gXe"/>
-                                                                    <constraint firstAttribute="bottom" secondItem="R57-76-3Af" secondAttribute="bottom" constant="20" id="E0M-cx-9Iy"/>
-                                                                    <constraint firstItem="370-0L-bY5" firstAttribute="top" secondItem="siX-lV-qPQ" secondAttribute="top" constant="30" id="O1f-RS-emc"/>
+                                                                    <constraint firstItem="GZY-nU-m7i" firstAttribute="leading" secondItem="siX-lV-qPQ" secondAttribute="leading" constant="30" id="Amh-Pu-gor"/>
+                                                                    <constraint firstItem="DqI-ht-Dh6" firstAttribute="leading" secondItem="siX-lV-qPQ" secondAttribute="leading" constant="30" id="RDh-Ag-Cw7"/>
                                                                     <constraint firstAttribute="trailing" secondItem="GZY-nU-m7i" secondAttribute="trailing" priority="999" constant="30" id="UOB-hf-bod"/>
-                                                                    <constraint firstItem="370-0L-bY5" firstAttribute="centerX" secondItem="siX-lV-qPQ" secondAttribute="centerX" id="W07-MD-wFy"/>
-                                                                    <constraint firstItem="R57-76-3Af" firstAttribute="top" secondItem="GZY-nU-m7i" secondAttribute="bottom" constant="20" id="WzO-uv-Esm"/>
-                                                                    <constraint firstAttribute="trailing" secondItem="R57-76-3Af" secondAttribute="trailing" priority="999" constant="30" id="bFN-ZH-ijJ"/>
-                                                                    <constraint firstItem="R57-76-3Af" firstAttribute="centerX" secondItem="siX-lV-qPQ" secondAttribute="centerX" id="gi7-uQ-8zf"/>
+                                                                    <constraint firstItem="GZY-nU-m7i" firstAttribute="top" secondItem="370-0L-bY5" secondAttribute="bottom" constant="15" id="VgW-Yw-7k5"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="DqI-ht-Dh6" secondAttribute="bottom" id="aXN-Tq-UxX"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="GZY-nU-m7i" secondAttribute="trailing" constant="30" id="f6C-2N-Uz7"/>
                                                                     <constraint firstItem="GZY-nU-m7i" firstAttribute="centerX" secondItem="siX-lV-qPQ" secondAttribute="centerX" id="wFZ-Si-jCC"/>
+                                                                    <constraint firstItem="370-0L-bY5" firstAttribute="top" secondItem="siX-lV-qPQ" secondAttribute="top" constant="30" id="wyO-QJ-1IT"/>
                                                                 </constraints>
                                                                 <connections>
-                                                                    <outlet property="helplineDescriptionLabel" destination="R57-76-3Af" id="mtS-9L-BHK"/>
+                                                                    <outlet property="helplineDescriptionTextView" destination="DqI-ht-Dh6" id="Q3j-GJ-q8Z"/>
                                                                     <outlet property="serviceStatusLabel" destination="GZY-nU-m7i" id="1ps-4h-d0A"/>
                                                                 </connections>
                                                             </view>
                                                         </subviews>
                                                         <constraints>
                                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="465" id="C5o-qb-Jh9"/>
+                                                            <constraint firstAttribute="bottom" secondItem="siX-lV-qPQ" secondAttribute="bottom" id="JJV-8n-aHe"/>
                                                         </constraints>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="FAm-u7-3pV">
-                                                        <rect key="frame" x="0.0" y="468" width="414" height="253"/>
+                                                        <rect key="frame" x="0.0" y="476" width="414" height="337"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a5v-Ht-LsX" customClass="FinaledView" customModule="EUMobile" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="414" height="253"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="414" height="337"/>
                                                                 <subviews>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_alert" translatesAutoresizingMaskIntoConstraints="NO" id="dSx-he-WSw">
                                                                         <rect key="frame" x="183" y="30" width="48" height="48"/>
@@ -488,34 +488,36 @@
                                                                         </constraints>
                                                                     </imageView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The account you selected is inactive." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="69l-xS-cL9">
-                                                                        <rect key="frame" x="30" y="93" width="354" height="66"/>
+                                                                        <rect key="frame" x="30" y="93" width="354" height="24"/>
                                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please call our Customer Care Center at 1-800-685-0123 Monday-Friday from 7 a.m. to 7 p.m. for help and more information." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wEZ-nW-nea">
-                                                                        <rect key="frame" x="30" y="179" width="354" height="54"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                                        <nil key="textColor"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
+                                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="bHF-pD-sfu">
+                                                                        <rect key="frame" x="30" y="137" width="354" height="200"/>
+                                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                                        <color key="textColor" systemColor="labelColor"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                                        <dataDetectorType key="dataDetectorTypes" phoneNumber="YES"/>
+                                                                    </textView>
                                                                 </subviews>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="trailing" secondItem="wEZ-nW-nea" secondAttribute="trailing" priority="999" constant="30" id="4KB-fc-tgh"/>
-                                                                    <constraint firstItem="wEZ-nW-nea" firstAttribute="top" secondItem="69l-xS-cL9" secondAttribute="bottom" constant="20" id="6IF-Im-y8d"/>
                                                                     <constraint firstItem="69l-xS-cL9" firstAttribute="centerX" secondItem="a5v-Ht-LsX" secondAttribute="centerX" id="9Bg-Gk-jiX"/>
                                                                     <constraint firstAttribute="trailing" secondItem="69l-xS-cL9" secondAttribute="trailing" priority="999" constant="30" id="LR4-sh-MmC"/>
-                                                                    <constraint firstItem="wEZ-nW-nea" firstAttribute="centerX" secondItem="a5v-Ht-LsX" secondAttribute="centerX" id="Lap-t8-fhX"/>
                                                                     <constraint firstItem="dSx-he-WSw" firstAttribute="top" secondItem="a5v-Ht-LsX" secondAttribute="top" constant="30" id="NtC-vv-CeP"/>
+                                                                    <constraint firstItem="bHF-pD-sfu" firstAttribute="top" secondItem="69l-xS-cL9" secondAttribute="bottom" constant="20" id="PC1-kl-mLs"/>
+                                                                    <constraint firstItem="bHF-pD-sfu" firstAttribute="leading" secondItem="a5v-Ht-LsX" secondAttribute="leading" constant="30" id="Qdc-f7-QGS"/>
                                                                     <constraint firstItem="69l-xS-cL9" firstAttribute="top" secondItem="dSx-he-WSw" secondAttribute="bottom" constant="15" id="UKK-eg-qqz"/>
-                                                                    <constraint firstItem="wEZ-nW-nea" firstAttribute="leading" secondItem="a5v-Ht-LsX" secondAttribute="leading" priority="999" constant="30" id="f21-Vz-Kjv"/>
-                                                                    <constraint firstAttribute="bottom" secondItem="wEZ-nW-nea" secondAttribute="bottom" constant="20" id="l6q-Af-Ih5"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="bHF-pD-sfu" secondAttribute="trailing" constant="30" id="kac-qf-hkf"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="bHF-pD-sfu" secondAttribute="bottom" id="r7J-io-3De"/>
                                                                     <constraint firstItem="dSx-he-WSw" firstAttribute="centerX" secondItem="a5v-Ht-LsX" secondAttribute="centerX" id="se4-9C-4Ld"/>
                                                                     <constraint firstItem="69l-xS-cL9" firstAttribute="leading" secondItem="a5v-Ht-LsX" secondAttribute="leading" priority="999" constant="30" id="uJN-dN-Dwr"/>
                                                                 </constraints>
                                                                 <connections>
-                                                                    <outlet property="helplineDescriptionLabel" destination="wEZ-nW-nea" id="lkS-ef-bEe"/>
+                                                                    <outlet property="helplineDescriptionTextView" destination="bHF-pD-sfu" id="ql4-DH-rxW"/>
                                                                     <outlet property="serviceStatusLabel" destination="69l-xS-cL9" id="gXI-YT-KJA"/>
                                                                 </connections>
                                                             </view>
@@ -632,6 +634,7 @@
                         <outlet property="loadingIndicator" destination="aJ3-Zh-98N" id="X2L-be-h8v"/>
                         <outlet property="noneServiceProvideLabel" destination="K8H-6F-esU" id="nk3-9e-KX7"/>
                         <outlet property="pendingDisconnectStackView" destination="ol4-VO-RBR" id="IDG-3c-PgW"/>
+                        <outlet property="pendingDisconnectView" destination="siX-lV-qPQ" id="feK-Fa-zok"/>
                         <outlet property="scrollView" destination="MfW-s9-bzM" id="60v-uL-m9I"/>
                         <outlet property="selectedDateLabel" destination="xfV-t3-fI4" id="gTD-UP-DlZ"/>
                         <outlet property="serviceDisconnectStaticLabel" destination="3JT-0k-cwb" id="Q19-a7-KaK"/>
@@ -1360,28 +1363,28 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="322"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You submitted a Stop Service request for:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GEY-ma-Pev">
-                                                                        <rect key="frame" x="19" y="0.0" width="376" height="37"/>
+                                                                        <rect key="frame" x="19" y="0.0" width="376" height="20.5"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w4Z-sp-Mdi">
-                                                                        <rect key="frame" x="19" y="47" width="376" height="275"/>
+                                                                        <rect key="frame" x="19" y="30.5" width="376" height="291.5"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stop Service Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pZ7-Fb-YfS">
-                                                                                <rect key="frame" x="20" y="20" width="336" height="16"/>
+                                                                                <rect key="frame" x="20" y="20" width="336" height="32.5"/>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                                 <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="November 19, 2021, 8:00 a.m." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7s8-Iy-UWQ">
-                                                                                <rect key="frame" x="20" y="41" width="336" height="18"/>
+                                                                                <rect key="frame" x="20" y="57.5" width="336" height="18"/>
                                                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                                                                 <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lGe-L9-N5v">
-                                                                                <rect key="frame" x="20" y="79" width="336" height="1"/>
+                                                                                <rect key="frame" x="20" y="95.5" width="336" height="1"/>
                                                                                 <color key="backgroundColor" red="0.82352941176470584" green="0.82352941176470584" blue="0.82352941176470584" alpha="1" colorSpace="calibratedRGB"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="height" constant="1" id="Wp2-Qs-dg9"/>
@@ -1391,13 +1394,13 @@
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stop Service Address" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aGV-Kw-7QA">
-                                                                                <rect key="frame" x="20" y="100" width="336" height="16"/>
+                                                                                <rect key="frame" x="20" y="116.5" width="336" height="16"/>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                                 <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="123 Anywhere Street, Apt. 123 – B Baltimore, MD 21215" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZWc-2K-syN">
-                                                                                <rect key="frame" x="20" y="121" width="150" height="54"/>
+                                                                                <rect key="frame" x="20" y="137.5" width="150" height="54"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="width" constant="150" id="z3a-od-mJm"/>
                                                                                 </constraints>
@@ -1406,7 +1409,7 @@
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4pQ-gw-8dP">
-                                                                                <rect key="frame" x="20" y="195" width="336" height="1"/>
+                                                                                <rect key="frame" x="20" y="211.5" width="336" height="1"/>
                                                                                 <color key="backgroundColor" red="0.82352941176470584" green="0.82352941176470584" blue="0.82352941176470584" alpha="1" colorSpace="calibratedRGB"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="height" constant="1" id="NAg-dI-R5l"/>
@@ -1416,13 +1419,13 @@
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We will deliver your final bill to" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dgp-iT-pJf">
-                                                                                <rect key="frame" x="20" y="216" width="336" height="16"/>
+                                                                                <rect key="frame" x="20" y="232.5" width="336" height="16"/>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                                 <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The service address above" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fJs-PI-oga">
-                                                                                <rect key="frame" x="20" y="237" width="336" height="18"/>
+                                                                                <rect key="frame" x="20" y="253.5" width="336" height="18"/>
                                                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                                                                 <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
                                                                                 <nil key="highlightedColor"/>
@@ -1626,39 +1629,41 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="41" translatesAutoresizingMaskIntoConstraints="NO" id="aAV-Ok-TLm">
-                                <rect key="frame" x="20" y="273.5" width="374" height="349"/>
+                                <rect key="frame" x="20" y="224" width="374" height="448"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6bF-an-Qba">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="349"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="448"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_bigerror" translatesAutoresizingMaskIntoConstraints="NO" id="DXz-ID-Yrt">
-                                                <rect key="frame" x="127" y="0.0" width="120" height="160.5"/>
+                                                <rect key="frame" x="127" y="0.0" width="120" height="120"/>
                                                 <color key="tintColor" systemColor="systemRedColor"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We were unable to process your request." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6o2-tc-iKj">
-                                                <rect key="frame" x="30" y="180.5" width="314" height="47"/>
+                                                <rect key="frame" x="30" y="140" width="314" height="54.5"/>
                                                 <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="20"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please call our Customer Care Center at 1-800-685-0123 Monday-Friday from 7 a.m. to 7 p.m. for more information." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rqb-hd-Bq6">
-                                                <rect key="frame" x="40" y="247.5" width="294" height="81.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" text="Please call our Customer Care Center at 1-800-685-0123 Monday-Friday from 7 a.m. to 7 p.m. for more information." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="YaD-Up-5dt">
+                                                <rect key="frame" x="40" y="214.5" width="294" height="233.5"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <color key="textColor" systemColor="labelColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                <dataDetectorType key="dataDetectorTypes" phoneNumber="YES"/>
+                                            </textView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstItem="6o2-tc-iKj" firstAttribute="leading" secondItem="6bF-an-Qba" secondAttribute="leading" constant="30" id="377-hV-6z3"/>
-                                            <constraint firstItem="rqb-hd-Bq6" firstAttribute="top" secondItem="6o2-tc-iKj" secondAttribute="bottom" constant="20" id="Aqs-vM-9tj"/>
-                                            <constraint firstItem="rqb-hd-Bq6" firstAttribute="leading" secondItem="6bF-an-Qba" secondAttribute="leading" constant="40" id="I2E-4j-lnq"/>
                                             <constraint firstItem="DXz-ID-Yrt" firstAttribute="top" secondItem="6bF-an-Qba" secondAttribute="top" id="Il8-Kl-EpA"/>
-                                            <constraint firstAttribute="bottom" secondItem="rqb-hd-Bq6" secondAttribute="bottom" constant="20" id="K4L-wn-Hea"/>
-                                            <constraint firstAttribute="trailing" secondItem="rqb-hd-Bq6" secondAttribute="trailing" constant="40" id="Xxu-mQ-DkO"/>
+                                            <constraint firstAttribute="trailing" secondItem="YaD-Up-5dt" secondAttribute="trailing" constant="40" id="Jwk-8Y-MDB"/>
+                                            <constraint firstItem="YaD-Up-5dt" firstAttribute="leading" secondItem="6bF-an-Qba" secondAttribute="leading" constant="40" id="OYy-Im-yYm"/>
                                             <constraint firstItem="DXz-ID-Yrt" firstAttribute="centerX" secondItem="6bF-an-Qba" secondAttribute="centerX" id="Y7H-h6-3Lg"/>
+                                            <constraint firstAttribute="bottom" secondItem="YaD-Up-5dt" secondAttribute="bottom" id="dkF-CY-m7G"/>
                                             <constraint firstItem="6o2-tc-iKj" firstAttribute="top" secondItem="DXz-ID-Yrt" secondAttribute="bottom" constant="20" id="rCk-Hf-4W4"/>
                                             <constraint firstAttribute="trailing" secondItem="6o2-tc-iKj" secondAttribute="trailing" constant="30" id="tq1-vR-c9v"/>
+                                            <constraint firstItem="YaD-Up-5dt" firstAttribute="top" secondItem="6o2-tc-iKj" secondAttribute="bottom" constant="20" id="uAV-hA-gcO"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -1678,7 +1683,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Stop Service" id="1uN-aE-RHE"/>
                     <connections>
-                        <outlet property="helplineDescriptionLabel" destination="rqb-hd-Bq6" id="Umj-1F-7lT"/>
+                        <outlet property="helplineDescriptionTextView" destination="YaD-Up-5dt" id="KFl-ae-LYz"/>
                         <outlet property="statusLabel" destination="6o2-tc-iKj" id="ZFc-Wx-iAT"/>
                     </connections>
                 </viewController>
@@ -1701,6 +1706,9 @@
         <image name="ic_switchaccount_blue-change_account" width="30" height="30"/>
         <image name="ic_tooltip-new" width="24" height="24"/>
         <image name="img_confirmation" width="96" height="96"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

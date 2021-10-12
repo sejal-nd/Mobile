@@ -56,7 +56,7 @@ class StopServiceViewModel {
             }.flatMapLatest({ [weak self] result -> Observable<StopServiceVerificationResponse> in
                 guard let `self` = self, let accountDetails = result.element else { return Observable.empty() }
                 self.currentAccountDetails.accept(accountDetails)
-                if accountDetails.isPendingDisconnect || accountDetails.isFinaled {
+                if accountDetails.isFinaled {
                     self.isLoading.accept(false)
                     return Observable.empty()
                 }

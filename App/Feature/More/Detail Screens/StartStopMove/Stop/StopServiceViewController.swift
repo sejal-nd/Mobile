@@ -32,6 +32,7 @@ class StopServiceViewController: UIViewController {
     @IBOutlet weak var serviceProvidedStaticLabel: UILabel!
     @IBOutlet weak var serviceDisconnectStaticLabel: UILabel!
     @IBOutlet weak var pendingDisconnectStackView: UIStackView!
+    @IBOutlet weak var pendingDisconnectView: PendingDisconnectView!
     @IBOutlet weak var finaledStackView: UIStackView!
     @IBOutlet weak var stopDateStackView: UIStackView!
     @IBOutlet weak var noneServiceProvideLabel: UILabel!
@@ -158,7 +159,14 @@ class StopServiceViewController: UIViewController {
                 }
             }).disposed(by: disposeBag)
         
-        // provides selected account details
+        viewModel.accountVerificationResponse
+            .compactMap { $0 }
+            .subscribe(onNext: { [weak self] accountVerificationResponse in
+                guard let date = accountVerificationResponse.serviceLists.first?.sAEndDate else { return }
+                self?.pendingDisconnectView.updateServiceStopDate(dateString: date)
+            })
+            .disposed(by: disposeBag)
+        
         viewModel.accountDetailEvents
             .compactMap { $0 }
             .subscribe(onNext: { [weak self] accountDetails in
@@ -183,8 +191,6 @@ class StopServiceViewController: UIViewController {
             .disposed(by: disposeBag)
         
         viewModel.selectedDate
-//            .filter { $0 != nil }
-//            .compactMap { $0 }
             .subscribe(onNext: { [weak self] date in
                 var hasSelectedDate = date == nil ? false : true
                 self?.dateStackView.isHidden = !hasSelectedDate

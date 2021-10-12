@@ -212,7 +212,7 @@ public enum Router {
         case .workDays:
             return "\(basePath)/\(ApiAccess.anon.path)/service/workdays"
         case .stopServiceVerification:
-            return "\(basePath)/\(ApiAccess.anon.path)/service/stop/verification/commercial"
+            return "\(basePath)/\(ApiAccess.anon.path)/service/stop/verification"
         case .stopISUMService:
             return "\(basePath)/\(ApiAccess.anon.path)/service/residential/stop"
         case .validateZipCode(let code):
