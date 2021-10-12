@@ -188,7 +188,7 @@ class StopServiceViewController: UIViewController {
                 self?.continueButton.setTitleColor(hasSelectedDate ? UIColor.white : UIColor(red: 74.0/255.0, green: 74.0/255.0, blue: 74.0/255.0, alpha: 0.5), for: .normal)
 
                 if let selectedDate = date {
-                    self?.selectedDateLabel.text = DateFormatter.MMddyyyyFormatter.string(from: selectedDate)
+                    self?.selectedDateLabel.text = DateFormatter.mmDdYyyyFormatter.string(from: selectedDate)
                 }
             })
             .disposed(by: disposeBag)
