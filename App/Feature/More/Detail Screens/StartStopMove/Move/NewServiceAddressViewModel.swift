@@ -48,7 +48,13 @@ class NewServiceAddressViewModel{
     var canEnableContinue: Bool {
         return isStreetAddressValid && isZipValid && isZipValidated
     }
-    init() {
+    
+    var moveServiceFlowData: MoveServiceFlowData
+    
+    init(moveServiceFlowData: MoveServiceFlowData) {
+        
+        self.moveServiceFlowData = moveServiceFlowData
+        
         validateZipCode.toAsyncRequest { [weak self] _ -> Observable<ValidatedZipCodeResponse> in
             
             guard let `self` = self else { return Observable.empty() }
@@ -90,10 +96,8 @@ class NewServiceAddressViewModel{
         }.subscribe(onNext: { [weak self] result in
             guard let `self` = self else {return }
             
-            if let address_response = result.element {
-                // TODO :
-                // after address is verified
-            }
+            guard let addressLookupResponse = result.element else {return }
+            self.addressLookupResponse.accept(addressLookupResponse)
 
         }).disposed(by: disposeBag)
     }

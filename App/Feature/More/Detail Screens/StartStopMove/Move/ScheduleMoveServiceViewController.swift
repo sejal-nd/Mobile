@@ -128,9 +128,15 @@ class ScheduleMoveServiceViewController: UIViewController {
             }).disposed(by: disposeBag)
         
         continueButton.rx.tap
-            .subscribe(onNext: { _ in
+            .subscribe(onNext: { [weak self] _ in
+                
+                guard let `self` = self else { return }
+                guard let selectedDate = self.viewModel.selectedDate.value, let currentPremise = AccountsStore.shared.currentAccount.currentPremise, let accountDetails = self.currentAccountDeatil else { return }
+                let moveFlowData = MoveServiceFlowData(workDays: self.viewModel.workDays.value, stopServiceDate: selectedDate, currentPremise: currentPremise, currentAccount: AccountsStore.shared.currentAccount, currentAccountDetail: accountDetails, verificationDetail: nil, addressLookupResponse: nil)
+                
                 let storyboard = UIStoryboard(name: "ISUMMove", bundle: nil)
                 let newServiceAddressViewController = storyboard.instantiateViewController(withIdentifier: "NewServiceAddressViewController") as! NewServiceAddressViewController
+                newServiceAddressViewController.viewModel = NewServiceAddressViewModel(moveServiceFlowData: moveFlowData)
                 self.navigationController?.pushViewController(newServiceAddressViewController, animated: true)
 
             }).disposed(by: disposeBag)
