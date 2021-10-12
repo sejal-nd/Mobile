@@ -17,8 +17,8 @@ def iOS_pods
   pod 'GoogleAnalytics', '3.17.0'
   pod 'Firebase/Core', '7.11.0'
   pod 'AppCenter', '1.14'
-  pod 'ForeSee/Core', '6.0.1'
-  pod 'ForeSee/ForeSeeFeedback', '6.0.1'
+  pod 'ForeSee/Core', '6.0.4'
+  pod 'ForeSee/ForeSeeFeedback', '6.0.4'
 end
 
 def iOS_UnitTestPods
