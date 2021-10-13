@@ -29,8 +29,8 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
     @IBOutlet weak var appartmentSelectionView: UIView!
 
     var disposeBag = DisposeBag()
-
-    private var viewModel = NewServiceAddressViewModel()
+    var viewModel: NewServiceAddressViewModel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.backBarButtonItem?.title = ""
@@ -85,6 +85,17 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
                 }
             })
             .disposed(by: disposeBag)
+        
+        continueButton.rx.tap
+            .subscribe(onNext: { [weak self] _ in
+                guard let `self` = self, let addressLookupResponse = self.viewModel.addressLookupResponse.value else { return }
+                                
+                let storyboard = UIStoryboard(name: "ISUMMove", bundle: nil)
+                let moveStartServiceViewController = storyboard.instantiateViewController(withIdentifier: "MoveStartServiceViewController") as! MoveStartServiceViewController
+                self.viewModel.moveServiceFlowData.addressLookupResponse = addressLookupResponse
+                moveStartServiceViewController.viewModel = MoveStartServiceViewModel(moveServiceFlow: self.viewModel.moveServiceFlowData)
+                self.navigationController?.pushViewController(moveStartServiceViewController, animated: true)
+            }).disposed(by: disposeBag)
 
     }
 
