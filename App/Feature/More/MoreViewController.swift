@@ -48,15 +48,6 @@ class MoreViewController: UIViewController {
     
     private let disposeBag = DisposeBag()
 
-    lazy var isAccountResidential: Bool = {
-        if let currentAccount = viewModel.getAccountDetails(), let customerType = currentAccount.customerInfo.customerType {
-                if customerType == "COMM" {
-                  return false
-                }
-          }
-        return true
-      }()
-
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -97,8 +88,6 @@ class MoreViewController: UIViewController {
 
         if AccountsStore.shared.accounts == nil {
             fetchAccounts()
-        }else {
-            viewModel.getAccountDetailSubject.onNext(())
         }
         
         // Edge case: if user navigates to More before game data loads, we want the
@@ -144,7 +133,6 @@ class MoreViewController: UIViewController {
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] _ in
                 self?.tableView.reloadData()
-                self?.viewModel.getAccountDetailSubject.onNext(())
             }).disposed(by: disposeBag)
     }
     
@@ -423,12 +411,7 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
                 }
             case 1:
                 if FeatureFlagUtility.shared.bool(forKey: .hasAuthenticatedISUM) {
-                    if isAccountResidential {
-                        performSegue(withIdentifier: "stopServiceSegue", sender: nil)
-                    }else {
-                        UIApplication.shared.openUrlIfCan(viewModel.stopCommercialServiceWebURL)
-                    }
-
+                    performSegue(withIdentifier: "stopServiceSegue", sender: nil)
                 } else {
                     FirebaseUtility.logEvent(.more(parameters: [.billing_videos]))
                     UIApplication.shared.openUrlIfCan(viewModel.billingVideosUrl)

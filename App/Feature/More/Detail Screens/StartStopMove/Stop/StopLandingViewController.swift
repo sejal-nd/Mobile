@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class StopLandingViewController: UIViewController {
 
@@ -42,14 +44,53 @@ class StopLandingViewController: UIViewController {
     
     @IBAction func BeginTapped(_ sender: UIButton) {
         ///TODO:  Navigate to the first screen of the Stop Service Flow.
-        let storyboard = UIStoryboard(name: "ISUMStop", bundle: nil)
-        let stopServiceViewController = storyboard.instantiateViewController(withIdentifier: "StopServiceViewController") as! StopServiceViewController
-        self.navigationController?.pushViewController(stopServiceViewController, animated: true)
 
+        if (viewModel.isDetailsLoading){
+            DispatchQueue.main.async {
+                LoadingView.show()
+            }
+        }else {
+            if isAccountResidential {
+                let storyboard = UIStoryboard(name: "ISUMStop", bundle: nil)
+                let stopServiceViewController = storyboard.instantiateViewController(withIdentifier: "StopServiceViewController") as! StopServiceViewController
+                self.navigationController?.pushViewController(stopServiceViewController, animated: true)
+            }else {
+                UIApplication.shared.openUrlIfCan(viewModel.stopCommercialServiceWebURL)
+            }
+        }
     }
-    
+    lazy var isAccountResidential: Bool = {
+        if let currentAccount = viewModel.getAccountDetails(), let customerType = currentAccount.customerInfo.customerType {
+            if customerType == "COMM" {
+                return false
+            }
+        }
+        return true
+    }()
+    let viewModel = StopLandingViewModel()
+
+    let disposeBag = DisposeBag()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         addCloseButton()
+        setupUIBinding()
+
+        viewModel.fetchAccountDetails()
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    func setupUIBinding(){
+        viewModel.accountDetailsEvent
+            .subscribe (onNext: { [weak self] _ in
+                guard let `self` = self else { return }
+                if (!self.viewModel.isDetailsLoading){
+                    DispatchQueue.main.async {
+                        LoadingView.hide()
+                    }
+                }
+            }).disposed(by: disposeBag)
+    }
+
 }
