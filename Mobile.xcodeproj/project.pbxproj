@@ -14,6 +14,20 @@
 		0D79C6C91F1D3CD7004793DD /* MaintenanceModeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D79C6C81F1D3CD7004793DD /* MaintenanceModeViewController.swift */; };
 		0D79C6CD1F1F971E004793DD /* MaintenanceModeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D79C6CC1F1F971E004793DD /* MaintenanceModeViewModel.swift */; };
 		0E5BEF0D202E2390009D1ADB /* GoogleService-Info-RC-FlavorBGE.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0E5BEF0B202E2389009D1ADB /* GoogleService-Info-RC-FlavorBGE.plist */; };
+		215A1B70270AE9A5003A4EE9 /* StreetAddressResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215A1B6F270AE9A5003A4EE9 /* StreetAddressResponse.swift */; };
+		215A1B73270AE9DA003A4EE9 /* StreetAddressRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215A1B72270AE9DA003A4EE9 /* StreetAddressRequest.swift */; };
+		215A1B74270AE9DA003A4EE9 /* StreetAddressRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215A1B72270AE9DA003A4EE9 /* StreetAddressRequest.swift */; };
+		215A1B76270B12DF003A4EE9 /* AppartmentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215A1B75270B12DF003A4EE9 /* AppartmentRequest.swift */; };
+		215A1B77270B12DF003A4EE9 /* AppartmentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215A1B75270B12DF003A4EE9 /* AppartmentRequest.swift */; };
+		215A1B79270B12F6003A4EE9 /* AppartmentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215A1B78270B12F6003A4EE9 /* AppartmentResponse.swift */; };
+		215A1B7A270B12F6003A4EE9 /* AppartmentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215A1B78270B12F6003A4EE9 /* AppartmentResponse.swift */; };
+		215A1B7C270B1713003A4EE9 /* AddressLookupResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215A1B7B270B1713003A4EE9 /* AddressLookupResponse.swift */; };
+		215A1B7D270B1713003A4EE9 /* AddressLookupResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215A1B7B270B1713003A4EE9 /* AddressLookupResponse.swift */; };
+		215A1B7F270B172B003A4EE9 /* AddressLookupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215A1B7E270B172B003A4EE9 /* AddressLookupRequest.swift */; };
+		215A1B80270B172B003A4EE9 /* AddressLookupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215A1B7E270B172B003A4EE9 /* AddressLookupRequest.swift */; };
+		21D1C512270ADF6400EFAFAC /* AddressSearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D1C50E270ADF6100EFAFAC /* AddressSearchModel.swift */; };
+		21D1C513270ADF6400EFAFAC /* AddressSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D1C50F270ADF6100EFAFAC /* AddressSearchViewController.swift */; };
+		21D1C515270ADF6400EFAFAC /* AddressSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D1C511270ADF6300EFAFAC /* AddressSearchCell.swift */; };
 		21D41E122705D95400A622F9 /* NewServiceAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D41E112705D95400A622F9 /* NewServiceAddressViewController.swift */; };
 		21D41E142705DD7000A622F9 /* NewServiceAddressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D41E132705DD7000A622F9 /* NewServiceAddressViewModel.swift */; };
 		21D41E162706C98100A622F9 /* MoveService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D41E152706C98100A622F9 /* MoveService.swift */; };
@@ -35,7 +49,7 @@
 		282B4F7C26E7817F00ACD33C /* ISUMMove.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 282B4F7B26E7817F00ACD33C /* ISUMMove.storyboard */; };
 		28C71DE326FB2961006148AA /* FinalMailingAddressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C71DE226FB2961006148AA /* FinalMailingAddressViewModel.swift */; };
 		2F86FB791F2661D900F1A55A /* BillingHistoryDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F86FB781F2661D900F1A55A /* BillingHistoryDetailsViewModel.swift */; };
-		2FA5D85F1F17D2A300A8B16B /* (null) in Sources */ = {isa = PBXBuildFile; };
+		2FA5D85F1F17D2A300A8B16B /* BuildFile in Sources */ = {isa = PBXBuildFile; };
 		2FA5D8641F17D88500A8B16B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA5D8631F17D88500A8B16B /* HomeViewController.swift */; };
 		301DE1F624BF0A7300992CA4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06C71E521B3200BBA4ED /* Assets.xcassets */; };
 		30636F0824C82F2F00CCBFAE /* OpcoIdentityCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30636F0724C82F2F00CCBFAE /* OpcoIdentityCardView.swift */; };
@@ -139,7 +153,7 @@
 		35F9DD6D2333C8A100AAA2B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7BD21907F2E00BA13C6 /* Assets.xcassets */; };
 		35F9DD7C2333D14D00AAA2B2 /* Date+DueBy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7EB2190804E00BA13C6 /* Date+DueBy.swift */; };
 		35F9DD842333D2B800AAA2B2 /* EUMobile-Watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 35F9DD2F2333C34100AAA2B2 /* EUMobile-Watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		35F9DD932333D83F00AAA2B2 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		35F9DD932333D83F00AAA2B2 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
 		35F9DDA22333D87E00AAA2B2 /* AccountsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D340901EBA6A8700BA2D42 /* AccountsStore.swift */; };
 		35F9DDA32333D88400AAA2B2 /* ReportedOutagesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B085C44620FFD49400CE0893 /* ReportedOutagesStore.swift */; };
 		35F9DDA42333D88800AAA2B2 /* StormModeStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0649A5E214834380041B299 /* StormModeStatus.swift */; };
@@ -178,6 +192,10 @@
 		4A8CE7592703604300C78B05 /* StopISUMServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8CE7572703604300C78B05 /* StopISUMServiceRequest.swift */; };
 		4AA4EAD02714428300B35F4D /* FinaledView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA4EACF2714428300B35F4D /* FinaledView.swift */; };
 		4AA4EAD2271442D400B35F4D /* PendingDisconnectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA4EAD1271442D400B35F4D /* PendingDisconnectView.swift */; };
+		4AA4EAD4271497C200B35F4D /* MoveStartServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA4EAD3271497C100B35F4D /* MoveStartServiceViewController.swift */; };
+		4AA4EAD6271497D300B35F4D /* MoveStartServiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA4EAD5271497D300B35F4D /* MoveStartServiceViewModel.swift */; };
+		4AA4EAD82714A9B800B35F4D /* MoveServiceFlowData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA4EAD72714A9B800B35F4D /* MoveServiceFlowData.swift */; };
+		4AA4EAD92714A9B800B35F4D /* MoveServiceFlowData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA4EAD72714A9B800B35F4D /* MoveServiceFlowData.swift */; };
 		4AD0C77E26FCAE9E009DB068 /* USState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD0C77D26FCAE9E009DB068 /* USState.swift */; };
 		4AD0C77F26FCAE9E009DB068 /* USState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD0C77D26FCAE9E009DB068 /* USState.swift */; };
 		4AE3467C26E8C76900F4155C /* FinalMailingAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE3467B26E8C76900F4155C /* FinalMailingAddressViewController.swift */; };
@@ -448,7 +466,7 @@
 		67A986E024FD41A100BD46E7 /* Assets-FlavorPEPCO.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBD0924535EE6006CD6EB /* Assets-FlavorPEPCO.xcassets */; };
 		67A986E124FD41A100BD46E7 /* Assets-FlavorDPL.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBD872457389E006CD6EB /* Assets-FlavorDPL.xcassets */; };
 		67A986E224FD41A100BD46E7 /* Assets-FlavorACE.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBD8A245738B8006CD6EB /* Assets-FlavorACE.xcassets */; };
-		67A9873324FD4C5F00BD46E7 /* (null) in Resources */ = {isa = PBXBuildFile; };
+		67A9873324FD4C5F00BD46E7 /* BuildFile in Resources */ = {isa = PBXBuildFile; };
 		67AE888225BF5274008519B4 /* ProjectTier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AE888125BF5274008519B4 /* ProjectTier.swift */; };
 		67AE888B25BF5C8D008519B4 /* ProjectTier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AE888125BF5274008519B4 /* ProjectTier.swift */; };
 		67D08A962539E41D0047E4C5 /* Assets-FlavorACE.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67D08A922539E4170047E4C5 /* Assets-FlavorACE.xcassets */; };
@@ -478,7 +496,7 @@
 		67D73AE8246C47EF00450B63 /* NoNetworkConnectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67D73AE1246C47EF00450B63 /* NoNetworkConnectionView.xib */; };
 		67D73AF1246C480500450B63 /* BillingHistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67D73AEF246C480500450B63 /* BillingHistoryTableViewCell.xib */; };
 		67D73AF7246C480500450B63 /* BillingHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D73AF0246C480500450B63 /* BillingHistoryTableViewCell.swift */; };
-		67D73B00246C72F100450B63 /* (null) in Resources */ = {isa = PBXBuildFile; };
+		67D73B00246C72F100450B63 /* BuildFile in Resources */ = {isa = PBXBuildFile; };
 		67DDBDBF24646E38006CD6EB /* Color+OpCo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67DDBDBE24646E38006CD6EB /* Color+OpCo.swift */; };
 		67E78D892509541A001AB1BD /* landing_video-FlavorPEPCO.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 67E78D882509541A001AB1BD /* landing_video-FlavorPEPCO.mp4 */; };
 		67E78D8B25095439001AB1BD /* landing_video-FlavorPECO.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 67E78D8A25095439001AB1BD /* landing_video-FlavorPECO.mp4 */; };
@@ -1165,7 +1183,16 @@
 		20662080303EADFF7007EF70 /* Pods-EUMobileUITests.ace-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobileUITests.ace-release.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobileUITests/Pods-EUMobileUITests.ace-release.xcconfig"; sourceTree = "<group>"; };
 		20F8D6479D8B22F80312E4A1 /* Pods-UITests.peco-rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UITests.peco-rc.xcconfig"; path = "Pods/Target Support Files/Pods-UITests/Pods-UITests.peco-rc.xcconfig"; sourceTree = "<group>"; };
 		2125B05ADABB8323A4141F28 /* Pods-EUMobile.prod-bge.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile.prod-bge.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile/Pods-EUMobile.prod-bge.xcconfig"; sourceTree = "<group>"; };
+		215A1B6F270AE9A5003A4EE9 /* StreetAddressResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreetAddressResponse.swift; sourceTree = "<group>"; };
+		215A1B72270AE9DA003A4EE9 /* StreetAddressRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreetAddressRequest.swift; sourceTree = "<group>"; };
+		215A1B75270B12DF003A4EE9 /* AppartmentRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppartmentRequest.swift; sourceTree = "<group>"; };
+		215A1B78270B12F6003A4EE9 /* AppartmentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppartmentResponse.swift; sourceTree = "<group>"; };
+		215A1B7B270B1713003A4EE9 /* AddressLookupResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressLookupResponse.swift; sourceTree = "<group>"; };
+		215A1B7E270B172B003A4EE9 /* AddressLookupRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressLookupRequest.swift; sourceTree = "<group>"; };
 		21C06E439FF0E3B0841F704C /* Pods-EUMobile-Watch Extension.peco-rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch Extension.peco-rc.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch Extension/Pods-EUMobile-Watch Extension.peco-rc.xcconfig"; sourceTree = "<group>"; };
+		21D1C50E270ADF6100EFAFAC /* AddressSearchModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressSearchModel.swift; sourceTree = "<group>"; };
+		21D1C50F270ADF6100EFAFAC /* AddressSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressSearchViewController.swift; sourceTree = "<group>"; };
+		21D1C511270ADF6300EFAFAC /* AddressSearchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressSearchCell.swift; sourceTree = "<group>"; };
 		21D41E112705D95400A622F9 /* NewServiceAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewServiceAddressViewController.swift; sourceTree = "<group>"; };
 		21D41E132705DD7000A622F9 /* NewServiceAddressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewServiceAddressViewModel.swift; sourceTree = "<group>"; };
 		21D41E152706C98100A622F9 /* MoveService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveService.swift; sourceTree = "<group>"; };
@@ -1391,6 +1418,9 @@
 		4A8CE7572703604300C78B05 /* StopISUMServiceRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopISUMServiceRequest.swift; sourceTree = "<group>"; };
 		4AA4EACF2714428300B35F4D /* FinaledView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinaledView.swift; sourceTree = "<group>"; };
 		4AA4EAD1271442D400B35F4D /* PendingDisconnectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingDisconnectView.swift; sourceTree = "<group>"; };
+		4AA4EAD3271497C100B35F4D /* MoveStartServiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveStartServiceViewController.swift; sourceTree = "<group>"; };
+		4AA4EAD5271497D300B35F4D /* MoveStartServiceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveStartServiceViewModel.swift; sourceTree = "<group>"; };
+		4AA4EAD72714A9B800B35F4D /* MoveServiceFlowData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveServiceFlowData.swift; sourceTree = "<group>"; };
 		4AD0C77D26FCAE9E009DB068 /* USState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USState.swift; sourceTree = "<group>"; };
 		4ADF4FF916DE3B2844982F78 /* Pods_EUMobile_Watch_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EUMobile_Watch_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AE3467B26E8C76900F4155C /* FinalMailingAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalMailingAddressViewController.swift; sourceTree = "<group>"; };
@@ -2933,12 +2963,17 @@
 		282B4F7826E7489D00ACD33C /* Move */ = {
 			isa = PBXGroup;
 			children = (
+				21D1C50E270ADF6100EFAFAC /* AddressSearchModel.swift */,
+				21D1C50F270ADF6100EFAFAC /* AddressSearchViewController.swift */,
+				21D1C511270ADF6300EFAFAC /* AddressSearchCell.swift */,
 				4A12C26F2706D3F6007FFEA6 /* ScheduleMoveServiceViewController.swift */,
 				282B4F7526E7488200ACD33C /* MoveLandingViewController.swift */,
 				282B4F7B26E7817F00ACD33C /* ISUMMove.storyboard */,
 				21D41E112705D95400A622F9 /* NewServiceAddressViewController.swift */,
 				21D41E132705DD7000A622F9 /* NewServiceAddressViewModel.swift */,
 				4A12C2712706D42A007FFEA6 /* ScheduleMoveServiceViewModel.swift */,
+				4AA4EAD3271497C100B35F4D /* MoveStartServiceViewController.swift */,
+				4AA4EAD5271497D300B35F4D /* MoveStartServiceViewModel.swift */,
 			);
 			path = Move;
 			sourceTree = "<group>";
@@ -4244,6 +4279,9 @@
 				4A8CE7572703604300C78B05 /* StopISUMServiceRequest.swift */,
 				4A12C26427038BD8007FFEA6 /* StopServiceVerificationRequest.swift */,
 				21D41E172706CA8F00A622F9 /* ValidateZipCodeRequest.swift */,
+				215A1B72270AE9DA003A4EE9 /* StreetAddressRequest.swift */,
+				215A1B75270B12DF003A4EE9 /* AppartmentRequest.swift */,
+				215A1B7E270B172B003A4EE9 /* AddressLookupRequest.swift */,
 			);
 			path = "Request Models";
 			sourceTree = "<group>";
@@ -4323,6 +4361,10 @@
 				4AD0C77D26FCAE9E009DB068 /* USState.swift */,
 				4A12C26727039335007FFEA6 /* StopServiceVerificationResponse.swift */,
 				21D41E1B2706CE9700A622F9 /* ValidatedZipCodeResponse.swift */,
+				215A1B6F270AE9A5003A4EE9 /* StreetAddressResponse.swift */,
+				215A1B78270B12F6003A4EE9 /* AppartmentResponse.swift */,
+				215A1B7B270B1713003A4EE9 /* AddressLookupResponse.swift */,
+				4AA4EAD72714A9B800B35F4D /* MoveServiceFlowData.swift */,
 			);
 			path = "Network Models";
 			sourceTree = "<group>";
@@ -5618,7 +5660,7 @@
 				67D5633524EEFAA600852551 /* Assets-FlavorCOMED.xcassets in Resources */,
 				67A986AD24F96CF600BD46E7 /* Assets-FlavorPECO.xcassets in Resources */,
 				67D08A9B2539E4C30047E4C5 /* Assets-FlavorDPL.xcassets in Resources */,
-				67A9873324FD4C5F00BD46E7 /* (null) in Resources */,
+				67A9873324FD4C5F00BD46E7 /* BuildFile in Resources */,
 				67D08A962539E41D0047E4C5 /* Assets-FlavorACE.xcassets in Resources */,
 				35F9DD672333C85B00AAA2B2 /* README.md in Resources */,
 				35F9DD5C2333C45300AAA2B2 /* Assets-FlavorBGE.xcassets in Resources */,
@@ -5644,7 +5686,7 @@
 				35F9DD5D2333C45900AAA2B2 /* Assets-FlavorBGE.xcassets in Resources */,
 				C338282824E30B0600F133C5 /* PeakRewardsSummaryMock.json in Resources */,
 				67D08A9C2539E4C30047E4C5 /* Assets-FlavorDPL.xcassets in Resources */,
-				67D73B00246C72F100450B63 /* (null) in Resources */,
+				67D73B00246C72F100450B63 /* BuildFile in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6095,10 +6137,6 @@
 				"${BUILT_PRODUCTS_DIR}/FirebaseCore/FirebaseCore.framework",
 				"${BUILT_PRODUCTS_DIR}/FirebaseCoreDiagnostics/FirebaseCoreDiagnostics.framework",
 				"${BUILT_PRODUCTS_DIR}/FirebaseInstallations/FirebaseInstallations.framework",
-				"${PODS_ROOT}/ForeSee/lib/ForeSeeLegacy.framework",
-				"${PODS_ROOT}/ForeSee/lib/ForeSee.framework",
-				"${PODS_ROOT}/ForeSee/lib/ForeSeeUtilities.framework",
-				"${PODS_ROOT}/ForeSee/lib/ForeSeeFeedback.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleDataTransport/GoogleDataTransport.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
@@ -6113,6 +6151,10 @@
 				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 				"${BUILT_PRODUCTS_DIR}/zxcvbn-ios/zxcvbn_ios.framework",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ForeSee/ForeSee.framework/ForeSee",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ForeSeeUtilities/ForeSeeUtilities.framework/ForeSeeUtilities",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/IngestionLogger/IngestionLogger.framework/IngestionLogger",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ForeSeeFeedback/ForeSeeFeedback.framework/ForeSeeFeedback",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -6120,10 +6162,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCore.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCoreDiagnostics.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseInstallations.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ForeSeeLegacy.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ForeSee.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ForeSeeUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ForeSeeFeedback.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleDataTransport.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PDTSimpleCalendar.framework",
@@ -6138,6 +6176,10 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lottie.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/zxcvbn_ios.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ForeSee.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ForeSeeUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IngestionLogger.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ForeSeeFeedback.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -6177,10 +6219,6 @@
 				"${BUILT_PRODUCTS_DIR}/FirebaseCore/FirebaseCore.framework",
 				"${BUILT_PRODUCTS_DIR}/FirebaseCoreDiagnostics/FirebaseCoreDiagnostics.framework",
 				"${BUILT_PRODUCTS_DIR}/FirebaseInstallations/FirebaseInstallations.framework",
-				"${PODS_ROOT}/ForeSee/lib/ForeSeeLegacy.framework",
-				"${PODS_ROOT}/ForeSee/lib/ForeSee.framework",
-				"${PODS_ROOT}/ForeSee/lib/ForeSeeUtilities.framework",
-				"${PODS_ROOT}/ForeSee/lib/ForeSeeFeedback.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleDataTransport/GoogleDataTransport.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
@@ -6195,6 +6233,10 @@
 				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 				"${BUILT_PRODUCTS_DIR}/zxcvbn-ios/zxcvbn_ios.framework",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ForeSee/ForeSee.framework/ForeSee",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ForeSeeUtilities/ForeSeeUtilities.framework/ForeSeeUtilities",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/IngestionLogger/IngestionLogger.framework/IngestionLogger",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ForeSeeFeedback/ForeSeeFeedback.framework/ForeSeeFeedback",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -6202,10 +6244,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCore.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCoreDiagnostics.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseInstallations.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ForeSeeLegacy.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ForeSee.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ForeSeeUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ForeSeeFeedback.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleDataTransport.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PDTSimpleCalendar.framework",
@@ -6220,6 +6258,10 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lottie.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/zxcvbn_ios.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ForeSee.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ForeSeeUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IngestionLogger.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ForeSeeFeedback.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -6259,10 +6301,6 @@
 				"${BUILT_PRODUCTS_DIR}/FirebaseCore/FirebaseCore.framework",
 				"${BUILT_PRODUCTS_DIR}/FirebaseCoreDiagnostics/FirebaseCoreDiagnostics.framework",
 				"${BUILT_PRODUCTS_DIR}/FirebaseInstallations/FirebaseInstallations.framework",
-				"${PODS_ROOT}/ForeSee/lib/ForeSeeLegacy.framework",
-				"${PODS_ROOT}/ForeSee/lib/ForeSee.framework",
-				"${PODS_ROOT}/ForeSee/lib/ForeSeeUtilities.framework",
-				"${PODS_ROOT}/ForeSee/lib/ForeSeeFeedback.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleDataTransport/GoogleDataTransport.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
@@ -6277,6 +6315,10 @@
 				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 				"${BUILT_PRODUCTS_DIR}/zxcvbn-ios/zxcvbn_ios.framework",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ForeSee/ForeSee.framework/ForeSee",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ForeSeeUtilities/ForeSeeUtilities.framework/ForeSeeUtilities",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/IngestionLogger/IngestionLogger.framework/IngestionLogger",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ForeSeeFeedback/ForeSeeFeedback.framework/ForeSeeFeedback",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -6284,10 +6326,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCore.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCoreDiagnostics.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseInstallations.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ForeSeeLegacy.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ForeSee.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ForeSeeUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ForeSeeFeedback.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleDataTransport.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PDTSimpleCalendar.framework",
@@ -6302,6 +6340,10 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lottie.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/zxcvbn_ios.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ForeSee.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ForeSeeUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IngestionLogger.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ForeSeeFeedback.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -6347,6 +6389,7 @@
 				35F9DDA22333D87E00AAA2B2 /* AccountsStore.swift in Sources */,
 				C3055B592538F81B000DB89C /* BGEAutoPayInfo.swift in Sources */,
 				C3055BEC2538FB11000DB89C /* PaymentRequest.swift in Sources */,
+				215A1B7D270B1713003A4EE9 /* AddressLookupResponse.swift in Sources */,
 				30DD882F25495243007C320D /* AnonMeterPingRequest.swift in Sources */,
 				C3055C152538FBEF000DB89C /* UsageService.swift in Sources */,
 				C3055B542538F81B000DB89C /* UsageTip.swift in Sources */,
@@ -6367,6 +6410,8 @@
 				67247FDE25D33D170024467D /* BillCard.swift in Sources */,
 				C3055B692538F81B000DB89C /* SERResult.swift in Sources */,
 				C3055B3D2538F6EB000DB89C /* OutageStatus.swift in Sources */,
+				215A1B77270B12DF003A4EE9 /* AppartmentRequest.swift in Sources */,
+				4AA4EAD92714A9B800B35F4D /* MoveServiceFlowData.swift in Sources */,
 				C3055BEE2538FB11000DB89C /* SchedulePaymentCancelRequest.swift in Sources */,
 				C3055B572538F81B000DB89C /* StringResult.swift in Sources */,
 				C3055B472538F71C000DB89C /* Account.swift in Sources */,
@@ -6384,7 +6429,7 @@
 				35F9DDBD2333D91300AAA2B2 /* Optional+Comparable.swift in Sources */,
 				C3055B4D2538F812000DB89C /* PremiseInfo.swift in Sources */,
 				670DE2A426CC15FC00D4C863 /* KeychainSwift.swift in Sources */,
-				35F9DD932333D83F00AAA2B2 /* (null) in Sources */,
+				35F9DD932333D83F00AAA2B2 /* BuildFile in Sources */,
 				C3055BFD2538FB11000DB89C /* ValidateAccountRequest.swift in Sources */,
 				C3055B822538F81B000DB89C /* AccountLookupResults.swift in Sources */,
 				67247F1325D2D8EC0024467D /* SignInView.swift in Sources */,
@@ -6460,6 +6505,7 @@
 				C3055B6E2538F81B000DB89C /* Alert.swift in Sources */,
 				35F9DDB82333D8F800AAA2B2 /* NibViews.swift in Sources */,
 				C3055BEF2538FB11000DB89C /* WalletItemDeleteRequest.swift in Sources */,
+				215A1B80270B172B003A4EE9 /* AddressLookupRequest.swift in Sources */,
 				67247F8D25D2FE510024467D /* UsageContainerView.swift in Sources */,
 				35F9DDC12333DA4B00AAA2B2 /* NotificationNames.swift in Sources */,
 				4AE3468B26EDA8BE00F4155C /* WorkdaysRequest.swift in Sources */,
@@ -6501,10 +6547,12 @@
 				C3055C442538FCEE000DB89C /* AzureResponseContainer.swift in Sources */,
 				C3055B652538F81B000DB89C /* BankName.swift in Sources */,
 				C3055B762538F81B000DB89C /* BillingInfo.swift in Sources */,
+				215A1B7A270B12F6003A4EE9 /* AppartmentResponse.swift in Sources */,
 				C3055B772538F81B000DB89C /* Appointment.swift in Sources */,
 				C3055B602538F81B000DB89C /* BillForecast.swift in Sources */,
 				C3055B7E2538F81B000DB89C /* AnonOutageStatus.swift in Sources */,
 				C3055B782538F81B000DB89C /* EnergyTip.swift in Sources */,
+				215A1B74270AE9DA003A4EE9 /* StreetAddressRequest.swift in Sources */,
 				6779590225E44B9D00A08CC2 /* KeychainKeys.swift in Sources */,
 				C3055B7A2538F81B000DB89C /* SERInfo.swift in Sources */,
 				C3055B702538F81B000DB89C /* BudgetBilling.swift in Sources */,
@@ -6565,6 +6613,7 @@
 				C3DC8224251A525A0014D571 /* AlertsStore.swift in Sources */,
 				C36C396A24ED95A800BA83B6 /* ShortcutItem.swift in Sources */,
 				824004CA1F25F4970012A288 /* TemplateCardViewModel.swift in Sources */,
+				21D1C513270ADF6400EFAFAC /* AddressSearchViewController.swift in Sources */,
 				359BDBA822E09D80007002B0 /* AccountInfoBar.swift in Sources */,
 				E87C413E1FAA6C0B00448F86 /* AlertsViewModel.swift in Sources */,
 				E841F3AA1F02F316007BFA82 /* PickerView.swift in Sources */,
@@ -6594,6 +6643,7 @@
 				E81CFFF01EC24978004FDA7E /* ViewBillViewController.swift in Sources */,
 				675F4B8E24AB828100A828F9 /* BillingHistoryRequest.swift in Sources */,
 				672480E925D5A7D10024467D /* WatchSessionController.swift in Sources */,
+				215A1B79270B12F6003A4EE9 /* AppartmentResponse.swift in Sources */,
 				C3087A9924B65B0A005AE544 /* AccountService.swift in Sources */,
 				E8542FF71E7ADADA0054AC53 /* ReportOutageViewController.swift in Sources */,
 				B0E9EFFB21EE458F0086A82A /* Optional+Comparable.swift in Sources */,
@@ -6618,10 +6668,12 @@
 				C320FDA124DC5ED40012E4ED /* WalletService.swift in Sources */,
 				82A18EAD1EB919C200BE9F21 /* TermsPoliciesViewModel.swift in Sources */,
 				82A18F041EBD11A000BE9F21 /* ButtonControl.swift in Sources */,
+				4AA4EAD6271497D300B35F4D /* MoveStartServiceViewModel.swift in Sources */,
 				B01748972135D3740039D0C6 /* StormModeHomeViewModel.swift in Sources */,
 				67893B8D24E3149E000143D6 /* ScheduledPayment.swift in Sources */,
 				82AC2A161FAB5C3900EACB3B /* PeakRewardsViewController.swift in Sources */,
 				C3087AD424B67CBF005AE544 /* AccountNicknameRequest.swift in Sources */,
+				215A1B73270AE9DA003A4EE9 /* StreetAddressRequest.swift in Sources */,
 				675F4CF624AB828200A828F9 /* GenericResponse.swift in Sources */,
 				67893AE424DB3743000143D6 /* AlertLanguageRequest.swift in Sources */,
 				B094A35820D99FC600E81303 /* HomeEditRestoreDefaultCell.swift in Sources */,
@@ -6631,6 +6683,7 @@
 				35C913AD22EB6AA3009DD71A /* ButtonRow.swift in Sources */,
 				9C153DC922E8F6CE002DA062 /* Checkbox.swift in Sources */,
 				9C10B4D322DF9C7400B0851B /* KeyboardAvoidingStickyFooterViewController.swift in Sources */,
+				4AA4EAD4271497C200B35F4D /* MoveStartServiceViewController.swift in Sources */,
 				C33827FC24E1904D00F133C5 /* PeakRewardsSummary.swift in Sources */,
 				67D73AF7246C480500450B63 /* BillingHistoryTableViewCell.swift in Sources */,
 				9CCE3E4621B9C3AB0008E1AF /* UIAlertController+PaymentusErrors.swift in Sources */,
@@ -6728,6 +6781,7 @@
 				B039DB79225BD32D00BB5479 /* HomePrepaidCardViewModel.swift in Sources */,
 				C320FDDC24DDD3700012E4ED /* WalletEncryptionKeyRequest.swift in Sources */,
 				4A12C2702706D3F6007FFEA6 /* ScheduleMoveServiceViewController.swift in Sources */,
+				21D1C512270ADF6400EFAFAC /* AddressSearchModel.swift in Sources */,
 				28C71DE326FB2961006148AA /* FinalMailingAddressViewModel.swift in Sources */,
 				82E9B60E1FA22FA000556C94 /* MyHomeProfileViewModel.swift in Sources */,
 				C338281624E1CEE100F133C5 /* PeakRewardsService+Rx.swift in Sources */,
@@ -6748,10 +6802,12 @@
 				4AE3468726EDA1CC00F4155C /* StopService+Rx.swift in Sources */,
 				2F86FB791F2661D900F1A55A /* BillingHistoryDetailsViewModel.swift in Sources */,
 				30B0F53B25C918430078D2AF /* PeakSavingsHistoryViewModel.swift in Sources */,
+				215A1B7C270B1713003A4EE9 /* AddressLookupResponse.swift in Sources */,
 				675F4DF224AB828200A828F9 /* NetworkingLayer.swift in Sources */,
 				4AD0C77E26FCAE9E009DB068 /* USState.swift in Sources */,
-				2FA5D85F1F17D2A300A8B16B /* (null) in Sources */,
+				2FA5D85F1F17D2A300A8B16B /* BuildFile in Sources */,
 				2FA5D8641F17D88500A8B16B /* HomeViewController.swift in Sources */,
+				215A1B76270B12DF003A4EE9 /* AppartmentRequest.swift in Sources */,
 				4AE3468A26EDA8BE00F4155C /* WorkdaysRequest.swift in Sources */,
 				E8CA07F41E9D7E1300A1D431 /* DismissableFormSheetViewController.swift in Sources */,
 				B04DDF5B21FA800C00594ACF /* Date+Now.swift in Sources */,
@@ -6855,6 +6911,7 @@
 				35A6C6CA211C8B3100C2A58F /* UIColorDarker.swift in Sources */,
 				5492E01F1EECC3230088A725 /* RegistrationConfirmationViewController.swift in Sources */,
 				67893ABD24DB2F9B000143D6 /* AlertService.swift in Sources */,
+				215A1B70270AE9A5003A4EE9 /* StreetAddressResponse.swift in Sources */,
 				C36C39B224ED95A800BA83B6 /* BankAccount.swift in Sources */,
 				82A18E6B1EB9191E00BE9F21 /* ReportOutageViewModel.swift in Sources */,
 				35A6C6FC2121D64C00C2A58F /* ToggleTableViewCell.swift in Sources */,
@@ -6939,6 +6996,7 @@
 				C3B6556024ABD9790048C64B /* SERResult.swift in Sources */,
 				675F4BA024AB828100A828F9 /* UsernameRequest.swift in Sources */,
 				54C1DEF31F01A1A000290FE5 /* BillingHistoryViewController.swift in Sources */,
+				4AA4EAD82714A9B800B35F4D /* MoveServiceFlowData.swift in Sources */,
 				E8B956E21F9E947800F8A852 /* SERPTSGraphViewModel.swift in Sources */,
 				9C34D748239EE9FE00DF7FE2 /* GameTaskStore.swift in Sources */,
 				673FA0CA24C899CD00210BCD /* OutageStatusContainer.swift in Sources */,
@@ -7002,6 +7060,7 @@
 				675F4C6024AB828100A828F9 /* BillForecast.swift in Sources */,
 				9C0E1C942333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.swift in Sources */,
 				673FA0F124C8A52700210BCD /* AnonymousService+Rx.swift in Sources */,
+				21D1C515270ADF6400EFAFAC /* AddressSearchCell.swift in Sources */,
 				675F4C5A24AB828100A828F9 /* AutoPayResult.swift in Sources */,
 				82837D141F20677700C31E1C /* RecentPaymentsStore.swift in Sources */,
 				C320FDB024DC66090012E4ED /* BankName.swift in Sources */,
@@ -7052,6 +7111,7 @@
 				E8127B221EBB959E0083DDE9 /* LoadingView.swift in Sources */,
 				676434CB25AF692600DA6448 /* DebugMenu.swift in Sources */,
 				E8C4531F1EF430ED00F5C781 /* AutoPayViewController.swift in Sources */,
+				215A1B7F270B172B003A4EE9 /* AddressLookupRequest.swift in Sources */,
 				675F4D2624AB828200A828F9 /* NetworkingError.swift in Sources */,
 				225FF85A1EC56B480079010C /* Date.swift in Sources */,
 				67893ACA24DB35F2000143D6 /* AlertRegistrationRequest.swift in Sources */,
