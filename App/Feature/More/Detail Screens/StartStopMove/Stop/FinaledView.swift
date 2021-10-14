@@ -24,7 +24,7 @@ class FinaledView: UIView {
     
     private func fontStyle() {
         
-        serviceStatusLabel.font = SystemFont.semibold.of(textStyle: .title3)
+        serviceStatusLabel.font = OpenSans.semibold.of(textStyle: .title3)
         helplineDescriptionTextView.font = SystemFont.regular.of(textStyle: .subheadline)
     }
     
@@ -36,23 +36,8 @@ class FinaledView: UIView {
         attributedString.addAttributes([ NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15, weight: .semibold), NSAttributedString.Key.foregroundColor: UIColor.actionBlue], range: range)
         helplineDescriptionTextView.attributedText = attributedString
         helplineDescriptionTextView.isUserInteractionEnabled = true
-        helplineDescriptionTextView.delegate = self
         helplineDescriptionTextView.isEditable = false
         helplineDescriptionTextView.textAlignment = .center
         helplineDescriptionTextView.textContainerInset = .zero
-    }
-}
-
-// MARK: - UITextViewDelegate
-extension FinaledView: UITextViewDelegate {
- 
-    func textView(_ textView: UITextView, shouldInteractWith url: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
-        
-        UIApplication.shared.openPhoneNumberIfCan(contactNumber)
-        return true
-    }
-    
-    func textViewDidChange(_ textView: UITextView) {
-        self.layoutIfNeeded()
     }
 }
