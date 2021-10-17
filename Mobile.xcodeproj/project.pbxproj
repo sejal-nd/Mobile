@@ -6151,10 +6151,10 @@
 				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 				"${BUILT_PRODUCTS_DIR}/zxcvbn-ios/zxcvbn_ios.framework",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ForeSee/ForeSee.framework/ForeSee",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ForeSeeUtilities/ForeSeeUtilities.framework/ForeSeeUtilities",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/IngestionLogger/IngestionLogger.framework/IngestionLogger",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ForeSeeFeedback/ForeSeeFeedback.framework/ForeSeeFeedback",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ForeSee/Core/ForeSee.framework/ForeSee",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ForeSee/Core/ForeSeeUtilities.framework/ForeSeeUtilities",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ForeSee/Core/IngestionLogger.framework/IngestionLogger",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ForeSee/ForeSeeFeedback/ForeSeeFeedback.framework/ForeSeeFeedback",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -6233,10 +6233,10 @@
 				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 				"${BUILT_PRODUCTS_DIR}/zxcvbn-ios/zxcvbn_ios.framework",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ForeSee/ForeSee.framework/ForeSee",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ForeSeeUtilities/ForeSeeUtilities.framework/ForeSeeUtilities",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/IngestionLogger/IngestionLogger.framework/IngestionLogger",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ForeSeeFeedback/ForeSeeFeedback.framework/ForeSeeFeedback",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ForeSee/Core/ForeSee.framework/ForeSee",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ForeSee/Core/ForeSeeUtilities.framework/ForeSeeUtilities",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ForeSee/Core/IngestionLogger.framework/IngestionLogger",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ForeSee/ForeSeeFeedback/ForeSeeFeedback.framework/ForeSeeFeedback",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -6315,10 +6315,10 @@
 				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 				"${BUILT_PRODUCTS_DIR}/zxcvbn-ios/zxcvbn_ios.framework",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ForeSee/ForeSee.framework/ForeSee",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ForeSeeUtilities/ForeSeeUtilities.framework/ForeSeeUtilities",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/IngestionLogger/IngestionLogger.framework/IngestionLogger",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ForeSeeFeedback/ForeSeeFeedback.framework/ForeSeeFeedback",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ForeSee/Core/ForeSee.framework/ForeSee",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ForeSee/Core/ForeSeeUtilities.framework/ForeSeeUtilities",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ForeSee/Core/IngestionLogger.framework/IngestionLogger",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ForeSee/ForeSeeFeedback/ForeSeeFeedback.framework/ForeSeeFeedback",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
