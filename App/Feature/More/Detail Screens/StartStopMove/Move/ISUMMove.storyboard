@@ -8,6 +8,11 @@
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="OpenSans-Semibold.ttf">
+            <string>OpenSans-Semibold</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Move Service-->
         <scene sceneID="s0d-6b-0kx">
@@ -261,10 +266,10 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="689"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3xI-Xe-rdq">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="329"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1048"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="cSn-po-Zja">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="329"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="1048"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ec7-bN-sVe">
                                                         <rect key="frame" x="0.0" y="0.0" width="414" height="187"/>
@@ -332,6 +337,12 @@
                                                                                     </label>
                                                                                 </subviews>
                                                                             </stackView>
+                                                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="None" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CXM-FU-7u9">
+                                                                                <rect key="frame" x="171" y="0.0" width="0.0" height="24"/>
+                                                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                                                                <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
                                                                         </subviews>
                                                                     </stackView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O2t-gW-0TS">
@@ -448,10 +459,10 @@
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
+                                                                    <constraint firstAttribute="bottom" secondItem="1XE-uQ-9lz" secondAttribute="bottom" constant="3.5" id="88c-Y8-mSF"/>
                                                                     <constraint firstItem="1XE-uQ-9lz" firstAttribute="leading" secondItem="fsS-OB-1jd" secondAttribute="leading" constant="19" id="8Le-Oh-tS1"/>
                                                                     <constraint firstAttribute="trailing" secondItem="pjw-3K-iWg" secondAttribute="trailing" constant="19" id="9YL-Dg-M1f"/>
                                                                     <constraint firstItem="osS-Pr-l5L" firstAttribute="leading" secondItem="fsS-OB-1jd" secondAttribute="leading" constant="19" id="Aqa-RU-8XF"/>
-                                                                    <constraint firstAttribute="height" constant="112" id="L7K-r9-AsX"/>
                                                                     <constraint firstAttribute="trailing" secondItem="1XE-uQ-9lz" secondAttribute="trailing" constant="19" id="OJE-Kw-OKU"/>
                                                                     <constraint firstItem="pjw-3K-iWg" firstAttribute="top" secondItem="osS-Pr-l5L" secondAttribute="bottom" constant="10" id="bu6-RZ-szD"/>
                                                                     <constraint firstItem="osS-Pr-l5L" firstAttribute="top" secondItem="fsS-OB-1jd" secondAttribute="top" id="fKN-a0-4pc"/>
@@ -465,12 +476,123 @@
                                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="465" id="95f-WO-0K2"/>
                                                         </constraints>
                                                     </stackView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Amh-rR-Jzu">
+                                                        <rect key="frame" x="0.0" y="359" width="414" height="289.5"/>
+                                                        <subviews>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SQS-lZ-q4Y" customClass="MovePendingDisconnectView" customModule="EUMobile" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="0.0" width="414" height="289.5"/>
+                                                                <subviews>
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_alert" translatesAutoresizingMaskIntoConstraints="NO" id="RgV-j8-9PL">
+                                                                        <rect key="frame" x="175" y="30" width="64" height="64"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" constant="64" id="S1r-jb-kUp"/>
+                                                                            <constraint firstAttribute="height" constant="64" id="mxS-ac-ci0"/>
+                                                                        </constraints>
+                                                                    </imageView>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your service will be disconnected on" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rYZ-RI-dZI">
+                                                                        <rect key="frame" x="30" y="109" width="354" height="27.5"/>
+                                                                        <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="20"/>
+                                                                        <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="XTJ-S9-WTt">
+                                                                        <rect key="frame" x="30" y="156.5" width="354" height="133"/>
+                                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                        <string key="text">If you didn’t make this request or if you want to make any changes, please call our Customer Care Center at 1-800-685-0123 Monday through Friday from 7 a.m to 7 p.m. for help and more information.</string>
+                                                                        <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                                        <dataDetectorType key="dataDetectorTypes" phoneNumber="YES"/>
+                                                                    </textView>
+                                                                </subviews>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                <constraints>
+                                                                    <constraint firstItem="rYZ-RI-dZI" firstAttribute="top" secondItem="RgV-j8-9PL" secondAttribute="bottom" constant="15" id="3yT-VI-S1M"/>
+                                                                    <constraint firstItem="XTJ-S9-WTt" firstAttribute="leading" secondItem="SQS-lZ-q4Y" secondAttribute="leading" constant="30" id="835-TX-uVg"/>
+                                                                    <constraint firstItem="XTJ-S9-WTt" firstAttribute="top" secondItem="rYZ-RI-dZI" secondAttribute="bottom" constant="20" id="JTE-xV-pkV"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="XTJ-S9-WTt" secondAttribute="bottom" id="KcT-Qv-HKX"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="rYZ-RI-dZI" secondAttribute="trailing" constant="30" id="OZw-Vc-UFd"/>
+                                                                    <constraint firstItem="RgV-j8-9PL" firstAttribute="top" secondItem="SQS-lZ-q4Y" secondAttribute="top" constant="30" id="R2j-td-61z"/>
+                                                                    <constraint firstItem="rYZ-RI-dZI" firstAttribute="leading" secondItem="SQS-lZ-q4Y" secondAttribute="leading" constant="30" id="daU-b7-blt"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="XTJ-S9-WTt" secondAttribute="trailing" constant="30" id="f6Q-ZA-vh2"/>
+                                                                    <constraint firstItem="rYZ-RI-dZI" firstAttribute="centerX" secondItem="SQS-lZ-q4Y" secondAttribute="centerX" id="grX-2y-2LC"/>
+                                                                    <constraint firstItem="RgV-j8-9PL" firstAttribute="centerX" secondItem="SQS-lZ-q4Y" secondAttribute="centerX" id="lqa-s8-0kf"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="rYZ-RI-dZI" secondAttribute="trailing" priority="999" constant="30" id="mRR-jd-LnR"/>
+                                                                    <constraint firstItem="rYZ-RI-dZI" firstAttribute="leading" secondItem="SQS-lZ-q4Y" secondAttribute="leading" priority="999" constant="30" id="uts-cL-Nbu"/>
+                                                                </constraints>
+                                                                <connections>
+                                                                    <outlet property="helplineDescriptionTextView" destination="XTJ-S9-WTt" id="IHz-8z-dwx"/>
+                                                                    <outlet property="serviceStatusLabel" destination="rYZ-RI-dZI" id="MjX-Cr-Cau"/>
+                                                                </connections>
+                                                            </view>
+                                                        </subviews>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="465" id="dwi-Ew-OjU"/>
+                                                            <constraint firstAttribute="bottom" secondItem="SQS-lZ-q4Y" secondAttribute="bottom" id="gAo-rv-zGr"/>
+                                                        </constraints>
+                                                    </stackView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="lug-lR-VE2">
+                                                        <rect key="frame" x="0.0" y="678.5" width="414" height="369.5"/>
+                                                        <subviews>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="89X-jq-Wb8" customClass="MoveFinaledView" customModule="EUMobile" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="0.0" width="414" height="369.5"/>
+                                                                <subviews>
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_alert" translatesAutoresizingMaskIntoConstraints="NO" id="Y2g-RN-PgB">
+                                                                        <rect key="frame" x="175" y="30" width="64" height="64"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="64" id="eR3-co-24R"/>
+                                                                            <constraint firstAttribute="width" constant="64" id="lE8-3y-Qh6"/>
+                                                                        </constraints>
+                                                                    </imageView>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The account you selected is inactive." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="grh-VV-riD">
+                                                                        <rect key="frame" x="30" y="109" width="354" height="27.5"/>
+                                                                        <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="20"/>
+                                                                        <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="aX7-2n-evQ">
+                                                                        <rect key="frame" x="30" y="156.5" width="354" height="213"/>
+                                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                                        <color key="textColor" systemColor="labelColor"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                                        <dataDetectorType key="dataDetectorTypes" phoneNumber="YES"/>
+                                                                    </textView>
+                                                                </subviews>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                <constraints>
+                                                                    <constraint firstItem="grh-VV-riD" firstAttribute="top" secondItem="Y2g-RN-PgB" secondAttribute="bottom" constant="15" id="3Rh-ck-mMi"/>
+                                                                    <constraint firstItem="Y2g-RN-PgB" firstAttribute="top" secondItem="89X-jq-Wb8" secondAttribute="top" constant="30" id="9P6-cm-ZfP"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="grh-VV-riD" secondAttribute="trailing" priority="999" constant="30" id="GBB-pc-BkS"/>
+                                                                    <constraint firstItem="grh-VV-riD" firstAttribute="centerX" secondItem="89X-jq-Wb8" secondAttribute="centerX" id="OcK-hn-Wv8"/>
+                                                                    <constraint firstItem="aX7-2n-evQ" firstAttribute="top" secondItem="grh-VV-riD" secondAttribute="bottom" constant="20" id="Pom-eA-NXU"/>
+                                                                    <constraint firstItem="grh-VV-riD" firstAttribute="leading" secondItem="89X-jq-Wb8" secondAttribute="leading" priority="999" constant="30" id="UxF-ZO-aXz"/>
+                                                                    <constraint firstItem="aX7-2n-evQ" firstAttribute="leading" secondItem="89X-jq-Wb8" secondAttribute="leading" constant="30" id="dfc-9s-hyS"/>
+                                                                    <constraint firstItem="Y2g-RN-PgB" firstAttribute="centerX" secondItem="89X-jq-Wb8" secondAttribute="centerX" id="fO0-DB-gbQ"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="aX7-2n-evQ" secondAttribute="bottom" id="nNc-8z-t73"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="aX7-2n-evQ" secondAttribute="trailing" constant="30" id="ulh-qk-CEq"/>
+                                                                </constraints>
+                                                                <connections>
+                                                                    <outlet property="helplineDescriptionTextView" destination="aX7-2n-evQ" id="gTc-BD-uzK"/>
+                                                                    <outlet property="serviceStatusLabel" destination="grh-VV-riD" id="VU6-8T-Vrk"/>
+                                                                </connections>
+                                                            </view>
+                                                        </subviews>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="465" id="kkw-63-3W6"/>
+                                                        </constraints>
+                                                    </stackView>
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="jJD-aB-s6I" secondAttribute="trailing" priority="999" id="4p2-Su-MxO"/>
                                                     <constraint firstAttribute="trailing" secondItem="ec7-bN-sVe" secondAttribute="trailing" priority="999" id="Duu-F1-DLT"/>
                                                     <constraint firstItem="ec7-bN-sVe" firstAttribute="leading" secondItem="cSn-po-Zja" secondAttribute="leading" priority="999" id="Eva-69-qFY"/>
                                                     <constraint firstItem="jJD-aB-s6I" firstAttribute="leading" secondItem="cSn-po-Zja" secondAttribute="leading" priority="999" id="Naq-wF-cCE"/>
+                                                    <constraint firstItem="Amh-rR-Jzu" firstAttribute="leading" secondItem="cSn-po-Zja" secondAttribute="leading" priority="999" id="h89-yy-yWa"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Amh-rR-Jzu" secondAttribute="trailing" priority="999" id="kA2-3S-rEt"/>
+                                                    <constraint firstItem="lug-lR-VE2" firstAttribute="leading" secondItem="cSn-po-Zja" secondAttribute="leading" priority="999" id="qcv-oI-8BK"/>
+                                                    <constraint firstAttribute="trailing" secondItem="lug-lR-VE2" secondAttribute="trailing" priority="999" id="uGc-63-PrA"/>
                                                 </constraints>
                                             </stackView>
                                         </subviews>
@@ -562,8 +684,12 @@
                         <outlet property="currentServiceAddressLabel" destination="8Wl-r0-BaC" id="mmf-tw-9A9"/>
                         <outlet property="dateStackView" destination="Lmj-Ji-J1J" id="sw3-SU-6bU"/>
                         <outlet property="electricStackView" destination="aOp-rd-Z3N" id="li9-F2-zyN"/>
+                        <outlet property="finaledStackView" destination="lug-lR-VE2" id="led-gU-FzK"/>
                         <outlet property="gasStackView" destination="RaR-XO-u8k" id="M7E-Zz-IiI"/>
                         <outlet property="loadingIndicator" destination="5Xt-E0-QMi" id="Rkn-7n-0FI"/>
+                        <outlet property="noneServiceProvideLabel" destination="CXM-FU-7u9" id="sBp-o4-Nrj"/>
+                        <outlet property="pendingDisconnectStackView" destination="Amh-rR-Jzu" id="Vnk-dB-xQU"/>
+                        <outlet property="pendingDisconnectView" destination="SQS-lZ-q4Y" id="bS0-am-9sF"/>
                         <outlet property="scrollView" destination="vfq-7L-rHe" id="ro8-cA-3Er"/>
                         <outlet property="selectedDateLabel" destination="2bd-2Q-ULy" id="3Do-Po-GCI"/>
                         <outlet property="serviceDisconnectStaticLabel" destination="1XE-uQ-9lz" id="ubK-w1-H6P"/>
@@ -572,6 +698,7 @@
                         <outlet property="stopDateButton" destination="k92-q1-RHY" id="kqe-vH-MDg"/>
                         <outlet property="stopDateLabel" destination="8Qk-7K-SA0" id="h3U-hv-FwS"/>
                         <outlet property="stopDateSelectionView" destination="pjw-3K-iWg" id="wsk-3o-J4e"/>
+                        <outlet property="stopDateStackView" destination="jJD-aB-s6I" id="e17-5n-Rd1"/>
                         <outlet property="stopDateToolTipButton" destination="VZb-uq-PAe" id="5fu-Cc-OAB"/>
                         <outlet property="stopServiceAddressStaticLabel" destination="5o1-0E-Go7" id="7z3-DV-9zm"/>
                     </connections>
@@ -1320,6 +1447,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="ic_alert" width="36" height="36"/>
         <image name="ic_caret" width="8" height="13"/>
         <image name="ic_isum_electric" width="24" height="24"/>
         <image name="ic_isum_gas" width="24" height="24"/>
@@ -1330,6 +1458,9 @@
         <image name="ic_switchaccount_blue-change_account" width="30" height="30"/>
         <image name="ic_tooltip" width="24" height="24"/>
         <image name="ic_tooltip-new" width="24" height="24"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
