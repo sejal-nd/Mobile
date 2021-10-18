@@ -2949,12 +2949,12 @@
 				28C71DE226FB2961006148AA /* FinalMailingAddressViewModel.swift */,
 				4AE3467D26E8C78200F4155C /* ReviewStopServiceViewController.swift */,
 				282B4F7926E7490400ACD33C /* ISUMStop.storyboard */,
+				21E797F82718541C0063CB84 /* StopLandingViewModel.swift */,
 				282B4F7226E7469500ACD33C /* StopLandingViewController.swift */,
 				4A2607F926F2080400B7AAB5 /* ReviewStopServiceViewModel.swift */,
 				045E71F1270F40DE00589623 /* GeneralSubmitErrorViewController.swift */,
 				4A25FA7226FC4A6C008026EA /* StopConfirmationScreenViewController.swift */,
 				4A26E75C270EEFE00089EC0D /* StopConfirmationScreenViewModel.swift */,
-				21E797F82718541C0063CB84 /* StopLandingViewModel.swift */,
 			);
 			path = Stop;
 			sourceTree = "<group>";
