@@ -74,6 +74,8 @@ public enum AuthenticationService {
         AccountsStore.shared.customerIdentifier = nil
         StormModeStatus.shared.isOn = false
         
+        AssistanceProgramStore.shared.clearStore()
+        
         RxNotifications.shared.configureQuickActions.onNext(false)
         
         #if os(iOS)

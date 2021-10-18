@@ -117,26 +117,28 @@ class HomeBillCardViewModel {
         }
     }
     
-    private(set) lazy var fetchBGEDdeDpaEligibility: Driver<Bool> = self.accountDetailDriver.map {
+    private(set) lazy var fetchBGEDdeDpaEligibility: Driver<Bool> = Driver.combineLatest(accountDetailDriver, fetchTracker, scheduledPaymentEvents.elements().asDriver(onErrorDriveWith: .empty())) { (accountDetail, fetchTrackerValue, scheduledPay) in
         if Configuration.shared.opco == .bge {
+            if !fetchTrackerValue {
             // Fetch BGE DDE
             AccountService.fetchDDE  { [weak self] result in
+                AssistanceProgramStore.shared.dueDateExtensionData = result
                 switch result {
                 case .success(let resultObject):
                     self?.isBgeDdeEligible.accept( resultObject.isPaymentExtensionEligible ?? false)
-                    
                 case .failure:
                     self?.isBgeDdeEligible.accept(false)
                 }
             }
             
             // Fetch BGE DPA
-            let customerNumber = $0.customerNumber
-            let premiseNumber = $0.premiseNumber ?? ""
-            let paymentAmount = (String(describing: $0.billingInfo.netDueAmount ?? 0.0))
+            let customerNumber = accountDetail.customerNumber
+            let premiseNumber = accountDetail.premiseNumber ?? ""
+            let paymentAmount = (String(describing: accountDetail.billingInfo.netDueAmount ?? 0.0))
             AccountService.fetchDPA(customerNumber: customerNumber,
                                     premiseNumber: premiseNumber,
                                     paymentAmount: paymentAmount)         { [weak self] result in
+                AssistanceProgramStore.shared.paymentArrangementData = result
                 switch result {
                 case .success(let paymentEnhancement):
                     self?.isBgeDpaEligible.accept(paymentEnhancement.customerInfo?.paEligibility == "true" ? true : false)
@@ -145,6 +147,7 @@ class HomeBillCardViewModel {
                     self?.isBgeDpaEligible.accept(false)
                 }
             }
+        }
         } else {
             self.isBgeDpaEligible.accept(false)
             self.isBgeDdeEligible.accept(false)
@@ -486,9 +489,13 @@ class HomeBillCardViewModel {
             if isAccountTypeEligible &&
                 FeatureFlagUtility.shared.bool(forKey: .paymentProgramAds) {
                 // BGE has different conditions for DDE, DPA and CTA3
-                if Configuration.shared.opco == .bge && bgeDdeDpaEligibilityChecked {
-                  let bgeCTADetails =  self.showBGEAssitanceCTA(accountDetail: accountDetail)
-                    return bgeCTADetails
+                if Configuration.shared.opco == .bge {
+                    if  bgeDdeDpaEligibilityChecked {
+                        let bgeCTADetails =  self.showBGEAssitanceCTA(accountDetail: accountDetail)
+                        NotificationCenter.default.post(name: .didRecieveDdeDpa, object: nil)
+                        return bgeCTADetails
+                    } else
+                    {return nil}
                 }
                 
                 if accountDetail.isDueDateExtensionEligible &&
