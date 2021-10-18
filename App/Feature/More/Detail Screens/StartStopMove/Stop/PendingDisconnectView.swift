@@ -1,45 +1,37 @@
 //
-//  GeneralSubmitErrorViewController.swift
+//  PendingDisconnectView.swift
 //  EUMobile
 //
-//  Created by Aman Vij on 07/10/21.
+//  Created by RAMAITHANI on 11/10/21.
 //  Copyright © 2021 Exelon Corporation. All rights reserved.
 //
 
 import UIKit
 
-class GeneralSubmitErrorViewController: UIViewController, UITextViewDelegate {
+class PendingDisconnectView: UIView {
     
-    @IBOutlet weak var statusLabel: UILabel!
+    @IBOutlet weak var serviceStatusLabel: UILabel!
     @IBOutlet weak var helplineDescriptionTextView: UITextView!
-
-    let helplineDescription = "Please call our Customer Care Center at 1-800-685-0123 Monday-Friday from 7 a.m. to 7 p.m. for more information."
+    
+    let helplineDescription = "If you didn’t make this request or if you want to make any changes, please call our Customer Care Center at 1-800-685-0123 Monday through Friday from 7 a.m to 7 p.m. for help and more information."
     let contactNumber = "1-800-685-0123"
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func awakeFromNib() {
         
-        initialSetup()
-    }
-    
-    func initialSetup() {
-        
-        navigationSetup()
         fontStyle()
         dataBinding()
     }
     
-    private func fontStyle() {
+    func updateServiceStopDate(dateString: String) {
         
-        statusLabel.font = SystemFont.semibold.of(textStyle: .title3)
-        helplineDescriptionTextView.font = SystemFont.regular.of(textStyle: .subheadline)
+        guard let date = DateFormatter.ddMMMMYYYYFormatter.date(from: dateString) else { return }
+        serviceStatusLabel.text = "Your service will be disconnected on \(DateFormatter.ddMMMMYYYYFormatter.string(from: date))"
     }
     
-    private func navigationSetup() {
+    private func fontStyle() {
         
-        navigationItem.hidesBackButton = false
-        let newBackButton = UIBarButtonItem(image: UIImage(named: "ic_close"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(GeneralSubmitErrorViewController.back(sender:)))
-        navigationItem.leftBarButtonItem = newBackButton
+        serviceStatusLabel.font = OpenSans.semibold.of(textStyle: .title3)
+        helplineDescriptionTextView.font = SystemFont.regular.of(textStyle: .subheadline)
     }
     
     private func dataBinding() {
@@ -50,13 +42,8 @@ class GeneralSubmitErrorViewController: UIViewController, UITextViewDelegate {
         attributedString.addAttributes([ NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15, weight: .semibold), NSAttributedString.Key.foregroundColor: UIColor.actionBlue], range: range)
         helplineDescriptionTextView.attributedText = attributedString
         helplineDescriptionTextView.isUserInteractionEnabled = true
-        helplineDescriptionTextView.delegate = self
         helplineDescriptionTextView.isEditable = false
         helplineDescriptionTextView.textAlignment = .center
         helplineDescriptionTextView.textContainerInset = .zero
-    }
-    
-    @objc func back(sender: UIBarButtonItem) {
-        dismiss(animated: true, completion: nil)
     }
 }

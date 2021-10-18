@@ -56,6 +56,10 @@ class StopServiceViewModel {
             }.flatMapLatest({ [weak self] result -> Observable<StopServiceVerificationResponse> in
                 guard let `self` = self, let accountDetails = result.element else { return Observable.empty() }
                 self.currentAccountDetails.accept(accountDetails)
+                if accountDetails.isFinaled {
+                    self.isLoading.accept(false)
+                    return Observable.empty()
+                }
                 return Observable.create { observer -> Disposable in
                     StopService.stopServiceVerification(completion: { observer.handle(result: $0) })
                     return Disposables.create()

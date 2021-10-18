@@ -186,11 +186,12 @@
 		4A25FA7326FC4A6C008026EA /* StopConfirmationScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A25FA7226FC4A6C008026EA /* StopConfirmationScreenViewController.swift */; };
 		4A2607FA26F2080400B7AAB5 /* ReviewStopServiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A2607F926F2080400B7AAB5 /* ReviewStopServiceViewModel.swift */; };
 		4A26E75D270EEFE10089EC0D /* StopConfirmationScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A26E75C270EEFE00089EC0D /* StopConfirmationScreenViewModel.swift */; };
-		4A26E770271071F70089EC0D /* UITapGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A26E76F271071F70089EC0D /* UITapGestureRecognizer.swift */; };
 		4A631A8526E11A84006C3ACA /* StopServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A631A8426E11A84006C3ACA /* StopServiceViewController.swift */; };
 		4A631A8726E11AA0006C3ACA /* StopServiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A631A8626E11AA0006C3ACA /* StopServiceViewModel.swift */; };
 		4A8CE7582703604300C78B05 /* StopISUMServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8CE7572703604300C78B05 /* StopISUMServiceRequest.swift */; };
 		4A8CE7592703604300C78B05 /* StopISUMServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8CE7572703604300C78B05 /* StopISUMServiceRequest.swift */; };
+		4AA4EAD02714428300B35F4D /* FinaledView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA4EACF2714428300B35F4D /* FinaledView.swift */; };
+		4AA4EAD2271442D400B35F4D /* PendingDisconnectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA4EAD1271442D400B35F4D /* PendingDisconnectView.swift */; };
 		4AA4EAD4271497C200B35F4D /* MoveStartServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA4EAD3271497C100B35F4D /* MoveStartServiceViewController.swift */; };
 		4AA4EAD6271497D300B35F4D /* MoveStartServiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA4EAD5271497D300B35F4D /* MoveStartServiceViewModel.swift */; };
 		4AA4EAD82714A9B800B35F4D /* MoveServiceFlowData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA4EAD72714A9B800B35F4D /* MoveServiceFlowData.swift */; };
@@ -1412,10 +1413,11 @@
 		4A2607F926F2080400B7AAB5 /* ReviewStopServiceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewStopServiceViewModel.swift; sourceTree = "<group>"; };
 		4A265B4A77D5F2CF40432C7C /* Pods-UnitTests.comed-rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnitTests.comed-rc.xcconfig"; path = "Pods/Target Support Files/Pods-UnitTests/Pods-UnitTests.comed-rc.xcconfig"; sourceTree = "<group>"; };
 		4A26E75C270EEFE00089EC0D /* StopConfirmationScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopConfirmationScreenViewModel.swift; sourceTree = "<group>"; };
-		4A26E76F271071F70089EC0D /* UITapGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITapGestureRecognizer.swift; sourceTree = "<group>"; };
 		4A631A8426E11A84006C3ACA /* StopServiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopServiceViewController.swift; sourceTree = "<group>"; };
 		4A631A8626E11AA0006C3ACA /* StopServiceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopServiceViewModel.swift; sourceTree = "<group>"; };
 		4A8CE7572703604300C78B05 /* StopISUMServiceRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopISUMServiceRequest.swift; sourceTree = "<group>"; };
+		4AA4EACF2714428300B35F4D /* FinaledView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinaledView.swift; sourceTree = "<group>"; };
+		4AA4EAD1271442D400B35F4D /* PendingDisconnectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingDisconnectView.swift; sourceTree = "<group>"; };
 		4AA4EAD3271497C100B35F4D /* MoveStartServiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveStartServiceViewController.swift; sourceTree = "<group>"; };
 		4AA4EAD5271497D300B35F4D /* MoveStartServiceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveStartServiceViewModel.swift; sourceTree = "<group>"; };
 		4AA4EAD72714A9B800B35F4D /* MoveServiceFlowData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveServiceFlowData.swift; sourceTree = "<group>"; };
@@ -2952,6 +2954,8 @@
 				045E71F1270F40DE00589623 /* GeneralSubmitErrorViewController.swift */,
 				4A25FA7226FC4A6C008026EA /* StopConfirmationScreenViewController.swift */,
 				4A26E75C270EEFE00089EC0D /* StopConfirmationScreenViewModel.swift */,
+				4AA4EACF2714428300B35F4D /* FinaledView.swift */,
+				4AA4EAD1271442D400B35F4D /* PendingDisconnectView.swift */,
 			);
 			path = Stop;
 			sourceTree = "<group>";
@@ -4924,7 +4928,6 @@
 				9C5F096A23A801E100B73049 /* Array+OptionalLookup.swift */,
 				C300793B2436669F00A9BEB0 /* LocalizedString.swift */,
 				676434D325AF6D7200DA6448 /* Bundle+Version.swift */,
-				4A26E76F271071F70089EC0D /* UITapGestureRecognizer.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -6630,7 +6633,6 @@
 				67A482E826BC348000FBB0BB /* B2CForgotPasswordViewController.swift in Sources */,
 				67AE888225BF5274008519B4 /* ProjectTier.swift in Sources */,
 				9CA4FA692385D00100E33E7C /* ViewedTipsViewController.swift in Sources */,
-				4A26E770271071F70089EC0D /* UITapGestureRecognizer.swift in Sources */,
 				E8C4532F1EF44AE000F5C781 /* AutoPayChangeBankViewController.swift in Sources */,
 				9CD3531E22CABBB800165F87 /* DataDetectorTextView.swift in Sources */,
 				C364A87D2375DC9100C7D51B /* EmptyChildViewController.swift in Sources */,
@@ -6854,6 +6856,7 @@
 				B07269352127579C009B2BFF /* HomeUpdateView.swift in Sources */,
 				35C9139622E9E9D1009DD71A /* MiniWalletSheetViewController.swift in Sources */,
 				E87926DA1F8558AE00794CA9 /* BillBreakdownViewController.swift in Sources */,
+				4AA4EAD02714428300B35F4D /* FinaledView.swift in Sources */,
 				B094A63D210270830028F90F /* BillBreakdownViewModel.swift in Sources */,
 				30DFE8612492641900FEFDE4 /* EditNicknameViewModel.swift in Sources */,
 				B085C44720FFD49400CE0893 /* ReportedOutagesStore.swift in Sources */,
@@ -6922,6 +6925,7 @@
 				54B31A701EE0B8670002E657 /* RegistrationBGEAccountNumberViewController.swift in Sources */,
 				67A732AA24D35E0F00D0BF32 /* GovWeatherErrorTodo.swift in Sources */,
 				E8EEF7291E5777BA006804D4 /* MoreViewController.swift in Sources */,
+				4AA4EAD2271442D400B35F4D /* PendingDisconnectView.swift in Sources */,
 				C36C398E24ED95A800BA83B6 /* PushNotification.swift in Sources */,
 				679C6EE524D1FE7B00535DE7 /* WeatherService+Rx.swift in Sources */,
 				B0D7860D2285C3F4007C551F /* CommercialUsageAlertStore.swift in Sources */,
