@@ -684,16 +684,16 @@
                                                                 <rect key="frame" x="346" y="21" width="8" height="13"/>
                                                             </imageView>
                                                             <stackView hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="4pA-Z6-V53">
-                                                                <rect key="frame" x="16" y="8.5" width="34.5" height="38"/>
+                                                                <rect key="frame" x="16" y="-6.5" width="64" height="68.5"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="State*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Jg-TC-iNQ">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="34.5" height="13.5"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="App/Unit #*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Jg-TC-iNQ">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="64" height="13.5"/>
                                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="11"/>
                                                                         <color key="textColor" red="0.45098039220000002" green="0.45098039220000002" blue="0.45098039220000002" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fYU-3i-hfI">
-                                                                        <rect key="frame" x="0.0" y="18.5" width="34.5" height="19.5"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fYU-3i-hfI">
+                                                                        <rect key="frame" x="0.0" y="18.5" width="64" height="50"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                                         <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
@@ -715,6 +715,12 @@
                                                             <constraint firstItem="mcg-Z0-KJu" firstAttribute="leading" secondItem="4bf-7Z-nDj" secondAttribute="leading" id="rQ9-eE-zSS"/>
                                                         </constraints>
                                                     </view>
+                                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please note: The address you entered is a commercial address and you'll be subject to commercial rates." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BBJ-5b-TwM">
+                                                        <rect key="frame" x="0.0" y="275.5" width="374" height="0.0"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                        <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
                                                 </subviews>
                                             </stackView>
                                         </subviews>
@@ -784,6 +790,7 @@
                         <outlet property="appartmentSelectionView" destination="4bf-7Z-nDj" id="g06-Xv-yEv"/>
                         <outlet property="continueButton" destination="EB3-f3-R0d" id="aaD-Bx-ZLW"/>
                         <outlet property="loadingIndicator" destination="6Bh-lI-Jxb" id="ClS-0T-8JT"/>
+                        <outlet property="noteLabel" destination="BBJ-5b-TwM" id="pE4-Xu-AIv"/>
                         <outlet property="scrollView" destination="eh3-qg-3Yj" id="WaO-19-BAv"/>
                         <outlet property="selectedAppartmentLabel" destination="fYU-3i-hfI" id="vH0-4W-V5o"/>
                         <outlet property="selectedAppartmentStackView" destination="4pA-Z6-V53" id="4he-sc-imD"/>
@@ -923,7 +930,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Sa-6x-st0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2487" y="86"/>
+            <point key="canvasLocation" x="3155" y="86"/>
         </scene>
         <!--Move Service-->
         <scene sceneID="qal-2L-PhJ">

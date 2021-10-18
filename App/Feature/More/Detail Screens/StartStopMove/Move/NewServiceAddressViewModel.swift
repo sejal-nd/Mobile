@@ -21,10 +21,12 @@ class NewServiceAddressViewModel{
     
     private var validateZipCode = PublishSubject<Void>()
     var validatedZipCodeResponse = BehaviorRelay<ValidatedZipCodeResponse?>(value: nil)
+    var validateZipResponseEvent: Observable<ValidatedZipCodeResponse?> { return validatedZipCodeResponse.asObservable() }
 
     private var fetchAppartment = PublishSubject<Void>()
     var appartmentResponse = BehaviorRelay<[AppartmentResponse]?>(value: [])
     var appartmentResponseEvent: Observable<[AppartmentResponse]?> { return appartmentResponse.asObservable() }
+    var addressLookUpResponseEvent: Observable<[AddressLookupResponse]?> { return addressLookupResponse.asObservable() }
 
     private var getAddressLookup = PublishSubject<Void>()
     var addressLookupResponse = BehaviorRelay<[AddressLookupResponse]?>(value: nil)
@@ -36,7 +38,6 @@ class NewServiceAddressViewModel{
     }
     var isZipValidated: Bool {
         if let zip_data = validatedZipCodeResponse.value, let isValidZipCode = zip_data.isValidZipCode {
-
             return isValidZipCode
         }
         return false
@@ -45,8 +46,12 @@ class NewServiceAddressViewModel{
         guard let address = streetAddress, !address.isEmpty else { return false}
         return true
     }
+    var isValidPremiseID: Bool {
+        guard let _premiseID = premiseID, !_premiseID.isEmpty else { return false}
+        return true
+    }
     var canEnableContinue: Bool {
-        return isStreetAddressValid && isZipValid && isZipValidated
+        return isStreetAddressValid && isZipValid && isZipValidated && isValidPremiseID
     }
     
     var moveServiceFlowData: MoveServiceFlowData
@@ -84,10 +89,9 @@ class NewServiceAddressViewModel{
             return MoveService.rx.fetchAppartment(address: self.streetAddress!, zipcode: self.zipCode!)
         }.subscribe(onNext: { [weak self] result in
             guard let `self` = self else {return }
-            if let premiseID = result.element {
-                self.appartmentResponse.accept(premiseID)
+            if let appartmentResp = result.element {
+                self.appartmentResponse.accept(appartmentResp)
             }
-
         }).disposed(by: disposeBag)
 
         getAddressLookup.toAsyncRequest { [weak self] _ -> Observable<[AddressLookupResponse]> in
@@ -115,5 +119,10 @@ class NewServiceAddressViewModel{
     }
     func validateAddress(){
         getAddressLookup.onNext(())
+    }
+    func refreshSession(){
+        streetAddress = ""
+        premiseID = ""
+        validatedZipCodeResponse.accept(nil)
     }
 }

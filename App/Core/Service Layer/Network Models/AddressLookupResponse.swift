@@ -9,7 +9,7 @@
 import Foundation
 
 struct AddressLookupResponse: Decodable {
-    var address: String
+      var address: String
       var apartmentUnitNo: String?
       var city, compressedAddress: String
       var isMeterEnergized: Bool

@@ -15,6 +15,7 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
     @IBOutlet weak var continueButton: PrimaryButton!
     @IBOutlet weak var loadingIndicator: LoadingIndicator!
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var noteLabel: UILabel!
 
     @IBOutlet weak var streetAddressPlaceHolderLabel: UILabel!
     @IBOutlet weak var selectedstreetAddressStackView: UIStackView!
@@ -57,31 +58,74 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
     private func setupUIBinding(){
         viewModel.showLoadingState
             .subscribe (onNext: { [weak self] status in
-                self?.loadingIndicator.isHidden = !status
-                if let isZipValidated = self?.viewModel.isZipValidated{
-                    self?.enableStreetColorState(isZipValidated)
-                }
-
+                guard let `self` = self else {return }
+                self.loadingIndicator.isHidden = !status
+                self.enableStreetColorState(self.viewModel.isZipValidated)
             }).disposed(by: disposeBag)
+
+        viewModel.validateZipResponseEvent.subscribe(onNext: { [weak self] result in
+            guard let `self` = self else {return }
+            if let isZipValidated = result?.isValidZipCode {
+                if self.viewModel.isZipValid && !isZipValidated {
+                    self.zipTextField.setError(NSLocalizedString("Zip code is invalid or may be in an area not served by BG&E", comment: ""))
+                }
+            }
+        })
+        .disposed(by: disposeBag)
 
 
         viewModel.appartmentResponseEvent
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
                 if self.viewModel.isZipValidated && self.viewModel.isStreetAddressValid{
-                    self.enableappartmentColorState(self.viewModel.isStreetAddressValid)
-
-                    self.continueButton.isEnabled = self.viewModel.canEnableContinue
+                    self.enableAppartmentColorState(self.viewModel.isStreetAddressValid)
 
                     if let appartment_list = self.viewModel.getAppartmentIDs(), appartment_list.count == 1 {
                         if let suiteNumber = appartment_list.first?.suiteNumber,let premiseID =  appartment_list.first?.premiseID{
                             self.viewModel.premiseID = premiseID
-                            self.appartmentPlaceHolderLabel.text = suiteNumber
+                            self.setAppartment(suiteNumber)
+                            self.enableAppartmentColorState(false)
                             self.viewModel.validateAddress()
+                        } else if let premiseID =  appartment_list.first?.premiseID{
+                            self.viewModel.premiseID = premiseID
+                            self.enableAppartmentColorState(false)
+                            self.viewModel.validateAddress()
+                        } else if let premiseID =  appartment_list.first?.premiseID{
+                            self.viewModel.premiseID = premiseID
+                            self.viewModel.validateAddress()
+                        }else {
+
                         }
                     }else {
-
+                        self.setAppartmentError("Apt/Unit #* is required.")
                     }
+                    self.continueButton.isEnabled = self.viewModel.canEnableContinue
+                }
+            })
+            .disposed(by: disposeBag)
+
+
+        viewModel.addressLookUpResponseEvent
+            .subscribe(onNext: { [weak self] result in
+                guard let `self` = self else {return }
+
+                if let address_response = result?.first, let meterInfo = address_response.meterInfo.first  {
+                    if !meterInfo.isResidential {
+                        self.noteLabel.isHidden = false
+                    }
+                    self.continueButton.isEnabled = self.viewModel.canEnableContinue
+                }
+            })
+            .disposed(by: disposeBag)
+
+
+
+        viewModel.addressLookUpResponseEvent
+            .subscribe(onNext: { [weak self] result in
+                guard let `self` = self else {return }
+                if let address_response = result {
+                   print("address_response:: \(address_response)")
+
                 }
             })
             .disposed(by: disposeBag)
@@ -112,6 +156,7 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
         streetAddressPlaceHolderLabel.textColor = .middleGray
         streetAddressPlaceHolderLabel.text = NSLocalizedString("Street Address*", comment: "")
 
+        streetAddressFloatingLabel.text = NSLocalizedString("Street Address*", comment: "")
         streetAddressFloatingLabel.font = SystemFont.semibold.of(textStyle: .caption2)
         streetAddressFloatingLabel.textColor = .middleGray
         enableStreetColorState(false)
@@ -120,12 +165,18 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
         appartmentPlaceHolderLabel.font = SystemFont.regular.of(textStyle: .callout)
         appartmentPlaceHolderLabel.textColor = .middleGray
         appartmentPlaceHolderLabel.text = NSLocalizedString("Apt/Unit #* ", comment: "")
+        appartmentFloatingLabel.text = NSLocalizedString("Apt/Unit #* ", comment: "")
 
         appartmentFloatingLabel.font = SystemFont.semibold.of(textStyle: .caption2)
         appartmentFloatingLabel.textColor = .middleGray
-        enableappartmentColorState(false)
+        enableAppartmentColorState(false)
 
         continueButton.isEnabled = viewModel.canEnableContinue
+
+
+        noteLabel.text = NSLocalizedString("Please note: The address you entered is a commercial address and you’ll be subject to commercial rates. ", comment: "")
+        noteLabel.textColor = .deepGray
+
     }
     private func enableStreetColorState(_ isEnabled : Bool) {
         if (isEnabled){
@@ -138,7 +189,7 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
             streetAddressPlaceHolderLabel.textColor = .middleGray
         }
     }
-    private func enableappartmentColorState(_ isEnabled : Bool) {
+    private func enableAppartmentColorState(_ isEnabled : Bool) {
         if (isEnabled){
             appartmentSelectionView.roundCorners(.allCorners, radius: 10.0, borderColor:.accentGray, borderWidth: 1.0)
             appartmentSelectionView.backgroundColor = .white
@@ -147,6 +198,40 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
             appartmentSelectionView.roundCorners(.allCorners, radius: 10.0, borderColor:.accentGray, borderWidth: 1.0)
             appartmentSelectionView.backgroundColor = .softGray
             appartmentPlaceHolderLabel.textColor = .middleGray
+        }
+    }
+    private func setAppartmentError(_ error: String?) {
+        if let errMsg = error {
+            appartmentSelectionView.roundCorners(.allCorners, radius: 10.0, borderColor:.errorRed, borderWidth: 1.0)
+            appartmentSelectionView.backgroundColor = .white
+            appartmentPlaceHolderLabel.text = errMsg
+            appartmentPlaceHolderLabel.textColor = .errorRed
+        }else {
+            appartmentSelectionView.roundCorners(.allCorners, radius: 10.0, borderColor:.accentGray, borderWidth: 1.0)
+            appartmentSelectionView.backgroundColor = .white
+            appartmentPlaceHolderLabel.textColor = .deepGray
+        }
+    }
+    private func setStreetAddress(_ message: String?) {
+        if let msg = message {
+            selectedstreetAddressStackView.isHidden = false
+            selectedstreetAddressLabel.text = msg
+            streetAddressPlaceHolderLabel.isHidden = true
+        }else {
+            selectedstreetAddressStackView.isHidden = true
+            selectedstreetAddressLabel.text = ""
+            streetAddressPlaceHolderLabel.isHidden = false
+        }
+    }
+    private func setAppartment(_ message: String?) {
+        if let msg = message {
+            selectedAppartmentStackView.isHidden = false
+            selectedAppartmentLabel.text = msg
+            appartmentPlaceHolderLabel.isHidden = true
+        }else {
+            selectedAppartmentStackView.isHidden = true
+            selectedAppartmentLabel.text = ""
+            appartmentPlaceHolderLabel.isHidden = false
         }
     }
     @objc func zipCodeDonePressed() {
@@ -177,7 +262,10 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
     @IBAction func appartmentPressed(_ sender: Any) {
         if !viewModel.isZipValid {
             zipTextField.setError(NSLocalizedString("Zip  Code must be 5 characters in length", comment: ""))
-        } else {
+        }
+        else if viewModel.getAppartmentIDs()?.count == 1 {
+
+        }else {
             let storyboard = UIStoryboard(name: "ISUMMove", bundle: nil)
             let newServiceAddressViewController = storyboard.instantiateViewController(withIdentifier: "AddressSearchViewController") as! AddressSearchViewController
             newServiceAddressViewController.delegate = self
@@ -186,6 +274,19 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
             newServiceAddressViewController.listAppartment = viewModel.getAppartmentIDs()
             self.navigationController?.pushViewController(newServiceAddressViewController, animated: true)
         }
+    }
+    func clearPreviousSession(){
+        viewModel.refreshSession()
+        streetAddressPlaceHolderLabel.text = NSLocalizedString("Street Address*", comment: "")
+        appartmentPlaceHolderLabel.text = NSLocalizedString("Apt/Unit #* ", comment: "")
+        selectedstreetAddressStackView.isHidden = true;
+        enableStreetColorState(false)
+        enableAppartmentColorState(false)
+        setStreetAddress(nil)
+        setAppartment(nil)
+
+        noteLabel.isHidden = true;
+        continueButton.isEnabled = viewModel.canEnableContinue
     }
 }
 extension NewServiceAddressViewController: UITextFieldDelegate {
@@ -196,19 +297,37 @@ extension NewServiceAddressViewController: UITextFieldDelegate {
             let components = newString.components(separatedBy: CharacterSet.decimalDigits.inverted)
             let decimalString = components.joined(separator: "") as String
             let length = decimalString.count
+            if string.rangeOfCharacter(from: CharacterSet.decimalDigits) != nil {
+                if length > 1 && viewModel.isStreetAddressValid {
+                    clearPreviousSession()
+                }
 
-            if length > 5 {
-                return false
-            }
-            else if length <= 4 {
-                zipTextField.setError(NSLocalizedString("Zip  Code must be 5 characters in length", comment: ""))
-            }
-            else {
-                zipTextField.setError(nil)
-                viewModel.zipCode = decimalString
-                viewModel.validateZip()
-                textField.text = decimalString;
-                textField.resignFirstResponder()
+                if length > 5 {
+                    return false
+                }
+                else if length <= 4 {
+                    zipTextField.setError(NSLocalizedString("Zip  Code must be 5 characters in length", comment: ""))
+                }
+                else {
+                    zipTextField.setError(nil)
+                    viewModel.zipCode = decimalString
+                    viewModel.validateZip()
+                    textField.text = decimalString;
+                    textField.resignFirstResponder()
+                }
+            } else {
+                if length >= 5 {
+                    return false
+                }else {
+                    let  char = string.cString(using: String.Encoding.utf8)!
+                    let isBackSpace = strcmp(char, "\\b")
+                    if isBackSpace == -92 {
+                        return true
+                    }else {
+                        zipTextField.setError(NSLocalizedString("Only numbers allowed", comment: ""))
+                    }
+                    return false
+                }
             }
         }
         continueButton.isEnabled = viewModel.canEnableContinue
@@ -225,8 +344,9 @@ extension NewServiceAddressViewController: UITextFieldDelegate {
 extension NewServiceAddressViewController: AddressSearchDelegate {
     func didSelectAppartment(result: AppartmentResponse) {
         if let suiteNumber = result.suiteNumber,let premiseID =  result.premiseID{
+            setAppartmentError(nil)
             viewModel.premiseID = premiseID
-            appartmentPlaceHolderLabel.text = suiteNumber
+            setAppartment(suiteNumber)
             viewModel.validateAddress()
         }
 
@@ -235,7 +355,7 @@ extension NewServiceAddressViewController: AddressSearchDelegate {
     func didSelectStreetAddress(result: String) {
         if !result.isEmpty {
             viewModel.streetAddress = result
-            streetAddressPlaceHolderLabel.text = result
+            setStreetAddress(result)
             viewModel.fetchAppartmentDetails()
         }
     }
