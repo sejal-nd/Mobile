@@ -71,10 +71,12 @@ struct DebugMenu: View {
                               value: Configuration.shared.paymentusUrl)
                 }
                 
-                Section(header: Text("Temp")) {
+                Section(header: Text("EU Auth (Temp)")) {
                     Button("Launch PKCE Sign In", action: launchPKCESignIn)
                 }
-                .sheet(isPresented: $isShowingPKCEFlow, content: AnyView(Text("Test")))
+                .sheet(isPresented: $isShowingPKCEFlow) {
+                    SafariContainerView(url: URL(string: "https://google.com")!)
+                }
             }
             .navigationTitle("Debug Menu")
             .toolbar {
