@@ -14,6 +14,8 @@ struct DebugMenu: View {
     @AppStorage("selectedProjectTier") private var selectedProjectTier: ProjectTier = .stage
     @AppStorage("selectedProjectURL") private var selectedProjectURL: ProjectURLSuffix = .none
     
+    @State private var isShowingPKCEFlow = false
+    
     let dismiss: () -> Void
     
     private var versionString: String {
@@ -68,6 +70,11 @@ struct DebugMenu: View {
                     InfoLabel(title: "Payment URL",
                               value: Configuration.shared.paymentusUrl)
                 }
+                
+                Section(header: Text("Temp")) {
+                    Button("Launch PKCE Sign In", action: launchPKCESignIn)
+                }
+                .sheet(isPresented: $isShowingPKCEFlow, content: AnyView(Text("Test")))
             }
             .navigationTitle("Debug Menu")
             .toolbar {
@@ -92,6 +99,10 @@ struct DebugMenu: View {
     
     private func restartApp() {
         exit(0)
+    }
+    
+    private func launchPKCESignIn() {
+        isShowingPKCEFlow.toggle()
     }
 }
 
