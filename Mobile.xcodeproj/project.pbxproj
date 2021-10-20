@@ -186,6 +186,11 @@
 		4A25FA7326FC4A6C008026EA /* StopConfirmationScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A25FA7226FC4A6C008026EA /* StopConfirmationScreenViewController.swift */; };
 		4A2607FA26F2080400B7AAB5 /* ReviewStopServiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A2607F926F2080400B7AAB5 /* ReviewStopServiceViewModel.swift */; };
 		4A26E75D270EEFE10089EC0D /* StopConfirmationScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A26E75C270EEFE00089EC0D /* StopConfirmationScreenViewModel.swift */; };
+		4A398A40271E997600FA7B89 /* WorkdaysMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 4A398A3F271E997600FA7B89 /* WorkdaysMock.json */; };
+		4A398A41271E997600FA7B89 /* WorkdaysMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 4A398A3F271E997600FA7B89 /* WorkdaysMock.json */; };
+		4A398A43271E9A1300FA7B89 /* StopServiceViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A398A42271E9A1300FA7B89 /* StopServiceViewModelTests.swift */; };
+		4A398A48271EAD4100FA7B89 /* AccountVerification.json in Resources */ = {isa = PBXBuildFile; fileRef = 4A398A47271EAD4100FA7B89 /* AccountVerification.json */; };
+		4A398A49271EAD4100FA7B89 /* AccountVerification.json in Resources */ = {isa = PBXBuildFile; fileRef = 4A398A47271EAD4100FA7B89 /* AccountVerification.json */; };
 		4A631A8526E11A84006C3ACA /* StopServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A631A8426E11A84006C3ACA /* StopServiceViewController.swift */; };
 		4A631A8726E11AA0006C3ACA /* StopServiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A631A8626E11AA0006C3ACA /* StopServiceViewModel.swift */; };
 		4A8CE7582703604300C78B05 /* StopISUMServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8CE7572703604300C78B05 /* StopISUMServiceRequest.swift */; };
@@ -1417,6 +1422,9 @@
 		4A2607F926F2080400B7AAB5 /* ReviewStopServiceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewStopServiceViewModel.swift; sourceTree = "<group>"; };
 		4A265B4A77D5F2CF40432C7C /* Pods-UnitTests.comed-rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnitTests.comed-rc.xcconfig"; path = "Pods/Target Support Files/Pods-UnitTests/Pods-UnitTests.comed-rc.xcconfig"; sourceTree = "<group>"; };
 		4A26E75C270EEFE00089EC0D /* StopConfirmationScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopConfirmationScreenViewModel.swift; sourceTree = "<group>"; };
+		4A398A3F271E997600FA7B89 /* WorkdaysMock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = WorkdaysMock.json; sourceTree = "<group>"; };
+		4A398A42271E9A1300FA7B89 /* StopServiceViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopServiceViewModelTests.swift; sourceTree = "<group>"; };
+		4A398A47271EAD4100FA7B89 /* AccountVerification.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = AccountVerification.json; sourceTree = "<group>"; };
 		4A631A8426E11A84006C3ACA /* StopServiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopServiceViewController.swift; sourceTree = "<group>"; };
 		4A631A8626E11AA0006C3ACA /* StopServiceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopServiceViewModel.swift; sourceTree = "<group>"; };
 		4A8CE7572703604300C78B05 /* StopISUMServiceRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopISUMServiceRequest.swift; sourceTree = "<group>"; };
@@ -4089,6 +4097,7 @@
 			isa = PBXGroup;
 			children = (
 				6716595126F0FBC6004546DE /* UnitTests.swift */,
+				4A398A42271E9A1300FA7B89 /* StopServiceViewModelTests.swift */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -4454,6 +4463,8 @@
 				67893AF224DB3825000143D6 /* RegisterForAlertsMock.json */,
 				C338282624E30B0600F133C5 /* PeakRewardsSummaryMock.json */,
 				C338283324E30D6900F133C5 /* PeakRewardsOverridesMock.json */,
+				4A398A3F271E997600FA7B89 /* WorkdaysMock.json */,
+				4A398A47271EAD4100FA7B89 /* AccountVerification.json */,
 			);
 			path = "Mock JSONS";
 			sourceTree = "<group>";
@@ -5701,10 +5712,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A398A49271EAD4100FA7B89 /* AccountVerification.json in Resources */,
 				35F9DD682333C85C00AAA2B2 /* README.md in Resources */,
 				67A986AE24F96CF700BD46E7 /* Assets-FlavorPECO.xcassets in Resources */,
 				C3087B0324BDEE8B005AE544 /* EnergyTipMock.json in Resources */,
 				678B622E24D09A1C009F8A6B /* RegistrationQuestionsMock.json in Resources */,
+				4A398A41271E997600FA7B89 /* WorkdaysMock.json in Resources */,
 				C338283524E30D6900F133C5 /* PeakRewardsOverridesMock.json in Resources */,
 				67D5633624EEFAA600852551 /* Assets-FlavorCOMED.xcassets in Resources */,
 				678B621A24CF6AD2009F8A6B /* ValidateRegistrationMock.json in Resources */,
@@ -5784,6 +5797,7 @@
 				67A986D524FD419700BD46E7 /* GoogleService-Info-BETA-FlavorACE.plist in Resources */,
 				B0728E49215C149A0007C608 /* AlertPreferencesTableViewCell.xib in Resources */,
 				675F4DBC24AB828200A828F9 /* AlertPreferencesLoadMock.json in Resources */,
+				4A398A48271EAD4100FA7B89 /* AccountVerification.json in Resources */,
 				67A986DA24FD419A00BD46E7 /* GoogleService-Info-RC-FlavorDPL.plist in Resources */,
 				B0B12602221B0D6C00AF4DC4 /* peak_rewards_overrides.json in Resources */,
 				B0B0840F217111CE00B1C632 /* appointment_tracker.json in Resources */,
@@ -5851,6 +5865,7 @@
 				B0B083F921710CDB00B1C632 /* Appt_Inprogress-FlavorBGE.json in Resources */,
 				675F4E2F24B4DB3500A828F9 /* AnonOutageStatusMock.json in Resources */,
 				675F4D2C24AB828200A828F9 /* OutageStatusMock.json in Resources */,
+				4A398A40271E997600FA7B89 /* WorkdaysMock.json in Resources */,
 				359BB2672146F05400FBAD83 /* sm_outage-FlavorBGE.json in Resources */,
 				E841F39F1F02F30E007BFA82 /* UINavigationBackButton.xib in Resources */,
 				675F4DD424AB828200A828F9 /* ScheduledPaymentUNUSEDMock.json in Resources */,
@@ -6619,6 +6634,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A398A43271E9A1300FA7B89 /* StopServiceViewModelTests.swift in Sources */,
 				6716595226F0FBC6004546DE /* UnitTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

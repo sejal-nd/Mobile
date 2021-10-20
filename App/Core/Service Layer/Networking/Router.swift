@@ -540,6 +540,12 @@ public enum Router {
             return "PeakRewardsSummaryMock"
         case .peakRewardsOverrides:
             return "PeakRewardsOverridesMock"
+        case .accountDetails:
+            return "AccountDetailsMock"
+        case .workDays:
+            return "WorkdaysMock"
+        case .stopServiceVerification:
+            return "AccountVerification"
         default:
             return ""
         }

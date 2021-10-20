@@ -59,7 +59,7 @@ class StopServiceViewController: UIViewController {
         
         if isFirstLoad {
             isFirstLoad = false
-            viewModel.getAccountListSubject.onNext(())
+            viewModel.getAccounts { _ in }
         }
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
@@ -240,7 +240,7 @@ extension StopServiceViewController: AccountSelectDelegate {
             let premiseIndexPath = premiseIndexPath {
             AccountsStore.shared.accounts[selectedAccountIndex].currentPremise = AccountsStore.shared.currentAccount.premises[premiseIndexPath.row]
         }
-        viewModel.getAccountDetailSubject.onNext(())
+        viewModel.getAccounts { _ in }
         viewModel.selectedDate.accept(nil)
     }
 }

@@ -32,57 +32,74 @@ class StopServiceViewModel {
         if AccountsStore.shared.currentIndex != nil {
             currentAccountIndex = AccountsStore.shared.currentIndex
         }
-        getAccountListSubject
-            .toAsyncRequest { AccountService.rx.fetchAccounts() } .subscribe(onNext: { [weak self] result in
+    }
+    
+    func getAccounts(completion: @escaping (Result<Bool, NetworkingError>) -> ()) {
+        
+        self.isLoading.accept(true)
+        if AccountsStore.shared.accounts != nil {
+            self.getAccountDetails(completion: completion)
+        } else {
+            AccountService.fetchAccounts { [weak self] result in
                 if AccountsStore.shared.accounts != nil {
                     AccountsStore.shared.currentIndex = self?.currentAccountIndex ?? 0
                 }
-                self?.getAccountDetailSubject.onNext(())
-                self?.getWorkdays.onNext(())
-            }).disposed(by: disposeBag)
-
-            
-        getAccountDetailSubject
-            .toAsyncRequest { [weak self] _ -> Observable<AccountDetail> in
-                
-                guard let `self` = self else { return Observable.empty() }
-                if !self.isLoading.value {
-                    self.isLoading.accept(true)
-                }
-                if AccountsStore.shared.accounts != nil {
-                    return AccountService.rx.fetchAccountDetails()
-                }
-                return Observable.empty()
-            }.flatMapLatest({ [weak self] result -> Observable<StopServiceVerificationResponse> in
-                guard let `self` = self, let accountDetails = result.element else { return Observable.empty() }
-                self.currentAccountDetails.accept(accountDetails)
-                if accountDetails.isFinaled {
-                    self.isLoading.accept(false)
-                    return Observable.empty()
-                }
-                return Observable.create { observer -> Disposable in
-                    StopService.stopServiceVerification(completion: { observer.handle(result: $0) })
-                    return Disposables.create()
-                }
-            }).subscribe(onNext: { [weak self] result in
-                guard let `self` = self else {return }
-                self.accountVerificationResponse.accept(result)
-                self.isLoading.accept(false)
-            }).disposed(by: disposeBag)
-
+                self?.getAccountDetails(completion: completion)
+            }
+        }
+    }
+    
+    private func getAccountDetails(completion: @escaping (Result<Bool, NetworkingError>) -> ()) {
         
-        getWorkdays
-            .toAsyncRequest { [weak self] _ -> Observable<WorkdaysResponse> in
-                
-                guard let `self` = self else { return Observable.empty() }
-                if !self.isLoading.value {
-                    self.isLoading.accept(true)
+        AccountService.fetchAccountDetails { [weak self] (result: Result<AccountDetail, NetworkingError>) in
+            
+            switch result {
+            case .success(let accountDetails):
+                self?.currentAccountDetails.accept(accountDetails)
+                if accountDetails.isFinaled {
+                    self?.isLoading.accept(false)
+                    completion(.success(true))
+                    return
                 }
-                return StopService.rx.fetchWorkdays()
-            }.subscribe(onNext: { [weak self] result in
-                guard let `self` = self, let workdaysResponse = result.element else {return }
-                self.workDays.accept(workdaysResponse.list)
-            }).disposed(by: disposeBag)
+                self?.getAccountVerification(completion: completion)
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    private func getAccountVerification(completion: @escaping (Result<Bool, NetworkingError>) -> ()) {
+        
+        StopService.stopServiceVerification { [weak self] (result: Result<StopServiceVerificationResponse, NetworkingError>) in
+            
+            switch result {
+            case .success(let verificationResponse):
+                self?.accountVerificationResponse.accept(verificationResponse)
+                if (self?.workDays.value.count ?? 0) == 0 {
+                    self?.getWorkdays(completion: completion)
+                } else {
+                    self?.isLoading.accept(false)
+                    completion(.success(true))
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    private func getWorkdays(completion: @escaping (Result<Bool, NetworkingError>) -> ()) {
+        
+        StopService.fetchWorkdays { [weak self] (result: Result<WorkdaysResponse, NetworkingError>) in
+            
+            switch result {
+            case .success(let workdaysResponse):
+                self?.workDays.accept(workdaysResponse.list)
+                self?.isLoading.accept(false)
+                completion(.success(true))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
     }
     
     func isValidDate(_ date: Date)-> Bool {
@@ -90,9 +107,9 @@ class StopServiceViewModel {
         guard let accountDetails = self.currentAccountDetails.value else { return false }
         let calendarDate = DateFormatter.mmDdYyyyFormatter.string(from: date)
         if !accountDetails.isAMIAccount {
-            let firstDay = DateFormatter.mmDdYyyyFormatter.string(from: Calendar.opCo.date(byAdding: .day, value: 0, to: Date())!)
-            let secondDay = DateFormatter.mmDdYyyyFormatter.string(from: Calendar.opCo.date(byAdding: .day, value: 1, to: Date())!)
-            let thirdDay = DateFormatter.mmDdYyyyFormatter.string(from: Calendar.opCo.date(byAdding: .day, value: 2, to: Date())!)
+            let firstDay = DateFormatter.mmDdYyyyFormatter.string(from: Date.now)
+            let secondDay = DateFormatter.mmDdYyyyFormatter.string(from: Calendar.opCo.date(byAdding: .day, value: 1, to: Date.now)!)
+            let thirdDay = DateFormatter.mmDdYyyyFormatter.string(from: Calendar.opCo.date(byAdding: .day, value: 2, to: Date.now)!)
             if calendarDate == firstDay || calendarDate == secondDay || calendarDate == thirdDay {
                 return false
             }
