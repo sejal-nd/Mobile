@@ -17,6 +17,7 @@ class ScheduleMoveServiceViewModel {
     var workDays = BehaviorRelay<[WorkdaysResponse.WorkDay]>(value: [])
     var selectedDate = BehaviorRelay<Date?>(value: nil)
     var accountDetailEvents: Observable<AccountDetail?> { return currentAccountDetails.asObservable() }
+    var accountVerificationResponse = BehaviorRelay<StopServiceVerificationResponse?>(value: nil)
     private var currentAccountDetails = BehaviorRelay<AccountDetail?>(value: nil)
     var disposeBag = DisposeBag()
     var invalidDateAMI = [String]()
@@ -54,7 +55,11 @@ class ScheduleMoveServiceViewModel {
             }.subscribe(onNext: { [weak self] result in
                 guard let `self` = self, let accountDetails = result.element else {return }
                 self.currentAccountDetails.accept(accountDetails)
-                self.isLoading.accept(false)
+                if accountDetails.isFinaled {
+                    self.isLoading.accept(false)
+                } else {
+                    self.verifyAccount()
+                }
             }).disposed(by: disposeBag)
 
         
@@ -73,6 +78,18 @@ class ScheduleMoveServiceViewModel {
                 guard let `self` = self, let workdaysResponse = result.element else {return }
                 self.workDays.accept(workdaysResponse.list)
             }).disposed(by: disposeBag)
+    }
+    
+    private func verifyAccount() {
+        
+        StopService.stopServiceVerification { (result: Result<StopServiceVerificationResponse, NetworkingError>) in
+            switch result {
+            case .success(let verificationResponse):
+                self.accountVerificationResponse.accept(verificationResponse)
+                self.isLoading.accept(false)
+            case .failure: break
+            }
+        }
     }
     
     func isValidDate(_ date: Date)-> Bool {

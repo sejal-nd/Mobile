@@ -29,6 +29,11 @@ class ScheduleMoveServiceViewController: UIViewController {
     @IBOutlet weak var stopServiceAddressStaticLabel: UILabel!
     @IBOutlet weak var serviceProvidedStaticLabel: UILabel!
     @IBOutlet weak var serviceDisconnectStaticLabel: UILabel!
+    @IBOutlet weak var stopDateStackView: UIStackView!
+    @IBOutlet weak var pendingDisconnectStackView: UIStackView!
+    @IBOutlet weak var finaledStackView: UIStackView!
+    @IBOutlet weak var pendingDisconnectView: MovePendingDisconnectView!
+    @IBOutlet weak var noneServiceProvideLabel: UILabel!
 
     var accounts: [Account] {
         get { return AccountsStore.shared.accounts ?? [] }
@@ -149,15 +154,18 @@ class ScheduleMoveServiceViewController: UIViewController {
                 self?.currentAccountDeatil = accountDetails
                 self?.electricStackView.isHidden = !(accountDetails.serviceType?.contains("ELECTRIC") ?? false)
                 self?.gasStackView.isHidden = !(accountDetails.serviceType?.contains("GAS") ?? false)
+                self?.noneServiceProvideLabel.isHidden = (accountDetails.serviceType?.contains("GAS") ?? false || accountDetails.serviceType?.contains("ELECTRIC") ?? false)
                 self?.currentAccount = AccountsStore.shared.currentAccount
                 if let currPremise = self?.currentAccount?.currentPremise, let address = currPremise.addressGeneral {
                     self?.currentServiceAddressLabel.text = address
                 } else if let address = self?.currentAccount?.address {
                     self?.currentServiceAddressLabel.text = address
                 } else {
-                    self?.currentServiceAddressLabel.text = ""
+                    self?.currentServiceAddressLabel.text = "No Address Available"
                 }
-
+                self?.pendingDisconnectStackView.isHidden = !accountDetails.isPendingDisconnect
+                self?.finaledStackView.isHidden = !accountDetails.isFinaled
+                self?.stopDateStackView.isHidden = (accountDetails.isFinaled || accountDetails.isPendingDisconnect)
             })
             .disposed(by: disposeBag)
         
@@ -176,6 +184,15 @@ class ScheduleMoveServiceViewController: UIViewController {
                 }
             })
             .disposed(by: disposeBag)
+        
+        viewModel.accountVerificationResponse
+            .compactMap { $0 }
+            .subscribe(onNext: { [weak self] accountVerificationResponse in
+                guard let date = accountVerificationResponse.serviceLists.first?.sAEndDate else { return }
+                self?.pendingDisconnectView.updateServiceStopDate(dateString: date)
+            })
+            .disposed(by: disposeBag)
+
     }
     
     @objc func back(sender: UIBarButtonItem) {
