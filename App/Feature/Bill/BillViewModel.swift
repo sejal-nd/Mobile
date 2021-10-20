@@ -40,8 +40,6 @@ class BillViewModel {
     let dueDateExtensionDetails = BehaviorRelay<DueDateElibility?>(value: nil)
     var paymentArrangementDetails = BehaviorRelay<PaymentArrangement?>(value: nil)
     
-    let ddeDpafeatureFlag =  Configuration.shared.opco == .comEd ||  Configuration.shared.opco == .peco ? true : false
-    
     private func tracker(forState state: FetchingAccountState) -> ActivityTracker {
         switch state {
         case .refresh: return refreshTracker
@@ -94,7 +92,7 @@ class BillViewModel {
         }
     
     private(set) lazy var fetchBGEDdeDpaEligibility: Driver<Bool> = self.currentAccountDetail.map {
-        if Configuration.shared.opco == .bge || self.ddeDpafeatureFlag  {
+        if Configuration.shared.opco == .bge || FeatureFlagUtility.shared.bool(forKey: .hasAssistanceEnrollment) {
             // Fetch BGE DDE
             AccountService.fetchDDE  { [weak self] result in
                 switch result {
@@ -904,7 +902,7 @@ class BillViewModel {
         }
     // MARK: - Enrollment Status
     private(set) lazy var enrollmentStatus: Driver<String?> = Driver.combineLatest(currentAccountDetail, showBgeDdeDpaEligibility.asDriver(), paymentArrangementDetails.asDriver(), dueDateExtensionDetails.asDriver()) { (accountDetail, bgeDdeDpaEligibilityChecked, paymentArrangementDetails, dueDateExtensionDetails) in
-        if self.ddeDpafeatureFlag {
+        if FeatureFlagUtility.shared.bool(forKey: .hasAssistanceEnrollment) {
             if accountDetail.billingInfo.isDpaEnrolled == "true" {
                 if paymentArrangementDetails?.pAData?.first?.numberOfInstallments == paymentArrangementDetails?.pAData?.first?.noOfInstallmentsLeft {
                     return "Your request to enroll in a payment arrangement has been accepted. For further details log into your My Account."
