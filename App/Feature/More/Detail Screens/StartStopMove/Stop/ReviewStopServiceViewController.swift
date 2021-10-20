@@ -68,7 +68,7 @@ class ReviewStopServiceViewController: UIViewController {
         serviceDisconnectStaticLabel.font = SystemFont.regular.of(textStyle: .caption1)
         finalBillAddressStaticLabel.font = SystemFont.regular.of(textStyle: .footnote)
         
-        changeMailingAddressButton.isHidden = stopFlowData.hasCurrentServiceAddressForBill
+        changeMailingAddressButton.isHidden = stopFlowData.currentAccountDetail.isEBillEnrollment
 
         submitButton.roundCorners(.allCorners, radius: 27.5, borderColor: UIColor(red: 216.0/255.0, green: 216.0/255.0, blue: 216.0/255.0, alpha: 1.0), borderWidth: 1.0)
 
@@ -155,7 +155,7 @@ class ReviewStopServiceViewController: UIViewController {
         }else {
             self.currentServiceAddressLabel.text = stopFlowData.currentAccount.address ?? ""
         }
-        self.stopServiceDateLabel.text = DateFormatter.ddMMMMYYYYFormatter.string(from: stopFlowData.selectedDate)
+        self.stopServiceDateLabel.text = DateFormatter.fullMonthDayAndYearFormatter.string(from: stopFlowData.selectedDate)
         self.finalBillAddressStackView.isHidden = stopFlowData.currentAccountDetail.isEBillEnrollment
         self.ebillStackView.isHidden = !stopFlowData.currentAccountDetail.isEBillEnrollment
         self.ebillUserInfoLabel.text = "Your final bill will be delivered by email to \(stopFlowData.currentAccountDetail.customerInfo.emailAddress ?? "")."
@@ -191,7 +191,7 @@ extension ReviewStopServiceViewController: PDTSimpleCalendarViewDelegate {
     
     func simpleCalendarViewController(_ controller: PDTSimpleCalendarViewController!, didSelect date: Date!) {
         self.stopFlowData.selectedDate = date
-        self.stopServiceDateLabel.text = DateFormatter.ddMMMMYYYYFormatter.string(from: date)
+        self.stopServiceDateLabel.text = DateFormatter.fullMonthDayAndYearFormatter.string(from: date)
         controller.dismiss(animated: true, completion: nil)
     }
 }
@@ -201,6 +201,7 @@ extension ReviewStopServiceViewController: FinalMailingAddressDelegate {
     
     func mailingAddress(_ address: MailingAddress) {
         
+        self.stopFlowData.hasCurrentServiceAddressForBill = false
         self.stopFlowData.mailingAddress = address
         refreshData()
     }
