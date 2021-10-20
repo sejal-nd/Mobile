@@ -7,10 +7,10 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class MoveLandingViewController: UIViewController {
-
-    
     @IBOutlet weak var headerLabel: UILabel! {
         didSet {
             headerLabel.textColor = .deepGray
@@ -75,14 +75,58 @@ class MoveLandingViewController: UIViewController {
         }
     }
     
-    @IBAction func BeginTapped(_ sender: PrimaryButton) {
+    @IBAction func BeginTapped(_ sender: PrimaryButton)  {
+        ///TODO:  Navigate to the first screen of the Stop Service Flow.
+        if (viewModel.isDetailsLoading){
+            viewModel.isBeginPressed = true;
+            DispatchQueue.main.async {
+                LoadingView.show()
+            }
+        }else {
+            if isAccountResidential {
+                navigateToStopServiceVC()
+            }else {
+                UIApplication.shared.openUrlIfCan(viewModel.moveCommercialServiceWebURL)
+            }
+        }
+    }
+    lazy var isAccountResidential: Bool = {
+        if let currentAccount = viewModel.getAccountDetails(), let customerType = currentAccount.customerInfo.customerType {
+            if customerType == "COMM" {
+                return false
+            }
+        }
+        return true
+    }()
+    let viewModel = MoveLandingViewModel()
+
+    let disposeBag = DisposeBag()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        addCloseButton()
+        setupUIBinding()
+        viewModel.fetchAccountDetails()
+    }
+    func setupUIBinding(){
+        viewModel.accountDetailsEvent
+            .subscribe (onNext: { [weak self] response in
+                guard let `self` = self else { return }
+                if response != nil {
+                    if  !self.viewModel.isDetailsLoading, self.viewModel.isBeginPressed{
+                        DispatchQueue.main.async {
+                            LoadingView.hide()
+                            self.navigateToStopServiceVC()
+                        }
+                    }
+                }
+
+            }).disposed(by: disposeBag)
+    }
+    func navigateToStopServiceVC(){
         let storyboard = UIStoryboard(name: "ISUMMove", bundle: nil)
         let scheduleMoveServiceViewController = storyboard.instantiateViewController(withIdentifier: "ScheduleMoveServiceViewController") as! ScheduleMoveServiceViewController
         self.navigationController?.pushViewController(scheduleMoveServiceViewController, animated: true)
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        addCloseButton()
-    }
+
 }

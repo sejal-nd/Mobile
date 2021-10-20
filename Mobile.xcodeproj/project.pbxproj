@@ -25,6 +25,7 @@
 		215A1B7D270B1713003A4EE9 /* AddressLookupResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215A1B7B270B1713003A4EE9 /* AddressLookupResponse.swift */; };
 		215A1B7F270B172B003A4EE9 /* AddressLookupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215A1B7E270B172B003A4EE9 /* AddressLookupRequest.swift */; };
 		215A1B80270B172B003A4EE9 /* AddressLookupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215A1B7E270B172B003A4EE9 /* AddressLookupRequest.swift */; };
+		217E2AD6271EA90C009D3587 /* MoveLandingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217E2AD5271EA90C009D3587 /* MoveLandingViewModel.swift */; };
 		21D1C512270ADF6400EFAFAC /* AddressSearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D1C50E270ADF6100EFAFAC /* AddressSearchModel.swift */; };
 		21D1C513270ADF6400EFAFAC /* AddressSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D1C50F270ADF6100EFAFAC /* AddressSearchViewController.swift */; };
 		21D1C515270ADF6400EFAFAC /* AddressSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D1C511270ADF6300EFAFAC /* AddressSearchCell.swift */; };
@@ -1189,6 +1190,7 @@
 		215A1B78270B12F6003A4EE9 /* AppartmentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppartmentResponse.swift; sourceTree = "<group>"; };
 		215A1B7B270B1713003A4EE9 /* AddressLookupResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressLookupResponse.swift; sourceTree = "<group>"; };
 		215A1B7E270B172B003A4EE9 /* AddressLookupRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressLookupRequest.swift; sourceTree = "<group>"; };
+		217E2AD5271EA90C009D3587 /* MoveLandingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveLandingViewModel.swift; sourceTree = "<group>"; };
 		21C06E439FF0E3B0841F704C /* Pods-EUMobile-Watch Extension.peco-rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch Extension.peco-rc.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch Extension/Pods-EUMobile-Watch Extension.peco-rc.xcconfig"; sourceTree = "<group>"; };
 		21D1C50E270ADF6100EFAFAC /* AddressSearchModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressSearchModel.swift; sourceTree = "<group>"; };
 		21D1C50F270ADF6100EFAFAC /* AddressSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressSearchViewController.swift; sourceTree = "<group>"; };
@@ -2968,6 +2970,7 @@
 				21D1C511270ADF6300EFAFAC /* AddressSearchCell.swift */,
 				4A12C26F2706D3F6007FFEA6 /* ScheduleMoveServiceViewController.swift */,
 				282B4F7526E7488200ACD33C /* MoveLandingViewController.swift */,
+				217E2AD5271EA90C009D3587 /* MoveLandingViewModel.swift */,
 				282B4F7B26E7817F00ACD33C /* ISUMMove.storyboard */,
 				21D41E112705D95400A622F9 /* NewServiceAddressViewController.swift */,
 				21D41E132705DD7000A622F9 /* NewServiceAddressViewModel.swift */,
@@ -6825,6 +6828,7 @@
 				C3B6558024ACD9080048C64B /* PaymentItem.swift in Sources */,
 				675F4E3C24B4DC1900A828F9 /* NewMockDataKey.swift in Sources */,
 				E8B674C41E96AD0E00BB0788 /* ForgotPasswordViewController.swift in Sources */,
+				217E2AD6271EA90C009D3587 /* MoveLandingViewModel.swift in Sources */,
 				35B960BF22C2A15A003BCC97 /* AccountListRow.swift in Sources */,
 				E882B7F21EA946B500EA3C13 /* WhatIsBudgetBillingViewController.swift in Sources */,
 				9CC99793237B6A9300C68300 /* GameOnboardingIntroViewController.swift in Sources */,
