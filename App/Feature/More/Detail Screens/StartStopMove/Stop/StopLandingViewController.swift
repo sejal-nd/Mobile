@@ -44,16 +44,14 @@ class StopLandingViewController: UIViewController {
     
     @IBAction func BeginTapped(_ sender: UIButton) {
         ///TODO:  Navigate to the first screen of the Stop Service Flow.
-
         if (viewModel.isDetailsLoading){
+            viewModel.isBeginPressed = true;
             DispatchQueue.main.async {
                 LoadingView.show()
             }
         }else {
             if isAccountResidential {
-                let storyboard = UIStoryboard(name: "ISUMStop", bundle: nil)
-                let stopServiceViewController = storyboard.instantiateViewController(withIdentifier: "StopServiceViewController") as! StopServiceViewController
-                self.navigationController?.pushViewController(stopServiceViewController, animated: true)
+                navigateToStopServiceVC()
             }else {
                 UIApplication.shared.openUrlIfCan(viewModel.stopCommercialServiceWebURL)
             }
@@ -83,14 +81,25 @@ class StopLandingViewController: UIViewController {
     }
     func setupUIBinding(){
         viewModel.accountDetailsEvent
-            .subscribe (onNext: { [weak self] _ in
+            .subscribe (onNext: { [weak self] response in
                 guard let `self` = self else { return }
-                if (!self.viewModel.isDetailsLoading){
-                    DispatchQueue.main.async {
-                        LoadingView.hide()
+                if response != nil {
+                    if  !self.viewModel.isDetailsLoading, self.viewModel.isBeginPressed{
+                        DispatchQueue.main.async {
+                            LoadingView.hide()
+                            self.navigateToStopServiceVC()
+                        }
                     }
                 }
+
             }).disposed(by: disposeBag)
     }
+
+    func navigateToStopServiceVC(){
+        let storyboard = UIStoryboard(name: "ISUMStop", bundle: nil)
+        let stopServiceViewController = storyboard.instantiateViewController(withIdentifier: "StopServiceViewController") as! StopServiceViewController
+        self.navigationController?.pushViewController(stopServiceViewController, animated: true)
+    }
+
 
 }

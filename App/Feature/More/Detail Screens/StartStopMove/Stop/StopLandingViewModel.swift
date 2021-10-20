@@ -13,6 +13,7 @@ class StopLandingViewModel {
 
     let disposeBag = DisposeBag()
     var isDetailsLoading = false
+    var isBeginPressed = false
 
     var getAccountDetailSubject = PublishSubject<Void>()
     private var currentAccountDetails = BehaviorRelay<AccountDetail?>(value: nil)
