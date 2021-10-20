@@ -2,46 +2,91 @@
   "default": {
     "success": true,
     "data": [
-      {
-        "accountNumber": "8789671000",
-        "customerNumber": "1014280000",
-        "isPasswordProtected": false,
-        "accountNickname": null,
-        "address": "600 N Eutaw St *Apt C, Baltimore, MD 21201",
-        "isDefaultProfile": true,
-        "amountDue": 368.6,
-        "dueDate": "2020-03-25T00:00:00",
-        "serviceType": "Electric",
-        "status": "Active",
-        "isEBillEligible": false,
-        "isAMIAccount": true,
-        "isEBillEnrollment": false,
-        "isNonService": false,
-        "isPTSAccount": false,
-        "isGasOnly": false,
-        "premiseNumber": "9385710000",
-        "isResidential": true,
-        "PremiseInfo": [
-          {
-            "premiseNumber": "9385710000",
-            "mainAddress": {
-              "addressGeneral": "600 N Eutaw St *Apt C, Baltimore, MD 21201",
-              "addressLine": [
-                "600 N Eutaw St *Apt C"
-              ],
-              "streetDetail": {
-                "number": "600",
-                "suiteNumber": "APT C"
-              },
-              "townDetail": {
-                "code": "21201",
-                "name": "Baltimore",
-                "stateOrProvince": "MD"
-              }
+        {
+                    "accountNumber": "4966655160",
+                    "customerNumber": "6046420000",
+                    "isPasswordProtected": false,
+                    "accountNickname": null,
+                    "address": "8223 Jumpers-Hole Rd, Millersville, MD 21108",
+                    "isDefaultProfile": false,
+                    "amountDue": 0,
+                    "dueDate": "2021-07-26T00:00:00",
+                    "serviceType": "Gas/Electric",
+                    "status": "Active",
+                    "isAMIAccount": true,
+                    "isEBillEligible": true,
+                    "isEBillEnrollment": true,
+                    "accountStatusCode": "Active",
+                    "isNonService": false,
+                    "isPTSAccount": false,
+                    "isGasOnly": false,
+                    "premiseNumber": "2118120000",
+                    "isResidential": true,
+                    "PremiseInfo": [
+                        {
+                            "premiseNumber": "2118120000",
+                            "mainAddress": {
+                                "addressGeneral": "8223 Jumpers-Hole Rd, Millersville, MD 21108",
+                                "addressLine": [
+                                    "8223 Jumpers-Hole Rd"
+                                ],
+                                "streetDetail": {
+                                    "number": "8223",
+                                    "suiteNumber": ""
+                                },
+                                "townDetail": {
+                                    "code": "21108",
+                                    "name": "Millersville",
+                                    "stateOrProvince": "MD"
+                                }
+                            }
+                        }
+                    ]
+                }
+    ]
+  },
+  "nonAMIUser": {
+    "success": true,
+    "data": [
+        {
+                "accountNumber": "3657551000",
+                "customerNumber": "4413980000",
+                "isPasswordProtected": false,
+                "accountNickname": null,
+                "address": "9709 10th Ave, Baltimore, MD 21234",
+                "isDefaultProfile": false,
+                "amountDue": 0,
+                "dueDate": "2021-08-05T00:00:00",
+                "serviceType": "Gas/Electric",
+                "status": "Active",
+                "isAMIAccount": false,
+                "isEBillEligible": false,
+                "isEBillEnrollment": false,
+                "accountStatusCode": "Active",
+                "isNonService": false,
+                "isPTSAccount": false,
+                "isGasOnly": false,
+                "premiseNumber": "3426530000",
+                "isResidential": true,
+                "PremiseInfo": [{
+                    "premiseNumber": "3426530000",
+                    "mainAddress": {
+                        "addressGeneral": "9709 10th Ave, Baltimore, MD 21234",
+                        "addressLine": [
+                            "9709 10th Ave"
+                        ],
+                        "streetDetail": {
+                            "number": "9709",
+                            "suiteNumber": ""
+                        },
+                        "townDetail": {
+                            "code": "21234",
+                            "name": "Baltimore",
+                            "stateOrProvince": "MD"
+                        }
+                    }
+                }]
             }
-          }
-        ]
-      }
     ]
   }
 }

@@ -11,4 +11,5 @@ import Foundation
 enum NewMockDataKey: String {
     // General
     case `default`
+    case nonAMIUser
 }

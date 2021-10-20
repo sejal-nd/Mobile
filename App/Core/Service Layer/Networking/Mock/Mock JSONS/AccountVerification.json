@@ -1,0 +1,66 @@
+{
+  "default": {
+    "success": true,
+    "data": {
+        "StartStopMoveServiceDetails": {
+            "StopServiceAddress": {
+                "PremiseID": "2118120000"
+            },
+            "AccountNumber": "4966655160",
+            "PrimaryCustInformation": {
+                "BillingAddress": {
+                    "StreetName": "8223 Jumpers-Hole Rd",
+                    "City": "Millersville",
+                    "State": "Maryland",
+                    "ZipCode": "21108",
+                    "Country": "United States of America"
+                }
+            },
+            "CustomerID": "6046420000"
+        },
+        "AppointmentExists": false,
+        "AppointmentRequired": false,
+        "CanStop": true,
+        "IspartialStop": false,
+        "StopExists": false,
+        "AvailableDates": [{
+            "StartDateTime": "0001-01-01T00:00:00",
+            "EndDateTime": "0001-01-01T00:00:00"
+        }],
+        "RCDCapable": true,
+        "ServiceLists": [{
+            "Stop": false,
+            "ServiceAgreementID": "4966655954",
+            "Type": "Electric",
+            "SAType": "E-RES",
+            "SAStatus": "Active",
+            "SAEndDate": null,
+            "ServicePointID": "2118120944",
+            "MeterNumber": "D118493144",
+            "Location": "In",
+            "MeterLocation": "Out",
+            "AppointmentEnd": null,
+            "AppointmentStart": null,
+            "ErrorMessage": null,
+            "HasError": false,
+            "ConfirmationMessage": null
+        }, {
+            "Stop": false,
+            "ServiceAgreementID": "4966655925",
+            "Type": "Gas",
+            "SAType": "G-RES",
+            "SAStatus": "Active",
+            "SAEndDate": null,
+            "ServicePointID": "2118120740",
+            "MeterNumber": "1221279",
+            "Location": "In",
+            "MeterLocation": "In",
+            "AppointmentEnd": null,
+            "AppointmentStart": null,
+            "ErrorMessage": null,
+            "HasError": false,
+            "ConfirmationMessage": null
+        }]
+    }
+  }
+}
