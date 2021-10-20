@@ -15,7 +15,7 @@ public struct StopServiceFlowData {
     let currentPremise: PremiseInfo
     let currentAccount: Account
     let currentAccountDetail: AccountDetail
-    let hasCurrentServiceAddressForBill: Bool
+    var hasCurrentServiceAddressForBill: Bool
     var mailingAddress: MailingAddress?
     let verificationDetail: StopServiceVerificationResponse?
 }
