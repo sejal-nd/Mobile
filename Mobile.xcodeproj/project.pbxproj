@@ -36,6 +36,7 @@
 		21D41E1C2706CE9700A622F9 /* ValidatedZipCodeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D41E1B2706CE9700A622F9 /* ValidatedZipCodeResponse.swift */; };
 		21D41E1D2706E17A00A622F9 /* ValidateZipCodeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D41E172706CA8F00A622F9 /* ValidateZipCodeRequest.swift */; };
 		21D41E1E2706E29B00A622F9 /* ValidatedZipCodeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D41E1B2706CE9700A622F9 /* ValidatedZipCodeResponse.swift */; };
+		21E797F92718541C0063CB84 /* StopLandingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E797F82718541C0063CB84 /* StopLandingViewModel.swift */; };
 		224EFF18216E4E67008A0E40 /* HomeAppointmentCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224EFF17216E4E67008A0E40 /* HomeAppointmentCardView.swift */; };
 		224EFF1C216E4E76008A0E40 /* HomeAppointmentCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 224EFF1B216E4E76008A0E40 /* HomeAppointmentCardView.xib */; };
 		224EFF20216E4EB0008A0E40 /* HomeAppointmentCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224EFF1F216E4EB0008A0E40 /* HomeAppointmentCardViewModel.swift */; };
@@ -1208,6 +1209,7 @@
 		21D41E172706CA8F00A622F9 /* ValidateZipCodeRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateZipCodeRequest.swift; sourceTree = "<group>"; };
 		21D41E192706CDFE00A622F9 /* MoveService+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MoveService+Rx.swift"; sourceTree = "<group>"; };
 		21D41E1B2706CE9700A622F9 /* ValidatedZipCodeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidatedZipCodeResponse.swift; sourceTree = "<group>"; };
+		21E797F82718541C0063CB84 /* StopLandingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopLandingViewModel.swift; sourceTree = "<group>"; };
 		224EFF17216E4E67008A0E40 /* HomeAppointmentCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAppointmentCardView.swift; sourceTree = "<group>"; };
 		224EFF1B216E4E76008A0E40 /* HomeAppointmentCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeAppointmentCardView.xib; sourceTree = "<group>"; };
 		224EFF1F216E4EB0008A0E40 /* HomeAppointmentCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAppointmentCardViewModel.swift; sourceTree = "<group>"; };
@@ -2965,6 +2967,7 @@
 				28C71DE226FB2961006148AA /* FinalMailingAddressViewModel.swift */,
 				4AE3467D26E8C78200F4155C /* ReviewStopServiceViewController.swift */,
 				282B4F7926E7490400ACD33C /* ISUMStop.storyboard */,
+				21E797F82718541C0063CB84 /* StopLandingViewModel.swift */,
 				282B4F7226E7469500ACD33C /* StopLandingViewController.swift */,
 				4A2607F926F2080400B7AAB5 /* ReviewStopServiceViewModel.swift */,
 				045E71F1270F40DE00589623 /* GeneralSubmitErrorViewController.swift */,
@@ -6884,6 +6887,7 @@
 				675F4B6424AB828100A828F9 /* AnonymousService.swift in Sources */,
 				E873DA751EE8699600020D1B /* RadioSelectionTableViewCell.swift in Sources */,
 				E8BCB9BA1EFAE79600779588 /* BGEAutoPayViewModel.swift in Sources */,
+				21E797F92718541C0063CB84 /* StopLandingViewModel.swift in Sources */,
 				822BBBA11EFC1A01004EBBAB /* WebViewController.swift in Sources */,
 				35ACCB4720EA60F50022907F /* HomeOutageCardViewModel.swift in Sources */,
 				C3087B0C24BDEFA3005AE544 /* AnyObserver.swift in Sources */,
