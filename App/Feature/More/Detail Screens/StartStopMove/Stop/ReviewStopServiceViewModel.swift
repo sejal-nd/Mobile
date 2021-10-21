@@ -33,8 +33,12 @@ class ReviewStopServiceViewModel {
                     return Disposables.create()
                 }
             }.subscribe(onNext: { [weak self] result in
-                guard let `self` = self, let response = result.element else {return }
-                self.response.onNext(response)
+                guard let `self` = self else {return }
+                if let response = result.element {
+                    self.response.onNext(response)
+                } else if let error = result.error {
+                    self.errorResponse.onNext(error)
+                }
             }, onError: { [weak self] error in
                 self?.errorResponse.onNext(error)
             }).disposed(by: disposeBag)
