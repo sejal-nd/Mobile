@@ -9,7 +9,6 @@
 import Foundation
 
 struct MoveServiceFlowData {
-    
     let workDays: [WorkdaysResponse.WorkDay]
     var stopServiceDate: Date
     let currentPremise: PremiseInfo
@@ -18,5 +17,8 @@ struct MoveServiceFlowData {
     let verificationDetail: StopServiceVerificationResponse?
     var startServiceDate: Date?
     var isOwner: Bool = true
+    var appartment_List: [AppartmentResponse]?
+    var selected_appartment: AppartmentResponse?
+    var selected_StreetAddress: String?
     var addressLookupResponse: [AddressLookupResponse]?
 }

@@ -250,7 +250,7 @@ public enum NetworkingLayer {
             
             do {
                 if ProcessInfo.processInfo.arguments.contains("-shouldLogAPI") {
-                    Log.custom("✉️", "RAW RESPONSE:\n\(String(data: data, encoding: .utf8) ?? "******* ERROR CONVERTING DATA TO STRING CHECK ENCODING ********")")
+                    Log.custom("✉️", "RAW URL: \(response?.url) \n RAW RESPONSE:\n\(String(data: data, encoding: .utf8) ?? "******* ERROR CONVERTING DATA TO STRING CHECK ENCODING ********")")
                 }
                 
                 let responseObject: T = try decode(data: data)

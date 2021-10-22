@@ -137,7 +137,7 @@ class ScheduleMoveServiceViewController: UIViewController {
                 
                 guard let `self` = self else { return }
                 guard let selectedDate = self.viewModel.selectedDate.value, let currentPremise = AccountsStore.shared.currentAccount.currentPremise, let accountDetails = self.currentAccountDeatil else { return }
-                let moveFlowData = MoveServiceFlowData(workDays: self.viewModel.workDays.value, stopServiceDate: selectedDate, currentPremise: currentPremise, currentAccount: AccountsStore.shared.currentAccount, currentAccountDetail: accountDetails, verificationDetail: nil, addressLookupResponse: nil)
+                let moveFlowData = MoveServiceFlowData(workDays: self.viewModel.workDays.value, stopServiceDate: selectedDate, currentPremise: currentPremise, currentAccount: AccountsStore.shared.currentAccount, currentAccountDetail: accountDetails, verificationDetail: nil, selected_appartment: nil, addressLookupResponse: nil)
                 
                 let storyboard = UIStoryboard(name: "ISUMMove", bundle: nil)
                 let newServiceAddressViewController = storyboard.instantiateViewController(withIdentifier: "NewServiceAddressViewController") as! NewServiceAddressViewController

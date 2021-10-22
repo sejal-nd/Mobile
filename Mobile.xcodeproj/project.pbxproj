@@ -38,6 +38,8 @@
 		21D41E1D2706E17A00A622F9 /* ValidateZipCodeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D41E172706CA8F00A622F9 /* ValidateZipCodeRequest.swift */; };
 		21D41E1E2706E29B00A622F9 /* ValidatedZipCodeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D41E1B2706CE9700A622F9 /* ValidatedZipCodeResponse.swift */; };
 		21E797F92718541C0063CB84 /* StopLandingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E797F82718541C0063CB84 /* StopLandingViewModel.swift */; };
+		21FFBD222722D35D002F5009 /* ReviewMoveServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FFBD202722D35C002F5009 /* ReviewMoveServiceViewController.swift */; };
+		21FFBD232722D35D002F5009 /* ReviewMoveServiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FFBD212722D35C002F5009 /* ReviewMoveServiceViewModel.swift */; };
 		224EFF18216E4E67008A0E40 /* HomeAppointmentCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224EFF17216E4E67008A0E40 /* HomeAppointmentCardView.swift */; };
 		224EFF1C216E4E76008A0E40 /* HomeAppointmentCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 224EFF1B216E4E76008A0E40 /* HomeAppointmentCardView.xib */; };
 		224EFF20216E4EB0008A0E40 /* HomeAppointmentCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224EFF1F216E4EB0008A0E40 /* HomeAppointmentCardViewModel.swift */; };
@@ -1212,6 +1214,8 @@
 		21D41E192706CDFE00A622F9 /* MoveService+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MoveService+Rx.swift"; sourceTree = "<group>"; };
 		21D41E1B2706CE9700A622F9 /* ValidatedZipCodeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidatedZipCodeResponse.swift; sourceTree = "<group>"; };
 		21E797F82718541C0063CB84 /* StopLandingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopLandingViewModel.swift; sourceTree = "<group>"; };
+		21FFBD202722D35C002F5009 /* ReviewMoveServiceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewMoveServiceViewController.swift; sourceTree = "<group>"; };
+		21FFBD212722D35C002F5009 /* ReviewMoveServiceViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewMoveServiceViewModel.swift; sourceTree = "<group>"; };
 		224EFF17216E4E67008A0E40 /* HomeAppointmentCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAppointmentCardView.swift; sourceTree = "<group>"; };
 		224EFF1B216E4E76008A0E40 /* HomeAppointmentCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeAppointmentCardView.xib; sourceTree = "<group>"; };
 		224EFF1F216E4EB0008A0E40 /* HomeAppointmentCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAppointmentCardViewModel.swift; sourceTree = "<group>"; };
@@ -2998,6 +3002,8 @@
 				4AA4EAD5271497D300B35F4D /* MoveStartServiceViewModel.swift */,
 				4ADD29EA2718012A00FA7B00 /* MoveFinaledView.swift */,
 				4ADD29EE2718018300FA7B00 /* MovePendingDisconnectView.swift */,
+				21FFBD202722D35C002F5009 /* ReviewMoveServiceViewController.swift */,
+				21FFBD212722D35C002F5009 /* ReviewMoveServiceViewModel.swift */,
 			);
 			path = Move;
 			sourceTree = "<group>";
@@ -6200,10 +6206,10 @@
 				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 				"${BUILT_PRODUCTS_DIR}/zxcvbn-ios/zxcvbn_ios.framework",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ForeSee/ForeSee.framework/ForeSee",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ForeSeeUtilities/ForeSeeUtilities.framework/ForeSeeUtilities",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/IngestionLogger/IngestionLogger.framework/IngestionLogger",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ForeSeeFeedback/ForeSeeFeedback.framework/ForeSeeFeedback",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ForeSee/Core/ForeSee.framework/ForeSee",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ForeSee/Core/ForeSeeUtilities.framework/ForeSeeUtilities",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ForeSee/Core/IngestionLogger.framework/IngestionLogger",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ForeSee/ForeSeeFeedback/ForeSeeFeedback.framework/ForeSeeFeedback",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -6282,10 +6288,10 @@
 				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 				"${BUILT_PRODUCTS_DIR}/zxcvbn-ios/zxcvbn_ios.framework",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ForeSee/ForeSee.framework/ForeSee",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ForeSeeUtilities/ForeSeeUtilities.framework/ForeSeeUtilities",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/IngestionLogger/IngestionLogger.framework/IngestionLogger",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ForeSeeFeedback/ForeSeeFeedback.framework/ForeSeeFeedback",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ForeSee/Core/ForeSee.framework/ForeSee",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ForeSee/Core/ForeSeeUtilities.framework/ForeSeeUtilities",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ForeSee/Core/IngestionLogger.framework/IngestionLogger",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ForeSee/ForeSeeFeedback/ForeSeeFeedback.framework/ForeSeeFeedback",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -6364,10 +6370,10 @@
 				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 				"${BUILT_PRODUCTS_DIR}/zxcvbn-ios/zxcvbn_ios.framework",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ForeSee/ForeSee.framework/ForeSee",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ForeSeeUtilities/ForeSeeUtilities.framework/ForeSeeUtilities",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/IngestionLogger/IngestionLogger.framework/IngestionLogger",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ForeSeeFeedback/ForeSeeFeedback.framework/ForeSeeFeedback",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ForeSee/Core/ForeSee.framework/ForeSee",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ForeSee/Core/ForeSeeUtilities.framework/ForeSeeUtilities",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ForeSee/Core/IngestionLogger.framework/IngestionLogger",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ForeSee/ForeSeeFeedback/ForeSeeFeedback.framework/ForeSeeFeedback",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -6724,6 +6730,7 @@
 				82AC2A161FAB5C3900EACB3B /* PeakRewardsViewController.swift in Sources */,
 				C3087AD424B67CBF005AE544 /* AccountNicknameRequest.swift in Sources */,
 				215A1B73270AE9DA003A4EE9 /* StreetAddressRequest.swift in Sources */,
+				21FFBD232722D35D002F5009 /* ReviewMoveServiceViewModel.swift in Sources */,
 				675F4CF624AB828200A828F9 /* GenericResponse.swift in Sources */,
 				67893AE424DB3743000143D6 /* AlertLanguageRequest.swift in Sources */,
 				B094A35820D99FC600E81303 /* HomeEditRestoreDefaultCell.swift in Sources */,
@@ -6842,6 +6849,7 @@
 				82E22B671F9FCECE001F1A1B /* Top5EnergyTipsViewModel.swift in Sources */,
 				9CDB5E782399AE1300976BB2 /* GiftInventory.swift in Sources */,
 				675F4CD824AB828200A828F9 /* VoidDecodable.swift in Sources */,
+				21FFBD222722D35D002F5009 /* ReviewMoveServiceViewController.swift in Sources */,
 				E8C453151EF3293600F5C781 /* ToastView.swift in Sources */,
 				824A96691FB5F3480026FA4B /* AdjustThermostatViewModel.swift in Sources */,
 				4A12C2722706D42A007FFEA6 /* ScheduleMoveServiceViewModel.swift in Sources */,
