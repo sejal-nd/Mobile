@@ -114,7 +114,9 @@ class FinalMailingAddressViewController: KeyboardAvoidingStickyFooterViewControl
         
         self.navigationItem.hidesBackButton = true
         let backButtonIconName = isLaunchedFromReviewScreen ? "ic_close" : "ic_back"
+        let backButtonAccesibilityLabelText = isLaunchedFromReviewScreen ? "Close" : "Back"
         let newBackButton = UIBarButtonItem(image: UIImage(named: backButtonIconName), style: UIBarButtonItem.Style.plain, target: self, action: #selector(FinalMailingAddressViewController.back(sender:)))
+        newBackButton.accessibilityLabel = backButtonAccesibilityLabelText
         self.navigationItem.leftBarButtonItem = newBackButton
     }
     

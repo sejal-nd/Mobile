@@ -26,7 +26,6 @@ class ReviewStopServiceViewController: UIViewController {
     @IBOutlet weak var stopServiceDateLabel: UILabel!
     @IBOutlet weak var finalMailingAddress: UILabel!
     
-    @IBOutlet weak var supplierAgreementButton: UIButton!
     @IBOutlet weak var changeMailingAddressButton: UIButton!
     @IBOutlet weak var changeStopServiceDateButton: UIButton!
     @IBOutlet weak var submitButton: PrimaryButton!
@@ -36,13 +35,14 @@ class ReviewStopServiceViewController: UIViewController {
     @IBOutlet weak var stopServiceDateStaticLabel: UILabel!
     @IBOutlet weak var serviceDisconnectStaticLabel: UILabel!
     @IBOutlet weak var finalBillAddressStaticLabel: UILabel!
+    @IBOutlet weak var supplierAgreementCheckbox: Checkbox!
 
 
     var stopFlowData: StopServiceFlowData!
     var viewModel = ReviewStopServiceViewModel()
     var disposeBag = DisposeBag()
     var delegate: FinalMailingAddressDelegate? = nil
-
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -60,6 +60,7 @@ class ReviewStopServiceViewController: UIViewController {
         
         self.navigationItem.hidesBackButton = true
         let newBackButton = UIBarButtonItem(image: UIImage(named: "ic_back"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(ReviewStopServiceViewController.back(sender:)))
+        newBackButton.accessibilityLabel = "Back"
         self.navigationItem.leftBarButtonItem = newBackButton
         
         stopServiceAddressStaticLabel.font = SystemFont.regular.of(textStyle: .footnote)
@@ -72,15 +73,9 @@ class ReviewStopServiceViewController: UIViewController {
 
         submitButton.roundCorners(.allCorners, radius: 27.5, borderColor: UIColor(red: 216.0/255.0, green: 216.0/255.0, blue: 216.0/255.0, alpha: 1.0), borderWidth: 1.0)
 
-        supplierAgreementButton.rx.tap
-            .subscribe(onNext: { [weak self] _ in
-                guard let `self` = self else { return }
-                self.supplierAgreementButton.isSelected = !self.supplierAgreementButton.isSelected
-                self.submitButton.isUserInteractionEnabled = self.supplierAgreementButton.isSelected
-                self.submitButton.backgroundColor = self.supplierAgreementButton.isSelected ? UIColor(red: 0, green: 89.0/255.0, blue: 164.0/255.0, alpha: 1.0) : UIColor(red: 216.0/255.0, green: 216.0/255.0, blue: 216.0/255.0, alpha: 1.0)
-                self.submitButton.setTitleColor(self.supplierAgreementButton.isSelected ? UIColor.white : UIColor(red: 74.0/255.0, green: 74.0/255.0, blue: 74.0/255.0, alpha: 0.5), for: .normal)
-
-            }).disposed(by: disposeBag)
+        supplierAgreementCheckbox.rx.isChecked
+            .filter { _ in return self.stopFlowData.currentAccountDetail.hasThirdPartySupplier}
+            .bind(to: submitButton.rx.isEnabled).disposed(by: disposeBag)
         
         changeMailingAddressButton.rx.tap
             .subscribe(onNext: { [weak self] _ in
@@ -162,9 +157,7 @@ class ReviewStopServiceViewController: UIViewController {
         self.ebillUserInfoLabel.text = "Your final bill will be delivered by email to \(stopFlowData.currentAccountDetail.customerInfo.emailAddress ?? "")."
         self.supplierAgreementStackView.isHidden = !stopFlowData.currentAccountDetail.hasThirdPartySupplier
 
-        self.submitButton.isUserInteractionEnabled = !stopFlowData.currentAccountDetail.hasThirdPartySupplier
-        self.submitButton.backgroundColor = !stopFlowData.currentAccountDetail.hasThirdPartySupplier ? UIColor(red: 0, green: 89.0/255.0, blue: 164.0/255.0, alpha: 1.0) : UIColor(red: 216.0/255.0, green: 216.0/255.0, blue: 216.0/255.0, alpha: 1.0)
-        self.submitButton.setTitleColor(!stopFlowData.currentAccountDetail.hasThirdPartySupplier ? UIColor.white : UIColor(red: 74.0/255.0, green: 74.0/255.0, blue: 74.0/255.0, alpha: 0.5), for: .normal)
+        self.submitButton.isEnabled = !stopFlowData.currentAccountDetail.hasThirdPartySupplier
         
         if stopFlowData.hasCurrentServiceAddressForBill {
             self.finalMailingAddress.text = "Same as current service address"

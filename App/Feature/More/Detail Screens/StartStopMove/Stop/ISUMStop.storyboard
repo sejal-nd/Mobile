@@ -30,7 +30,7 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uvM-78-VQn" customClass="PrimaryButton" customModule="EUMobile" customModuleProvider="target">
                                         <rect key="frame" x="28" y="15" width="358" height="55"/>
-                                        <accessibility key="accessibilityConfiguration" label="Begin"/>
+                                        <accessibility key="accessibilityConfiguration" label="Begin Stop Request"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="pjb-Ug-yzJ"/>
                                             <constraint firstAttribute="height" constant="55" id="s6B-Sj-opg"/>
@@ -68,6 +68,7 @@
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UIw-fd-XbU">
                                         <rect key="frame" x="10" y="196.5" width="354" height="20.5"/>
+                                        <accessibility key="accessibilityConfiguration" label="Estimated Time 4 to 7 minutes"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -181,10 +182,10 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="689"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DIC-Bq-LZw">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="947"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1105.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Ruj-Rn-1OH">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="947"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="1105.5"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="xPJ-lx-2YT">
                                                         <rect key="frame" x="0.0" y="0.0" width="414" height="215"/>
@@ -209,6 +210,7 @@
                                                                     </label>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="99h-3s-hSJ">
                                                                         <rect key="frame" x="355" y="84" width="40" height="40"/>
+                                                                        <accessibility key="accessibilityConfiguration" label="Change Account"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="40" id="9W6-NW-n1y"/>
                                                                             <constraint firstAttribute="width" constant="40" id="PAr-7V-1FL"/>
@@ -295,30 +297,31 @@
                                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="465" id="T8H-CE-tjL"/>
                                                         </constraints>
                                                     </stackView>
-                                                    <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="bZI-rW-hVG">
-                                                        <rect key="frame" x="0.0" y="215" width="414" height="120"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="bZI-rW-hVG">
+                                                        <rect key="frame" x="0.0" y="215" width="414" height="158.5"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xcl-aD-SiW" userLabel="Calendar View">
-                                                                <rect key="frame" x="0.0" y="0.0" width="414" height="120"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="414" height="158.5"/>
                                                                 <subviews>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="iCV-M2-ZH0">
-                                                                        <rect key="frame" x="19" y="30" width="206.5" height="0.0"/>
+                                                                        <rect key="frame" x="19" y="30" width="206.5" height="24"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose your stop date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PME-xf-x2N">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="172.5" height="0.0"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="172.5" height="24"/>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                                 <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GSL-8g-Fme">
-                                                                                <rect key="frame" x="182.5" y="0.0" width="24" height="0.0"/>
+                                                                                <rect key="frame" x="182.5" y="0.0" width="24" height="24"/>
+                                                                                <accessibility key="accessibilityConfiguration" label="Tooltip"/>
                                                                                 <color key="tintColor" red="0.0" green="0.34901960780000002" blue="0.64313725489999995" alpha="1" colorSpace="calibratedRGB"/>
                                                                                 <state key="normal" image="ic_tooltip-new"/>
                                                                             </button>
                                                                         </subviews>
                                                                     </stackView>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Sv-kD-FC0">
-                                                                        <rect key="frame" x="19" y="40" width="376" height="55"/>
+                                                                        <rect key="frame" x="19" y="64" width="376" height="55"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stop Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A5E-Pu-tdl">
                                                                                 <rect key="frame" x="16" y="17.5" width="76" height="20.5"/>
@@ -330,16 +333,16 @@
                                                                                 <rect key="frame" x="348" y="21" width="8" height="13"/>
                                                                             </imageView>
                                                                             <stackView hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="2h5-cV-mqK">
-                                                                                <rect key="frame" x="16" y="8.5" width="91.5" height="38"/>
+                                                                                <rect key="frame" x="16" y="8.5" width="54" height="38"/>
                                                                                 <subviews>
-                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Stop Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L7E-tU-MNF">
-                                                                                        <rect key="frame" x="0.0" y="0.0" width="91.5" height="13.5"/>
+                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stop Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L7E-tU-MNF">
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="54" height="13.5"/>
                                                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="11"/>
                                                                                         <color key="textColor" red="0.45098039220000002" green="0.45098039220000002" blue="0.45098039220000002" alpha="1" colorSpace="calibratedRGB"/>
                                                                                         <nil key="highlightedColor"/>
                                                                                     </label>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xfV-t3-fI4">
-                                                                                        <rect key="frame" x="0.0" y="18.5" width="91.5" height="19.5"/>
+                                                                                        <rect key="frame" x="0.0" y="18.5" width="54" height="19.5"/>
                                                                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                                                         <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
                                                                                         <nil key="highlightedColor"/>
@@ -366,7 +369,7 @@
                                                                         </constraints>
                                                                     </view>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Service may be disconnected as early as 8:00 a.m." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3JT-0k-cwb">
-                                                                        <rect key="frame" x="19" y="100" width="376" height="0.0"/>
+                                                                        <rect key="frame" x="19" y="124" width="376" height="14.5"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                         <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
@@ -391,7 +394,7 @@
                                                         </constraints>
                                                     </stackView>
                                                     <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="uHS-bE-1gi">
-                                                        <rect key="frame" x="0.0" y="215" width="414" height="60"/>
+                                                        <rect key="frame" x="0.0" y="373.5" width="414" height="60"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ILI-cj-mJi">
                                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
@@ -427,7 +430,7 @@
                                                         </constraints>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ol4-VO-RBR">
-                                                        <rect key="frame" x="0.0" y="215" width="414" height="362.5"/>
+                                                        <rect key="frame" x="0.0" y="373.5" width="414" height="362.5"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="siX-lV-qPQ" customClass="PendingDisconnectView" customModule="EUMobile" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="362.5"/>
@@ -440,13 +443,13 @@
                                                                         </constraints>
                                                                     </imageView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your service will be disconnected on " textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GZY-nU-m7i">
-                                                                        <rect key="frame" x="30" y="109" width="354" height="27.5"/>
+                                                                        <rect key="frame" x="30" y="109" width="354" height="23.5"/>
                                                                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="20"/>
                                                                         <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="DqI-ht-Dh6">
-                                                                        <rect key="frame" x="30" y="156.5" width="354" height="206"/>
+                                                                        <rect key="frame" x="30" y="152.5" width="354" height="210"/>
                                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                         <string key="text">If you didn’t make this request or if you want to make any changes, please call our Customer Care Center at 1-800-685-0123 Monday through Friday from 7 a.m to 7 p.m. for help and more information.</string>
                                                                         <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
@@ -482,7 +485,7 @@
                                                         </constraints>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="FAm-u7-3pV">
-                                                        <rect key="frame" x="0.0" y="577.5" width="414" height="369.5"/>
+                                                        <rect key="frame" x="0.0" y="736" width="414" height="369.5"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a5v-Ht-LsX" customClass="FinaledView" customModule="EUMobile" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="369.5"/>
@@ -495,14 +498,14 @@
                                                                         </constraints>
                                                                     </imageView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The account you selected is inactive." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="69l-xS-cL9">
-                                                                        <rect key="frame" x="30" y="109" width="354" height="27.5"/>
+                                                                        <rect key="frame" x="30" y="109" width="354" height="23.5"/>
                                                                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="20"/>
                                                                         <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                         <size key="shadowOffset" width="0.0" height="0.0"/>
                                                                     </label>
                                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="bHF-pD-sfu">
-                                                                        <rect key="frame" x="30" y="156.5" width="354" height="213"/>
+                                                                        <rect key="frame" x="30" y="152.5" width="354" height="217"/>
                                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                                         <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
@@ -588,6 +591,7 @@
                                     <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fma-3o-yln">
                                         <rect key="frame" x="20" y="15" width="374" height="55"/>
                                         <color key="backgroundColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
+                                        <accessibility key="accessibilityConfiguration" label="Continue Stop request"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="465" id="9fl-2C-NBK"/>
                                             <constraint firstAttribute="height" constant="55" id="k3z-xq-0pl"/>
@@ -696,12 +700,16 @@
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UbE-g0-7NQ">
                                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="55"/>
+                                                                <accessibility key="accessibilityConfiguration" label="State, required"/>
                                                                 <connections>
                                                                     <action selector="stateButtonTapped:" destination="9fH-DP-RJW" eventType="touchUpInside" id="NO8-hb-Ls1"/>
                                                                 </connections>
                                                             </button>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="State*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h6q-A9-Nzi">
                                                                 <rect key="frame" x="16" y="17.5" width="48" height="20.5"/>
+                                                                <accessibility key="accessibilityConfiguration">
+                                                                    <bool key="isElement" value="NO"/>
+                                                                </accessibility>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
@@ -714,6 +722,7 @@
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="State*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fuh-tE-2a9">
                                                                         <rect key="frame" x="0.0" y="0.0" width="34.5" height="13.5"/>
+                                                                        <accessibility key="accessibilityConfiguration" label="Selected State"/>
                                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="11"/>
                                                                         <color key="textColor" red="0.45098039220000002" green="0.45098039220000002" blue="0.45098039220000002" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
@@ -839,10 +848,10 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="733"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fSc-IQ-Z7y">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="971.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="2758"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="ZqJ-1H-XUS">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="971.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="2758"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="e76-kT-7LF">
                                                         <rect key="frame" x="0.0" y="0.0" width="414" height="147"/>
@@ -942,6 +951,7 @@
                                                                     </label>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3jh-Ou-msF">
                                                                         <rect key="frame" x="355" y="46.5" width="40" height="40"/>
+                                                                        <accessibility key="accessibilityConfiguration" label="Edit Stop Date"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="40" id="KCa-se-lvK"/>
                                                                             <constraint firstAttribute="height" constant="40" id="kTy-DC-LYE"/>
@@ -1026,6 +1036,7 @@
                                                                     </stackView>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lzy-Og-XVI">
                                                                         <rect key="frame" x="355" y="51.5" width="40" height="40"/>
+                                                                        <accessibility key="accessibilityConfiguration" label="Edit mailing address for final bill"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="40" id="Ogh-gM-mhe"/>
                                                                             <constraint firstAttribute="height" constant="40" id="m76-c7-WTH"/>
@@ -1091,10 +1102,10 @@
                                                         </constraints>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="HOU-Wx-NCD">
-                                                        <rect key="frame" x="0.0" y="588.5" width="414" height="328"/>
+                                                        <rect key="frame" x="0.0" y="588.5" width="414" height="2114.5"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c3G-z5-oR5" userLabel="Stop Date">
-                                                                <rect key="frame" x="0.0" y="0.0" width="414" height="328"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="414" height="2114.5"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zna-KJ-vhd">
                                                                         <rect key="frame" x="19" y="0.0" width="376" height="1"/>
@@ -1107,38 +1118,40 @@
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="xdY-9c-zG7">
-                                                                        <rect key="frame" x="19" y="31" width="376" height="296.5"/>
+                                                                        <rect key="frame" x="19" y="31" width="376" height="2083"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Terminate My Supplier Agreement" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NIS-If-kgq">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="376" height="19.5"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="376" height="1703"/>
                                                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                                                                 <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sdc-uz-fW2">
-                                                                                <rect key="frame" x="0.0" y="41.5" width="376" height="183"/>
+                                                                                <rect key="frame" x="0.0" y="1725" width="376" height="183"/>
                                                                                 <string key="text">Our records indicate that you are currently enrolled with a supplier other than BGE. Completing your disconnect at this address will close your current BGE account, and your supplier contract will terminate as well. BGE recommends you contact your supplier (their phone # is listed under their name in the ‘Supply’ section of your bill) regarding any fees associated with closing your account.</string>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                                 <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="AUf-WL-vt3">
-                                                                                <rect key="frame" x="0.0" y="246.5" width="376" height="50"/>
+                                                                                <rect key="frame" x="0.0" y="1930" width="376" height="153"/>
                                                                                 <subviews>
                                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G1i-vy-Kdw">
-                                                                                        <rect key="frame" x="0.0" y="0.0" width="376" height="50"/>
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="376" height="153"/>
                                                                                         <subviews>
-                                                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3JQ-qp-Ri0">
-                                                                                                <rect key="frame" x="0.0" y="5" width="40" height="40"/>
+                                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6jx-Cy-n0A" customClass="Checkbox" customModule="EUMobile" customModuleProvider="target">
+                                                                                                <rect key="frame" x="0.0" y="56.5" width="40" height="40"/>
+                                                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                                                 <constraints>
-                                                                                                    <constraint firstAttribute="width" constant="40" id="6jx-TC-fRy"/>
-                                                                                                    <constraint firstAttribute="height" constant="40" id="txt-PN-nfc"/>
+                                                                                                    <constraint firstAttribute="width" constant="40" id="j4q-kM-L63"/>
+                                                                                                    <constraint firstAttribute="height" constant="40" id="kmY-yi-Axm"/>
                                                                                                 </constraints>
-                                                                                                <state key="normal" image="ic_checkbox_deselected"/>
-                                                                                                <state key="selected" image="ic_checkbox_selected"/>
-                                                                                            </button>
+                                                                                                <connections>
+                                                                                                    <action selector="supplierAgreementSwitchToggled:" destination="ZB4-yL-yt6" eventType="valueChanged" id="mB2-Jl-UNe"/>
+                                                                                                </connections>
+                                                                                            </view>
                                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I understand that my supplier agreement will stop." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YWX-hu-cdc">
-                                                                                                <rect key="frame" x="50" y="0.0" width="326" height="50"/>
+                                                                                                <rect key="frame" x="50" y="0.0" width="326" height="153"/>
                                                                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                                                                 <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
                                                                                                 <nil key="highlightedColor"/>
@@ -1146,12 +1159,13 @@
                                                                                         </subviews>
                                                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                                         <constraints>
-                                                                                            <constraint firstItem="3JQ-qp-Ri0" firstAttribute="centerY" secondItem="YWX-hu-cdc" secondAttribute="centerY" id="3EL-Ai-Waa"/>
                                                                                             <constraint firstAttribute="bottom" secondItem="YWX-hu-cdc" secondAttribute="bottom" id="5ff-N3-fOo"/>
-                                                                                            <constraint firstItem="3JQ-qp-Ri0" firstAttribute="leading" secondItem="G1i-vy-Kdw" secondAttribute="leading" id="7eD-07-Qnj"/>
+                                                                                            <constraint firstItem="YWX-hu-cdc" firstAttribute="centerY" secondItem="G1i-vy-Kdw" secondAttribute="centerY" id="8jg-gg-2Zp"/>
                                                                                             <constraint firstAttribute="trailing" secondItem="YWX-hu-cdc" secondAttribute="trailing" id="Lg9-h7-Wze"/>
+                                                                                            <constraint firstItem="YWX-hu-cdc" firstAttribute="leading" secondItem="6jx-Cy-n0A" secondAttribute="trailing" constant="10" id="P0E-mg-0eE"/>
                                                                                             <constraint firstItem="YWX-hu-cdc" firstAttribute="top" secondItem="G1i-vy-Kdw" secondAttribute="top" id="eck-pv-4J1"/>
-                                                                                            <constraint firstItem="YWX-hu-cdc" firstAttribute="leading" secondItem="3JQ-qp-Ri0" secondAttribute="trailing" constant="10" id="zkz-0L-iTl"/>
+                                                                                            <constraint firstItem="6jx-Cy-n0A" firstAttribute="leading" secondItem="G1i-vy-Kdw" secondAttribute="leading" id="f7B-J3-ljc"/>
+                                                                                            <constraint firstItem="6jx-Cy-n0A" firstAttribute="centerY" secondItem="YWX-hu-cdc" secondAttribute="centerY" id="jMm-oG-sIt"/>
                                                                                         </constraints>
                                                                                     </view>
                                                                                 </subviews>
@@ -1182,7 +1196,7 @@
                                                         </constraints>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="BvR-A9-xPS">
-                                                        <rect key="frame" x="0.0" y="941.5" width="414" height="30"/>
+                                                        <rect key="frame" x="0.0" y="2728" width="414" height="30"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2wL-V0-bKy" userLabel="Stop Date">
                                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="30"/>
@@ -1249,6 +1263,7 @@
                                     <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Hh-Z4-RIq" customClass="PrimaryButton" customModule="EUMobile" customModuleProvider="target">
                                         <rect key="frame" x="20" y="15" width="374" height="55"/>
                                         <color key="backgroundColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
+                                        <accessibility key="accessibilityConfiguration" label="Submit stop request"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="465" id="KFu-ME-zyq"/>
                                             <constraint firstAttribute="height" constant="55" id="MCT-ck-tvb"/>
@@ -1306,7 +1321,7 @@
                         <outlet property="stopServiceDateLabel" destination="qW6-iO-MwD" id="zXo-tp-KeL"/>
                         <outlet property="stopServiceDateStaticLabel" destination="Zoc-6u-bXH" id="9Z0-9h-QTa"/>
                         <outlet property="submitButton" destination="3Hh-Z4-RIq" id="ypq-2R-yGL"/>
-                        <outlet property="supplierAgreementButton" destination="3JQ-qp-Ri0" id="Jm9-OH-hsS"/>
+                        <outlet property="supplierAgreementCheckbox" destination="6jx-Cy-n0A" id="DqH-9h-S8q"/>
                         <outlet property="supplierAgreementStackView" destination="HOU-Wx-NCD" id="yKG-mg-pKJ"/>
                     </connections>
                 </viewController>
@@ -1338,10 +1353,13 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="200.5"/>
                                                                 <subviews>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_confirmation" translatesAutoresizingMaskIntoConstraints="NO" id="Z9q-be-P70">
-                                                                        <rect key="frame" x="159" y="16" width="96" height="100"/>
+                                                                        <rect key="frame" x="159" y="16" width="96" height="131"/>
+                                                                        <accessibility key="accessibilityConfiguration" label="Success">
+                                                                            <bool key="isElement" value="YES"/>
+                                                                        </accessibility>
                                                                     </imageView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thank you for being a BGE customer!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wEh-81-Noa">
-                                                                        <rect key="frame" x="30" y="136" width="354" height="54.5"/>
+                                                                        <rect key="frame" x="30" y="167" width="354" height="23.5"/>
                                                                         <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="20"/>
                                                                         <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
@@ -1371,28 +1389,28 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="322"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You submitted a Stop Service request for:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GEY-ma-Pev">
-                                                                        <rect key="frame" x="19" y="0.0" width="376" height="20.5"/>
+                                                                        <rect key="frame" x="19" y="0.0" width="376" height="37"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w4Z-sp-Mdi">
-                                                                        <rect key="frame" x="19" y="30.5" width="376" height="291.5"/>
+                                                                        <rect key="frame" x="19" y="47" width="376" height="275"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stop Service Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pZ7-Fb-YfS">
-                                                                                <rect key="frame" x="20" y="20" width="336" height="32.5"/>
+                                                                                <rect key="frame" x="20" y="20" width="336" height="16"/>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                                 <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="November 19, 2021, 8:00 a.m." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7s8-Iy-UWQ">
-                                                                                <rect key="frame" x="20" y="57.5" width="336" height="18"/>
+                                                                                <rect key="frame" x="20" y="41" width="336" height="18"/>
                                                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                                                                 <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lGe-L9-N5v">
-                                                                                <rect key="frame" x="20" y="95.5" width="336" height="1"/>
+                                                                                <rect key="frame" x="20" y="79" width="336" height="1"/>
                                                                                 <color key="backgroundColor" red="0.82352941176470584" green="0.82352941176470584" blue="0.82352941176470584" alpha="1" colorSpace="calibratedRGB"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="height" constant="1" id="Wp2-Qs-dg9"/>
@@ -1402,13 +1420,13 @@
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stop Service Address" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aGV-Kw-7QA">
-                                                                                <rect key="frame" x="20" y="116.5" width="336" height="16"/>
+                                                                                <rect key="frame" x="20" y="100" width="336" height="16"/>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                                 <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="123 Anywhere Street, Apt. 123 – B Baltimore, MD 21215" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZWc-2K-syN">
-                                                                                <rect key="frame" x="20" y="137.5" width="150" height="54"/>
+                                                                                <rect key="frame" x="20" y="121" width="150" height="54"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="width" constant="150" id="z3a-od-mJm"/>
                                                                                 </constraints>
@@ -1417,7 +1435,7 @@
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4pQ-gw-8dP">
-                                                                                <rect key="frame" x="20" y="211.5" width="336" height="1"/>
+                                                                                <rect key="frame" x="20" y="195" width="336" height="1"/>
                                                                                 <color key="backgroundColor" red="0.82352941176470584" green="0.82352941176470584" blue="0.82352941176470584" alpha="1" colorSpace="calibratedRGB"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="height" constant="1" id="NAg-dI-R5l"/>
@@ -1427,13 +1445,13 @@
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We will deliver your final bill to" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dgp-iT-pJf">
-                                                                                <rect key="frame" x="20" y="232.5" width="336" height="16"/>
+                                                                                <rect key="frame" x="20" y="216" width="336" height="16"/>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                                 <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The service address above" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fJs-PI-oga">
-                                                                                <rect key="frame" x="20" y="253.5" width="336" height="18"/>
+                                                                                <rect key="frame" x="20" y="237" width="336" height="18"/>
                                                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                                                                 <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
                                                                                 <nil key="highlightedColor"/>
@@ -1645,15 +1663,18 @@
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_bigerror" translatesAutoresizingMaskIntoConstraints="NO" id="DXz-ID-Yrt">
                                                 <rect key="frame" x="127" y="0.0" width="120" height="120"/>
                                                 <color key="tintColor" systemColor="systemRedColor"/>
+                                                <accessibility key="accessibilityConfiguration" label="Alert">
+                                                    <bool key="isElement" value="YES"/>
+                                                </accessibility>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We were unable to process your request." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6o2-tc-iKj">
-                                                <rect key="frame" x="30" y="140" width="314" height="54.5"/>
+                                                <rect key="frame" x="30" y="140" width="314" height="47"/>
                                                 <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="20"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" text="Please call our Customer Care Center at 1-800-685-0123 Monday-Friday from 7 a.m. to 7 p.m. for more information." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="YaD-Up-5dt">
-                                                <rect key="frame" x="40" y="214.5" width="294" height="233.5"/>
+                                                <rect key="frame" x="40" y="207" width="294" height="241"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <color key="textColor" systemColor="labelColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -1704,8 +1725,6 @@
         <image name="ic_alert" width="36" height="36"/>
         <image name="ic_bigerror" width="120" height="120"/>
         <image name="ic_caret" width="8" height="13"/>
-        <image name="ic_checkbox_deselected" width="24" height="24"/>
-        <image name="ic_checkbox_selected" width="24" height="24"/>
         <image name="ic_edit" width="20" height="20"/>
         <image name="ic_isum_electric" width="24" height="24"/>
         <image name="ic_isum_gas" width="24" height="24"/>
