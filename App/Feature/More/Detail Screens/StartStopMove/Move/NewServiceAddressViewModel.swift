@@ -14,6 +14,7 @@ class NewServiceAddressViewModel{
     var zipCode: String?
     var streetAddress: String?
     var premiseID: String?
+    var suiteNumber: String?
 
     var disposeBag = DisposeBag()
     private let isLoading = BehaviorRelay(value: false)
@@ -72,13 +73,13 @@ class NewServiceAddressViewModel{
             if result.error != nil {
                 if self.isLoading.value {
                     self.isLoading.accept(false)
-               }
+                }
             }
             if let validatedZipCodeResponse = result.element {
                 self.validatedZipCodeResponse.accept(validatedZipCodeResponse)
                 if self.isLoading.value {
                     self.isLoading.accept(false)
-               }
+                }
             }
 
         }).disposed(by: disposeBag)
@@ -86,27 +87,39 @@ class NewServiceAddressViewModel{
 
         fetchAppartment.toAsyncRequest { [weak self] _ -> Observable<[AppartmentResponse]> in
             guard let `self` = self else { return Observable.empty() }
+            if !self.isLoading.value {
+                self.isLoading.accept(true)
+            }
             return MoveService.rx.fetchAppartment(address: self.streetAddress!, zipcode: self.zipCode!)
         }.subscribe(onNext: { [weak self] result in
             guard let `self` = self else {return }
+            if self.isLoading.value {
+                self.isLoading.accept(false)
+            }
             if let appartmentResp = result.element {
                 self.appartmentResponse.accept(appartmentResp)
+                self.moveServiceFlowData.appartment_List = appartmentResp
             }
         }).disposed(by: disposeBag)
 
         getAddressLookup.toAsyncRequest { [weak self] _ -> Observable<[AddressLookupResponse]> in
             guard let `self` = self else { return Observable.empty() }
+            if !self.isLoading.value {
+                self.isLoading.accept(true)
+            }
             return MoveService.rx.lookupAddress(address: self.streetAddress!, zipcode: self.zipCode!, premiseID:self.premiseID!)
         }.subscribe(onNext: { [weak self] result in
             guard let `self` = self else {return }
-            
+            if self.isLoading.value {
+                self.isLoading.accept(false)
+            }
             guard let addressLookupResponse = result.element else {return }
             self.addressLookupResponse.accept(addressLookupResponse)
 
         }).disposed(by: disposeBag)
     }
     public func getAppartmentIDs() -> [AppartmentResponse]? {
-         let premise_id = appartmentResponse.value
+        let premise_id = appartmentResponse.value
 
         return premise_id;
     }
@@ -122,7 +135,39 @@ class NewServiceAddressViewModel{
     }
     func refreshSession(){
         streetAddress = ""
-        premiseID = ""
+        premiseID = nil
+        suiteNumber = nil
         validatedZipCodeResponse.accept(nil)
+
+    }
+
+    func setAddressData(movepDataFlow: MoveServiceFlowData) {
+
+        if let addressResponse_lookUp = movepDataFlow.addressLookupResponse, let addresss = addressResponse_lookUp.first {
+            self.addressLookupResponse.accept(movepDataFlow.addressLookupResponse)
+
+            self.zipCode = addresss.zipCode
+            self.premiseID = addresss.premiseID
+        }
+        if let suiteNumber = movepDataFlow.selected_appartment?.suiteNumber,let premiseID =   movepDataFlow.selected_appartment?.premiseID{
+            self.premiseID = premiseID
+            self.suiteNumber = suiteNumber
+        }
+        if let str_Add = movepDataFlow.selected_StreetAddress{
+            self.streetAddress = str_Add
+        }
+        if let apprt_list = moveServiceFlowData.appartment_List {
+            appartmentResponse.accept(apprt_list)
+        }
+    }
+
+    func setStreetAddress(_ address:String){
+        self.streetAddress = address
+        self.moveServiceFlowData.selected_StreetAddress =  self.streetAddress
+    }
+    func setAppartment(_ appartment:AppartmentResponse?){
+        self.premiseID = appartment?.premiseID
+        self.suiteNumber = appartment?.suiteNumber
+        self.moveServiceFlowData.selected_appartment = appartment
     }
 }

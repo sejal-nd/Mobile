@@ -32,7 +32,7 @@ class MoveStartServiceViewController: UIViewController {
     @IBOutlet weak var startDateStaticLabel: UILabel!
     @IBOutlet weak var startDateLargeStaticLabel: UILabel!
     @IBOutlet weak var serviceStartStaticLabel: UILabel!
-    
+
     var viewModel: MoveStartServiceViewModel!
     
     @IBOutlet weak var continueButton: PrimaryButton!
@@ -66,12 +66,14 @@ class MoveStartServiceViewController: UIViewController {
         }
         electricStackView.isHidden = !(viewModel.moveServiceFlow.currentAccountDetail.serviceType?.contains("ELECTRIC") ?? false)
         gasStackView.isHidden = !(viewModel.moveServiceFlow.currentAccountDetail.serviceType?.contains("GAS") ?? false)
+
     }
     
     private func refreshUI(startDate: Date) {
         viewModel.moveServiceFlow.startServiceDate = startDate
         selectedDateLabel.text = DateFormatter.mmDdYyyyFormatter.string(from: startDate)
         continueButton.isEnabled = true
+        continueButton.isUserInteractionEnabled = true
         self.dateStackView.isHidden = false
         self.startDateLargeStaticLabel.isHidden = true
 
@@ -106,10 +108,17 @@ class MoveStartServiceViewController: UIViewController {
                                                       message: "You must select an effective date within 30 days from the day you submit your request, excluding holidays and Sundays.")
         present(alertViewController, animated: true)
     }
-    
+
+
     @IBAction func onContinueClicked(_ sender: Any) {
-        
         viewModel.moveServiceFlow.isOwner = renterOwnerSegmentControl.selectedIndex.value == 0
+
+
+        let storyboard = UIStoryboard(name: "ISUMMove", bundle: nil)
+        let reviewStopServiceViewController = storyboard.instantiateViewController(withIdentifier: "ReviewMoveServiceViewController") as! ReviewMoveServiceViewController
+        reviewStopServiceViewController.moveFlowData = viewModel.moveServiceFlow
+        self.navigationController?.pushViewController(reviewStopServiceViewController, animated: true)
+
     }
 }
 

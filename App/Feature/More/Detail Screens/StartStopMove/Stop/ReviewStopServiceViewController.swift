@@ -156,6 +156,7 @@ class ReviewStopServiceViewController: UIViewController {
             self.currentServiceAddressLabel.text = stopFlowData.currentAccount.address ?? ""
         }
         self.stopServiceDateLabel.text = DateFormatter.fullMonthDayAndYearFormatter.string(from: stopFlowData.selectedDate)
+
         self.finalBillAddressStackView.isHidden = stopFlowData.currentAccountDetail.isEBillEnrollment
         self.ebillStackView.isHidden = !stopFlowData.currentAccountDetail.isEBillEnrollment
         self.ebillUserInfoLabel.text = "Your final bill will be delivered by email to \(stopFlowData.currentAccountDetail.customerInfo.emailAddress ?? "")."

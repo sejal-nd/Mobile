@@ -9,7 +9,9 @@
 import UIKit
 import RxCocoa
 import RxSwift
-
+protocol NewServiceAddressDelegate: AnyObject {
+    func didSelectNewServiceAddress(_ flowData: MoveServiceFlowData)
+}
 class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewController {
     @IBOutlet weak var zipTextField: FloatLabelTextField!
     @IBOutlet weak var continueButton: PrimaryButton!
@@ -31,15 +33,18 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
 
     var disposeBag = DisposeBag()
     var viewModel: NewServiceAddressViewModel!
-    
+
+    var isLaunchedFromReviewScreen: Bool = false
+    var delegate: NewServiceAddressDelegate? = nil
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.backBarButtonItem?.title = ""
         // Do any additional setup after loading the view.
-
         navigationBackButton()
         configureTextField()
         setupUIBinding()
+        refreshData()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -48,11 +53,17 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
     }
     private func navigationBackButton() {
            self.navigationItem.hidesBackButton = true
-           let newBackButton = UIBarButtonItem(image: UIImage(named: "ic_back"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(NewServiceAddressViewController.back(sender:)))
+        let backButtonIconName = isLaunchedFromReviewScreen ? "ic_close" : "ic_back"
+
+           let newBackButton = UIBarButtonItem(image: UIImage(named: backButtonIconName), style: UIBarButtonItem.Style.plain, target: self, action: #selector(NewServiceAddressViewController.back(sender:)))
            self.navigationItem.leftBarButtonItem = newBackButton
        }
        @objc func back(sender: UIBarButtonItem) {
-           self.navigationController?.popViewController(animated: true)
+           if isLaunchedFromReviewScreen {
+               self.dismiss(animated: true, completion: nil)
+           } else {
+               self.navigationController?.popViewController(animated: true)
+           }
        }
 
     private func setupUIBinding(){
@@ -78,28 +89,26 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
                 if self.viewModel.isZipValidated && self.viewModel.isStreetAddressValid{
-                    self.enableAppartmentColorState(self.viewModel.isStreetAddressValid)
-
                     if let appartment_list = self.viewModel.getAppartmentIDs(), appartment_list.count == 1 {
+                        self.viewModel.setAppartment(appartment_list.first)
                         if let suiteNumber = appartment_list.first?.suiteNumber,let premiseID =  appartment_list.first?.premiseID{
                             self.viewModel.premiseID = premiseID
+                            self.viewModel.suiteNumber = suiteNumber
                             self.setAppartment(suiteNumber)
                             self.enableAppartmentColorState(false)
                             self.viewModel.validateAddress()
                         } else if let premiseID =  appartment_list.first?.premiseID{
                             self.viewModel.premiseID = premiseID
+                            self.setAppartment(nil)
                             self.enableAppartmentColorState(false)
                             self.viewModel.validateAddress()
-                        } else if let premiseID =  appartment_list.first?.premiseID{
-                            self.viewModel.premiseID = premiseID
-                            self.viewModel.validateAddress()
-                        }else {
-
+                        } else {
+                            self.setAppartment(nil)
                         }
                     }else {
                         self.setAppartmentError("Apt/Unit #* is required.")
                     }
-                    self.continueButton.isEnabled = self.viewModel.canEnableContinue
+                   // self.continueButton.isEnabled = self.viewModel.canEnableContinue
                 }
             })
             .disposed(by: disposeBag)
@@ -113,32 +122,26 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
                     if !meterInfo.isResidential {
                         self.noteLabel.isHidden = false
                     }
-                    self.continueButton.isEnabled = self.viewModel.canEnableContinue
                 }
+                self.continueButton.isEnabled = self.viewModel.canEnableContinue
             })
             .disposed(by: disposeBag)
 
 
-
-        viewModel.addressLookUpResponseEvent
-            .subscribe(onNext: { [weak self] result in
-                guard let `self` = self else {return }
-                if let address_response = result {
-                   print("address_response:: \(address_response)")
-
-                }
-            })
-            .disposed(by: disposeBag)
-        
         continueButton.rx.tap
             .subscribe(onNext: { [weak self] _ in
                 guard let `self` = self, let addressLookupResponse = self.viewModel.addressLookupResponse.value else { return }
-                                
-                let storyboard = UIStoryboard(name: "ISUMMove", bundle: nil)
-                let moveStartServiceViewController = storyboard.instantiateViewController(withIdentifier: "MoveStartServiceViewController") as! MoveStartServiceViewController
-                self.viewModel.moveServiceFlowData.addressLookupResponse = addressLookupResponse
-                moveStartServiceViewController.viewModel = MoveStartServiceViewModel(moveServiceFlow: self.viewModel.moveServiceFlowData)
-                self.navigationController?.pushViewController(moveStartServiceViewController, animated: true)
+                if self.isLaunchedFromReviewScreen {
+                    self.viewModel.moveServiceFlowData.addressLookupResponse = addressLookupResponse
+                    self.delegate?.didSelectNewServiceAddress(self.viewModel.moveServiceFlowData)
+                    self.dismiss(animated: true, completion: nil)
+                } else {
+                    let storyboard = UIStoryboard(name: "ISUMMove", bundle: nil)
+                    let moveStartServiceViewController = storyboard.instantiateViewController(withIdentifier: "MoveStartServiceViewController") as! MoveStartServiceViewController
+                    self.viewModel.moveServiceFlowData.addressLookupResponse = addressLookupResponse
+                    moveStartServiceViewController.viewModel = MoveStartServiceViewModel(moveServiceFlow: self.viewModel.moveServiceFlowData)
+                    self.navigationController?.pushViewController(moveStartServiceViewController, animated: true)
+                }
             }).disposed(by: disposeBag)
 
     }
@@ -177,6 +180,25 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
         noteLabel.text = NSLocalizedString("Please note: The address you entered is a commercial address and you’ll be subject to commercial rates. ", comment: "")
         noteLabel.textColor = .deepGray
 
+    }
+    func refreshData() {
+        viewModel.setAddressData(movepDataFlow: viewModel.moveServiceFlowData)
+
+        zipTextField.textField.text = viewModel.zipCode
+        setStreetAddress(viewModel?.streetAddress)
+        setAppartment(viewModel?.suiteNumber)
+        setAppartmentError(nil)
+        enableAppartmentColorState(false)
+        if isLaunchedFromReviewScreen {
+            continueButton.setTitle(NSLocalizedString("Save Address", comment: ""), for: .normal)
+            viewModel.validatedZipCodeResponse.accept(ValidatedZipCodeResponse(isValidZipCode: true))
+            enableStreetColorState(viewModel.isZipValidated)
+            enableAppartmentColorState(viewModel.isStreetAddressValid)
+        } else {
+            continueButton.setTitle(NSLocalizedString("Continue", comment: ""), for: .normal)
+        }
+
+        continueButton.isEnabled = false
     }
     private func enableStreetColorState(_ isEnabled : Bool) {
         if (isEnabled){
@@ -288,6 +310,7 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
         noteLabel.isHidden = true;
         continueButton.isEnabled = viewModel.canEnableContinue
     }
+
 }
 extension NewServiceAddressViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
@@ -322,11 +345,14 @@ extension NewServiceAddressViewController: UITextFieldDelegate {
                     let  char = string.cString(using: String.Encoding.utf8)!
                     let isBackSpace = strcmp(char, "\\b")
                     if isBackSpace == -92 {
-                        return true
+                        viewModel.zipCode = decimalString
+                        if length > 1 && length < 3 && viewModel.isStreetAddressValid {
+                            clearPreviousSession()
+                        }
                     }else {
                         zipTextField.setError(NSLocalizedString("Only numbers allowed", comment: ""))
+                        return false
                     }
-                    return false
                 }
             }
         }
@@ -345,16 +371,15 @@ extension NewServiceAddressViewController: AddressSearchDelegate {
     func didSelectAppartment(result: AppartmentResponse) {
         if let suiteNumber = result.suiteNumber,let premiseID =  result.premiseID{
             setAppartmentError(nil)
-            viewModel.premiseID = premiseID
+            viewModel.setAppartment(result)
             setAppartment(suiteNumber)
             viewModel.validateAddress()
         }
-
     }
 
     func didSelectStreetAddress(result: String) {
         if !result.isEmpty {
-            viewModel.streetAddress = result
+            viewModel.setStreetAddress(result)
             setStreetAddress(result)
             viewModel.fetchAppartmentDetails()
         }
