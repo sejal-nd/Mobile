@@ -206,6 +206,7 @@
 		4AA4EAD6271497D300B35F4D /* MoveStartServiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA4EAD5271497D300B35F4D /* MoveStartServiceViewModel.swift */; };
 		4AA4EAD82714A9B800B35F4D /* MoveServiceFlowData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA4EAD72714A9B800B35F4D /* MoveServiceFlowData.swift */; };
 		4AA4EAD92714A9B800B35F4D /* MoveServiceFlowData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA4EAD72714A9B800B35F4D /* MoveServiceFlowData.swift */; };
+		4AC1E084272731F800740A37 /* IdVerificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC1E083272731F700740A37 /* IdVerificationViewModel.swift */; };
 		4AD0C77E26FCAE9E009DB068 /* USState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD0C77D26FCAE9E009DB068 /* USState.swift */; };
 		4AD0C77F26FCAE9E009DB068 /* USState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD0C77D26FCAE9E009DB068 /* USState.swift */; };
 		4ADD29EB2718012A00FA7B00 /* MoveFinaledView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADD29EA2718012A00FA7B00 /* MoveFinaledView.swift */; };
@@ -1443,6 +1444,7 @@
 		4AA4EAD3271497C100B35F4D /* MoveStartServiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveStartServiceViewController.swift; sourceTree = "<group>"; };
 		4AA4EAD5271497D300B35F4D /* MoveStartServiceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveStartServiceViewModel.swift; sourceTree = "<group>"; };
 		4AA4EAD72714A9B800B35F4D /* MoveServiceFlowData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveServiceFlowData.swift; sourceTree = "<group>"; };
+		4AC1E083272731F700740A37 /* IdVerificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdVerificationViewModel.swift; sourceTree = "<group>"; };
 		4AD0C77D26FCAE9E009DB068 /* USState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USState.swift; sourceTree = "<group>"; };
 		4ADD29EA2718012A00FA7B00 /* MoveFinaledView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveFinaledView.swift; sourceTree = "<group>"; };
 		4ADD29EE2718018300FA7B00 /* MovePendingDisconnectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovePendingDisconnectView.swift; sourceTree = "<group>"; };
@@ -3007,6 +3009,7 @@
 				21FFBD202722D35C002F5009 /* ReviewMoveServiceViewController.swift */,
 				21FFBD212722D35C002F5009 /* ReviewMoveServiceViewModel.swift */,
 				04AE2B7D27214BC600C6374D /* IdVerificationViewController.swift */,
+				4AC1E083272731F700740A37 /* IdVerificationViewModel.swift */,
 			);
 			path = Move;
 			sourceTree = "<group>";
@@ -6988,6 +6991,7 @@
 				359BDB4022D50F97007002B0 /* StickyFooterView.swift in Sources */,
 				30DD88332549703B007C320D /* iTronSmartThermostatViewModel.swift in Sources */,
 				675F4BBE24AB828100A828F9 /* HomeProfileUpdateRequest.swift in Sources */,
+				4AC1E084272731F800740A37 /* IdVerificationViewModel.swift in Sources */,
 				675F4C8424AB828100A828F9 /* MeterPingResult.swift in Sources */,
 				35A6C6FE2121D9D600C2A58F /* MoreViewModel.swift in Sources */,
 				54B31A701EE0B8670002E657 /* RegistrationBGEAccountNumberViewController.swift in Sources */,

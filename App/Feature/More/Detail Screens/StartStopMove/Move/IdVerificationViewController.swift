@@ -8,7 +8,7 @@
 
 import UIKit
 
-class IdVerificationViewController: UIViewController, UITextFieldDelegate {
+class IdVerificationViewController: UIViewController {
     
     @IBOutlet weak var ssnTextField: FloatLabelTextField!
     @IBOutlet weak var driverLicenseTextField: FloatLabelTextField!
@@ -16,18 +16,16 @@ class IdVerificationViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var employmentStatusLabel: UILabel!
     @IBOutlet weak var employmentStatusView: UIView!
     @IBOutlet weak var employmentStatusStackView: UIStackView!
-    @IBOutlet weak var dobView: UIView!
-    @IBOutlet weak var dobStackView: UIStackView!
-    @IBOutlet weak var dobHintLabel: UILabel!
-    @IBOutlet weak var dobLabel: UILabel!
-    
+    @IBOutlet weak var dobTextField: FloatLabelTextField!
+    @IBOutlet weak var continueButton: PrimaryButton!
+
     private var datePicker: UIDatePicker!
     private var blurEffectView: UIVisualEffectView!
     private var datePickerConstraints: NSLayoutConstraint!
     
+    var viewModel: IdVerificationViewModel!
+    
     private var hideSSNText:Bool = true
-    var moveDataFlow: MoveServiceFlowData!
-    var identityVerification = IdentityVerification()
     var dateAlert: UIAlertController!
 
     override func viewDidLoad() {
@@ -37,6 +35,11 @@ class IdVerificationViewController: UIViewController, UITextFieldDelegate {
     }
     
     private func configureTextFields(){
+        
+        self.navigationItem.hidesBackButton = true
+        let newBackButton = UIBarButtonItem(image: UIImage(named: "ic_back"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(IdVerificationViewController.back(sender:)))
+        self.navigationItem.leftBarButtonItem = newBackButton
+        
         ssnTextField.placeholder = NSLocalizedString("SSN/Business Tax ID", comment: "")
         ssnTextField.textField.isSecureTextEntry = true
         ssnTextField.textField.delegate = self
@@ -45,63 +48,43 @@ class IdVerificationViewController: UIViewController, UITextFieldDelegate {
         driverLicenseTextField.placeholder = NSLocalizedString("Driver's License/State ID", comment: "")
         driverLicenseTextField.textField.delegate = self
         driverLicenseTextField.textField.keyboardType = .namePhonePad
-        
+
         employmentStatusView.roundCorners(.allCorners, radius: 10.0, borderColor:.accentGray, borderWidth: 1.0)
         employmentStatusStackView.isHidden = true
-        dobView.roundCorners(.allCorners, radius: 10.0, borderColor:.accentGray, borderWidth: 1.0)
-        dobStackView.isHidden = true
+
+        dobTextField.placeholder = NSLocalizedString("Date of Birth*", comment: "")
     }
     
-    @objc func ssnDonePressed() {
-        ssnTextField.textField.resignFirstResponder()
-    }
-    
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        switch textField {
-        case ssnTextField.textField:
-            //            let isNumber = CharacterSet.decimalDigits.isSuperset(of: CharacterSet(charactersIn: string))
-            let isValidTextCount = ssnTextField.textField.text?.count < 9
-            let char = string.cString(using: String.Encoding.utf8)!
-            let isBackSpace = strcmp(char, "\\b")
-            if isBackSpace == -92 {
-                return true
-            }
-            return isValidTextCount
-        case driverLicenseTextField.textField:
-            let regex = try! NSRegularExpression(pattern: ".*[^A-Za-z0-9].*", options: [])
-            let isValidTextCount = driverLicenseTextField.textField.text?.count < 15
-            let char = string.cString(using: String.Encoding.utf8)!
-            let isBackSpace = strcmp(char, "\\b")
-            if isBackSpace == -92 {
-                return true
-            }
-            if regex.firstMatch(in: string, options: [], range: NSMakeRange(0, string.count)) != nil {
-                return false
-            }
-            return isValidTextCount
-        default:
-            return false
-        }
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        if textField == ssnTextField.textField {
-            ssnTextField.textField.becomeFirstResponder()
-            validateSSN()
-        }
-        //        continueButton.isEnabled = viewModel.canEnableContinue
-    }
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        if textField == ssnTextField.textField {
-            ssnTextField.setError(nil)
-        }
+    @objc func back(sender: UIBarButtonItem) {
+        self.navigationController?.popViewController(animated: true)
     }
     
     private func validateSSN() {
-        if (ssnTextField.textField.text?.count > 0 && ssnTextField.textField.text?.count <= 9 ){
-            ssnTextField.setError("Error: Social Security Number or Tax ID must be 9 digits")
+        
+        if let ssn = ssnTextField.textField.text, !viewModel.isValidSSN(ssn: ssn){
+            ssnTextField.setError("Social Security Number or Tax ID must be 9 digits")
+        } else {
+            ssnTextField.setError(nil)
         }
+        viewModel.identityVerification.SSNNumber = ssnTextField.textField.text
+        self.continueButton.isEnabled = viewModel.validation()
+    }
+    
+    func showDatePicker() {
+        
+        let datePicker = UIDatePicker()
+        datePicker.date = viewModel.identityVerification.dateOfBirth ?? Date()
+        datePicker.datePickerMode = .date
+        datePicker.locale = .current
+        datePicker.preferredDatePickerStyle = .inline
+        datePicker.addTarget(self, action: #selector(IdVerificationViewController.handleDateSelection(sender:)), for: .valueChanged)
+
+        dateAlert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        dateAlert.view.addSubview(datePicker)
+        datePicker.center = CGPoint(x: dateAlert.view.center.x, y: 180)
+        dateAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        dateAlert.view.heightAnchor.constraint(equalToConstant: 400).isActive = true
+        self.present(dateAlert, animated: true, completion: nil)
     }
     
     @IBAction func onToolTipClicked(_ sender: Any) {
@@ -123,55 +106,78 @@ class IdVerificationViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func onEmploymentStatusClicked(_ sender: Any){
+        
+        self.ssnTextField.textField.resignFirstResponder()
+        self.driverLicenseTextField.textField.resignFirstResponder()
         PickerView.showStringPicker(
             withTitle: "Select Employment Status", data: ["Employed more than 3 years", "Employed less than 3 years", "Retired", "Receives Assistance", "Other"], selectedIndex: 0,
             onDone: { [weak self] value, index in
                 self?.employmentStatusLabel.text = value
                 self?.employmentStatusStackView.isHidden = false
                 self?.employmentStatusHintLabel.isHidden = true
+                self?.viewModel.identityVerification.employmentStatus = value
+                self?.continueButton.isEnabled = self?.viewModel.validation() ?? false
             },
             onCancel: nil)
-    }
-    
-    @IBAction func showDatePicker() {
-        
-        let datePicker = UIDatePicker()
-        datePicker.date = identityVerification.dateOfBirth ?? Date()
-        datePicker.datePickerMode = .date
-        datePicker.locale = .current
-        datePicker.preferredDatePickerStyle = .inline
-        datePicker.addTarget(self, action: #selector(IdVerificationViewController.handleDateSelection(sender:)), for: .valueChanged)
-
-        dateAlert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        dateAlert.view.addSubview(datePicker)
-        datePicker.center = CGPoint(x: dateAlert.view.center.x, y: 180)
-        dateAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        dateAlert.view.heightAnchor.constraint(equalToConstant: 400).isActive = true
-        self.present(dateAlert, animated: true, completion: nil)
     }
     
     @objc func handleDateSelection(sender: UIDatePicker) {
         
         dateAlert.dismiss(animated: true, completion: nil)
-        identityVerification.dateOfBirth = sender.date
-        self.dobLabel.text = DateFormatter.mmDdYyyyFormatter.string(from: sender.date)
-        self.dobStackView.isHidden = false
-        self.dobHintLabel.isHidden = true
+        viewModel.identityVerification.dateOfBirth = sender.date
+        self.dobTextField.textField.text = DateFormatter.mmDdYyyyFormatter.string(from: sender.date)
+        
+        if viewModel.validateAge(selectedDate: sender.date) {
+            dobTextField.setError(nil)
+            self.viewModel.identityVerification.dateOfBirth = sender.date
+        } else {
+            self.viewModel.identityVerification.dateOfBirth = nil
+            dobTextField.setError("Applicants must be 18 or older in order to request and maintain a BGE account.")
+        }
+        self.continueButton.isEnabled = viewModel.validation()
     }
     
-    private func validateAge(selectedDate: Date) -> Bool {
-        let minAge = Calendar.current.date(byAdding: .year, value: -18, to: Date())!
-        if (selectedDate > minAge){
-            return true
-        } else{
-            return false
-        }
+    @IBAction func onDOBClicked(_ sender: Any) {
+        
+        self.ssnTextField.textField.resignFirstResponder()
+        self.driverLicenseTextField.textField.resignFirstResponder()
+        showDatePicker()
     }
     
     @IBAction func onContinueClicked(_ sender: Any) {
         let storyboard = UIStoryboard(name: "ISUMMove", bundle: nil)
         let reviewStopServiceViewController = storyboard.instantiateViewController(withIdentifier: "ReviewMoveServiceViewController") as! ReviewMoveServiceViewController
-        reviewStopServiceViewController.moveFlowData = moveDataFlow
+        viewModel.moveDataFlow.identityVerification = viewModel.identityVerification
+        reviewStopServiceViewController.moveFlowData = viewModel.moveDataFlow
         self.navigationController?.pushViewController(reviewStopServiceViewController, animated: true)
+    }
+}
+
+extension IdVerificationViewController: UITextFieldDelegate {
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        switch textField {
+        case ssnTextField.textField:
+            return viewModel.isValidSSN(ssn: ssnTextField.textField.text ?? "", inputString: string)
+        case driverLicenseTextField.textField:
+            return viewModel.isValidDrivingLicense(drivingLicense: driverLicenseTextField.textField.text ?? "", inputString: string)
+        default:
+            return false
+        }
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField == ssnTextField.textField {
+            validateSSN()
+        }
+        if textField == driverLicenseTextField.textField {
+            self.viewModel.identityVerification.driverLicenseNumber = driverLicenseTextField.textField.text
+        }
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == ssnTextField.textField {
+            ssnTextField.setError(nil)
+        }
     }
 }

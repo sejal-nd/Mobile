@@ -45,11 +45,20 @@ class MoveStartServiceViewController: UIViewController {
     
     func initialUISetup() {
         
+        self.navigationItem.hidesBackButton = true
+        let newBackButton = UIBarButtonItem(image: UIImage(named: "ic_back"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(MoveStartServiceViewController.back(sender:)))
+        self.navigationItem.leftBarButtonItem = newBackButton
+        
         renterOwnerSegmentControl.items = [NSLocalizedString("Owner", comment: ""), NSLocalizedString("Renter", comment: "")]
         startDateSelectionView.roundCorners(.allCorners, radius: 10.0, borderColor: UIColor(red: 216.0/255.0, green: 216.0/255.0, blue: 216.0/255.0, alpha: 1.0), borderWidth: 1.0)
         fontStyling()
         dataBinding()
     }
+    
+    @objc func back(sender: UIBarButtonItem) {
+        self.navigationController?.popViewController(animated: true)
+    }
+
     
     private func fontStyling() {
         
@@ -114,7 +123,7 @@ class MoveStartServiceViewController: UIViewController {
         viewModel.moveServiceFlow.isOwner = renterOwnerSegmentControl.selectedIndex.value == 0
         let storyboard = UIStoryboard(name: "ISUMMove", bundle: nil)
         let idVerificationViewController = storyboard.instantiateViewController(withIdentifier: "IdVerificationViewController") as! IdVerificationViewController
-        idVerificationViewController.moveDataFlow = viewModel.moveServiceFlow
+        idVerificationViewController.viewModel = IdVerificationViewModel(moveDataFlow: viewModel.moveServiceFlow)
         self.navigationController?.pushViewController(idVerificationViewController, animated: true)
     }
 }

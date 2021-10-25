@@ -2080,26 +2080,26 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="777"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6nI-hR-0os" userLabel="Content View">
-                                        <rect key="frame" x="20" y="0.0" width="374" height="933"/>
+                                        <rect key="frame" x="20" y="0.0" width="374" height="1037.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="Ypv-XU-JEg">
-                                                <rect key="frame" x="0.0" y="30" width="374" height="573"/>
+                                                <rect key="frame" x="0.0" y="30" width="374" height="677.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vta-HT-3V2">
                                                         <rect key="frame" x="0.0" y="0.0" width="374" height="61"/>
                                                         <string key="text">We will use this information to verify your identity and run a soft credit check to confirm that your credit is in good standing.</string>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <nil key="textColor"/>
+                                                        <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Providing your SSN or Tax ID is the quickest way to process your request." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VUV-oF-qzi">
-                                                        <rect key="frame" x="0.0" y="91" width="374" height="41"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <nil key="textColor"/>
+                                                        <rect key="frame" x="0.0" y="91" width="374" height="36"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                        <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="EX6-4m-bab">
-                                                        <rect key="frame" x="0.0" y="162" width="374" height="116"/>
+                                                        <rect key="frame" x="0.0" y="157" width="374" height="116"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FLw-iS-bGZ">
                                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="116"/>
@@ -2109,8 +2109,9 @@
                                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                     </view>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nI2-oy-cLa">
-                                                                        <rect key="frame" x="319" y="0.0" width="55" height="116"/>
+                                                                        <rect key="frame" x="319" y="0.0" width="55" height="55"/>
                                                                         <constraints>
+                                                                            <constraint firstAttribute="height" constant="55" id="DGo-bs-KNr"/>
                                                                             <constraint firstAttribute="width" constant="55" id="o8u-VU-zfe"/>
                                                                         </constraints>
                                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -2128,13 +2129,12 @@
                                                                     <constraint firstItem="nI2-oy-cLa" firstAttribute="trailing" secondItem="K3B-Xw-5KW" secondAttribute="trailing" id="X9l-J6-AGU"/>
                                                                     <constraint firstAttribute="bottom" secondItem="K3B-Xw-5KW" secondAttribute="bottom" id="gLF-KT-whR"/>
                                                                     <constraint firstItem="nI2-oy-cLa" firstAttribute="top" secondItem="K3B-Xw-5KW" secondAttribute="top" id="j28-tD-zAs"/>
-                                                                    <constraint firstItem="nI2-oy-cLa" firstAttribute="bottom" secondItem="K3B-Xw-5KW" secondAttribute="bottom" id="su5-04-aam"/>
                                                                 </constraints>
                                                             </view>
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="N2N-Z4-2AO">
-                                                        <rect key="frame" x="0.0" y="308" width="374" height="95"/>
+                                                        <rect key="frame" x="0.0" y="303" width="374" height="95"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ysy-OO-Ixu">
                                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="95"/>
@@ -2169,7 +2169,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W8s-zl-F46" userLabel="Employment Status Picker Label View">
-                                                        <rect key="frame" x="0.0" y="433" width="374" height="55"/>
+                                                        <rect key="frame" x="0.0" y="428" width="374" height="55"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4ET-Dg-bLB">
                                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="55"/>
@@ -2218,56 +2218,38 @@
                                                             <constraint firstItem="cHO-9E-9ez" firstAttribute="centerY" secondItem="W8s-zl-F46" secondAttribute="centerY" id="zr8-st-7bM"/>
                                                         </constraints>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vp6-om-3yf" userLabel="Date of Birth Picker Label View">
-                                                        <rect key="frame" x="0.0" y="518" width="374" height="55"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="CBJ-vi-jrz">
+                                                        <rect key="frame" x="0.0" y="513" width="374" height="164.5"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tft-7I-dzo">
-                                                                <rect key="frame" x="0.0" y="0.0" width="374" height="55"/>
-                                                                <connections>
-                                                                    <action selector="showDatePicker" destination="kPL-5m-1VQ" eventType="touchUpInside" id="bNM-y7-6rk"/>
-                                                                </connections>
-                                                            </button>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date of Birth*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ivh-e3-8lg">
-                                                                <rect key="frame" x="16" y="17.5" width="104" height="20.5"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                <color key="textColor" red="0.45098039215686275" green="0.45098039215686275" blue="0.45098039215686275" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_caret" translatesAutoresizingMaskIntoConstraints="NO" id="oLK-f0-7Qf">
-                                                                <rect key="frame" x="346" y="21" width="8" height="13"/>
-                                                            </imageView>
-                                                            <stackView hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="1Ww-uA-ogB">
-                                                                <rect key="frame" x="16" y="8.5" width="75" height="38"/>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="16Z-iF-rL0">
+                                                                <rect key="frame" x="0.0" y="0.0" width="374" height="164.5"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date of Birth*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1uy-RT-4NF">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="75" height="13.5"/>
-                                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="11"/>
-                                                                        <color key="textColor" red="0.45098039220000002" green="0.45098039220000002" blue="0.45098039220000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SOc-0v-9yw">
-                                                                        <rect key="frame" x="0.0" y="18.5" width="75" height="19.5"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                                        <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
+                                                                    <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HfG-Ok-YfI" userLabel="DOB" customClass="FloatLabelTextField" customModule="EUMobile" customModuleProvider="target">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="374" height="164.5"/>
+                                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                    </view>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bx8-e6-an8">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="374" height="164.5"/>
+                                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                                        <connections>
+                                                                            <action selector="onDOBClicked:" destination="kPL-5m-1VQ" eventType="touchUpInside" id="CQ4-eq-XiS"/>
+                                                                        </connections>
+                                                                    </button>
                                                                 </subviews>
-                                                            </stackView>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                <constraints>
+                                                                    <constraint firstItem="HfG-Ok-YfI" firstAttribute="leading" secondItem="16Z-iF-rL0" secondAttribute="leading" id="ImW-Sf-tkn"/>
+                                                                    <constraint firstItem="bx8-e6-an8" firstAttribute="width" secondItem="HfG-Ok-YfI" secondAttribute="width" id="QMR-FB-goI"/>
+                                                                    <constraint firstItem="bx8-e6-an8" firstAttribute="centerX" secondItem="HfG-Ok-YfI" secondAttribute="centerX" id="UXs-oh-Eeb"/>
+                                                                    <constraint firstItem="bx8-e6-an8" firstAttribute="height" secondItem="HfG-Ok-YfI" secondAttribute="height" id="Wln-po-jWD"/>
+                                                                    <constraint firstItem="bx8-e6-an8" firstAttribute="centerY" secondItem="HfG-Ok-YfI" secondAttribute="centerY" id="XYM-ZZ-rtt"/>
+                                                                    <constraint firstItem="HfG-Ok-YfI" firstAttribute="top" secondItem="16Z-iF-rL0" secondAttribute="top" id="YrP-eY-NpK"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="HfG-Ok-YfI" secondAttribute="bottom" id="gOh-fd-uym"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="HfG-Ok-YfI" secondAttribute="trailing" id="wKQ-3k-NVi"/>
+                                                                </constraints>
+                                                            </view>
                                                         </subviews>
-                                                        <constraints>
-                                                            <constraint firstItem="Ivh-e3-8lg" firstAttribute="centerY" secondItem="vp6-om-3yf" secondAttribute="centerY" id="5eK-je-siu"/>
-                                                            <constraint firstItem="1Ww-uA-ogB" firstAttribute="leading" secondItem="vp6-om-3yf" secondAttribute="leading" constant="16" id="QC9-aX-mPZ"/>
-                                                            <constraint firstItem="tft-7I-dzo" firstAttribute="leading" secondItem="vp6-om-3yf" secondAttribute="leading" id="Xq9-l5-m4f"/>
-                                                            <constraint firstAttribute="height" constant="55" id="YjC-7g-JDQ"/>
-                                                            <constraint firstAttribute="bottom" secondItem="tft-7I-dzo" secondAttribute="bottom" id="ZdT-d3-M05"/>
-                                                            <constraint firstItem="tft-7I-dzo" firstAttribute="top" secondItem="vp6-om-3yf" secondAttribute="top" id="byL-eT-3iZ"/>
-                                                            <constraint firstItem="oLK-f0-7Qf" firstAttribute="centerY" secondItem="vp6-om-3yf" secondAttribute="centerY" id="eja-aL-6O2"/>
-                                                            <constraint firstAttribute="trailing" secondItem="oLK-f0-7Qf" secondAttribute="trailing" constant="20" id="j0w-Ux-Svg"/>
-                                                            <constraint firstItem="Ivh-e3-8lg" firstAttribute="leading" secondItem="vp6-om-3yf" secondAttribute="leading" constant="16" id="pEL-8E-8n2"/>
-                                                            <constraint firstItem="1Ww-uA-ogB" firstAttribute="centerY" secondItem="vp6-om-3yf" secondAttribute="centerY" id="plz-kU-3Y8"/>
-                                                            <constraint firstAttribute="trailing" secondItem="tft-7I-dzo" secondAttribute="trailing" id="zfw-bE-fS7"/>
-                                                        </constraints>
-                                                    </view>
+                                                    </stackView>
                                                 </subviews>
                                             </stackView>
                                         </subviews>
@@ -2293,7 +2275,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xpJ-q3-R9k" customClass="StickyFooterView" customModule="EUMobile" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="777" width="414" height="119"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4nk-DG-C9z" customClass="PrimaryButton" customModule="EUMobile" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4nk-DG-C9z" customClass="PrimaryButton" customModule="EUMobile" customModuleProvider="target">
                                         <rect key="frame" x="28" y="15" width="358" height="55"/>
                                         <accessibility key="accessibilityConfiguration" label="Continue"/>
                                         <constraints>
@@ -2333,10 +2315,8 @@
                     <navigationItem key="navigationItem" title="Identity Verification" id="bvm-a1-6NU" userLabel="Identity Verification"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
-                        <outlet property="dobHintLabel" destination="Ivh-e3-8lg" id="g2d-5j-GwW"/>
-                        <outlet property="dobLabel" destination="SOc-0v-9yw" id="4iZ-lr-RPY"/>
-                        <outlet property="dobStackView" destination="1Ww-uA-ogB" id="LI4-lD-p3a"/>
-                        <outlet property="dobView" destination="vp6-om-3yf" id="AHP-tA-ihL"/>
+                        <outlet property="continueButton" destination="4nk-DG-C9z" id="CX8-uk-7ZB"/>
+                        <outlet property="dobTextField" destination="HfG-Ok-YfI" id="z7T-Hp-zsa"/>
                         <outlet property="driverLicenseTextField" destination="1DS-Cd-jKb" id="hZD-XR-5jh"/>
                         <outlet property="employmentStatusHintLabel" destination="cHO-9E-9ez" id="VrF-7d-mnT"/>
                         <outlet property="employmentStatusLabel" destination="wJW-s6-hnY" id="B3v-5A-9km"/>
