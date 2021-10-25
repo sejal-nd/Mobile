@@ -82,6 +82,26 @@ class IdVerificationViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField == ssnTextField.textField {
+            ssnTextField.textField.becomeFirstResponder()
+            validateSSN()
+        }
+        //        continueButton.isEnabled = viewModel.canEnableContinue
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == ssnTextField.textField {
+            ssnTextField.setError(nil)
+        }
+    }
+    
+    private func validateSSN() {
+        if (ssnTextField.textField.text?.count > 0 && ssnTextField.textField.text?.count <= 9 ){
+            ssnTextField.setError("Error: Social Security Number or Tax ID must be 9 digits")
+        }
+    }
+    
     @IBAction func onToolTipClicked(_ sender: Any) {
         
         let alertViewController = InfoAlertController(title: NSLocalizedString("Verifying Your Identity", comment: ""),
@@ -119,6 +139,15 @@ class IdVerificationViewController: UIViewController, UITextFieldDelegate {
         self.present(datePickerViewController, animated: true, completion: nil)
     }
     
+    private func validateAge(selectedDate: Date) -> Bool {
+        let minAge = Calendar.current.date(byAdding: .year, value: -18, to: Date())!
+        if (selectedDate > minAge){
+            return true
+        } else{
+            return false
+        }
+    }
+    
     @IBAction func onContinueClicked(_ sender: Any) {
         let storyboard = UIStoryboard(name: "ISUMMove", bundle: nil)
         let reviewStopServiceViewController = storyboard.instantiateViewController(withIdentifier: "ReviewMoveServiceViewController") as! ReviewMoveServiceViewController
@@ -132,5 +161,6 @@ extension IdVerificationViewController: DateViewDelegate {
         self.dobLabel.text = DateFormatter.mmDdYyyyFormatter.string(from: date)
         self.dobStackView.isHidden = false
         self.dobHintLabel.isHidden = true
+        self.validateAge(selectedDate: date)
     }
 }
