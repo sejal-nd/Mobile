@@ -112,13 +112,10 @@ class MoveStartServiceViewController: UIViewController {
 
     @IBAction func onContinueClicked(_ sender: Any) {
         viewModel.moveServiceFlow.isOwner = renterOwnerSegmentControl.selectedIndex.value == 0
-
-
         let storyboard = UIStoryboard(name: "ISUMMove", bundle: nil)
-        let reviewStopServiceViewController = storyboard.instantiateViewController(withIdentifier: "ReviewMoveServiceViewController") as! ReviewMoveServiceViewController
-        reviewStopServiceViewController.moveFlowData = viewModel.moveServiceFlow
-        self.navigationController?.pushViewController(reviewStopServiceViewController, animated: true)
-
+        let idVerificationViewController = storyboard.instantiateViewController(withIdentifier: "IdVerificationViewController") as! IdVerificationViewController
+        idVerificationViewController.moveDataFlow = viewModel.moveServiceFlow
+        self.navigationController?.pushViewController(idVerificationViewController, animated: true)
     }
 }
 
