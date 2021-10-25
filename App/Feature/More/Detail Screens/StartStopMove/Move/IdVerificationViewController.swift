@@ -27,7 +27,9 @@ class IdVerificationViewController: UIViewController, UITextFieldDelegate {
     
     private var hideSSNText:Bool = true
     var moveDataFlow: MoveServiceFlowData!
-    
+    var identityVerification = IdentityVerification()
+    var dateAlert: UIAlertController!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -132,11 +134,29 @@ class IdVerificationViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func showDatePicker() {
-        let storyboard = UIStoryboard(name: "ISUMMove", bundle: nil)
-        let datePickerViewController = storyboard.instantiateViewController(withIdentifier: "DatePickerViewController") as! DatePickerViewController
-        datePickerViewController.modalPresentationStyle = .fullScreen
-        datePickerViewController.delegate = self
-        self.present(datePickerViewController, animated: true, completion: nil)
+        
+        let datePicker = UIDatePicker()
+        datePicker.date = identityVerification.dateOfBirth ?? Date()
+        datePicker.datePickerMode = .date
+        datePicker.locale = .current
+        datePicker.preferredDatePickerStyle = .inline
+        datePicker.addTarget(self, action: #selector(IdVerificationViewController.handleDateSelection(sender:)), for: .valueChanged)
+
+        dateAlert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        dateAlert.view.addSubview(datePicker)
+        datePicker.center = CGPoint(x: dateAlert.view.center.x, y: 180)
+        dateAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        dateAlert.view.heightAnchor.constraint(equalToConstant: 400).isActive = true
+        self.present(dateAlert, animated: true, completion: nil)
+    }
+    
+    @objc func handleDateSelection(sender: UIDatePicker) {
+        
+        dateAlert.dismiss(animated: true, completion: nil)
+        identityVerification.dateOfBirth = sender.date
+        self.dobLabel.text = DateFormatter.mmDdYyyyFormatter.string(from: sender.date)
+        self.dobStackView.isHidden = false
+        self.dobHintLabel.isHidden = true
     }
     
     private func validateAge(selectedDate: Date) -> Bool {
@@ -153,14 +173,5 @@ class IdVerificationViewController: UIViewController, UITextFieldDelegate {
         let reviewStopServiceViewController = storyboard.instantiateViewController(withIdentifier: "ReviewMoveServiceViewController") as! ReviewMoveServiceViewController
         reviewStopServiceViewController.moveFlowData = moveDataFlow
         self.navigationController?.pushViewController(reviewStopServiceViewController, animated: true)
-    }
-}
-
-extension IdVerificationViewController: DateViewDelegate {
-    func getSelectedDate(_ date: Date) {
-        self.dobLabel.text = DateFormatter.mmDdYyyyFormatter.string(from: date)
-        self.dobStackView.isHidden = false
-        self.dobHintLabel.isHidden = true
-        self.validateAge(selectedDate: date)
     }
 }

@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		045E71F2270F40DE00589623 /* GeneralSubmitErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045E71F1270F40DE00589623 /* GeneralSubmitErrorViewController.swift */; };
 		04AE2B7E27214BC600C6374D /* IdVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AE2B7D27214BC600C6374D /* IdVerificationViewController.swift */; };
-		04AE2B802726BC3800C6374D /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AE2B7F2726BC3800C6374D /* DatePickerViewController.swift */; };
 		04C329613DB0CC4C6391C318 /* Pods_EUMobile_Watch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 277650B6F85C6AC146C5F8C2 /* Pods_EUMobile_Watch.framework */; };
 		06EF941418076B8505D85358 /* Pods_UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F264461441121FBD4E0113E0 /* Pods_UITests.framework */; };
 		0D79C6C51F1D3360004793DD /* Maintenance.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0D79C6C41F1D3360004793DD /* Maintenance.storyboard */; };
@@ -1141,7 +1140,6 @@
 		043AD4137C4B870D0876711F /* Pods-UITests.peco-beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UITests.peco-beta.xcconfig"; path = "Pods/Target Support Files/Pods-UITests/Pods-UITests.peco-beta.xcconfig"; sourceTree = "<group>"; };
 		045E71F1270F40DE00589623 /* GeneralSubmitErrorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSubmitErrorViewController.swift; sourceTree = "<group>"; };
 		04AE2B7D27214BC600C6374D /* IdVerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdVerificationViewController.swift; sourceTree = "<group>"; };
-		04AE2B7F2726BC3800C6374D /* DatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
 		04DA65D561626DA7E9A0148C /* Pods-EUMobile.production beta-ace.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile.production beta-ace.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile/Pods-EUMobile.production beta-ace.xcconfig"; sourceTree = "<group>"; };
 		0604A049DEC3DC40A87CCCF8 /* Pods-EUMobileUITests.production beta-dpl.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobileUITests.production beta-dpl.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobileUITests/Pods-EUMobileUITests.production beta-dpl.xcconfig"; sourceTree = "<group>"; };
 		077CBE69EDB02D291A47648F /* Pods-EUMobileUnitTests.prodbeta-pepco.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobileUnitTests.prodbeta-pepco.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobileUnitTests/Pods-EUMobileUnitTests.prodbeta-pepco.xcconfig"; sourceTree = "<group>"; };
@@ -3009,7 +3007,6 @@
 				21FFBD202722D35C002F5009 /* ReviewMoveServiceViewController.swift */,
 				21FFBD212722D35C002F5009 /* ReviewMoveServiceViewModel.swift */,
 				04AE2B7D27214BC600C6374D /* IdVerificationViewController.swift */,
-				04AE2B7F2726BC3800C6374D /* DatePickerViewController.swift */,
 			);
 			path = Move;
 			sourceTree = "<group>";
@@ -6904,7 +6901,6 @@
 				282B4F7626E7488200ACD33C /* MoveLandingViewController.swift in Sources */,
 				675F4CC024AB828200A828F9 /* HomeProfile.swift in Sources */,
 				675F4B6424AB828100A828F9 /* AnonymousService.swift in Sources */,
-				04AE2B802726BC3800C6374D /* DatePickerViewController.swift in Sources */,
 				E873DA751EE8699600020D1B /* RadioSelectionTableViewCell.swift in Sources */,
 				E8BCB9BA1EFAE79600779588 /* BGEAutoPayViewModel.swift in Sources */,
 				21E797F92718541C0063CB84 /* StopLandingViewModel.swift in Sources */,
