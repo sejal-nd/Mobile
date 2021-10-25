@@ -30,4 +30,10 @@ enum MoveService {
         let addressLookupRequest = AddressLookupRequest(address: address, zipcode: zipcode, PremiseID: premiseID)
         NetworkingLayer.request(router: .addressLookup(request: addressLookupRequest), completion: completion)
     }
+    
+    static func moveService(moveFlowData: MoveServiceFlowData, completion: @escaping (Result<MoveServiceResponse, NetworkingError>) -> ()) {
+
+        let moveISUMServiceRequest = MoveISUMServiceRequest(moveServiceFlowData: moveFlowData)
+        NetworkingLayer.request(router: .moveISUMService(request: moveISUMServiceRequest) , completion: completion)
+    }
 }

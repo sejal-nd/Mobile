@@ -30,5 +30,4 @@ enum StopService {
         let stopISUMServiceRequest = StopISUMServiceRequest(stopFlowData: stopFlowData)
         NetworkingLayer.request(router: .stopISUMService(request: stopISUMServiceRequest), completion: completion)
     }
-
 }

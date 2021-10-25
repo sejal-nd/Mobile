@@ -54,7 +54,7 @@ class FinalReviewMoveServiceViewController: UIViewController {
     @IBOutlet weak var supplierAgreementButton: UIButton!
     @IBOutlet weak var ebillUserInfoLabel: UILabel!
 
-
+    var viewModel = ReviewMoveServiceViewModel()
 
     @IBOutlet weak var submitBtn: PrimaryButton!
 
@@ -126,8 +126,26 @@ class FinalReviewMoveServiceViewController: UIViewController {
 
         submitBtn.rx.tap
             .subscribe(onNext: { [weak self] _ in
-                // TODO
+                guard let `self` = self else { return }
+                self.navigationController?.view.isUserInteractionEnabled = false
+                LoadingView.show()
+                
+                self.viewModel.moveServiceRequest(moveFlowData: self.moveFlowData) { [weak self] response in
+                    LoadingView.hide()
+                    self?.navigationController?.view.isUserInteractionEnabled = true
 
+                    let storyboard = UIStoryboard(name: "ISUMMove", bundle: nil)
+                    let moveServiceConfirmationViewController = storyboard.instantiateViewController(withIdentifier: "MoveServiceConfirmationViewController") as! MoveServiceConfirmationViewController
+                    moveServiceConfirmationViewController.viewModel = MoveServiceConfirmationViewModel(moveServiceResponse: response)
+                    self?.navigationController?.pushViewController(moveServiceConfirmationViewController, animated: true)
+                } onFailure: { [weak self] _ in
+                    LoadingView.hide()
+                    self?.navigationController?.view.isUserInteractionEnabled = true
+
+                    let storyboard = UIStoryboard(name: "ISUMMove", bundle: nil)
+                    let generalSubmitErrorViewController = storyboard.instantiateViewController(withIdentifier: "MoveGeneralSubmitErrorViewController") as! MoveGeneralSubmitErrorViewController
+                    self?.navigationController?.pushViewController(generalSubmitErrorViewController, animated: true)
+                }
             }).disposed(by: disposeBag)
 
 
