@@ -22,7 +22,7 @@ class MoveLandingViewController: UIViewController {
         didSet {
             estimatedTimeLabel.textColor = .deepGray
             estimatedTimeLabel.font = SystemFont.regular.of(textStyle: .caption1)
-            estimatedTimeLabel.text = NSLocalizedString("EST 12-18 MINUTES", comment: "")
+            estimatedTimeLabel.text = NSLocalizedString("EST. 12-18 MINUTES", comment: "")
         }
     }
     @IBOutlet weak var youMightNeedLabel: UILabel! {
