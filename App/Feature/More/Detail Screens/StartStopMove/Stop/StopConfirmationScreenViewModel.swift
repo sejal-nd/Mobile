@@ -30,9 +30,13 @@ class StopConfirmationScreenViewModel {
             return "The service address above"
         }
         
+        if let isResolved = stopServiceResponse.isResolved, !isResolved || stopServiceResponse.finalBillAddress == nil {
+            return "Same as current service address"
+        }
+        
         if let finalBillingAddress = stopServiceResponse.finalBillAddress, let stopServiceAddress = stopServiceResponse.stopAddress {
             if (finalBillingAddress.streetName.lowercased() == stopServiceAddress.streetName.lowercased() || finalBillingAddress.streetName.lowercased() == stopServiceAddress.streetName.lowercased() || finalBillingAddress.streetName.lowercased() == stopServiceAddress.streetName.lowercased() || finalBillingAddress.streetName.lowercased() == stopServiceAddress.streetName.lowercased()) {
-                return "The service address above"
+                return (stopServiceResponse.isResolved ?? false) ? "The service address above" : "Same as current service address"
             }
         }
 
