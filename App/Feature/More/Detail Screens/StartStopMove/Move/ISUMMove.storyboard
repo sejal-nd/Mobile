@@ -2235,6 +2235,13 @@
                                                                             <action selector="onDOBClicked:" destination="kPL-5m-1VQ" eventType="touchUpInside" id="CQ4-eq-XiS"/>
                                                                         </connections>
                                                                     </button>
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_caret" translatesAutoresizingMaskIntoConstraints="NO" id="J0R-h2-DTh">
+                                                                        <rect key="frame" x="346" y="21" width="8" height="13"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="13" id="2gt-Vw-Efh"/>
+                                                                            <constraint firstAttribute="width" constant="8" id="cB3-Bg-wH4"/>
+                                                                        </constraints>
+                                                                    </imageView>
                                                                 </subviews>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                 <constraints>
@@ -2245,7 +2252,9 @@
                                                                     <constraint firstItem="bx8-e6-an8" firstAttribute="centerY" secondItem="HfG-Ok-YfI" secondAttribute="centerY" id="XYM-ZZ-rtt"/>
                                                                     <constraint firstItem="HfG-Ok-YfI" firstAttribute="top" secondItem="16Z-iF-rL0" secondAttribute="top" id="YrP-eY-NpK"/>
                                                                     <constraint firstAttribute="bottom" secondItem="HfG-Ok-YfI" secondAttribute="bottom" id="gOh-fd-uym"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="J0R-h2-DTh" secondAttribute="trailing" constant="20" id="lf9-pf-EEc"/>
                                                                     <constraint firstAttribute="trailing" secondItem="HfG-Ok-YfI" secondAttribute="trailing" id="wKQ-3k-NVi"/>
+                                                                    <constraint firstItem="J0R-h2-DTh" firstAttribute="top" secondItem="16Z-iF-rL0" secondAttribute="top" constant="21" id="z2V-4a-jpf"/>
                                                                 </constraints>
                                                             </view>
                                                         </subviews>
@@ -2327,7 +2336,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1hQ-Rx-qHD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5183" y="80"/>
+            <point key="canvasLocation" x="5182.608695652174" y="79.6875"/>
         </scene>
     </scenes>
     <resources>
