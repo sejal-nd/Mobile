@@ -313,7 +313,7 @@
                                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GSL-8g-Fme">
                                                                                 <rect key="frame" x="182.5" y="0.0" width="24" height="0.0"/>
                                                                                 <color key="tintColor" red="0.0" green="0.34901960780000002" blue="0.64313725489999995" alpha="1" colorSpace="calibratedRGB"/>
-                                                                                <state key="normal" image="ic_tooltip-new"/>
+                                                                                <state key="normal" image="ic_tooltip"/>
                                                                             </button>
                                                                         </subviews>
                                                                     </stackView>
@@ -1712,7 +1712,7 @@
         <image name="ic_isum_list_date" width="36" height="36"/>
         <image name="ic_isum_stop_large_bge" width="125" height="126"/>
         <image name="ic_switchaccount_blue-change_account" width="30" height="30"/>
-        <image name="ic_tooltip-new" width="24" height="24"/>
+        <image name="ic_tooltip" width="24" height="24"/>
         <image name="img_confirmation" width="96" height="96"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
