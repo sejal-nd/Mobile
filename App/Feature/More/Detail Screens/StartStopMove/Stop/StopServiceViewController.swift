@@ -66,9 +66,9 @@ class StopServiceViewController: UIViewController {
     
     func intialUIBiding() {
         
-        addCloseButton()
         self.navigationItem.hidesBackButton = true
         let newBackButton = UIBarButtonItem(image: UIImage(named: "ic_close"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(StopServiceViewController.back(sender:)))
+        newBackButton.accessibilityLabel = "Close"
         self.navigationItem.leftBarButtonItem = newBackButton
         self.scrollView.isHidden = true
         
