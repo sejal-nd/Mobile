@@ -8,7 +8,7 @@
 
 import UIKit
 
-class IdVerificationViewController: UIViewController {
+class IdVerificationViewController: KeyboardAvoidingStickyFooterViewController {
     
     @IBOutlet weak var ssnTextField: FloatLabelTextField!
     @IBOutlet weak var driverLicenseTextField: FloatLabelTextField!
@@ -44,15 +44,21 @@ class IdVerificationViewController: UIViewController {
         ssnTextField.textField.isSecureTextEntry = true
         ssnTextField.textField.delegate = self
         ssnTextField.textField.keyboardType = .numberPad
-        
+        ssnTextField.setKeyboardType(.numberPad, doneActionTarget: self, doneActionSelector: #selector(ssnDonePressed))
+
         driverLicenseTextField.placeholder = NSLocalizedString("Driver's License/State ID", comment: "")
         driverLicenseTextField.textField.delegate = self
-        driverLicenseTextField.textField.keyboardType = .namePhonePad
+        driverLicenseTextField.textField.keyboardType = .default
+        driverLicenseTextField.textField.returnKeyType = .done
 
         employmentStatusView.roundCorners(.allCorners, radius: 10.0, borderColor:.accentGray, borderWidth: 1.0)
         employmentStatusStackView.isHidden = true
 
         dobTextField.placeholder = NSLocalizedString("Date of Birth*", comment: "")
+    }
+    
+    @objc func ssnDonePressed() {
+        ssnTextField.textField.resignFirstResponder()
     }
     
     @objc func back(sender: UIBarButtonItem) {
@@ -76,14 +82,17 @@ class IdVerificationViewController: UIViewController {
         datePicker.date = viewModel.identityVerification.dateOfBirth ?? Date()
         datePicker.datePickerMode = .date
         datePicker.locale = .current
+        datePicker.maximumDate = Calendar.current.date(byAdding: .year, value: -18, to: Date())!
         datePicker.preferredDatePickerStyle = .inline
-        datePicker.addTarget(self, action: #selector(IdVerificationViewController.handleDateSelection(sender:)), for: .valueChanged)
 
         dateAlert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         dateAlert.view.addSubview(datePicker)
         datePicker.center = CGPoint(x: dateAlert.view.center.x, y: 180)
+        dateAlert.addAction(UIAlertAction(title: "Done", style: .default, handler: { _ in
+            self.handleDateSelection(sender: datePicker)
+        }))
         dateAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        dateAlert.view.heightAnchor.constraint(equalToConstant: 400).isActive = true
+        dateAlert.view.heightAnchor.constraint(equalToConstant: 440).isActive = true
         self.present(dateAlert, animated: true, completion: nil)
     }
     
@@ -156,9 +165,15 @@ class IdVerificationViewController: UIViewController {
 extension IdVerificationViewController: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
         switch textField {
         case ssnTextField.textField:
-            return viewModel.isValidSSN(ssn: ssnTextField.textField.text ?? "", inputString: string)
+            let isValidSSN = viewModel.isValidSSN(ssn: newString, inputString: string)
+            if isValidSSN {
+                self.viewModel.identityVerification.SSNNumber = newString
+            }
+            self.continueButton.isEnabled = viewModel.validation()
+            return isValidSSN
         case driverLicenseTextField.textField:
             return viewModel.isValidDrivingLicense(drivingLicense: driverLicenseTextField.textField.text ?? "", inputString: string)
         default:

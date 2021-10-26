@@ -2332,6 +2332,7 @@
                         <outlet property="employmentStatusStackView" destination="dzS-Jn-IUF" id="3ee-BU-Bzb"/>
                         <outlet property="employmentStatusView" destination="W8s-zl-F46" id="tut-LJ-hjI"/>
                         <outlet property="ssnTextField" destination="K3B-Xw-5KW" id="oTy-YU-li0"/>
+                        <outlet property="stickyFooterBottomConstraint" destination="ls2-Wx-HVP" id="ls3-j4-ZQ9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1hQ-Rx-qHD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

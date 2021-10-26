@@ -43,7 +43,7 @@ class IdVerificationViewModel {
     
     func isValidSSN(ssn: String, inputString: String)-> Bool {
         
-        let isValidTextCount = ssn.count < 9
+        let isValidTextCount = ssn.count <= 9
         let char = inputString.cString(using: String.Encoding.utf8)!
         let isBackSpace = strcmp(char, "\\b")
         if isBackSpace == -92 {
