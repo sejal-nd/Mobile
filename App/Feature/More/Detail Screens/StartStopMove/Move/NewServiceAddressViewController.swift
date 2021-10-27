@@ -106,7 +106,7 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
                             self.setAppartment(nil)
                         }
                     }else {
-                        self.setAppartmentError("Apt/Unit #* is required.")
+                        self.enableAppartmentColorState(true)
                     }
                    // self.continueButton.isEnabled = self.viewModel.canEnableContinue
                 }
