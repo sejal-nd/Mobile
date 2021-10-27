@@ -10,12 +10,12 @@ import Foundation
 class IdVerificationViewModel {
     
     var moveDataFlow: MoveServiceFlowData!
-    var identityVerification: IdentityVerification!
+    var idVerification: IdVerification!
 
     init(moveDataFlow: MoveServiceFlowData) {
         
         self.moveDataFlow = moveDataFlow
-        self.identityVerification = IdentityVerification()
+        self.idVerification = IdVerification()
     }
     
     func isValidSSN(ssn: String)-> Bool {
@@ -35,7 +35,7 @@ class IdVerificationViewModel {
     
     func validation()-> Bool {
         
-        if !(identityVerification.SSNNumber == nil || (identityVerification.SSNNumber?.count ?? 0) == 0 || (identityVerification.SSNNumber?.count ?? 0) == 9) || identityVerification.dateOfBirth == nil || identityVerification.employmentStatus == nil {
+        if !(idVerification.SSNNumber == nil || (idVerification.SSNNumber?.count ?? 0) == 0 || (idVerification.SSNNumber?.count ?? 0) == 9) || idVerification.dateOfBirth == nil || idVerification.employmentStatus == nil {
             return false
         }
         return true

@@ -72,14 +72,14 @@ class IdVerificationViewController: KeyboardAvoidingStickyFooterViewController {
         } else {
             ssnTextField.setError(nil)
         }
-        viewModel.identityVerification.SSNNumber = ssnTextField.textField.text
+        viewModel.idVerification.SSNNumber = ssnTextField.textField.text
         self.continueButton.isEnabled = viewModel.validation()
     }
     
     func showDatePicker() {
         
         let datePicker = UIDatePicker()
-        datePicker.date = viewModel.identityVerification.dateOfBirth ?? Date()
+        datePicker.date = viewModel.idVerification.dateOfBirth ?? Date()
         datePicker.datePickerMode = .date
         datePicker.locale = .current
         datePicker.maximumDate = Calendar.current.date(byAdding: .year, value: -18, to: Date())!
@@ -124,7 +124,7 @@ class IdVerificationViewController: KeyboardAvoidingStickyFooterViewController {
                 self?.employmentStatusLabel.text = value
                 self?.employmentStatusStackView.isHidden = false
                 self?.employmentStatusHintLabel.isHidden = true
-                self?.viewModel.identityVerification.employmentStatus = value
+                self?.viewModel.idVerification.employmentStatus = value
                 self?.continueButton.isEnabled = self?.viewModel.validation() ?? false
             },
             onCancel: nil)
@@ -133,14 +133,14 @@ class IdVerificationViewController: KeyboardAvoidingStickyFooterViewController {
     @objc func handleDateSelection(sender: UIDatePicker) {
         
         dateAlert.dismiss(animated: true, completion: nil)
-        viewModel.identityVerification.dateOfBirth = sender.date
+        viewModel.idVerification.dateOfBirth = sender.date
         self.dobTextField.textField.text = DateFormatter.mmDdYyyyFormatter.string(from: sender.date)
         
         if viewModel.validateAge(selectedDate: sender.date) {
             dobTextField.setError(nil)
-            self.viewModel.identityVerification.dateOfBirth = sender.date
+            self.viewModel.idVerification.dateOfBirth = sender.date
         } else {
-            self.viewModel.identityVerification.dateOfBirth = nil
+            self.viewModel.idVerification.dateOfBirth = nil
             dobTextField.setError("Applicants must be 18 or older in order to request and maintain a BGE account.")
         }
         self.continueButton.isEnabled = viewModel.validation()
@@ -156,7 +156,7 @@ class IdVerificationViewController: KeyboardAvoidingStickyFooterViewController {
     @IBAction func onContinueClicked(_ sender: Any) {
         let storyboard = UIStoryboard(name: "ISUMMove", bundle: nil)
         let reviewStopServiceViewController = storyboard.instantiateViewController(withIdentifier: "ReviewMoveServiceViewController") as! ReviewMoveServiceViewController
-        viewModel.moveDataFlow.identityVerification = viewModel.identityVerification
+        viewModel.moveDataFlow.idVerification = viewModel.idVerification
         reviewStopServiceViewController.moveFlowData = viewModel.moveDataFlow
         self.navigationController?.pushViewController(reviewStopServiceViewController, animated: true)
     }
@@ -170,7 +170,7 @@ extension IdVerificationViewController: UITextFieldDelegate {
         case ssnTextField.textField:
             let isValidSSN = viewModel.isValidSSN(ssn: newString, inputString: string)
             if isValidSSN {
-                self.viewModel.identityVerification.SSNNumber = newString
+                self.viewModel.idVerification.SSNNumber = newString
             }
             self.continueButton.isEnabled = viewModel.validation()
             return isValidSSN
@@ -186,7 +186,7 @@ extension IdVerificationViewController: UITextFieldDelegate {
             validateSSN()
         }
         if textField == driverLicenseTextField.textField {
-            self.viewModel.identityVerification.driverLicenseNumber = driverLicenseTextField.textField.text
+            self.viewModel.idVerification.driverLicenseNumber = driverLicenseTextField.textField.text
         }
     }
     
