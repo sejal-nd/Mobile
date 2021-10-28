@@ -21,4 +21,14 @@ struct MoveServiceFlowData {
     var selected_appartment: AppartmentResponse?
     var selected_StreetAddress: String?
     var addressLookupResponse: [AddressLookupResponse]?
+    var idVerification: IdVerification?
+}
+
+struct IdVerification {
+    
+    var ssn: String?
+    var dateOfBirth: Date?
+    var employmentStatus: String?
+    var driverLicenseNumber: String?
+    var stateOfIssueDriverLincense: String?
 }
