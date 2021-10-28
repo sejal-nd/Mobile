@@ -72,7 +72,7 @@ class IdVerificationViewController: KeyboardAvoidingStickyFooterViewController {
         } else {
             ssnTextField.setError(nil)
         }
-        viewModel.idVerification.SSNNumber = ssnTextField.textField.text
+        viewModel.idVerification.ssn = ssnTextField.textField.text
         self.continueButton.isEnabled = viewModel.validation()
     }
     
@@ -170,7 +170,7 @@ extension IdVerificationViewController: UITextFieldDelegate {
         case ssnTextField.textField:
             let isValidSSN = viewModel.isValidSSN(ssn: newString, inputString: string)
             if isValidSSN {
-                self.viewModel.idVerification.SSNNumber = newString
+                self.viewModel.idVerification.ssn = newString
             }
             self.continueButton.isEnabled = viewModel.validation()
             return isValidSSN

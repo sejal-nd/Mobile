@@ -26,7 +26,7 @@ struct MoveServiceFlowData {
 
 struct IdVerification {
     
-    var SSNNumber: String?
+    var ssn: String?
     var dateOfBirth: Date?
     var employmentStatus: String?
     var driverLicenseNumber: String?
