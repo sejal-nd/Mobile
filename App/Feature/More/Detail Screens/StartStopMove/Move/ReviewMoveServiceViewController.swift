@@ -174,8 +174,12 @@ class ReviewMoveServiceViewController: UIViewController {
 
         submitButton.rx.tap
             .subscribe(onNext: { [weak self] _ in
-              //  guard let `self` = self else { return }
+                guard let `self` = self else { return }
 
+                let storyboard = UIStoryboard(name: "ISUMMove", bundle: nil)
+                let reviewStopServiceViewController = storyboard.instantiateViewController(withIdentifier: "FinalReviewMoveServiceViewController") as! FinalReviewMoveServiceViewController
+                reviewStopServiceViewController.moveFlowData = self.moveFlowData
+                self.navigationController?.pushViewController(reviewStopServiceViewController, animated: true)
 
             }).disposed(by: disposeBag)
 

@@ -22,6 +22,8 @@ struct MoveServiceFlowData {
     var selected_StreetAddress: String?
     var addressLookupResponse: [AddressLookupResponse]?
     var idVerification: IdVerification?
+    var hasCurrentServiceAddressForBill: Bool
+    var mailingAddress: MailingAddress?
 }
 
 struct IdVerification {
