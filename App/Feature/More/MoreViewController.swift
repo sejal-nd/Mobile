@@ -329,7 +329,7 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
             switch indexPath.row {
             case 0:
                 if FeatureFlagUtility.shared.bool(forKey: .hasAuthenticatedISUM) {
-                    cell.configure(image: #imageLiteral (resourceName: "ic_morestartservice"), text: NSLocalizedString("Start Service", comment: ""))
+                    cell.configure(image: #imageLiteral (resourceName: "ic_isummoveservice"), text: NSLocalizedString("Move Service", comment: ""))
                 } else {
                     cell.configure(image: #imageLiteral(resourceName: "ic_morecontact"), text: NSLocalizedString("Contact Us", comment: ""))
                 }
@@ -341,7 +341,7 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
                 }
             case 2:
                 if FeatureFlagUtility.shared.bool(forKey: .hasAuthenticatedISUM) {
-                    cell.configure(image: #imageLiteral (resourceName: "ic_isummoveservice"), text: NSLocalizedString("Move Service", comment: ""))
+                    cell.configure(image: #imageLiteral (resourceName: "ic_morestartservice"), text: NSLocalizedString("Start Service", comment: ""))
                 } else {
                     cell.configure(image: #imageLiteral(resourceName: "ic_moretos"), text: NSLocalizedString("Policies and Terms", comment: ""))
                 }
@@ -404,8 +404,7 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
             switch indexPath.row {
             case 0:
                 if FeatureFlagUtility.shared.bool(forKey: .hasAuthenticatedISUM) {
-                    /// Redirect to Start Service web experience for this Nov-21 release.
-                    UIApplication.shared.openUrlIfCan(viewModel.startServiceWebURL)
+                    performSegue(withIdentifier: "moveServiceSegue", sender: nil)
                 } else {
                     performSegue(withIdentifier: "contactUsSegue", sender: nil)
                 }
@@ -418,7 +417,8 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
                 }
             case 2:
                 if FeatureFlagUtility.shared.bool(forKey: .hasAuthenticatedISUM) {
-                    performSegue(withIdentifier: "moveServiceSegue", sender: nil)
+                    /// Redirect to Start Service web experience for this Nov-21 release.
+                    UIApplication.shared.openUrlIfCan(viewModel.startServiceWebURL)
                 } else {
                     performSegue(withIdentifier: "termsPoliciesSegue", sender: nil)
                 }
