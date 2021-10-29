@@ -119,7 +119,7 @@ class NewServiceAddressViewModel{
         }).disposed(by: disposeBag)
     }
     public func getAppartmentIDs() -> [AppartmentResponse]? {
-        let premise_id = appartmentResponse.value
+        let premise_id = appartmentResponse.value?.filter { ($0.suiteNumber?.count ?? 0) > 0  }
 
         return premise_id;
     }
