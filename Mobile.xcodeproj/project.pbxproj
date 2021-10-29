@@ -15,6 +15,7 @@
 		0D79C6C91F1D3CD7004793DD /* MaintenanceModeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D79C6C81F1D3CD7004793DD /* MaintenanceModeViewController.swift */; };
 		0D79C6CD1F1F971E004793DD /* MaintenanceModeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D79C6CC1F1F971E004793DD /* MaintenanceModeViewModel.swift */; };
 		0E5BEF0D202E2390009D1ADB /* GoogleService-Info-RC-FlavorBGE.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0E5BEF0B202E2389009D1ADB /* GoogleService-Info-RC-FlavorBGE.plist */; };
+		2112AAB1272C2C530089FD05 /* MoveFinalMailingAddressViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2112AAB0272C2C520089FD05 /* MoveFinalMailingAddressViewModelTests.swift */; };
 		215A1B70270AE9A5003A4EE9 /* StreetAddressResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215A1B6F270AE9A5003A4EE9 /* StreetAddressResponse.swift */; };
 		215A1B73270AE9DA003A4EE9 /* StreetAddressRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215A1B72270AE9DA003A4EE9 /* StreetAddressRequest.swift */; };
 		215A1B74270AE9DA003A4EE9 /* StreetAddressRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215A1B72270AE9DA003A4EE9 /* StreetAddressRequest.swift */; };
@@ -1216,6 +1217,7 @@
 		20604A8E35CC7B2497F070BF /* Pods-EUMobile.test-comed.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile.test-comed.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile/Pods-EUMobile.test-comed.xcconfig"; sourceTree = "<group>"; };
 		20662080303EADFF7007EF70 /* Pods-EUMobileUITests.ace-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobileUITests.ace-release.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobileUITests/Pods-EUMobileUITests.ace-release.xcconfig"; sourceTree = "<group>"; };
 		20F8D6479D8B22F80312E4A1 /* Pods-UITests.peco-rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UITests.peco-rc.xcconfig"; path = "Pods/Target Support Files/Pods-UITests/Pods-UITests.peco-rc.xcconfig"; sourceTree = "<group>"; };
+		2112AAB0272C2C520089FD05 /* MoveFinalMailingAddressViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoveFinalMailingAddressViewModelTests.swift; sourceTree = "<group>"; };
 		2125B05ADABB8323A4141F28 /* Pods-EUMobile.prod-bge.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile.prod-bge.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile/Pods-EUMobile.prod-bge.xcconfig"; sourceTree = "<group>"; };
 		215A1B6F270AE9A5003A4EE9 /* StreetAddressResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreetAddressResponse.swift; sourceTree = "<group>"; };
 		215A1B72270AE9DA003A4EE9 /* StreetAddressRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreetAddressRequest.swift; sourceTree = "<group>"; };
@@ -4156,6 +4158,7 @@
 		6716598126F0FC0D004546DE /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				2112AAB0272C2C520089FD05 /* MoveFinalMailingAddressViewModelTests.swift */,
 				6716595126F0FBC6004546DE /* UnitTests.swift */,
 				4A398A42271E9A1300FA7B89 /* StopServiceViewModelTests.swift */,
 				4AC1E0852729659C00740A37 /* ReviewStopServiceViewModelTests.swift */,
@@ -6714,6 +6717,7 @@
 				4AC1E0862729659C00740A37 /* ReviewStopServiceViewModelTests.swift in Sources */,
 				4AC1E08A2729711400740A37 /* FinalMailingAddressViewModelTests.swift in Sources */,
 				4A74A0B7272EB03D00F87986 /* MoveServiceConfirmationViewModelTests.swift in Sources */,
+				2112AAB1272C2C530089FD05 /* MoveFinalMailingAddressViewModelTests.swift in Sources */,
 				6716595226F0FBC6004546DE /* UnitTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
