@@ -69,6 +69,7 @@ class ScheduleMoveServiceViewController: UIViewController {
         self.navigationItem.hidesBackButton = true
         let newBackButton = UIBarButtonItem(image: UIImage(named: "ic_close"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(StopServiceViewController.back(sender:)))
         self.navigationItem.leftBarButtonItem = newBackButton
+        newBackButton.accessibilityLabel = "Close"
         self.scrollView.isHidden = true
         
         stopServiceAddressStaticLabel.font = SystemFont.regular.of(textStyle: .footnote)
@@ -189,7 +190,8 @@ class ScheduleMoveServiceViewController: UIViewController {
                 self?.continueButton.setTitleColor(hasSelectedDate ? UIColor.white : UIColor(red: 74.0/255.0, green: 74.0/255.0, blue: 74.0/255.0, alpha: 0.5), for: .normal)
 
                 if let selectedDate = date {
-                    self?.selectedDateLabel.text = DateFormatter.mmDdYyyyFormatter.string(from: selectedDate)
+                    self?.selectedDateLabel.text = DateFormatter.MMddyyyyFormatter.string(from: selectedDate)
+                    self?.selectedDateLabel.accessibilityLabel = "\(selectedDate.weekday),  \(selectedDate.fullMonthDayAndYearString)"
                 }
             })
             .disposed(by: disposeBag)

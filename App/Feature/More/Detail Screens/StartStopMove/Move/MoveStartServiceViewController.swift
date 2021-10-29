@@ -52,6 +52,7 @@ class MoveStartServiceViewController: UIViewController {
         
         self.navigationItem.hidesBackButton = true
         let newBackButton = UIBarButtonItem(image: UIImage(named: "ic_back"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(MoveStartServiceViewController.back(sender:)))
+        newBackButton.accessibilityLabel = "Back"
         self.navigationItem.leftBarButtonItem = newBackButton
         
         renterOwnerSegmentControl.items = [NSLocalizedString("Owner", comment: ""), NSLocalizedString("Renter", comment: "")]
@@ -86,6 +87,7 @@ class MoveStartServiceViewController: UIViewController {
     private func refreshUI(startDate: Date) {
         viewModel.moveServiceFlow.startServiceDate = startDate
         selectedDateLabel.text = DateFormatter.mmDdYyyyFormatter.string(from: startDate)
+        selectedDateLabel.accessibilityLabel = "\(startDate.weekday),  \(startDate.fullMonthDayAndYearString)"
         continueButton.isEnabled = true
         continueButton.isUserInteractionEnabled = true
         self.dateStackView.isHidden = false

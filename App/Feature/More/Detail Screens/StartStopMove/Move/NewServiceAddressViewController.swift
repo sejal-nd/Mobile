@@ -59,18 +59,20 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
     private func navigationBackButton() {
         self.navigationItem.hidesBackButton = true
         let backButtonIconName = isLaunchedFromReviewScreen ? "ic_close" : "ic_back"
+        let backButtonAccesibilityLabel = isLaunchedFromReviewScreen ? "Close" : "Back"
         
         let newBackButton = UIBarButtonItem(image: UIImage(named: backButtonIconName), style: UIBarButtonItem.Style.plain, target: self, action: #selector(NewServiceAddressViewController.back(sender:)))
+        newBackButton.accessibilityLabel = backButtonAccesibilityLabel
         self.navigationItem.leftBarButtonItem = newBackButton
+        
     }
-    
     @objc func back(sender: UIBarButtonItem) {
-        if isLaunchedFromReviewScreen {
-            self.dismiss(animated: true, completion: nil)
-        } else {
-            self.navigationController?.popViewController(animated: true)
-        }
-    }
+           if isLaunchedFromReviewScreen {
+               self.dismiss(animated: true, completion: nil)
+           } else {
+               self.navigationController?.popViewController(animated: true)
+           }
+       }
 
     private func setupUIBinding(){
         viewModel.showLoadingState
