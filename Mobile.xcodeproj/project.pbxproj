@@ -38,6 +38,10 @@
 		21D41E1C2706CE9700A622F9 /* ValidatedZipCodeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D41E1B2706CE9700A622F9 /* ValidatedZipCodeResponse.swift */; };
 		21D41E1D2706E17A00A622F9 /* ValidateZipCodeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D41E172706CA8F00A622F9 /* ValidateZipCodeRequest.swift */; };
 		21D41E1E2706E29B00A622F9 /* ValidatedZipCodeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D41E1B2706CE9700A622F9 /* ValidatedZipCodeResponse.swift */; };
+		21E45FC5272B367C0009E25E /* MoveFinalMailingAddressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E45FC2272B367A0009E25E /* MoveFinalMailingAddressViewModel.swift */; };
+		21E45FC6272B367C0009E25E /* FinalReviewMoveServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E45FC3272B367B0009E25E /* FinalReviewMoveServiceViewController.swift */; };
+		21E45FC7272B367C0009E25E /* MoveFinalMailingAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E45FC4272B367B0009E25E /* MoveFinalMailingAddressViewController.swift */; };
+		21E45FC9272B38D00009E25E /* UIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E45FC8272B38D00009E25E /* UIAlertController.swift */; };
 		21E797F92718541C0063CB84 /* StopLandingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E797F82718541C0063CB84 /* StopLandingViewModel.swift */; };
 		21FFBD222722D35D002F5009 /* ReviewMoveServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FFBD202722D35C002F5009 /* ReviewMoveServiceViewController.swift */; };
 		21FFBD232722D35D002F5009 /* ReviewMoveServiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FFBD212722D35C002F5009 /* ReviewMoveServiceViewModel.swift */; };
@@ -1216,6 +1220,10 @@
 		21D41E172706CA8F00A622F9 /* ValidateZipCodeRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateZipCodeRequest.swift; sourceTree = "<group>"; };
 		21D41E192706CDFE00A622F9 /* MoveService+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MoveService+Rx.swift"; sourceTree = "<group>"; };
 		21D41E1B2706CE9700A622F9 /* ValidatedZipCodeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidatedZipCodeResponse.swift; sourceTree = "<group>"; };
+		21E45FC2272B367A0009E25E /* MoveFinalMailingAddressViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoveFinalMailingAddressViewModel.swift; sourceTree = "<group>"; };
+		21E45FC3272B367B0009E25E /* FinalReviewMoveServiceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinalReviewMoveServiceViewController.swift; sourceTree = "<group>"; };
+		21E45FC4272B367B0009E25E /* MoveFinalMailingAddressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoveFinalMailingAddressViewController.swift; sourceTree = "<group>"; };
+		21E45FC8272B38D00009E25E /* UIAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIAlertController.swift; sourceTree = "<group>"; };
 		21E797F82718541C0063CB84 /* StopLandingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopLandingViewModel.swift; sourceTree = "<group>"; };
 		21FFBD202722D35C002F5009 /* ReviewMoveServiceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewMoveServiceViewController.swift; sourceTree = "<group>"; };
 		21FFBD212722D35C002F5009 /* ReviewMoveServiceViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewMoveServiceViewModel.swift; sourceTree = "<group>"; };
@@ -3010,6 +3018,9 @@
 				21FFBD212722D35C002F5009 /* ReviewMoveServiceViewModel.swift */,
 				04AE2B7D27214BC600C6374D /* IdVerificationViewController.swift */,
 				4AC1E083272731F700740A37 /* IdVerificationViewModel.swift */,
+				21E45FC3272B367B0009E25E /* FinalReviewMoveServiceViewController.swift */,
+				21E45FC4272B367B0009E25E /* MoveFinalMailingAddressViewController.swift */,
+				21E45FC2272B367A0009E25E /* MoveFinalMailingAddressViewModel.swift */,
 			);
 			path = Move;
 			sourceTree = "<group>";
@@ -4974,6 +4985,7 @@
 				35277B042109FC1000411297 /* ViewControllerAlertable.swift */,
 				35A6C6C9211C8B3100C2A58F /* UIColorDarker.swift */,
 				B05E9D12217F688A0003FAB8 /* Application.swift */,
+				21E45FC8272B38D00009E25E /* UIAlertController.swift */,
 				9CCE3E3E21B865F30008E1AF /* UIAlertController+SaveToWallet.swift */,
 				9CCE3E4521B9C3AB0008E1AF /* UIAlertController+PaymentusErrors.swift */,
 				B0E9EFFA21EE458F0086A82A /* Optional+Comparable.swift */,
@@ -6830,10 +6842,12 @@
 				C336045424D1B85C002CF260 /* EmailRequest.swift in Sources */,
 				C3B6555024ABD9320048C64B /* SERInfo.swift in Sources */,
 				C336046124D31EA9002CF260 /* AutoPayEnrollRequest.swift in Sources */,
+				21E45FC9272B38D00009E25E /* UIAlertController.swift in Sources */,
 				675F4BD024AB828100A828F9 /* OutageRequest.swift in Sources */,
 				67893B0624DB4314000143D6 /* Alert.swift in Sources */,
 				54DF4BCC1EE848F3008CF7AD /* ForgotUsernameSecurityQuestionViewController.swift in Sources */,
 				E87C320F1E9ECF0400E5F6FD /* AccountLookupToolResultViewController.swift in Sources */,
+				21E45FC7272B367C0009E25E /* MoveFinalMailingAddressViewController.swift in Sources */,
 				82A18E551EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift in Sources */,
 				E893993D1F86AF1600B9184C /* UIViewDashedBorders.swift in Sources */,
 				675F4CE424AB828200A828F9 /* MinimumVersion.swift in Sources */,
@@ -7002,6 +7016,7 @@
 				679C6EE524D1FE7B00535DE7 /* WeatherService+Rx.swift in Sources */,
 				B0D7860D2285C3F4007C551F /* CommercialUsageAlertStore.swift in Sources */,
 				C320FDCA24DC81410012E4ED /* WalletService+Rx.swift in Sources */,
+				21E45FC6272B367C0009E25E /* FinalReviewMoveServiceViewController.swift in Sources */,
 				21D41E1A2706CDFE00A622F9 /* MoveService+Rx.swift in Sources */,
 				359BDB8322DCDDCA007002B0 /* GasOnlyViewController.swift in Sources */,
 				C3087A8824B63D03005AE544 /* AccountService+Rx.swift in Sources */,
@@ -7182,6 +7197,7 @@
 				30A1A0D4254004EF00D18EAC /* EditAccountNickNameViewController.swift in Sources */,
 				E8127B221EBB959E0083DDE9 /* LoadingView.swift in Sources */,
 				676434CB25AF692600DA6448 /* DebugMenu.swift in Sources */,
+				21E45FC5272B367C0009E25E /* MoveFinalMailingAddressViewModel.swift in Sources */,
 				E8C4531F1EF430ED00F5C781 /* AutoPayViewController.swift in Sources */,
 				215A1B7F270B172B003A4EE9 /* AddressLookupRequest.swift in Sources */,
 				675F4D2624AB828200A828F9 /* NetworkingError.swift in Sources */,
