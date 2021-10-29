@@ -137,13 +137,17 @@ class AddressSearchViewController: UIViewController {
     }
 
     func peformAppartmentSearch(){
-        if let list = self.listAppartment , let searchString =  self.streetAddressTextField.textField.text{
-            self.filter_listAppartment = list.filter({ appartment in
-                if let suite = appartment.suiteNumber , suite.localizedCaseInsensitiveContains(searchString){
-                    return true
-                }
-                return false
-            })
+        if let list = self.listAppartment , let searchString =  self.streetAddressTextField.textField.text {
+            if searchString.isEmpty {
+                filter_listAppartment = list
+            } else {
+                self.filter_listAppartment = list.filter({ appartment in
+                    if let suite = appartment.suiteNumber , suite.localizedCaseInsensitiveContains(searchString){
+                        return true
+                    }
+                    return false
+                })
+            }
             self.reloadTableView()
         }
     }
