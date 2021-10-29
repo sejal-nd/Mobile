@@ -119,8 +119,15 @@ class FinalReviewMoveServiceViewController: UIViewController {
 
         changeIDVerificationButton.rx.tap
             .subscribe(onNext: { [weak self] _ in
-                //  guard let `self` = self else { return }
-                // TODO ::
+                  guard let `self` = self else { return }
+                let storyboard = UIStoryboard(name: "ISUMMove", bundle: nil)
+                let idVerificationViewController = storyboard.instantiateViewController(withIdentifier: "IdVerificationViewController") as! IdVerificationViewController
+                idVerificationViewController.viewModel = IdVerificationViewModel(moveDataFlow: self.moveFlowData)
+                idVerificationViewController.delegate = self
+                idVerificationViewController.isLaunchedFromReviewScreen = true
+                let navigationController = LargeTitleNavigationController(rootViewController: idVerificationViewController)
+                navigationController.modalPresentationStyle = .fullScreen
+                self.present(navigationController, animated: true, completion: nil)
 
             }).disposed(by: disposeBag)
 
@@ -171,7 +178,7 @@ class FinalReviewMoveServiceViewController: UIViewController {
         }
 
         if let employmentStatus = moveFlowData.idVerification?.employmentStatus {
-            self.employementStatusLabel.text = employmentStatus
+            self.employementStatusLabel.text = employmentStatus.0
         }else {
             self.employementStatusLabel.text = "None Provided"
         }
@@ -260,3 +267,11 @@ extension FinalReviewMoveServiceViewController: MoveFinalMailingAddressDelegate 
     }
 }
 
+extension FinalReviewMoveServiceViewController: IdVerificationDelegate {
+    
+    func getIdVerification(_ id: IdVerification) {
+        
+        self.moveFlowData.idVerification = id
+        self.refreshData()
+    }
+}

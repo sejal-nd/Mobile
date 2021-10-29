@@ -185,7 +185,7 @@ public struct MoveISUMServiceRequest: Encodable {
 
             self.SSNNumber = moveServiceFlowData.idVerification!.ssn
             self.dateOfBirth = DateFormatter.mmDdYyyyFormatter.string(from: moveServiceFlowData.idVerification!.dateOfBirth!)
-            self.employmentStatus = moveServiceFlowData.idVerification!.employmentStatus
+            self.employmentStatus = moveServiceFlowData.idVerification!.employmentStatus?.0
             self.driverLicenseNumber = moveServiceFlowData.idVerification!.driverLicenseNumber
             self.stateOfIssueDriverLincense = moveServiceFlowData.idVerification!.stateOfIssueDriverLincense
         }

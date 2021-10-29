@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol IdVerificationDelegate {
+    func getIdVerification(_ id: IdVerification)
+}
+
 class IdVerificationViewController: KeyboardAvoidingStickyFooterViewController {
     
     @IBOutlet weak var ssnTextField: FloatLabelTextField!
@@ -22,8 +26,10 @@ class IdVerificationViewController: KeyboardAvoidingStickyFooterViewController {
     private var datePicker: UIDatePicker!
     private var blurEffectView: UIVisualEffectView!
     private var datePickerConstraints: NSLayoutConstraint!
-    
+    var isLaunchedFromReviewScreen: Bool = false
+
     var viewModel: IdVerificationViewModel!
+    var delegate: IdVerificationDelegate!
     
     private var hideSSNText:Bool = true
     var dateAlert: UIAlertController!
@@ -37,7 +43,9 @@ class IdVerificationViewController: KeyboardAvoidingStickyFooterViewController {
     private func configureTextFields(){
         
         self.navigationItem.hidesBackButton = true
-        let newBackButton = UIBarButtonItem(image: UIImage(named: "ic_back"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(IdVerificationViewController.back(sender:)))
+        let backButtonIconName = isLaunchedFromReviewScreen ? "ic_close" : "ic_back"
+        let backButtonAccesibilityLabelText = isLaunchedFromReviewScreen ? "Close" : "Back"
+        let newBackButton = UIBarButtonItem(image: UIImage(named: backButtonIconName), style: UIBarButtonItem.Style.plain, target: self, action: #selector(FinalMailingAddressViewController.back(sender:)))
         self.navigationItem.leftBarButtonItem = newBackButton
         
         ssnTextField.placeholder = NSLocalizedString("SSN/Business Tax ID", comment: "")
@@ -55,6 +63,18 @@ class IdVerificationViewController: KeyboardAvoidingStickyFooterViewController {
         employmentStatusStackView.isHidden = true
 
         dobTextField.placeholder = NSLocalizedString("Date of Birth*", comment: "")
+        
+        ssnTextField.textField.text = self.viewModel.moveDataFlow.idVerification?.ssn
+        driverLicenseTextField.textField.text = self.viewModel.moveDataFlow.idVerification?.driverLicenseNumber
+        if let dateOfBirth = viewModel.moveDataFlow.idVerification?.dateOfBirth {
+            self.dobTextField.textField.text = DateFormatter.mmDdYyyyFormatter.string(from: dateOfBirth)
+        }
+        if let employmentStatus = viewModel.idVerification.employmentStatus {
+            self.employmentStatusLabel.text = employmentStatus.0
+            self.employmentStatusStackView.isHidden = false
+            self.employmentStatusHintLabel.isHidden = true
+            self.continueButton.isEnabled = self.viewModel.validation() 
+        }
     }
     
     @objc func ssnDonePressed() {
@@ -62,7 +82,11 @@ class IdVerificationViewController: KeyboardAvoidingStickyFooterViewController {
     }
     
     @objc func back(sender: UIBarButtonItem) {
-        self.navigationController?.popViewController(animated: true)
+        if isLaunchedFromReviewScreen {
+            self.dismiss(animated: true, completion: nil)
+        } else {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     
     private func validateSSN() {
@@ -124,7 +148,7 @@ class IdVerificationViewController: KeyboardAvoidingStickyFooterViewController {
                 self?.employmentStatusLabel.text = value
                 self?.employmentStatusStackView.isHidden = false
                 self?.employmentStatusHintLabel.isHidden = true
-                self?.viewModel.idVerification.employmentStatus = value
+                self?.viewModel.idVerification.employmentStatus = (value, index)
                 self?.continueButton.isEnabled = self?.viewModel.validation() ?? false
             },
             onCancel: nil)
@@ -154,11 +178,17 @@ class IdVerificationViewController: KeyboardAvoidingStickyFooterViewController {
     }
     
     @IBAction func onContinueClicked(_ sender: Any) {
-        let storyboard = UIStoryboard(name: "ISUMMove", bundle: nil)
-        let reviewStopServiceViewController = storyboard.instantiateViewController(withIdentifier: "ReviewMoveServiceViewController") as! ReviewMoveServiceViewController
-        viewModel.moveDataFlow.idVerification = viewModel.idVerification
-        reviewStopServiceViewController.moveFlowData = viewModel.moveDataFlow
-        self.navigationController?.pushViewController(reviewStopServiceViewController, animated: true)
+        if isLaunchedFromReviewScreen {
+            delegate.getIdVerification(viewModel.idVerification)
+            self.dismiss(animated: true, completion: nil)
+        } else {
+            let storyboard = UIStoryboard(name: "ISUMMove", bundle: nil)
+            let reviewStopServiceViewController = storyboard.instantiateViewController(withIdentifier: "ReviewMoveServiceViewController") as! ReviewMoveServiceViewController
+            viewModel.moveDataFlow.idVerification = viewModel.idVerification
+            reviewStopServiceViewController.moveFlowData = viewModel.moveDataFlow
+            self.navigationController?.pushViewController(reviewStopServiceViewController, animated: true)
+
+        }
     }
 }
 
