@@ -41,13 +41,13 @@ class StopConfirmationScreenViewModel {
         }
 
         guard let streetName = stopServiceResponse.finalBillAddress?.streetName, let city = stopServiceResponse.finalBillAddress?.city, let state = stopServiceResponse.finalBillAddress?.state, let zipCode = stopServiceResponse.finalBillAddress?.zipCode else { return "" }
-        return "\(streetName), \(city) \(state), \(zipCode)"
+        return "\(streetName), \(city), \(state) \(zipCode)"
     }
     
     func getStopServiceAddress()-> String {
         
         guard let streetName = stopServiceResponse.stopAddress?.streetName, let city = stopServiceResponse.stopAddress?.city, let state = stopServiceResponse.stopAddress?.state, let zipCode = stopServiceResponse.stopAddress?.zipCode else { return "" }
-        return "\(streetName), \(city) \(state), \(zipCode)"
+        return "\(streetName), \(city), \(state) \(zipCode)"
     }
     
     func getNextStepDescription()-> String {
