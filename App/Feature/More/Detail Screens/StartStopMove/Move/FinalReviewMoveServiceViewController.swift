@@ -54,7 +54,7 @@ class FinalReviewMoveServiceViewController: UIViewController {
     @IBOutlet weak var supplierAgreementButton: UIButton!
     @IBOutlet weak var ebillUserInfoLabel: UILabel!
 
-
+    var viewModel = ReviewMoveServiceViewModel()
 
     @IBOutlet weak var submitBtn: PrimaryButton!
 
@@ -119,15 +119,40 @@ class FinalReviewMoveServiceViewController: UIViewController {
 
         changeIDVerificationButton.rx.tap
             .subscribe(onNext: { [weak self] _ in
-                //  guard let `self` = self else { return }
-                // TODO ::
+                  guard let `self` = self else { return }
+                let storyboard = UIStoryboard(name: "ISUMMove", bundle: nil)
+                let idVerificationViewController = storyboard.instantiateViewController(withIdentifier: "IdVerificationViewController") as! IdVerificationViewController
+                idVerificationViewController.viewModel = IdVerificationViewModel(moveDataFlow: self.moveFlowData)
+                idVerificationViewController.delegate = self
+                idVerificationViewController.isLaunchedFromReviewScreen = true
+                let navigationController = LargeTitleNavigationController(rootViewController: idVerificationViewController)
+                navigationController.modalPresentationStyle = .fullScreen
+                self.present(navigationController, animated: true, completion: nil)
 
             }).disposed(by: disposeBag)
 
         submitBtn.rx.tap
             .subscribe(onNext: { [weak self] _ in
-                // TODO
+                guard let `self` = self else { return }
+                self.navigationController?.view.isUserInteractionEnabled = false
+                LoadingView.show()
+                
+                self.viewModel.moveServiceRequest(moveFlowData: self.moveFlowData) { [weak self] response in
+                    LoadingView.hide()
+                    self?.navigationController?.view.isUserInteractionEnabled = true
 
+                    let storyboard = UIStoryboard(name: "ISUMMove", bundle: nil)
+                    let moveServiceConfirmationViewController = storyboard.instantiateViewController(withIdentifier: "MoveServiceConfirmationViewController") as! MoveServiceConfirmationViewController
+                    moveServiceConfirmationViewController.viewModel = MoveServiceConfirmationViewModel(moveServiceResponse: response)
+                    self?.navigationController?.pushViewController(moveServiceConfirmationViewController, animated: true)
+                } onFailure: { [weak self] _ in
+                    LoadingView.hide()
+                    self?.navigationController?.view.isUserInteractionEnabled = true
+
+                    let storyboard = UIStoryboard(name: "ISUMMove", bundle: nil)
+                    let generalSubmitErrorViewController = storyboard.instantiateViewController(withIdentifier: "MoveGeneralSubmitErrorViewController") as! MoveGeneralSubmitErrorViewController
+                    self?.navigationController?.pushViewController(generalSubmitErrorViewController, animated: true)
+                }
             }).disposed(by: disposeBag)
 
 
@@ -153,7 +178,7 @@ class FinalReviewMoveServiceViewController: UIViewController {
         }
 
         if let employmentStatus = moveFlowData.idVerification?.employmentStatus {
-            self.employementStatusLabel.text = employmentStatus
+            self.employementStatusLabel.text = employmentStatus.0
         }else {
             self.employementStatusLabel.text = "None Provided"
         }
@@ -242,3 +267,11 @@ extension FinalReviewMoveServiceViewController: MoveFinalMailingAddressDelegate 
     }
 }
 
+extension FinalReviewMoveServiceViewController: IdVerificationDelegate {
+    
+    func getIdVerification(_ id: IdVerification) {
+        
+        self.moveFlowData.idVerification = id
+        self.refreshData()
+    }
+}

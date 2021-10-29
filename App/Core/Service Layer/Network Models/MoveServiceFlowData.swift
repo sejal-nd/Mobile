@@ -30,7 +30,7 @@ struct IdVerification {
     
     var ssn: String?
     var dateOfBirth: Date?
-    var employmentStatus: String?
+    var employmentStatus: (String, Int)?
     var driverLicenseNumber: String?
     var stateOfIssueDriverLincense: String?
 }

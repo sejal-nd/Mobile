@@ -180,7 +180,6 @@ class ReviewMoveServiceViewController: UIViewController {
                 let reviewStopServiceViewController = storyboard.instantiateViewController(withIdentifier: "FinalReviewMoveServiceViewController") as! FinalReviewMoveServiceViewController
                 reviewStopServiceViewController.moveFlowData = self.moveFlowData
                 self.navigationController?.pushViewController(reviewStopServiceViewController, animated: true)
-
             }).disposed(by: disposeBag)
 
     }

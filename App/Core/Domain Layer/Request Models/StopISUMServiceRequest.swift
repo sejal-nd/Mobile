@@ -92,11 +92,12 @@ public struct StopISUMServiceRequest: Encodable {
         let revenueClass: String?
 
         init(stopFlowData: StopServiceFlowData) {
-            self.streetName = stopFlowData.hasCurrentServiceAddressForBill ? stopFlowData.verificationDetail?.startStopMoveServiceDetails.primaryCustInformation.billingAddress.streetName : stopFlowData.mailingAddress?.streetAddress
-            self.city = stopFlowData.hasCurrentServiceAddressForBill ? stopFlowData.verificationDetail?.startStopMoveServiceDetails.primaryCustInformation.billingAddress.city : stopFlowData.mailingAddress?.city
-            self.state = stopFlowData.hasCurrentServiceAddressForBill ? stopFlowData.verificationDetail?.startStopMoveServiceDetails.primaryCustInformation.billingAddress.state : stopFlowData.mailingAddress?.state.rawValue
+            
+            self.streetName = stopFlowData.verificationDetail?.startStopMoveServiceDetails.primaryCustInformation.billingAddress.streetName
+            self.city = stopFlowData.verificationDetail?.startStopMoveServiceDetails.primaryCustInformation.billingAddress.city
+            self.state = stopFlowData.verificationDetail?.startStopMoveServiceDetails.primaryCustInformation.billingAddress.state
             self.country = stopFlowData.verificationDetail?.startStopMoveServiceDetails.primaryCustInformation.billingAddress.country
-            self.zipCode = stopFlowData.hasCurrentServiceAddressForBill ? stopFlowData.verificationDetail?.startStopMoveServiceDetails.primaryCustInformation.billingAddress.zipCode : stopFlowData.mailingAddress?.zipCode
+            self.zipCode = stopFlowData.verificationDetail?.startStopMoveServiceDetails.primaryCustInformation.billingAddress.zipCode
             self.accountNumber = stopFlowData.verificationDetail?.startStopMoveServiceDetails.accountNumber
             self.customerID = stopFlowData.verificationDetail?.startStopMoveServiceDetails.customerID
             self.premiseID = stopFlowData.verificationDetail?.startStopMoveServiceDetails.stopServiceAddress.premiseID
@@ -171,37 +172,37 @@ public struct StopISUMServiceRequest: Encodable {
     public struct PrimaryCustInformation: Encodable {
         
         
-        let FirstName: String?
-        let LastName: String?
-        let ContactPhoneNo: String?
-        let ContactPhoneNoType: String?
-        let AltContactPhoneNo: String?
+        let firstName: String?
+        let lastName: String?
+        let contactPhoneNo: String?
+        let contactPhoneNoType: String?
+        let altContactPhoneNo: String?
         let billingAddress: BillingAddressRequest?
-        let AltContactPhoneNoType: String?
         let useAltBillingAddress: Bool
+        let email: String?
 
         init(stopFlowData: StopServiceFlowData) {
 
-            self.FirstName = stopFlowData.currentAccountDetail.address
-            self.LastName = stopFlowData.currentAccountDetail.zipCode
-            self.ContactPhoneNo = stopFlowData.currentAccountDetail.state
-            self.ContactPhoneNoType = stopFlowData.currentAccountDetail.zipCode
-            self.AltContactPhoneNo = stopFlowData.currentAccountDetail.customerInfo.emailAddress
+            self.firstName = stopFlowData.currentAccountDetail.customerInfo.firstName
+            self.lastName = stopFlowData.currentAccountDetail.customerInfo.lastName
+            self.contactPhoneNo = stopFlowData.currentAccountDetail.customerNumber
+            self.contactPhoneNoType = ""
+            self.altContactPhoneNo = stopFlowData.currentAccountDetail.customerInfo.alternatePhoneNumber
             self.billingAddress = BillingAddressRequest(stopFlowData: stopFlowData)
             self.useAltBillingAddress = !stopFlowData.hasCurrentServiceAddressForBill
-            self.AltContactPhoneNoType = stopFlowData.currentAccountDetail.customerInfo.firstName
+            self.email = stopFlowData.currentAccountDetail.customerInfo.emailAddress
         }
         
         enum CodingKeys: String, CodingKey {
             
-            case FirstName = "FirstName"
-            case LastName = "LastName"
-            case ContactPhoneNo = "ContactPhoneNo"
-            case ContactPhoneNoType = "ZipCode"
-            case AltContactPhoneNo = "Email"
+            case firstName = "FirstName"
+            case lastName = "LastName"
+            case contactPhoneNo = "ContactPhoneNo"
+            case contactPhoneNoType = "ContactPhoneNoType"
+            case altContactPhoneNo = "AltContactPhoneNo"
             case billingAddress = "BillingAddress"
             case useAltBillingAddress = "UseAltBillingAddress"
-            case AltContactPhoneNoType = "AltContactPhoneNoType"
+            case email = "Email"
         }
     }
 
@@ -215,11 +216,12 @@ public struct StopISUMServiceRequest: Encodable {
         let apartmentUnitNo: String?
         
         init(stopFlowData: StopServiceFlowData) {
-            self.streetName = stopFlowData.mailingAddress?.streetAddress
+            
+            self.streetName = stopFlowData.hasCurrentServiceAddressForBill ? stopFlowData.verificationDetail?.startStopMoveServiceDetails.primaryCustInformation.billingAddress.streetName : stopFlowData.mailingAddress?.streetAddress
             self.apartmentUnitNo = ""
-            self.city = stopFlowData.mailingAddress?.city
-            self.state = stopFlowData.mailingAddress?.state.rawValue
-            self.zipCode = stopFlowData.mailingAddress?.zipCode
+            self.city = stopFlowData.hasCurrentServiceAddressForBill ? stopFlowData.verificationDetail?.startStopMoveServiceDetails.primaryCustInformation.billingAddress.city : stopFlowData.mailingAddress?.city
+            self.state = stopFlowData.hasCurrentServiceAddressForBill ? stopFlowData.verificationDetail?.startStopMoveServiceDetails.primaryCustInformation.billingAddress.streetName : stopFlowData.mailingAddress?.state.rawValue
+            self.zipCode = stopFlowData.hasCurrentServiceAddressForBill ? stopFlowData.verificationDetail?.startStopMoveServiceDetails.primaryCustInformation.billingAddress.zipCode : stopFlowData.mailingAddress?.zipCode
         }
 
         enum CodingKeys: String, CodingKey {

@@ -35,7 +35,7 @@ class IdVerificationViewModel {
     
     func validation()-> Bool {
         
-        if !(idVerification.ssn == nil || (idVerification.ssn?.count ?? 0) == 0 || (idVerification.ssn?.count ?? 0) == 9) || idVerification.dateOfBirth == nil || idVerification.employmentStatus == nil {
+        if !(idVerification.ssn == nil || (idVerification.ssn?.count ?? 0) == 0 || (idVerification.ssn?.count ?? 0) == 9) || idVerification.dateOfBirth == nil || idVerification.employmentStatus?.0 == nil {
             return false
         }
         return true
