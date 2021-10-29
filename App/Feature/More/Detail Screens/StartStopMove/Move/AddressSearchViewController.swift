@@ -35,7 +35,6 @@ class AddressSearchViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationBackButton()
         if searchType == .appartment {
             title = "Select Apt/Unit #"
 
@@ -57,14 +56,6 @@ class AddressSearchViewController: UIViewController {
         super.viewWillAppear(animated)
         reloadTableView()
     }
-    private func navigationBackButton() {
-           self.navigationItem.hidesBackButton = true
-           let newBackButton = UIBarButtonItem(image: UIImage(named: "ic_back"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(AddressSearchViewController.back(sender:)))
-           self.navigationItem.leftBarButtonItem = newBackButton
-       }
-       @objc func back(sender: UIBarButtonItem) {
-           self.navigationController?.popViewController(animated: true)
-       }
     /*
     // MARK: - Navigation
 
@@ -206,7 +197,7 @@ extension AddressSearchViewController: UITableViewDelegate ,UITableViewDataSourc
             let streetAdd = viewModel.findStreetAddress(at: indexPath.row)
             self.delegate?.didSelectStreetAddress(result: streetAdd)
         }
-        self.navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true, completion: nil)
     }
 }
 

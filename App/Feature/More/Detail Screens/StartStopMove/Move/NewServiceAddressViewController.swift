@@ -277,7 +277,10 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
             newServiceAddressViewController.delegate = self
             newServiceAddressViewController.zipcode = viewModel.zipCode
             newServiceAddressViewController.searchType = .street
-            self.navigationController?.pushViewController(newServiceAddressViewController, animated: true)
+            let newServiceAddresNavigationController = LargeTitleNavigationController(rootViewController: newServiceAddressViewController)
+            newServiceAddresNavigationController.modalPresentationStyle = .fullScreen
+            newServiceAddressViewController.addCloseButton()
+            self.navigationController?.present(newServiceAddresNavigationController, animated: true, completion: nil)
         }
     }
 
@@ -294,7 +297,10 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
             newServiceAddressViewController.zipcode = viewModel.zipCode
             newServiceAddressViewController.searchType = .appartment
             newServiceAddressViewController.listAppartment = viewModel.getAppartmentIDs()
-            self.navigationController?.pushViewController(newServiceAddressViewController, animated: true)
+            let newServiceAddresNavigationController = LargeTitleNavigationController(rootViewController: newServiceAddressViewController)
+            newServiceAddresNavigationController.modalPresentationStyle = .fullScreen
+            newServiceAddressViewController.addCloseButton()
+            self.navigationController?.present(newServiceAddresNavigationController, animated: true, completion: nil)
         }
     }
     func clearPreviousSession(){
