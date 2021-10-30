@@ -36,7 +36,10 @@ class IdVerificationViewController: KeyboardAvoidingStickyFooterViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        if isLaunchedFromReviewScreen {
+            viewModel.setIDVerification(viewModel.moveDataFlow)
+        }
         configureTextFields()
     }
     
@@ -47,6 +50,12 @@ class IdVerificationViewController: KeyboardAvoidingStickyFooterViewController {
         let backButtonAccesibilityLabelText = isLaunchedFromReviewScreen ? "Close" : "Back"
         let newBackButton = UIBarButtonItem(image: UIImage(named: backButtonIconName), style: UIBarButtonItem.Style.plain, target: self, action: #selector(FinalMailingAddressViewController.back(sender:)))
         self.navigationItem.leftBarButtonItem = newBackButton
+
+        if isLaunchedFromReviewScreen {
+            continueButton.setTitle(NSLocalizedString("Save Changes", comment: ""), for: .normal)
+        } else {
+            continueButton.setTitle(NSLocalizedString("Continue", comment: ""), for: .normal)
+        }
         
         ssnTextField.placeholder = NSLocalizedString("SSN/Business Tax ID", comment: "")
         ssnTextField.textField.isSecureTextEntry = true
