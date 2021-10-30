@@ -90,7 +90,7 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
                 guard let self = self else { return }
                 if self.viewModel.isZipValidated && self.viewModel.isStreetAddressValid{
                     if let appartment_list = self.viewModel.getAppartmentIDs() {
-                        if  appartment_list.count == 1 {
+                        if appartment_list.count == 1 {
                             self.viewModel.setAppartment(appartment_list.first)
                             if let suiteNumber = appartment_list.first?.suiteNumber,let premiseID =  appartment_list.first?.premiseID{
                                 self.viewModel.premiseID = premiseID
@@ -109,11 +109,11 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
                                 self.setAppartment(nil)
                             }
                         }
-                        else if  appartment_list.count > 0 {
+                        else if appartment_list.count > 0 {
                             self.enableAppartmentColorState(true)
+                            self.continueButton.isEnabled = self.viewModel.canEnableContinue
                         }
                     }
-                    // self.continueButton.isEnabled = self.viewModel.canEnableContinue
                 }
             })
             .disposed(by: disposeBag)
@@ -303,7 +303,7 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
                 newServiceAddressViewController.delegate = self
                 newServiceAddressViewController.zipcode = viewModel.zipCode
                 newServiceAddressViewController.searchType = .appartment
-                newServiceAddressViewController.listAppartment = viewModel.getAppartmentIDs()
+                newServiceAddressViewController.listAppartment = viewModel.getAppartmentIDs()?.filter{ ($0.suiteNumber?.count ?? 0) > 0}
                 let newServiceAddresNavigationController = LargeTitleNavigationController(rootViewController: newServiceAddressViewController)
                 newServiceAddresNavigationController.modalPresentationStyle = .fullScreen
                 newServiceAddressViewController.addCloseButton()
