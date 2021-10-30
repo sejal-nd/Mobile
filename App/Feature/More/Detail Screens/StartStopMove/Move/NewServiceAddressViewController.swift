@@ -89,26 +89,31 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
                 if self.viewModel.isZipValidated && self.viewModel.isStreetAddressValid{
-                    if let appartment_list = self.viewModel.getAppartmentIDs(), appartment_list.count == 1 {
-                        self.viewModel.setAppartment(appartment_list.first)
-                        if let suiteNumber = appartment_list.first?.suiteNumber,let premiseID =  appartment_list.first?.premiseID{
-                            self.viewModel.premiseID = premiseID
-                            self.viewModel.suiteNumber = suiteNumber
-                            self.setAppartment(suiteNumber)
-                            self.enableAppartmentColorState(false)
-                            self.viewModel.validateAddress()
-                        } else if let premiseID =  appartment_list.first?.premiseID{
-                            self.viewModel.premiseID = premiseID
-                            self.setAppartment(nil)
-                            self.enableAppartmentColorState(false)
-                            self.viewModel.validateAddress()
-                        } else {
-                            self.setAppartment(nil)
+                    if let appartment_list = self.viewModel.getAppartmentIDs() {
+                        if  appartment_list.count == 1 {
+                            self.viewModel.setAppartment(appartment_list.first)
+                            if let suiteNumber = appartment_list.first?.suiteNumber,let premiseID =  appartment_list.first?.premiseID{
+                                self.viewModel.premiseID = premiseID
+                                self.viewModel.suiteNumber = suiteNumber
+                                self.setAppartment(suiteNumber)
+                                self.enableAppartmentColorState(false)
+                                self.viewModel.validateAddress()
+                            }
+                            else if let premiseID =  appartment_list.first?.premiseID{
+                                self.viewModel.premiseID = premiseID
+                                self.setAppartment(nil)
+                                self.enableAppartmentColorState(false)
+                                self.viewModel.validateAddress()
+                            }
+                            else {
+                                self.setAppartment(nil)
+                            }
                         }
-                    }else {
-                        self.enableAppartmentColorState(true)
+                        else if  appartment_list.count > 0 {
+                            self.enableAppartmentColorState(true)
+                        }
                     }
-                   // self.continueButton.isEnabled = self.viewModel.canEnableContinue
+                    self.continueButton.isEnabled = self.viewModel.canEnableContinue
                 }
             })
             .disposed(by: disposeBag)
@@ -288,19 +293,22 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
         if !viewModel.isZipValid {
             zipTextField.setError(NSLocalizedString("Zip  Code must be 5 characters in length", comment: ""))
         }
-        else if viewModel.getAppartmentIDs()?.count == 1 {
+        else if viewModel.isZipValid && !viewModel.isStreetAddressValid {
 
-        }else {
-            let storyboard = UIStoryboard(name: "ISUMMove", bundle: nil)
-            let newServiceAddressViewController = storyboard.instantiateViewController(withIdentifier: "AddressSearchViewController") as! AddressSearchViewController
-            newServiceAddressViewController.delegate = self
-            newServiceAddressViewController.zipcode = viewModel.zipCode
-            newServiceAddressViewController.searchType = .appartment
-            newServiceAddressViewController.listAppartment = viewModel.getAppartmentIDs()
-            let newServiceAddresNavigationController = LargeTitleNavigationController(rootViewController: newServiceAddressViewController)
-            newServiceAddresNavigationController.modalPresentationStyle = .fullScreen
-            newServiceAddressViewController.addCloseButton()
-            self.navigationController?.present(newServiceAddresNavigationController, animated: true, completion: nil)
+        }
+        else {
+            if let appartment_list = self.viewModel.getAppartmentIDs(), appartment_list.count > 1  {
+                let storyboard = UIStoryboard(name: "ISUMMove", bundle: nil)
+                let newServiceAddressViewController = storyboard.instantiateViewController(withIdentifier: "AddressSearchViewController") as! AddressSearchViewController
+                newServiceAddressViewController.delegate = self
+                newServiceAddressViewController.zipcode = viewModel.zipCode
+                newServiceAddressViewController.searchType = .appartment
+                newServiceAddressViewController.listAppartment = viewModel.getAppartmentIDs()
+                let newServiceAddresNavigationController = LargeTitleNavigationController(rootViewController: newServiceAddressViewController)
+                newServiceAddresNavigationController.modalPresentationStyle = .fullScreen
+                newServiceAddressViewController.addCloseButton()
+                self.navigationController?.present(newServiceAddresNavigationController, animated: true, completion: nil)
+            }
         }
     }
     func clearPreviousSession(){
@@ -375,7 +383,7 @@ extension NewServiceAddressViewController: UITextFieldDelegate {
 }
 extension NewServiceAddressViewController: AddressSearchDelegate {
     func didSelectAppartment(result: AppartmentResponse) {
-        if let suiteNumber = result.suiteNumber,let premiseID =  result.premiseID{
+        if let suiteNumber = result.suiteNumber{
             setAppartmentError(nil)
             viewModel.setAppartment(result)
             setAppartment(suiteNumber)
