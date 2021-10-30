@@ -2062,44 +2062,6 @@
             </objects>
             <point key="canvasLocation" x="4538" y="85"/>
         </scene>
-        <!--Date Picker View Controller-->
-        <scene sceneID="ope-Wb-bdI">
-            <objects>
-                <viewController storyboardIdentifier="DatePickerViewController" id="9Ur-xn-W4u" customClass="DatePickerViewController" customModule="EUMobile" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="CRL-o0-Zfm">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="IGG-dH-VWU">
-                                <rect key="frame" x="30" y="340" width="354" height="216"/>
-                                <subviews>
-                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="iLt-lu-nYg">
-                                        <rect key="frame" x="0.0" y="0.0" width="354" height="216"/>
-                                        <connections>
-                                            <action selector="datePickerValueChangedWithSender:" destination="9Ur-xn-W4u" eventType="valueChanged" id="EAr-GG-ojG"/>
-                                        </connections>
-                                    </datePicker>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </stackView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="9o5-AS-kw4"/>
-                        <color key="backgroundColor" white="0.33333333329999998" alpha="0.40312007979999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="9o5-AS-kw4" firstAttribute="trailing" secondItem="IGG-dH-VWU" secondAttribute="trailing" constant="30" id="0eo-6t-QSn"/>
-                            <constraint firstItem="IGG-dH-VWU" firstAttribute="centerX" secondItem="CRL-o0-Zfm" secondAttribute="centerX" id="BUe-uF-gVc"/>
-                            <constraint firstItem="IGG-dH-VWU" firstAttribute="leading" secondItem="9o5-AS-kw4" secondAttribute="leading" constant="30" id="ZV2-n7-IEg"/>
-                            <constraint firstItem="IGG-dH-VWU" firstAttribute="centerY" secondItem="CRL-o0-Zfm" secondAttribute="centerY" id="f6V-Ur-mpL"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="datePicker" destination="iLt-lu-nYg" id="j9S-Vd-39X"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ONx-LM-70E" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="5183" y="-559"/>
-        </scene>
         <!--Identity Verification-->
         <scene sceneID="Egt-z4-9Rj">
             <objects>
@@ -3359,13 +3321,13 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="322"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Next Steps" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lfU-wB-N41">
-                                                                        <rect key="frame" x="20" y="40" width="374" height="201"/>
+                                                                        <rect key="frame" x="20" y="40" width="374" height="24"/>
                                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                                                         <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NKA-RH-k8O">
-                                                                        <rect key="frame" x="20" y="261" width="374" height="61"/>
+                                                                        <rect key="frame" x="20" y="84" width="374" height="238"/>
                                                                         <string key="text">We are currently processing your request. If we need more information to complete your request, we will contact you within 24-48 business hours.</string>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
@@ -3408,13 +3370,13 @@
                                                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="206.5"/>
                                                                                 <subviews>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The bill for service at your previous address will be delivered to" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a1p-Ib-go2">
-                                                                                        <rect key="frame" x="20" y="20" width="334" height="138.5"/>
+                                                                                        <rect key="frame" x="20" y="20" width="334" height="31.5"/>
                                                                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                                         <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
                                                                                         <nil key="highlightedColor"/>
                                                                                     </label>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your new service address" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Xr-Ug-OEm">
-                                                                                        <rect key="frame" x="20" y="168.5" width="334" height="18"/>
+                                                                                        <rect key="frame" x="20" y="61.5" width="334" height="125"/>
                                                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                                                                         <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
                                                                                         <nil key="highlightedColor"/>
