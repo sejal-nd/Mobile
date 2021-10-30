@@ -36,7 +36,9 @@ class IdVerificationViewController: KeyboardAvoidingStickyFooterViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        if isLaunchedFromReviewScreen {
+            viewModel.setIDVerification(viewModel.moveDataFlow)
+        }
         configureTextFields()
     }
     
@@ -65,8 +67,8 @@ class IdVerificationViewController: KeyboardAvoidingStickyFooterViewController {
         dobTextField.placeholder = NSLocalizedString("Date of Birth*", comment: "")
         
         ssnTextField.textField.text = self.viewModel.moveDataFlow.idVerification?.ssn
-        driverLicenseTextField.textField.text = self.viewModel.moveDataFlow.idVerification?.driverLicenseNumber
-        if let dateOfBirth = viewModel.moveDataFlow.idVerification?.dateOfBirth {
+        driverLicenseTextField.textField.text = self.viewModel.idVerification?.driverLicenseNumber
+        if let dateOfBirth = viewModel.idVerification?.dateOfBirth {
             self.dobTextField.textField.text = DateFormatter.mmDdYyyyFormatter.string(from: dateOfBirth)
         }
         if let employmentStatus = viewModel.idVerification.employmentStatus {
