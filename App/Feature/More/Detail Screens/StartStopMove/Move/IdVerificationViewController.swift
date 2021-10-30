@@ -23,7 +23,7 @@ class IdVerificationViewController: KeyboardAvoidingStickyFooterViewController {
     @IBOutlet weak var dobTextField: FloatLabelTextField!
     @IBOutlet weak var continueButton: PrimaryButton!
 
-    private var datePicker: UIDatePicker!
+    private var datePicker = UIDatePicker()
     private var blurEffectView: UIVisualEffectView!
     private var datePickerConstraints: NSLayoutConstraint!
     var isLaunchedFromReviewScreen: Bool = false
@@ -32,7 +32,6 @@ class IdVerificationViewController: KeyboardAvoidingStickyFooterViewController {
     var delegate: IdVerificationDelegate!
     
     private var hideSSNText:Bool = true
-    var dateAlert: UIAlertController!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -102,21 +101,18 @@ class IdVerificationViewController: KeyboardAvoidingStickyFooterViewController {
     
     func showDatePicker() {
         
-        let datePicker = UIDatePicker()
         datePicker.date = viewModel.idVerification.dateOfBirth ?? Date()
         datePicker.datePickerMode = .date
         datePicker.locale = .current
-        datePicker.maximumDate = Calendar.current.date(byAdding: .year, value: -18, to: Date())!
-        datePicker.preferredDatePickerStyle = .inline
+        datePicker.maximumDate = Date()
+        datePicker.preferredDatePickerStyle = .wheels
+        datePicker.addTarget(self, action: #selector(IdVerificationViewController.handleDateSelection), for: .valueChanged)
 
-        dateAlert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let dateAlert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         dateAlert.view.addSubview(datePicker)
-        datePicker.center = CGPoint(x: dateAlert.view.center.x, y: 180)
-        dateAlert.addAction(UIAlertAction(title: "Done", style: .default, handler: { _ in
-            self.handleDateSelection(sender: datePicker)
-        }))
-        dateAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        dateAlert.view.heightAnchor.constraint(equalToConstant: 440).isActive = true
+        datePicker.center = CGPoint(x: dateAlert.view.center.x - 10, y: 118)
+        dateAlert.addAction(UIAlertAction(title: "Done", style: .cancel, handler: nil))
+        dateAlert.view.heightAnchor.constraint(equalToConstant: 276).isActive = true
         self.present(dateAlert, animated: true, completion: nil)
     }
     
@@ -154,17 +150,14 @@ class IdVerificationViewController: KeyboardAvoidingStickyFooterViewController {
             onCancel: nil)
     }
     
-    @objc func handleDateSelection(sender: UIDatePicker) {
+    @objc func handleDateSelection() {
         
-        dateAlert.dismiss(animated: true, completion: nil)
-        viewModel.idVerification.dateOfBirth = sender.date
-        self.dobTextField.textField.text = DateFormatter.mmDdYyyyFormatter.string(from: sender.date)
+        viewModel.idVerification.dateOfBirth = datePicker.date
+        self.dobTextField.textField.text = DateFormatter.mmDdYyyyFormatter.string(from: datePicker.date)
         
-        if viewModel.validateAge(selectedDate: sender.date) {
+        if viewModel.validateAge(selectedDate: datePicker.date) {
             dobTextField.setError(nil)
-            self.viewModel.idVerification.dateOfBirth = sender.date
         } else {
-            self.viewModel.idVerification.dateOfBirth = nil
             dobTextField.setError("Applicants must be 18 or older in order to request and maintain a BGE account.")
         }
         self.continueButton.isEnabled = viewModel.validation()
