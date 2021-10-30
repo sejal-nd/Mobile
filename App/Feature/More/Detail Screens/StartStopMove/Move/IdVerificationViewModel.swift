@@ -66,7 +66,4 @@ class IdVerificationViewModel {
         }
         return isValidTextCount
     }
-    func setIDVerification(_ moveFlowData :MoveServiceFlowData){
-        self.idVerification = moveFlowData.idVerification
-    }
 }
