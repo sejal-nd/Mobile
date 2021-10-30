@@ -113,7 +113,7 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
                             self.enableAppartmentColorState(true)
                         }
                     }
-                    self.continueButton.isEnabled = self.viewModel.canEnableContinue
+                    // self.continueButton.isEnabled = self.viewModel.canEnableContinue
                 }
             })
             .disposed(by: disposeBag)
