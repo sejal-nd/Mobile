@@ -225,4 +225,8 @@ extension IdVerificationViewController: UITextFieldDelegate {
             ssnTextField.setError(nil)
         }
     }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 }
