@@ -13,8 +13,13 @@ enum NewMockDataKey: String {
     case `default`
     case nonAMIUser
     case stopResolved
-    case resolvedEbill
+    case stopResolvedEbill
     case stopUnresolved
     case stopUnresolvedEbill
     case stopUnresolvedChangedBillingAddress
+    case moveResolved
+    case moveResolvedEbill
+    case moveUnresolved
+    case moveUnresolvedEbill
+    case moveUnresolvedChangeBillingAddress
 }

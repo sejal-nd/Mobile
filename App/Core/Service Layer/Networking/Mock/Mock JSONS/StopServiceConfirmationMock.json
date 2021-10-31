@@ -67,7 +67,7 @@
         "appointmentRequested": false
     }
   },
-  "resolvedEbill": {
+  "stopResolvedEbill": {
       "success": true,
       "data": {
           "ConfirmationNo": "297749",

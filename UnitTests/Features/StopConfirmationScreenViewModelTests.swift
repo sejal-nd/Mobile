@@ -35,7 +35,7 @@ class StopConfirmationScreenViewModelTests: XCTestCase {
     
     func testBillingAddressResolvedEbill() throws {
 
-        let response: StopServiceResponse = MockModel.getModel(mockDataFileName: "StopServiceConfirmationMock", mockUser: .stopUnresolvedEbill)
+        let response: StopServiceResponse = MockModel.getModel(mockDataFileName: "StopServiceConfirmationMock", mockUser: .stopResolvedEbill)
         let viewModel = StopConfirmationScreenViewModel(stopServiceResponse: response)
         XCTAssertEqual(viewModel.getFinalBillAddress(), "6958491198@example.com", "Wrong Ebill address resolved")
     }

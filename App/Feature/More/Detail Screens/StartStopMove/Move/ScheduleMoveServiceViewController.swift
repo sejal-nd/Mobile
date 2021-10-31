@@ -57,7 +57,7 @@ class ScheduleMoveServiceViewController: UIViewController {
         
         if isFirstLoad {
             isFirstLoad = false
-            viewModel.getAccountListSubject.onNext(())
+            viewModel.getAccounts { _ in }
         }
         navigationController?.setNavigationBarHidden(false, animated: true)
     }

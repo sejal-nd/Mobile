@@ -1,0 +1,266 @@
+{
+  "default": {
+    "success": true,
+    "data": {
+        "IsFinalStepResult": true,
+        "ConfirmationNo": "297751",
+        "IsManualCallResult": true,
+        "ConfirmationMessage": "&lt;p&gt;Thank you for contacting BGE. We will process your request in the order in which it was received.&lt;/p&gt&lt;p&gt;You have selected to START service at:&lt;/p&gt;&lt;p&gt;&lt;strong&gt; 7432 HINDON CIR *CONDO 202 BALTIMORE Maryland 21244&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;On this date: &lt;strong&gt;11/18/2021&lt;/strong&gt;&lt;/p&gt; &lt;p&gt;You have selected to STOP service at:&lt;/p&gt;&lt;p&gt;&lt;strong&gt; 22 Cedarcone Ct Baltimore Maryland 21236&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;On this date: &lt;strong&gt;11/18/2021&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Your final bill will be delivered to this address:&lt;/p&gt;&lt;p&gt;&lt;strong&gt; 22 Cedarcone Ct Baltimore Maryland 21236&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Your confirmation number is: &lt;strong&gt;297751&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;A confirmation email has been sent to the following address: &lt;strong&gt;6983357223@example.com&lt;/strong&gt;&lt;/p&gt;",
+        "stopDate": "November 18, 2021",
+        "stopAddress": {
+            "State": "Maryland",
+            "ZipCode": "21236",
+            "AccountNumber": "5721312000",
+            "PremiseID": "8543650000",
+            "Address": "22 Cedarcone Ct Baltimore MD 21236",
+            "StreetName": "22 Cedarcone Ct",
+            "City": "Baltimore"
+        },
+        "startDate": "November 18, 2021",
+        "startAddress": {
+            "StreetName": "7432 HINDON CIR *CONDO 202",
+            "HouseNo": null,
+            "ApartmentUnitNo": null,
+            "City": "BALTIMORE",
+            "ZipCode": "21244",
+            "State": "Maryland",
+            "Country": "United States of America"
+        },
+        "remoteShutoffCapable": true,
+        "accountNumber": "5721312000",
+        "finalBillEmail": "6983357223@example.com",
+        "useAltBillingAddress": false,
+        "finalBillAddress": {
+            "StreetName": "7432 HINDON CIR *CONDO 202",
+            "HouseNo": null,
+            "ApartmentUnitNo": null,
+            "City": "BALTIMORE",
+            "ZipCode": "21244",
+            "State": "Maryland",
+            "Country": "United States of America"
+        },
+        "isResolved": false,
+        "isServiceChargeFee": true
+        }
+    },
+  "moveResolved": {
+    "success": true,
+    "data": {
+        "IsFinalStepResult": true,
+        "ConfirmationNo": "297751",
+        "IsManualCallResult": true,
+        "ConfirmationMessage": "&lt;p&gt;Thank you for contacting BGE. We will process your request in the order in which it was received.&lt;/p&gt&lt;p&gt;You have selected to START service at:&lt;/p&gt;&lt;p&gt;&lt;strong&gt; 7432 HINDON CIR *CONDO 202 BALTIMORE Maryland 21244&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;On this date: &lt;strong&gt;11/18/2021&lt;/strong&gt;&lt;/p&gt; &lt;p&gt;You have selected to STOP service at:&lt;/p&gt;&lt;p&gt;&lt;strong&gt; 22 Cedarcone Ct Baltimore Maryland 21236&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;On this date: &lt;strong&gt;11/18/2021&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Your final bill will be delivered to this address:&lt;/p&gt;&lt;p&gt;&lt;strong&gt; 22 Cedarcone Ct Baltimore Maryland 21236&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Your confirmation number is: &lt;strong&gt;297751&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;A confirmation email has been sent to the following address: &lt;strong&gt;6983357223@example.com&lt;/strong&gt;&lt;/p&gt;",
+        "stopDate": "November 18, 2021",
+        "stopAddress": {
+            "State": "Maryland",
+            "ZipCode": "21236",
+            "AccountNumber": "5721312000",
+            "PremiseID": "8543650000",
+            "Address": "22 Cedarcone Ct Baltimore MD 21236",
+            "StreetName": "22 Cedarcone Ct",
+            "City": "Baltimore"
+        },
+        "startDate": "November 18, 2021",
+        "startAddress": {
+            "StreetName": "7432 HINDON CIR *CONDO 202",
+            "HouseNo": null,
+            "ApartmentUnitNo": null,
+            "City": "BALTIMORE",
+            "ZipCode": "21244",
+            "State": "Maryland",
+            "Country": "United States of America"
+        },
+        "remoteShutoffCapable": true,
+        "accountNumber": "5721312000",
+        "finalBillEmail": null,
+        "useAltBillingAddress": false,
+        "finalBillAddress": {
+            "StreetName": "7432 HINDON CIR *CONDO 202",
+            "HouseNo": null,
+            "ApartmentUnitNo": null,
+            "City": "BALTIMORE",
+            "ZipCode": "21244",
+            "State": "Maryland",
+            "Country": "United States of America"
+        },
+        "isResolved": true,
+        "isServiceChargeFee": true
+        }
+    },
+  "moveResolvedEbill": {
+        "success": true,
+        "data": {
+            "IsFinalStepResult": true,
+            "ConfirmationNo": "297751",
+            "IsManualCallResult": true,
+            "ConfirmationMessage": "&lt;p&gt;Thank you for contacting BGE. We will process your request in the order in which it was received.&lt;/p&gt&lt;p&gt;You have selected to START service at:&lt;/p&gt;&lt;p&gt;&lt;strong&gt; 7432 HINDON CIR *CONDO 202 BALTIMORE Maryland 21244&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;On this date: &lt;strong&gt;11/18/2021&lt;/strong&gt;&lt;/p&gt; &lt;p&gt;You have selected to STOP service at:&lt;/p&gt;&lt;p&gt;&lt;strong&gt; 22 Cedarcone Ct Baltimore Maryland 21236&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;On this date: &lt;strong&gt;11/18/2021&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Your final bill will be delivered to this address:&lt;/p&gt;&lt;p&gt;&lt;strong&gt; 22 Cedarcone Ct Baltimore Maryland 21236&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Your confirmation number is: &lt;strong&gt;297751&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;A confirmation email has been sent to the following address: &lt;strong&gt;6983357223@example.com&lt;/strong&gt;&lt;/p&gt;",
+            "stopDate": "November 18, 2021",
+            "stopAddress": {
+                "State": "Maryland",
+                "ZipCode": "21236",
+                "AccountNumber": "5721312000",
+                "PremiseID": "8543650000",
+                "Address": "22 Cedarcone Ct Baltimore MD 21236",
+                "StreetName": "22 Cedarcone Ct",
+                "City": "Baltimore"
+            },
+            "startDate": "November 18, 2021",
+            "startAddress": {
+                "StreetName": "7432 HINDON CIR *CONDO 202",
+                "HouseNo": null,
+                "ApartmentUnitNo": null,
+                "City": "BALTIMORE",
+                "ZipCode": "21244",
+                "State": "Maryland",
+                "Country": "United States of America"
+            },
+            "remoteShutoffCapable": true,
+            "accountNumber": "5721312000",
+            "finalBillEmail": "6983357223@example.com",
+            "useAltBillingAddress": false,
+            "finalBillAddress": {
+                "StreetName": "7432 HINDON CIR *CONDO 202",
+                "HouseNo": null,
+                "ApartmentUnitNo": null,
+                "City": "BALTIMORE",
+                "ZipCode": "21244",
+                "State": "Maryland",
+                "Country": "United States of America"
+            },
+            "isResolved": true,
+            "isServiceChargeFee": true
+            }
+        },
+  "moveUnresolved": {
+    "success": true,
+    "data": {
+        "IsFinalStepResult": true,
+        "ConfirmationNo": "297751",
+        "IsManualCallResult": true,
+        "ConfirmationMessage": "&lt;p&gt;Thank you for contacting BGE. We will process your request in the order in which it was received.&lt;/p&gt&lt;p&gt;You have selected to START service at:&lt;/p&gt;&lt;p&gt;&lt;strong&gt; 7432 HINDON CIR *CONDO 202 BALTIMORE Maryland 21244&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;On this date: &lt;strong&gt;11/18/2021&lt;/strong&gt;&lt;/p&gt; &lt;p&gt;You have selected to STOP service at:&lt;/p&gt;&lt;p&gt;&lt;strong&gt; 22 Cedarcone Ct Baltimore Maryland 21236&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;On this date: &lt;strong&gt;11/18/2021&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Your final bill will be delivered to this address:&lt;/p&gt;&lt;p&gt;&lt;strong&gt; 22 Cedarcone Ct Baltimore Maryland 21236&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Your confirmation number is: &lt;strong&gt;297751&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;A confirmation email has been sent to the following address: &lt;strong&gt;6983357223@example.com&lt;/strong&gt;&lt;/p&gt;",
+        "stopDate": "November 18, 2021",
+        "stopAddress": {
+            "State": "Maryland",
+            "ZipCode": "21236",
+            "AccountNumber": "5721312000",
+            "PremiseID": "8543650000",
+            "Address": "22 Cedarcone Ct Baltimore MD 21236",
+            "StreetName": "22 Cedarcone Ct",
+            "City": "Baltimore"
+        },
+        "startDate": "November 18, 2021",
+        "startAddress": {
+            "StreetName": "7432 HINDON CIR *CONDO 202",
+            "HouseNo": null,
+            "ApartmentUnitNo": null,
+            "City": "BALTIMORE",
+            "ZipCode": "21244",
+            "State": "Maryland",
+            "Country": "United States of America"
+        },
+        "remoteShutoffCapable": true,
+        "accountNumber": "5721312000",
+        "finalBillEmail": null,
+        "useAltBillingAddress": false,
+        "finalBillAddress": {
+            "StreetName": "7432 HINDON CIR *CONDO 202",
+            "HouseNo": null,
+            "ApartmentUnitNo": null,
+            "City": "BALTIMORE",
+            "ZipCode": "21244",
+            "State": "Maryland",
+            "Country": "United States of America"
+        },
+        "isResolved": false,
+        "isServiceChargeFee": true
+        }
+    },
+  "moveUnresolvedEbill": {
+    "success": true,
+    "data": {
+        "IsFinalStepResult": true,
+        "ConfirmationNo": "297751",
+        "IsManualCallResult": true,
+        "ConfirmationMessage": "&lt;p&gt;Thank you for contacting BGE. We will process your request in the order in which it was received.&lt;/p&gt&lt;p&gt;You have selected to START service at:&lt;/p&gt;&lt;p&gt;&lt;strong&gt; 7432 HINDON CIR *CONDO 202 BALTIMORE Maryland 21244&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;On this date: &lt;strong&gt;11/18/2021&lt;/strong&gt;&lt;/p&gt; &lt;p&gt;You have selected to STOP service at:&lt;/p&gt;&lt;p&gt;&lt;strong&gt; 22 Cedarcone Ct Baltimore Maryland 21236&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;On this date: &lt;strong&gt;11/18/2021&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Your final bill will be delivered to this address:&lt;/p&gt;&lt;p&gt;&lt;strong&gt; 22 Cedarcone Ct Baltimore Maryland 21236&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Your confirmation number is: &lt;strong&gt;297751&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;A confirmation email has been sent to the following address: &lt;strong&gt;6983357223@example.com&lt;/strong&gt;&lt;/p&gt;",
+        "stopDate": "November 18, 2021",
+        "stopAddress": {
+            "State": "Maryland",
+            "ZipCode": "21236",
+            "AccountNumber": "5721312000",
+            "PremiseID": "8543650000",
+            "Address": "22 Cedarcone Ct Baltimore MD 21236",
+            "StreetName": "22 Cedarcone Ct",
+            "City": "Baltimore"
+        },
+        "startDate": "November 18, 2021",
+        "startAddress": {
+            "StreetName": "7432 HINDON CIR *CONDO 202",
+            "HouseNo": null,
+            "ApartmentUnitNo": null,
+            "City": "BALTIMORE",
+            "ZipCode": "21244",
+            "State": "Maryland",
+            "Country": "United States of America"
+        },
+        "remoteShutoffCapable": true,
+        "accountNumber": "5721312000",
+        "finalBillEmail": "6983357223@example.com",
+        "useAltBillingAddress": false,
+        "finalBillAddress": {
+            "StreetName": "7432 HINDON CIR *CONDO 202",
+            "HouseNo": null,
+            "ApartmentUnitNo": null,
+            "City": "BALTIMORE",
+            "ZipCode": "21244",
+            "State": "Maryland",
+            "Country": "United States of America"
+        },
+        "isResolved": false,
+        "isServiceChargeFee": true
+        }
+    },
+  "moveUnresolvedChangeBillingAddress": {
+    "success": true,
+    "data": {
+        "IsFinalStepResult": true,
+        "ConfirmationNo": "297751",
+        "IsManualCallResult": true,
+        "ConfirmationMessage": "&lt;p&gt;Thank you for contacting BGE. We will process your request in the order in which it was received.&lt;/p&gt&lt;p&gt;You have selected to START service at:&lt;/p&gt;&lt;p&gt;&lt;strong&gt; 7432 HINDON CIR *CONDO 202 BALTIMORE Maryland 21244&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;On this date: &lt;strong&gt;11/18/2021&lt;/strong&gt;&lt;/p&gt; &lt;p&gt;You have selected to STOP service at:&lt;/p&gt;&lt;p&gt;&lt;strong&gt; 22 Cedarcone Ct Baltimore Maryland 21236&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;On this date: &lt;strong&gt;11/18/2021&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Your final bill will be delivered to this address:&lt;/p&gt;&lt;p&gt;&lt;strong&gt; 22 Cedarcone Ct Baltimore Maryland 21236&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Your confirmation number is: &lt;strong&gt;297751&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;A confirmation email has been sent to the following address: &lt;strong&gt;6983357223@example.com&lt;/strong&gt;&lt;/p&gt;",
+        "stopDate": "November 18, 2021",
+        "stopAddress": {
+            "State": "Maryland",
+            "ZipCode": "21236",
+            "AccountNumber": "5721312000",
+            "PremiseID": "8543650000",
+            "Address": "22 Cedarcone Ct Baltimore MD 21236",
+            "StreetName": "22 Cedarcone Ct",
+            "City": "Baltimore"
+        },
+        "startDate": "November 18, 2021",
+        "startAddress": {
+            "StreetName": "7432 HINDON CIR *CONDO 202",
+            "HouseNo": null,
+            "ApartmentUnitNo": null,
+            "City": "BALTIMORE",
+            "ZipCode": "21244",
+            "State": "Maryland",
+            "Country": "United States of America"
+        },
+        "remoteShutoffCapable": true,
+        "accountNumber": "5721312000",
+        "finalBillEmail": null,
+        "useAltBillingAddress": false,
+        "finalBillAddress": {
+            "StreetName": "6801 Rapid-Water Way *Apt 203",
+            "HouseNo": null,
+            "ApartmentUnitNo": null,
+            "City": "BALTIMORE",
+            "ZipCode": "21060",
+            "State": "Maryland",
+            "Country": "United States of America"
+        },
+        "isResolved": false,
+        "isServiceChargeFee": true
+        }
+    }
+}
