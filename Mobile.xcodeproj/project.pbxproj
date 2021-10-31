@@ -32,6 +32,7 @@
 		21852AFD272E9A1900C0A10E /* MockModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21852AFC272E9A1900C0A10E /* MockModel.swift */; };
 		21852B01272EA69400C0A10E /* NewServiceAddressViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21852B00272EA69400C0A10E /* NewServiceAddressViewModelTests.swift */; };
 		21852B03272EB8EA00C0A10E /* MoveStartServiceViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21852B02272EB8EA00C0A10E /* MoveStartServiceViewModelTests.swift */; };
+		21852B05272EC26600C0A10E /* IdVerificationViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21852B04272EC26600C0A10E /* IdVerificationViewModelTests.swift */; };
 		21D1C512270ADF6400EFAFAC /* AddressSearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D1C50E270ADF6100EFAFAC /* AddressSearchModel.swift */; };
 		21D1C513270ADF6400EFAFAC /* AddressSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D1C50F270ADF6100EFAFAC /* AddressSearchViewController.swift */; };
 		21D1C515270ADF6400EFAFAC /* AddressSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D1C511270ADF6300EFAFAC /* AddressSearchCell.swift */; };
@@ -1234,6 +1235,7 @@
 		21852AFC272E9A1900C0A10E /* MockModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockModel.swift; sourceTree = "<group>"; };
 		21852B00272EA69400C0A10E /* NewServiceAddressViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewServiceAddressViewModelTests.swift; sourceTree = "<group>"; };
 		21852B02272EB8EA00C0A10E /* MoveStartServiceViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveStartServiceViewModelTests.swift; sourceTree = "<group>"; };
+		21852B04272EC26600C0A10E /* IdVerificationViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdVerificationViewModelTests.swift; sourceTree = "<group>"; };
 		21C06E439FF0E3B0841F704C /* Pods-EUMobile-Watch Extension.peco-rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch Extension.peco-rc.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch Extension/Pods-EUMobile-Watch Extension.peco-rc.xcconfig"; sourceTree = "<group>"; };
 		21D1C50E270ADF6100EFAFAC /* AddressSearchModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressSearchModel.swift; sourceTree = "<group>"; };
 		21D1C50F270ADF6100EFAFAC /* AddressSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressSearchViewController.swift; sourceTree = "<group>"; };
@@ -4177,6 +4179,7 @@
      			4A74A0B4272EACA500F87986 /* ScheduleMoveServiceViewModelTests.swift */,
 				4A74A0B6272EB03D00F87986 /* MoveServiceConfirmationViewModelTests.swift */,
 				21852B00272EA69400C0A10E /* NewServiceAddressViewModelTests.swift */,
+				21852B04272EC26600C0A10E /* IdVerificationViewModelTests.swift */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -6723,6 +6726,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				21852B01272EA69400C0A10E /* NewServiceAddressViewModelTests.swift in Sources */,
+				21852B05272EC26600C0A10E /* IdVerificationViewModelTests.swift in Sources */,
 				4A398A43271E9A1300FA7B89 /* StopServiceViewModelTests.swift in Sources */,
 				4AC1E08C272979AD00740A37 /* StopConfirmationScreenViewModelTests.swift in Sources */,
 				4A74A0B5272EACA500F87986 /* ScheduleMoveServiceViewModelTests.swift in Sources */,
