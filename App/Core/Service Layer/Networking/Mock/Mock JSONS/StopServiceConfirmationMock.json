@@ -1,0 +1,207 @@
+{
+  "default": {
+    "success": true,
+    "data": {
+        "ConfirmationNo": "297749",
+        "IsManualCallResult": true,
+        "ConfirmationMessage": "&lt;p&gt;Thank you for contacting BGE. We will process your request in the order in which it was received.&lt;/p&gt;  &lt;p&gt;You have selected to STOP service at:&lt;/p&gt;&lt;p&gt;&lt;strong&gt; 6801 Rapid-Water Way *Apt 203 Glen Burnie Maryland 21060&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;On this date: &lt;strong&gt;11/11/2021&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Your final bill will be delivered to this address:&lt;/p&gt;&lt;p&gt;&lt;strong&gt; 6801 Rapid-Water Way *Apt 203 Glen Burnie Maryland 21060&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Your confirmation number is: &lt;strong&gt;297749&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;A confirmation email has been sent to the following address: &lt;strong&gt;6958491198@example.com&lt;/strong&gt;&lt;/p&gt;",
+        "stopDate": "November 11, 2021",
+        "stopAddress": {
+            "State": "Maryland",
+            "ZipCode": "21060",
+            "AccountNumber": "4398720000",
+            "StreetName": "6801 Rapid-Water Way *Apt 203",
+            "CustomerID": "6958831000",
+            "Country": "United States of America",
+            "PremiseID": "8305511000",
+            "City": "Glen Burnie"
+        },
+        "accountNumber": "4398720000",
+        "finalBillEmail": "6958491198@example.com",
+        "finalBillAddress": {
+            "State": "Maryland",
+            "ZipCode": "21060",
+            "AccountNumber": "4398720000",
+            "StreetName": "6801 Rapid-Water Way *Apt 203",
+            "CustomerID": "6958831000",
+            "Country": "United States of America",
+            "PremiseID": "8305511000",
+            "City": "Glen Burnie"
+        },
+        "remoteShutoffCapable": false,
+        "isResolved": false,
+        "appointmentRequested": false
+    }
+  },
+  "stopResolved": {
+    "success": true,
+    "data": {
+        "ConfirmationNo": "297749",
+        "IsManualCallResult": true,
+        "ConfirmationMessage": "&lt;p&gt;Thank you for contacting BGE. We will process your request in the order in which it was received.&lt;/p&gt;  &lt;p&gt;You have selected to STOP service at:&lt;/p&gt;&lt;p&gt;&lt;strong&gt; 6801 Rapid-Water Way *Apt 203 Glen Burnie Maryland 21060&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;On this date: &lt;strong&gt;11/11/2021&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Your final bill will be delivered to this address:&lt;/p&gt;&lt;p&gt;&lt;strong&gt; 6801 Rapid-Water Way *Apt 203 Glen Burnie Maryland 21060&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Your confirmation number is: &lt;strong&gt;297749&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;A confirmation email has been sent to the following address: &lt;strong&gt;6958491198@example.com&lt;/strong&gt;&lt;/p&gt;",
+        "stopDate": "November 11, 2021",
+        "stopAddress": {
+            "State": "Maryland",
+            "ZipCode": "21060",
+            "AccountNumber": "4398720000",
+            "StreetName": "6801 Rapid-Water Way *Apt 203",
+            "CustomerID": "6958831000",
+            "Country": "United States of America",
+            "PremiseID": "8305511000",
+            "City": "Glen Burnie"
+        },
+        "accountNumber": "4398720000",
+        "finalBillEmail": null,
+        "finalBillAddress": {
+            "State": "Maryland",
+            "ZipCode": "21060",
+            "AccountNumber": "4398720000",
+            "StreetName": "6801 Rapid-Water Way *Apt 203",
+            "CustomerID": "6958831000",
+            "Country": "United States of America",
+            "PremiseID": "8305511000",
+            "City": "Glen Burnie"
+        },
+        "remoteShutoffCapable": false,
+        "isResolved": true,
+        "appointmentRequested": false
+    }
+  },
+  "resolvedEbill": {
+      "success": true,
+      "data": {
+          "ConfirmationNo": "297749",
+          "IsManualCallResult": true,
+          "ConfirmationMessage": "&lt;p&gt;Thank you for contacting BGE. We will process your request in the order in which it was received.&lt;/p&gt;  &lt;p&gt;You have selected to STOP service at:&lt;/p&gt;&lt;p&gt;&lt;strong&gt; 6801 Rapid-Water Way *Apt 203 Glen Burnie Maryland 21060&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;On this date: &lt;strong&gt;11/11/2021&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Your final bill will be delivered to this address:&lt;/p&gt;&lt;p&gt;&lt;strong&gt; 6801 Rapid-Water Way *Apt 203 Glen Burnie Maryland 21060&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Your confirmation number is: &lt;strong&gt;297749&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;A confirmation email has been sent to the following address: &lt;strong&gt;6958491198@example.com&lt;/strong&gt;&lt;/p&gt;",
+          "stopDate": "November 11, 2021",
+          "stopAddress": {
+              "State": "Maryland",
+              "ZipCode": "21060",
+              "AccountNumber": "4398720000",
+              "StreetName": "6801 Rapid-Water Way *Apt 203",
+              "CustomerID": "6958831000",
+              "Country": "United States of America",
+              "PremiseID": "8305511000",
+              "City": "Glen Burnie"
+          },
+          "accountNumber": "4398720000",
+          "finalBillEmail": "6958491198@example.com",
+          "finalBillAddress": {
+              "State": "Maryland",
+              "ZipCode": "21060",
+              "AccountNumber": "4398720000",
+              "StreetName": "6801 Rapid-Water Way *Apt 203",
+              "CustomerID": "6958831000",
+              "Country": "United States of America",
+              "PremiseID": "8305511000",
+              "City": "Glen Burnie"
+          },
+          "remoteShutoffCapable": false,
+          "isResolved": true,
+          "appointmentRequested": false
+      }
+    },
+  "stopUnresolved": {
+    "success": true,
+    "data": {
+        "ConfirmationNo": "297749",
+        "IsManualCallResult": true,
+        "ConfirmationMessage": "&lt;p&gt;Thank you for contacting BGE. We will process your request in the order in which it was received.&lt;/p&gt;  &lt;p&gt;You have selected to STOP service at:&lt;/p&gt;&lt;p&gt;&lt;strong&gt; 6801 Rapid-Water Way *Apt 203 Glen Burnie Maryland 21060&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;On this date: &lt;strong&gt;11/11/2021&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Your final bill will be delivered to this address:&lt;/p&gt;&lt;p&gt;&lt;strong&gt; 6801 Rapid-Water Way *Apt 203 Glen Burnie Maryland 21060&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Your confirmation number is: &lt;strong&gt;297749&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;A confirmation email has been sent to the following address: &lt;strong&gt;6958491198@example.com&lt;/strong&gt;&lt;/p&gt;",
+        "stopDate": "November 11, 2021",
+        "stopAddress": {
+            "State": "Maryland",
+            "ZipCode": "21060",
+            "AccountNumber": "4398720000",
+            "StreetName": "6801 Rapid-Water Way *Apt 203",
+            "CustomerID": "6958831000",
+            "Country": "United States of America",
+            "PremiseID": "8305511000",
+            "City": "Glen Burnie"
+        },
+        "accountNumber": "4398720000",
+        "finalBillEmail": null,
+        "finalBillAddress": {
+            "State": "Maryland",
+            "ZipCode": "21060",
+            "AccountNumber": "4398720000",
+            "StreetName": "6801 Rapid-Water Way *Apt 203",
+            "CustomerID": "6958831000",
+            "Country": "United States of America",
+            "PremiseID": "8305511000",
+            "City": "Glen Burnie"
+        },
+        "remoteShutoffCapable": false,
+        "isResolved": false,
+        "appointmentRequested": false
+    }
+  },
+  "stopUnresolvedEbill": {
+      "success": true,
+      "data": {
+          "ConfirmationNo": "297749",
+          "IsManualCallResult": true,
+          "ConfirmationMessage": "&lt;p&gt;Thank you for contacting BGE. We will process your request in the order in which it was received.&lt;/p&gt;  &lt;p&gt;You have selected to STOP service at:&lt;/p&gt;&lt;p&gt;&lt;strong&gt; 6801 Rapid-Water Way *Apt 203 Glen Burnie Maryland 21060&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;On this date: &lt;strong&gt;11/11/2021&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Your final bill will be delivered to this address:&lt;/p&gt;&lt;p&gt;&lt;strong&gt; 6801 Rapid-Water Way *Apt 203 Glen Burnie Maryland 21060&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Your confirmation number is: &lt;strong&gt;297749&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;A confirmation email has been sent to the following address: &lt;strong&gt;6958491198@example.com&lt;/strong&gt;&lt;/p&gt;",
+          "stopDate": "November 11, 2021",
+          "stopAddress": {
+              "State": "Maryland",
+              "ZipCode": "21060",
+              "AccountNumber": "4398720000",
+              "StreetName": "6801 Rapid-Water Way *Apt 203",
+              "CustomerID": "6958831000",
+              "Country": "United States of America",
+              "PremiseID": "8305511000",
+              "City": "Glen Burnie"
+          },
+          "accountNumber": "4398720000",
+          "finalBillEmail": "6958491198@example.com",
+          "finalBillAddress": {
+              "State": "Maryland",
+              "ZipCode": "21060",
+              "AccountNumber": "4398720000",
+              "StreetName": "6801 Rapid-Water Way *Apt 203",
+              "CustomerID": "6958831000",
+              "Country": "United States of America",
+              "PremiseID": "8305511000",
+              "City": "Glen Burnie"
+          },
+          "remoteShutoffCapable": false,
+          "isResolved": false,
+          "appointmentRequested": false
+      }
+    },
+  "stopUnresolvedChangedBillingAddress": {
+      "success": true,
+      "data": {
+          "ConfirmationNo": "297749",
+          "IsManualCallResult": true,
+          "ConfirmationMessage": "&lt;p&gt;Thank you for contacting BGE. We will process your request in the order in which it was received.&lt;/p&gt;  &lt;p&gt;You have selected to STOP service at:&lt;/p&gt;&lt;p&gt;&lt;strong&gt; 6801 Rapid-Water Way *Apt 203 Glen Burnie Maryland 21060&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;On this date: &lt;strong&gt;11/11/2021&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Your final bill will be delivered to this address:&lt;/p&gt;&lt;p&gt;&lt;strong&gt; 6801 Rapid-Water Way *Apt 203 Glen Burnie Maryland 21060&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Your confirmation number is: &lt;strong&gt;297749&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;A confirmation email has been sent to the following address: &lt;strong&gt;6958491198@example.com&lt;/strong&gt;&lt;/p&gt;",
+          "stopDate": "November 11, 2021",
+          "stopAddress": {
+              "State": "Maryland",
+              "ZipCode": "21060",
+              "AccountNumber": "4398720000",
+              "StreetName": "6801 Rapid-Water Way *Apt 203",
+              "CustomerID": "6958831000",
+              "Country": "United States of America",
+              "PremiseID": "8305511000",
+              "City": "Glen Burnie"
+          },
+          "accountNumber": "4398720000",
+          "finalBillEmail": null,
+          "finalBillAddress": {
+              "State": "Maryland",
+              "ZipCode": "21244",
+              "AccountNumber": "4398720000",
+              "StreetName": "7432 Hindon Cir",
+              "CustomerID": "6958831000",
+              "Country": "United States of America",
+              "PremiseID": "8305511000",
+              "City": "Baltimore"
+          },
+          "remoteShutoffCapable": false,
+          "isResolved": false,
+          "appointmentRequested": false
+      }
+    }
+}
+
