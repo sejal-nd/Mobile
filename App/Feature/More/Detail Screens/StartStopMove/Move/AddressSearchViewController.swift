@@ -56,15 +56,7 @@ class AddressSearchViewController: UIViewController {
         super.viewWillAppear(animated)
         reloadTableView()
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+ 
     private func tableViewSetup() {
         tableView.isHidden = true
         tableView.tableFooterView = UIView() // Hides extra separators
@@ -85,16 +77,6 @@ class AddressSearchViewController: UIViewController {
         }
 
         streetAddressTooltipButton.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
-
-//        streetAddressTextField.textField.rx.controlEvent(.editingDidEnd).asObservable()
-//            .filter{ self.searchType == .street}
-//            .debounce(.milliseconds(500), scheduler: MainScheduler.asyncInstance)
-//            .subscribe(onNext: { [weak self] _ in
-//                guard let self = self else { return }
-//                self.viewModel.address = self.streetAddressTextField.textField.text!
-//                self.peformStreetAddressSearch()
-//            }).disposed(by: disposeBag)
-
 
         streetAddressTextField.textField.rx.controlEvent(.editingChanged).asObservable()
             .debounce(.milliseconds(500), scheduler: MainScheduler.instance)
