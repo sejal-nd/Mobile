@@ -87,7 +87,11 @@ class StopLandingViewController: UIViewController {
                     if  !self.viewModel.isDetailsLoading, self.viewModel.isBeginPressed{
                         DispatchQueue.main.async {
                             LoadingView.hide()
-                            self.navigateToStopServiceVC()
+                            if self.isAccountResidential {
+                                self.navigateToStopServiceVC()
+                            } else {
+                                UIApplication.shared.openUrlIfCan(self.viewModel.stopCommercialServiceWebURL)
+                            }
                         }
                     }
                 }
