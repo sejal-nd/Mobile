@@ -140,7 +140,11 @@ class NewServiceAddressViewModel{
         validatedZipCodeResponse.accept(nil)
 
     }
-
+    func refreshAppartmentSession(){
+        premiseID = nil
+        suiteNumber = nil
+        self.appartmentResponse.accept(nil)
+    }
     func setAddressData(movepDataFlow: MoveServiceFlowData) {
 
         if let addressResponse_lookUp = movepDataFlow.addressLookupResponse, let addresss = addressResponse_lookUp.first {

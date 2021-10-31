@@ -31,6 +31,9 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
     @IBOutlet weak var appartmentFloatingLabel: UILabel!
     @IBOutlet weak var appartmentSelectionView: UIView!
 
+    @IBOutlet weak var btnSteetAddress: UIButton!
+    @IBOutlet weak var btnAppartment: UIButton!
+    
     var disposeBag = DisposeBag()
     var viewModel: NewServiceAddressViewModel!
 
@@ -76,6 +79,7 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
 
         viewModel.validateZipResponseEvent.subscribe(onNext: { [weak self] result in
             guard let `self` = self else {return }
+            self.enableTextFieldEditing(true)
             if let isZipValidated = result?.isValidZipCode {
                 if self.viewModel.isZipValid && !isZipValidated {
                     self.zipTextField.setError(NSLocalizedString("Zip code is invalid or may be in an area not served by BG&E", comment: ""))
@@ -200,6 +204,11 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
 
         continueButton.isEnabled = false
     }
+    private func enableTextFieldEditing(_ isEnabled : Bool) {
+        zipTextField.isUserInteractionEnabled = isEnabled
+        btnSteetAddress.isUserInteractionEnabled = isEnabled
+        btnAppartment.isUserInteractionEnabled = isEnabled
+    }
     private func enableStreetColorState(_ isEnabled : Bool) {
         if (isEnabled){
             streetAddressSelectionView.roundCorners(.allCorners, radius: 10.0, borderColor:.accentGray, borderWidth: 1.0)
@@ -262,6 +271,7 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
             zipTextField.setError(NSLocalizedString("Zip  Code must be 5 characters in length", comment: ""))
         }else {
             viewModel.validateZip()
+            enableTextFieldEditing(false)
         }
         scrollView.setContentOffset(CGPoint(x: 0, y: scrollView.contentInset.top), animated: true)
     }
@@ -271,6 +281,7 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
             zipTextField.setError(NSLocalizedString("Zip  Code must be 5 characters in length", comment: ""))
         }else if !viewModel.isZipValidated {
             viewModel.validateZip()
+            enableTextFieldEditing(false)
         }else {
             let storyboard = UIStoryboard(name: "ISUMMove", bundle: nil)
             let newServiceAddressViewController = storyboard.instantiateViewController(withIdentifier: "AddressSearchViewController") as! AddressSearchViewController
@@ -317,6 +328,16 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
         continueButton.isEnabled = viewModel.canEnableContinue
     }
 
+    func clearAppartmentSession(){
+        viewModel.refreshAppartmentSession()
+        appartmentPlaceHolderLabel.text = NSLocalizedString("Apt/Unit #* ", comment: "")
+        enableAppartmentColorState(false)
+        setAppartment(nil)
+
+        noteLabel.isHidden = true;
+        continueButton.isEnabled = viewModel.canEnableContinue
+    }
+
 }
 extension NewServiceAddressViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
@@ -341,6 +362,7 @@ extension NewServiceAddressViewController: UITextFieldDelegate {
                     zipTextField.setError(nil)
                     viewModel.zipCode = decimalString
                     viewModel.validateZip()
+                    enableTextFieldEditing(false)
                     textField.text = decimalString;
                     textField.resignFirstResponder()
                 }
@@ -375,7 +397,7 @@ extension NewServiceAddressViewController: UITextFieldDelegate {
 }
 extension NewServiceAddressViewController: AddressSearchDelegate {
     func didSelectAppartment(result: AppartmentResponse) {
-        if let suiteNumber = result.suiteNumber,let premiseID =  result.premiseID{
+        if let suiteNumber = result.suiteNumber{
             setAppartmentError(nil)
             viewModel.setAppartment(result)
             setAppartment(suiteNumber)
@@ -387,6 +409,7 @@ extension NewServiceAddressViewController: AddressSearchDelegate {
         if !result.isEmpty {
             viewModel.setStreetAddress(result)
             setStreetAddress(result)
+            clearAppartmentSession()
             viewModel.fetchAppartmentDetails()
         }
     }
