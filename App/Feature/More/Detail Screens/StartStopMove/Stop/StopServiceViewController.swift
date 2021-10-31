@@ -59,7 +59,24 @@ class StopServiceViewController: UIViewController {
         
         if isFirstLoad {
             isFirstLoad = false
-            viewModel.getAccounts { _ in }
+            viewModel.getAccounts { [weak self] result in
+                switch result {
+                case .success: break
+                case .failure:
+                    let exitAction = UIAlertAction(title: NSLocalizedString("Exit", comment: ""), style: .default)
+                    { [weak self] _ in
+                        guard let `self` = self else { return }
+                        self.dismiss(animated: true, completion: nil)
+                    }
+                    self?.loadingIndicator.isHidden = true
+                    DispatchQueue.main.async {
+                        self?.presentAlert(title: NSLocalizedString(NetworkingError.generic.title, comment: ""),
+                                           message: NSLocalizedString(NetworkingError.generic.description, comment: ""),
+                                           style: .alert,
+                                           actions: [exitAction])
+                    }
+                }
+            }
         }
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
@@ -78,6 +95,7 @@ class StopServiceViewController: UIViewController {
 
         
         viewModel.showLoadingState
+            .observeOn(MainScheduler.instance)
             .subscribe (onNext: { [weak self] status in
                 self?.loadingIndicator.isHidden = !status
                 self?.scrollView.isHidden = status

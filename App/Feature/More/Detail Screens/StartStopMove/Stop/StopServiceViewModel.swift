@@ -38,13 +38,27 @@ class StopServiceViewModel {
         
         self.isLoading.accept(true)
         if AccountsStore.shared.accounts != nil {
-            self.getAccountDetails(completion: completion)
+            self.getAccountDetails { [weak self] result in
+                switch result {
+                case .success:
+                    self?.isLoading.accept(false)
+                    completion(.success(true))
+                case .failure(let error):
+                    completion(.failure(error))
+                }
+            }
         } else {
             AccountService.fetchAccounts { [weak self] result in
-                if AccountsStore.shared.accounts != nil {
-                    AccountsStore.shared.currentIndex = self?.currentAccountIndex ?? 0
+                switch result {
+                case .success:
+                    if AccountsStore.shared.accounts != nil {
+                        AccountsStore.shared.currentIndex = self?.currentAccountIndex ?? 0
+                    }
+                    self?.isLoading.accept(false)
+                    self?.getAccountDetails(completion: completion)
+                case .failure(let error):
+                    completion(.failure(error))
                 }
-                self?.getAccountDetails(completion: completion)
             }
         }
     }
@@ -57,7 +71,6 @@ class StopServiceViewModel {
             case .success(let accountDetails):
                 self?.currentAccountDetails.accept(accountDetails)
                 if accountDetails.isFinaled {
-                    self?.isLoading.accept(false)
                     completion(.success(true))
                     return
                 }
@@ -78,7 +91,6 @@ class StopServiceViewModel {
                 if (self?.workDays.value.count ?? 0) == 0 {
                     self?.getWorkdays(completion: completion)
                 } else {
-                    self?.isLoading.accept(false)
                     completion(.success(true))
                 }
             case .failure(let error):
@@ -94,7 +106,6 @@ class StopServiceViewModel {
             switch result {
             case .success(let workdaysResponse):
                 self?.workDays.accept(workdaysResponse.list)
-                self?.isLoading.accept(false)
                 completion(.success(true))
             case .failure(let error):
                 completion(.failure(error))
