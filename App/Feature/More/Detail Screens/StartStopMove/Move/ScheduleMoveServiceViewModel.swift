@@ -25,6 +25,8 @@ class ScheduleMoveServiceViewModel {
     private let isLoading = BehaviorRelay(value: true)
     private var getWorkdays = PublishSubject<Void>()
     private var currentAccountIndex = 0
+    var apiError: Observable<Error> { return apiErrorSubject.asObservable()}
+    private var apiErrorSubject = PublishSubject<Error>()
 
     init() {
         

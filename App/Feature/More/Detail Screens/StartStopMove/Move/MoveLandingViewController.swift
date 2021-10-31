@@ -126,6 +126,22 @@ class MoveLandingViewController: UIViewController {
                 }
 
             }).disposed(by: disposeBag)
+        
+        viewModel.apiError.asObservable()
+            .observeOn(MainScheduler.asyncInstance)
+            .subscribe ( onNext: { [weak self] _ in
+                let exitAction = UIAlertAction(title: NSLocalizedString("Exit", comment: ""), style: .default)
+                { [weak self] _ in
+                    guard let `self` = self else { return }
+                    self.dismiss(animated: true, completion: nil)
+                }
+                LoadingView.hide()
+                self?.presentAlert(title: NSLocalizedString(NetworkingError.generic.title, comment: ""),
+                                   message: NSLocalizedString(NetworkingError.generic.description, comment: ""),
+                                   style: .alert,
+                                   actions: [exitAction])
+            }).disposed(by: disposeBag)
+
     }
     func navigateToStopServiceVC(){
         let storyboard = UIStoryboard(name: "ISUMMove", bundle: nil)

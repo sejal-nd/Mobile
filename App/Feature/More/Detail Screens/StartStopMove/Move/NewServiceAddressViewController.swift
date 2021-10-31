@@ -157,6 +157,19 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
                 }
             }).disposed(by: disposeBag)
 
+        viewModel.apiError.asObservable()
+            .subscribe ( onNext: { [weak self] _ in
+                let exitAction = UIAlertAction(title: NSLocalizedString("Exit", comment: ""), style: .default)
+                { [weak self] _ in
+                    guard let `self` = self else { return }
+                    self.dismiss(animated: true, completion: nil)
+                }
+                LoadingView.hide()
+                self?.presentAlert(title: NSLocalizedString(NetworkingError.generic.title, comment: ""),
+                                   message: NSLocalizedString(NetworkingError.generic.description, comment: ""),
+                                   style: .alert,
+                                   actions: [exitAction])
+            }).disposed(by: disposeBag)
     }
 
     private func configureTextField() {

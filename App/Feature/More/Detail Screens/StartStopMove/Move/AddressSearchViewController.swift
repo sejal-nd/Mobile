@@ -102,10 +102,22 @@ class AddressSearchViewController: UIViewController {
         //API Call
         self.viewModel.searchAaddress()
             .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] result in
-                guard let `self` = self else {return }
-                self.viewModel.listStreetAddress = result.data
+            .subscribe(onNext: { [weak self] streetAddressResponse in
+                guard let `self` = self else { return }
+                self.viewModel.listStreetAddress = streetAddressResponse.data
                 self.reloadTableView()
+            }, onError: { [weak self] error in
+                let exitAction = UIAlertAction(title: NSLocalizedString("Exit", comment: ""), style: .default)
+                { [weak self] _ in
+                    guard let `self` = self else { return }
+                    self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
+                }
+                LoadingView.hide()
+                self?.presentAlert(title: NSLocalizedString(NetworkingError.generic.title, comment: ""),
+                                   message: NSLocalizedString(NetworkingError.generic.description, comment: ""),
+                                   style: .alert,
+                                   actions: [exitAction])
+
             }).disposed(by: self.disposeBag)
     }
 
