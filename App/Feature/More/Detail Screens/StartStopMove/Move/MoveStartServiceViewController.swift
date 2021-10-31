@@ -69,17 +69,17 @@ class MoveStartServiceViewController: UIViewController {
     
     private func dataBinding() {
         
-        emailConfirmationStackView.isHidden = viewModel.moveServiceFlow.currentAccountDetail.isAMIAccount
-        if let address = viewModel.moveServiceFlow.addressLookupResponse?.first {
+        emailConfirmationStackView.isHidden = viewModel.moveServiceFlow!.currentAccountDetail.isAMIAccount
+        if let address = viewModel.moveServiceFlow?.addressLookupResponse?.first {
             startServiceAddressLabel.text = address.compressedAddress
         }
-        electricStackView.isHidden = !(viewModel.moveServiceFlow.currentAccountDetail.serviceType?.contains("ELECTRIC") ?? false)
-        gasStackView.isHidden = !(viewModel.moveServiceFlow.currentAccountDetail.serviceType?.contains("GAS") ?? false)
+        electricStackView.isHidden = !(viewModel.moveServiceFlow?.currentAccountDetail.serviceType?.contains("ELECTRIC") ?? false)
+        gasStackView.isHidden = !(viewModel.moveServiceFlow?.currentAccountDetail.serviceType?.contains("GAS") ?? false)
 
     }
     
     private func refreshUI(startDate: Date) {
-        viewModel.moveServiceFlow.startServiceDate = startDate
+        viewModel.moveServiceFlow?.startServiceDate = startDate
         selectedDateLabel.text = DateFormatter.mmDdYyyyFormatter.string(from: startDate)
         continueButton.isEnabled = true
         continueButton.isUserInteractionEnabled = true
@@ -95,7 +95,7 @@ class MoveStartServiceViewController: UIViewController {
         calendarVC.delegate = self
         calendarVC.firstDate = Calendar.current.date(byAdding: .month, value: 0, to: Calendar.current.startOfDay(for: .now))
         calendarVC.lastDate = Calendar.current.date(byAdding: .day, value: 30, to: Calendar.current.startOfDay(for: .now))
-        if let selectedDate = viewModel.moveServiceFlow.startServiceDate {
+        if let selectedDate = viewModel.moveServiceFlow!.startServiceDate {
             calendarVC.selectedDate = Calendar.opCo.startOfDay(for: selectedDate)
         }
         calendarVC.scroll(toSelectedDate: true)
@@ -120,10 +120,10 @@ class MoveStartServiceViewController: UIViewController {
 
 
     @IBAction func onContinueClicked(_ sender: Any) {
-        viewModel.moveServiceFlow.isOwner = renterOwnerSegmentControl.selectedIndex.value == 0
+        viewModel.moveServiceFlow?.isOwner = renterOwnerSegmentControl.selectedIndex.value == 0
         let storyboard = UIStoryboard(name: "ISUMMove", bundle: nil)
         let idVerificationViewController = storyboard.instantiateViewController(withIdentifier: "IdVerificationViewController") as! IdVerificationViewController
-        idVerificationViewController.viewModel = IdVerificationViewModel(moveDataFlow: viewModel.moveServiceFlow)
+        idVerificationViewController.viewModel = IdVerificationViewModel(moveDataFlow: viewModel.moveServiceFlow!)
         self.navigationController?.pushViewController(idVerificationViewController, animated: true)
     }
 }

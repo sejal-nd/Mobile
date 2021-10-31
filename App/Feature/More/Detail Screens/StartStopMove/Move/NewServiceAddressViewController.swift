@@ -148,7 +148,7 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
                     let storyboard = UIStoryboard(name: "ISUMMove", bundle: nil)
                     let moveStartServiceViewController = storyboard.instantiateViewController(withIdentifier: "MoveStartServiceViewController") as! MoveStartServiceViewController
                     self.viewModel.moveServiceFlowData?.addressLookupResponse = addressLookupResponse
-                    moveStartServiceViewController.viewModel = MoveStartServiceViewModel(moveServiceFlow: self.viewModel.moveServiceFlowData!)
+                    moveStartServiceViewController.viewModel = MoveStartServiceViewModel(moveServiceFlowData: self.viewModel.moveServiceFlowData!)
                     self.navigationController?.pushViewController(moveStartServiceViewController, animated: true)
                 }
             }).disposed(by: disposeBag)
