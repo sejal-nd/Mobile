@@ -55,12 +55,14 @@ class NewServiceAddressViewModel{
         return isStreetAddressValid && isZipValid && isZipValidated && isValidPremiseID
     }
     
-    var moveServiceFlowData: MoveServiceFlowData
-    
-    init(moveServiceFlowData: MoveServiceFlowData) {
-        
+    var moveServiceFlowData: MoveServiceFlowData?
+
+    convenience init() {
+        self.init(moveServiceFlowData: nil)
+    }
+    init( moveServiceFlowData: MoveServiceFlowData?) {
         self.moveServiceFlowData = moveServiceFlowData
-        
+
         validateZipCode.toAsyncRequest { [weak self] _ -> Observable<ValidatedZipCodeResponse> in
             
             guard let `self` = self else { return Observable.empty() }
@@ -98,7 +100,7 @@ class NewServiceAddressViewModel{
             }
             if let appartmentResp = result.element {
                 self.appartmentResponse.accept(appartmentResp)
-                self.moveServiceFlowData.appartment_List = appartmentResp
+                self.moveServiceFlowData?.appartment_List = appartmentResp
             }
         }).disposed(by: disposeBag)
 
@@ -159,18 +161,19 @@ class NewServiceAddressViewModel{
         if let str_Add = movepDataFlow.selected_StreetAddress{
             self.streetAddress = str_Add
         }
-        if let apprt_list = moveServiceFlowData.appartment_List {
+        if let apprt_list = moveServiceFlowData?.appartment_List {
             appartmentResponse.accept(apprt_list)
         }
     }
 
     func setStreetAddress(_ address:String){
         self.streetAddress = address
-        self.moveServiceFlowData.selected_StreetAddress =  self.streetAddress
+        self.moveServiceFlowData?.selected_StreetAddress =  self.streetAddress
     }
     func setAppartment(_ appartment:AppartmentResponse?){
         self.premiseID = appartment?.premiseID
         self.suiteNumber = appartment?.suiteNumber
-        self.moveServiceFlowData.selected_appartment = appartment
+        self.moveServiceFlowData?.selected_appartment = appartment
     }
 }
+

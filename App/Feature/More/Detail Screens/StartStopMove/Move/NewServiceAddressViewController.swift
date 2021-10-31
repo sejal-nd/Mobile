@@ -141,14 +141,14 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
             .subscribe(onNext: { [weak self] _ in
                 guard let `self` = self, let addressLookupResponse = self.viewModel.addressLookupResponse.value else { return }
                 if self.isLaunchedFromReviewScreen {
-                    self.viewModel.moveServiceFlowData.addressLookupResponse = addressLookupResponse
-                    self.delegate?.didSelectNewServiceAddress(self.viewModel.moveServiceFlowData)
+                    self.viewModel.moveServiceFlowData?.addressLookupResponse = addressLookupResponse
+                    self.delegate?.didSelectNewServiceAddress(self.viewModel.moveServiceFlowData!)
                     self.dismiss(animated: true, completion: nil)
                 } else {
                     let storyboard = UIStoryboard(name: "ISUMMove", bundle: nil)
                     let moveStartServiceViewController = storyboard.instantiateViewController(withIdentifier: "MoveStartServiceViewController") as! MoveStartServiceViewController
-                    self.viewModel.moveServiceFlowData.addressLookupResponse = addressLookupResponse
-                    moveStartServiceViewController.viewModel = MoveStartServiceViewModel(moveServiceFlow: self.viewModel.moveServiceFlowData)
+                    self.viewModel.moveServiceFlowData?.addressLookupResponse = addressLookupResponse
+                    moveStartServiceViewController.viewModel = MoveStartServiceViewModel(moveServiceFlow: self.viewModel.moveServiceFlowData!)
                     self.navigationController?.pushViewController(moveStartServiceViewController, animated: true)
                 }
             }).disposed(by: disposeBag)
@@ -191,7 +191,7 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
 
     }
     func refreshData() {
-        viewModel.setAddressData(movepDataFlow: viewModel.moveServiceFlowData)
+        viewModel.setAddressData(movepDataFlow: viewModel.moveServiceFlowData!)
 
         zipTextField.textField.text = viewModel.zipCode
         setStreetAddress(viewModel?.streetAddress)
