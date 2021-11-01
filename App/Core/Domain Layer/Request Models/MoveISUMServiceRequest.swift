@@ -318,11 +318,13 @@ public struct MoveISUMServiceRequest: Encodable {
         
         init(moveServiceFlowData: MoveServiceFlowData) {
             
-            streetName = moveServiceFlowData.currentAccountDetail.premiseInfo.first?.streetDetail.name
-            city = moveServiceFlowData.currentAccountDetail.premiseInfo.first?.townDetail.name
-            state = moveServiceFlowData.currentAccountDetail.premiseInfo.first?.townDetail.stateOrProvince
-            zipCode = moveServiceFlowData.currentAccountDetail.premiseInfo.first?.townDetail.code
-            apartmentUnitNo = nil
+            streetName =  moveServiceFlowData.hasCurrentServiceAddressForBill ? (moveServiceFlowData.addressLookupResponse?.first?.streetName ?? moveServiceFlowData.addressLookupResponse?.first?.address) : moveServiceFlowData.mailingAddress?.streetAddress
+
+            city = moveServiceFlowData.hasCurrentServiceAddressForBill ? moveServiceFlowData.addressLookupResponse?.first?.city : moveServiceFlowData.mailingAddress?.city
+            state = moveServiceFlowData.hasCurrentServiceAddressForBill ? moveServiceFlowData.addressLookupResponse?.first?.state : moveServiceFlowData.mailingAddress?.state.rawValue
+            zipCode = moveServiceFlowData.hasCurrentServiceAddressForBill ? moveServiceFlowData.addressLookupResponse?.first?.zipCode : moveServiceFlowData.mailingAddress?.zipCode
+            apartmentUnitNo = moveServiceFlowData.hasCurrentServiceAddressForBill ? moveServiceFlowData.addressLookupResponse?.first?.apartmentUnitNo : nil
+
         }
         
         enum CodingKeys: String, CodingKey {
