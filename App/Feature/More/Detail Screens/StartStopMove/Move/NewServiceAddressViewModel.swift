@@ -60,80 +60,16 @@ class NewServiceAddressViewModel{
     convenience init() {
         self.init(moveServiceFlowData: nil)
     }
+    
     init( moveServiceFlowData: MoveServiceFlowData?) {
         self.moveServiceFlowData = moveServiceFlowData
-
-        validateZipCode.toAsyncRequest { [weak self] _ -> Observable<ValidatedZipCodeResponse> in
-            
-            guard let `self` = self else { return Observable.empty() }
-            if !self.isLoading.value {
-                self.isLoading.accept(true)
-            }
-            return MoveService.rx.validateZip(code: self.zipCode!)
-        }.subscribe(onNext: { [weak self] result in
-            guard let `self` = self else {return }
-            if result.error != nil {
-                if self.isLoading.value {
-                    self.isLoading.accept(false)
-                }
-            }
-            if let validatedZipCodeResponse = result.element {
-                self.validatedZipCodeResponse.accept(validatedZipCodeResponse)
-                if self.isLoading.value {
-                    self.isLoading.accept(false)
-                }
-            }
-
-        }).disposed(by: disposeBag)
-
-
-        fetchAppartment.toAsyncRequest { [weak self] _ -> Observable<[AppartmentResponse]> in
-            guard let `self` = self else { return Observable.empty() }
-            if !self.isLoading.value {
-                self.isLoading.accept(true)
-            }
-            return MoveService.rx.fetchAppartment(address: self.streetAddress!, zipcode: self.zipCode!)
-        }.subscribe(onNext: { [weak self] result in
-            guard let `self` = self else {return }
-            if self.isLoading.value {
-                self.isLoading.accept(false)
-            }
-            if let appartmentResp = result.element {
-                self.appartmentResponse.accept(appartmentResp)
-                self.moveServiceFlowData?.appartment_List = appartmentResp
-            }
-        }).disposed(by: disposeBag)
-
-        getAddressLookup.toAsyncRequest { [weak self] _ -> Observable<[AddressLookupResponse]> in
-            guard let `self` = self else { return Observable.empty() }
-            if !self.isLoading.value {
-                self.isLoading.accept(true)
-            }
-            return MoveService.rx.lookupAddress(address: self.streetAddress!, zipcode: self.zipCode!, premiseID:self.premiseID!)
-        }.subscribe(onNext: { [weak self] result in
-            guard let `self` = self else {return }
-            if self.isLoading.value {
-                self.isLoading.accept(false)
-            }
-            guard let addressLookupResponse = result.element else {return }
-            self.addressLookupResponse.accept(addressLookupResponse)
-
-        }).disposed(by: disposeBag)
     }
+    
     public func getAppartmentIDs() -> [AppartmentResponse]? {
         let premise_id = appartmentResponse.value
         return premise_id;
     }
-    func validateZip(){
-        validateZipCode.onNext(())
-    }
-
-    func fetchAppartmentDetails(){
-        fetchAppartment.onNext(())
-    }
-    func validateAddress(){
-        getAddressLookup.onNext(())
-    }
+    
     func refreshSession(){
         streetAddress = ""
         premiseID = nil
@@ -174,6 +110,70 @@ class NewServiceAddressViewModel{
         self.premiseID = appartment?.premiseID
         self.suiteNumber = appartment?.suiteNumber
         self.moveServiceFlowData?.selected_appartment = appartment
+    }
+    
+    func validateZipCode(onSuccess: @escaping ((ValidatedZipCodeResponse)-> Void), onFailure: @escaping ((Error)-> Void)) {
+        
+        if !self.isLoading.value {
+            self.isLoading.accept(true)
+        }
+        MoveService.validateZip(code: self.zipCode!) { [weak self] (result: Result<ValidatedZipCodeResponse, NetworkingError>) in
+            guard let `self` = self else { return }
+            switch result {
+            case .success(let validatedZipCodeResponse):
+                self.validatedZipCodeResponse.accept(validatedZipCodeResponse)
+                if self.isLoading.value {
+                    self.isLoading.accept(false)
+                }
+                onSuccess(validatedZipCodeResponse)
+            case .failure(let error):
+                self.isLoading.accept(false)
+                onFailure(error)
+            }
+        }
+    }
+    
+    func fetchAppartment(onSuccess: @escaping(([AppartmentResponse])-> Void), onFailure: @escaping((Error) -> Void)) {
+        
+        if !self.isLoading.value {
+            self.isLoading.accept(true)
+        }
+        MoveService.fetchAppartment(address: self.streetAddress!, zipcode: self.zipCode!) { [weak self] (result: Result<[AppartmentResponse], NetworkingError>) in
+            guard let `self` = self else { return }
+            switch result {
+            case .success(let appartmentResp):
+                if self.isLoading.value {
+                    self.isLoading.accept(false)
+                }
+                self.appartmentResponse.accept(appartmentResp)
+                self.moveServiceFlowData?.appartment_List = appartmentResp
+                onSuccess(appartmentResp)
+            case .failure(let error):
+                self.isLoading.accept(false)
+                onFailure(error)
+            }
+        }
+    }
+    
+    func lookupAddress(onSuccess: @escaping(([AddressLookupResponse]) -> Void), onFailure: @escaping((Error) -> Void)) {
+        
+        if !self.isLoading.value {
+            self.isLoading.accept(true)
+        }
+        MoveService.lookupAddress(address: self.streetAddress!, zipcode: self.zipCode!, premiseID:self.premiseID!) { [weak self] (result: Result<[AddressLookupResponse], NetworkingError>) in
+            guard let `self` = self else { return }
+            switch result {
+            case .success(let addressLookupResponse):
+                if self.isLoading.value {
+                    self.isLoading.accept(false)
+                }
+                self.addressLookupResponse.accept(addressLookupResponse)
+                onSuccess(addressLookupResponse)
+            case .failure( let error):
+                self.isLoading.accept(false)
+                onFailure(error)
+            }
+        }
     }
 }
 

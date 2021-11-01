@@ -93,28 +93,26 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
                 if self.viewModel.isZipValidated && self.viewModel.isStreetAddressValid{
-                    if let appartment_list = self.viewModel.getAppartmentIDs() {
-                        if appartment_list.count == 1 {
-                            self.viewModel.setAppartment(appartment_list.first)
-                            if let suiteNumber = appartment_list.first?.suiteNumber,let premiseID =  appartment_list.first?.premiseID{
-                                self.viewModel.premiseID = premiseID
-                                self.viewModel.suiteNumber = suiteNumber
-                                self.setAppartment(suiteNumber)
-                                self.enableAppartmentColorState(false)
-                                self.viewModel.validateAddress()
+                    if let appartment_list = self.viewModel.getAppartmentIDs(), appartment_list.count == 1 {
+                        self.viewModel.setAppartment(appartment_list.first)
+                        if let suiteNumber = appartment_list.first?.suiteNumber,let premiseID =  appartment_list.first?.premiseID{
+                            self.viewModel.premiseID = premiseID
+                            self.viewModel.suiteNumber = suiteNumber
+                            self.setAppartment(suiteNumber)
+                            self.enableAppartmentColorState(false)
+                            self.viewModel.lookupAddress { _ in } onFailure: { error in
+                                // TODO: error screen in future stories
                             }
-                            else if let premiseID =  appartment_list.first?.premiseID{
-                                self.viewModel.premiseID = premiseID
-                                self.setAppartment(nil)
-                                self.enableAppartmentColorState(false)
-                                self.viewModel.validateAddress()
+                        } else if let premiseID =  appartment_list.first?.premiseID{
+                            self.viewModel.premiseID = premiseID
+                            self.setAppartment(nil)
+                            self.enableAppartmentColorState(false)
+                            self.viewModel.lookupAddress { _ in } onFailure: { error in
+                                // TODO: error screen in future stories
                             }
-                            else {
-                                self.setAppartment(nil)
-                            }
-                        }
-                        else if appartment_list.count > 0 {
-                            self.enableAppartmentColorState(true)
+
+                        } else {
+                            self.setAppartment(nil)
                             self.continueButton.isEnabled = self.viewModel.canEnableContinue
                         }
                     }
@@ -275,8 +273,11 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
         if !viewModel.isZipValid {
             zipTextField.setError(NSLocalizedString("Zip  Code must be 5 characters in length", comment: ""))
         }else {
-            viewModel.validateZip()
             enableTextFieldEditing(false)
+            viewModel.validateZipCode { _ in } onFailure: { error in
+                // TODO: error screen in future stories
+            }
+
         }
         scrollView.setContentOffset(CGPoint(x: 0, y: scrollView.contentInset.top), animated: true)
     }
@@ -285,8 +286,10 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
         if !viewModel.isZipValid {
             zipTextField.setError(NSLocalizedString("Zip  Code must be 5 characters in length", comment: ""))
         }else if !viewModel.isZipValidated {
-            viewModel.validateZip()
             enableTextFieldEditing(false)
+            viewModel.validateZipCode { _ in } onFailure: { error in
+                // TODO: error screen in future stories
+            }
         }else {
             let storyboard = UIStoryboard(name: "ISUMMove", bundle: nil)
             let newServiceAddressViewController = storyboard.instantiateViewController(withIdentifier: "AddressSearchViewController") as! AddressSearchViewController
@@ -369,8 +372,10 @@ extension NewServiceAddressViewController: UITextFieldDelegate {
                 else {
                     zipTextField.setError(nil)
                     viewModel.zipCode = decimalString
-                    viewModel.validateZip()
                     enableTextFieldEditing(false)
+                    viewModel.validateZipCode { _ in } onFailure: { error in
+                        // TODO: error screen in future stories
+                    }
                     textField.text = decimalString;
                     textField.resignFirstResponder()
                 }
@@ -405,11 +410,13 @@ extension NewServiceAddressViewController: UITextFieldDelegate {
 }
 extension NewServiceAddressViewController: AddressSearchDelegate {
     func didSelectAppartment(result: AppartmentResponse) {
-        if let suiteNumber = result.suiteNumber{
+        if let suiteNumber = result.suiteNumber,let premiseID =  result.premiseID {
             setAppartmentError(nil)
             viewModel.setAppartment(result)
             setAppartment(suiteNumber)
-            viewModel.validateAddress()
+            self.viewModel.lookupAddress{ _ in } onFailure: { error in
+                // TODO: error screen in future stories
+            }
         }
     }
 
@@ -418,7 +425,9 @@ extension NewServiceAddressViewController: AddressSearchDelegate {
             viewModel.setStreetAddress(result)
             setStreetAddress(result)
             clearAppartmentSession()
-            viewModel.fetchAppartmentDetails()
+            viewModel.fetchAppartment { _ in } onFailure: { error in
+                // TODO: error screen in future stories
+            }
         }
     }
 
