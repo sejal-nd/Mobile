@@ -27,30 +27,21 @@ class MoveServiceConfirmationViewModel {
         
         if let finalBillEmail = moveServiceResponse.finalBillEmail, !finalBillEmail.isEmpty { return finalBillEmail }
         
-        if let isResolved = moveServiceResponse.isResolved, isResolved || moveServiceResponse.finalBillAddress == nil {
+        if let isResolved = moveServiceResponse.isResolved, isResolved {
             return "Your new service address"
         }
         
-        if let finalBillingAddress = moveServiceResponse.finalBillAddress, let startServiceAddress = moveServiceResponse.startAddress {
-            if (finalBillingAddress.streetName?.lowercased() == startServiceAddress.streetName?.lowercased() || finalBillingAddress.city.lowercased() == startServiceAddress.city.lowercased() || finalBillingAddress.state.lowercased() == startServiceAddress.state.lowercased() || finalBillingAddress.zipCode.lowercased() == startServiceAddress.zipCode.lowercased()) {
-                return "Your new service address"
+        if moveServiceResponse.useAltBillingAddress ?? false, let finalBillingAddress = moveServiceResponse.finalBillAddress {
+            var address = ""
+            if let streetName = finalBillingAddress.streetName {
+                address += "\(streetName), "
             }
+            address += "\(finalBillingAddress.city), "
+            address += "\(finalBillingAddress.state) "
+            address += "\(finalBillingAddress.zipCode)"
+            return address
         }
-
-        var address = ""
-        if let streetName = moveServiceResponse.startAddress?.streetName {
-            address += "\(streetName), "
-        }
-        if let city = moveServiceResponse.stopAddress?.city {
-            address += "\(city), "
-        }
-        if let state = moveServiceResponse.stopAddress?.state {
-            address += "\(state) "
-        }
-        if let zipCode = moveServiceResponse.stopAddress?.zipCode {
-            address += "\(zipCode)"
-        }
-        return address
+        return "Your new service address"
     }
     
     func getStopServiceAddress()-> String {
