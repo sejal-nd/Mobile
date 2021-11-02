@@ -21,7 +21,6 @@ class ReviewMoveServiceViewController: UIViewController {
     @IBOutlet weak var startNewDateStackView: UIStackView!
 
     @IBOutlet weak var startNewServiceProviderStackView: UIStackView!
-    @IBOutlet weak var eBillStackView: UIStackView!
 
 
     @IBOutlet weak var electricCurrentStackView: UIStackView!
@@ -30,7 +29,6 @@ class ReviewMoveServiceViewController: UIViewController {
     @IBOutlet weak var electricNewStackView: UIStackView!
     @IBOutlet weak var gasNewStackView: UIStackView!
 
-    @IBOutlet weak var enrollEbillButton : UIButton!
 
     @IBOutlet weak var changeStopServiceDateButton: UIButton!
 
@@ -56,7 +54,6 @@ class ReviewMoveServiceViewController: UIViewController {
 
     @IBOutlet weak var startNewServiceConnectStaticLabel: UILabel!
 
-    @IBOutlet weak var enrollEbillInfoLabel: UILabel!
 
     var moveFlowData: MoveServiceFlowData!
     var viewModel = ReviewMoveServiceViewModel()
@@ -91,24 +88,6 @@ class ReviewMoveServiceViewController: UIViewController {
         startNewServiceDateStaticLabel.font = SystemFont.regular.of(textStyle: .footnote)
         startNewServiceConnectStaticLabel.font = SystemFont.regular.of(textStyle: .caption1)
 
-        enrollEbillInfoLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-
-        if moveFlowData.currentAccountDetail.isEBillEnrollment{
-            if moveFlowData.currentAccountDetail.eBillEnrollStatus == .canEnroll{
-                eBillStackView.isHidden = false;
-            }else {
-                eBillStackView.isHidden = true;
-            }
-
-        }else {
-            eBillStackView.isHidden = false
-        }
-
-        enrollEbillButton.rx.tap
-            .subscribe(onNext: { [weak self] _ in
-                guard let `self` = self else { return }
-                self.enrollEbillButton.isSelected = !self.enrollEbillButton.isSelected
-            }).disposed(by: disposeBag)
 
         changeStopServiceDateButton.rx.tap
             .subscribe(onNext: { [weak self] _ in
