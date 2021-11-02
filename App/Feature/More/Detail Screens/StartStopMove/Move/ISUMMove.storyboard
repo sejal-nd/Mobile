@@ -942,6 +942,8 @@
                         <outlet property="appartmentFloatingLabel" destination="1Jg-TC-iNQ" id="cgq-wR-BhY"/>
                         <outlet property="appartmentPlaceHolderLabel" destination="QvI-Hq-EMG" id="dGs-2e-fkw"/>
                         <outlet property="appartmentSelectionView" destination="4bf-7Z-nDj" id="g06-Xv-yEv"/>
+                        <outlet property="btnAppartment" destination="mcg-Z0-KJu" id="tIa-My-C6u"/>
+                        <outlet property="btnSteetAddress" destination="uqq-AU-QiN" id="DsO-8v-LAE"/>
                         <outlet property="continueButton" destination="EB3-f3-R0d" id="aaD-Bx-ZLW"/>
                         <outlet property="loadingIndicator" destination="6Bh-lI-Jxb" id="ClS-0T-8JT"/>
                         <outlet property="noteLabel" destination="BBJ-5b-TwM" id="pE4-Xu-AIv"/>
