@@ -20,33 +20,37 @@ class MoveFinalMailingAddressViewModelTests: XCTestCase {
     }
 
     func testStreetAddressValidation() throws {
+
         let viewModel = MoveFinalMailingAddressViewModel()
 
         viewModel.streetAddress = "1257 Sargeant St"
         
         XCTAssertTrue(viewModel.isStreetAddressValid)
+        XCTAssertEqual(viewModel.streetAddress, "1257 Sargeant St")
 
         viewModel.streetAddress = ""
 
         XCTAssertFalse(viewModel.isStreetAddressValid)
     }
     func testZipValidation() throws {
+
         let viewModel = MoveFinalMailingAddressViewModel()
 
         viewModel.zipCode = "21223"
 
         XCTAssertTrue(viewModel.isZipValid)
+        XCTAssertEqual(viewModel.zipCode, "21223")
 
         viewModel.zipCode = ""
-
         XCTAssertFalse(viewModel.isZipValid)
     }
     func testCityValidation() throws {
+
         let viewModel = MoveFinalMailingAddressViewModel()
 
         viewModel.city = "Baltimore"
-
         XCTAssertTrue(viewModel.isCityValid)
+        XCTAssertEqual(viewModel.city, "Baltimore")
 
         viewModel.city = ""
 
@@ -65,8 +69,25 @@ class MoveFinalMailingAddressViewModelTests: XCTestCase {
         XCTAssertTrue(viewModel.canEnableContinue)
 
     
-        viewModel.stateSelectedIndex = 0
+        viewModel.streetAddress = ""
+        XCTAssertFalse(viewModel.canEnableContinue)
 
+        viewModel.streetAddress = "1257 Sargeant St"
+        viewModel.zipCode = ""
+        viewModel.city    = "Baltimore"
+        viewModel.state = USState.AL
+        viewModel.stateSelectedIndex = 1
+        XCTAssertFalse(viewModel.canEnableContinue)
+
+        viewModel.streetAddress = "1257 Sargeant St"
+        viewModel.zipCode = "21223"
+        viewModel.city    = ""
+        viewModel.state = USState.AL
+        viewModel.stateSelectedIndex = 1
+        XCTAssertFalse(viewModel.canEnableContinue)
+
+
+        viewModel.stateSelectedIndex = 0
         XCTAssertFalse(viewModel.canEnableContinue)
         
     }

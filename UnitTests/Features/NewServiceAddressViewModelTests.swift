@@ -38,6 +38,7 @@ class NewServiceAddressViewModelTests: XCTestCase {
 
         viewModel.zipCode = "21201"
         XCTAssertTrue(viewModel.isZipValid)
+        XCTAssertEqual(viewModel.zipCode, "21201")
 
 
         viewModel.zipCode = ""
@@ -86,6 +87,7 @@ class NewServiceAddressViewModelTests: XCTestCase {
         viewModel.streetAddress = "910 PENNSYLVANIA AVE"
 
         XCTAssertTrue(viewModel.isStreetAddressValid)
+        XCTAssertEqual(viewModel.streetAddress, "910 PENNSYLVANIA AVE")
 
         viewModel.streetAddress = ""
         XCTAssertFalse(viewModel.isStreetAddressValid)
@@ -105,6 +107,7 @@ class NewServiceAddressViewModelTests: XCTestCase {
 
         viewModel.premiseID = "819708302"
         XCTAssertTrue(viewModel.isValidPremiseID)
+        XCTAssertEqual(viewModel.premiseID, "819708302")
 
         viewModel.premiseID = ""
         XCTAssertFalse(viewModel.isValidPremiseID)
