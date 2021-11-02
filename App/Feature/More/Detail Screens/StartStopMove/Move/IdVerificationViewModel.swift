@@ -9,18 +9,15 @@
 import Foundation
 class IdVerificationViewModel {
     
-    var moveDataFlow: MoveServiceFlowData?
+    var moveDataFlow: MoveServiceFlowData
     var idVerification: IdVerification!
 
-    init(moveDataFlow: MoveServiceFlowData?) {
+    init(moveDataFlow: MoveServiceFlowData) {
         
         self.moveDataFlow = moveDataFlow
         self.idVerification = IdVerification()
     }
-    convenience init() {
-        self.init(moveDataFlow: nil)
-    }
-    
+
     func isValidSSN(ssn: String)-> Bool {
         
         return (ssn.count == 0 || ssn.count == 9)

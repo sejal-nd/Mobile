@@ -55,13 +55,9 @@ class NewServiceAddressViewModel{
         return isStreetAddressValid && isZipValid && isZipValidated && isValidPremiseID
     }
     
-    var moveServiceFlowData: MoveServiceFlowData?
+    var moveServiceFlowData: MoveServiceFlowData
 
-    convenience init() {
-        self.init(moveServiceFlowData: nil)
-    }
-    
-    init( moveServiceFlowData: MoveServiceFlowData?) {
+    init( moveServiceFlowData: MoveServiceFlowData) {
         self.moveServiceFlowData = moveServiceFlowData
     }
     
@@ -97,19 +93,19 @@ class NewServiceAddressViewModel{
         if let str_Add = movepDataFlow.selected_StreetAddress{
             self.streetAddress = str_Add
         }
-        if let apprt_list = moveServiceFlowData?.appartment_List {
+        if let apprt_list = moveServiceFlowData.appartment_List {
             appartmentResponse.accept(apprt_list)
         }
     }
 
     func setStreetAddress(_ address:String){
         self.streetAddress = address
-        self.moveServiceFlowData?.selected_StreetAddress =  self.streetAddress
+        self.moveServiceFlowData.selected_StreetAddress =  self.streetAddress
     }
     func setAppartment(_ appartment:AppartmentResponse?){
         self.premiseID = appartment?.premiseID
         self.suiteNumber = appartment?.suiteNumber
-        self.moveServiceFlowData?.selected_appartment = appartment
+        self.moveServiceFlowData.selected_appartment = appartment
     }
     
     func validateZipCode(onSuccess: @escaping ((ValidatedZipCodeResponse)-> Void), onFailure: @escaping ((Error)-> Void)) {
@@ -146,7 +142,7 @@ class NewServiceAddressViewModel{
                     self.isLoading.accept(false)
                 }
                 self.appartmentResponse.accept(appartmentResp)
-                self.moveServiceFlowData?.appartment_List = appartmentResp
+                self.moveServiceFlowData.appartment_List = appartmentResp
                 onSuccess(appartmentResp)
             case .failure(let error):
                 self.isLoading.accept(false)

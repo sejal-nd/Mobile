@@ -10,19 +10,16 @@ import Foundation
 
 class MoveStartServiceViewModel {
     
-    var moveServiceFlow: MoveServiceFlowData?
-    
-    convenience init() {
-        self.init(moveServiceFlowData: nil)
-    }
-    init( moveServiceFlowData: MoveServiceFlowData?) {
+    var moveServiceFlow: MoveServiceFlowData
+
+    init( moveServiceFlowData: MoveServiceFlowData) {
         self.moveServiceFlow = moveServiceFlowData
     }
     
     func isValidDate(_ date: Date)-> Bool {
         
         let calendarDate = DateFormatter.mmDdYyyyFormatter.string(from: date)
-        if !moveServiceFlow!.currentAccountDetail.isAMIAccount {
+        if !moveServiceFlow.currentAccountDetail.isAMIAccount {
             let firstDay = DateFormatter.mmDdYyyyFormatter.string(from: Calendar.opCo.date(byAdding: .day, value: 0, to: Date.now)!)
             let secondDay = DateFormatter.mmDdYyyyFormatter.string(from: Calendar.opCo.date(byAdding: .day, value: 1, to: Date.now)!)
             let thirdDay = DateFormatter.mmDdYyyyFormatter.string(from: Calendar.opCo.date(byAdding: .day, value: 2, to: Date.now)!)
@@ -30,7 +27,7 @@ class MoveStartServiceViewModel {
                 return false
             }
         }
-        return moveServiceFlow!.workDays.contains { $0.value == calendarDate}
+        return moveServiceFlow.workDays.contains { $0.value == calendarDate}
     }
 }
 

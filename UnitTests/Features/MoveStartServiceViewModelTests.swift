@@ -25,14 +25,15 @@ class MoveStartServiceViewModelTests: XCTestCase {
     }
 
     func testValidDateAMIUser() throws {
-        let viewModel = MoveStartServiceViewModel()
         let accounts: [Account] = MockModel.getModel(mockDataFileName: "AccountsMock", mockUser: .default)
 
         let currentAccount = accounts.first
         let currentAccountDetails: AccountDetail = MockModel.getModel(mockDataFileName: "AccountDetailsMock", mockUser: .default)
         let workDays: WorkdaysResponse =  MockModel.getModel(mockDataFileName: "WorkdaysMock", mockUser: .default)
 
-        viewModel.moveServiceFlow = MoveServiceFlowData(workDays: workDays.list, stopServiceDate: Date.now, currentPremise:currentAccount!.currentPremise!, currentAccount:currentAccount!, currentAccountDetail: currentAccountDetails, verificationDetail: nil, hasCurrentServiceAddressForBill: false)
+        let moveServiceFlow = MoveServiceFlowData(workDays: workDays.list, stopServiceDate: Date.now, currentPremise:currentAccount!.currentPremise!, currentAccount:currentAccount!, currentAccountDetail: currentAccountDetails, verificationDetail: nil, hasCurrentServiceAddressForBill: false)
+
+        let viewModel = MoveStartServiceViewModel(moveServiceFlowData: moveServiceFlow)
     
         let today = DateFormatter.mmDdYyyyFormatter.date(from: "10/07/2021")
         let yesterday = DateFormatter.mmDdYyyyFormatter.date(from: "10/06/2021")
@@ -47,15 +48,15 @@ class MoveStartServiceViewModelTests: XCTestCase {
     }
 
     func testValidDateNonAMIUser() throws {
-        let viewModel = MoveStartServiceViewModel()
-
-        let accounts: [Account] = MockModel.getModel(mockDataFileName: "AccountsMock", mockUser: .nonAMIUser)
+        let accounts: [Account] = MockModel.getModel(mockDataFileName: "AccountsMock", mockUser: .default)
 
         let currentAccount = accounts.first
-        let currentAccountDetails: AccountDetail = MockModel.getModel(mockDataFileName: "AccountDetailsMock", mockUser: .nonAMIUser)
-        let workDays: WorkdaysResponse =  MockModel.getModel(mockDataFileName: "WorkdaysMock", mockUser: .nonAMIUser)
+        let currentAccountDetails: AccountDetail = MockModel.getModel(mockDataFileName: "AccountDetailsMock", mockUser: .default)
+        let workDays: WorkdaysResponse =  MockModel.getModel(mockDataFileName: "WorkdaysMock", mockUser: .default)
 
-        viewModel.moveServiceFlow = MoveServiceFlowData(workDays: workDays.list, stopServiceDate: Date.now, currentPremise:currentAccount!.currentPremise!, currentAccount:currentAccount!, currentAccountDetail: currentAccountDetails, verificationDetail: nil, hasCurrentServiceAddressForBill: false)
+        let moveServiceFlow = MoveServiceFlowData(workDays: workDays.list, stopServiceDate: Date.now, currentPremise:currentAccount!.currentPremise!, currentAccount:currentAccount!, currentAccountDetail: currentAccountDetails, verificationDetail: nil, hasCurrentServiceAddressForBill: false)
+
+        let viewModel = MoveStartServiceViewModel(moveServiceFlowData: moveServiceFlow)
 
         let yesterday = Calendar.opCo.date(from: DateComponents(year: 2021, month: 10, day: 7, hour: 23, minute: 59, second: 59)) // current date as per mock
         let today = Calendar.opCo.date(from: DateComponents(year: 2021, month: 10, day: 7, hour: 23, minute: 59, second: 59)) // current date as per mock

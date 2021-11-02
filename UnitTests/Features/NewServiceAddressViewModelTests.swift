@@ -25,7 +25,16 @@ class NewServiceAddressViewModelTests: XCTestCase {
     }
 
     func testZipValidation() throws {
-        let viewModel = NewServiceAddressViewModel()
+        
+        let accounts: [Account] = MockModel.getModel(mockDataFileName: "AccountsMock", mockUser: .default)
+
+        let currentAccount = accounts.first
+        let currentAccountDetails: AccountDetail = MockModel.getModel(mockDataFileName: "AccountDetailsMock", mockUser: .default)
+        let workDays: WorkdaysResponse =  MockModel.getModel(mockDataFileName: "WorkdaysMock", mockUser: .default)
+
+        let moveServiceFlow = MoveServiceFlowData(workDays: workDays.list, stopServiceDate: Date.now, currentPremise:currentAccount!.currentPremise!, currentAccount:currentAccount!, currentAccountDetail: currentAccountDetails, verificationDetail: nil, hasCurrentServiceAddressForBill: false)
+
+        let viewModel = NewServiceAddressViewModel(moveServiceFlowData:moveServiceFlow)
 
         viewModel.zipCode = "21201"
 
@@ -35,8 +44,18 @@ class NewServiceAddressViewModelTests: XCTestCase {
 
         XCTAssertFalse(viewModel.isZipValid)
     }
+
     func testZipValidatedValidation() throws {
-        let viewModel = NewServiceAddressViewModel()
+
+        let accounts: [Account] = MockModel.getModel(mockDataFileName: "AccountsMock", mockUser: .default)
+
+        let currentAccount = accounts.first
+        let currentAccountDetails: AccountDetail = MockModel.getModel(mockDataFileName: "AccountDetailsMock", mockUser: .default)
+        let workDays: WorkdaysResponse =  MockModel.getModel(mockDataFileName: "WorkdaysMock", mockUser: .default)
+
+        let moveServiceFlow = MoveServiceFlowData(workDays: workDays.list, stopServiceDate: Date.now, currentPremise:currentAccount!.currentPremise!, currentAccount:currentAccount!, currentAccountDetail: currentAccountDetails, verificationDetail: nil, hasCurrentServiceAddressForBill: false)
+
+        let viewModel = NewServiceAddressViewModel(moveServiceFlowData: moveServiceFlow)
         viewModel.zipCode = "21201"
         viewModel.validatedZipCodeResponse.accept(ValidatedZipCodeResponse(isValidZipCode: true))
 
@@ -48,39 +67,64 @@ class NewServiceAddressViewModelTests: XCTestCase {
     }
 
     func testStreetAddressValidation() throws {
-        let viewModel = NewServiceAddressViewModel()
+
+        let accounts: [Account] = MockModel.getModel(mockDataFileName: "AccountsMock", mockUser: .default)
+
+        let currentAccount = accounts.first
+        let currentAccountDetails: AccountDetail = MockModel.getModel(mockDataFileName: "AccountDetailsMock", mockUser: .default)
+        let workDays: WorkdaysResponse =  MockModel.getModel(mockDataFileName: "WorkdaysMock", mockUser: .default)
+
+        let moveServiceFlow = MoveServiceFlowData(workDays: workDays.list, stopServiceDate: Date.now, currentPremise:currentAccount!.currentPremise!, currentAccount:currentAccount!, currentAccountDetail: currentAccountDetails, verificationDetail: nil, hasCurrentServiceAddressForBill: false)
+
+        let viewModel = NewServiceAddressViewModel(moveServiceFlowData:moveServiceFlow)
 
         viewModel.streetAddress = "910 PENNSYLVANIA AVE"
 
         XCTAssertTrue(viewModel.isStreetAddressValid)
 
         viewModel.streetAddress = ""
-
         XCTAssertFalse(viewModel.isStreetAddressValid)
     }
+
     func testPremiseIDValidation() throws {
-        let viewModel = NewServiceAddressViewModel()
+
+        let accounts: [Account] = MockModel.getModel(mockDataFileName: "AccountsMock", mockUser: .default)
+
+        let currentAccount = accounts.first
+        let currentAccountDetails: AccountDetail = MockModel.getModel(mockDataFileName: "AccountDetailsMock", mockUser: .default)
+        let workDays: WorkdaysResponse =  MockModel.getModel(mockDataFileName: "WorkdaysMock", mockUser: .default)
+
+        let moveServiceFlow = MoveServiceFlowData(workDays: workDays.list, stopServiceDate: Date.now, currentPremise:currentAccount!.currentPremise!, currentAccount:currentAccount!, currentAccountDetail: currentAccountDetails, verificationDetail: nil, hasCurrentServiceAddressForBill: false)
+
+        let viewModel = NewServiceAddressViewModel(moveServiceFlowData:moveServiceFlow)
 
         viewModel.premiseID = "819708302"
-
         XCTAssertTrue(viewModel.isValidPremiseID)
 
         viewModel.premiseID = ""
-
         XCTAssertFalse(viewModel.isValidPremiseID)
     }
+
     func testCanContinueValidation() throws {
-        let viewModel = NewServiceAddressViewModel()
+
+        let accounts: [Account] = MockModel.getModel(mockDataFileName: "AccountsMock", mockUser: .default)
+
+        let currentAccount = accounts.first
+        let currentAccountDetails: AccountDetail = MockModel.getModel(mockDataFileName: "AccountDetailsMock", mockUser: .default)
+        let workDays: WorkdaysResponse =  MockModel.getModel(mockDataFileName: "WorkdaysMock", mockUser: .default)
+
+        let moveServiceFlow = MoveServiceFlowData(workDays: workDays.list, stopServiceDate: Date.now, currentPremise:currentAccount!.currentPremise!, currentAccount:currentAccount!, currentAccountDetail: currentAccountDetails, verificationDetail: nil, hasCurrentServiceAddressForBill: false)
+
+        let viewModel = NewServiceAddressViewModel(moveServiceFlowData:moveServiceFlow)
+
         viewModel.zipCode = "21201"
         viewModel.validatedZipCodeResponse.accept(ValidatedZipCodeResponse(isValidZipCode: true))
 
         viewModel.streetAddress = "910 PENNSYLVANIA AVE"
         viewModel.premiseID = "819708302"
-
         XCTAssertTrue(viewModel.canEnableContinue)
 
         viewModel.premiseID = ""
-
         XCTAssertFalse(viewModel.canEnableContinue)
     }
 }

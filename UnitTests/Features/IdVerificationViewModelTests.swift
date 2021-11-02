@@ -25,37 +25,73 @@ class IdVerificationViewModelTests: XCTestCase {
     }
 
     func testSSNValidation() throws {
-        let viewModel = IdVerificationViewModel()
+
+        let accounts: [Account] = MockModel.getModel(mockDataFileName: "AccountsMock", mockUser: .default)
+
+        let currentAccount = accounts.first
+        let currentAccountDetails: AccountDetail = MockModel.getModel(mockDataFileName: "AccountDetailsMock", mockUser: .default)
+        let workDays: WorkdaysResponse =  MockModel.getModel(mockDataFileName: "WorkdaysMock", mockUser: .default)
+
+        let moveServiceFlow = MoveServiceFlowData(workDays: workDays.list, stopServiceDate: Date.now, currentPremise:currentAccount!.currentPremise!, currentAccount:currentAccount!, currentAccountDetail: currentAccountDetails, verificationDetail: nil, hasCurrentServiceAddressForBill: false)
+
+        let viewModel = IdVerificationViewModel(moveDataFlow: moveServiceFlow)
 
         XCTAssertTrue(viewModel.isValidSSN(ssn: "123456789"))
 
         XCTAssertFalse(viewModel.isValidSSN(ssn: "1234567891234"))
     }
-    func testAgeValidation() throws {
-        let viewModel = IdVerificationViewModel()
-        let age18Plus = Calendar.current.date(byAdding: .year, value: -18, to: Date())!
 
+    func testAgeValidation() throws {
+
+        let accounts: [Account] = MockModel.getModel(mockDataFileName: "AccountsMock", mockUser: .default)
+
+        let currentAccount = accounts.first
+        let currentAccountDetails: AccountDetail = MockModel.getModel(mockDataFileName: "AccountDetailsMock", mockUser: .default)
+        let workDays: WorkdaysResponse =  MockModel.getModel(mockDataFileName: "WorkdaysMock", mockUser: .default)
+
+        let moveServiceFlow = MoveServiceFlowData(workDays: workDays.list, stopServiceDate: Date.now, currentPremise:currentAccount!.currentPremise!, currentAccount:currentAccount!, currentAccountDetail: currentAccountDetails, verificationDetail: nil, hasCurrentServiceAddressForBill: false)
+
+        let viewModel = IdVerificationViewModel(moveDataFlow: moveServiceFlow)
+
+        let age18Plus = Calendar.current.date(byAdding: .year, value: -18, to: Date())!
         XCTAssertTrue(viewModel.validateAge(selectedDate: age18Plus))
 
         let ageNon18Plus = Date()
-
         XCTAssertFalse(viewModel.validateAge(selectedDate: ageNon18Plus))
     }
     func testFullValidation() throws {
-        let viewModel = IdVerificationViewModel()
+
+        let accounts: [Account] = MockModel.getModel(mockDataFileName: "AccountsMock", mockUser: .default)
+
+        let currentAccount = accounts.first
+        let currentAccountDetails: AccountDetail = MockModel.getModel(mockDataFileName: "AccountDetailsMock", mockUser: .default)
+        let workDays: WorkdaysResponse =  MockModel.getModel(mockDataFileName: "WorkdaysMock", mockUser: .default)
+
+        let moveServiceFlow = MoveServiceFlowData(workDays: workDays.list, stopServiceDate: Date.now, currentPremise:currentAccount!.currentPremise!, currentAccount:currentAccount!, currentAccountDetail: currentAccountDetails, verificationDetail: nil, hasCurrentServiceAddressForBill: false)
+
+        let viewModel = IdVerificationViewModel(moveDataFlow: moveServiceFlow)
+
         let age18Plus = Calendar.current.date(byAdding: .year, value: -18, to: Date())!
-
         let idVerification = IdVerification.init(ssn: "123456789", dateOfBirth: age18Plus, employmentStatus: "Retired")
-        viewModel.idVerification = idVerification
 
+        viewModel.idVerification = idVerification
         XCTAssertTrue(viewModel.validation())
 
         viewModel.idVerification.ssn = "1234567891234"
-
         XCTAssertFalse(viewModel.validation())
     }
+    
     func testDrivingLicenseValidation() throws {
-        let viewModel = IdVerificationViewModel()
+
+        let accounts: [Account] = MockModel.getModel(mockDataFileName: "AccountsMock", mockUser: .default)
+
+        let currentAccount = accounts.first
+        let currentAccountDetails: AccountDetail = MockModel.getModel(mockDataFileName: "AccountDetailsMock", mockUser: .default)
+        let workDays: WorkdaysResponse =  MockModel.getModel(mockDataFileName: "WorkdaysMock", mockUser: .default)
+
+        let moveServiceFlow = MoveServiceFlowData(workDays: workDays.list, stopServiceDate: Date.now, currentPremise:currentAccount!.currentPremise!, currentAccount:currentAccount!, currentAccountDetail: currentAccountDetails, verificationDetail: nil, hasCurrentServiceAddressForBill: false)
+
+        let viewModel = IdVerificationViewModel(moveDataFlow: moveServiceFlow)
 
         XCTAssertTrue(viewModel.isValidDrivingLicense(drivingLicense: "12345678901234", inputString: "12345678901234"))
 
