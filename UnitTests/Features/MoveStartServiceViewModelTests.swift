@@ -48,11 +48,11 @@ class MoveStartServiceViewModelTests: XCTestCase {
     }
 
     func testValidDateNonAMIUser() throws {
-        let accounts: [Account] = MockModel.getModel(mockDataFileName: "AccountsMock", mockUser: .default)
+        let accounts: [Account] = MockModel.getModel(mockDataFileName: "AccountsMock", mockUser: .nonAMIUser)
 
         let currentAccount = accounts.first
-        let currentAccountDetails: AccountDetail = MockModel.getModel(mockDataFileName: "AccountDetailsMock", mockUser: .default)
-        let workDays: WorkdaysResponse =  MockModel.getModel(mockDataFileName: "WorkdaysMock", mockUser: .default)
+        let currentAccountDetails: AccountDetail = MockModel.getModel(mockDataFileName: "AccountDetailsMock", mockUser: .nonAMIUser)
+        let workDays: WorkdaysResponse =  MockModel.getModel(mockDataFileName: "WorkdaysMock", mockUser: .nonAMIUser)
 
         let moveServiceFlow = MoveServiceFlowData(workDays: workDays.list, stopServiceDate: Date.now, currentPremise:currentAccount!.currentPremise!, currentAccount:currentAccount!, currentAccountDetail: currentAccountDetails, verificationDetail: nil, hasCurrentServiceAddressForBill: false)
 
