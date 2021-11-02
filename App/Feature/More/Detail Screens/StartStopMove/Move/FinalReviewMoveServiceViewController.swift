@@ -166,7 +166,7 @@ class FinalReviewMoveServiceViewController: UIViewController {
         }
 
         if let ssn = moveFlowData.idVerification?.ssn {
-            self.ssnTaxIDLabel.text =  "Ending in " + ssn
+            self.ssnTaxIDLabel.text =  "Ending in " + ssn.suffix(4)
         }else {
             self.ssnTaxIDLabel.text = "None Provided"
         }
