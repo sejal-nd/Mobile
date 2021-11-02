@@ -44,6 +44,8 @@
 		21D41E1C2706CE9700A622F9 /* ValidatedZipCodeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D41E1B2706CE9700A622F9 /* ValidatedZipCodeResponse.swift */; };
 		21D41E1D2706E17A00A622F9 /* ValidateZipCodeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D41E172706CA8F00A622F9 /* ValidateZipCodeRequest.swift */; };
 		21D41E1E2706E29B00A622F9 /* ValidatedZipCodeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D41E1B2706CE9700A622F9 /* ValidatedZipCodeResponse.swift */; };
+		21D4982E27310AC700EAE112 /* ZipCodeResponseMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 21D4982D27310AC700EAE112 /* ZipCodeResponseMock.json */; };
+		21D4983027310C3300EAE112 /* AddressLookupResponseMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 21D4982F27310C3300EAE112 /* AddressLookupResponseMock.json */; };
 		21E45FC5272B367C0009E25E /* MoveFinalMailingAddressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E45FC2272B367A0009E25E /* MoveFinalMailingAddressViewModel.swift */; };
 		21E45FC6272B367C0009E25E /* FinalReviewMoveServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E45FC3272B367B0009E25E /* FinalReviewMoveServiceViewController.swift */; };
 		21E45FC7272B367C0009E25E /* MoveFinalMailingAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E45FC4272B367B0009E25E /* MoveFinalMailingAddressViewController.swift */; };
@@ -1246,6 +1248,8 @@
 		21D41E172706CA8F00A622F9 /* ValidateZipCodeRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateZipCodeRequest.swift; sourceTree = "<group>"; };
 		21D41E192706CDFE00A622F9 /* MoveService+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MoveService+Rx.swift"; sourceTree = "<group>"; };
 		21D41E1B2706CE9700A622F9 /* ValidatedZipCodeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidatedZipCodeResponse.swift; sourceTree = "<group>"; };
+		21D4982D27310AC700EAE112 /* ZipCodeResponseMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ZipCodeResponseMock.json; sourceTree = "<group>"; };
+		21D4982F27310C3300EAE112 /* AddressLookupResponseMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AddressLookupResponseMock.json; sourceTree = "<group>"; };
 		21E45FC2272B367A0009E25E /* MoveFinalMailingAddressViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoveFinalMailingAddressViewModel.swift; sourceTree = "<group>"; };
 		21E45FC3272B367B0009E25E /* FinalReviewMoveServiceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinalReviewMoveServiceViewController.swift; sourceTree = "<group>"; };
 		21E45FC4272B367B0009E25E /* MoveFinalMailingAddressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoveFinalMailingAddressViewController.swift; sourceTree = "<group>"; };
@@ -4552,6 +4556,8 @@
 				4A398A47271EAD4100FA7B89 /* AccountVerification.json */,
 				4AC1E08D27297CA000740A37 /* StopServiceConfirmationMock.json */,
 				4A74A0B8272EB4BD00F87986 /* MoveServiceConfirmationMock.json */,
+				21D4982D27310AC700EAE112 /* ZipCodeResponseMock.json */,
+				21D4982F27310C3300EAE112 /* AddressLookupResponseMock.json */,
 			);
 			path = "Mock JSONS";
 			sourceTree = "<group>";
@@ -5848,6 +5854,7 @@
 				B07E18042211D31700B6E3C7 /* outage_status.json in Resources */,
 				9C0EA5B5237DAD2900D1E18F /* buddy_face_happy_bounce.json in Resources */,
 				358BD20F20F7A8FD00DA2012 /* Usage.storyboard in Resources */,
+				21D4982E27310AC700EAE112 /* ZipCodeResponseMock.json in Resources */,
 				675F4DC224AB828200A828F9 /* MaintenanceModeMock.json in Resources */,
 				67A986AA24F9693600BD46E7 /* sm_outage_loading-FlavorPECO.json in Resources */,
 				678B622D24D09A1B009F8A6B /* RegistrationQuestionsMock.json in Resources */,
@@ -5860,6 +5867,7 @@
 				B0DB2763215ECF5100CD703B /* AccountInfoBarCell.xib in Resources */,
 				B0B083FB21710CDB00B1C632 /* Appt_Confirmed-FlavorBGE.json in Resources */,
 				356AC13325064E5F000CF867 /* TapToPay.storyboard in Resources */,
+				21D4983027310C3300EAE112 /* AddressLookupResponseMock.json in Resources */,
 				B07E17E92209F0CA00B6E3C7 /* bill_comparison.json in Resources */,
 				67D5632024EDC14D00852551 /* landing_video-FlavorCOMED.mp4 in Resources */,
 				B089571F2217455200A97965 /* account_lookup.json in Resources */,

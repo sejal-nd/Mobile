@@ -25,7 +25,7 @@ class NewServiceAddressViewModelTests: XCTestCase {
     }
 
     func testZipValidation() throws {
-        
+
         let accounts: [Account] = MockModel.getModel(mockDataFileName: "AccountsMock", mockUser: .default)
 
         let currentAccount = accounts.first
@@ -37,15 +37,15 @@ class NewServiceAddressViewModelTests: XCTestCase {
         let viewModel = NewServiceAddressViewModel(moveServiceFlowData:moveServiceFlow)
 
         viewModel.zipCode = "21201"
-
         XCTAssertTrue(viewModel.isZipValid)
 
-        viewModel.zipCode = ""
 
+        viewModel.zipCode = ""
         XCTAssertFalse(viewModel.isZipValid)
     }
 
     func testZipValidatedValidation() throws {
+        KeychainController.default.set("default", forKey: .tokenKeychainKey)
 
         let accounts: [Account] = MockModel.getModel(mockDataFileName: "AccountsMock", mockUser: .default)
 
@@ -57,13 +57,18 @@ class NewServiceAddressViewModelTests: XCTestCase {
 
         let viewModel = NewServiceAddressViewModel(moveServiceFlowData: moveServiceFlow)
         viewModel.zipCode = "21201"
-        viewModel.validatedZipCodeResponse.accept(ValidatedZipCodeResponse(isValidZipCode: true))
 
+        XCTAssertTrue(viewModel.isZipValid)
+
+        let expectation = expectation(description: "API Response Expectation")
+        viewModel.validateZipCode { _ in
+            expectation.fulfill()
+        } onFailure: { error in
+            expectation.fulfill()
+        }
+        waitForExpectations(timeout: 120, handler: nil)
+        
         XCTAssertTrue(viewModel.isZipValidated)
-
-        viewModel.validatedZipCodeResponse.accept(ValidatedZipCodeResponse(isValidZipCode: false))
-
-        XCTAssertFalse(viewModel.isZipValidated)
     }
 
     func testStreetAddressValidation() throws {
@@ -121,10 +126,17 @@ class NewServiceAddressViewModelTests: XCTestCase {
         viewModel.validatedZipCodeResponse.accept(ValidatedZipCodeResponse(isValidZipCode: true))
 
         viewModel.streetAddress = "910 PENNSYLVANIA AVE"
-        viewModel.premiseID = "819708302"
-        XCTAssertTrue(viewModel.canEnableContinue)
+        viewModel.premiseID = "4798590000"
 
-        viewModel.premiseID = ""
-        XCTAssertFalse(viewModel.canEnableContinue)
+
+        let expectation = expectation(description: "API Response Expectation")
+        viewModel.lookupAddress { _ in
+            expectation.fulfill()
+        } onFailure: { error in
+            expectation.fulfill()
+        }
+        waitForExpectations(timeout: 120, handler: nil)
+
+        XCTAssertTrue(viewModel.canEnableContinue)
     }
 }
