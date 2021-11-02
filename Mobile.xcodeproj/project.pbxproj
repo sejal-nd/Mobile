@@ -4184,6 +4184,11 @@
 				4A74A0B6272EB03D00F87986 /* MoveServiceConfirmationViewModelTests.swift */,
 				21852B00272EA69400C0A10E /* NewServiceAddressViewModelTests.swift */,
 				21852B04272EC26600C0A10E /* IdVerificationViewModelTests.swift */,
+				4AC1E0852729659C00740A37 /* ReviewStopServiceViewModelTests.swift */,
+				4AC1E0892729711400740A37 /* FinalMailingAddressViewModelTests.swift */,
+				4AC1E08B272979AD00740A37 /* StopConfirmationScreenViewModelTests.swift */,
+				4A74A0B4272EACA500F87986 /* ScheduleMoveServiceViewModelTests.swift */,
+				4A74A0B6272EB03D00F87986 /* MoveServiceConfirmationViewModelTests.swift */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -4558,6 +4563,8 @@
 				4A74A0B8272EB4BD00F87986 /* MoveServiceConfirmationMock.json */,
 				21D4982D27310AC700EAE112 /* ZipCodeResponseMock.json */,
 				21D4982F27310C3300EAE112 /* AddressLookupResponseMock.json */,
+				4AC1E08D27297CA000740A37 /* StopServiceConfirmationMock.json */,
+				4A74A0B8272EB4BD00F87986 /* MoveServiceConfirmationMock.json */,
 			);
 			path = "Mock JSONS";
 			sourceTree = "<group>";
@@ -6745,6 +6752,12 @@
 				21852AFB272D1DF500C0A10E /* ReviewMoveServiceViewModelTest.swift in Sources */,
 				2112AAB1272C2C530089FD05 /* MoveFinalMailingAddressViewModelTests.swift in Sources */,
 				21852B03272EB8EA00C0A10E /* MoveStartServiceViewModelTests.swift in Sources */,
+				4AC1E08C272979AD00740A37 /* StopConfirmationScreenViewModelTests.swift in Sources */,
+				4A74A0B5272EACA500F87986 /* ScheduleMoveServiceViewModelTests.swift in Sources */,
+				4AC1E08827296FCD00740A37 /* MockModel.swift in Sources */,
+				4AC1E0862729659C00740A37 /* ReviewStopServiceViewModelTests.swift in Sources */,
+				4AC1E08A2729711400740A37 /* FinalMailingAddressViewModelTests.swift in Sources */,
+				4A74A0B7272EB03D00F87986 /* MoveServiceConfirmationViewModelTests.swift in Sources */,
 				6716595226F0FBC6004546DE /* UnitTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -93,26 +93,32 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
                 if self.viewModel.isZipValidated && self.viewModel.isStreetAddressValid{
-                    if let appartment_list = self.viewModel.getAppartmentIDs(), appartment_list.count == 1 {
-                        self.viewModel.setAppartment(appartment_list.first)
-                        if let suiteNumber = appartment_list.first?.suiteNumber,let premiseID =  appartment_list.first?.premiseID{
-                            self.viewModel.premiseID = premiseID
-                            self.viewModel.suiteNumber = suiteNumber
-                            self.setAppartment(suiteNumber)
-                            self.enableAppartmentColorState(false)
-                            self.viewModel.lookupAddress { _ in } onFailure: { error in
+                    if let appartment_list = self.viewModel.getAppartmentIDs() {
+                        if appartment_list.count == 1 {
+                            self.viewModel.setAppartment(appartment_list.first)
+                            if let suiteNumber = appartment_list.first?.suiteNumber,let premiseID =  appartment_list.first?.premiseID{
+                                self.viewModel.premiseID = premiseID
+                                self.viewModel.suiteNumber = suiteNumber
+                                self.setAppartment(suiteNumber)
+                                self.enableAppartmentColorState(false)
+                                 self.viewModel.lookupAddress { _ in } onFailure: { error in
                                 // TODO: error screen in future stories
                             }
-                        } else if let premiseID =  appartment_list.first?.premiseID{
-                            self.viewModel.premiseID = premiseID
-                            self.setAppartment(nil)
-                            self.enableAppartmentColorState(false)
-                            self.viewModel.lookupAddress { _ in } onFailure: { error in
-                                // TODO: error screen in future stories
                             }
-
-                        } else {
-                            self.setAppartment(nil)
+                            else if let premiseID =  appartment_list.first?.premiseID{
+                                self.viewModel.premiseID = premiseID
+                                self.setAppartment(nil)
+                                self.enableAppartmentColorState(false)
+                                self.viewModel.lookupAddress { _ in } onFailure: { error in
+                                // TODO: error screen in future stories
+                              }
+                            }
+                            else {
+                                self.setAppartment(nil)
+                            }
+                        }
+                        else if appartment_list.count > 0 {
+                            self.enableAppartmentColorState(true)
                             self.continueButton.isEnabled = self.viewModel.canEnableContinue
                         }
                     }
@@ -277,7 +283,7 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
             viewModel.validateZipCode { _ in } onFailure: { error in
                 // TODO: error screen in future stories
             }
-
+            enableTextFieldEditing(false)
         }
         scrollView.setContentOffset(CGPoint(x: 0, y: scrollView.contentInset.top), animated: true)
     }
@@ -290,6 +296,7 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
             viewModel.validateZipCode { _ in } onFailure: { error in
                 // TODO: error screen in future stories
             }
+            enableTextFieldEditing(false)
         }else {
             let storyboard = UIStoryboard(name: "ISUMMove", bundle: nil)
             let newServiceAddressViewController = storyboard.instantiateViewController(withIdentifier: "AddressSearchViewController") as! AddressSearchViewController
@@ -376,6 +383,7 @@ extension NewServiceAddressViewController: UITextFieldDelegate {
                     viewModel.validateZipCode { _ in } onFailure: { error in
                         // TODO: error screen in future stories
                     }
+                    enableTextFieldEditing(false)
                     textField.text = decimalString;
                     textField.resignFirstResponder()
                 }
@@ -424,10 +432,11 @@ extension NewServiceAddressViewController: AddressSearchDelegate {
         if !result.isEmpty {
             viewModel.setStreetAddress(result)
             setStreetAddress(result)
-            clearAppartmentSession()
+             clearAppartmentSession()
             viewModel.fetchAppartment { _ in } onFailure: { error in
                 // TODO: error screen in future stories
             }
+         
         }
     }
 
