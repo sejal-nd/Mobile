@@ -12,8 +12,6 @@ import RxCocoa
 
 class StopServiceViewModel {
 
-    var getAccountDetailSubject = PublishSubject<Void>()
-    var getAccountListSubject = PublishSubject<Void>()
     var workDays = BehaviorRelay<[WorkdaysResponse.WorkDay]>(value: [])
     var selectedDate = BehaviorRelay<Date?>(value: nil)
     var accountDetailEvents: Observable<AccountDetail?> { return currentAccountDetails.asObservable() }
@@ -23,8 +21,6 @@ class StopServiceViewModel {
     var invalidDateAMI = [String]()
     private (set) lazy var showLoadingState: Observable<Bool> = isLoading.asObservable()
     private let isLoading = BehaviorRelay(value: true)
-    private var getWorkdays = PublishSubject<Void>()
-    private var getAccountVerificationDetail = PublishSubject<Void>()
     private var currentAccountIndex = 0
 
     init() {
