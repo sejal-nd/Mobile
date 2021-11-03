@@ -115,6 +115,6 @@ enum AccountService {
                          completion: @escaping (Result<PaymentArrangement, NetworkingError>) ->()) {
         NetworkingLayer.request(router: .fetchDPA(accountNumber: accountNumber, encodable: DPARequest(customerNumber: customerNumber,
                                                                                                       premiseNumber: premiseNumber, paymentAmount: paymentAmount,
-                                                                                                      months: "1")), completion: completion)
+                                                                                                      months: "0")), completion: completion)
     }
 }

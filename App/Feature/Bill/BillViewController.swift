@@ -144,6 +144,10 @@ class BillViewController: AccountPickerViewController {
     @IBOutlet weak var assistanceCTA: UIButton!
     
     @IBOutlet var assistanceViewSepartors: [UIView]!
+    
+    @IBOutlet weak var ddeExtendedDateView: UIView!
+    @IBOutlet weak var ddeExtendedDateLabel: UILabel!
+    
     private let cornerRadius: CGFloat = 4.0
     
     var refreshControl: UIRefreshControl?
@@ -318,6 +322,10 @@ class BillViewController: AccountPickerViewController {
         
         catchUpDisclaimerLabel.textColor = .deepGray
         catchUpDisclaimerLabel.font = SystemFont.regular.of(textStyle: .caption1)
+        
+        ddeExtendedDateLabel.textColor = .deepGray
+        ddeExtendedDateLabel.font = SystemFont.semibold.of(textStyle: .caption1)
+        
         
         creditScenarioTitleLabel.textColor = .deepGray
         creditScenarioTitleLabel.font = OpenSans.regular.of(textStyle: .callout)
@@ -618,7 +626,7 @@ class BillViewController: AccountPickerViewController {
         viewModel.totalAmountText.drive(creditScenarioAmountLabel.rx.text).disposed(by: bag)
         viewModel.totalAmountDescriptionText.drive(totalAmountDescriptionLabel.rx.attributedText).disposed(by: bag)
 
-        viewModel.catchUpDisclaimerText.drive(catchUpDisclaimerLabel.rx.text).disposed(by: bag)
+        viewModel.enrollmentStatus.drive(catchUpDisclaimerLabel.rx.text).disposed(by: bag)
         viewModel.pastDueText.drive(pastDueLabel.rx.text).disposed(by: bag)
 		viewModel.pastDueAmountText.drive(pastDueAmountLabel.rx.text).disposed(by: bag)
         viewModel.pastDueDateText.drive(pastDueDateLabel.rx.attributedText).disposed(by: bag)
@@ -649,6 +657,9 @@ class BillViewController: AccountPickerViewController {
         viewModel.showAutoPayEnrolledView.not().drive(autoPayEnrolledView.rx.isHidden).disposed(by: bag)
         viewModel.autoPayDetailLabelText.drive(autoPayDetailLabel.rx.attributedText).disposed(by: bag)
         viewModel.showBudgetEnrolledView.not().drive(budgetEnrolledView.rx.isHidden).disposed(by: bag)
+        viewModel.showAssistanceCTA.not().drive(assistanceView.rx.isHidden).disposed(by: bag)
+        viewModel.showDDEExtendedView.not().drive(ddeExtendedDateView.rx.isHidden).disposed(by: bag)
+        
         
         viewModel.paymentAssistanceValues.drive(onNext: { [weak self] description in
             guard let self = self else { return }
@@ -661,7 +672,7 @@ class BillViewController: AccountPickerViewController {
                 (description?.description == "") {
                 self.assistanceView.isHidden = true
             } else {
-                self.assistanceView.isHidden = false
+               // self.assistanceView.isHidden = false
             }
             
             DispatchQueue.main.async {
@@ -676,6 +687,7 @@ class BillViewController: AccountPickerViewController {
         }).disposed(by: bag)
         
         viewModel.fetchBGEDdeDpaEligibility.asDriver().drive().disposed(by: bag)
+        viewModel.enrollmentStatus.asDriver().drive().disposed(by: bag)
 	}
 
     func bindButtonTaps() {

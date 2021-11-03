@@ -16,6 +16,7 @@ final class FeatureFlagUtility {
         case hasDefaultAccount
         case hasForgotPasswordLink
         case paymentProgramAds
+        case hasAssistanceEnrollment
         case agentisWidgets
         case isAzureAuthentication
         case hasAuthenticatedISUM
@@ -39,6 +40,7 @@ final class FeatureFlagUtility {
             FeatureFlagKey.hasDefaultAccount.rawValue : false,
             FeatureFlagKey.hasForgotPasswordLink.rawValue : false,
             FeatureFlagKey.paymentProgramAds.rawValue : false,
+            FeatureFlagKey.hasAssistanceEnrollment.rawValue : false,
             FeatureFlagKey.agentisWidgets.rawValue : false,
             FeatureFlagKey.isAzureAuthentication.rawValue : false,
             FeatureFlagKey.hasAuthenticatedISUM.rawValue : false,
@@ -66,6 +68,7 @@ final class FeatureFlagUtility {
                     FeatureFlagKey.hasDefaultAccount.rawValue : featureFlags.hasDefaultAccount,
                     FeatureFlagKey.hasForgotPasswordLink.rawValue : featureFlags.hasForgotPasswordLink,
                     FeatureFlagKey.paymentProgramAds.rawValue : featureFlags.paymentProgramAds,
+                    FeatureFlagKey.hasAssistanceEnrollment.rawValue : featureFlags.hasAssistanceEnrollment,
                     FeatureFlagKey.agentisWidgets.rawValue : featureFlags.agentisWidgets,
                     FeatureFlagKey.isAzureAuthentication.rawValue : featureFlags.isAzureAuthentication,
                     FeatureFlagKey.hasAuthenticatedISUM.rawValue : featureFlags.hasAuthenticatedISUM,

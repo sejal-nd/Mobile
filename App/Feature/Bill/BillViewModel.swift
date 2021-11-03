@@ -37,6 +37,9 @@ class BillViewModel {
     let isBgeDdeEligible = BehaviorRelay<Bool?>(value: nil)
     let isBgeDpaEligible = BehaviorRelay<Bool?>(value: nil)
     
+    let dueDateExtensionDetails = BehaviorRelay<DueDateElibility?>(value: nil)
+    var paymentArrangementDetails = BehaviorRelay<PaymentArrangement?>(value: nil)
+    
     private func tracker(forState state: FetchingAccountState) -> ActivityTracker {
         switch state {
         case .refresh: return refreshTracker
@@ -89,13 +92,13 @@ class BillViewModel {
         }
     
     private(set) lazy var fetchBGEDdeDpaEligibility: Driver<Bool> = self.currentAccountDetail.map {
-        if Configuration.shared.opco == .bge {
+        if Configuration.shared.opco == .bge || FeatureFlagUtility.shared.bool(forKey: .hasAssistanceEnrollment) {
             // Fetch BGE DDE
             AccountService.fetchDDE  { [weak self] result in
                 switch result {
                 case .success(let resultObject):
                     self?.isBgeDdeEligible.accept( resultObject.isPaymentExtensionEligible ?? false)
-                    
+                    self?.dueDateExtensionDetails.accept(resultObject)
                 case .failure:
                     self?.isBgeDdeEligible.accept(false)
                 }
@@ -111,7 +114,7 @@ class BillViewModel {
                 switch result {
                 case .success(let paymentEnhancement):
                     self?.isBgeDpaEligible.accept(paymentEnhancement.customerInfo?.paEligibility == "true" ? true : false)
-                    
+                    self?.paymentArrangementDetails.accept(paymentEnhancement)
                 case .failure:
                     self?.isBgeDpaEligible.accept(false)
                 }
@@ -122,6 +125,7 @@ class BillViewModel {
         }
         return false
     }
+    
     
     private(set) lazy var accountDetailError: Driver<NetworkingError?> = dataEvents.errors()
         .map { $0 as? NetworkingError }
@@ -519,8 +523,8 @@ class BillViewModel {
     }
     
     //MARK: - Catch Up
-    private(set) lazy var showCatchUpDisclaimer: Driver<Bool> = currentAccountDetail.map {_ in 
-        return false
+    private(set) lazy var showCatchUpDisclaimer: Driver<Bool> = Driver.combineLatest(showBgeDdeDpaEligibility.asDriver(), enrollmentStatus.asDriver()) {(showBgeDdeDpaEligibility, enrollmentStatus) in
+        return showBgeDdeDpaEligibility && !(enrollmentStatus ?? "").isEmpty
     }
     
     private(set) lazy var catchUpDisclaimerText: Driver<String> = currentAccountDetail.map {
@@ -881,6 +885,50 @@ class BillViewModel {
             ($0 != nil) && ($1 != nil)
             
         }
+    private(set) lazy var showAssistanceCTA: Driver<Bool> =
+        Driver.combineLatest(self.enrollmentStatus.asDriver(),
+                             showBgeDdeDpaEligibility.asDriver())
+            {
+            ($0 == "") && $1
+            
+        }
+    
+    private(set) lazy var showDDEExtendedView: Driver<Bool> =
+        Driver.combineLatest(self.enrollmentStatus.asDriver(),
+                             showBgeDdeDpaEligibility.asDriver(), currentAccountDetail)
+            {
+            guard let dueDateString = $0 else {return false}
+            return (dueDateString.hasPrefix("You're enrolled in a Due Date Extension"))  && $1 && $2.billingInfo.pastDueAmount > 0
+        }
+    // MARK: - Enrollment Status
+    private(set) lazy var enrollmentStatus: Driver<String?> = Driver.combineLatest(currentAccountDetail, showBgeDdeDpaEligibility.asDriver(), paymentArrangementDetails.asDriver(), dueDateExtensionDetails.asDriver()) { (accountDetail, bgeDdeDpaEligibilityChecked, paymentArrangementDetails, dueDateExtensionDetails) in
+        if FeatureFlagUtility.shared.bool(forKey: .hasAssistanceEnrollment) {
+            if accountDetail.billingInfo.isDpaEnrolled == "true" {
+                if paymentArrangementDetails?.pAData?.first?.numberOfInstallments == paymentArrangementDetails?.pAData?.first?.noOfInstallmentsLeft {
+                    return "Your request to enroll in a payment arrangement has been accepted. For further details log into your My Account."
+                } else if paymentArrangementDetails?.pAData?.first?.numberOfInstallments != paymentArrangementDetails?.pAData?.first?.noOfInstallmentsLeft {
+                    guard  let remainingPaymentAmount = paymentArrangementDetails?.pAData?.first?.remainingPaymentAmount,
+                           let monthlyInstallment = paymentArrangementDetails?.pAData?.first?.monthlyInstallment,
+                           let noOfInstallmentsLeft = paymentArrangementDetails?.pAData?.first?.noOfInstallmentsLeft,
+                           let numberOfInstallments = paymentArrangementDetails?.pAData?.first?.numberOfInstallments else {
+                        return ""
+                    }
+                    return " You’re enrolled in a payment arrangement. Your $\(monthlyInstallment) monthly installment is included in the current bill. You have \(noOfInstallmentsLeft) installments, for a total of $\(remainingPaymentAmount), left on your arrangement."
+                }
+            } else if !accountDetail.isDueDateExtensionEligible &&
+                        dueDateExtensionDetails?.extendedDueDate != nil &&
+                        dueDateExtensionDetails?.extensionDueAmt != nil {
+                guard let extendedDueDate = dueDateExtensionDetails?.extendedDueDate,
+                      let extensionDueAmt = dueDateExtensionDetails?.extensionDueAmt else {return nil}
+                if Date() > dueDateExtensionDetails?.extendedDueDate {
+                    return "You're enrolled in a Due Date Extension. You have until \(String(describing: extendedDueDate.mmDdYyyyString)) to pay your extended bill of $\(extensionDueAmt)."
+                } else {
+                    return "You're enrolled in a Due Date Extension. You have until \(String(describing: extendedDueDate.mmDdYyyyString)) to pay your extended bill of $\(extensionDueAmt)."
+                }
+            }
+        }
+        return ""
+    }
     
     // MARK: - Assistance View States
     private(set) lazy var paymentAssistanceValues: Driver<(title: String, description: String, ctaType: String, ctaURL: String)?> =
