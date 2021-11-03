@@ -244,7 +244,7 @@ extension ScheduleMoveServiceViewController: AccountSelectDelegate {
             let premiseIndexPath = premiseIndexPath {
             AccountsStore.shared.accounts[selectedAccountIndex].currentPremise = AccountsStore.shared.currentAccount.premises[premiseIndexPath.row]
         }
-        viewModel.getAccountDetailSubject.onNext(())
+        viewModel.getAccounts { _ in }
         viewModel.selectedDate.accept(nil)
     }
 }
