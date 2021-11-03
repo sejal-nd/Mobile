@@ -888,9 +888,8 @@ class BillViewModel {
     private(set) lazy var showAssistanceCTA: Driver<Bool> =
         Driver.combineLatest(self.enrollmentStatus.asDriver(),
                              showBgeDdeDpaEligibility.asDriver())
-            {
-            ($0 == "") && $1
-            
+        {
+            $1
         }
     
     private(set) lazy var showDDEExtendedView: Driver<Bool> =

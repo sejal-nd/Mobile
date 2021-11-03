@@ -87,6 +87,12 @@ class HomeBillCardView: UIView {
     @IBOutlet weak var descriptionAssistanceProgram: UILabel!
     @IBOutlet weak var assistanceCTA: UIButton!
     
+    @IBOutlet weak var enrolmentStatusView: UIView!
+    @IBOutlet weak var enrolmentStatusLabel: UILabel!
+    
+    @IBOutlet weak var ddeExtendedDateView: UIView!
+    @IBOutlet weak var ddeExtendedDateLabel: UILabel!
+    
     
     let shouldPushWallet = PublishSubject<Void>()
     
@@ -140,6 +146,12 @@ class HomeBillCardView: UIView {
         descriptionAssistanceProgram.textColor = .deepGray
         assistanceCTA.setTitleColor(.actionBlue, for: .normal)
         assistanceCTA.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
+        
+        enrolmentStatusLabel.textColor = .deepGray
+        enrolmentStatusLabel.font = SystemFont.regular.of(textStyle: .caption1)
+        
+        ddeExtendedDateLabel.textColor = .deepGray
+        ddeExtendedDateLabel.font = SystemFont.semibold.of(textStyle: .caption1)
         
         layer.borderColor = UIColor.accentGray.cgColor
         layer.borderWidth = 1
@@ -327,6 +339,11 @@ class HomeBillCardView: UIView {
         viewModel.thankYouForSchedulingButtonText.drive(thankYouForSchedulingButton.rx.title(for: .normal)).disposed(by: bag)
         viewModel.thankYouForSchedulingButtonText.drive(thankYouForSchedulingButton.rx.accessibilityLabel).disposed(by: bag)
         viewModel.slideToPayConfirmationDetailText.drive(slideToPayConfirmationDetailLabel.rx.text).disposed(by: bag)
+        
+        viewModel.showCatchUpDisclaimer.not().drive(enrolmentStatusView.rx.isHidden).disposed(by: bag)
+        viewModel.enrollmentStatus.drive(enrolmentStatusLabel.rx.text).disposed(by: bag)
+        viewModel.showDDEExtendedView.not().drive(ddeExtendedDateView.rx.isHidden).disposed(by: bag)
+        viewModel.showAssistanceCTA.not().drive(assistanceView.rx.isHidden).disposed(by: bag)
         
         viewModel.paymentAssistanceValues.drive(onNext: { [weak self] description in
             guard let self = self else { return }
