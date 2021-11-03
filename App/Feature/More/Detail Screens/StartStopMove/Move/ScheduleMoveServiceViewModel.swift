@@ -89,11 +89,12 @@ class ScheduleMoveServiceViewModel {
     private func getWorkdays(completion: @escaping (Result<Bool, NetworkingError>) -> ()) {
         
         StopService.fetchWorkdays { [weak self] (result: Result<WorkdaysResponse, NetworkingError>) in
-            
+            guard let `self` = self, let accountDetails = self.currentAccountDetails.value else { return }
             switch result {
             case .success(let workdaysResponse):
-                self?.workDays.accept(workdaysResponse.list)
-                self?.isLoading.accept(false)
+                let validWorkdays = WorkdaysResponse.getValidWorkdays(workdays: workdaysResponse.list, isAMIAccount: accountDetails.isAMIAccount, isRCDCapable: accountDetails.isRCDCapable)
+                self.workDays.accept(validWorkdays)
+                self.isLoading.accept(false)
                 completion(.success(true))
             case .failure(let error):
                 completion(.failure(error))
@@ -103,16 +104,7 @@ class ScheduleMoveServiceViewModel {
     
     func isValidDate(_ date: Date)-> Bool {
         
-        guard let accountDetails = self.currentAccountDetails.value else { return false }
         let calendarDate = DateFormatter.mmDdYyyyFormatter.string(from: date)
-        if !accountDetails.isAMIAccount {
-            let firstDay = DateFormatter.mmDdYyyyFormatter.string(from: Calendar.opCo.date(byAdding: .day, value: 0, to: Date.now)!)
-            let secondDay = DateFormatter.mmDdYyyyFormatter.string(from: Calendar.opCo.date(byAdding: .day, value: 1, to: Date.now)!)
-            let thirdDay = DateFormatter.mmDdYyyyFormatter.string(from: Calendar.opCo.date(byAdding: .day, value: 2, to: Date.now)!)
-            if calendarDate == firstDay || calendarDate == secondDay || calendarDate == thirdDay {
-                return false
-            }
-        }
         return self.workDays.value.contains { $0.value == calendarDate}
     }
 }
