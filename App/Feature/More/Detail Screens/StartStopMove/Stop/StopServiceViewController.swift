@@ -70,8 +70,8 @@ class StopServiceViewController: UIViewController {
                     }
                     self?.loadingIndicator.isHidden = true
                     DispatchQueue.main.async {
-                        self?.presentAlert(title: NSLocalizedString(NetworkingError.generic.title, comment: ""),
-                                           message: NSLocalizedString(NetworkingError.generic.description, comment: ""),
+                        self?.presentAlert(title: NSLocalizedString("We're experiencing technical issues ", comment: ""),
+                                           message: NSLocalizedString("We can't retrieve the data you requested. Please try again later. ", comment: ""),
                                            style: .alert,
                                            actions: [exitAction])
                     }
