@@ -548,6 +548,10 @@ public enum Router {
             return "WorkdaysMock"
         case .stopServiceVerification:
             return "AccountVerification"
+        case .validateZipCode:
+            return "ZipCodeResponseMock"
+        case .addressLookup:
+            return "AddressLookupResponseMock"
         default:
             return ""
         }

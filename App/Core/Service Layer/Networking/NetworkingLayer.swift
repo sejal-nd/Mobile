@@ -272,7 +272,7 @@ public enum NetworkingLayer {
         dataTask.resume()
     }
     
-    private static func decode<T: Decodable>(data: Data) throws -> T {
+    public static func decode<T: Decodable>(data: Data) throws -> T {
         if ProcessInfo.processInfo.arguments.contains("-shouldLogAPI") {
             Log.custom("✉️", "Data Response:\n\(String(decoding: data, as: UTF8.self))")
         }

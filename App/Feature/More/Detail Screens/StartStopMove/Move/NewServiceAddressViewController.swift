@@ -101,13 +101,17 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
                                 self.viewModel.suiteNumber = suiteNumber
                                 self.setAppartment(suiteNumber)
                                 self.enableAppartmentColorState(false)
-                                self.viewModel.validateAddress()
+                                 self.viewModel.lookupAddress { _ in } onFailure: { error in
+                                // TODO: error screen in future stories
+                            }
                             }
                             else if let premiseID =  appartment_list.first?.premiseID{
                                 self.viewModel.premiseID = premiseID
                                 self.setAppartment(nil)
                                 self.enableAppartmentColorState(false)
-                                self.viewModel.validateAddress()
+                                self.viewModel.lookupAddress { _ in } onFailure: { error in
+                                // TODO: error screen in future stories
+                              }
                             }
                             else {
                                 self.setAppartment(nil)
@@ -148,7 +152,7 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
                     let storyboard = UIStoryboard(name: "ISUMMove", bundle: nil)
                     let moveStartServiceViewController = storyboard.instantiateViewController(withIdentifier: "MoveStartServiceViewController") as! MoveStartServiceViewController
                     self.viewModel.moveServiceFlowData.addressLookupResponse = addressLookupResponse
-                    moveStartServiceViewController.viewModel = MoveStartServiceViewModel(moveServiceFlow: self.viewModel.moveServiceFlowData)
+                    moveStartServiceViewController.viewModel = MoveStartServiceViewModel(moveServiceFlowData: self.viewModel.moveServiceFlowData)
                     self.navigationController?.pushViewController(moveStartServiceViewController, animated: true)
                 }
             }).disposed(by: disposeBag)
@@ -275,7 +279,10 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
         if !viewModel.isZipValid {
             zipTextField.setError(NSLocalizedString("Zip  Code must be 5 characters in length", comment: ""))
         }else {
-            viewModel.validateZip()
+            enableTextFieldEditing(false)
+            viewModel.validateZipCode { _ in } onFailure: { error in
+                // TODO: error screen in future stories
+            }
             enableTextFieldEditing(false)
         }
         scrollView.setContentOffset(CGPoint(x: 0, y: scrollView.contentInset.top), animated: true)
@@ -285,7 +292,10 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
         if !viewModel.isZipValid {
             zipTextField.setError(NSLocalizedString("Zip  Code must be 5 characters in length", comment: ""))
         }else if !viewModel.isZipValidated {
-            viewModel.validateZip()
+            enableTextFieldEditing(false)
+            viewModel.validateZipCode { _ in } onFailure: { error in
+                // TODO: error screen in future stories
+            }
             enableTextFieldEditing(false)
         }else {
             let storyboard = UIStoryboard(name: "ISUMMove", bundle: nil)
@@ -369,7 +379,10 @@ extension NewServiceAddressViewController: UITextFieldDelegate {
                 else {
                     zipTextField.setError(nil)
                     viewModel.zipCode = decimalString
-                    viewModel.validateZip()
+                    enableTextFieldEditing(false)
+                    viewModel.validateZipCode { _ in } onFailure: { error in
+                        // TODO: error screen in future stories
+                    }
                     enableTextFieldEditing(false)
                     textField.text = decimalString;
                     textField.resignFirstResponder()
@@ -405,11 +418,13 @@ extension NewServiceAddressViewController: UITextFieldDelegate {
 }
 extension NewServiceAddressViewController: AddressSearchDelegate {
     func didSelectAppartment(result: AppartmentResponse) {
-        if let suiteNumber = result.suiteNumber{
+        if let suiteNumber = result.suiteNumber,let premiseID =  result.premiseID {
             setAppartmentError(nil)
             viewModel.setAppartment(result)
             setAppartment(suiteNumber)
-            viewModel.validateAddress()
+            self.viewModel.lookupAddress{ _ in } onFailure: { error in
+                // TODO: error screen in future stories
+            }
         }
     }
 
@@ -417,8 +432,11 @@ extension NewServiceAddressViewController: AddressSearchDelegate {
         if !result.isEmpty {
             viewModel.setStreetAddress(result)
             setStreetAddress(result)
-            clearAppartmentSession()
-            viewModel.fetchAppartmentDetails()
+             clearAppartmentSession()
+            viewModel.fetchAppartment { _ in } onFailure: { error in
+                // TODO: error screen in future stories
+            }
+         
         }
     }
 
