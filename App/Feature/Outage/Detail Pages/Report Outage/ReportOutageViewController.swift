@@ -420,6 +420,8 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
                 FirebaseUtility.logEvent(.reportOutageNetworkComplete)
                 FirebaseUtility.logEvent(.unauthOutage(parameters: [.report_complete]))
                 
+                GoogleAnalytics.log(event: .reportAnOutageUnAuthComplete)
+                
                 LoadingView.hide()
                 guard let self = self else { return }
                 RxNotifications.shared.outageReported.onNext(())
@@ -431,6 +433,8 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
             viewModel.reportOutage(onSuccess: { [weak self] in
                 FirebaseUtility.logEvent(.reportOutageNetworkComplete)
                 FirebaseUtility.logEvent(.authOutage(parameters: [.report_complete]))
+                
+                GoogleAnalytics.log(event: .reportOutageAuthComplete)
                 
                 LoadingView.hide()
                 guard let self = self else { return }
