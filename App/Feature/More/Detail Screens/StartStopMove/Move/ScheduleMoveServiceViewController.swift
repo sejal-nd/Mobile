@@ -57,7 +57,7 @@ class ScheduleMoveServiceViewController: UIViewController {
         
         if isFirstLoad {
             isFirstLoad = false
-            viewModel.getAccounts { _ in }
+            fetchAccounts()
         }
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
@@ -225,6 +225,28 @@ class ScheduleMoveServiceViewController: UIViewController {
             dismiss(animated: true, completion: nil)
         }
     }
+    
+    private func fetchAccounts() {
+        
+        viewModel.getAccounts { [weak self] result in
+            switch result {
+            case .success: break
+            case .failure:
+                let exitAction = UIAlertAction(title: NSLocalizedString("Exit", comment: ""), style: .default)
+                { [weak self] _ in
+                    guard let `self` = self else { return }
+                    self.dismiss(animated: true, completion: nil)
+                }
+                self?.loadingIndicator.isHidden = true
+                DispatchQueue.main.async {
+                    self?.presentAlert(title: NSLocalizedString("We're experiencing technical issues ", comment: ""),
+                                       message: NSLocalizedString("We can't retrieve the data you requested. Please try again later. ", comment: ""),
+                                       style: .alert,
+                                       actions: [exitAction])
+                }
+            }
+        }
+    }
 }
 
 
@@ -257,7 +279,7 @@ extension ScheduleMoveServiceViewController: AccountSelectDelegate {
             let premiseIndexPath = premiseIndexPath {
             AccountsStore.shared.accounts[selectedAccountIndex].currentPremise = AccountsStore.shared.currentAccount.premises[premiseIndexPath.row]
         }
-        viewModel.getAccounts { _ in }
+        fetchAccounts()
         viewModel.selectedDate.accept(nil)
     }
 }

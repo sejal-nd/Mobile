@@ -20,20 +20,14 @@ class NewServiceAddressViewModel{
     private let isLoading = BehaviorRelay(value: false)
     private (set) lazy var showLoadingState: Observable<Bool> = isLoading.asObservable()
     
-    private var validateZipCode = PublishSubject<Void>()
     var validatedZipCodeResponse = BehaviorRelay<ValidatedZipCodeResponse?>(value: nil)
     var validateZipResponseEvent: Observable<ValidatedZipCodeResponse?> { return validatedZipCodeResponse.asObservable() }
 
-    private var fetchAppartment = PublishSubject<Void>()
     var appartmentResponse = BehaviorRelay<[AppartmentResponse]?>(value: [])
     var appartmentResponseEvent: Observable<[AppartmentResponse]?> { return appartmentResponse.asObservable() }
     var addressLookUpResponseEvent: Observable<[AddressLookupResponse]?> { return addressLookupResponse.asObservable() }
 
-    private var getAddressLookup = PublishSubject<Void>()
     var addressLookupResponse = BehaviorRelay<[AddressLookupResponse]?>(value: nil)
-
-    var apiError: Observable<Error> { return apiErrorSubject.asObservable()}
-    private var apiErrorSubject = PublishSubject<Error>()
 
     var isZipValid: Bool {
         guard let zip = zipCode, !zip.isEmpty, zip.count == 5 else { return false}
