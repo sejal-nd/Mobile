@@ -50,7 +50,7 @@ class ReviewStopServiceViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
+        FirebaseUtility.logScreenView(.stopReviewView(className: self.className))
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
@@ -116,22 +116,28 @@ class ReviewStopServiceViewController: UIViewController {
                 guard let `self` = self else { return }
                 self.navigationController?.view.isUserInteractionEnabled = false
                 LoadingView.show()
+                FirebaseUtility.logEvent(.stopService(parameters: [.submit]))
                 self.viewModel.onStopSubmit.onNext(self.stopFlowData)
             }).disposed(by: disposeBag)
         
         viewModel.response
             .subscribe(onNext: { [weak self] response in
                 guard let `self` = self else { return }
+                
+                FirebaseUtility.logEvent(.stopService(parameters: [response.isResolved == true ? .complete_resolved : .complete_unresolved]))
+                
                 self.navigationController?.view.isUserInteractionEnabled = true
                 LoadingView.hide()
                 let storyboard = UIStoryboard(name: "ISUMStop", bundle: nil)
                 let stopConfirmationScreenViewController = storyboard.instantiateViewController(withIdentifier: "StopConfirmationScreenViewController") as! StopConfirmationScreenViewController
                 stopConfirmationScreenViewController.viewModel = StopConfirmationScreenViewModel(stopServiceResponse: response)
                 self.navigationController?.pushViewController(stopConfirmationScreenViewController, animated: true)
+                
             }).disposed(by: disposeBag)
         
         viewModel.errorResponse
             .subscribe(onNext: { [weak self]_ in
+                FirebaseUtility.logEvent(.stopService(parameters: [.submit_error]))
                 guard let `self` = self else { return }
                 self.navigationController?.view.isUserInteractionEnabled = true
                 LoadingView.hide()

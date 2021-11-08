@@ -76,9 +76,12 @@ class StopLandingViewController: UIViewController {
 
         viewModel.fetchAccountDetails()
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        FirebaseUtility.logScreenView(.stopLandingView(className: self.className))
     }
+    
     func setupUIBinding(){
         viewModel.accountDetailsEvent
             .subscribe (onNext: { [weak self] response in
@@ -105,6 +108,7 @@ class StopLandingViewController: UIViewController {
                     guard let `self` = self else { return }
                     self.dismiss(animated: true, completion: nil)
                 }
+                FirebaseUtility.logEvent(FirebaseEvent.stopService(parameters: [.api_error]))
                 LoadingView.hide()
                 DispatchQueue.main.async {
                     self?.presentAlert(title: NSLocalizedString("We're experiencing technical issues ", comment: ""),
