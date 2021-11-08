@@ -26,3 +26,34 @@ public struct WorkdaysResponse: Decodable {
     }
 }
 
+extension WorkdaysResponse {
+    
+    static func getValidWorkdays(workdays: [WorkdaysResponse.WorkDay], isAMIAccount: Bool, isRCDCapable: Bool)-> [WorkdaysResponse.WorkDay] {
+        
+        if (isAMIAccount && isRCDCapable && checkPermissibleTime()) {
+            return workdays
+        } else if (isAMIAccount && isRCDCapable && !checkPermissibleTime()) {
+            return updateWorkdays(workdays: workdays, skipDays: 1)
+        } else {
+            return updateWorkdays(workdays: workdays, skipDays: 3)
+        }
+    }
+
+    private static func updateWorkdays(workdays: [WorkdaysResponse.WorkDay], skipDays: Int)-> [WorkdaysResponse.WorkDay] {
+        
+        var updatedWorkdays = workdays
+        for _ in 0...(skipDays - 1) {
+            updatedWorkdays.removeFirst()
+        }
+        return updatedWorkdays
+    }
+
+    private static func checkPermissibleTime()-> Bool {
+        
+        let date = Date()
+        let calendar = Calendar.current
+        let hour = calendar.component(.hour, from: date)
+        return hour < 18
+    }
+}
+

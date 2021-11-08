@@ -50,6 +50,10 @@ enum AccountService {
         if alertPreferenceEligibilities {
             queryItems.append(URLQueryItem(name: "alertPreferenceEligibilities", value: "true"))
         }
+        
+        if FeatureFlagUtility.shared.bool(forKey: .hasAuthenticatedISUM) {
+            queryItems.append(URLQueryItem(name: "isGetRCDCapable", value: "true"))
+        }
     
         NetworkingLayer.request(router: .accountDetails(accountNumber: accountNumber, queryItems: queryItems), completion: completion)
     }

@@ -197,7 +197,7 @@ class ReviewMoveServiceViewController: UIViewController {
 // MARK: - PDTSimpleCalendarViewDelegate
 extension ReviewMoveServiceViewController: PDTSimpleCalendarViewDelegate {
     func simpleCalendarViewController(_ controller: PDTSimpleCalendarViewController!, isEnabledDate date: Date!) -> Bool {
-        return viewModel.isValidDate(date, workDays: moveFlowData.workDays, accountDetails: moveFlowData.currentAccountDetail)
+        return viewModel.isValidDate(date, workDays: moveFlowData.workDays)
     }
 
     func simpleCalendarViewController(_ controller: PDTSimpleCalendarViewController!, didSelect date: Date!) {

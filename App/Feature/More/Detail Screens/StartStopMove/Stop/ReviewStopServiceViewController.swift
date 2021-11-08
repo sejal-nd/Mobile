@@ -180,7 +180,7 @@ class ReviewStopServiceViewController: UIViewController {
 // MARK: - PDTSimpleCalendarViewDelegate
 extension ReviewStopServiceViewController: PDTSimpleCalendarViewDelegate {
     func simpleCalendarViewController(_ controller: PDTSimpleCalendarViewController!, isEnabledDate date: Date!) -> Bool {
-        return viewModel.isValidDate(date, workDays: stopFlowData.workDays, accountDetails: stopFlowData.currentAccountDetail)
+        return viewModel.isValidDate(date, workDays: stopFlowData.workDays)
     }
     
     func simpleCalendarViewController(_ controller: PDTSimpleCalendarViewController!, didSelect date: Date!) {

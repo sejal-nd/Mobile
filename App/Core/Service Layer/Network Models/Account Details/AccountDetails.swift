@@ -105,6 +105,7 @@ public struct AccountDetail: Decodable {
     let isPendingDisconnectElectic: Bool
     let isPendingDisconnectGas: Bool
     let isPendingDisconnect: Bool
+    let isRCDCapable: Bool
 
     // Only 3 real states to think about
     enum PrepaidStatus: String, Decodable {
@@ -216,6 +217,7 @@ public struct AccountDetail: Decodable {
         case isPendingDisconnectElectic
         case isPendingDisconnectGas
         case isPendingDisconnect
+        case isRCDCapable
     }
     
     public init(from decoder: Decoder) throws {
@@ -392,6 +394,8 @@ public struct AccountDetail: Decodable {
                                                                                forKey: .isPendingDisconnectGas) ?? false
         self.isPendingDisconnect = try container.decodeIfPresent(Bool.self,
                                                                                forKey: .isPendingDisconnect) ?? false
+        self.isRCDCapable = try container.decodeIfPresent(Bool.self,
+                                                                               forKey: .isRCDCapable) ?? false
     }
     
     var isEligibleForUsageData: Bool {
