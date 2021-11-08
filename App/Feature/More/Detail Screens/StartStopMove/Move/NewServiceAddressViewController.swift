@@ -101,17 +101,17 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
                                 self.viewModel.suiteNumber = suiteNumber
                                 self.setAppartment(suiteNumber)
                                 self.enableAppartmentColorState(false)
-                                 self.viewModel.lookupAddress { _ in } onFailure: { error in
-                                // TODO: error screen in future stories
-                            }
+                                 self.viewModel.lookupAddress { _ in } onFailure: { [weak self] error in
+                                     self?.apiErrorHandling()
+                                 }
                             }
                             else if let premiseID =  appartment_list.first?.premiseID{
                                 self.viewModel.premiseID = premiseID
                                 self.setAppartment(nil)
                                 self.enableAppartmentColorState(false)
-                                self.viewModel.lookupAddress { _ in } onFailure: { error in
-                                // TODO: error screen in future stories
-                              }
+                                self.viewModel.lookupAddress { _ in } onFailure: { [weak self] error in
+                                    self?.apiErrorHandling()
+                                }
                             }
                             else {
                                 self.setAppartment(nil)
@@ -156,7 +156,6 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
                     self.navigationController?.pushViewController(moveStartServiceViewController, animated: true)
                 }
             }).disposed(by: disposeBag)
-
     }
 
     private func configureTextField() {
@@ -280,8 +279,8 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
             zipTextField.setError(NSLocalizedString("Zip  Code must be 5 characters in length", comment: ""))
         }else {
             enableTextFieldEditing(false)
-            viewModel.validateZipCode { _ in } onFailure: { error in
-                // TODO: error screen in future stories
+            viewModel.validateZipCode { _ in } onFailure: { [weak self] error in
+                self?.apiErrorHandling()
             }
             enableTextFieldEditing(false)
         }
@@ -293,8 +292,8 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
             zipTextField.setError(NSLocalizedString("Zip  Code must be 5 characters in length", comment: ""))
         }else if !viewModel.isZipValidated {
             enableTextFieldEditing(false)
-            viewModel.validateZipCode { _ in } onFailure: { error in
-                // TODO: error screen in future stories
+            viewModel.validateZipCode { _ in } onFailure: { [weak self] error in
+                self?.apiErrorHandling()
             }
             enableTextFieldEditing(false)
         }else {
@@ -356,6 +355,21 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
         continueButton.isEnabled = viewModel.canEnableContinue
     }
 
+    private func apiErrorHandling() {
+        
+        let exitAction = UIAlertAction(title: NSLocalizedString("Exit", comment: ""), style: .default)
+        { [weak self] _ in
+            guard let `self` = self else { return }
+            self.dismiss(animated: true, completion: nil)
+        }
+        self.loadingIndicator.isHidden = true
+        DispatchQueue.main.async {
+            self.presentAlert(title: NSLocalizedString("We're experiencing technical issues ", comment: ""),
+                               message: NSLocalizedString("We can't retrieve the data you requested. Please try again later. ", comment: ""),
+                               style: .alert,
+                               actions: [exitAction])
+        }
+    }
 }
 extension NewServiceAddressViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
@@ -380,8 +394,8 @@ extension NewServiceAddressViewController: UITextFieldDelegate {
                     zipTextField.setError(nil)
                     viewModel.zipCode = decimalString
                     enableTextFieldEditing(false)
-                    viewModel.validateZipCode { _ in } onFailure: { error in
-                        // TODO: error screen in future stories
+                    viewModel.validateZipCode { _ in } onFailure: { [weak self] error in
+                        self?.apiErrorHandling()
                     }
                     enableTextFieldEditing(false)
                     textField.text = decimalString;
@@ -422,8 +436,8 @@ extension NewServiceAddressViewController: AddressSearchDelegate {
             setAppartmentError(nil)
             viewModel.setAppartment(result)
             setAppartment(suiteNumber)
-            self.viewModel.lookupAddress{ _ in } onFailure: { error in
-                // TODO: error screen in future stories
+            self.viewModel.lookupAddress { _ in } onFailure: { [weak self] error in
+                self?.apiErrorHandling()
             }
         }
     }
@@ -433,8 +447,8 @@ extension NewServiceAddressViewController: AddressSearchDelegate {
             viewModel.setStreetAddress(result)
             setStreetAddress(result)
              clearAppartmentSession()
-            viewModel.fetchAppartment { _ in } onFailure: { error in
-                // TODO: error screen in future stories
+            viewModel.fetchAppartment { _ in } onFailure: { [weak self] error in
+                self?.apiErrorHandling()
             }
          
         }

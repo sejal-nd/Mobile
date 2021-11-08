@@ -126,6 +126,24 @@ class MoveLandingViewController: UIViewController {
                 }
 
             }).disposed(by: disposeBag)
+        
+        viewModel.apiError.asObservable()
+            .observeOn(MainScheduler.asyncInstance)
+            .subscribe { [weak self] _ in
+                let exitAction = UIAlertAction(title: NSLocalizedString("Exit", comment: ""), style: .default)
+                { [weak self] _ in
+                    guard let `self` = self else { return }
+                    self.dismiss(animated: true, completion: nil)
+                }
+                LoadingView.hide()
+                DispatchQueue.main.async {
+                    self?.presentAlert(title: NSLocalizedString("We're experiencing technical issues ", comment: ""),
+                                       message: NSLocalizedString("We can't retrieve the data you requested. Please try again later. ", comment: ""),
+                                       style: .alert,
+                                       actions: [exitAction])
+                }
+            }.disposed(by: disposeBag)
+
     }
     func navigateToStopServiceVC(){
         let storyboard = UIStoryboard(name: "ISUMMove", bundle: nil)

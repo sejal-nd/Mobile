@@ -22,6 +22,8 @@ class ScheduleMoveServiceViewModel {
     private (set) lazy var showLoadingState: Observable<Bool> = isLoading.asObservable()
     private let isLoading = BehaviorRelay(value: true)
     private var currentAccountIndex = 0
+    var apiError: Observable<Error> { return apiErrorSubject.asObservable()}
+    private var apiErrorSubject = PublishSubject<Error>()
 
     init() {
         
