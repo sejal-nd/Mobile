@@ -57,6 +57,7 @@ class StopServiceViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
+        FirebaseUtility.logScreenView(.stopSelectStopDateView(className: self.className))
         if isFirstLoad {
             isFirstLoad = false
             fetchAccounts()
@@ -103,6 +104,7 @@ class StopServiceViewController: UIViewController {
         
         stopDateButton.rx.touchUpInside.asDriver()
             .drive(onNext: { [weak self] in
+                FirebaseUtility.logEvent(.stopService(parameters: [.calendar]))
                 guard let self = self else { return }
                 self.view.endEditing(true)
                 
@@ -126,6 +128,7 @@ class StopServiceViewController: UIViewController {
                 calendarVC.navigationItem.largeTitleDisplayMode = .automatic
                 navigationController.modalPresentationStyle = .fullScreen
                 self.navigationController?.present(navigationController, animated: true, completion: nil)
+                
         }).disposed(by: disposeBag)
         
         changeAccountButton.rx.tap
@@ -171,23 +174,31 @@ class StopServiceViewController: UIViewController {
         viewModel.accountDetailEvents
             .compactMap { $0 }
             .subscribe(onNext: { [weak self] accountDetails in
+                guard let self = self else { return }
                 LoadingView.hide()
-                self?.currentAccountDeatil = accountDetails
-                self?.electricStackView.isHidden = !(accountDetails.serviceType?.contains("ELECTRIC") ?? false)
-                self?.gasStackView.isHidden = !(accountDetails.serviceType?.contains("GAS") ?? false)
-                self?.noneServiceProvideLabel.isHidden = (accountDetails.serviceType?.contains("GAS") ?? false || accountDetails.serviceType?.contains("ELECTRIC") ?? false)
-                self?.finalBillStackView.isHidden = (accountDetails.isEBillEnrollment || accountDetails.isFinaled || accountDetails.isPendingDisconnect)
-                self?.stopDateStackView.isHidden = (accountDetails.isFinaled || accountDetails.isPendingDisconnect)
-                self?.currentAccount = AccountsStore.shared.currentAccount
-                if let currPremise = self?.currentAccount?.currentPremise, let address = currPremise.addressGeneral {
-                    self?.currentServiceAddressLabel.text = address
-                } else if let address = self?.currentAccount?.address {
-                    self?.currentServiceAddressLabel.text = address
+                self.currentAccountDeatil = accountDetails
+                self.electricStackView.isHidden = !(accountDetails.serviceType?.contains("ELECTRIC") ?? false)
+                self.gasStackView.isHidden = !(accountDetails.serviceType?.contains("GAS") ?? false)
+                self.noneServiceProvideLabel.isHidden = (accountDetails.serviceType?.contains("GAS") ?? false || accountDetails.serviceType?.contains("ELECTRIC") ?? false)
+                self.finalBillStackView.isHidden = (accountDetails.isEBillEnrollment || accountDetails.isFinaled || accountDetails.isPendingDisconnect)
+                self.stopDateStackView.isHidden = (accountDetails.isFinaled || accountDetails.isPendingDisconnect)
+                self.currentAccount = AccountsStore.shared.currentAccount
+                if let currPremise = self.currentAccount?.currentPremise, let address = currPremise.addressGeneral {
+                    self.currentServiceAddressLabel.text = address
+                } else if let address = self.currentAccount?.address {
+                    self.currentServiceAddressLabel.text = address
                 } else {
-                    self?.currentServiceAddressLabel.text = "No Address Available"
+                    self.currentServiceAddressLabel.text = "No Address Available"
                 }
-                self?.pendingDisconnectStackView.isHidden = !accountDetails.isPendingDisconnect
-                self?.finaledStackView.isHidden = !accountDetails.isFinaled
+                self.pendingDisconnectStackView.isHidden = !accountDetails.isPendingDisconnect
+                self.finaledStackView.isHidden = !accountDetails.isFinaled
+                
+                if accountDetails.isFinaled {
+                    FirebaseUtility.logEvent(.stopService(parameters: [.finaled]))
+                }
+                if accountDetails.isPendingDisconnect {
+                    FirebaseUtility.logEvent(.stopService(parameters: [.pending_disconnect]))
+                }
             })
             .disposed(by: disposeBag)
         
@@ -214,6 +225,7 @@ class StopServiceViewController: UIViewController {
             let exitAction = UIAlertAction(title: NSLocalizedString("Exit", comment: ""), style: .default)
             { [weak self] _ in
                 guard let `self` = self else { return }
+                FirebaseUtility.logEvent(.stopService(parameters: [.exit]))
                 self.dismiss(animated: true, completion: nil)
             }
             let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel)
@@ -237,6 +249,7 @@ class StopServiceViewController: UIViewController {
                     guard let `self` = self else { return }
                     self.dismiss(animated: true, completion: nil)
                 }
+                FirebaseUtility.logEvent(FirebaseEvent.stopService(parameters: [.api_error]))
                 self?.loadingIndicator.isHidden = true
                 DispatchQueue.main.async {
                     self?.presentAlert(title: NSLocalizedString("We're experiencing technical issues ", comment: ""),
@@ -252,6 +265,7 @@ class StopServiceViewController: UIViewController {
 extension StopServiceViewController: AccountSelectDelegate {
     
     internal func didSelectAccount(_ account: Account, premiseIndexPath: IndexPath?) {
+        FirebaseUtility.logEvent(.stopService(parameters: [.account_changed]))
         hasChangedData = true
         let selectedAccountIndex = accounts.firstIndex(of: account)
         

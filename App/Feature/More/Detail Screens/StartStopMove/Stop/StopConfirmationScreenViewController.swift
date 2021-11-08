@@ -32,6 +32,11 @@ class StopConfirmationScreenViewController: UIViewController {
         intialUISetup()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        FirebaseUtility.logScreenView(.stopConfirmationView(className: self.className))
+    }
+    
     private func intialUISetup() {
         
         navigationSetup()

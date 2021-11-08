@@ -118,6 +118,10 @@ enum FirebaseEvent: Event {
     case personalizeHomeStart
     case personalizeHomeComplete
     
+    // ISUM
+    case stopService(parameters: [StopServiceParameter])
+    case moveService(parameters: [MoveServiceParameter])
+    
     case screenView(_ screen: Screen)
     
     var name: String {
@@ -168,6 +172,10 @@ enum FirebaseEvent: Event {
             return "gamificationOptOut"
         case .gamificationExperienceAccessed:
             return "gamificationExperienceAccessed"
+        case .stopService:
+            return "authStop"
+        case .moveService:
+            return "authMove"
         case .screenView:
             return AnalyticsEventScreenView
         default:
@@ -577,6 +585,56 @@ enum MoreParameter: String, EventParameter {
     case sign_out
 }
 
+enum StopServiceParameter: String, EventParameter {
+    case commercial
+    case calendar
+    case exit
+    case account_changed
+    case submit
+    case complete_resolved
+    case complete_unresolved
+    case finaled
+    case pending_disconnect
+    
+    case submit_error
+    case api_error
+    
+    var type: ParameterType {
+        switch self {
+        case .submit_error, .api_error:
+            return .error
+        default:
+            return .action
+        }
+    }
+}
+
+enum MoveServiceParameter: String, EventParameter {
+    case commercial
+    case calendar_stop_date
+    case calendar_start_date
+    case exit
+    case account_changed
+    case submit
+    case complete_resolved
+    case complete_unresolved
+    case finaled
+    case pending_disconnect
+    case ebill_selected
+    
+    case submit_error
+    case api_error
+    
+    var type: ParameterType {
+        switch self {
+        case .submit_error, .api_error:
+            return .error
+        default:
+            return .action
+        }
+    }
+}
+
 /// Name of user property -> Mapped directly to Firebase
 enum UserProperty: String {
     case isBiometricsEnabled
@@ -614,6 +672,23 @@ enum Screen {
     case unauthenticatedOutageView(className: String)
     case paymentView(className: String)
     case alertPreferencesView(className: String)
+    
+    // ISUM
+    case stopLandingView(className: String)
+    case stopSelectStopDateView(className: String)
+    case stopFinalBillAddressView(className: String)
+    case stopReviewView(className: String)
+    case stopConfirmationView(className: String)
+    
+    case moveLandingView(className: String)
+    case moveSelectStopDateView(className: String)
+    case moveNewAddressView(className: String)
+    case moveNewAddressStreetView(className: String)
+    case moveNewAddressApartmentView(className: String)
+    case moveIdVerificationView(className: String)
+    case moveSelectStartDateView(className: String)
+    case moveReview1View(className: String)
+    case moveReview2View(className: String)
     
     // Apple Watch
     case watchSignInView(className: String)
@@ -656,6 +731,38 @@ enum Screen {
         case .alertPreferencesView:
             return "AlertPreferencesView"
             
+        // ISUM Stop
+        case .stopLandingView:
+            return "StopLandingView"
+        case .stopSelectStopDateView:
+            return "StopLandingView"
+        case .stopFinalBillAddressView:
+            return "StopFinalBillAddressView"
+        case .stopReviewView:
+            return "StopReviewView"
+        case .stopConfirmationView:
+            return "StopConfirmationView"
+            
+        // ISUM Move
+        case .moveLandingView:
+            return "MoveLandingView"
+        case .moveSelectStopDateView:
+            return "MoveSelectStopDateView"
+        case .moveNewAddressView:
+            return "MoveNewAddressView"
+        case .moveNewAddressStreetView:
+            return "MoveNewAddressStreetView"
+        case .moveNewAddressApartmentView:
+            return "MoveNewAddressApartmentView"
+        case .moveIdVerificationView:
+            return "MoveIdVerificationView"
+        case .moveSelectStartDateView:
+            return "MoveSelectStartDateView"
+        case .moveReview1View:
+            return "MoveReview1View"
+        case .moveReview2View:
+            return "MoveReview2View"
+            
         case .watchSignInView:
             return "sign_in_screen_view"
         case .watchAccountListView:
@@ -688,6 +795,20 @@ enum Screen {
              .unauthenticatedOutageView(let className),
              .paymentView(let className),
              .alertPreferencesView(let className),
+             .stopLandingView(let className),
+             .stopSelectStopDateView(let className),
+             .stopFinalBillAddressView(let className),
+             .stopReviewView(let className),
+             .stopConfirmationView(let className),
+             .moveLandingView(let className),
+             .moveSelectStopDateView(let className),
+             .moveNewAddressView(let className),
+             .moveNewAddressStreetView(let className),
+             .moveNewAddressApartmentView(let className),
+             .moveIdVerificationView(let className),
+             .moveSelectStartDateView(let className),
+             .moveReview1View(let className),
+             .moveReview2View(let className),
              
              .watchSignInView(let className),
              .watchAccountListView(let className),
