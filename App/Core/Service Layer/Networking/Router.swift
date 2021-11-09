@@ -496,7 +496,7 @@ public enum Router {
         case .forecastBill:
             return "ForecastBillMock"
         case .accountLookup:
-            return "AccountLookupResultMock"
+            return "AccountLookupMock"
         case .recoverUsername:
             fallthrough
         case .recoverMaskedUsername:
@@ -555,6 +555,8 @@ public enum Router {
             return "ZipCodeResponseMock"
         case .addressLookup:
             return "AddressLookupResponseMock"
+        case .accountDetailsAnon:
+            return "AccountDetailsUnauthMock"
         default:
             return ""
         }

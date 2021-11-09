@@ -22,4 +22,6 @@ enum NewMockDataKey: String {
     case moveUnresolved
     case moveUnresolvedEbill
     case moveUnresolvedChangeBillingAddress
+    case unauthResidentialUser
+    case unauthCommercialUser
 }

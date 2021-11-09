@@ -29,10 +29,10 @@ class ReviewStopServiceViewModelTests: XCTestCase {
         let yesterday = DateFormatter.mmDdYyyyFormatter.date(from: "10/06/2021")
         let tomorrow = DateFormatter.mmDdYyyyFormatter.date(from: "10/08/2021")
         let dayAfterTomorrow = DateFormatter.mmDdYyyyFormatter.date(from: "10/09/2021")
-        XCTAssertFalse(viewModel.isValidDate(yesterday!, workDays: workdays.list, accountDetails: accountDetails))
-        XCTAssertTrue(viewModel.isValidDate(today!, workDays: workdays.list, accountDetails: accountDetails))
-        XCTAssertTrue(viewModel.isValidDate(tomorrow!, workDays: workdays.list, accountDetails: accountDetails))
-        XCTAssertTrue(viewModel.isValidDate(dayAfterTomorrow!, workDays: workdays.list, accountDetails: accountDetails))
+        XCTAssertFalse(viewModel.isValidDate(yesterday!, workDays: workdays.list))
+        XCTAssertTrue(viewModel.isValidDate(today!, workDays: workdays.list))
+        XCTAssertTrue(viewModel.isValidDate(tomorrow!, workDays: workdays.list))
+        XCTAssertTrue(viewModel.isValidDate(dayAfterTomorrow!, workDays: workdays.list))
     }
     
     func testValidDateNonAMIUser() throws {
@@ -48,12 +48,12 @@ class ReviewStopServiceViewModelTests: XCTestCase {
         let threeDayAfter = Calendar.opCo.date(from: DateComponents(year: 2021, month: 10, day: 10, hour: 23, minute: 59, second: 59))
         let fourDayAfter = Calendar.opCo.date(from: DateComponents(year: 2021, month: 10, day: 11, hour: 23, minute: 59, second: 59))
         let fiveDayAfter = Calendar.opCo.date(from: DateComponents(year: 2021, month: 10, day: 12, hour: 23, minute: 59, second: 59))
-        XCTAssertFalse(viewModel.isValidDate(yesterday!, workDays: workdays.list, accountDetails: accountDetails))
-        XCTAssertFalse(viewModel.isValidDate(today!, workDays: workdays.list, accountDetails: accountDetails))
-        XCTAssertFalse(viewModel.isValidDate(tomorrow!, workDays: workdays.list, accountDetails: accountDetails))
-        XCTAssertFalse(viewModel.isValidDate(dayAfterTomorrow!, workDays: workdays.list, accountDetails: accountDetails))
-        XCTAssertFalse(viewModel.isValidDate(threeDayAfter!, workDays: workdays.list, accountDetails: accountDetails)) // sunday
-        XCTAssertTrue(viewModel.isValidDate(fourDayAfter!, workDays: workdays.list, accountDetails: accountDetails))
-        XCTAssertTrue(viewModel.isValidDate(fiveDayAfter!, workDays: workdays.list, accountDetails: accountDetails))
+        XCTAssertFalse(viewModel.isValidDate(yesterday!, workDays: workdays.list))
+        XCTAssertFalse(viewModel.isValidDate(today!, workDays: workdays.list))
+        XCTAssertFalse(viewModel.isValidDate(tomorrow!, workDays: workdays.list))
+        XCTAssertFalse(viewModel.isValidDate(dayAfterTomorrow!, workDays: workdays.list))
+        XCTAssertFalse(viewModel.isValidDate(threeDayAfter!, workDays: workdays.list)) // sunday
+        XCTAssertTrue(viewModel.isValidDate(fourDayAfter!, workDays: workdays.list))
+        XCTAssertTrue(viewModel.isValidDate(fiveDayAfter!, workDays: workdays.list))
     }
 }

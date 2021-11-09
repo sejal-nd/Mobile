@@ -224,6 +224,8 @@
 		4A74A0C4273127B600F87986 /* AccountDetailsAnonRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A74A0C227310AB400F87986 /* AccountDetailsAnonRequest.swift */; };
 		4A74A0C627318D0A00F87986 /* UnAuthAccountDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A74A0C527318D0A00F87986 /* UnAuthAccountDetails.swift */; };
 		4A74A0C7273193F500F87986 /* UnAuthAccountDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A74A0C527318D0A00F87986 /* UnAuthAccountDetails.swift */; };
+		4A74A0C9273A4FBE00F87986 /* UnauthIdentityVerificationViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A74A0C8273A4FBD00F87986 /* UnauthIdentityVerificationViewModelTests.swift */; };
+		4A74A0CD273A6D8200F87986 /* AccountDetailsUnauthMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 4A74A0CC273A6D8200F87986 /* AccountDetailsUnauthMock.json */; };
 		4A8CE7582703604300C78B05 /* StopISUMServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8CE7572703604300C78B05 /* StopISUMServiceRequest.swift */; };
 		4A8CE7592703604300C78B05 /* StopISUMServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8CE7572703604300C78B05 /* StopISUMServiceRequest.swift */; };
 		4AA4EAD02714428300B35F4D /* FinaledView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA4EACF2714428300B35F4D /* FinaledView.swift */; };
@@ -1493,6 +1495,8 @@
 		4A74A0BE273105C600F87986 /* UnauthIdentityVerificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnauthIdentityVerificationViewModel.swift; sourceTree = "<group>"; };
 		4A74A0C227310AB400F87986 /* AccountDetailsAnonRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailsAnonRequest.swift; sourceTree = "<group>"; };
 		4A74A0C527318D0A00F87986 /* UnAuthAccountDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnAuthAccountDetails.swift; sourceTree = "<group>"; };
+		4A74A0C8273A4FBD00F87986 /* UnauthIdentityVerificationViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnauthIdentityVerificationViewModelTests.swift; sourceTree = "<group>"; };
+		4A74A0CC273A6D8200F87986 /* AccountDetailsUnauthMock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = AccountDetailsUnauthMock.json; sourceTree = "<group>"; };
 		4A8CE7572703604300C78B05 /* StopISUMServiceRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopISUMServiceRequest.swift; sourceTree = "<group>"; };
 		4AA4EACF2714428300B35F4D /* FinaledView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinaledView.swift; sourceTree = "<group>"; };
 		4AA4EAD1271442D400B35F4D /* PendingDisconnectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingDisconnectView.swift; sourceTree = "<group>"; };
@@ -4208,11 +4212,6 @@
 				2112AAB0272C2C520089FD05 /* MoveFinalMailingAddressViewModelTests.swift */,
 				6716595126F0FBC6004546DE /* UnitTests.swift */,
 				4A398A42271E9A1300FA7B89 /* StopServiceViewModelTests.swift */,
-				4AC1E0852729659C00740A37 /* ReviewStopServiceViewModelTests.swift */,
-				4AC1E0892729711400740A37 /* FinalMailingAddressViewModelTests.swift */,
-				4AC1E08B272979AD00740A37 /* StopConfirmationScreenViewModelTests.swift */,
-     			4A74A0B4272EACA500F87986 /* ScheduleMoveServiceViewModelTests.swift */,
-				4A74A0B6272EB03D00F87986 /* MoveServiceConfirmationViewModelTests.swift */,
 				21852B00272EA69400C0A10E /* NewServiceAddressViewModelTests.swift */,
 				21852B04272EC26600C0A10E /* IdVerificationViewModelTests.swift */,
 				4AC1E0852729659C00740A37 /* ReviewStopServiceViewModelTests.swift */,
@@ -4220,6 +4219,7 @@
 				4AC1E08B272979AD00740A37 /* StopConfirmationScreenViewModelTests.swift */,
 				4A74A0B4272EACA500F87986 /* ScheduleMoveServiceViewModelTests.swift */,
 				4A74A0B6272EB03D00F87986 /* MoveServiceConfirmationViewModelTests.swift */,
+				4A74A0C8273A4FBD00F87986 /* UnauthIdentityVerificationViewModelTests.swift */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -4592,12 +4592,11 @@
 				C338283324E30D6900F133C5 /* PeakRewardsOverridesMock.json */,
 				4A398A3F271E997600FA7B89 /* WorkdaysMock.json */,
 				4A398A47271EAD4100FA7B89 /* AccountVerification.json */,
-				4AC1E08D27297CA000740A37 /* StopServiceConfirmationMock.json */,
-				4A74A0B8272EB4BD00F87986 /* MoveServiceConfirmationMock.json */,
 				21D4982D27310AC700EAE112 /* ZipCodeResponseMock.json */,
 				21D4982F27310C3300EAE112 /* AddressLookupResponseMock.json */,
 				4AC1E08D27297CA000740A37 /* StopServiceConfirmationMock.json */,
 				4A74A0B8272EB4BD00F87986 /* MoveServiceConfirmationMock.json */,
+				4A74A0CC273A6D8200F87986 /* AccountDetailsUnauthMock.json */,
 			);
 			path = "Mock JSONS";
 			sourceTree = "<group>";
@@ -5980,6 +5979,7 @@
 				674A113725223E1000AF0D38 /* LaunchScreen-FlavorCOMED.storyboard in Resources */,
 				E8B4F4B71E5C99A00031D934 /* Outage.storyboard in Resources */,
 				E800432C1E65FF70005CF531 /* OpenSans-ExtraBold.ttf in Resources */,
+				4A74A0CD273A6D8200F87986 /* AccountDetailsUnauthMock.json in Resources */,
 				B08957002215F6DC00A97965 /* home_profile.json in Resources */,
 				B0B083FA21710CDB00B1C632 /* Appt_otw-FlavorBGE.json in Resources */,
 				9C62445C22C171C900F14DA0 /* FloatLabelTextField.xib in Resources */,
@@ -6786,6 +6786,7 @@
 				4AC1E08A2729711400740A37 /* FinalMailingAddressViewModelTests.swift in Sources */,
 				4A74A0B7272EB03D00F87986 /* MoveServiceConfirmationViewModelTests.swift in Sources */,
 				21852AFB272D1DF500C0A10E /* ReviewMoveServiceViewModelTest.swift in Sources */,
+				4A74A0C9273A4FBE00F87986 /* UnauthIdentityVerificationViewModelTests.swift in Sources */,
 				2112AAB1272C2C530089FD05 /* MoveFinalMailingAddressViewModelTests.swift in Sources */,
 				21852B03272EB8EA00C0A10E /* MoveStartServiceViewModelTests.swift in Sources */,
 				4AC1E08C272979AD00740A37 /* StopConfirmationScreenViewModelTests.swift in Sources */,
