@@ -50,7 +50,7 @@ class ReviewStopServiceViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        FirebaseUtility.logScreenView(.stopReviewView(className: self.className))
+        FirebaseUtility.logScreenView(.stopReviewSubmitView(className: self.className))
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     

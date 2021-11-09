@@ -57,6 +57,7 @@ class MoveFinalMailingAddressViewController: KeyboardAvoidingStickyFooterViewCon
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        FirebaseUtility.logScreenView(.moveFinalBillAddressView(className: self.className))
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     

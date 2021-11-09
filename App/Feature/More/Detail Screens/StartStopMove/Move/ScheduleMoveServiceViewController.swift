@@ -55,6 +55,7 @@ class ScheduleMoveServiceViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
+        FirebaseUtility.logScreenView(.moveSelectStopDateView(className: self.className))
         if isFirstLoad {
             isFirstLoad = false
             fetchAccounts()

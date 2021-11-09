@@ -43,6 +43,11 @@ class MoveStartServiceViewController: UIViewController {
         initialUISetup()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        FirebaseUtility.logScreenView(.moveSelectStartDateView(className: self.className))
+    }
+    
     func initialUISetup() {
         
         self.navigationItem.hidesBackButton = true

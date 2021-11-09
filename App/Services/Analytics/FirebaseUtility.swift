@@ -677,7 +677,7 @@ enum Screen {
     case stopLandingView(className: String)
     case stopSelectStopDateView(className: String)
     case stopFinalBillAddressView(className: String)
-    case stopReviewView(className: String)
+    case stopReviewSubmitView(className: String)
     case stopConfirmationView(className: String)
     
     case moveLandingView(className: String)
@@ -687,8 +687,10 @@ enum Screen {
     case moveNewAddressApartmentView(className: String)
     case moveIdVerificationView(className: String)
     case moveSelectStartDateView(className: String)
-    case moveReview1View(className: String)
-    case moveReview2View(className: String)
+    case moveFinalBillAddressView(className: String)
+    case moveReviewView(className: String)
+    case moveReviewSubmitView(className: String)
+    case moveConfirmationView(className: String)
     
     // Apple Watch
     case watchSignInView(className: String)
@@ -738,8 +740,8 @@ enum Screen {
             return "StopLandingView"
         case .stopFinalBillAddressView:
             return "StopFinalBillAddressView"
-        case .stopReviewView:
-            return "StopReviewView"
+        case .stopReviewSubmitView:
+            return "StopReviewSubmitView"
         case .stopConfirmationView:
             return "StopConfirmationView"
             
@@ -758,10 +760,14 @@ enum Screen {
             return "MoveIdVerificationView"
         case .moveSelectStartDateView:
             return "MoveSelectStartDateView"
-        case .moveReview1View:
-            return "MoveReview1View"
-        case .moveReview2View:
-            return "MoveReview2View"
+        case .moveFinalBillAddressView:
+            return "MoveFinalBillAddressView"
+        case .moveReviewView:
+            return "MoveReviewView"
+        case .moveReviewSubmitView:
+            return "MoveReviewSubmitView"
+        case .moveConfirmationView:
+            return "MoveConfirmationView"
             
         case .watchSignInView:
             return "sign_in_screen_view"
@@ -798,7 +804,7 @@ enum Screen {
              .stopLandingView(let className),
              .stopSelectStopDateView(let className),
              .stopFinalBillAddressView(let className),
-             .stopReviewView(let className),
+             .stopReviewSubmitView(let className),
              .stopConfirmationView(let className),
              .moveLandingView(let className),
              .moveSelectStopDateView(let className),
@@ -807,8 +813,10 @@ enum Screen {
              .moveNewAddressApartmentView(let className),
              .moveIdVerificationView(let className),
              .moveSelectStartDateView(let className),
-             .moveReview1View(let className),
-             .moveReview2View(let className),
+             .moveFinalBillAddressView(let className),
+             .moveReviewView(let className),
+             .moveReviewSubmitView(let className),
+             .moveConfirmationView(let className),
              
              .watchSignInView(let className),
              .watchAccountListView(let className),

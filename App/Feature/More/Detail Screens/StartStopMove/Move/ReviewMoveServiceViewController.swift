@@ -66,6 +66,7 @@ class ReviewMoveServiceViewController: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        FirebaseUtility.logScreenView(.moveReviewView(className: self.className))
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
 

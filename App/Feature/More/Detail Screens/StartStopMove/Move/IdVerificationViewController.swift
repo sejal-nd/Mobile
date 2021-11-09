@@ -42,6 +42,11 @@ class IdVerificationViewController: KeyboardAvoidingStickyFooterViewController {
         configureTextFields()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        FirebaseUtility.logScreenView(.moveIdVerificationView(className: self.className))
+    }
+    
     private func configureTextFields(){
         
         self.navigationItem.hidesBackButton = true

@@ -45,6 +45,11 @@ class MoveServiceConfirmationViewController: UIViewController {
         intialSetup()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        FirebaseUtility.logScreenView(.moveConfirmationView(className: self.className))
+    }
+    
     private func intialSetup() {
         
         navigationSetup()

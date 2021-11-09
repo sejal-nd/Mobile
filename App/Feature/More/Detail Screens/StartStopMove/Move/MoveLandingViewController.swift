@@ -108,6 +108,12 @@ class MoveLandingViewController: UIViewController {
         setupUIBinding()
         viewModel.fetchAccountDetails()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        FirebaseUtility.logScreenView(.moveLandingView(className: self.className))
+    }
+    
     func setupUIBinding(){
         viewModel.accountDetailsEvent
             .subscribe (onNext: { [weak self] response in
