@@ -95,6 +95,7 @@ class MoveStartServiceViewController: UIViewController {
     
     @IBAction func onStartDateClicked(_ sender: Any) {
                 
+        FirebaseUtility.logEvent(.moveService(parameters: [.calendar_start_date]))
         let calendarVC = PDTSimpleCalendarViewController()
         calendarVC.calendar = .opCo
         calendarVC.delegate = self

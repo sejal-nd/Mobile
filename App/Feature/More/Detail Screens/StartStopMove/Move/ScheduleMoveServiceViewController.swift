@@ -97,6 +97,7 @@ class ScheduleMoveServiceViewController: UIViewController {
         
         stopDateButton.rx.touchUpInside.asDriver()
             .drive(onNext: { [weak self] in
+                FirebaseUtility.logEvent(.moveService(parameters: [.calendar_stop_date]))
                 guard let self = self else { return }
                 self.view.endEditing(true)
                 
@@ -167,6 +168,13 @@ class ScheduleMoveServiceViewController: UIViewController {
                 self?.pendingDisconnectStackView.isHidden = !accountDetails.isPendingDisconnect
                 self?.finaledStackView.isHidden = !accountDetails.isFinaled
                 self?.stopDateStackView.isHidden = (accountDetails.isFinaled || accountDetails.isPendingDisconnect)
+                
+                if accountDetails.isFinaled {
+                    FirebaseUtility.logEvent(.moveService(parameters: [.finaled]))
+                }
+                if accountDetails.isPendingDisconnect {
+                    FirebaseUtility.logEvent(.moveService(parameters: [.pending_disconnect]))
+                }
             })
             .disposed(by: disposeBag)
         
@@ -215,6 +223,7 @@ class ScheduleMoveServiceViewController: UIViewController {
             let exitAction = UIAlertAction(title: NSLocalizedString("Exit", comment: ""), style: .default)
             { [weak self] _ in
                 guard let `self` = self else { return }
+                FirebaseUtility.logEvent(.moveService(parameters: [.exit]))
                 self.dismiss(animated: true, completion: nil)
             }
             let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel)
@@ -269,6 +278,7 @@ extension ScheduleMoveServiceViewController: PDTSimpleCalendarViewDelegate {
 extension ScheduleMoveServiceViewController: AccountSelectDelegate {
     
     internal func didSelectAccount(_ account: Account, premiseIndexPath: IndexPath?) {
+        FirebaseUtility.logEvent(.moveService(parameters: [.account_changed]))
         hasChangedData = true
         let selectedAccountIndex = accounts.firstIndex(of: account)
         
