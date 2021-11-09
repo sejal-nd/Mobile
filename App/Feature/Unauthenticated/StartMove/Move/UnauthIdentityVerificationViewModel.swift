@@ -92,7 +92,7 @@ class UnauthIdentityVerificationViewModel {
         return unauthData
     }
     
-    func loadAccounts(onSuccess: @escaping () -> Void, onError: @escaping (Error) -> Void) {
+    func loadAccounts(onSuccess: @escaping () -> Void, onError: @escaping (NetworkingError) -> Void) {
         
         let accountLookupRequest = AccountLookupRequest(phone: extractDigitsFrom(phoneNumber), identifier: ssn)
         AnonymousService.lookupAccount(request: accountLookupRequest) { [weak self] result in
@@ -106,7 +106,7 @@ class UnauthIdentityVerificationViewModel {
         }
     }
     
-    func loadAccountDetails(onSuccess: @escaping () -> Void, onError: @escaping (Error) -> Void) {
+    func loadAccountDetails(onSuccess: @escaping () -> Void, onError: @escaping (NetworkingError) -> Void) {
         
         let accountDetailRequest = AccountDetailsAnonRequest(phoneNumber: extractDigitsFrom(phoneNumber), accountNumber: self.accounts.first?.accountNumber ?? "", identifier: ssn)
         AnonymousService.accountDetailsAnon(request: accountDetailRequest) { [weak self] result in

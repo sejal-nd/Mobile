@@ -73,19 +73,42 @@ class UnauthIdentityVerificationViewController: KeyboardAvoidingStickyFooterView
     
     private func showAPIError() {
         
-        let exitAction = UIAlertAction(title: NSLocalizedString("Exit", comment: ""), style: .default)
+        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default)
         { [weak self] _ in
             guard let `self` = self else { return }
             self.dismiss(animated: true, completion: nil)
         }
+        let okAction = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default)
+        { [weak self] _ in
+            guard let `self` = self else { return }
+            self.loadAccounts()
+        }
         DispatchQueue.main.async {
-            self.presentAlert(title: NSLocalizedString("We're experiencing technical issues ", comment: ""),
-                               message: NSLocalizedString("We can't retrieve the data you requested. Please try again later. ", comment: ""),
+            self.presentAlert(title: NSLocalizedString("We're experiencing technical issues", comment: ""),
+                               message: NSLocalizedString("We can't retrieve the data you requested.\nPlease try again later.", comment: ""),
                                style: .alert,
-                               actions: [exitAction])
+                               actions: [cancelAction, okAction])
         }
     }
-
+    
+    private func showLoginFailedError() {
+        
+        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default)
+        { [weak self] _ in
+            guard let `self` = self else { return }
+            self.dismiss(animated: true, completion: nil)
+        }
+        let contactUsAction = UIAlertAction(title: NSLocalizedString("Contact Us", comment: ""), style: .default)
+        { _ in
+            UIApplication.shared.openPhoneNumberIfCan("1-800-685-0123")
+        }
+        DispatchQueue.main.async {
+            self.presentAlert(title: NSLocalizedString("That doesn't match our records.", comment: ""),
+                               message: NSLocalizedString("Please try again\nIf you need assistance, contact Customer Service at 1-800-685-0123.", comment: ""),
+                               style: .alert,
+                               actions: [cancelAction, contactUsAction])
+        }
+    }
     
     @IBAction func showHideSSNText(sender: UIButton) {
         
@@ -101,8 +124,13 @@ class UnauthIdentityVerificationViewController: KeyboardAvoidingStickyFooterView
     
     @IBAction func onContinueTapped(_ sender: UIButton) {
         
-        LoadingView.show()
         self.view.endEditing(true)
+        loadAccounts()
+    }
+    
+    func loadAccounts() {
+        
+        LoadingView.show()
         viewModel.loadAccounts { [weak self] in
             guard let `self` = self else { return }
             LoadingView.hide()
@@ -121,11 +149,14 @@ class UnauthIdentityVerificationViewController: KeyboardAvoidingStickyFooterView
             } else {
                 UIApplication.shared.openUrlIfCan(self.viewModel.moveServiceWebURL)
             }
-        } onError: { [weak self] _ in
+        } onError: { [weak self] error in
             LoadingView.hide()
-            self?.showAPIError()
+            if error == .accountNotFound {
+                self?.showLoginFailedError()
+            } else {
+                self?.showAPIError()
+            }
         }
-
     }
 }
 
