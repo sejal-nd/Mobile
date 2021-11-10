@@ -220,7 +220,7 @@ public struct StopISUMServiceRequest: Encodable {
             self.streetName = stopFlowData.hasCurrentServiceAddressForBill ? stopFlowData.verificationDetail?.startStopMoveServiceDetails.primaryCustInformation.billingAddress.streetName : stopFlowData.mailingAddress?.streetAddress
             self.apartmentUnitNo = ""
             self.city = stopFlowData.hasCurrentServiceAddressForBill ? stopFlowData.verificationDetail?.startStopMoveServiceDetails.primaryCustInformation.billingAddress.city : stopFlowData.mailingAddress?.city
-            self.state = stopFlowData.hasCurrentServiceAddressForBill ? stopFlowData.verificationDetail?.startStopMoveServiceDetails.primaryCustInformation.billingAddress.streetName : stopFlowData.mailingAddress?.state.rawValue
+            self.state = stopFlowData.hasCurrentServiceAddressForBill ? stopFlowData.verificationDetail?.startStopMoveServiceDetails.primaryCustInformation.billingAddress.state : stopFlowData.mailingAddress?.state.rawValue
             self.zipCode = stopFlowData.hasCurrentServiceAddressForBill ? stopFlowData.verificationDetail?.startStopMoveServiceDetails.primaryCustInformation.billingAddress.zipCode : stopFlowData.mailingAddress?.zipCode
         }
 
