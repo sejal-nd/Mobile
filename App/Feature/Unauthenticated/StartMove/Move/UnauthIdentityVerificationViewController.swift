@@ -137,9 +137,10 @@ class UnauthIdentityVerificationViewController: KeyboardAvoidingStickyFooterView
             if self.viewModel.isAccountResidential {
                 if self.viewModel.accounts.count > 1 {
                     //TODO: Navigate to Account Selection
-                    let storyboard = UIStoryboard(name: "ISUMMove", bundle: nil)
-                    let moveServiceViewController = storyboard.instantiateViewController(withIdentifier: "MoveLandingViewController") as! MoveLandingViewController
-                    self.navigationController?.pushViewController(moveServiceViewController, animated: true)
+                    let storyboard = UIStoryboard(name: "ISUMUnauthMove", bundle: nil)
+                    let accountSelectionViewController = storyboard.instantiateViewController(withIdentifier: "UnauthenticatedMoveAccountSelectionViewController") as! UnauthenticatedMoveAccountSelectionViewController
+                    accountSelectionViewController.viewModel = UnauthenticatedMoveAccountSelectionViewModel(unauthMoveData: self.viewModel.getUnauthMoveFlowData())
+                    self.navigationController?.pushViewController(accountSelectionViewController, animated: true)
 
                 } else {
                     let storyboard = UIStoryboard(name: "ISUMMove", bundle: nil)
