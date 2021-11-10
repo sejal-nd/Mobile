@@ -1529,23 +1529,23 @@
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oZj-33-aqN">
-                                                                        <rect key="frame" x="20" y="196.5" width="374" height="81.5"/>
-                                                                        <string key="text">If you have any questions, please email myhomerep@bge.com and provide your account number. We will respond within 24-48 business hours.</string>
+                                                                        <rect key="frame" x="20" y="196.5" width="374" height="101.5"/>
+                                                                        <string key="text">If you have questions or need to make changes to your request, please email myhomerep@bge.com and provide your account number.  We will respond within 24-48 business hours.</string>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tZT-oa-jXp">
-                                                                        <rect key="frame" x="20" y="298" width="374" height="103"/>
+                                                                        <rect key="frame" x="20" y="318" width="374" height="83"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Account Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s0h-i0-Ufo">
-                                                                                <rect key="frame" x="15" y="20" width="344" height="39"/>
+                                                                                <rect key="frame" x="15" y="20" width="344" height="19"/>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                                 <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2345678910" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FdR-yq-7PH">
-                                                                                <rect key="frame" x="15" y="65" width="344" height="18"/>
+                                                                                <rect key="frame" x="15" y="45" width="344" height="18"/>
                                                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                                                                 <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
                                                                                 <nil key="highlightedColor"/>

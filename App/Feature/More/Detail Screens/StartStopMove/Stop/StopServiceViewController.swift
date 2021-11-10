@@ -98,7 +98,7 @@ class StopServiceViewController: UIViewController {
             .subscribe(onNext: { [weak self] _ in
                 guard let `self` = self else { return }
                 let alertViewController = InfoAlertController(title: NSLocalizedString("Stop Service Date", comment: ""),
-                                                              message: "You must select an effective stop service date within 30 days from the day you submit your request, excluding holidays and Sundays.")
+                                                              message: "Please select a date up to 30 days from now to stop your service, excluding holidays and Sundays.  \nConsider your move date to make sure you have access to your utility service during the move.")
                 self.present(alertViewController, animated: true)
             }).disposed(by: disposeBag)
         
