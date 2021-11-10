@@ -92,7 +92,7 @@ class ScheduleMoveServiceViewController: UIViewController {
             .subscribe(onNext: { [weak self] _ in
                 guard let `self` = self else { return }
                 let alertViewController = InfoAlertController(title: NSLocalizedString("Stop Service Date", comment: ""),
-                                                              message: "You must select an effective stop service date within 30 days from the day you submit your request, excluding holidays and Sundays.")
+                                                              message: "Please select a date up to 30 days from now to stop your service, excluding holidays and Sundays.\nConsider your move date to make sure you have access to your utility service during the move.")
                 self.present(alertViewController, animated: true)
             }).disposed(by: disposeBag)
         
@@ -140,7 +140,7 @@ class ScheduleMoveServiceViewController: UIViewController {
                 
                 guard let `self` = self else { return }
                 guard let selectedDate = self.viewModel.selectedDate.value, let currentPremise = AccountsStore.shared.currentAccount.currentPremise, let accountDetails = self.currentAccountDeatil else { return }
-                let moveFlowData = MoveServiceFlowData(workDays: self.viewModel.workDays.value, stopServiceDate: selectedDate, currentPremise: currentPremise, currentAccount: AccountsStore.shared.currentAccount, currentAccountDetail: accountDetails, verificationDetail: self.viewModel.accountVerificationResponse.value, selected_appartment: nil, addressLookupResponse: nil, hasCurrentServiceAddressForBill: accountDetails.hasThirdPartySupplier)
+                let moveFlowData = MoveServiceFlowData(workDays: self.viewModel.workDays.value, stopServiceDate: selectedDate, currentPremise: currentPremise, currentAccount: AccountsStore.shared.currentAccount, currentAccountDetail: accountDetails, verificationDetail: self.viewModel.accountVerificationResponse.value, selected_appartment: nil, addressLookupResponse: nil, hasCurrentServiceAddressForBill: true)
                 
                 let storyboard = UIStoryboard(name: "ISUMMove", bundle: nil)
                 let newServiceAddressViewController = storyboard.instantiateViewController(withIdentifier: "NewServiceAddressViewController") as! NewServiceAddressViewController

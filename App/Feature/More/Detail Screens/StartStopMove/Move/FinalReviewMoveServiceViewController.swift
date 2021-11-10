@@ -218,10 +218,10 @@ class FinalReviewMoveServiceViewController: UIViewController {
     }
 
     func showAlertRenterOwner(){
-        let alertController = UIAlertController(title: "Are you the owner or renter?", message: nil, preferredStyle: .actionSheet)
+        let alertController = UIAlertController(title: "Are you the owner or renter at your new address?", message: nil, preferredStyle: .actionSheet)
 
         let margin:CGFloat = 10.0
-        let rect = CGRect(x: margin, y: margin + 50, width: alertController.view.bounds.size.width - margin * 4.0, height: 45)
+        let rect = CGRect(x: margin, y: margin + 65, width: alertController.view.bounds.size.width - margin * 4.0, height: 45)
         let segmentedControl = SegmentedControl(frame: rect)
 
         segmentedControl.backgroundColor = .softGray
