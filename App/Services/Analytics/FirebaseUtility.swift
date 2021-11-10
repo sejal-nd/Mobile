@@ -595,7 +595,6 @@ enum StopServiceParameter: String, EventParameter {
     case complete_unresolved
     case finaled
     case pending_disconnect
-    case ebill_selected
     
     case submit_error
     case api_error

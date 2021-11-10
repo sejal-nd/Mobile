@@ -51,11 +51,6 @@ class ReviewStopServiceViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         FirebaseUtility.logScreenView(.stopReviewSubmitView(className: self.className))
-        
-        if stopFlowData.currentAccountDetail.isEBillEnrollment {
-            FirebaseUtility.logEvent(.stopService(parameters: [.ebill_selected]))
-        }
-        
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     

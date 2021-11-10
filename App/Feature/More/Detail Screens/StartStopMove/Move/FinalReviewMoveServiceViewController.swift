@@ -68,11 +68,6 @@ class FinalReviewMoveServiceViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         FirebaseUtility.logScreenView(.moveReviewSubmitView(className: self.className))
-        
-        if moveFlowData.currentAccountDetail.isEBillEnrollment {
-            FirebaseUtility.logEvent(.moveService(parameters: [.ebill_selected]))
-        }
-        
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
 
