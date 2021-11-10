@@ -67,6 +67,7 @@ class FinalReviewMoveServiceViewController: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        FirebaseUtility.logScreenView(.moveReviewSubmitView(className: self.className))
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
 
@@ -134,10 +135,12 @@ class FinalReviewMoveServiceViewController: UIViewController {
         submitBtn.rx.tap
             .subscribe(onNext: { [weak self] _ in
                 guard let `self` = self else { return }
+                FirebaseUtility.logEvent(.moveService(parameters: [.submit]))
                 self.navigationController?.view.isUserInteractionEnabled = false
                 LoadingView.show()
                 
                 self.viewModel.moveServiceRequest(moveFlowData: self.moveFlowData) { [weak self] response in
+                    FirebaseUtility.logEvent(.moveService(parameters: [response.isResolved == true ? .complete_resolved : .complete_unresolved]))
                     LoadingView.hide()
                     self?.navigationController?.view.isUserInteractionEnabled = true
 
@@ -146,6 +149,7 @@ class FinalReviewMoveServiceViewController: UIViewController {
                     moveServiceConfirmationViewController.viewModel = MoveServiceConfirmationViewModel(moveServiceResponse: response)
                     self?.navigationController?.pushViewController(moveServiceConfirmationViewController, animated: true)
                 } onFailure: { [weak self] _ in
+                    FirebaseUtility.logEvent(.moveService(parameters: [.submit_error]))
                     LoadingView.hide()
                     self?.navigationController?.view.isUserInteractionEnabled = true
 

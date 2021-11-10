@@ -52,22 +52,25 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        FirebaseUtility.logScreenView(.moveNewAddressView(className: self.className))
         self.view.endEditing(true)
     }
+    
     private func navigationBackButton() {
-           self.navigationItem.hidesBackButton = true
+        self.navigationItem.hidesBackButton = true
         let backButtonIconName = isLaunchedFromReviewScreen ? "ic_close" : "ic_back"
-
-           let newBackButton = UIBarButtonItem(image: UIImage(named: backButtonIconName), style: UIBarButtonItem.Style.plain, target: self, action: #selector(NewServiceAddressViewController.back(sender:)))
-           self.navigationItem.leftBarButtonItem = newBackButton
-       }
-       @objc func back(sender: UIBarButtonItem) {
-           if isLaunchedFromReviewScreen {
-               self.dismiss(animated: true, completion: nil)
-           } else {
-               self.navigationController?.popViewController(animated: true)
-           }
-       }
+        
+        let newBackButton = UIBarButtonItem(image: UIImage(named: backButtonIconName), style: UIBarButtonItem.Style.plain, target: self, action: #selector(NewServiceAddressViewController.back(sender:)))
+        self.navigationItem.leftBarButtonItem = newBackButton
+    }
+    
+    @objc func back(sender: UIBarButtonItem) {
+        if isLaunchedFromReviewScreen {
+            self.dismiss(animated: true, completion: nil)
+        } else {
+            self.navigationController?.popViewController(animated: true)
+        }
+    }
 
     private func setupUIBinding(){
         viewModel.showLoadingState
@@ -92,7 +95,7 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
         viewModel.appartmentResponseEvent
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
-                if self.viewModel.isZipValidated && self.viewModel.isStreetAddressValid{
+                if self.viewModel.isZipValidated && self.viewModel.isStreetAddressValid {
                     if let appartment_list = self.viewModel.getAppartmentIDs() {
                         if appartment_list.count == 1 {
                             self.viewModel.setAppartment(appartment_list.first)
@@ -245,7 +248,7 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
             appartmentSelectionView.backgroundColor = .white
             appartmentPlaceHolderLabel.text = errMsg
             appartmentPlaceHolderLabel.textColor = .errorRed
-        }else {
+        } else {
             appartmentSelectionView.roundCorners(.allCorners, radius: 10.0, borderColor:.accentGray, borderWidth: 1.0)
             appartmentSelectionView.backgroundColor = .white
             appartmentPlaceHolderLabel.textColor = .deepGray
@@ -256,7 +259,7 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
             selectedstreetAddressStackView.isHidden = false
             selectedstreetAddressLabel.text = msg
             streetAddressPlaceHolderLabel.isHidden = true
-        }else {
+        } else {
             selectedstreetAddressStackView.isHidden = true
             selectedstreetAddressLabel.text = ""
             streetAddressPlaceHolderLabel.isHidden = false
@@ -267,7 +270,7 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
             selectedAppartmentStackView.isHidden = false
             selectedAppartmentLabel.text = msg
             appartmentPlaceHolderLabel.isHidden = true
-        }else {
+        } else {
             selectedAppartmentStackView.isHidden = true
             selectedAppartmentLabel.text = ""
             appartmentPlaceHolderLabel.isHidden = false
@@ -277,7 +280,7 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
         zipTextField.textField.resignFirstResponder()
         if !viewModel.isZipValid {
             zipTextField.setError(NSLocalizedString("Zip  Code must be 5 characters in length", comment: ""))
-        }else {
+        } else {
             enableTextFieldEditing(false)
             viewModel.validateZipCode { _ in } onFailure: { [weak self] error in
                 self?.apiErrorHandling()
@@ -290,13 +293,13 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
         zipTextField.textField.resignFirstResponder()
         if !viewModel.isZipValid {
             zipTextField.setError(NSLocalizedString("Zip  Code must be 5 characters in length", comment: ""))
-        }else if !viewModel.isZipValidated {
+        } else if !viewModel.isZipValidated {
             enableTextFieldEditing(false)
             viewModel.validateZipCode { _ in } onFailure: { [weak self] error in
                 self?.apiErrorHandling()
             }
             enableTextFieldEditing(false)
-        }else {
+        } else {
             let storyboard = UIStoryboard(name: "ISUMMove", bundle: nil)
             let newServiceAddressViewController = storyboard.instantiateViewController(withIdentifier: "AddressSearchViewController") as! AddressSearchViewController
             newServiceAddressViewController.delegate = self
@@ -331,7 +334,7 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
             }
         }
     }
-    func clearPreviousSession(){
+    func clearPreviousSession() {
         viewModel.refreshSession()
         streetAddressPlaceHolderLabel.text = NSLocalizedString("Street Address*", comment: "")
         appartmentPlaceHolderLabel.text = NSLocalizedString("Apt/Unit #* ", comment: "")
@@ -345,7 +348,7 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
         continueButton.isEnabled = viewModel.canEnableContinue
     }
 
-    func clearAppartmentSession(){
+    func clearAppartmentSession() {
         viewModel.refreshAppartmentSession()
         appartmentPlaceHolderLabel.text = NSLocalizedString("Apt/Unit #* ", comment: "")
         enableAppartmentColorState(false)

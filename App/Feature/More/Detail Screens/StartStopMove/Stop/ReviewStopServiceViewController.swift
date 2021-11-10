@@ -50,7 +50,7 @@ class ReviewStopServiceViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        FirebaseUtility.logScreenView(.stopReviewView(className: self.className))
+        FirebaseUtility.logScreenView(.stopReviewSubmitView(className: self.className))
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
@@ -153,7 +153,7 @@ class ReviewStopServiceViewController: UIViewController {
         self.gasStackView.isHidden = !(stopFlowData.currentAccountDetail.serviceType?.contains("GAS") ?? false)
         if let currPremise = stopFlowData.currentAccount.currentPremise, let address = currPremise.addressGeneral {
             self.currentServiceAddressLabel.text = address
-        }else {
+        } else {
             self.currentServiceAddressLabel.text = stopFlowData.currentAccount.address ?? ""
         }
         self.stopServiceDateLabel.text = DateFormatter.fullMonthDayAndYearFormatter.string(from: stopFlowData.selectedDate)

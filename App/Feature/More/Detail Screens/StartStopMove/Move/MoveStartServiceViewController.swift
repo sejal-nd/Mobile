@@ -43,6 +43,11 @@ class MoveStartServiceViewController: UIViewController {
         initialUISetup()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        FirebaseUtility.logScreenView(.moveSelectStartDateView(className: self.className))
+    }
+    
     func initialUISetup() {
         
         self.navigationItem.hidesBackButton = true
@@ -90,6 +95,7 @@ class MoveStartServiceViewController: UIViewController {
     
     @IBAction func onStartDateClicked(_ sender: Any) {
                 
+        FirebaseUtility.logEvent(.moveService(parameters: [.calendar_start_date]))
         let calendarVC = PDTSimpleCalendarViewController()
         calendarVC.calendar = .opCo
         calendarVC.delegate = self
