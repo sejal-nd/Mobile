@@ -67,10 +67,28 @@ class MoreViewModel {
         return URL(string: FeatureFlagUtility.shared.string(forKey: .billingVideoURL))
     }()
     
+    let moveServiceWebURL: URL? = {
+        switch Configuration.shared.opco {
+        case .bge, .ace, .comEd, .delmarva, .peco, .pepco:
+            return URL(string: "https://\(Configuration.shared.associatedDomain)/CustomerServices/service/move?utm_source=MoveLink&utm_medium=MobileApp&utm_id=SSMRedirect")
+        default:
+            return nil
+        }
+    }()
+    
+    let stopServiceWebURL: URL? = {
+        switch Configuration.shared.opco {
+        case .bge, .ace, .comEd, .delmarva, .peco, .pepco:
+            return URL(string: "https://\(Configuration.shared.associatedDomain)/accounts/login?TARGET=%2FCustomerServices%2Fservice%2Fstop&utm_source=StopLink&utm_medium=MobileApp&utm_campaign=SSMRedirect")
+        default:
+            return nil
+        }
+    }()
+    
     let startServiceWebURL: URL? = {
         switch Configuration.shared.opco {
-        case .bge:
-            return URL(string: "https://\(Configuration.shared.associatedDomain)/CustomerServices/service/start")
+        case .bge, .ace, .comEd, .delmarva, .peco, .pepco:
+            return URL(string: "https://\(Configuration.shared.associatedDomain)/CustomerServices/service/start?utm_source=StartLink&utm_medium=MobileApp&utm_id=SSMRedirect")
         default:
             return nil
         }
