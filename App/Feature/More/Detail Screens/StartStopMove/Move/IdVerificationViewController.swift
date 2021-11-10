@@ -125,19 +125,10 @@ class IdVerificationViewController: KeyboardAvoidingStickyFooterViewController {
     
     func showDatePicker() {
         
-        datePicker.date = viewModel.idVerification.dateOfBirth ?? Date()
-        datePicker.datePickerMode = .date
-        datePicker.locale = .current
-        datePicker.maximumDate = Date()
-        datePicker.preferredDatePickerStyle = .wheels
-        datePicker.addTarget(self, action: #selector(IdVerificationViewController.handleDateSelection), for: .valueChanged)
-
-        let dateAlert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        dateAlert.view.addSubview(datePicker)
-        datePicker.center = CGPoint(x: dateAlert.view.center.x - 10, y: 118)
-        dateAlert.addAction(UIAlertAction(title: "Done", style: .cancel, handler: nil))
-        dateAlert.view.heightAnchor.constraint(equalToConstant: 276).isActive = true
-        self.present(dateAlert, animated: true, completion: nil)
+        PickerView.showDatePicker(withTitle: NSLocalizedString("Select Date of Birth", comment: ""),
+                                  selectedTime: viewModel.idVerification.dateOfBirth ?? Date(),
+                                  onDone: { [weak self] in self?.handleDateSelection($0) },
+                                  onCancel: nil)
     }
     
     @IBAction func onToolTipClicked(_ sender: Any) {
@@ -176,13 +167,13 @@ class IdVerificationViewController: KeyboardAvoidingStickyFooterViewController {
             onCancel: nil)
     }
     
-    @objc func handleDateSelection() {
+    func handleDateSelection(_ date: Date) {
         
-        viewModel.idVerification.dateOfBirth = datePicker.date
-        self.dobTextField.textField.text = DateFormatter.mmDdYyyyFormatter.string(from: datePicker.date)
-        self.dobTextField.textField.accessibilityValue = datePicker.date.fullMonthDayAndYearString
-        
-        if viewModel.validateAge(selectedDate: datePicker.date) {
+        viewModel.idVerification.dateOfBirth = date
+        self.dobTextField.textField.text = DateFormatter.mmDdYyyyFormatter.string(from: date)
+        self.dobTextField.textField.accessibilityValue = date.fullMonthDayAndYearString
+
+        if viewModel.validateAge(selectedDate: date) {
             dobTextField.setError(nil)
         } else {
             dobTextField.setError("Applicants must be 18 or older in order to request and maintain a BGE account.")

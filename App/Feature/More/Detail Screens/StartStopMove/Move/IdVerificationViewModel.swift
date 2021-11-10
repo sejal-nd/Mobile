@@ -33,12 +33,20 @@ class IdVerificationViewModel {
         }
     }
     
+    func isValidDateOfBirth()-> Bool {
+        
+        if let date = idVerification.dateOfBirth, validateAge(selectedDate: date) {
+            return true
+        }
+        return false
+    }
+    
     func validation()-> Bool {
         
-        if !(idVerification.ssn == nil || (idVerification.ssn?.count ?? 0) == 0 || (idVerification.ssn?.count ?? 0) == 9) || idVerification.dateOfBirth == nil || idVerification.employmentStatus?.0 == nil {
-            return false
+        if (isValidSSN(ssn: idVerification.ssn ?? "")) && isValidDateOfBirth() && idVerification.employmentStatus?.0 != nil {
+            return true
         }
-        return true
+        return false
     }
     
     func isValidSSN(ssn: String, inputString: String)-> Bool {
