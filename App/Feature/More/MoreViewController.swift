@@ -404,13 +404,21 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
             switch indexPath.row {
             case 0:
                 if FeatureFlagUtility.shared.bool(forKey: .hasAuthenticatedISUM) {
-                    performSegue(withIdentifier: "moveServiceSegue", sender: nil)
+                    if Configuration.shared.opco == .bge {
+                        performSegue(withIdentifier: "moveServiceSegue", sender: nil)
+                    } else {
+                        UIApplication.shared.openUrlIfCan(viewModel.moveServiceWebURL)
+                    }
                 } else {
                     performSegue(withIdentifier: "contactUsSegue", sender: nil)
                 }
             case 1:
                 if FeatureFlagUtility.shared.bool(forKey: .hasAuthenticatedISUM) {
-                    performSegue(withIdentifier: "stopServiceSegue", sender: nil)
+                    if Configuration.shared.opco == .bge {
+                        performSegue(withIdentifier: "stopServiceSegue", sender: nil)
+                    } else {
+                        UIApplication.shared.openUrlIfCan(viewModel.stopServiceWebURL)
+                    }
                 } else {
                     FirebaseUtility.logEvent(.more(parameters: [.billing_videos]))
                     UIApplication.shared.openUrlIfCan(viewModel.billingVideosUrl)
