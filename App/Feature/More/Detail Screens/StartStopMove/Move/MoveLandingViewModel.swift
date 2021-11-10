@@ -58,7 +58,7 @@ class MoveLandingViewModel {
     let moveCommercialServiceWebURL: URL? = {
         switch Configuration.shared.opco {
         case .bge:
-            return URL(string: "https://\(Configuration.shared.associatedDomain)/accounts/login?TARGET=/CustomerServices/service/move")
+            return URL(string: "https://\(Configuration.shared.associatedDomain)/CustomerServices/service/landing?flowtype=moveservice&referrer=mobileapp")
         default:
             return nil
         }
