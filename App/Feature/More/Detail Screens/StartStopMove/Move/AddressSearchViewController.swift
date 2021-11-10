@@ -37,13 +37,14 @@ class AddressSearchViewController: UIViewController {
         super.viewDidLoad()
         if searchType == .appartment {
             title = "Select Apt/Unit #"
-
+            self.accessibilityLabel = NSLocalizedString("Select Apartment - Unit", comment: "")
             if let list = listAppartment {
                 filter_listAppartment = list
             }
 
-        }else {
+        } else {
             title = "Select Street Address"
+            self.accessibilityLabel = NSLocalizedString("Select Street Address", comment: "")
         }
         if let code = zipcode {
             viewModel.zipcode = code
@@ -80,7 +81,7 @@ class AddressSearchViewController: UIViewController {
         }else {
             streetAddressTextField.placeholder = NSLocalizedString("Street Address*", comment: "")
         }
-
+        streetAddressTextField.accessibilityTraits = .searchField
         streetAddressTooltipButton.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
 
         streetAddressTextField.textField.rx.controlEvent(.editingChanged).asObservable()

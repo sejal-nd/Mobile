@@ -15,6 +15,7 @@ protocol IdVerificationDelegate {
 class IdVerificationViewController: KeyboardAvoidingStickyFooterViewController {
     
     @IBOutlet weak var ssnTextField: FloatLabelTextField!
+    @IBOutlet weak var eyeBallButton: UIButton!
     @IBOutlet weak var driverLicenseTextField: FloatLabelTextField!
     @IBOutlet weak var employmentStatusHintLabel: UILabel!
     @IBOutlet weak var employmentStatusLabel: UILabel!
@@ -53,12 +54,15 @@ class IdVerificationViewController: KeyboardAvoidingStickyFooterViewController {
         let backButtonIconName = isLaunchedFromReviewScreen ? "ic_close" : "ic_back"
         let backButtonAccesibilityLabelText = isLaunchedFromReviewScreen ? "Close" : "Back"
         let newBackButton = UIBarButtonItem(image: UIImage(named: backButtonIconName), style: UIBarButtonItem.Style.plain, target: self, action: #selector(FinalMailingAddressViewController.back(sender:)))
+        newBackButton.accessibilityLabel = backButtonAccesibilityLabelText
         self.navigationItem.leftBarButtonItem = newBackButton
 
         if isLaunchedFromReviewScreen {
             continueButton.setTitle(NSLocalizedString("Save Changes", comment: ""), for: .normal)
+            continueButton.accessibilityLabel = NSLocalizedString("Save Changes", comment: "")
         } else {
             continueButton.setTitle(NSLocalizedString("Continue", comment: ""), for: .normal)
+            continueButton.accessibilityLabel = NSLocalizedString("Continue move request", comment: "")
         }
         
         ssnTextField.placeholder = NSLocalizedString("SSN/Business Tax ID", comment: "")
@@ -66,11 +70,17 @@ class IdVerificationViewController: KeyboardAvoidingStickyFooterViewController {
         ssnTextField.textField.delegate = self
         ssnTextField.textField.keyboardType = .numberPad
         ssnTextField.setKeyboardType(.numberPad, doneActionTarget: self, doneActionSelector: #selector(ssnDonePressed))
+        ssnTextField.textField.customAccessibilityLabel = NSLocalizedString("Social security number business tax I.D. or BGE PIN", comment: "")
+        
+        eyeBallButton.setImage(UIImage(named:"ic_eyeball_disabled"), for: .normal)
+        eyeBallButton.accessibilityLabel = NSLocalizedString("Show/Hide SSN Tax I.D. or Pin", comment: "")
+        
 
         driverLicenseTextField.placeholder = NSLocalizedString("Driver's License/State ID", comment: "")
         driverLicenseTextField.textField.delegate = self
         driverLicenseTextField.textField.keyboardType = .default
         driverLicenseTextField.textField.returnKeyType = .done
+        driverLicenseTextField.textField.customAccessibilityLabel = NSLocalizedString("Drivers license or State issued I.D. number", comment: "")
 
         employmentStatusView.roundCorners(.allCorners, radius: 10.0, borderColor:.accentGray, borderWidth: 1.0)
         employmentStatusStackView.isHidden = true
@@ -140,9 +150,11 @@ class IdVerificationViewController: KeyboardAvoidingStickyFooterViewController {
     @IBAction func showHideSSNText(sender: UIButton) {
         if hideSSNText {
             sender.setImage(UIImage(named: "ic_eyeball"), for: .normal)
+            sender.accessibilityLabel = NSLocalizedString("Show SSN Tax I.D. or Pin", comment: "")
             ssnTextField.textField.isSecureTextEntry = false
         } else {
             sender.setImage(UIImage(named:"ic_eyeball_disabled"), for: .normal)
+            sender.accessibilityLabel = NSLocalizedString("Hide SSN Tax I.D. or Pin", comment: "")
             ssnTextField.textField.isSecureTextEntry = true
         }
         hideSSNText = !hideSSNText
@@ -168,6 +180,7 @@ class IdVerificationViewController: KeyboardAvoidingStickyFooterViewController {
         
         viewModel.idVerification.dateOfBirth = datePicker.date
         self.dobTextField.textField.text = DateFormatter.mmDdYyyyFormatter.string(from: datePicker.date)
+        self.dobTextField.textField.accessibilityValue = datePicker.date.fullMonthDayAndYearString
         
         if viewModel.validateAge(selectedDate: datePicker.date) {
             dobTextField.setError(nil)

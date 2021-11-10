@@ -76,6 +76,7 @@ class ReviewMoveServiceViewController: UIViewController {
 
         self.navigationItem.hidesBackButton = true
         let newBackButton = UIBarButtonItem(image: UIImage(named: "ic_back"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(ReviewMoveServiceViewController.back(sender:)))
+        newBackButton.accessibilityLabel = NSLocalizedString("Back", comment: "")
         self.navigationItem.leftBarButtonItem = newBackButton
 
 
