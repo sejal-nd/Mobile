@@ -253,6 +253,13 @@ class FinalReviewMoveServiceViewController: UIViewController {
 
         alertController.addAction(doneAction)
 
+        if let popoverController = actionSheet.popoverPresentationController { // iPad popover
+            let width = self.changeRenterOwnerButton.frame.size.width
+            popoverController.sourceView = self.changeRenterOwnerButton
+            popoverController.sourceRect = CGRect(x: width / 2, y: 0, width: 0, height: 0)
+            popoverController.permittedArrowDirections = .down
+        }
+
         self.present(alertController, animated: true, completion:{})
     }
 
