@@ -13,9 +13,32 @@ enum ChnageDateServiceType{
 }
 class ReviewMoveServiceViewModel {
     
+    var moveFlowData: MoveServiceFlowData! = nil
+
     func moveServiceRequest(moveFlowData: MoveServiceFlowData, onSuccess: @escaping (MoveServiceResponse) -> (), onFailure: @escaping (NetworkingError) -> ()) {
         
-        MoveService.moveService(moveFlowData: moveFlowData) { [weak self] (result: Result<MoveServiceResponse, NetworkingError>) in
+        if moveFlowData.unauthMoveData?.isUnauthMove ?? false {
+            moveServiceUnauthenticationRequest(moveFlowData: moveFlowData, onSuccess: onSuccess, onFailure: onFailure)
+        } else {
+            moveServiceAuthenticationRequest(moveFlowData: moveFlowData, onSuccess: onSuccess, onFailure: onFailure)
+        }
+    }
+    
+    func moveServiceAuthenticationRequest(moveFlowData: MoveServiceFlowData, onSuccess: @escaping (MoveServiceResponse) -> (), onFailure: @escaping (NetworkingError) -> ()) {
+        
+        MoveService.moveService(moveFlowData: moveFlowData) {(result: Result<MoveServiceResponse, NetworkingError>) in
+            switch result {
+            case .success(let moveResponse):
+                onSuccess(moveResponse)
+            case .failure(let error):
+                onFailure(error)
+            }
+        }
+    }
+    
+    func moveServiceUnauthenticationRequest(moveFlowData: MoveServiceFlowData, onSuccess: @escaping (MoveServiceResponse) -> (), onFailure: @escaping (NetworkingError) -> ()) {
+        
+        MoveService.moveServiceAnon(moveFlowData: moveFlowData) {(result: Result<MoveServiceResponse, NetworkingError>) in
             switch result {
             case .success(let moveResponse):
                 onSuccess(moveResponse)

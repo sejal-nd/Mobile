@@ -196,7 +196,7 @@ class IdVerificationViewController: KeyboardAvoidingStickyFooterViewController {
             let storyboard = UIStoryboard(name: "ISUMMove", bundle: nil)
             let reviewStopServiceViewController = storyboard.instantiateViewController(withIdentifier: "ReviewMoveServiceViewController") as! ReviewMoveServiceViewController
             viewModel.moveDataFlow.idVerification = viewModel.idVerification
-            reviewStopServiceViewController.moveFlowData = viewModel.moveDataFlow
+            reviewStopServiceViewController.viewModel.moveFlowData = viewModel.moveDataFlow
             self.navigationController?.pushViewController(reviewStopServiceViewController, animated: true)
 
         }

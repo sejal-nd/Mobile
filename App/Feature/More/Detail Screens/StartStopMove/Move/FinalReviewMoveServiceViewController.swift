@@ -196,17 +196,17 @@ class FinalReviewMoveServiceViewController: UIViewController {
 
 
 
-        changeMailingAddressButton.isHidden = moveFlowData.currentAccountDetail.isEBillEnrollment
+        changeMailingAddressButton.isHidden = moveFlowData.currentAccountDetail?.isEBillEnrollment ?? false
 
 
-        self.finalBillAddressStackView.isHidden = moveFlowData.currentAccountDetail.isEBillEnrollment
-        self.ebillStackView.isHidden = !moveFlowData.currentAccountDetail.isEBillEnrollment
-        self.ebillUserInfoLabel.text = "Your final bill will be delivered by email to \(moveFlowData.currentAccountDetail.customerInfo.emailAddress ?? "")."
-        self.supplierAgreementStackView.isHidden = !moveFlowData.currentAccountDetail.hasThirdPartySupplier
+        self.finalBillAddressStackView.isHidden = moveFlowData.currentAccountDetail?.isEBillEnrollment ?? false
+        self.ebillStackView.isHidden = !(moveFlowData.currentAccountDetail?.isEBillEnrollment ?? false)
+        self.ebillUserInfoLabel.text = "Your final bill will be delivered by email to \(moveFlowData.currentAccountDetail?.customerInfo.emailAddress ?? "")."
+        self.supplierAgreementStackView.isHidden = !(moveFlowData.currentAccountDetail?.hasThirdPartySupplier ?? false)
 
-        self.submitBtn.isUserInteractionEnabled = !moveFlowData.currentAccountDetail.hasThirdPartySupplier
-        self.submitBtn.backgroundColor = !moveFlowData.currentAccountDetail.hasThirdPartySupplier ? UIColor(red: 0, green: 89.0/255.0, blue: 164.0/255.0, alpha: 1.0) : UIColor(red: 216.0/255.0, green: 216.0/255.0, blue: 216.0/255.0, alpha: 1.0)
-        self.submitBtn.setTitleColor(!moveFlowData.currentAccountDetail.hasThirdPartySupplier ? UIColor.white : UIColor(red: 74.0/255.0, green: 74.0/255.0, blue: 74.0/255.0, alpha: 0.5), for: .normal)
+        self.submitBtn.isUserInteractionEnabled = !(moveFlowData.currentAccountDetail?.hasThirdPartySupplier ?? false)
+        self.submitBtn.backgroundColor = !(moveFlowData.currentAccountDetail?.hasThirdPartySupplier ?? false) ? UIColor(red: 0, green: 89.0/255.0, blue: 164.0/255.0, alpha: 1.0) : UIColor(red: 216.0/255.0, green: 216.0/255.0, blue: 216.0/255.0, alpha: 1.0)
+        self.submitBtn.setTitleColor(!(moveFlowData.currentAccountDetail?.hasThirdPartySupplier ?? false) ? UIColor.white : UIColor(red: 74.0/255.0, green: 74.0/255.0, blue: 74.0/255.0, alpha: 0.5), for: .normal)
 
         if moveFlowData.hasCurrentServiceAddressForBill {
             self.finalBillAddressLabel.text = "Same as current service address"

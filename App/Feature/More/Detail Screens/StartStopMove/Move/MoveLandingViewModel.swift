@@ -20,6 +20,7 @@ class MoveLandingViewModel {
     var accountDetailsEvent: Observable<AccountDetail?> { return currentAccountDetails.asObservable()}
     var apiError: Observable<Error> { return apiErrorSubject.asObservable()}
     private var apiErrorSubject = PublishSubject<Error>()
+    var unauthMoveData: UnauthMoveData?
     
     init() {
         getAccountDetailSubject

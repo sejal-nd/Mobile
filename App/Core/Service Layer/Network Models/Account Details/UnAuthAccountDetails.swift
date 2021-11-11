@@ -40,9 +40,11 @@ public struct UnAuthAccountDetails: Decodable {
     public var isNetMetering: Bool
     public var billingInfo: BillingInfo
     public var accountNumber: String?
+    public var isAMIAccount: Bool?
+    public var isRCDCapable: Bool?
 
     enum CodingKeys: String, CodingKey {
         
-        case customerInfo = "CustomerInfo", addressLine, street, city, state, zipCode, buildingNumber, premiseNumber, isResidential, isPasswordProtected, isGasOnly, status, accountStatusCode, isFinaled, serviceType, isCutOutNonPay, isCutOutIssued, isCutOutDispatched, serviceAgreementCount, isCashOnly, isAutoPay, revenueClassType, isAutoPayEligible, isEBillEligible, isEBillEnrollment, isBudgetBill, isBudgetBillEligible, isNetMetering, billingInfo = "BillingInfo", accountNumber
+        case customerInfo = "CustomerInfo", addressLine, street, city, state, zipCode, buildingNumber, premiseNumber, isResidential, isPasswordProtected, isGasOnly, status, accountStatusCode, isFinaled, serviceType, isCutOutNonPay, isCutOutIssued, isCutOutDispatched, serviceAgreementCount, isCashOnly, isAutoPay, revenueClassType, isAutoPayEligible, isEBillEligible, isEBillEnrollment, isBudgetBill, isBudgetBillEligible, isNetMetering, billingInfo = "BillingInfo", accountNumber, isAMIAccount, isRCDCapable
     }
 }

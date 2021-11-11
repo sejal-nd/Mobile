@@ -10,8 +10,13 @@ import Foundation
 
 public struct StopServiceVerificationRequest: Encodable {
     
-    var startStopMoveDetails: StartStopMoveDetailsRequest = StopServiceVerificationRequest.StartStopMoveDetailsRequest()
-    
+    var startStopMoveDetails: StartStopMoveDetailsRequest
+
+    init(accountDetails: UnAuthAccountDetails? = nil) {
+        
+        startStopMoveDetails = StopServiceVerificationRequest.StartStopMoveDetailsRequest(accountDetails: accountDetails)
+    }
+
     enum CodingKeys: String, CodingKey {
         
         case startStopMoveDetails = "StartStopMoveDetails"
@@ -19,8 +24,12 @@ public struct StopServiceVerificationRequest: Encodable {
     
     struct StartStopMoveDetailsRequest: Encodable {
         
-        var stopServiceAddress: StopServiceAddressRequest = StopServiceAddressRequest()
+        var stopServiceAddress: StopServiceAddressRequest
         
+        init(accountDetails: UnAuthAccountDetails? = nil) {
+            stopServiceAddress = StopServiceAddressRequest(accountDetails: accountDetails)
+        }
+
         enum CodingKeys: String, CodingKey {
             
             case stopServiceAddress = "StopServiceAddress"
@@ -35,15 +44,15 @@ public struct StopServiceVerificationRequest: Encodable {
             let accountNumber: String
             let customerID: String
 
-            init() {
-                self.city = AccountsStore.shared.currentAccount.currentPremise?.townDetail.name ?? ""
-                self.state = AccountsStore.shared.currentAccount.currentPremise?.townDetail.stateOrProvince ?? ""
-                self.zipCode = AccountsStore.shared.currentAccount.currentPremise?.townDetail.code ?? ""
-                self.premiseID = AccountsStore.shared.currentAccount.currentPremise?.premiseNumber ?? ""
-                self.accountNumber = AccountsStore.shared.currentAccount.accountNumber
-                self.customerID = AccountsStore.shared.currentAccount.customerNumber ?? ""
+            init(accountDetails: UnAuthAccountDetails? = nil) {
+                self.city = accountDetails != nil ? (accountDetails?.city ?? "") : (AccountsStore.shared.currentAccount.currentPremise?.townDetail.name ?? "")
+                self.state = accountDetails != nil ? (accountDetails?.state ?? "") : (AccountsStore.shared.currentAccount.currentPremise?.townDetail.stateOrProvince ?? "")
+                self.zipCode = accountDetails != nil ? (accountDetails?.zipCode ?? "") : AccountsStore.shared.currentAccount.currentPremise?.townDetail.code ?? ""
+                self.premiseID = accountDetails != nil ? (accountDetails?.premiseNumber ?? "") : AccountsStore.shared.currentAccount.currentPremise?.premiseNumber ?? ""
+                self.accountNumber = accountDetails != nil ? (accountDetails?.accountNumber ?? "") : AccountsStore.shared.currentAccount.accountNumber
+                self.customerID = accountDetails != nil ? (accountDetails?.state ?? "") : AccountsStore.shared.currentAccount.customerNumber ?? ""
             }
-            
+
             enum CodingKeys: String, CodingKey {
                 case city = "City"
                 case state = "State"

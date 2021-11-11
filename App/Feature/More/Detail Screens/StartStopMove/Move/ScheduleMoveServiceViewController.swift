@@ -138,15 +138,25 @@ class ScheduleMoveServiceViewController: UIViewController {
         continueButton.rx.tap
             .subscribe(onNext: { [weak self] _ in
                 
-                guard let `self` = self else { return }
-                guard let selectedDate = self.viewModel.selectedDate.value, let currentPremise = AccountsStore.shared.currentAccount.currentPremise, let accountDetails = self.currentAccountDeatil else { return }
-                let moveFlowData = MoveServiceFlowData(workDays: self.viewModel.workDays.value, stopServiceDate: selectedDate, currentPremise: currentPremise, currentAccount: AccountsStore.shared.currentAccount, currentAccountDetail: accountDetails, verificationDetail: self.viewModel.accountVerificationResponse.value, selected_appartment: nil, addressLookupResponse: nil, hasCurrentServiceAddressForBill: true)
-                
-                let storyboard = UIStoryboard(name: "ISUMMove", bundle: nil)
-                let newServiceAddressViewController = storyboard.instantiateViewController(withIdentifier: "NewServiceAddressViewController") as! NewServiceAddressViewController
-                newServiceAddressViewController.viewModel = NewServiceAddressViewModel(moveServiceFlowData: moveFlowData)
-                self.navigationController?.pushViewController(newServiceAddressViewController, animated: true)
+                guard let `self` = self else { return }                
+                if let unauthMoveData = self.viewModel.unauthMoveData, unauthMoveData.isUnauthMove {
+                    guard let selectedDate = self.viewModel.selectedDate.value else { return }
+                    let moveFlowData = MoveServiceFlowData(workDays: self.viewModel.workDays.value, stopServiceDate: selectedDate, currentPremise: nil, currentAccount: nil, currentAccountDetail: nil, verificationDetail: self.viewModel.accountVerificationResponse.value, selected_appartment: nil, addressLookupResponse: nil, hasCurrentServiceAddressForBill: true, unauthMoveData: unauthMoveData)
+                    
+                    let storyboard = UIStoryboard(name: "ISUMMove", bundle: nil)
+                    let newServiceAddressViewController = storyboard.instantiateViewController(withIdentifier: "NewServiceAddressViewController") as! NewServiceAddressViewController
+                    newServiceAddressViewController.viewModel = NewServiceAddressViewModel(moveServiceFlowData: moveFlowData)
+                    self.navigationController?.pushViewController(newServiceAddressViewController, animated: true)
 
+                } else {
+                    guard let selectedDate = self.viewModel.selectedDate.value, let currentPremise = AccountsStore.shared.currentAccount.currentPremise, let accountDetails = self.currentAccountDeatil else { return }
+                    let moveFlowData = MoveServiceFlowData(workDays: self.viewModel.workDays.value, stopServiceDate: selectedDate, currentPremise: currentPremise, currentAccount: AccountsStore.shared.currentAccount, currentAccountDetail: accountDetails, verificationDetail: self.viewModel.accountVerificationResponse.value, selected_appartment: nil, addressLookupResponse: nil, hasCurrentServiceAddressForBill: true)
+                    
+                    let storyboard = UIStoryboard(name: "ISUMMove", bundle: nil)
+                    let newServiceAddressViewController = storyboard.instantiateViewController(withIdentifier: "NewServiceAddressViewController") as! NewServiceAddressViewController
+                    newServiceAddressViewController.viewModel = NewServiceAddressViewModel(moveServiceFlowData: moveFlowData)
+                    self.navigationController?.pushViewController(newServiceAddressViewController, animated: true)
+                }
             }).disposed(by: disposeBag)
         
         // provides selected account details
@@ -176,6 +186,39 @@ class ScheduleMoveServiceViewController: UIViewController {
                 if accountDetails.isPendingDisconnect {
                     FirebaseUtility.logEvent(.moveService(parameters: [.pending_disconnect]))
                 }
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.unauthAccountDetails
+            .compactMap { $0 }
+            .subscribe(onNext: { [weak self] unauthAccountDetails in
+                LoadingView.hide()
+                self?.electricStackView.isHidden = !(unauthAccountDetails.serviceType.contains("ELECTRIC") )
+                self?.gasStackView.isHidden = !(unauthAccountDetails.serviceType.contains("GAS") )
+                self?.noneServiceProvideLabel.isHidden = (unauthAccountDetails.serviceType.contains("GAS") || unauthAccountDetails.serviceType.contains("ELECTRIC"))
+                
+                var address = ""
+                if !unauthAccountDetails.addressLine.isEmpty  {
+                    address += "\(unauthAccountDetails.addressLine), "
+                }
+                if !unauthAccountDetails.city.isEmpty {
+                    address += "\(unauthAccountDetails.city), "
+                }
+                if !unauthAccountDetails.state.isEmpty {
+                    address += "\(unauthAccountDetails.state)"
+                }
+                if !unauthAccountDetails.zipCode.isEmpty {
+                    address += " \(unauthAccountDetails.zipCode)"
+                }
+                
+                if address.isEmpty {
+                    self?.currentServiceAddressLabel.text = "No Address Available"
+                } else {
+                    self?.currentServiceAddressLabel.text = address
+                }
+                self?.pendingDisconnectStackView.isHidden = true
+                self?.finaledStackView.isHidden = !unauthAccountDetails.isFinaled
+                self?.stopDateStackView.isHidden = unauthAccountDetails.isFinaled
             })
             .disposed(by: disposeBag)
         

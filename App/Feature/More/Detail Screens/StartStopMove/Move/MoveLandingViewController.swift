@@ -77,6 +77,10 @@ class MoveLandingViewController: UIViewController {
     
     @IBAction func BeginTapped(_ sender: PrimaryButton)  {
         ///TODO:  Navigate to the first screen of the Stop Service Flow.
+        if let unauthMoveData = viewModel.unauthMoveData, unauthMoveData.isUnauthMove {
+            navigateToStopServiceVC()
+            return
+        }
         if (viewModel.isDetailsLoading){
             viewModel.isBeginPressed = true;
             DispatchQueue.main.async {
@@ -105,6 +109,9 @@ class MoveLandingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         addCloseButton()
+        if let unauthMoveData = viewModel.unauthMoveData, unauthMoveData.isUnauthMove {
+            return
+        }
         setupUIBinding()
         viewModel.fetchAccountDetails()
     }
@@ -154,6 +161,7 @@ class MoveLandingViewController: UIViewController {
     func navigateToStopServiceVC(){
         let storyboard = UIStoryboard(name: "ISUMMove", bundle: nil)
         let scheduleMoveServiceViewController = storyboard.instantiateViewController(withIdentifier: "ScheduleMoveServiceViewController") as! ScheduleMoveServiceViewController
+        scheduleMoveServiceViewController.viewModel.unauthMoveData = viewModel.unauthMoveData
         self.navigationController?.pushViewController(scheduleMoveServiceViewController, animated: true)
     }
 

@@ -136,15 +136,14 @@ class UnauthIdentityVerificationViewController: KeyboardAvoidingStickyFooterView
             LoadingView.hide()
             if self.viewModel.isAccountResidential {
                 if self.viewModel.accounts.count > 1 {
-                    //TODO: Navigate to Account Selection
                     let storyboard = UIStoryboard(name: "ISUMUnauthMove", bundle: nil)
                     let accountSelectionViewController = storyboard.instantiateViewController(withIdentifier: "UnauthenticatedMoveAccountSelectionViewController") as! UnauthenticatedMoveAccountSelectionViewController
                     accountSelectionViewController.viewModel = UnauthenticatedMoveAccountSelectionViewModel(unauthMoveData: self.viewModel.getUnauthMoveFlowData())
                     self.navigationController?.pushViewController(accountSelectionViewController, animated: true)
-
                 } else {
                     let storyboard = UIStoryboard(name: "ISUMMove", bundle: nil)
                     let moveServiceViewController = storyboard.instantiateViewController(withIdentifier: "MoveLandingViewController") as! MoveLandingViewController
+                    moveServiceViewController.viewModel.unauthMoveData = self.viewModel.getUnauthMoveFlowData()
                     self.navigationController?.pushViewController(moveServiceViewController, animated: true)
                 }
             } else {

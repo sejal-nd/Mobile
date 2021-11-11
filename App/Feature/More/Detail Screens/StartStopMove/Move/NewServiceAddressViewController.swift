@@ -307,6 +307,7 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
             newServiceAddressViewController.delegate = self
             newServiceAddressViewController.zipcode = viewModel.zipCode
             newServiceAddressViewController.searchType = .street
+            newServiceAddressViewController.viewModel.isUnauthMove = viewModel.moveServiceFlowData.unauthMoveData?.isUnauthMove ?? false
             let newServiceAddresNavigationController = LargeTitleNavigationController(rootViewController: newServiceAddressViewController)
             newServiceAddresNavigationController.modalPresentationStyle = .fullScreen
             newServiceAddressViewController.addCloseButton()
@@ -329,6 +330,7 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
                 newServiceAddressViewController.zipcode = viewModel.zipCode
                 newServiceAddressViewController.searchType = .appartment
                 newServiceAddressViewController.listAppartment = viewModel.getAppartmentIDs()?.filter{ ($0.suiteNumber?.count ?? 0) > 0}
+                newServiceAddressViewController.viewModel.isUnauthMove = viewModel.moveServiceFlowData.unauthMoveData?.isUnauthMove ?? false
                 let newServiceAddresNavigationController = LargeTitleNavigationController(rootViewController: newServiceAddressViewController)
                 newServiceAddresNavigationController.modalPresentationStyle = .fullScreen
                 newServiceAddressViewController.addCloseButton()

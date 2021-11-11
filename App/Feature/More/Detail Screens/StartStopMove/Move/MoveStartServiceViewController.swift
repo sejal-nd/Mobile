@@ -75,13 +75,12 @@ class MoveStartServiceViewController: UIViewController {
     
     private func dataBinding() {
         
-        emailConfirmationStackView.isHidden = viewModel.moveServiceFlow.currentAccountDetail.isAMIAccount
+        emailConfirmationStackView.isHidden = (viewModel.moveServiceFlow.unauthMoveData?.isUnauthMove ?? false) ? (viewModel.moveServiceFlow.unauthMoveData?.accountDetails?.isAMIAccount ?? false) : (viewModel.moveServiceFlow.currentAccountDetail?.isAMIAccount ?? true)
         if let address = viewModel.moveServiceFlow.addressLookupResponse?.first {
             startServiceAddressLabel.text = address.compressedAddress.getValidISUMAddress()
         }
-        electricStackView.isHidden = !(viewModel.moveServiceFlow.currentAccountDetail.serviceType?.contains("ELECTRIC") ?? false)
-        gasStackView.isHidden = !(viewModel.moveServiceFlow.currentAccountDetail.serviceType?.contains("GAS") ?? false)
-
+        electricStackView.isHidden = (viewModel.moveServiceFlow.unauthMoveData?.isUnauthMove ?? false) ? !(viewModel.moveServiceFlow.unauthMoveData?.accountDetails?.serviceType.contains("ELECTRIC") ?? false) : !(viewModel.moveServiceFlow.currentAccountDetail?.serviceType?.contains("ELECTRIC") ?? false)
+        gasStackView.isHidden = (viewModel.moveServiceFlow.unauthMoveData?.isUnauthMove ?? false) ? !(viewModel.moveServiceFlow.unauthMoveData?.accountDetails?.serviceType.contains("GAS") ?? false) : !(viewModel.moveServiceFlow.currentAccountDetail?.serviceType?.contains("GAS") ?? false)
     }
     
     private func refreshUI(startDate: Date) {

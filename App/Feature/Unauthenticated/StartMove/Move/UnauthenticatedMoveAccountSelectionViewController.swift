@@ -46,6 +46,7 @@ class UnauthenticatedMoveAccountSelectionViewController: UIViewController {
     @IBAction func selectAccountPressed(_ sender: Any) {
         let storyboard = UIStoryboard(name: "ISUMMove", bundle: nil)
         let moveServiceViewController = storyboard.instantiateViewController(withIdentifier: "MoveLandingViewController") as! MoveLandingViewController
+        moveServiceViewController.viewModel.unauthMoveData = viewModel.unauthMoveData
         self.navigationController?.pushViewController(moveServiceViewController, animated: true)
     }
     

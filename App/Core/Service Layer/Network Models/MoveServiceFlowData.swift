@@ -11,9 +11,9 @@ import Foundation
 struct MoveServiceFlowData {
     let workDays: [WorkdaysResponse.WorkDay]
     var stopServiceDate: Date
-    let currentPremise: PremiseInfo
-    let currentAccount: Account
-    let currentAccountDetail: AccountDetail
+    let currentPremise: PremiseInfo?
+    let currentAccount: Account?
+    let currentAccountDetail: AccountDetail?
     let verificationDetail: StopServiceVerificationResponse?
     var startServiceDate: Date?
     var isOwner: Bool = true

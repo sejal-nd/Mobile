@@ -58,4 +58,21 @@ enum AnonymousService {
         
         NetworkingLayer.request(router: .accountDetailsAnon(request: request), completion: completion)
     }
+    
+    static func stopServiceVerification(unauthMoveData: UnauthMoveData? = nil, completion: @escaping (Result<StopServiceVerificationResponse, NetworkingError>) -> ()) {
+        
+        let stopServiceVerificationRequest = StopServiceVerificationRequest(accountDetails: unauthMoveData?.accountDetails)
+        NetworkingLayer.request(router: .stopServiceVerificationAnon(request: stopServiceVerificationRequest), completion: completion)
+    }
+    
+    static func fetchWorkdays(accountDetails: UnAuthAccountDetails,
+                              completion: @escaping (Result<WorkdaysResponse, NetworkingError>) -> ()) {
+        
+        let addressMrID = accountDetails.premiseNumber
+        let isGasOff = false
+        let premiseOperationCenter = ""
+        let isStart = false
+        let workdaysRequest = WorkdaysRequest(addressMrID: addressMrID, isGasOff: isGasOff, premiseOperationCenter: premiseOperationCenter, isStart: isStart)
+        NetworkingLayer.request(router: .workDaysAnon(request: workdaysRequest), completion: completion)
+    }
 }
