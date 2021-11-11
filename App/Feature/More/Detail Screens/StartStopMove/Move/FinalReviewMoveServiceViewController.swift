@@ -218,11 +218,19 @@ class FinalReviewMoveServiceViewController: UIViewController {
     }
 
     func showAlertRenterOwner(){
-        let alertController = UIAlertController(title: "Are you the owner or renter at your new address?", message: nil, preferredStyle: .actionSheet)
+
+        let style: UIAlertController.Style = UIDevice.current.userInterfaceIdiom == .pad ? .alert : .actionSheet
+
+        let alertController = UIAlertController(title: "Are you the owner or renter at your new address?", message: nil, preferredStyle: style)
 
         let margin:CGFloat = 10.0
-        let rect = CGRect(x: margin, y: margin + 65, width: alertController.view.bounds.size.width - margin * 4.0, height: 45)
-        let segmentedControl = SegmentedControl(frame: rect)
+        var rect = CGRect(x: margin, y: margin + 65, width: alertController.view.bounds.size.width - margin * 4.0, height: 45)
+
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            rect = CGRect(x: 10, y: margin + 75, width: 245, height: 45)
+        }
+
+        let segmentedControl = SegmentedControl(frame: rect).usingAutoLayout()
 
         segmentedControl.backgroundColor = .softGray
 
@@ -232,7 +240,6 @@ class FinalReviewMoveServiceViewController: UIViewController {
 
         alertController.view.addSubview(segmentedControl)
         alertController.view.heightAnchor.constraint(equalToConstant: 220).isActive = true
-
 
         segmentedControl.items = [NSLocalizedString("Owner", comment: ""),
                                   NSLocalizedString("Renter", comment: "")]
@@ -252,13 +259,6 @@ class FinalReviewMoveServiceViewController: UIViewController {
         })
 
         alertController.addAction(doneAction)
-
-        if let popoverController = alertController.popoverPresentationController { // iPad popover
-            let width = self.changeRenterOwnerButton.frame.size.width
-            popoverController.sourceView = self.changeRenterOwnerButton
-            popoverController.sourceRect = CGRect(x: width / 2, y: 0, width: 0, height: 0)
-            popoverController.permittedArrowDirections = .down
-        }
 
         self.present(alertController, animated: true, completion:{})
     }
