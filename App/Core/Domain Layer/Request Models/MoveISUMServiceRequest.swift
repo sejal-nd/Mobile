@@ -284,7 +284,7 @@ public struct MoveISUMServiceRequest: Encodable {
             AltContactPhoneNo = moveServiceFlowData.currentAccountDetail.customerInfo.alternatePhoneNumber
             AltContactPhoneNoType = ""
             email = moveServiceFlowData.currentAccountDetail.customerInfo.emailAddress
-            useAltBillingAddress = false
+            useAltBillingAddress = !moveServiceFlowData.hasCurrentServiceAddressForBill
             billingAddress = BillingAddressRequest(moveServiceFlowData: moveServiceFlowData)
         }
         
