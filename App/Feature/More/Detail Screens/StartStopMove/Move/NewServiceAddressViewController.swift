@@ -281,7 +281,7 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
     @objc func zipCodeDonePressed() {
         zipTextField.textField.resignFirstResponder()
         if !viewModel.isZipValid {
-            zipTextField.setError(NSLocalizedString("Zip  Code must be 5 characters in length", comment: ""))
+            zipTextField.setError(NSLocalizedString("Zip code must be 5 digits.", comment: ""))
         } else {
             enableTextFieldEditing(false)
             viewModel.validateZipCode { _ in } onFailure: { [weak self] error in
@@ -294,7 +294,7 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
     @IBAction func streetAddressPressed(_ sender: Any) {
         zipTextField.textField.resignFirstResponder()
         if !viewModel.isZipValid {
-            zipTextField.setError(NSLocalizedString("Zip  Code must be 5 characters in length", comment: ""))
+            zipTextField.setError(NSLocalizedString("Zip code must be 5 digits.", comment: ""))
         } else if !viewModel.isZipValidated {
             enableTextFieldEditing(false)
             viewModel.validateZipCode { _ in } onFailure: { [weak self] error in
@@ -316,7 +316,7 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
 
     @IBAction func appartmentPressed(_ sender: Any) {
         if !viewModel.isZipValid {
-            zipTextField.setError(NSLocalizedString("Zip  Code must be 5 characters in length", comment: ""))
+            zipTextField.setError(NSLocalizedString("Zip code must be 5 digits.", comment: ""))
         }
         else if viewModel.isZipValid && !viewModel.isStreetAddressValid {
 
@@ -393,7 +393,7 @@ extension NewServiceAddressViewController: UITextFieldDelegate {
                     return false
                 }
                 else if length <= 4 {
-                    zipTextField.setError(NSLocalizedString("Zip  Code must be 5 characters in length", comment: ""))
+                    zipTextField.setError(NSLocalizedString("Zip code must be 5 digits.", comment: ""))
                 }
                 else {
                     zipTextField.setError(nil)

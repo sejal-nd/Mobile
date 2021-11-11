@@ -64,7 +64,7 @@ class MoveLandingViewController: UIViewController {
         didSet {
             startStopDateLabel.textColor = .deepGray
             startStopDateLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-            startStopDateLabel.text = NSLocalizedString("Dates to stop and start your service", comment: "")
+            startStopDateLabel.text = NSLocalizedString("Dates to stop and start your service within 30 days, excluding holidays and Sundays", comment: "")
         }
     }
     @IBOutlet weak var newServiceAddressLabel: UILabel! {
