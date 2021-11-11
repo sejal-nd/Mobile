@@ -95,7 +95,7 @@ public struct MoveISUMServiceRequest: Encodable {
             self.zipCode = moveServiceFlowData.addressLookupResponse?.first?.zipCode
             self.accountNumber = moveServiceFlowData.currentAccountDetail.accountNumber
             self.customerID = moveServiceFlowData.currentAccountDetail.customerNumber
-            self.state = moveServiceFlowData.verificationDetail?.startStopMoveServiceDetails.primaryCustInformation.billingAddress.state
+            self.state = USState.getState(state: moveServiceFlowData.verificationDetail?.startStopMoveServiceDetails.primaryCustInformation.billingAddress.state ?? "")
             self.country = moveServiceFlowData.verificationDetail?.startStopMoveServiceDetails.primaryCustInformation.billingAddress.country
             self.premiseID = moveServiceFlowData.addressLookupResponse?.first?.premiseID
             self.serviceType = moveServiceFlowData.currentAccountDetail.serviceType
@@ -155,7 +155,7 @@ public struct MoveISUMServiceRequest: Encodable {
             self.address = moveServiceFlowData.currentAccountDetail.address
             self.streetName = moveServiceFlowData.verificationDetail?.startStopMoveServiceDetails.primaryCustInformation.billingAddress.streetName
             self.city = moveServiceFlowData.verificationDetail?.startStopMoveServiceDetails.primaryCustInformation.billingAddress.city
-            self.state = moveServiceFlowData.verificationDetail?.startStopMoveServiceDetails.primaryCustInformation.billingAddress.state
+            self.state = USState.getState(state: moveServiceFlowData.verificationDetail?.startStopMoveServiceDetails.primaryCustInformation.billingAddress.state ?? "")
             self.zipCode = moveServiceFlowData.verificationDetail?.startStopMoveServiceDetails.primaryCustInformation.billingAddress.zipCode
             self.accountNumber = moveServiceFlowData.verificationDetail?.startStopMoveServiceDetails.accountNumber
             self.premiseID = moveServiceFlowData.verificationDetail?.startStopMoveServiceDetails.stopServiceAddress.premiseID
@@ -276,13 +276,13 @@ public struct MoveISUMServiceRequest: Encodable {
             address = moveServiceFlowData.currentAccountDetail.address
             streetName = moveServiceFlowData.currentAccountDetail.street
             city = moveServiceFlowData.currentAccountDetail.city
-            state = moveServiceFlowData.currentAccountDetail.state
+            state = USState.getState(state: moveServiceFlowData.currentAccountDetail.state ?? "")
             zipCode = moveServiceFlowData.currentAccountDetail.zipCode
             ContactPhoneNo = moveServiceFlowData.currentAccountDetail.customerInfo.primaryPhoneNumber
             ContactPhoneExt = ""
-            ContactPhoneNoType = ""
-            AltContactPhoneNo = moveServiceFlowData.currentAccountDetail.customerInfo.alternatePhoneNumber
-            AltContactPhoneNoType = ""
+            ContactPhoneNoType = "CELL"
+            AltContactPhoneNo = nil
+            AltContactPhoneNoType = nil
             email = moveServiceFlowData.currentAccountDetail.customerInfo.emailAddress
             useAltBillingAddress = !moveServiceFlowData.hasCurrentServiceAddressForBill
             billingAddress = BillingAddressRequest(moveServiceFlowData: moveServiceFlowData)
@@ -321,7 +321,7 @@ public struct MoveISUMServiceRequest: Encodable {
             streetName =  moveServiceFlowData.hasCurrentServiceAddressForBill ? (moveServiceFlowData.addressLookupResponse?.first?.streetName ?? moveServiceFlowData.addressLookupResponse?.first?.address) : moveServiceFlowData.mailingAddress?.streetAddress
 
             city = moveServiceFlowData.hasCurrentServiceAddressForBill ? moveServiceFlowData.addressLookupResponse?.first?.city : moveServiceFlowData.mailingAddress?.city
-            state = moveServiceFlowData.hasCurrentServiceAddressForBill ? moveServiceFlowData.addressLookupResponse?.first?.state : moveServiceFlowData.mailingAddress?.state.rawValue
+            state = moveServiceFlowData.hasCurrentServiceAddressForBill ? USState.getState(state: moveServiceFlowData.addressLookupResponse?.first?.state ?? "") : USState.getState(state: moveServiceFlowData.mailingAddress?.state.rawValue ?? "")
             zipCode = moveServiceFlowData.hasCurrentServiceAddressForBill ? moveServiceFlowData.addressLookupResponse?.first?.zipCode : moveServiceFlowData.mailingAddress?.zipCode
             apartmentUnitNo = moveServiceFlowData.hasCurrentServiceAddressForBill ? moveServiceFlowData.addressLookupResponse?.first?.apartmentUnitNo : nil
 
