@@ -15,4 +15,12 @@ enum USState: String, CaseIterable {
     static var allCases: [USState] {
         return [.NONE, .AL, .AK, .AZ, .AR, .CA, .CO, .CT, .DE, .DC, .FL, .GA, .HI, .ID, .IL, .IN, .IA, .KS, .KY, .LA, .ME, .MD, .MA, .MI, .MN, .MS, .MO, .MT, .NE, .NV, .NH, .NJ, .NM, .NY, .NC, .ND, .OH, .OK, .OR, .PA, .RI, .SC, .SD, .TN, .TX, .UT, .VT, .VA, .WA, .WV, .WI, .WY]
     }
+    
+    static func getState(state: String)-> String? {
+        
+        if let _state = USState(rawValue: state) {
+            return "\(_state)"
+        }
+        return nil
+    }
 }

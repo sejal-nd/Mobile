@@ -50,7 +50,7 @@ public struct StopISUMServiceRequest: Encodable {
             self.stopServiceAddress = StopServiceAddressRequest(stopFlowData: stopFlowData)
             self.billGroup = nil
             self.emailAddress = stopFlowData.currentAccountDetail.customerInfo.emailAddress
-            self.premiseOccupied = stopFlowData.currentAccountDetail.premiseInfo.count > 0
+            self.premiseOccupied = false
             self.premiseOperationCenter = nil
             self.isRCDStopCapable = stopFlowData.verificationDetail?.isRCDCapable
             self.requestCourtesyCall = false
@@ -95,7 +95,7 @@ public struct StopISUMServiceRequest: Encodable {
             
             self.streetName = stopFlowData.verificationDetail?.startStopMoveServiceDetails.primaryCustInformation.billingAddress.streetName
             self.city = stopFlowData.verificationDetail?.startStopMoveServiceDetails.primaryCustInformation.billingAddress.city
-            self.state = stopFlowData.verificationDetail?.startStopMoveServiceDetails.primaryCustInformation.billingAddress.state
+            self.state = USState.getState(state: stopFlowData.verificationDetail?.startStopMoveServiceDetails.primaryCustInformation.billingAddress.state ?? "")
             self.country = stopFlowData.verificationDetail?.startStopMoveServiceDetails.primaryCustInformation.billingAddress.country
             self.zipCode = stopFlowData.verificationDetail?.startStopMoveServiceDetails.primaryCustInformation.billingAddress.zipCode
             self.accountNumber = stopFlowData.verificationDetail?.startStopMoveServiceDetails.accountNumber
@@ -185,9 +185,9 @@ public struct StopISUMServiceRequest: Encodable {
 
             self.firstName = stopFlowData.currentAccountDetail.customerInfo.firstName
             self.lastName = stopFlowData.currentAccountDetail.customerInfo.lastName
-            self.contactPhoneNo = stopFlowData.currentAccountDetail.customerNumber
-            self.contactPhoneNoType = ""
-            self.altContactPhoneNo = stopFlowData.currentAccountDetail.customerInfo.alternatePhoneNumber
+            self.contactPhoneNo = stopFlowData.currentAccountDetail.customerInfo.primaryPhoneNumber
+            self.contactPhoneNoType = "CELL"
+            self.altContactPhoneNo = nil
             self.billingAddress = BillingAddressRequest(stopFlowData: stopFlowData)
             self.useAltBillingAddress = !stopFlowData.hasCurrentServiceAddressForBill
             self.email = stopFlowData.currentAccountDetail.customerInfo.emailAddress
@@ -220,7 +220,7 @@ public struct StopISUMServiceRequest: Encodable {
             self.streetName = stopFlowData.hasCurrentServiceAddressForBill ? stopFlowData.verificationDetail?.startStopMoveServiceDetails.primaryCustInformation.billingAddress.streetName : stopFlowData.mailingAddress?.streetAddress
             self.apartmentUnitNo = ""
             self.city = stopFlowData.hasCurrentServiceAddressForBill ? stopFlowData.verificationDetail?.startStopMoveServiceDetails.primaryCustInformation.billingAddress.city : stopFlowData.mailingAddress?.city
-            self.state = stopFlowData.hasCurrentServiceAddressForBill ? stopFlowData.verificationDetail?.startStopMoveServiceDetails.primaryCustInformation.billingAddress.state : stopFlowData.mailingAddress?.state.rawValue
+            self.state = stopFlowData.hasCurrentServiceAddressForBill ? USState.getState(state: stopFlowData.verificationDetail?.startStopMoveServiceDetails.primaryCustInformation.billingAddress.state ?? "") : USState.getState(state: stopFlowData.mailingAddress?.state.rawValue ?? "")
             self.zipCode = stopFlowData.hasCurrentServiceAddressForBill ? stopFlowData.verificationDetail?.startStopMoveServiceDetails.primaryCustInformation.billingAddress.zipCode : stopFlowData.mailingAddress?.zipCode
         }
 
