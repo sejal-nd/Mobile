@@ -66,10 +66,12 @@ class ScheduleMoveServiceViewController: UIViewController {
     func intialUIBiding() {
         
         addCloseButton()
+        let backButtonIconName = viewModel.isUnauth ? "ic_back" : "ic_close"
+        let backButtonAccesibilityLabelText = viewModel.isUnauth ? "Close" : "Back"
         self.navigationItem.hidesBackButton = true
-        let newBackButton = UIBarButtonItem(image: UIImage(named: "ic_close"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(StopServiceViewController.back(sender:)))
+        let newBackButton = UIBarButtonItem(image: UIImage(named: backButtonIconName), style: UIBarButtonItem.Style.plain, target: self, action: #selector(ScheduleMoveServiceViewController.back(sender:)))
         self.navigationItem.leftBarButtonItem = newBackButton
-        newBackButton.accessibilityLabel = "Close"
+        newBackButton.accessibilityLabel = backButtonAccesibilityLabelText
         self.scrollView.isHidden = true
         
         stopServiceAddressStaticLabel.font = SystemFont.regular.of(textStyle: .footnote)
@@ -85,8 +87,11 @@ class ScheduleMoveServiceViewController: UIViewController {
         stopDateSelectionView.roundCorners(.allCorners, radius: 10.0, borderColor: UIColor(red: 216.0/255.0, green: 216.0/255.0, blue: 216.0/255.0, alpha: 1.0), borderWidth: 1.0)
         continueButton.roundCorners(.allCorners, radius: 27.5, borderColor: UIColor(red: 216.0/255.0, green: 216.0/255.0, blue: 216.0/255.0, alpha: 1.0), borderWidth: 1.0)
         
-        // visible if more than 1 account or account has more than one premise
-        changeAccountButton.isHidden = !(accounts.count > 1 || isMultiPremise)
+        if viewModel.isUnauth {
+            changeAccountButton.isHidden = isUnauth
+        } else {
+            changeAccountButton.isHidden = !(accounts.count > 1 || isMultiPremise)
+        }
         
         stopDateToolTipButton.rx.tap
             .subscribe(onNext: { [weak self] _ in
@@ -269,7 +274,11 @@ class ScheduleMoveServiceViewController: UIViewController {
             { [weak self] _ in
                 guard let `self` = self else { return }
                 FirebaseUtility.logEvent(.moveService(parameters: [.exit]))
-                self.dismiss(animated: true, completion: nil)
+                if self.viewModel.isUnauth {
+                    self.navigationController?.popViewController(animated: true)
+                } else {
+                    self.dismiss(animated: true, completion: nil)
+                }
             }
             let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel)
             presentAlert(title: NSLocalizedString("Do you want to exit?", comment: ""),
@@ -277,7 +286,11 @@ class ScheduleMoveServiceViewController: UIViewController {
                          style: .alert,
                          actions: [cancelAction, exitAction])
         } else {
-            dismiss(animated: true, completion: nil)
+            if self.viewModel.isUnauth {
+                self.navigationController?.popViewController(animated: true)
+            } else {
+                dismiss(animated: true, completion: nil)
+            }
         }
     }
     
