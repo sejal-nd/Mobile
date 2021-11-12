@@ -233,50 +233,56 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A8I-j3-Shf">
-                                            <rect key="frame" x="57" y="84" width="337" height="14.5"/>
+                                            <rect key="frame" x="59" y="84" width="335" height="14.5"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" text="Account #" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xz9-ol-oos">
-                                                    <rect key="frame" x="0.0" y="0.0" width="141" height="14.5"/>
-                                                    <accessibility key="accessibilityConfiguration">
-                                                        <bool key="isElement" value="NO"/>
-                                                    </accessibility>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Street #" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KFc-M2-2YM">
-                                                    <rect key="frame" x="145" y="0.0" width="94" height="14.5"/>
-                                                    <accessibility key="accessibilityConfiguration">
-                                                        <bool key="isElement" value="NO"/>
-                                                    </accessibility>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unit #" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xfm-ud-Oog">
-                                                    <rect key="frame" x="243" y="0.0" width="94" height="14.5"/>
-                                                    <accessibility key="accessibilityConfiguration">
-                                                        <bool key="isElement" value="NO"/>
-                                                    </accessibility>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="d51-5A-hKS">
+                                                    <rect key="frame" x="0.0" y="0.0" width="335" height="14.5"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" text="Account #" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xz9-ol-oos">
+                                                            <rect key="frame" x="0.0" y="0.0" width="95.5" height="14.5"/>
+                                                            <accessibility key="accessibilityConfiguration">
+                                                                <bool key="isElement" value="NO"/>
+                                                            </accessibility>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="95.5" id="ZHI-u5-E5b"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Street #" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KFc-M2-2YM">
+                                                            <rect key="frame" x="137.5" y="0.0" width="83.5" height="14.5"/>
+                                                            <accessibility key="accessibilityConfiguration">
+                                                                <bool key="isElement" value="NO"/>
+                                                            </accessibility>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="83.5" id="o9Q-5T-uj3"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unit #" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xfm-ud-Oog">
+                                                            <rect key="frame" x="263" y="0.0" width="72" height="14.5"/>
+                                                            <accessibility key="accessibilityConfiguration">
+                                                                <bool key="isElement" value="NO"/>
+                                                            </accessibility>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="72" id="MSX-N1-eci"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstItem="Xz9-ol-oos" firstAttribute="width" secondItem="KFc-M2-2YM" secondAttribute="width" multiplier="1.5" id="3m4-qt-Bak"/>
-                                                <constraint firstItem="xfm-ud-Oog" firstAttribute="leading" secondItem="KFc-M2-2YM" secondAttribute="trailing" constant="4" id="4Pq-9v-1A2"/>
-                                                <constraint firstItem="KFc-M2-2YM" firstAttribute="top" secondItem="A8I-j3-Shf" secondAttribute="top" id="5uU-tv-Tfh"/>
-                                                <constraint firstItem="KFc-M2-2YM" firstAttribute="width" secondItem="xfm-ud-Oog" secondAttribute="width" id="6C8-xE-1dd"/>
-                                                <constraint firstAttribute="bottom" secondItem="KFc-M2-2YM" secondAttribute="bottom" id="LJQ-t5-Hrd"/>
-                                                <constraint firstItem="Xz9-ol-oos" firstAttribute="leading" secondItem="A8I-j3-Shf" secondAttribute="leading" id="Nv6-kv-Lev"/>
-                                                <constraint firstAttribute="bottom" secondItem="xfm-ud-Oog" secondAttribute="bottom" id="QNc-uG-WaD"/>
-                                                <constraint firstAttribute="trailing" secondItem="xfm-ud-Oog" secondAttribute="trailing" id="VbC-Jd-qc3"/>
-                                                <constraint firstAttribute="bottom" secondItem="Xz9-ol-oos" secondAttribute="bottom" id="YHd-EY-rST"/>
-                                                <constraint firstItem="Xz9-ol-oos" firstAttribute="top" secondItem="A8I-j3-Shf" secondAttribute="top" id="fj7-Ri-3vS"/>
-                                                <constraint firstItem="KFc-M2-2YM" firstAttribute="leading" secondItem="Xz9-ol-oos" secondAttribute="trailing" constant="4" id="nxk-tW-XL6"/>
-                                                <constraint firstItem="xfm-ud-Oog" firstAttribute="top" secondItem="A8I-j3-Shf" secondAttribute="top" id="o8F-gk-Dep"/>
+                                                <constraint firstAttribute="bottom" secondItem="d51-5A-hKS" secondAttribute="bottom" id="1QJ-EQ-ZAD"/>
+                                                <constraint firstAttribute="trailing" secondItem="d51-5A-hKS" secondAttribute="trailing" id="4AI-W9-jeX"/>
+                                                <constraint firstItem="d51-5A-hKS" firstAttribute="top" secondItem="A8I-j3-Shf" secondAttribute="top" id="bOJ-Lx-hXp"/>
+                                                <constraint firstItem="d51-5A-hKS" firstAttribute="leading" secondItem="A8I-j3-Shf" secondAttribute="leading" id="pYM-bL-dFr"/>
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nam-vh-ksJ">
@@ -289,7 +295,7 @@
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
-                                        <constraint firstItem="A8I-j3-Shf" firstAttribute="leading" secondItem="XA6-n6-lD4" secondAttribute="leading" constant="57" id="2UL-2W-xUL"/>
+                                        <constraint firstItem="A8I-j3-Shf" firstAttribute="leading" secondItem="XA6-n6-lD4" secondAttribute="leading" constant="59" id="2UL-2W-xUL"/>
                                         <constraint firstItem="A8I-j3-Shf" firstAttribute="top" secondItem="Tvh-5J-iXg" secondAttribute="bottom" constant="20" id="7gI-gP-zL4"/>
                                         <constraint firstItem="Nam-vh-ksJ" firstAttribute="top" secondItem="A8I-j3-Shf" secondAttribute="bottom" constant="8" id="CBI-Bz-CM3"/>
                                         <constraint firstItem="Tvh-5J-iXg" firstAttribute="leading" secondItem="XA6-n6-lD4" secondAttribute="leading" constant="20" id="CVk-ZC-l3Q"/>
@@ -328,7 +334,7 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="5td-2j-eIW">
+                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="5td-2j-eIW">
                                                             <rect key="frame" x="137.5" y="0.0" width="83.5" height="64"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" priority="999" constant="83.5" id="hPR-5y-rUX"/>

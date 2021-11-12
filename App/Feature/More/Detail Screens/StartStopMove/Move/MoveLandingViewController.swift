@@ -108,8 +108,12 @@ class MoveLandingViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        addCloseButton()
-        if let unauthMoveData = viewModel.unauthMoveData, unauthMoveData.isUnauthMove {
+        if viewModel.isUnauth {
+            addBackButton()
+        }else {
+            addCloseButton()
+        }
+        if viewModel.isUnauth {
             return
         }
         setupUIBinding()
@@ -158,6 +162,17 @@ class MoveLandingViewController: UIViewController {
             }.disposed(by: disposeBag)
 
     }
+    func addBackButton(){
+        self.navigationItem.hidesBackButton = true
+        let newBackButton = UIBarButtonItem(image: UIImage(named: "ic_back"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(MoveLandingViewController.back(sender:)))
+        newBackButton.accessibilityLabel = NSLocalizedString("Back", comment: "")
+        self.navigationItem.leftBarButtonItem = newBackButton
+    }
+    
+    @objc func back(sender: UIBarButtonItem) {
+        self.navigationController?.popViewController(animated: true)
+    }
+
     func navigateToStopServiceVC(){
         let storyboard = UIStoryboard(name: "ISUMMove", bundle: nil)
         let scheduleMoveServiceViewController = storyboard.instantiateViewController(withIdentifier: "ScheduleMoveServiceViewController") as! ScheduleMoveServiceViewController

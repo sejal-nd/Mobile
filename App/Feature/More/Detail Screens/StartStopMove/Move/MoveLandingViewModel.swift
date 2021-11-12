@@ -21,7 +21,9 @@ class MoveLandingViewModel {
     var apiError: Observable<Error> { return apiErrorSubject.asObservable()}
     private var apiErrorSubject = PublishSubject<Error>()
     var unauthMoveData: UnauthMoveData?
-    
+    var isUnauth: Bool {
+        return unauthMoveData?.isUnauthMove ?? false
+    }
     init() {
         getAccountDetailSubject
             .toAsyncRequest { [weak self] _ -> Observable<AccountDetail> in

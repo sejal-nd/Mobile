@@ -21,7 +21,8 @@ class UnauthenticatedMoveAccountSelectionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = NSLocalizedString("Select an Account", comment: "")
-
+        addBackButton()
+        
         instructionLabel.textColor = .deepGray
         instructionLabel.text = NSLocalizedString("Select the account where you would like to stop your service.", comment: "")
 
@@ -48,6 +49,16 @@ class UnauthenticatedMoveAccountSelectionViewController: UIViewController {
         let moveServiceViewController = storyboard.instantiateViewController(withIdentifier: "MoveLandingViewController") as! MoveLandingViewController
         moveServiceViewController.viewModel.unauthMoveData = viewModel.unauthMoveData
         self.navigationController?.pushViewController(moveServiceViewController, animated: true)
+    }
+    func addBackButton(){
+        
+        self.navigationItem.hidesBackButton = true
+        let newBackButton = UIBarButtonItem(image: UIImage(named: "ic_back"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(UnauthenticatedMoveAccountSelectionViewController.back(sender:)))
+        newBackButton.accessibilityLabel = NSLocalizedString("Back", comment: "")
+        self.navigationItem.leftBarButtonItem = newBackButton
+    }
+    @objc func back(sender: UIBarButtonItem) {
+        self.navigationController?.popViewController(animated: true)
     }
     
 }

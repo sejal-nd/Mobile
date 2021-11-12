@@ -64,8 +64,7 @@ class ScheduleMoveServiceViewController: UIViewController {
     }
     
     func intialUIBiding() {
-        
-        addCloseButton()
+
         let backButtonIconName = viewModel.isUnauth ? "ic_back" : "ic_close"
         let backButtonAccesibilityLabelText = viewModel.isUnauth ? "Close" : "Back"
         self.navigationItem.hidesBackButton = true
