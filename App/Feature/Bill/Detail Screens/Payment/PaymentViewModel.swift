@@ -589,7 +589,9 @@ class PaymentViewModel {
     private(set) lazy var paymentMethodFeeLabelText: Driver<String?> =
         self.selectedWalletItem.asDriver().map { [weak self] in
             guard let self = self, let walletItem = $0 else { return nil }
-            if walletItem.bankOrCard == .bank {
+            if Configuration.shared.opco == .comEd {
+                return ""
+            } else if walletItem.bankOrCard == .bank {
                 return NSLocalizedString("No convenience fee will be applied.", comment: "")
             } else {
                 return String.localizedStringWithFormat("A %@ convenience fee will be applied by Paymentus, our payment partner.", self.convenienceFee.currencyString)
@@ -599,7 +601,9 @@ class PaymentViewModel {
     private(set) lazy var paymentAmountFeeFooterLabelText: Driver<String?> =
         self.selectedWalletItem.asDriver().map { [weak self] in
             guard let self = self, let walletItem = $0 else { return "" }
-            if walletItem.bankOrCard == .bank {
+            if Configuration.shared.opco == .comEd {
+                return ""
+            } else if walletItem.bankOrCard == .bank {
                 return NSLocalizedString("No convenience fee will be applied.", comment: "")
             } else  {
                 return String.localizedStringWithFormat("Your payment includes a %@ convenience fee.", self.convenienceFee.currencyString)
@@ -656,7 +660,11 @@ class PaymentViewModel {
         { $0 || $1 }
 
     var walletFooterLabelText: String {
-        return NSLocalizedString("All payments and associated convenience fees are processed by Paymentus Corporation. Payment methods saved to My Wallet are stored by Paymentus Corporation.", comment: "")
+        if Configuration.shared.opco == .comEd {
+            return NSLocalizedString("All payments are processed by Paymentus Corporation. Payment methods saved to My Wallet are stored by Paymentus Corporation.", comment: "")
+        } else {
+            return NSLocalizedString("All payments and associated convenience fees are processed by Paymentus Corporation. Payment methods saved to My Wallet are stored by Paymentus Corporation.", comment: "")
+        }
     }
     
     private(set) lazy var shouldShowPastDueLabel: Driver<Bool> = accountDetail.asDriver().map { [weak self] in
@@ -756,7 +764,12 @@ class PaymentViewModel {
     }
 
     var reviewPaymentFooterLabelText: String {
-        return NSLocalizedString("All payments and associated convenience fees are processed by Paymentus Corporation. Payment methods saved to My Wallet are stored by Paymentus Corporation. You will receive an email confirming that your payment was submitted successfully. If you receive an error message, please check for your email confirmation to verify you’ve successfully submitted payment.", comment: "")
+        if Configuration.shared.opco == .comEd {
+            return NSLocalizedString("All payments are processed by Paymentus Corporation. Payment methods saved to My Wallet are stored by Paymentus Corporation. You will receive an email confirming that your payment was submitted successfully. If you receive an error message, please check for your email confirmation to verify you’ve successfully submitted payment.", comment: "")
+
+        } else {
+            return NSLocalizedString("All payments and associated convenience fees are processed by Paymentus Corporation. Payment methods saved to My Wallet are stored by Paymentus Corporation. You will receive an email confirming that your payment was submitted successfully. If you receive an error message, please check for your email confirmation to verify you’ve successfully submitted payment.", comment: "")
+        }
     }
 
     // MARK: - Payment Confirmation
