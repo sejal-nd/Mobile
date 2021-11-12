@@ -88,7 +88,7 @@ class ScheduleMoveServiceViewController: UIViewController {
         continueButton.roundCorners(.allCorners, radius: 27.5, borderColor: UIColor(red: 216.0/255.0, green: 216.0/255.0, blue: 216.0/255.0, alpha: 1.0), borderWidth: 1.0)
         
         if viewModel.isUnauth {
-            changeAccountButton.isHidden = isUnauth
+            changeAccountButton.isHidden = viewModel.isUnauth
         } else {
             changeAccountButton.isHidden = !(accounts.count > 1 || isMultiPremise)
         }
