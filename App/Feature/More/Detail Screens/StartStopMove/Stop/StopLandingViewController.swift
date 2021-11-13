@@ -25,7 +25,6 @@ class StopLandingViewController: UIViewController {
             estimatedTimeLabel.font = SystemFont.regular.of(textStyle: .caption1)
             estimatedTimeLabel.text = NSLocalizedString("EST. 2-4 MINUTES", comment: "")
             estimatedTimeLabel.accessibilityLabel = NSLocalizedString("Estimated Time 2 to 4 minutes", comment: "")
-
         }
     }
     @IBOutlet weak var youWillNeedLabel: UILabel! {
