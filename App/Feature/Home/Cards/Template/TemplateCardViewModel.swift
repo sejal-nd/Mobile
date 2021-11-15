@@ -329,7 +329,8 @@ class TemplateCardViewModel {
                 } else if accountDetail.opcoType == .pepco {
                     if accountDetail.isResidential {
                         if accountDetail.isEnergyWiseRewardsEnrolled {
-                            return ""
+                            return "https://www.peco.com/WaysToSave/ForYourHome/Pages/PECOMarketplace.aspx"
+
                         } else {
                             return "https://energywiserewards.pepco.com/"
                         }
