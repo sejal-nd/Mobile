@@ -170,13 +170,13 @@ class FinalReviewMoveServiceViewController: UIViewController {
             self.ssnTaxIDLabel.text = "Renter"
         }
 
-        if let ssn = moveFlowData.idVerification?.ssn {
+        if let ssn = moveFlowData.idVerification?.ssn, !ssn.isEmpty {
             self.ssnTaxIDLabel.text =  "Ending in " + ssn.suffix(4)
         }else {
             self.ssnTaxIDLabel.text = "None Provided"
         }
 
-        if let driverLicenseNumber = moveFlowData.idVerification?.driverLicenseNumber {
+        if let driverLicenseNumber = moveFlowData.idVerification?.driverLicenseNumber, !driverLicenseNumber.isEmpty {
             self.dlStateIDLabel.text = driverLicenseNumber
         }else {
             self.dlStateIDLabel.text = "None Provided"
@@ -212,7 +212,7 @@ class FinalReviewMoveServiceViewController: UIViewController {
             self.finalBillAddressLabel.text = "Same as current service address"
         } else {
             guard let address = moveFlowData.mailingAddress else { return }
-            self.finalBillAddressLabel.text = "\(address.streetAddress), \(address.city), \(address.state) \(address.zipCode)"
+            self.finalBillAddressLabel.text = "\(address.streetAddress), \(address.city), \(address.state) \(address.zipCode)".getValidISUMAddress()
         }
 
     }

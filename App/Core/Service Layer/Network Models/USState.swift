@@ -23,4 +23,14 @@ enum USState: String, CaseIterable {
         }
         return nil
     }
+    
+    static func isUSState(_ string: String)-> Bool {
+    
+        for state in allCases {
+            if "\(state)".lowercased() == string.lowercased() {
+                return true
+            }
+        }
+        return false
+    }
 }

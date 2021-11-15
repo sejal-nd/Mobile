@@ -77,7 +77,7 @@ class MoveStartServiceViewController: UIViewController {
         
         emailConfirmationStackView.isHidden = viewModel.moveServiceFlow.currentAccountDetail.isAMIAccount
         if let address = viewModel.moveServiceFlow.addressLookupResponse?.first {
-            startServiceAddressLabel.text = address.compressedAddress
+            startServiceAddressLabel.text = address.compressedAddress.getValidISUMAddress()
         }
         electricStackView.isHidden = !(viewModel.moveServiceFlow.currentAccountDetail.serviceType?.contains("ELECTRIC") ?? false)
         gasStackView.isHidden = !(viewModel.moveServiceFlow.currentAccountDetail.serviceType?.contains("GAS") ?? false)

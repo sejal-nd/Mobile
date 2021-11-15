@@ -112,9 +112,9 @@ class MoveServiceConfirmationViewController: UIViewController {
         helplineDescriptionLabel.attributedText = attributedString
         
         stopServiceDateLabel.text = viewModel.moveServiceResponse.stopDate
-        stopServiceAddressLabel.text = viewModel.getStopServiceAddress()
+        stopServiceAddressLabel.text = viewModel.getStopServiceAddress().getValidISUMAddress()
         startServiceDateLabel.text = viewModel.moveServiceResponse.startDate
-        startServiceAddressLabel.text = viewModel.getStartServiceAddress()
+        startServiceAddressLabel.text = viewModel.getStartServiceAddress().getValidISUMAddress()
         billingDescriptionLabel.text = viewModel.getBillingDescription()
         billingAddressLabel.text = viewModel.getBillingAddress()
         accountNumberLabel.text = viewModel.moveServiceResponse.accountNumber
