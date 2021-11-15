@@ -148,6 +148,12 @@ class TapToPayReviewPaymentViewController: UIViewController {
         paymentsAssociatedTextLabel.textColor = .deepGray
         paymentsAssociatedTextLabel.font = SystemFont.regular.of(size: 12)
         
+        if Configuration.shared.opco == .comEd {
+            paymentsAssociatedTextLabel.text = "All payments are processed by Paymentus Corporation. Payment methods saved to My Wallet are stored by Paymentus Corporation. You will receive an email confirming that your payment was submitted successfully. If you receive an error message, please check for your email confirmation to verify you’ve successfully submitted payment."
+        } else {
+            paymentsAssociatedTextLabel.text = "All payments and associated convenience fees are processed by Paymentus Corporation. Payment methods saved to My Wallet are stored by Paymentus Corporation. You will receive an email confirming that your payment was submitted successfully. If you receive an error message, please check for your email confirmation to verify you’ve successfully submitted payment."
+        }
+        
         submitDescriptionLabel.textColor = .deepGray
         submitDescriptionLabel.font = SystemFont.regular.of(size: 12)
         submitDescriptionLabel.text = NSLocalizedString("By tapping Submit, you agree to the payment", comment: "")
