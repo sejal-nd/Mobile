@@ -200,8 +200,24 @@ class ReviewMoveServiceViewController: UIViewController {
 
         if let address = self.viewModel.moveFlowData.addressLookupResponse?.first {
             self.startNewServiceAddressLabel.text = address.compressedAddress.getValidISUMAddress()
+
+            if address.meterInfo.contains(where: {$0.meterType.lowercased() == "ELECTRIC".lowercased()}) {
+                self.electricNewStackView.isHidden = false
+            }else {
+                self.electricNewStackView.isHidden = true
+            }
+
+            if address.meterInfo.contains(where: {$0.meterType.lowercased() == "GAS".lowercased()}) {
+                self.gasNewStackView.isHidden = false
+            }
+            else {
+                self.gasNewStackView.isHidden = true
+            }
+
         } else {
             self.startNewServiceAddressLabel.text = ""
+            self.electricNewStackView.isHidden = true
+            self.gasNewStackView.isHidden = true
         }
 
         if let startDate =  viewModel.moveFlowData.startServiceDate{
