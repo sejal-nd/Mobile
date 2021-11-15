@@ -66,7 +66,7 @@ class BillingHistoryTableViewCell: UITableViewCell {
                 dateLabel.isHidden = true
                 a11y = String(format: NSLocalizedString("%@. %@. %@.", comment: ""), titleText, dateString, amountPaid)
             case .success, .unknown:
-               let titleText = (item.description.lowercased().contains("reinstate") && Configuration.shared.opco == .peco) ? NSLocalizedString(item.description, comment: "") : NSLocalizedString("Payment", comment: "")
+               let titleText = (item.welcomeDescription.lowercased().contains("reinstate") && Configuration.shared.opco == .peco) ? NSLocalizedString(item.welcomeDescription, comment: "") : NSLocalizedString("Payment", comment: "")
                 iconImageView.image = #imageLiteral(resourceName: "ic_activity_success")
                 titleLabel.text = titleText
                 amountLabel.textColor = .successGreenText
