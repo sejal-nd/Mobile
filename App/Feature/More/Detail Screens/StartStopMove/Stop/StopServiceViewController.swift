@@ -184,9 +184,9 @@ class StopServiceViewController: UIViewController {
                 self.stopDateStackView.isHidden = (accountDetails.isFinaled || accountDetails.isPendingDisconnect)
                 self.currentAccount = AccountsStore.shared.currentAccount
                 if let currPremise = self.currentAccount?.currentPremise, let address = currPremise.addressGeneral {
-                    self.currentServiceAddressLabel.text = address
+                    self.currentServiceAddressLabel.text = address.getValidISUMAddress()
                 } else if let address = self.currentAccount?.address {
-                    self.currentServiceAddressLabel.text = address
+                    self.currentServiceAddressLabel.text = address.getValidISUMAddress()
                 } else {
                     self.currentServiceAddressLabel.text = "No Address Available"
                 }

@@ -171,9 +171,9 @@ class ReviewMoveServiceViewController: UIViewController {
         self.electricCurrentStackView.isHidden = !(moveFlowData.currentAccountDetail.serviceType?.contains("ELECTRIC") ?? false)
         self.gasCurrentStackView.isHidden = !(moveFlowData.currentAccountDetail.serviceType?.contains("GAS") ?? false)
         if let currPremise = moveFlowData.currentAccount.currentPremise, let address = currPremise.addressGeneral {
-            self.stopCurrentServiceAddressLabel.text = address
+            self.stopCurrentServiceAddressLabel.text = address.getValidISUMAddress()
         } else {
-            self.stopCurrentServiceAddressLabel.text = moveFlowData.currentAccount.address ?? ""
+            self.stopCurrentServiceAddressLabel.text = (moveFlowData.currentAccount.address ?? "").getValidISUMAddress()
         }
         self.stopCurrentServiceDateLabel.text = DateFormatter.fullMonthDayAndYearFormatter.string(from: moveFlowData.stopServiceDate)
 
@@ -182,7 +182,7 @@ class ReviewMoveServiceViewController: UIViewController {
         self.gasCurrentStackView.isHidden = !(moveFlowData.currentAccountDetail.serviceType?.contains("GAS") ?? false)
 
         if let address = self.moveFlowData.addressLookupResponse?.first {
-            self.startNewServiceAddressLabel.text = address.compressedAddress
+            self.startNewServiceAddressLabel.text = address.compressedAddress.getValidISUMAddress()
         } else {
             self.startNewServiceAddressLabel.text = ""
         }

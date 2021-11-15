@@ -152,9 +152,9 @@ class ReviewStopServiceViewController: UIViewController {
         self.electricStackView.isHidden = !(stopFlowData.currentAccountDetail.serviceType?.contains("ELECTRIC") ?? false)
         self.gasStackView.isHidden = !(stopFlowData.currentAccountDetail.serviceType?.contains("GAS") ?? false)
         if let currPremise = stopFlowData.currentAccount.currentPremise, let address = currPremise.addressGeneral {
-            self.currentServiceAddressLabel.text = address
+            self.currentServiceAddressLabel.text = address.getValidISUMAddress()
         } else {
-            self.currentServiceAddressLabel.text = stopFlowData.currentAccount.address ?? ""
+            self.currentServiceAddressLabel.text = (stopFlowData.currentAccount.address ?? "").getValidISUMAddress()
         }
         self.stopServiceDateLabel.text = DateFormatter.fullMonthDayAndYearFormatter.string(from: stopFlowData.selectedDate)
 

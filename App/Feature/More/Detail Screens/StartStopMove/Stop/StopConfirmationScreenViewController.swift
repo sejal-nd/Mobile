@@ -83,7 +83,7 @@ class StopConfirmationScreenViewController: UIViewController {
         
         stopServiceDateTimeLabel.text = viewModel.getStopServiceDate()
         finalBillLabel.text = viewModel.getFinalBillAddress()
-        stopServiceAddressLabel.text = viewModel.getStopServiceAddress()
+        stopServiceAddressLabel.text = viewModel.getStopServiceAddress().getValidISUMAddress()
         nextStepsDescriptionLabel.text = viewModel.getNextStepDescription()
         accountNumberLabel.text = viewModel.stopServiceResponse.accountNumber
         let helplineDescription = "If you have any questions, please email myhomerep@bge.com and provide your account number. We will respond within 24-48 business hours."
