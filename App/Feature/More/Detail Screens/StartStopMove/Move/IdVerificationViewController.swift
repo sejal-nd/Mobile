@@ -98,6 +98,10 @@ class IdVerificationViewController: KeyboardAvoidingStickyFooterViewController {
             self.employmentStatusHintLabel.isHidden = true
             self.continueButton.isEnabled = self.viewModel.validation() 
         }
+
+        if isLaunchedFromReviewScreen {
+            self.continueButton.isEnabled = false
+        }
     }
     
     @objc func ssnDonePressed() {

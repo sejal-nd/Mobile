@@ -180,7 +180,7 @@ class MoveFinalMailingAddressViewController: KeyboardAvoidingStickyFooterViewCon
     @objc func zipCodeDonePressed() {
         zipTextField.textField.resignFirstResponder()
         if !viewModel.isZipValid {
-            zipTextField.setError(NSLocalizedString("Zip  Code must be 5 characters in length", comment: ""))
+            zipTextField.setError(NSLocalizedString("Zip code must be 5 digits.", comment: ""))
         }
         scrollView.setContentOffset(CGPoint(x: 0, y: scrollView.contentInset.top), animated: true)
     }
