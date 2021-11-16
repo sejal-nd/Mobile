@@ -201,7 +201,7 @@ class FinalReviewMoveServiceViewController: UIViewController {
 
         self.finalBillAddressStackView.isHidden = moveFlowData.currentAccountDetail?.isEBillEnrollment ?? false
         self.ebillStackView.isHidden = !(moveFlowData.currentAccountDetail?.isEBillEnrollment ?? false)
-        self.ebillUserInfoLabel.text = "The bill for service at your previous address will be delivered to \(moveFlowData.currentAccountDetail.customerInfo.emailAddress ?? "")."
+        self.ebillUserInfoLabel.text = "The bill for service at your previous address will be delivered to \(moveFlowData.currentAccountDetail?.customerInfo.emailAddress ?? "")."
         self.supplierAgreementStackView.isHidden = !(moveFlowData.currentAccountDetail?.hasThirdPartySupplier ?? false)
 
         self.submitBtn.isUserInteractionEnabled = !(moveFlowData.currentAccountDetail?.hasThirdPartySupplier ?? false)
