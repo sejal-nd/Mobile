@@ -32,7 +32,12 @@ struct AddressLookupResponse: Decodable {
           case meterInfo
       }
     struct MeterInfo: Codable {
-        var meterID, meterType: String
+        var meterID, meterType: String // "ELEC" or "GAS"
         var isResidential: Bool
+    }
+}
+extension AddressLookupResponse.MeterInfo: Equatable {
+    static func == (lhs: AddressLookupResponse.MeterInfo, rhs: AddressLookupResponse.MeterInfo) -> Bool {
+        return lhs.meterType == rhs.meterType
     }
 }
