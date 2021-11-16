@@ -121,7 +121,7 @@ class MoveStartServiceViewController: UIViewController {
     @IBAction func onToolTipClicked(_ sender: Any) {
         
         let alertViewController = InfoAlertController(title: NSLocalizedString("Start Service Date", comment: ""),
-                                                      message: "You must select an effective date within 30 days from the day you submit your request, excluding holidays and Sundays.")
+                                                      message: "Please select a date up to 30 days from now to start your service, excluding holidays and Sundays.\n Consider your move date to make sure you have access to your utility service during the move")
         present(alertViewController, animated: true)
     }
 

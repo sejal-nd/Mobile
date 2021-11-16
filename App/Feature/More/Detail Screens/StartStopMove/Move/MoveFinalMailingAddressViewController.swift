@@ -139,7 +139,9 @@ class MoveFinalMailingAddressViewController: KeyboardAvoidingStickyFooterViewCon
         zipTextField.setKeyboardType(.numberPad, doneActionTarget: self, doneActionSelector: #selector(zipCodeDonePressed))
         zipTextField.textField.isShowingAccessory = true
         zipTextField.textField.textContentType = .postalCode
-        
+        if isLaunchedFromReviewScreen {
+            self.continueButton.isEnabled = false
+        }
     }
     
     private func showStatePicker() {
