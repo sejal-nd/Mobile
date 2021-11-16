@@ -54,8 +54,6 @@ class ReviewMoveServiceViewController: UIViewController {
 
     @IBOutlet weak var startNewServiceConnectStaticLabel: UILabel!
 
-
-    var moveFlowData: MoveServiceFlowData!
     var viewModel = ReviewMoveServiceViewModel()
     var disposeBag = DisposeBag()
     var changeDateType = ChnageDateServiceType.stop
@@ -104,7 +102,7 @@ class ReviewMoveServiceViewController: UIViewController {
                 calendarVC.scroll(toSelectedDate: true)
                 calendarVC.weekdayHeaderEnabled = true
                 calendarVC.weekdayTextType = PDTSimpleCalendarViewWeekdayTextType.veryShort
-                calendarVC.selectedDate = Calendar.opCo.startOfDay(for: self.moveFlowData.stopServiceDate)
+                calendarVC.selectedDate = Calendar.opCo.startOfDay(for: self.viewModel.moveFlowData.stopServiceDate)
                 let navigationController = LargeTitleNavigationController(rootViewController: calendarVC)
                 navigationController.setNavigationBarHidden(false, animated: false)
                 calendarVC.navigationItem.title = "Select Stop Date"
@@ -128,7 +126,7 @@ class ReviewMoveServiceViewController: UIViewController {
                 calendarVC.scroll(toSelectedDate: true)
                 calendarVC.weekdayHeaderEnabled = true
                 calendarVC.weekdayTextType = PDTSimpleCalendarViewWeekdayTextType.veryShort
-                if let startDate =  self.moveFlowData.startServiceDate{
+                if let startDate =  self.viewModel.moveFlowData.startServiceDate{
                     calendarVC.selectedDate = Calendar.opCo.startOfDay(for: startDate)
                 }
 
@@ -148,7 +146,7 @@ class ReviewMoveServiceViewController: UIViewController {
                 let newServiceAddressViewController = storyboard.instantiateViewController(withIdentifier: "NewServiceAddressViewController") as! NewServiceAddressViewController
                 newServiceAddressViewController.isLaunchedFromReviewScreen = true
                 newServiceAddressViewController.delegate = self
-                newServiceAddressViewController.viewModel = NewServiceAddressViewModel(moveServiceFlowData: self.moveFlowData)
+                newServiceAddressViewController.viewModel = NewServiceAddressViewModel(moveServiceFlowData: self.viewModel.moveFlowData)
                 let navigationController = LargeTitleNavigationController(rootViewController: newServiceAddressViewController)
                 navigationController.modalPresentationStyle = .fullScreen
                 self.present(navigationController, animated: true, completion: nil)
@@ -161,33 +159,52 @@ class ReviewMoveServiceViewController: UIViewController {
 
                 let storyboard = UIStoryboard(name: "ISUMMove", bundle: nil)
                 let reviewStopServiceViewController = storyboard.instantiateViewController(withIdentifier: "FinalReviewMoveServiceViewController") as! FinalReviewMoveServiceViewController
-                reviewStopServiceViewController.moveFlowData = self.moveFlowData
+                reviewStopServiceViewController.moveFlowData = self.viewModel.moveFlowData
                 self.navigationController?.pushViewController(reviewStopServiceViewController, animated: true)
             }).disposed(by: disposeBag)
 
     }
 
     func refreshData() {
-        self.electricCurrentStackView.isHidden = !(moveFlowData.currentAccountDetail.serviceType?.contains("ELECTRIC") ?? false)
-        self.gasCurrentStackView.isHidden = !(moveFlowData.currentAccountDetail.serviceType?.contains("GAS") ?? false)
-        if let currPremise = moveFlowData.currentAccount.currentPremise, let address = currPremise.addressGeneral {
-            self.stopCurrentServiceAddressLabel.text = address.getValidISUMAddress()
+        
+        self.electricCurrentStackView.isHidden = (viewModel.moveFlowData.unauthMoveData?.isUnauthMove ?? false) ? !(viewModel.moveFlowData.unauthMoveData?.accountDetails?.serviceType.contains("ELECTRIC") ?? false) : !(viewModel.moveFlowData.currentAccountDetail?.serviceType?.contains("ELECTRIC") ?? false)
+        
+        self.gasCurrentStackView.isHidden = (viewModel.moveFlowData.unauthMoveData?.isUnauthMove ?? false) ? !(viewModel.moveFlowData.unauthMoveData?.accountDetails?.serviceType.contains("GAS") ?? false) : !(viewModel.moveFlowData.currentAccountDetail?.serviceType?.contains("GAS") ?? false)
+
+        if let unauthMoveData = viewModel.moveFlowData.unauthMoveData, unauthMoveData.isUnauthMove, let unauthAccountDetails = unauthMoveData.accountDetails {
+            var address = ""
+            if !unauthAccountDetails.addressLine.isEmpty  {
+                address += "\(unauthAccountDetails.addressLine), "
+            }
+            if !unauthAccountDetails.city.isEmpty {
+                address += "\(unauthAccountDetails.city), "
+            }
+            if !unauthAccountDetails.state.isEmpty {
+                address += "\(unauthAccountDetails.state)"
+            }
+            if !unauthAccountDetails.zipCode.isEmpty {
+                address += " \(unauthAccountDetails.zipCode)"
+            }
+            
+            if address.isEmpty {
+                self.stopCurrentServiceAddressLabel.text = "No Address Available"
+            } else {
+                self.stopCurrentServiceAddressLabel.text = address
+            }
+        } else if let currPremise = viewModel.moveFlowData.currentAccount?.currentPremise, let address = currPremise.addressGeneral {
+            self.stopCurrentServiceAddressLabel.text = address
         } else {
-            self.stopCurrentServiceAddressLabel.text = (moveFlowData.currentAccount.address ?? "").getValidISUMAddress()
+            self.stopCurrentServiceAddressLabel.text = viewModel.moveFlowData.currentAccount?.address ?? "No Address Available"
         }
-        self.stopCurrentServiceDateLabel.text = DateFormatter.fullMonthDayAndYearFormatter.string(from: moveFlowData.stopServiceDate)
+        self.stopCurrentServiceDateLabel.text = DateFormatter.fullMonthDayAndYearFormatter.string(from: viewModel.moveFlowData.stopServiceDate)
 
-
-        self.electricCurrentStackView.isHidden = !(moveFlowData.currentAccountDetail.serviceType?.contains("ELECTRIC") ?? false)
-        self.gasCurrentStackView.isHidden = !(moveFlowData.currentAccountDetail.serviceType?.contains("GAS") ?? false)
-
-        if let address = self.moveFlowData.addressLookupResponse?.first {
+        if let address = self.viewModel.moveFlowData.addressLookupResponse?.first {
             self.startNewServiceAddressLabel.text = address.compressedAddress.getValidISUMAddress()
         } else {
             self.startNewServiceAddressLabel.text = ""
         }
 
-        if let startDate =  moveFlowData.startServiceDate{
+        if let startDate =  viewModel.moveFlowData.startServiceDate{
             self.startNewServiceDateLabel.text = DateFormatter.fullMonthDayAndYearFormatter.string(from:startDate)
         }
 
@@ -201,16 +218,16 @@ class ReviewMoveServiceViewController: UIViewController {
 // MARK: - PDTSimpleCalendarViewDelegate
 extension ReviewMoveServiceViewController: PDTSimpleCalendarViewDelegate {
     func simpleCalendarViewController(_ controller: PDTSimpleCalendarViewController!, isEnabledDate date: Date!) -> Bool {
-        return viewModel.isValidDate(date, workDays: moveFlowData.workDays)
+        return viewModel.isValidDate(date, workDays: viewModel.moveFlowData.workDays)
     }
 
     func simpleCalendarViewController(_ controller: PDTSimpleCalendarViewController!, didSelect date: Date!) {
         switch changeDateType {
         case .stop:
-            self.moveFlowData.stopServiceDate = date
+            self.viewModel.moveFlowData.stopServiceDate = date
             self.stopCurrentServiceDateLabel.text = DateFormatter.fullMonthDayAndYearFormatter.string(from: date)
         case .start:
-            self.moveFlowData.startServiceDate = date
+            self.viewModel.moveFlowData.startServiceDate = date
             self.startNewServiceDateLabel.text = DateFormatter.fullMonthDayAndYearFormatter.string(from: date)
         }
         controller.dismiss(animated: true, completion: nil)
@@ -218,9 +235,9 @@ extension ReviewMoveServiceViewController: PDTSimpleCalendarViewDelegate {
 }
 extension ReviewMoveServiceViewController:NewServiceAddressDelegate{
     func didSelectNewServiceAddress(_ flowData: MoveServiceFlowData) {
-        moveFlowData.addressLookupResponse = flowData.addressLookupResponse;
-        moveFlowData.appartment_List = flowData.appartment_List;
-        moveFlowData.selected_appartment = flowData.selected_appartment;
+        viewModel.moveFlowData.addressLookupResponse = flowData.addressLookupResponse;
+        viewModel.moveFlowData.appartment_List = flowData.appartment_List;
+        viewModel.moveFlowData.selected_appartment = flowData.selected_appartment;
         refreshData()
     }
 }

@@ -77,6 +77,10 @@ class MoveLandingViewController: UIViewController {
     
     @IBAction func BeginTapped(_ sender: PrimaryButton)  {
         ///TODO:  Navigate to the first screen of the Stop Service Flow.
+        if let unauthMoveData = viewModel.unauthMoveData, unauthMoveData.isUnauthMove {
+            navigateToStopServiceVC()
+            return
+        }
         if (viewModel.isDetailsLoading){
             viewModel.isBeginPressed = true;
             DispatchQueue.main.async {
@@ -104,7 +108,14 @@ class MoveLandingViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        addCloseButton()
+        if viewModel.isUnauth {
+            addBackButton()
+        }else {
+            addCloseButton()
+        }
+        if viewModel.isUnauth {
+            return
+        }
         setupUIBinding()
         viewModel.fetchAccountDetails()
     }
@@ -151,9 +162,21 @@ class MoveLandingViewController: UIViewController {
             }.disposed(by: disposeBag)
 
     }
+    func addBackButton(){
+        self.navigationItem.hidesBackButton = true
+        let newBackButton = UIBarButtonItem(image: UIImage(named: "ic_back"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(MoveLandingViewController.back(sender:)))
+        newBackButton.accessibilityLabel = NSLocalizedString("Back", comment: "")
+        self.navigationItem.leftBarButtonItem = newBackButton
+    }
+    
+    @objc func back(sender: UIBarButtonItem) {
+        self.navigationController?.popViewController(animated: true)
+    }
+
     func navigateToStopServiceVC(){
         let storyboard = UIStoryboard(name: "ISUMMove", bundle: nil)
         let scheduleMoveServiceViewController = storyboard.instantiateViewController(withIdentifier: "ScheduleMoveServiceViewController") as! ScheduleMoveServiceViewController
+        scheduleMoveServiceViewController.viewModel.unauthMoveData = viewModel.unauthMoveData
         self.navigationController?.pushViewController(scheduleMoveServiceViewController, animated: true)
     }
 

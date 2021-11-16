@@ -22,11 +22,14 @@ class AddressSearchModel {
     var disposeBag = DisposeBag()
     var zipcode = ""
     var address = ""
-
+    var isUnauthMove: Bool = false
 
     //MARK: Internal Methods
     func searchAaddress() -> Observable<StreetAddressResponse> {
-        return   MoveService.rx.fetchStreetAddress(address: address, zipcode: zipcode)
+        if isUnauthMove {
+            return MoveService.rx.fetchStreetAddressAnon(address: address, zipcode: zipcode)
+        }
+        return MoveService.rx.fetchStreetAddress(address: address, zipcode: zipcode)
     }
 
     func findStreetAddress(at index: Int) -> String{

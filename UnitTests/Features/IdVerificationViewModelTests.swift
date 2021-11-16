@@ -77,7 +77,7 @@ class IdVerificationViewModelTests: XCTestCase {
         let viewModel = IdVerificationViewModel(moveDataFlow: moveServiceFlow)
 
         let age18Plus = Calendar.current.date(byAdding: .year, value: -18, to: Date())!
-        let idVerification = IdVerification(ssn: "123456789", dateOfBirth: age18Plus, employmentStatus: "Retired")
+        let idVerification = IdVerification(ssn: "123456789", dateOfBirth: age18Plus, employmentStatus: ("Retired", 5))
 
         viewModel.idVerification = idVerification
         XCTAssertTrue(viewModel.validation())

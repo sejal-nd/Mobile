@@ -45,11 +45,11 @@ public struct MoveISUMServiceRequest: Encodable {
             self.stopServiceDate = DateFormatter.mmDdYyyyFormatter.string(from: moveServiceFlowData.stopServiceDate)
             self.primaryCustInformation = PrimaryCustInformationRequest(moveServiceFlowData: moveServiceFlowData)
             self.primaryCustPersIdentification = PrimaryCustPersIdentificationRequest(moveServiceFlowData: moveServiceFlowData)
-            self.emailAddress = moveServiceFlowData.currentAccountDetail.customerInfo.emailAddress
+            self.emailAddress = moveServiceFlowData.unauthMoveData?.accountDetails != nil ? (moveServiceFlowData.unauthMoveData?.accountDetails?.customerInfo.emailAddress) : moveServiceFlowData.currentAccountDetail?.customerInfo.emailAddress
             self.isRCDStopCapable = moveServiceFlowData.verificationDetail?.isRCDCapable
             self.serviceLists = moveServiceFlowData.verificationDetail?.serviceLists.map { ServiceListsRequest(serviceList: $0) }
             self.selectedStopServicePoints = moveServiceFlowData.verificationDetail?.serviceLists.map { $0.servicePointID }
-            self.accountNumber = moveServiceFlowData.currentAccountDetail.accountNumber
+            self.accountNumber = moveServiceFlowData.unauthMoveData?.accountDetails != nil ? (moveServiceFlowData.unauthMoveData?.accountDetails?.accountNumber ?? "") : (moveServiceFlowData.currentAccountDetail?.accountNumber ?? "")
             self.rentOwn = moveServiceFlowData.isOwner ? "BUYING OR OWNS" : "RENTING"
             self.createOnlineProfile = false
             self.stopServiceAddress = StopServiceAddressRequest(moveServiceFlowData: moveServiceFlowData)
@@ -93,12 +93,12 @@ public struct MoveISUMServiceRequest: Encodable {
             self.apartmentUnitNo = moveServiceFlowData.addressLookupResponse?.first?.apartmentUnitNo
             self.city = moveServiceFlowData.addressLookupResponse?.first?.city
             self.zipCode = moveServiceFlowData.addressLookupResponse?.first?.zipCode
-            self.accountNumber = moveServiceFlowData.currentAccountDetail.accountNumber
-            self.customerID = moveServiceFlowData.currentAccountDetail.customerNumber
+            self.accountNumber = moveServiceFlowData.unauthMoveData?.accountDetails != nil ? moveServiceFlowData.unauthMoveData?.accountDetails?.accountNumber : moveServiceFlowData.currentAccountDetail?.accountNumber
+            self.customerID = moveServiceFlowData.unauthMoveData?.accountDetails != nil ? moveServiceFlowData.unauthMoveData?.accountDetails?.customerInfo.number : moveServiceFlowData.currentAccountDetail?.customerNumber
             self.state = USState.getState(state: moveServiceFlowData.verificationDetail?.startStopMoveServiceDetails.primaryCustInformation.billingAddress.state ?? "")
             self.country = moveServiceFlowData.verificationDetail?.startStopMoveServiceDetails.primaryCustInformation.billingAddress.country
             self.premiseID = moveServiceFlowData.addressLookupResponse?.first?.premiseID
-            self.serviceType = moveServiceFlowData.currentAccountDetail.serviceType
+            self.serviceType = moveServiceFlowData.currentAccountDetail?.serviceType
             self.meterInfo = moveServiceFlowData.addressLookupResponse?.first?.meterInfo.map { MeterInfoRequest(meterInfo: $0) }
         }
 
@@ -152,7 +152,7 @@ public struct MoveISUMServiceRequest: Encodable {
         
         init(moveServiceFlowData: MoveServiceFlowData) {
 
-            self.address = moveServiceFlowData.currentAccountDetail.address
+            self.address = moveServiceFlowData.unauthMoveData?.accountDetails != nil ? moveServiceFlowData.unauthMoveData?.accountDetails?.addressLine : moveServiceFlowData.currentAccountDetail?.address
             self.streetName = moveServiceFlowData.verificationDetail?.startStopMoveServiceDetails.primaryCustInformation.billingAddress.streetName
             self.city = moveServiceFlowData.verificationDetail?.startStopMoveServiceDetails.primaryCustInformation.billingAddress.city
             self.state = USState.getState(state: moveServiceFlowData.verificationDetail?.startStopMoveServiceDetails.primaryCustInformation.billingAddress.state ?? "")
@@ -253,55 +253,55 @@ public struct MoveISUMServiceRequest: Encodable {
 
     public struct PrimaryCustInformationRequest: Encodable {
         
-        let FirstName: String?
-        let LastName: String?
+        let firstName: String?
+        let lastName: String?
         let address: String?
         let streetName: String?
         let city: String?
         let state: String?
         let zipCode: String?
-        let ContactPhoneNo: String?
-        let ContactPhoneExt: String?
-        let ContactPhoneNoType: String?
-        let AltContactPhoneNo: String?
-        let AltContactPhoneNoType: String?
+        let contactPhoneNo: String?
+        let contactPhoneExt: String?
+        let contactPhoneNoType: String?
+        let altContactPhoneNo: String?
+        let altContactPhoneNoType: String?
         let email: String?
         let useAltBillingAddress: Bool
         let billingAddress: BillingAddressRequest?
         
         init(moveServiceFlowData: MoveServiceFlowData) {
             
-            FirstName = moveServiceFlowData.currentAccountDetail.customerInfo.firstName
-            LastName = moveServiceFlowData.currentAccountDetail.customerInfo.lastName
-            address = moveServiceFlowData.currentAccountDetail.address
-            streetName = moveServiceFlowData.currentAccountDetail.street
-            city = moveServiceFlowData.currentAccountDetail.city
-            state = USState.getState(state: moveServiceFlowData.currentAccountDetail.state ?? "")
-            zipCode = moveServiceFlowData.currentAccountDetail.zipCode
-            ContactPhoneNo = moveServiceFlowData.currentAccountDetail.customerInfo.primaryPhoneNumber
-            ContactPhoneExt = ""
-            ContactPhoneNoType = "CELL"
-            AltContactPhoneNo = nil
-            AltContactPhoneNoType = nil
-            email = moveServiceFlowData.currentAccountDetail.customerInfo.emailAddress
+            firstName = moveServiceFlowData.unauthMoveData?.accountDetails != nil ? moveServiceFlowData.unauthMoveData?.accountDetails?.customerInfo.firstName :moveServiceFlowData.currentAccountDetail?.customerInfo.firstName
+            lastName = moveServiceFlowData.unauthMoveData?.accountDetails != nil ? moveServiceFlowData.unauthMoveData?.accountDetails?.customerInfo.lastName : moveServiceFlowData.currentAccountDetail?.customerInfo.lastName
+            address = moveServiceFlowData.unauthMoveData?.accountDetails != nil ? moveServiceFlowData.unauthMoveData?.accountDetails?.addressLine : moveServiceFlowData.currentAccountDetail?.address
+            streetName = moveServiceFlowData.unauthMoveData?.accountDetails != nil ? moveServiceFlowData.unauthMoveData?.accountDetails?.street : moveServiceFlowData.currentAccountDetail?.street
+            city = moveServiceFlowData.unauthMoveData?.accountDetails != nil ? moveServiceFlowData.unauthMoveData?.accountDetails?.city : moveServiceFlowData.currentAccountDetail?.city
+            state = moveServiceFlowData.unauthMoveData?.accountDetails != nil ? USState.getState(state: moveServiceFlowData.unauthMoveData?.accountDetails?.state ?? "") : USState.getState(state: moveServiceFlowData.currentAccountDetail?.state ?? "")
+            zipCode = moveServiceFlowData.unauthMoveData?.accountDetails != nil ? moveServiceFlowData.unauthMoveData?.accountDetails?.zipCode : moveServiceFlowData.currentAccountDetail?.zipCode
+            contactPhoneNo = moveServiceFlowData.unauthMoveData?.accountDetails != nil ? moveServiceFlowData.unauthMoveData?.accountDetails?.customerInfo.primaryPhoneNumber : moveServiceFlowData.currentAccountDetail?.customerInfo.primaryPhoneNumber
+            contactPhoneExt = nil
+            contactPhoneNoType = "CELL"
+            altContactPhoneNo = nil
+            altContactPhoneNoType = nil
+            email = moveServiceFlowData.unauthMoveData?.accountDetails != nil ? moveServiceFlowData.unauthMoveData?.accountDetails?.customerInfo.emailAddress : moveServiceFlowData.currentAccountDetail?.customerInfo.emailAddress
             useAltBillingAddress = !moveServiceFlowData.hasCurrentServiceAddressForBill
             billingAddress = BillingAddressRequest(moveServiceFlowData: moveServiceFlowData)
         }
         
         enum CodingKeys: String, CodingKey {
             
-            case FirstName = "FirstName"
-            case LastName = "LastName"
+            case firstName = "FirstName"
+            case lastName = "LastName"
             case address = "Address"
             case streetName = "StreetName"
             case city = "City"
             case state = "State"
             case zipCode = "ZipCode"
-            case ContactPhoneNo = "ContactPhoneNo"
-            case ContactPhoneExt = "ContactPhoneExt"
-            case ContactPhoneNoType = "ContactPhoneNoType"
-            case AltContactPhoneNo = "AltContactPhoneNo"
-            case AltContactPhoneNoType = "AltContactPhoneNoType"
+            case contactPhoneNo = "ContactPhoneNo"
+            case contactPhoneExt = "ContactPhoneExt"
+            case contactPhoneNoType = "ContactPhoneNoType"
+            case altContactPhoneNo = "AltContactPhoneNo"
+            case altContactPhoneNoType = "AltContactPhoneNoType"
             case email = "Email"
             case useAltBillingAddress = "UseAltBillingAddress"
             case billingAddress = "BillingAddress"

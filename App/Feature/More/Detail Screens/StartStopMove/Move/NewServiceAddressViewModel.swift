@@ -109,6 +109,14 @@ class NewServiceAddressViewModel{
         if !self.isLoading.value {
             self.isLoading.accept(true)
         }
+        if let unauthMoveData = moveServiceFlowData.unauthMoveData, unauthMoveData.isUnauthMove {
+            validateZipCodeUnauthentication(onSuccess: onSuccess, onFailure: onFailure)
+        } else {
+            validateZipCodeAuthentication(onSuccess: onSuccess, onFailure: onFailure)
+        }
+    }
+    
+    private func validateZipCodeAuthentication(onSuccess: @escaping ((ValidatedZipCodeResponse)-> Void), onFailure: @escaping ((Error)-> Void)) {
         MoveService.validateZip(code: self.zipCode!) { [weak self] (result: Result<ValidatedZipCodeResponse, NetworkingError>) in
             guard let `self` = self else { return }
             switch result {
@@ -124,12 +132,39 @@ class NewServiceAddressViewModel{
             }
         }
     }
+
+    private func validateZipCodeUnauthentication(onSuccess: @escaping ((ValidatedZipCodeResponse)-> Void), onFailure: @escaping ((Error)-> Void)) {
+        MoveService.validateZipAnon(code: self.zipCode!) { [weak self] (result: Result<ValidatedZipCodeResponse, NetworkingError>) in
+            guard let `self` = self else { return }
+            switch result {
+            case .success(let validatedZipCodeResponse):
+                self.validatedZipCodeResponse.accept(validatedZipCodeResponse)
+                if self.isLoading.value {
+                    self.isLoading.accept(false)
+                }
+                onSuccess(validatedZipCodeResponse)
+            case .failure(let error):
+                self.isLoading.accept(false)
+                onFailure(error)
+            }
+        }
+    }
+
     
     func fetchAppartment(onSuccess: @escaping(([AppartmentResponse])-> Void), onFailure: @escaping((Error) -> Void)) {
         
         if !self.isLoading.value {
             self.isLoading.accept(true)
         }
+        if let unauthMoveData = moveServiceFlowData.unauthMoveData, unauthMoveData.isUnauthMove {
+            fetchAppartmentUnauthentication(onSuccess: onSuccess, onFailure: onFailure)
+
+        } else {
+            fetchAppartmentAuthentication(onSuccess: onSuccess, onFailure: onFailure)
+        }
+    }
+    
+    private func fetchAppartmentAuthentication(onSuccess: @escaping(([AppartmentResponse])-> Void), onFailure: @escaping((Error) -> Void)) {
         MoveService.fetchAppartment(address: self.streetAddress!, zipcode: self.zipCode!) { [weak self] (result: Result<[AppartmentResponse], NetworkingError>) in
             guard let `self` = self else { return }
             switch result {
@@ -147,12 +182,56 @@ class NewServiceAddressViewModel{
         }
     }
     
+    private func fetchAppartmentUnauthentication(onSuccess: @escaping(([AppartmentResponse])-> Void), onFailure: @escaping((Error) -> Void)) {
+        MoveService.fetchAppartmentAnon(address: self.streetAddress!, zipcode: self.zipCode!) { [weak self] (result: Result<[AppartmentResponse], NetworkingError>) in
+            guard let `self` = self else { return }
+            switch result {
+            case .success(let appartmentResp):
+                if self.isLoading.value {
+                    self.isLoading.accept(false)
+                }
+                self.appartmentResponse.accept(appartmentResp)
+                self.moveServiceFlowData.appartment_List = appartmentResp
+                onSuccess(appartmentResp)
+            case .failure(let error):
+                self.isLoading.accept(false)
+                onFailure(error)
+            }
+        }
+    }
+
+    
     func lookupAddress(onSuccess: @escaping(([AddressLookupResponse]) -> Void), onFailure: @escaping((Error) -> Void)) {
         
         if !self.isLoading.value {
             self.isLoading.accept(true)
         }
+        if let unauthMoveData = moveServiceFlowData.unauthMoveData, unauthMoveData.isUnauthMove {
+            lookupAddressUnauthentication(onSuccess: onSuccess, onFailure: onFailure)
+        } else {
+            lookupAddressAuthentication(onSuccess: onSuccess, onFailure: onFailure)
+        }
+    }
+    
+    private func lookupAddressAuthentication(onSuccess: @escaping(([AddressLookupResponse]) -> Void), onFailure: @escaping((Error) -> Void)) {
         MoveService.lookupAddress(address: self.streetAddress!, zipcode: self.zipCode!, premiseID:self.premiseID!) { [weak self] (result: Result<[AddressLookupResponse], NetworkingError>) in
+            guard let `self` = self else { return }
+            switch result {
+            case .success(let addressLookupResponse):
+                if self.isLoading.value {
+                    self.isLoading.accept(false)
+                }
+                self.addressLookupResponse.accept(addressLookupResponse)
+                onSuccess(addressLookupResponse)
+            case .failure( let error):
+                self.isLoading.accept(false)
+                onFailure(error)
+            }
+        }
+    }
+    
+    private func lookupAddressUnauthentication(onSuccess: @escaping(([AddressLookupResponse]) -> Void), onFailure: @escaping((Error) -> Void)) {
+        MoveService.lookupAddressAnon(address: self.streetAddress!, zipcode: self.zipCode!, premiseID:self.premiseID!) { [weak self] (result: Result<[AddressLookupResponse], NetworkingError>) in
             guard let `self` = self else { return }
             switch result {
             case .success(let addressLookupResponse):

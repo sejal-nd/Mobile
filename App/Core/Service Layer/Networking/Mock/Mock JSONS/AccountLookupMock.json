@@ -1,10 +1,69 @@
 {
   "default": {
     "success": true,
-    "data": {
-        "AccountNumber": "1234567890",
-        "StreetNumber": "1268",
-        "ApartmentUnitNumber": "12B"
-    }
+    "data": [{
+        "AccountDetails": {
+            "AccountNumber": "5604171000",
+            "CustomerID": "",
+            "OpCo": null,
+            "OutageStatus": null,
+            "PastDueAmount": 0,
+            "PhoneNumber": null,
+            "SocialSecurityOrTaxId": null,
+            "StreetNumber": "202",
+            "StreetAddress": "202 Chartley Dr",
+            "City": null,
+            "State": null,
+            "zipCode": null,
+            "UserName": null,
+            "CdSadStat": null
+        },
+        "flagSmallCommAcctRep": false
+    }]
+  },
+  "unauthResidentialUser": {
+    "success": true,
+    "data": [{
+        "AccountDetails": {
+            "AccountNumber": "5604171000",
+            "CustomerID": "",
+            "OpCo": null,
+            "OutageStatus": null,
+            "PastDueAmount": 0,
+            "PhoneNumber": null,
+            "SocialSecurityOrTaxId": null,
+            "StreetNumber": "202",
+            "StreetAddress": "202 Chartley Dr",
+            "City": null,
+            "State": null,
+            "zipCode": null,
+            "UserName": null,
+            "CdSadStat": null
+        },
+        "flagSmallCommAcctRep": false
+    }]
+  },
+  "unauthCommercialUser": {
+    "success": true,
+    "data": [{
+        "AccountDetails": {
+            "AccountNumber": "5604171000",
+            "CustomerID": "",
+            "OpCo": null,
+            "OutageStatus": null,
+            "PastDueAmount": 0,
+            "PhoneNumber": null,
+            "SocialSecurityOrTaxId": null,
+            "StreetNumber": "202",
+            "StreetAddress": "202 Chartley Dr",
+            "City": null,
+            "State": null,
+            "zipCode": null,
+            "UserName": null,
+            "CdSadStat": null
+        },
+        "flagSmallCommAcctRep": false
+    }]
   }
 }
+

@@ -11,9 +11,9 @@ import Foundation
 struct MoveServiceFlowData {
     let workDays: [WorkdaysResponse.WorkDay]
     var stopServiceDate: Date
-    let currentPremise: PremiseInfo
-    let currentAccount: Account
-    let currentAccountDetail: AccountDetail
+    let currentPremise: PremiseInfo?
+    let currentAccount: Account?
+    let currentAccountDetail: AccountDetail?
     let verificationDetail: StopServiceVerificationResponse?
     var startServiceDate: Date?
     var isOwner: Bool = true
@@ -24,6 +24,7 @@ struct MoveServiceFlowData {
     var idVerification: IdVerification?
     var hasCurrentServiceAddressForBill: Bool
     var mailingAddress: MailingAddress?
+    var unauthMoveData: UnauthMoveData?
 }
 
 struct IdVerification {
@@ -33,4 +34,14 @@ struct IdVerification {
     var employmentStatus: (String, Int)?
     var driverLicenseNumber: String?
     var stateOfIssueDriverLincense: String?
+}
+
+struct UnauthMoveData {
+    
+    var isUnauthMove: Bool = false
+    var phoneNumber: String = ""
+    var selectedAccountNumber: String = ""
+    var ssn: String = ""
+    var accountLookup: [AccountLookupResult] = []
+    var accountDetails: UnAuthAccountDetails?
 }
