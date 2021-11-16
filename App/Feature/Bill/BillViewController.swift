@@ -191,6 +191,12 @@ class BillViewController: AccountPickerViewController {
                 self.viewModel.fetchAccountDetail(isRefresh: true)
             }).disposed(by: bag)
         
+        NotificationCenter.default.rx.notification(.didRecieveDdeDpa, object: nil)
+        .subscribe(onNext: { [weak self] notification in
+            guard let self = self else { return }
+            self.viewModel.ddeDpaEligiblityCheck()
+        }).disposed(by: bag)
+        
         usageBillImpactContentView.configure(withViewModel: viewModel)
         
         if Configuration.shared.opco == .bge {

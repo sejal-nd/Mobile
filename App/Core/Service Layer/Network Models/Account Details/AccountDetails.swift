@@ -385,9 +385,6 @@ public struct AccountDetail: Decodable {
         self.isActiveSeverance = try container.decodeIfPresent(Bool.self, forKey: .isActiveSeverance) ?? false
         self.isDualBillOption = try container.decodeIfPresent(Bool.self, forKey: .isDualBillOption) ?? false
         
-        if status?.lowercased() == "inactive" || (FeatureFlagUtility.shared.bool(forKey: .hasAuthenticatedISUM) && Configuration.shared.opco.rawValue == "BGE" && status?.lowercased() == "closed") {
-            isFinaled = true
-        }
         self.isPendingDisconnectElectic = try container.decodeIfPresent(Bool.self,
                                                                                forKey: .isPendingDisconnectElectic) ?? false
         self.isPendingDisconnectGas = try container.decodeIfPresent(Bool.self,
@@ -396,6 +393,9 @@ public struct AccountDetail: Decodable {
                                                                                forKey: .isPendingDisconnect) ?? false
         self.isRCDCapable = try container.decodeIfPresent(Bool.self,
                                                                                forKey: .isRCDCapable) ?? false
+        if status?.lowercased() == "inactive" || (FeatureFlagUtility.shared.bool(forKey: .hasAuthenticatedISUM) && Configuration.shared.opco.rawValue == "BGE" && status?.lowercased() == "closed") {
+            isFinaled = true
+        }
     }
     
     var isEligibleForUsageData: Bool {

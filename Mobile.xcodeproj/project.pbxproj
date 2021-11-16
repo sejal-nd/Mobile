@@ -84,6 +84,7 @@
 		30DD88332549703B007C320D /* iTronSmartThermostatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DD88322549703B007C320D /* iTronSmartThermostatViewModel.swift */; };
 		30DD883625498122007C320D /* ItronSSODataMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 30DD883525498122007C320D /* ItronSSODataMock.json */; };
 		30DFE8612492641900FEFDE4 /* EditNicknameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DFE85F24925FE300FEFDE4 /* EditNicknameViewModel.swift */; };
+		350F669B274387CC00E92765 /* AssistanceProgramStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350F669A274387CC00E92765 /* AssistanceProgramStore.swift */; };
 		351241EF22B3DB8700E8BD25 /* AccountSheet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 351241EC22B3DB8600E8BD25 /* AccountSheet.storyboard */; };
 		351241F222B3DB8700E8BD25 /* AccountSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351241ED22B3DB8600E8BD25 /* AccountSheetViewController.swift */; };
 		351DE2F9221EF87400580E20 /* UITableView+ResizableHeaderFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351DE2F8221EF87400580E20 /* UITableView+ResizableHeaderFooter.swift */; };
@@ -134,6 +135,7 @@
 		359BDBAC22E09D93007002B0 /* AccountInfoBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 359BDBAB22E09D93007002B0 /* AccountInfoBar.xib */; };
 		359BDBB122E0E6E3007002B0 /* smallcircleload_blue.json in Resources */ = {isa = PBXBuildFile; fileRef = 359BDBB022E0E6E3007002B0 /* smallcircleload_blue.json */; };
 		359BDBB522E0E6EA007002B0 /* checkmark_blue.json in Resources */ = {isa = PBXBuildFile; fileRef = 359BDBB422E0E6EA007002B0 /* checkmark_blue.json */; };
+		359F50A227438879009A0A9C /* AssistanceProgramStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350F669A274387CC00E92765 /* AssistanceProgramStore.swift */; };
 		35A2B88824A1E0E0004B38BC /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A2B88624A1E0DE004B38BC /* RegistrationViewModel.swift */; };
 		35A5DCC32305D70400A82AA8 /* AutoPayBGE.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35A5DCC22305D70400A82AA8 /* AutoPayBGE.storyboard */; };
 		35A6C6B9211C6CCE00C2A58F /* TitleTableViewHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35A6C6B8211C6CCE00C2A58F /* TitleTableViewHeaderView.xib */; };
@@ -1336,6 +1338,7 @@
 		34D5D8773E8D72600EFCF9F9 /* Pods-EUMobile-Watch.delmarva-beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch.delmarva-beta.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch/Pods-EUMobile-Watch.delmarva-beta.xcconfig"; sourceTree = "<group>"; };
 		35052B0E251D09D600095499 /* TapToPayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapToPayViewModel.swift; sourceTree = "<group>"; };
 		350B980D24CE898D00BB0CA7 /* RegistrationChooseAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationChooseAccountViewController.swift; sourceTree = "<group>"; };
+		350F669A274387CC00E92765 /* AssistanceProgramStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssistanceProgramStore.swift; sourceTree = "<group>"; };
 		351241EC22B3DB8600E8BD25 /* AccountSheet.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AccountSheet.storyboard; sourceTree = "<group>"; };
 		351241ED22B3DB8600E8BD25 /* AccountSheetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountSheetViewController.swift; sourceTree = "<group>"; };
 		351DE2F8221EF87400580E20 /* UITableView+ResizableHeaderFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+ResizableHeaderFooter.swift"; sourceTree = "<group>"; };
@@ -5504,6 +5507,7 @@
 				C3B5F38B25E98418005D3740 /* FeatureFlagUtility.swift */,
 				9C34D747239EE9FE00DF7FE2 /* GameTaskStore.swift */,
 				9CDB5E772399AE1300976BB2 /* GiftInventory.swift */,
+				350F669A274387CC00E92765 /* AssistanceProgramStore.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -6551,6 +6555,7 @@
 				35F9DDBA2333D90400AAA2B2 /* Fillable.swift in Sources */,
 				C3055C0E2538FBEF000DB89C /* AnonymousService.swift in Sources */,
 				C3055C072538FB38000DB89C /* CreditCard.swift in Sources */,
+				359F50A227438879009A0A9C /* AssistanceProgramStore.swift in Sources */,
 				67247F6125D2E33A0024467D /* AccountInfoBar.swift in Sources */,
 				C3055B5C2538F81B000DB89C /* BillPDF.swift in Sources */,
 				C3B5F38625E97EDA005D3740 /* FeatureFlags.swift in Sources */,
@@ -7352,6 +7357,7 @@
 				67893ACA24DB35F2000143D6 /* AlertRegistrationRequest.swift in Sources */,
 				B58B5AC51E4E28740051FD5F /* AppDelegate.swift in Sources */,
 				22EBDCCD1ED3FDA50038D696 /* ContactUsViewController.swift in Sources */,
+				350F669B274387CC00E92765 /* AssistanceProgramStore.swift in Sources */,
 				E8C453271EF435E500F5C781 /* BGEAutoPaySettingsViewController.swift in Sources */,
 				676434DD25AF702800DA6448 /* ProjectURLSuffix.swift in Sources */,
 				825171A31F1D1D4F0020A6CA /* RadioSelectControl.swift in Sources */,

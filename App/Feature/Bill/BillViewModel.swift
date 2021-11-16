@@ -91,34 +91,9 @@ class BillViewModel {
                                                          useCache: false)
         }
     
-    private(set) lazy var fetchBGEDdeDpaEligibility: Driver<Bool> = self.currentAccountDetail.map {
-        if Configuration.shared.opco == .bge || FeatureFlagUtility.shared.bool(forKey: .hasAssistanceEnrollment) {
-            // Fetch BGE DDE
-            AccountService.fetchDDE  { [weak self] result in
-                switch result {
-                case .success(let resultObject):
-                    self?.isBgeDdeEligible.accept( resultObject.isPaymentExtensionEligible ?? false)
-                    self?.dueDateExtensionDetails.accept(resultObject)
-                case .failure:
-                    self?.isBgeDdeEligible.accept(false)
-                }
-            }
-            
-            // Fetch BGE DPA
-            let customerNumber = $0.customerNumber
-            let premiseNumber = $0.premiseNumber ?? ""
-            let paymentAmount = (String(describing: $0.billingInfo.netDueAmount ?? 0.0))
-            AccountService.fetchDPA(customerNumber: customerNumber,
-                                    premiseNumber: premiseNumber,
-                                    paymentAmount: paymentAmount)         { [weak self] result in
-                switch result {
-                case .success(let paymentEnhancement):
-                    self?.isBgeDpaEligible.accept(paymentEnhancement.customerInfo?.paEligibility == "true" ? true : false)
-                    self?.paymentArrangementDetails.accept(paymentEnhancement)
-                case .failure:
-                    self?.isBgeDpaEligible.accept(false)
-                }
-            }
+    private(set) lazy var fetchBGEDdeDpaEligibility: Driver<Bool> = self.currentAccountDetail.map {_ in
+        if Configuration.shared.opco == .bge {
+            self.ddeDpaEligiblityCheck()
         } else {
             self.isBgeDpaEligible.accept(false)
             self.isBgeDdeEligible.accept(false)
@@ -126,6 +101,27 @@ class BillViewModel {
         return false
     }
     
+    func ddeDpaEligiblityCheck() {
+        guard let dDEData = AssistanceProgramStore.shared.dueDateExtensionData,
+              let dPAData = AssistanceProgramStore.shared.paymentArrangementData else { return }
+        // BGE DDE
+        switch dDEData {
+        case .success(let resultObject):
+            self.isBgeDdeEligible.accept( resultObject.isPaymentExtensionEligible ?? false)
+            self.dueDateExtensionDetails.accept(resultObject)
+        case .failure:
+            self.isBgeDdeEligible.accept(false)
+        }
+        
+        // BGE DPA
+        switch dPAData {
+        case .success(let paymentEnhancement):
+            self.isBgeDpaEligible.accept(paymentEnhancement.customerInfo?.paEligibility == "true" ? true : false)
+            self.paymentArrangementDetails.accept(paymentEnhancement)
+        case .failure:
+            self.isBgeDpaEligible.accept(false)
+        }
+    }
     
     private(set) lazy var accountDetailError: Driver<NetworkingError?> = dataEvents.errors()
         .map { $0 as? NetworkingError }
