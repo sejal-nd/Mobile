@@ -74,7 +74,7 @@ class BillingHistoryTableViewCell: UITableViewCell {
                     titleLabel.text = titleText
                     a11y = String(format: NSLocalizedString("%@. %@. %@.", comment: ""), titleText, dateString, amountPaid)
                 } else {
-                    let titleText = = NSLocalizedString("Payment", comment: "")
+                    let titleText = NSLocalizedString("Payment", comment: "")
                     titleLabel.text = titleText
                     a11y = String(format: NSLocalizedString("%@. %@. %@.", comment: ""), titleText, dateString, amountPaid)
                 }
