@@ -67,12 +67,12 @@ class BillingHistoryTableViewCell: UITableViewCell {
                 a11y = String(format: NSLocalizedString("%@. %@. %@.", comment: ""), titleText, dateString, amountPaid)
             case .success, .unknown:
                 if let description = item.welcomeDescription {
-                    let titleText = (description.lowercased().contains("reinstate") && Configuration.shared.opco == .peco) ? NSLocalizedString(description, comment: "") : NSLocalizedString("Payment", comment: "")
+                    titleLabel.text = (description.lowercased().contains("reinstate") && Configuration.shared.opco == .peco) ? NSLocalizedString(description, comment: "") : NSLocalizedString("Payment", comment: "")
                 } else {
-                    let titleText = NSLocalizedString("Payment", comment: "")
+                    titleLabel.text = NSLocalizedString("Payment", comment: "")
                 }
                 iconImageView.image = #imageLiteral(resourceName: "ic_activity_success")
-                titleLabel.text = titleText
+                //titleLabel.text = titleText
                 amountLabel.textColor = .successGreenText
                 amountLabel.font = SystemFont.semibold.of(textStyle: .subheadline)
                 a11y = String(format: NSLocalizedString("%@. %@. %@.", comment: ""), titleText, dateString, amountPaid)
