@@ -66,16 +66,18 @@ class BillingHistoryTableViewCell: UITableViewCell {
                 dateLabel.isHidden = true
                 a11y = String(format: NSLocalizedString("%@. %@. %@.", comment: ""), titleText, dateString, amountPaid)
             case .success, .unknown:
-                if let description = item.welcomeDescription {
-                    titleLabel.text = (description.lowercased().contains("reinstate") && Configuration.shared.opco == .peco) ? NSLocalizedString(description, comment: "") : NSLocalizedString("Payment", comment: "")
-                } else {
-                    titleLabel.text = NSLocalizedString("Payment", comment: "")
-                }
                 iconImageView.image = #imageLiteral(resourceName: "ic_activity_success")
-                let titleText = titleLabel.text
                 amountLabel.textColor = .successGreenText
                 amountLabel.font = SystemFont.semibold.of(textStyle: .subheadline)
-                a11y = String(format: NSLocalizedString("%@. %@. %@.", comment: ""), titleText, dateString, amountPaid)
+                if let description = item.welcomeDescription {
+                    let titleText = (description.lowercased().contains("reinstate") && Configuration.shared.opco == .peco) ? NSLocalizedString(description, comment: "") : NSLocalizedString("Payment", comment: "")
+                    titleLabel.text = titleText
+                    a11y = String(format: NSLocalizedString("%@. %@. %@.", comment: ""), titleText, dateString, amountPaid)
+                } else {
+                    let titleText = = NSLocalizedString("Payment", comment: "")
+                    titleLabel.text = titleText
+                    a11y = String(format: NSLocalizedString("%@. %@. %@.", comment: ""), titleText, dateString, amountPaid)
+                }
             case .failed:
                 let titleText = NSLocalizedString("Failed Payment", comment: "")
                 titleLabel.text = titleText
