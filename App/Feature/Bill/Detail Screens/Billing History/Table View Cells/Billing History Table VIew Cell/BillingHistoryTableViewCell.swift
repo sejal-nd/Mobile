@@ -72,7 +72,7 @@ class BillingHistoryTableViewCell: UITableViewCell {
                     titleLabel.text = NSLocalizedString("Payment", comment: "")
                 }
                 iconImageView.image = #imageLiteral(resourceName: "ic_activity_success")
-                //titleLabel.text = titleText
+                let titleText = titleLabel.text
                 amountLabel.textColor = .successGreenText
                 amountLabel.font = SystemFont.semibold.of(textStyle: .subheadline)
                 a11y = String(format: NSLocalizedString("%@. %@. %@.", comment: ""), titleText, dateString, amountPaid)
