@@ -87,6 +87,7 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
             self.enableTextFieldEditing(true)
             if let isZipValidated = result?.isValidZipCode {
                 if self.viewModel.isZipValid && !isZipValidated {
+                    self.btnSteetAddress.isUserInteractionEnabled = false
                     self.zipTextField.setError(NSLocalizedString("Zip code is invalid or may be in an area not served by BG&E", comment: ""))
                 }
             }
@@ -287,7 +288,6 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
             viewModel.validateZipCode { _ in } onFailure: { [weak self] error in
                 self?.apiErrorHandling()
             }
-            enableTextFieldEditing(false)
         }
         scrollView.setContentOffset(CGPoint(x: 0, y: scrollView.contentInset.top), animated: true)
     }
@@ -300,7 +300,6 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
             viewModel.validateZipCode { _ in } onFailure: { [weak self] error in
                 self?.apiErrorHandling()
             }
-            enableTextFieldEditing(false)
         } else {
             let storyboard = UIStoryboard(name: "ISUMMove", bundle: nil)
             let newServiceAddressViewController = storyboard.instantiateViewController(withIdentifier: "AddressSearchViewController") as! AddressSearchViewController
@@ -404,7 +403,7 @@ extension NewServiceAddressViewController: UITextFieldDelegate {
                     viewModel.validateZipCode { _ in } onFailure: { [weak self] error in
                         self?.apiErrorHandling()
                     }
-                    enableTextFieldEditing(false)
+                    self.btnSteetAddress.isUserInteractionEnabled = false
                     textField.text = decimalString;
                     textField.resignFirstResponder()
                 }
@@ -416,7 +415,7 @@ extension NewServiceAddressViewController: UITextFieldDelegate {
                     let isBackSpace = strcmp(char, "\\b")
                     if isBackSpace == -92 {
                         viewModel.zipCode = decimalString
-                        if length > 1 && length < 3 && viewModel.isStreetAddressValid {
+                        if length > 0 {
                             clearPreviousSession()
                         }
                     }else {
