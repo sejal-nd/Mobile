@@ -104,16 +104,16 @@ class MoveServiceConfirmationViewController: UIViewController {
     
     private func dataBinding() {
         
-        let helplineDescription = "If you have any questions, please email myhomerep@bge.com and provide your account number. We will respond within 24-48 business hours."
+        let helplineDescription = "If you have questions or need to make changes to your request, please email myhomerep@bge.com and provide your account number. We will respond within 24-48 business hours."
         let range = (helplineDescription as NSString).range(of: "myhomerep@bge.com")
         let attributedString = NSMutableAttributedString(string: helplineDescription)
         attributedString.addAttributes([ NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17, weight: .regular), NSAttributedString.Key.foregroundColor: UIColor.deepGray], range: NSRange(location: 0, length: helplineDescription.count))
         attributedString.addAttributes([ NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17, weight: .semibold), NSAttributedString.Key.foregroundColor: UIColor.actionBlue], range: range)
         helplineDescriptionLabel.attributedText = attributedString
         
-        stopServiceDateLabel.text = viewModel.moveServiceResponse.stopDate
+        stopServiceDateLabel.text = viewModel.moveServiceResponse.stopDate + ", 8:00 a.m."
         stopServiceAddressLabel.text = viewModel.getStopServiceAddress().getValidISUMAddress()
-        startServiceDateLabel.text = viewModel.moveServiceResponse.startDate
+        startServiceDateLabel.text = viewModel.moveServiceResponse.startDate + ", 8:00 a.m. -  6:00 p.m."
         startServiceAddressLabel.text = viewModel.getStartServiceAddress().getValidISUMAddress()
         billingDescriptionLabel.text = viewModel.getBillingDescription()
         billingAddressLabel.text = viewModel.getBillingAddress()

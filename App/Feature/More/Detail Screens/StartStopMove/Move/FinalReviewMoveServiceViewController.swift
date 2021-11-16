@@ -209,7 +209,7 @@ class FinalReviewMoveServiceViewController: UIViewController {
         self.submitBtn.setTitleColor(!(moveFlowData.currentAccountDetail?.hasThirdPartySupplier ?? false) ? UIColor.white : UIColor(red: 74.0/255.0, green: 74.0/255.0, blue: 74.0/255.0, alpha: 0.5), for: .normal)
 
         if moveFlowData.hasCurrentServiceAddressForBill {
-            self.finalBillAddressLabel.text = "Same as current service address"
+            self.finalBillAddressLabel.text = "Same as new service address"
         } else {
             guard let address = moveFlowData.mailingAddress else { return }
             self.finalBillAddressLabel.text = "\(address.streetAddress), \(address.city), \(address.state) \(address.zipCode)".getValidISUMAddress()
