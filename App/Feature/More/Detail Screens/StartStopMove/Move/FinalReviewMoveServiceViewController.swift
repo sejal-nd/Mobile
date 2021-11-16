@@ -141,14 +141,17 @@ class FinalReviewMoveServiceViewController: UIViewController {
                 LoadingView.show()
                 
                 self.viewModel.moveServiceRequest(moveFlowData: self.moveFlowData) { [weak self] response in
+                    
+                    guard let `self` = self else { return }
                     FirebaseUtility.logEvent(.moveService(parameters: [response.isResolved == true ? .complete_resolved : .complete_unresolved]))
                     LoadingView.hide()
-                    self?.navigationController?.view.isUserInteractionEnabled = true
+                    self.navigationController?.view.isUserInteractionEnabled = true
 
                     let storyboard = UIStoryboard(name: "ISUMMove", bundle: nil)
                     let moveServiceConfirmationViewController = storyboard.instantiateViewController(withIdentifier: "MoveServiceConfirmationViewController") as! MoveServiceConfirmationViewController
                     moveServiceConfirmationViewController.viewModel = MoveServiceConfirmationViewModel(moveServiceResponse: response)
-                    self?.navigationController?.pushViewController(moveServiceConfirmationViewController, animated: true)
+                    moveServiceConfirmationViewController.viewModel.moveServiceResponse.isEBillEnrollment = (self.moveFlowData.unauthMoveData?.isUnauthMove ?? false) ? (self.moveFlowData.unauthMoveData?.accountDetails?.isEBillEnrollment ?? false) : (self.moveFlowData.currentAccountDetail?.isEBillEnrollment ?? true)
+                    self.navigationController?.pushViewController(moveServiceConfirmationViewController, animated: true)
                 } onFailure: { [weak self] _ in
                     FirebaseUtility.logEvent(.moveService(parameters: [.submit_error]))
                     LoadingView.hide()
