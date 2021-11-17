@@ -26,14 +26,17 @@ struct PaymentArrangement: Decodable {
 
 struct CustomerInfoModel: Decodable {
     let paEligibility: String?
+    let hasPABilled: Bool?
     
     enum CodingKeys: String, CodingKey {
         case paEligibility = "PAEligibility"
+        case hasPABilled = "hasPABilled"
     }
     
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         paEligibility = (try container.decodeIfPresent(String.self, forKey: .paEligibility))
+        hasPABilled = (try container.decodeIfPresent(Bool.self, forKey: .hasPABilled))
     }
 }
 
