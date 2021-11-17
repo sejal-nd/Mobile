@@ -86,8 +86,8 @@ extension UnauthenticatedMoveAccountSelectionViewController: UITableViewDelegate
         cell.accountNumberLabel.accessibilityLabel = NSLocalizedString("Account number ending in \(viewModel.getMaskedAccountNumber(accountLookup.accountNumber!))", comment: "")
         cell.streetNumberLabel.text = accountLookup.streetNumber ?? ""
         cell.streetNumberLabel.accessibilityLabel = NSLocalizedString("Street number, \(accountLookup.streetNumber ?? "None")", comment: "")
-        cell.unitNumberLabel.text = accountLookup.getUnit()
-        cell.unitNumberLabel.accessibilityLabel = NSLocalizedString("Unit number, \(accountLookup.unitNumber ?? "None")", comment: "")
+        cell.unitNumberLabel.text = accountLookup.streetAddress?.getUnit()
+        cell.unitNumberLabel.accessibilityLabel = NSLocalizedString("Unit number, \(accountLookup.streetAddress?.getUnit() ?? "None")", comment: "")
 
         cell.accountNumberLabelWidthConstraint.constant = col1HeaderLabel.frame.size.width
 
