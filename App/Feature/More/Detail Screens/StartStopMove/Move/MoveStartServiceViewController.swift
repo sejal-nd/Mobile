@@ -79,8 +79,27 @@ class MoveStartServiceViewController: UIViewController {
         if let address = viewModel.moveServiceFlow.addressLookupResponse?.first {
             startServiceAddressLabel.text = address.compressedAddress.getValidISUMAddress()
         }
-        electricStackView.isHidden = (viewModel.moveServiceFlow.unauthMoveData?.isUnauthMove ?? false) ? !(viewModel.moveServiceFlow.unauthMoveData?.accountDetails?.serviceType.contains("ELECTRIC") ?? false) : !(viewModel.moveServiceFlow.currentAccountDetail?.serviceType?.contains("ELECTRIC") ?? false)
-        gasStackView.isHidden = (viewModel.moveServiceFlow.unauthMoveData?.isUnauthMove ?? false) ? !(viewModel.moveServiceFlow.unauthMoveData?.accountDetails?.serviceType.contains("GAS") ?? false) : !(viewModel.moveServiceFlow.currentAccountDetail?.serviceType?.contains("GAS") ?? false)
+
+        if let address = viewModel.moveServiceFlow.addressLookupResponse?.first {
+
+            if address.meterInfo.contains(where: {$0.meterType.lowercased() == "ELECTRIC".lowercased()}) {
+                self.electricStackView.isHidden = false
+            }else {
+                self.electricStackView.isHidden = true
+            }
+
+            if address.meterInfo.contains(where: {$0.meterType.lowercased() == "GAS".lowercased()}) {
+                self.gasStackView.isHidden = false
+            }
+            else {
+                self.gasStackView.isHidden = true
+            }
+
+        } else {
+            self.electricStackView.isHidden = true
+            self.gasStackView.isHidden = true
+        }
+        
     }
     
     private func refreshUI(startDate: Date) {
