@@ -25,14 +25,15 @@ public struct MoveServiceResponse: Decodable {
     let finalBillAddress: FinalBillAddress?
     let isResolved: Bool?
     let isServiceChargeFee: Bool?
-    
+    public var isEBillEnrollment: Bool?
+
     enum CodingKeys: String, CodingKey {
         
         case isFinalStepResult = "IsFinalStepResult"
         case confirmationNo = "ConfirmationNo"
         case isManualCallResult = "IsManualCallResult"
         case confirmationMessage = "ConfirmationMessage"
-        case stopDate, stopAddress, startDate, startAddress, remoteShutoffCapable, accountNumber, finalBillEmail, useAltBillingAddress, finalBillAddress, isResolved, isServiceChargeFee
+        case stopDate, stopAddress, startDate, startAddress, remoteShutoffCapable, accountNumber, finalBillEmail, useAltBillingAddress, finalBillAddress, isResolved, isServiceChargeFee, isEBillEnrollment
     }
     
     struct StopAddress: Decodable {

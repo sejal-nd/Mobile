@@ -220,7 +220,12 @@ extension IdVerificationViewController: UITextFieldDelegate {
             self.continueButton.isEnabled = viewModel.validation()
             return isValidSSN
         case driverLicenseTextField.textField:
-            return viewModel.isValidDrivingLicense(drivingLicense: driverLicenseTextField.textField.text ?? "", inputString: string)
+            let isValidDrivingLicense = viewModel.isValidDrivingLicense(drivingLicense: driverLicenseTextField.textField.text ?? "", inputString: string)
+            if isValidDrivingLicense {
+                self.viewModel.idVerification.driverLicenseNumber = newString
+            }
+            self.continueButton.isEnabled = viewModel.validation()
+            return isValidDrivingLicense
         default:
             return false
         }

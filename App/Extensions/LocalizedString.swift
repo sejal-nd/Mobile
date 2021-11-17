@@ -43,4 +43,10 @@ extension String {
         }
         return address
     }
+    
+    func getUnit()-> String {
+        
+        let streetAddressArray : [String] = self.components(separatedBy: "*")
+        return streetAddressArray.last ?? ""
+    }
 }

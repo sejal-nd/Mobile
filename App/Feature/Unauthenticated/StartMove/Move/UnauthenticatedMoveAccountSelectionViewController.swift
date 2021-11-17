@@ -78,7 +78,7 @@ extension UnauthenticatedMoveAccountSelectionViewController: UITableViewDelegate
 
         cell.accountNumberLabel.text = viewModel.getMaskedAccountNumber(accountLookup.accountNumber!)
         cell.streetNumberLabel.text = accountLookup.streetNumber ?? ""
-        cell.unitNumberLabel.text = accountLookup.unitNumber
+        cell.unitNumberLabel.text = accountLookup.streetAddress?.getUnit()
 
         cell.accountNumberLabelWidthConstraint.constant = col1HeaderLabel.frame.size.width
 

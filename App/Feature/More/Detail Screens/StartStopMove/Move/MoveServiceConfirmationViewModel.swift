@@ -10,7 +10,6 @@ import Foundation
 
 class MoveServiceConfirmationViewModel {
     
-    var isEbillUser = true
     var moveServiceResponse: MoveServiceResponse!
     
     init(moveServiceResponse: MoveServiceResponse) {
@@ -25,7 +24,7 @@ class MoveServiceConfirmationViewModel {
     
     func getBillingAddress()-> String {
         
-        if let finalBillEmail = moveServiceResponse.finalBillEmail, !finalBillEmail.isEmpty { return finalBillEmail }
+        if let finalBillEmail = moveServiceResponse.finalBillEmail, !finalBillEmail.isEmpty, (moveServiceResponse.isEBillEnrollment ?? false) { return finalBillEmail }
         
         if let isResolved = moveServiceResponse.isResolved, isResolved {
             return "Your new service address"
