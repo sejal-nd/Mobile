@@ -37,6 +37,8 @@ class UnauthIdentityVerificationViewController: KeyboardAvoidingStickyFooterView
         phoneNumberTextField.textField.keyboardType = .numberPad
         phoneNumberTextField.textField.returnKeyType = .done
         phoneNumberTextField.setKeyboardType(.numberPad, doneActionTarget: self, doneActionSelector: #selector(phoneNumberDonePressed))
+        
+        continueButton.accessibilityLabel = NSLocalizedString("Continue Move Request", comment: "")
     }
     
     @objc func phoneNumberDonePressed() {
