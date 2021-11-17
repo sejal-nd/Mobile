@@ -28,12 +28,18 @@ class UnauthenticatedMoveAccountSelectionViewController: UIViewController {
 
         col1HeaderLabel.textColor = .deepGray
         col1HeaderLabel.text = NSLocalizedString("Account #", comment: "")
+        col1HeaderLabel.isAccessibilityElement = true
+        col1HeaderLabel.accessibilityLabel = NSLocalizedString("Account Number", comment: "")
 
         col2HeaderLabel.textColor = .deepGray
         col2HeaderLabel.text = NSLocalizedString("Street #", comment: "")
+        col2HeaderLabel.isAccessibilityElement = true
+        col2HeaderLabel.accessibilityLabel = NSLocalizedString("Street Number", comment: "")
 
         col3HeaderLabel.textColor = .deepGray
         col3HeaderLabel.text = NSLocalizedString("Unit #", comment: "")
+        col3HeaderLabel.isAccessibilityElement = true
+        col3HeaderLabel.accessibilityLabel = NSLocalizedString("Unit Number", comment: "")
 
         firstSeparatorView.backgroundColor = tableView.separatorColor
 
@@ -77,8 +83,11 @@ extension UnauthenticatedMoveAccountSelectionViewController: UITableViewDelegate
         let accountLookup = viewModel.accountsList[indexPath.row]
 
         cell.accountNumberLabel.text = viewModel.getMaskedAccountNumber(accountLookup.accountNumber!)
+        cell.accountNumberLabel.accessibilityLabel = NSLocalizedString("Account number ending in \(viewModel.getMaskedAccountNumber(accountLookup.accountNumber!))", comment: "")
         cell.streetNumberLabel.text = accountLookup.streetNumber ?? ""
+        cell.streetNumberLabel.accessibilityLabel = NSLocalizedString("Street number, \(accountLookup.streetNumber ?? "None")", comment: "")
         cell.unitNumberLabel.text = accountLookup.streetAddress?.getUnit()
+        cell.unitNumberLabel.accessibilityLabel = NSLocalizedString("Unit number, \(accountLookup.streetAddress?.getUnit() ?? "None")", comment: "")
 
         cell.accountNumberLabelWidthConstraint.constant = col1HeaderLabel.frame.size.width
 
