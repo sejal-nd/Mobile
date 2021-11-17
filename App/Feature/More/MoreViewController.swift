@@ -15,7 +15,8 @@ class MoreViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var superviewTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var safeAreaTopConstraint: NSLayoutConstraint!
-    
+
+
     @IBOutlet weak var signOutButton: UIButton! {
         didSet {
             signOutButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
@@ -46,6 +47,7 @@ class MoreViewController: UIViewController {
     private var biometricsPasswordRetryCount = 0
     
     private let disposeBag = DisposeBag()
+
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -95,7 +97,6 @@ class MoreViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
         AppRating.present()
     }
     
@@ -328,7 +329,7 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
             switch indexPath.row {
             case 0:
                 if FeatureFlagUtility.shared.bool(forKey: .hasAuthenticatedISUM) {
-                    cell.configure(image: #imageLiteral (resourceName: "ic_morestartservice"), text: NSLocalizedString("Start Service", comment: ""))
+                    cell.configure(image: #imageLiteral (resourceName: "ic_isummoveservice"), text: NSLocalizedString("Move Service", comment: ""))
                 } else {
                     cell.configure(image: #imageLiteral(resourceName: "ic_morecontact"), text: NSLocalizedString("Contact Us", comment: ""))
                 }
@@ -340,7 +341,7 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
                 }
             case 2:
                 if FeatureFlagUtility.shared.bool(forKey: .hasAuthenticatedISUM) {
-                    cell.configure(image: #imageLiteral (resourceName: "ic_isummoveservice"), text: NSLocalizedString("Move Service", comment: ""))
+                    cell.configure(image: #imageLiteral (resourceName: "ic_morestartservice"), text: NSLocalizedString("Start Service", comment: ""))
                 } else {
                     cell.configure(image: #imageLiteral(resourceName: "ic_moretos"), text: NSLocalizedString("Policies and Terms", comment: ""))
                 }
@@ -403,21 +404,29 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
             switch indexPath.row {
             case 0:
                 if FeatureFlagUtility.shared.bool(forKey: .hasAuthenticatedISUM) {
-                    /// Redirect to Start Service web experience for this Nov-21 release.
-                    UIApplication.shared.openUrlIfCan(viewModel.startServiceWebURL)
+                    if Configuration.shared.opco == .bge {
+                        performSegue(withIdentifier: "moveServiceSegue", sender: nil)
+                    } else {
+                        UIApplication.shared.openUrlIfCan(viewModel.moveServiceWebURL)
+                    }
                 } else {
                     performSegue(withIdentifier: "contactUsSegue", sender: nil)
                 }
             case 1:
                 if FeatureFlagUtility.shared.bool(forKey: .hasAuthenticatedISUM) {
-                    performSegue(withIdentifier: "stopServiceSegue", sender: nil)
+                    if Configuration.shared.opco == .bge {
+                        performSegue(withIdentifier: "stopServiceSegue", sender: nil)
+                    } else {
+                        UIApplication.shared.openUrlIfCan(viewModel.stopServiceWebURL)
+                    }
                 } else {
                     FirebaseUtility.logEvent(.more(parameters: [.billing_videos]))
                     UIApplication.shared.openUrlIfCan(viewModel.billingVideosUrl)
                 }
             case 2:
                 if FeatureFlagUtility.shared.bool(forKey: .hasAuthenticatedISUM) {
-                    performSegue(withIdentifier: "moveServiceSegue", sender: nil)
+                    /// Redirect to Start Service web experience for this Nov-21 release.
+                    UIApplication.shared.openUrlIfCan(viewModel.startServiceWebURL)
                 } else {
                     performSegue(withIdentifier: "termsPoliciesSegue", sender: nil)
                 }

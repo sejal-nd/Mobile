@@ -11,4 +11,17 @@ import Foundation
 enum NewMockDataKey: String {
     // General
     case `default`
+    case nonAMIUser
+    case stopResolved
+    case stopResolvedEbill
+    case stopUnresolved
+    case stopUnresolvedEbill
+    case stopUnresolvedChangedBillingAddress
+    case moveResolved
+    case moveResolvedEbill
+    case moveUnresolved
+    case moveUnresolvedEbill
+    case moveUnresolvedChangeBillingAddress
+    case unauthResidentialUser
+    case unauthCommercialUser
 }

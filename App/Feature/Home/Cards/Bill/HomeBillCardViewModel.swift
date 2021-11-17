@@ -30,6 +30,9 @@ class HomeBillCardViewModel {
     let isBgeDdeEligible = BehaviorRelay<Bool?>(value: nil)
     let isBgeDpaEligible = BehaviorRelay<Bool?>(value: nil)
     
+    let dueDateExtensionDetails = BehaviorRelay<DueDateElibility?>(value: nil)
+    var paymentArrangementDetails = BehaviorRelay<PaymentArrangement?>(value: nil)
+    
     let emailAddress = BehaviorRelay(value: "")
     let phoneNumber = BehaviorRelay(value: "")
     let mobileAssistanceURL = BehaviorRelay(value: "")
@@ -119,7 +122,7 @@ class HomeBillCardViewModel {
     }
     
     private(set) lazy var fetchBGEDdeDpaEligibility: Driver<Bool> = Driver.combineLatest(accountDetailDriver, fetchTracker, scheduledPaymentEvents.elements().asDriver(onErrorDriveWith: .empty())) { (accountDetail, fetchTrackerValue, scheduledPay) in
-        if Configuration.shared.opco == .bge {
+        if Configuration.shared.opco == .bge || FeatureFlagUtility.shared.bool(forKey: .hasAssistanceEnrollment) {
             if !fetchTrackerValue {
                 // Fetch BGE DDE
                 AccountService.fetchDDE  { [weak self] result in
@@ -127,6 +130,7 @@ class HomeBillCardViewModel {
                     switch result {
                     case .success(let resultObject):
                         self?.isBgeDdeEligible.accept( resultObject.isPaymentExtensionEligible ?? false)
+                        self?.dueDateExtensionDetails.accept(resultObject)
                     case .failure:
                         self?.isBgeDdeEligible.accept(false)
                     }
@@ -143,7 +147,7 @@ class HomeBillCardViewModel {
                     switch result {
                     case .success(let paymentEnhancement):
                         self?.isBgeDpaEligible.accept(paymentEnhancement.customerInfo?.paEligibility == "true" ? true : false)
-                        
+                        self?.paymentArrangementDetails.accept(paymentEnhancement)
                     case .failure:
                         self?.isBgeDpaEligible.accept(false)
                     }
@@ -485,14 +489,67 @@ class HomeBillCardViewModel {
         }
     }
     
+    private(set) lazy var showAssistanceCTA: Driver<Bool> =
+        Driver.combineLatest(self.enrollmentStatus.asDriver(),
+                             showBgeDdeDpaEligibility.asDriver())
+        {
+            $1
+        }
+    
+    private(set) lazy var showCatchUpDisclaimer: Driver<Bool> = Driver.combineLatest(showBgeDdeDpaEligibility.asDriver(), enrollmentStatus.asDriver()) {(showBgeDdeDpaEligibility, enrollmentStatus) in
+        return showBgeDdeDpaEligibility && !(enrollmentStatus ?? "").isEmpty
+    }
+    
+    private(set) lazy var showDDEExtendedView: Driver<Bool> =
+        Driver.combineLatest(self.enrollmentStatus.asDriver(),
+                             showBgeDdeDpaEligibility.asDriver(), accountDetailDriver)
+            {
+            guard let dueDateString = $0 else {return false}
+            return (dueDateString.hasPrefix("You're enrolled in a Due Date Extension"))  && $1 && $2.billingInfo.pastDueAmount > 0
+        }
+    
+    // MARK: - Enrollment Status
+    private(set) lazy var enrollmentStatus: Driver<String?> = Driver.combineLatest(accountDetailDriver, showBgeDdeDpaEligibility.asDriver(), paymentArrangementDetails.asDriver(), dueDateExtensionDetails.asDriver()) { (accountDetail, bgeDdeDpaEligibilityChecked, paymentArrangementDetails, dueDateExtensionDetails) in
+        if FeatureFlagUtility.shared.bool(forKey: .hasAssistanceEnrollment) {
+            if accountDetail.billingInfo.isDpaEnrolled == "true" {
+                if paymentArrangementDetails?.pAData?.first?.numberOfInstallments == paymentArrangementDetails?.pAData?.first?.noOfInstallmentsLeft {
+                    return "Your request to enroll in a payment arrangement has been accepted. For further details log into your My Account."
+                } else if paymentArrangementDetails?.pAData?.first?.numberOfInstallments != paymentArrangementDetails?.pAData?.first?.noOfInstallmentsLeft {
+                    guard  let remainingPaymentAmount = paymentArrangementDetails?.pAData?.first?.remainingPaymentAmount,
+                           let monthlyInstallment = paymentArrangementDetails?.pAData?.first?.monthlyInstallment,
+                           let noOfInstallmentsLeft = paymentArrangementDetails?.pAData?.first?.noOfInstallmentsLeft,
+                           let numberOfInstallments = paymentArrangementDetails?.pAData?.first?.numberOfInstallments else {
+                        return ""
+                    }
+                    return " You’re enrolled in a payment arrangement. Your $\(monthlyInstallment) monthly installment is included in the current bill. You have \(noOfInstallmentsLeft) installments, for a total of $\(remainingPaymentAmount), left on your arrangement."
+                }
+            } else if !accountDetail.isDueDateExtensionEligible &&
+                        dueDateExtensionDetails?.extendedDueDate != nil &&
+                        dueDateExtensionDetails?.extensionDueAmt != nil {
+                guard let extendedDueDate = dueDateExtensionDetails?.extendedDueDate,
+                      let extensionDueAmt = dueDateExtensionDetails?.extensionDueAmt else {return nil}
+                if Date() > dueDateExtensionDetails?.extendedDueDate {
+                    return "You're enrolled in a Due Date Extension. You have until \(String(describing: extendedDueDate.mmDdYyyyString)) to pay your extended bill of $\(extensionDueAmt)."
+                } else {
+                    return "You're enrolled in a Due Date Extension. You have until \(String(describing: extendedDueDate.mmDdYyyyString)) to pay your extended bill of $\(extensionDueAmt)."
+                }
+            }
+        }
+        return ""
+    }
+    
+    
     // MARK: - Assistance View States
-    private(set) lazy var paymentAssistanceValues: Driver<(title: String, description: String, ctaType: String, ctaURL: String)?> =
+    private(set) lazy var paymentAssistanceValues: Driver<(title: String, description: String, ctaType: String)?> =
     Driver.combineLatest(accountDetailDriver, showBgeDdeDpaEligibility.asDriver())
     { (accountDetail, bgeDdeDpaEligibilityChecked) in
         let isAccountTypeEligible = accountDetail.isResidential || accountDetail.isSmallCommercialCustomer
         if isAccountTypeEligible &&
             FeatureFlagUtility.shared.bool(forKey: .paymentProgramAds) {
             // BGE has different conditions for DDE, DPA and CTA3
+            if  bgeDdeDpaEligibilityChecked && Configuration.shared.opco != .bge{
+                NotificationCenter.default.post(name: .didRecieveDdeDpa, object: nil)
+            }
             if Configuration.shared.opco == .bge {
                 if  bgeDdeDpaEligibilityChecked {
                     let bgeCTADetails =  self.showBGEAssitanceCTA(accountDetail: accountDetail)
@@ -510,13 +567,11 @@ class HomeBillCardViewModel {
                 if Configuration.shared.opco.isPHI {
                     return (title: "You’re eligible for a One-Time Payment Delay",
                             description: "Having trouble keeping up with your \(Configuration.shared.opco.displayString) bill? We’re here to help. Extend your upcoming bill due date by up to 30 calendar days with a One-Time Payment Delay.",
-                            ctaType: "Request One-Time Payment Delay",
-                            ctaURL: "")
+                            ctaType: "Request One-Time Payment Delay")
                 } else {
                     return (title: "You’re eligible for a Due Date Extension",
                             description: "Having trouble keeping up with your \(Configuration.shared.opco.displayString) bill? We’re here to help. Extend your upcoming bill due date by up to 21 calendar days with a Due Date Extension.",
-                            ctaType: "Request Due Date Extension",
-                            ctaURL: "")
+                            ctaType: "Request Due Date Extension")
                 }
                 
             } else if !accountDetail.isDueDateExtensionEligible &&
@@ -531,8 +586,7 @@ class HomeBillCardViewModel {
                 var title =  Configuration.shared.opco == .comEd && accountDetail.isLowIncome ? lowIncomeTitle : nonLowIncomeTitle
                 return (title: title,
                         description: "",
-                        ctaType: "Reinstate Payment Arrangement",
-                        ctaURL: "")
+                        ctaType: "Reinstate Payment Arrangement")
             } else if !accountDetail.isDueDateExtensionEligible &&
                         accountDetail.billingInfo.pastDueAmount > 0 &&
                         accountDetail.is_dpa_eligible {
@@ -541,13 +595,11 @@ class HomeBillCardViewModel {
                 if Configuration.shared.opco.isPHI {
                     return (title: "You’re eligible for a Payment Arrangement.",
                             description: "Having trouble keeping up with your \(Configuration.shared.opco.displayString) bill? We’re here to help. You can make monthly installments to bring your account up to date.",
-                            ctaType: "Learn More",
-                            ctaURL: "")
+                            ctaType: "Learn More")
                 } else {
                     return (title: "You’re eligible for a Deferred Payment Arrangement.",
                             description: "Having trouble keeping up with your \(Configuration.shared.opco.displayString) bill? We’re here to help. You can make monthly installments to bring your account up to date.",
-                            ctaType: "Learn More",
-                            ctaURL: "")
+                            ctaType: "Learn More")
                 }
                 
             } else if !accountDetail.isDueDateExtensionEligible &&
@@ -558,16 +610,16 @@ class HomeBillCardViewModel {
                 self.mobileAssistanceType = MobileAssistanceURL.none
                 return (title: "Having trouble keeping up with your \(Configuration.shared.opco.displayString) bill?",
                         description: "Check out the many Assistance Programs \(Configuration.shared.opco.displayString) offers to find one that’s right for you.",
-                        ctaType: "Learn More",
-                        ctaURL: "")
+                        ctaType: "Learn More")
             }
+            
         }
         return nil
     }
     
-    private func showBGEAssitanceCTA(accountDetail: AccountDetail) -> (title: String, description: String, ctaType: String, ctaURL: String) {
+    private func showBGEAssitanceCTA(accountDetail: AccountDetail) -> (title: String, description: String, ctaType: String) {
         guard let dueDate = accountDetail.billingInfo.dueByDate else {
-            return ("","","","")
+            return ("","","")
         }
         let netDueAmount = accountDetail.billingInfo.netDueAmount
         if accountDetail.billingInfo.currentDueAmount >= 0 &&
@@ -578,8 +630,7 @@ class HomeBillCardViewModel {
             self.mobileAssistanceType = MobileAssistanceURL.dde
             return (title: "You’re eligible for a Due Date Extension",
                     description: "Having trouble keeping up with your \(Configuration.shared.opco.displayString) bill? We’re here to help. Extend your upcoming bill due date by up to 30 calendar days with a Due Date Extension.",
-                    ctaType: "Request Due Date Extension",
-                    ctaURL: "")
+                    ctaType: "Request Due Date Extension")
         } else if accountDetail.billingInfo.pastDueAmount > 0 &&
                     netDueAmount >= 80 && netDueAmount <= 5000 &&
                     isBgeDpaEligible.value ?? false {
@@ -587,18 +638,16 @@ class HomeBillCardViewModel {
             self.mobileAssistanceType = MobileAssistanceURL.dpa
             return (title: "You’re eligible for a Deferred Payment Arrangement.",
                     description: "Having trouble keeping up with your \(Configuration.shared.opco.displayString) bill? We’re here to help. You can make monthly installments to bring your account up to date.",
-                    ctaType: "Learn More",
-                    ctaURL: "")
+                    ctaType: "Learn More")
             
         } else if accountDetail.billingInfo.pastDueAmount > 0  {
             self.mobileAssistanceURL.accept(MobileAssistanceURL.getMobileAssistnceURL(assistanceType: .none, stateJurisdiction: accountDetail.state))
             self.mobileAssistanceType = MobileAssistanceURL.none
             return (title: "Having trouble keeping up with your \(Configuration.shared.opco.displayString) bill?",
                     description: "Check out the many Assistance Programs \(Configuration.shared.opco.displayString) offers to find one that’s right for you.",
-                    ctaType: "Learn More",
-                    ctaURL: "")
+                    ctaType: "Learn More")
         }
-        return ("","","","")
+        return ("","","")
     }
     
     private(set) lazy var showAlertAnimation: Driver<Bool> = billState.map {

@@ -1,3 +1,4 @@
+
 //
 //  TemplateCardViewModel.swift
 //  Mobile
@@ -272,7 +273,7 @@ class TemplateCardViewModel {
             switch Configuration.shared.opco {
             case .peco:
                 if accountDetail.isResidential {
-                    return "https://www.pecomarketplace.com"
+                    return "https://www.peco.com/WaysToSave/ForYourHome/Pages/PECOMarketplace.aspx"
                 } else {
                     return "https://www.peco.com/smartideas"
                 }
@@ -329,7 +330,8 @@ class TemplateCardViewModel {
                 } else if accountDetail.opcoType == .pepco {
                     if accountDetail.isResidential {
                         if accountDetail.isEnergyWiseRewardsEnrolled {
-                            return ""
+                            return "https://www.peco.com/WaysToSave/ForYourHome/Pages/PECOMarketplace.aspx"
+
                         } else {
                             return "https://energywiserewards.pepco.com/"
                         }

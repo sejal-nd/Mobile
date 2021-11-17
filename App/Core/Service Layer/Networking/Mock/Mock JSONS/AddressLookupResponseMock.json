@@ -1,0 +1,22 @@
+{
+  "default": {
+      "success": true,
+      "data": [{
+          "Address": "910 PENNSYLVANIA AVE *APT 1B",
+          "ApartmentUnitNo": null,
+          "City": "BALTIMORE",
+          "CompressedAddress": "910 PENNSYLVANIA AVE *APT 1B, BALTIMORE, MD, 21201",
+          "IsMeterEnergized": false,
+          "PremiseID": "4798590000",
+          "State": "MD",
+          "StreetName": null,
+          "StreetNumber": null,
+          "ZipCode": "21201",
+          "meterInfo": [{
+              "meterID": "018939135841",
+              "meterType": "Electric",
+              "isResidential": true
+          }]
+      }]
+  }
+}

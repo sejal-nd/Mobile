@@ -102,6 +102,11 @@ public struct AccountDetail: Decodable {
     let serInfo: SERInfo
     public var premiseInfo: [PremiseInfo]
     
+    let isPendingDisconnectElectic: Bool
+    let isPendingDisconnectGas: Bool
+    let isPendingDisconnect: Bool
+    let isRCDCapable: Bool
+
     // Only 3 real states to think about
     enum PrepaidStatus: String, Decodable {
         // Not Enrolled
@@ -209,6 +214,10 @@ public struct AccountDetail: Decodable {
         case isPeakEnergySavingsCreditEnrolled
         
         case isOHEPEligible
+        case isPendingDisconnectElectic
+        case isPendingDisconnectGas
+        case isPendingDisconnect
+        case isRCDCapable
     }
     
     public init(from decoder: Decoder) throws {
@@ -376,7 +385,15 @@ public struct AccountDetail: Decodable {
         self.isActiveSeverance = try container.decodeIfPresent(Bool.self, forKey: .isActiveSeverance) ?? false
         self.isDualBillOption = try container.decodeIfPresent(Bool.self, forKey: .isDualBillOption) ?? false
         
-        if status?.lowercased() == "inactive" {
+        self.isPendingDisconnectElectic = try container.decodeIfPresent(Bool.self,
+                                                                               forKey: .isPendingDisconnectElectic) ?? false
+        self.isPendingDisconnectGas = try container.decodeIfPresent(Bool.self,
+                                                                               forKey: .isPendingDisconnectGas) ?? false
+        self.isPendingDisconnect = try container.decodeIfPresent(Bool.self,
+                                                                               forKey: .isPendingDisconnect) ?? false
+        self.isRCDCapable = try container.decodeIfPresent(Bool.self,
+                                                                               forKey: .isRCDCapable) ?? false
+        if status?.lowercased() == "inactive" || (FeatureFlagUtility.shared.bool(forKey: .hasAuthenticatedISUM) && Configuration.shared.opco.rawValue == "BGE" && status?.lowercased() == "closed") {
             isFinaled = true
         }
     }

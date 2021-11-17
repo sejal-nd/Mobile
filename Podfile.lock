@@ -56,8 +56,8 @@ PODS:
     - GoogleUtilities/Environment (~> 7.0)
     - GoogleUtilities/UserDefaults (~> 7.0)
     - PromisesObjC (~> 1.2)
-  - ForeSee/Core (6.0.1)
-  - ForeSee/ForeSeeFeedback (6.0.1):
+  - ForeSee/Core (6.0.4)
+  - ForeSee/ForeSeeFeedback (6.0.4):
     - ForeSee/Core
   - GoogleAnalytics (3.17.0)
   - GoogleAppMeasurement/AdIdSupport (7.11.0):
@@ -120,8 +120,8 @@ DEPENDENCIES:
   - AppCenter (= 1.14)
   - Charts (= 3.3)
   - Firebase/Core (= 7.11.0)
-  - ForeSee/Core (= 6.0.1)
-  - ForeSee/ForeSeeFeedback (= 6.0.1)
+  - ForeSee/Core (= 6.0.4)
+  - ForeSee/ForeSeeFeedback (= 6.0.4)
   - GoogleAnalytics (= 3.17.0)
   - lottie-ios (= 3.1.5)
   - PDTSimpleCalendar (= 0.9.1)
@@ -168,7 +168,7 @@ SPEC CHECKSUMS:
   FirebaseCore: 907447d8917a4d3eb0cce2829c5a0ad21d90b432
   FirebaseCoreDiagnostics: 68ad972f99206cef818230f3f3179d52ccfb7f8c
   FirebaseInstallations: a58d4f72ec5861840b84df489f2668d970df558a
-  ForeSee: b54ac4275a03ed3cfaac2f05d9b7b00e92cf026c
+  ForeSee: 2bcf95546e742bc9083cf7d7ce60928dfa5b4fe9
   GoogleAnalytics: f42cc53a87a51fe94334821868d9c8481ff47a7b
   GoogleAppMeasurement: fd19169c3034975cb934e865e5667bfdce59df7f
   GoogleDataTransport: cd9db2180fcecd8da1b561aea31e3e56cf834aa7
@@ -186,6 +186,6 @@ SPEC CHECKSUMS:
   XLPagerTabStrip: 61c57fd61f611ee5f01ff1495ad6fbee8bf496c5
   zxcvbn-ios: fef98b7c80f1512ff0eec47ac1fa399fc00f7e3c
 
-PODFILE CHECKSUM: 7580ab86aea6a8e127761f7c065fe2998e340fa9
+PODFILE CHECKSUM: 685ec9e971c5f9aa8e33039ec104b1d13209b848
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.11.2

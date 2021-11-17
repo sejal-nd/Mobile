@@ -17,4 +17,17 @@ enum StopService {
         let workdaysRequest = WorkdaysRequest(addressMrID: addressMrID, isGasOff: isGasOff, premiseOperationCenter: premiseOperationCenter, isStart: isStart)
         NetworkingLayer.request(router: .workDays(request: workdaysRequest), completion: completion)
     }
+    
+    static func stopServiceVerification(completion: @escaping (Result<StopServiceVerificationResponse, NetworkingError>) -> ()) {
+        
+        let stopServiceVerificationRequest = StopServiceVerificationRequest()
+        NetworkingLayer.request(router: .stopServiceVerification(request: stopServiceVerificationRequest), completion: completion)
+    }
+    
+    
+    static func stopService(stopFlowData: StopServiceFlowData, completion: @escaping (Result<StopServiceResponse, NetworkingError>) -> ()) {
+
+        let stopISUMServiceRequest = StopISUMServiceRequest(stopFlowData: stopFlowData)
+        NetworkingLayer.request(router: .stopISUMService(request: stopISUMServiceRequest), completion: completion)
+    }
 }

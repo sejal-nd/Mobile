@@ -50,6 +50,10 @@ enum AccountService {
         if alertPreferenceEligibilities {
             queryItems.append(URLQueryItem(name: "alertPreferenceEligibilities", value: "true"))
         }
+        
+        if FeatureFlagUtility.shared.bool(forKey: .hasAuthenticatedISUM) {
+            queryItems.append(URLQueryItem(name: "isGetRCDCapable", value: "true"))
+        }
     
         NetworkingLayer.request(router: .accountDetails(accountNumber: accountNumber, queryItems: queryItems), completion: completion)
     }
@@ -115,6 +119,6 @@ enum AccountService {
                          completion: @escaping (Result<PaymentArrangement, NetworkingError>) ->()) {
         NetworkingLayer.request(router: .fetchDPA(accountNumber: accountNumber, encodable: DPARequest(customerNumber: customerNumber,
                                                                                                       premiseNumber: premiseNumber, paymentAmount: paymentAmount,
-                                                                                                      months: "1")), completion: completion)
+                                                                                                      months: "0")), completion: completion)
     }
 }

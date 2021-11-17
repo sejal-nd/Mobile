@@ -26,4 +26,27 @@ extension String {
         let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         return emailPred.evaluate(with: self)
     }
+    
+    func getValidISUMAddress()-> String {
+        
+        let capitalizedAddress = self.capitalized
+        let capitalizedAddressArray : [String] = capitalizedAddress.components(separatedBy: " ")
+        var address = ""
+        for value in capitalizedAddressArray {
+            if value.count == 2, USState.isUSState(value) {
+                address += "\(value.uppercased()) "
+            } else if value.count == 3, USState.isUSState(String(value.dropLast())) {
+                address += "\(value.dropLast().uppercased()) "
+            } else {
+                address += "\(value) "
+            }
+        }
+        return address
+    }
+    
+    func getUnit()-> String {
+        
+        let streetAddressArray : [String] = self.components(separatedBy: "*")
+        return streetAddressArray.last ?? ""
+    }
 }

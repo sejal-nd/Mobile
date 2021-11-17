@@ -1,0 +1,161 @@
+{
+  "default": {
+    "success": true,
+    "data": {
+        "CustomerInfo": {
+            "number": "7965310000",
+            "name": "Massicot,Richard Allen",
+            "firstName": "Richard Allen",
+            "lastName": "Massicot",
+            "nameCompressed": "Richard Allen Massicot",
+            "customerType": "RES",
+            "PhoneInfo": {
+                "primaryPhoneNumber": "4905265624",
+                "alternatePhoneNumber": "4905267866"
+            }
+        },
+        "addressLine": "202 Chartley Dr",
+        "street": "CHARTLEY",
+        "city": "Reisterstown",
+        "state": "MD",
+        "zipCode": "21136",
+        "buildingNumber": "202",
+        "premiseNumber": "9954370000",
+        "isResidential": true,
+        "isPasswordProtected": false,
+        "isGasOnly": false,
+        "status": "Active",
+        "accountStatusCode": "Active",
+        "isFinaled": false,
+        "serviceType": "GAS/ELECTRIC",
+        "isCutOutNonPay": false,
+        "isCutOutIssued": false,
+        "isCutOutDispatched": false,
+        "serviceAgreementCount": 1,
+        "isCashOnly": false,
+        "isAutoPay": false,
+        "revenueClassType": null,
+        "isAutoPayEligible": true,
+        "isEBillEligible": true,
+        "isEBillEnrollment": false,
+        "isBudgetBill": false,
+        "isBudgetBillEligible": true,
+        "isNetMetering": false,
+        "BillingInfo": {
+            "convenienceFee": 1.5,
+            "maximumWalletItems": null,
+            "pastDueAmount": 10.96,
+            "currentDueAmount": 0,
+            "dueByDate": "2021-08-05T00:00:00",
+            "remainingBalanceDue": 10.96,
+            "payments": []
+        }
+    }
+  },
+  "unauthResidentialUser": {
+    "success": true,
+    "data": {
+        "CustomerInfo": {
+            "number": "7965310000",
+            "name": "Massicot,Richard Allen",
+            "firstName": "Richard Allen",
+            "lastName": "Massicot",
+            "nameCompressed": "Richard Allen Massicot",
+            "customerType": "RES",
+            "PhoneInfo": {
+                "primaryPhoneNumber": "4905265624",
+                "alternatePhoneNumber": "4905267866"
+            }
+        },
+        "addressLine": "202 Chartley Dr",
+        "street": "CHARTLEY",
+        "city": "Reisterstown",
+        "state": "MD",
+        "zipCode": "21136",
+        "buildingNumber": "202",
+        "premiseNumber": "9954370000",
+        "isResidential": true,
+        "isPasswordProtected": false,
+        "isGasOnly": false,
+        "status": "Active",
+        "accountStatusCode": "Active",
+        "isFinaled": false,
+        "serviceType": "GAS/ELECTRIC",
+        "isCutOutNonPay": false,
+        "isCutOutIssued": false,
+        "isCutOutDispatched": false,
+        "serviceAgreementCount": 1,
+        "isCashOnly": false,
+        "isAutoPay": false,
+        "revenueClassType": null,
+        "isAutoPayEligible": true,
+        "isEBillEligible": true,
+        "isEBillEnrollment": false,
+        "isBudgetBill": false,
+        "isBudgetBillEligible": true,
+        "isNetMetering": false,
+        "BillingInfo": {
+            "convenienceFee": 1.5,
+            "maximumWalletItems": null,
+            "pastDueAmount": 10.96,
+            "currentDueAmount": 0,
+            "dueByDate": "2021-08-05T00:00:00",
+            "remainingBalanceDue": 10.96,
+            "payments": []
+        }
+    }
+  },
+  "unauthCommercialUser": {
+    "success": true,
+    "data": {
+        "CustomerInfo": {
+            "number": "7965310000",
+            "name": "Massicot,Richard Allen",
+            "firstName": "Richard Allen",
+            "lastName": "Massicot",
+            "nameCompressed": "Richard Allen Massicot",
+            "customerType": "COMM",
+            "PhoneInfo": {
+                "primaryPhoneNumber": "4905265624",
+                "alternatePhoneNumber": "4905267866"
+            }
+        },
+        "addressLine": "202 Chartley Dr",
+        "street": "CHARTLEY",
+        "city": "Reisterstown",
+        "state": "MD",
+        "zipCode": "21136",
+        "buildingNumber": "202",
+        "premiseNumber": "9954370000",
+        "isResidential": true,
+        "isPasswordProtected": false,
+        "isGasOnly": false,
+        "status": "Active",
+        "accountStatusCode": "Active",
+        "isFinaled": false,
+        "serviceType": "GAS/ELECTRIC",
+        "isCutOutNonPay": false,
+        "isCutOutIssued": false,
+        "isCutOutDispatched": false,
+        "serviceAgreementCount": 1,
+        "isCashOnly": false,
+        "isAutoPay": false,
+        "revenueClassType": null,
+        "isAutoPayEligible": true,
+        "isEBillEligible": true,
+        "isEBillEnrollment": false,
+        "isBudgetBill": false,
+        "isBudgetBillEligible": true,
+        "isNetMetering": false,
+        "BillingInfo": {
+            "convenienceFee": 1.5,
+            "maximumWalletItems": null,
+            "pastDueAmount": 10.96,
+            "currentDueAmount": 0,
+            "dueByDate": "2021-08-05T00:00:00",
+            "remainingBalanceDue": 10.96,
+            "payments": []
+        }
+    }
+  }
+}
