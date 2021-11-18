@@ -54,7 +54,9 @@ class UnauthIdentityVerificationViewModel {
         if isBackSpace == -92 {
             return true
         }
-        return isValidTextCount
+        let invalidCharacters =
+            CharacterSet(charactersIn: "0123456789").inverted
+        return isValidTextCount && (inputString.rangeOfCharacter(from: invalidCharacters) == nil)
     }
     
     func isValidPhoneNumber(phoneNumber: String, inputString: String)-> Bool {
@@ -65,7 +67,9 @@ class UnauthIdentityVerificationViewModel {
         if isBackSpace == -92 {
             return true
         }
-        return isValidTextCount
+        let invalidCharacters =
+            CharacterSet(charactersIn: "0123456789").inverted
+        return isValidTextCount && (inputString.rangeOfCharacter(from: invalidCharacters) == nil)
     }
     
     private func phoneNumberHasTenDigits(text: String)-> Bool {
