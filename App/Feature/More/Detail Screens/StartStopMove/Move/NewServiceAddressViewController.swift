@@ -30,6 +30,8 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
     @IBOutlet weak var selectedAppartmentLabel: UILabel!
     @IBOutlet weak var appartmentFloatingLabel: UILabel!
     @IBOutlet weak var appartmentSelectionView: UIView!
+    @IBOutlet weak var appartmentDisclosureImageView: UIImageView!
+    @IBOutlet weak var streetDisclosureImageView: UIImageView!
 
     @IBOutlet weak var btnSteetAddress: UIButton!
     @IBOutlet weak var btnAppartment: UIButton!
@@ -234,11 +236,13 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
             streetAddressSelectionView.backgroundColor = .white
             streetAddressPlaceHolderLabel.textColor = .middleGray
             streetAddressPlaceHolderLabel.alpha = 1
+            streetDisclosureImageView.alpha = 1.0
         }else {
             streetAddressSelectionView.roundCorners(.allCorners, radius: 10.0, borderColor:.accentGray, borderWidth: 1.0)
             streetAddressSelectionView.backgroundColor = .softGray
             streetAddressPlaceHolderLabel.textColor = .middleGray
             streetAddressPlaceHolderLabel.alpha = 0.5
+            streetDisclosureImageView.alpha = 0.4
         }
     }
     private func enableAppartmentColorState(_ isEnabled : Bool) {
@@ -247,11 +251,13 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
             appartmentSelectionView.backgroundColor = .white
             appartmentPlaceHolderLabel.textColor = .middleGray
             appartmentPlaceHolderLabel.alpha = 1
+            appartmentDisclosureImageView.alpha = 1.0
         }else {
             appartmentSelectionView.roundCorners(.allCorners, radius: 10.0, borderColor:.accentGray, borderWidth: 1.0)
             appartmentSelectionView.backgroundColor = .softGray
             appartmentPlaceHolderLabel.textColor = .middleGray
             appartmentPlaceHolderLabel.alpha = 0.5
+            appartmentDisclosureImageView.alpha = 0.4
         }
     }
     private func setAppartmentError(_ error: String?) {

@@ -965,6 +965,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="New Service Address" id="IxE-bK-LE4"/>
                     <connections>
+                        <outlet property="appartmentDisclosureImageView" destination="6ui-pG-mkr" id="J1x-fY-evk"/>
                         <outlet property="appartmentFloatingLabel" destination="1Jg-TC-iNQ" id="cgq-wR-BhY"/>
                         <outlet property="appartmentPlaceHolderLabel" destination="QvI-Hq-EMG" id="dGs-2e-fkw"/>
                         <outlet property="appartmentSelectionView" destination="4bf-7Z-nDj" id="g06-Xv-yEv"/>
@@ -982,6 +983,7 @@
                         <outlet property="streetAddressFloatingLabel" destination="Q7n-Xk-ogQ" id="vm1-7A-gue"/>
                         <outlet property="streetAddressPlaceHolderLabel" destination="3mN-2g-dRB" id="kfe-og-9Eg"/>
                         <outlet property="streetAddressSelectionView" destination="Jmv-3V-MNK" id="oTJ-Qp-uCN"/>
+                        <outlet property="streetDisclosureImageView" destination="8Zb-oQ-VM4" id="MK0-ux-144"/>
                         <outlet property="zipTextField" destination="Us8-B6-I1t" id="qoV-wP-DnC"/>
                     </connections>
                 </viewController>
@@ -1055,7 +1057,7 @@
                                                         <constraint firstAttribute="height" constant="34" id="bgB-Zl-nMt"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4SU-rc-ogH">

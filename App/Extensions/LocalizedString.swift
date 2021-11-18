@@ -45,8 +45,11 @@ extension String {
     }
     
     func getUnit()-> String {
-        
-        let streetAddressArray : [String] = self.components(separatedBy: "*")
-        return streetAddressArray.last ?? ""
+        if self.contains("*") {
+            let streetAddressArray : [String] = self.components(separatedBy: "*")
+            return streetAddressArray.last ?? ""
+        } else {
+            return ""
+        }
     }
 }
