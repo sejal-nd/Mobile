@@ -64,7 +64,11 @@ class ReviewMoveServiceViewController: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        FirebaseUtility.logScreenView(.moveReviewView(className: self.className))
+        if viewModel.isUnauth {
+            FirebaseUtility.logScreenView(.unauthMoveReviewView(className: self.className))
+        } else {
+            FirebaseUtility.logScreenView(.moveReviewView(className: self.className))
+        }
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
 
@@ -92,7 +96,7 @@ class ReviewMoveServiceViewController: UIViewController {
         changeStopServiceDateButton.rx.tap
             .subscribe(onNext: { [weak self] _ in
                 guard let `self` = self else { return }
-                FirebaseUtility.logEvent(.moveService(parameters: [.calendar_stop_date]))
+                FirebaseUtility.logEvent(self.viewModel.isUnauth ? .unauthMoveService(parameters: [.calendar_stop_date]) : .authMoveService(parameters: [.calendar_stop_date]))
                 self.changeDateType = .stop
                 let calendarVC = PDTSimpleCalendarViewController()
                 calendarVC.calendar = .opCo
@@ -116,7 +120,9 @@ class ReviewMoveServiceViewController: UIViewController {
         changeStartServiceDateButton.rx.tap
             .subscribe(onNext: { [weak self] _ in
                 guard let `self` = self else { return }
-                FirebaseUtility.logEvent(.moveService(parameters: [.calendar_start_date]))
+                
+                let screen = Screen(className: self.className)
+                FirebaseUtility.logEvent(self.viewModel.isUnauth ? .unauthMoveService(parameters: [.calendar_start_date]) : .authMoveService(parameters: [.calendar_start_date]))
                 self.changeDateType = .start
                 let calendarVC = PDTSimpleCalendarViewController()
                 calendarVC.calendar = .opCo

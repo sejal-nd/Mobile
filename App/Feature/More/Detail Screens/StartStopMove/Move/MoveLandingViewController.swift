@@ -122,7 +122,11 @@ class MoveLandingViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        FirebaseUtility.logScreenView(.moveLandingView(className: self.className))
+        if viewModel.isUnauth {
+            FirebaseUtility.logScreenView(.unauthMoveLandingView(className: self.className))
+        } else {
+            FirebaseUtility.logScreenView(.moveLandingView(className: self.className))
+        }
     }
     
     func setupUIBinding(){

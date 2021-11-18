@@ -11,10 +11,11 @@ import Foundation
 class MoveServiceConfirmationViewModel {
     
     var moveServiceResponse: MoveServiceResponse!
+    var isUnauth: Bool = false
     
-    init(moveServiceResponse: MoveServiceResponse) {
-        
+    init(moveServiceResponse: MoveServiceResponse, isUnauth: Bool = false) {
         self.moveServiceResponse = moveServiceResponse
+        self.isUnauth = isUnauth
     }
 
     func getBillingDescription()-> String {

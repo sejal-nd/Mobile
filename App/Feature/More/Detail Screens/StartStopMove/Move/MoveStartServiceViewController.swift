@@ -45,7 +45,11 @@ class MoveStartServiceViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        FirebaseUtility.logScreenView(.moveSelectStartDateView(className: self.className))
+        if viewModel.isUnauth {
+            FirebaseUtility.logScreenView(.unauthMoveSelectStartDateView(className: self.className))
+        } else {
+            FirebaseUtility.logScreenView(.moveSelectStartDateView(className: self.className))
+        }
     }
     
     func initialUISetup() {
@@ -115,7 +119,7 @@ class MoveStartServiceViewController: UIViewController {
     
     @IBAction func onStartDateClicked(_ sender: Any) {
                 
-        FirebaseUtility.logEvent(.moveService(parameters: [.calendar_start_date]))
+        FirebaseUtility.logEvent(viewModel.isUnauth ? .unauthMoveService(parameters: [.calendar_start_date]) : .authMoveService(parameters: [.calendar_start_date]))
         let calendarVC = PDTSimpleCalendarViewController()
         calendarVC.calendar = .opCo
         calendarVC.delegate = self

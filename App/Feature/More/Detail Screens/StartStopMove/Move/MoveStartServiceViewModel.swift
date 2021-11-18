@@ -11,6 +11,10 @@ import Foundation
 class MoveStartServiceViewModel {
     
     var moveServiceFlow: MoveServiceFlowData
+    
+    var isUnauth: Bool {
+        return moveServiceFlow.unauthMoveData?.isUnauthMove ?? false
+    }
 
     init( moveServiceFlowData: MoveServiceFlowData) {
         self.moveServiceFlow = moveServiceFlowData

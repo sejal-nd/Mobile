@@ -52,6 +52,10 @@ class NewServiceAddressViewModel{
     }
     
     var moveServiceFlowData: MoveServiceFlowData
+    
+    var isUnauth: Bool {
+        return moveServiceFlowData.unauthMoveData?.isUnauthMove ?? false
+    }
 
     init( moveServiceFlowData: MoveServiceFlowData) {
         self.moveServiceFlowData = moveServiceFlowData
