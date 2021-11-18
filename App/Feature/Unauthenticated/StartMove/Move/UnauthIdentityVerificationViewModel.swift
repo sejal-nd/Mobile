@@ -25,7 +25,7 @@ class UnauthIdentityVerificationViewModel {
     let moveServiceWebURL: URL? = {
         switch Configuration.shared.opco {
         case .bge:
-            return URL(string: "https://\(Configuration.shared.associatedDomain)/CustomerServices/service/start")
+            return URL(string: "https://\(Configuration.shared.associatedDomain)/CustomerServices/service/move")
         default:
             return nil
         }
