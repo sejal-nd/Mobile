@@ -121,7 +121,6 @@ class ReviewMoveServiceViewController: UIViewController {
             .subscribe(onNext: { [weak self] _ in
                 guard let `self` = self else { return }
                 
-                let screen = Screen(className: self.className)
                 FirebaseUtility.logEvent(self.viewModel.isUnauth ? .unauthMoveService(parameters: [.calendar_start_date]) : .authMoveService(parameters: [.calendar_start_date]))
                 self.changeDateType = .start
                 let calendarVC = PDTSimpleCalendarViewController()
