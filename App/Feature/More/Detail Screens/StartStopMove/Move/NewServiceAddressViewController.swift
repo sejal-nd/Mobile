@@ -30,6 +30,8 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
     @IBOutlet weak var selectedAppartmentLabel: UILabel!
     @IBOutlet weak var appartmentFloatingLabel: UILabel!
     @IBOutlet weak var appartmentSelectionView: UIView!
+    @IBOutlet weak var appartmentDisclosureImageView: UIImageView!
+    @IBOutlet weak var streetDisclosureImageView: UIImageView!
 
     @IBOutlet weak var btnSteetAddress: UIButton!
     @IBOutlet weak var btnAppartment: UIButton!
@@ -75,6 +77,11 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
        }
 
     private func setupUIBinding(){
+        
+        selectedstreetAddressLabel.textColor = .deepGray
+        selectedAppartmentLabel.textColor = .deepGray
+        zipTextField.textField.textColor = .deepGray
+
         viewModel.showLoadingState
             .subscribe (onNext: { [weak self] status in
                 guard let `self` = self else {return }
@@ -227,22 +234,30 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
         if (isEnabled){
             streetAddressSelectionView.roundCorners(.allCorners, radius: 10.0, borderColor:.accentGray, borderWidth: 1.0)
             streetAddressSelectionView.backgroundColor = .white
-            streetAddressPlaceHolderLabel.textColor = .deepGray
+            streetAddressPlaceHolderLabel.textColor = .middleGray
+            streetAddressPlaceHolderLabel.alpha = 1
+            streetDisclosureImageView.alpha = 1.0
         }else {
             streetAddressSelectionView.roundCorners(.allCorners, radius: 10.0, borderColor:.accentGray, borderWidth: 1.0)
             streetAddressSelectionView.backgroundColor = .softGray
             streetAddressPlaceHolderLabel.textColor = .middleGray
+            streetAddressPlaceHolderLabel.alpha = 0.5
+            streetDisclosureImageView.alpha = 0.4
         }
     }
     private func enableAppartmentColorState(_ isEnabled : Bool) {
         if (isEnabled){
             appartmentSelectionView.roundCorners(.allCorners, radius: 10.0, borderColor:.accentGray, borderWidth: 1.0)
             appartmentSelectionView.backgroundColor = .white
-            appartmentPlaceHolderLabel.textColor = .deepGray
+            appartmentPlaceHolderLabel.textColor = .middleGray
+            appartmentPlaceHolderLabel.alpha = 1
+            appartmentDisclosureImageView.alpha = 1.0
         }else {
             appartmentSelectionView.roundCorners(.allCorners, radius: 10.0, borderColor:.accentGray, borderWidth: 1.0)
             appartmentSelectionView.backgroundColor = .softGray
             appartmentPlaceHolderLabel.textColor = .middleGray
+            appartmentPlaceHolderLabel.alpha = 0.5
+            appartmentDisclosureImageView.alpha = 0.4
         }
     }
     private func setAppartmentError(_ error: String?) {

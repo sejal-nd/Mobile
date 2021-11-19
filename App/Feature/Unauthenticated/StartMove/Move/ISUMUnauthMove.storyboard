@@ -28,7 +28,7 @@
             </objects>
             <point key="canvasLocation" x="3613.04347826087" y="-627.45535714285711"/>
         </scene>
-        <!--Identity Verification-->
+        <!--Move Service-->
         <scene sceneID="qzj-2B-bWX">
             <objects>
                 <viewController storyboardIdentifier="UnauthIdentityVerificationViewController" id="Hb5-C8-64k" customClass="UnauthIdentityVerificationViewController" customModule="EUMobile" customModuleProvider="target" sceneMemberID="viewController">
@@ -194,7 +194,7 @@
                             <constraint firstItem="KeP-db-HTd" firstAttribute="leading" secondItem="3Oi-Ut-Xd2" secondAttribute="leading" id="vRQ-YX-uDg"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Identity Verification" id="wsQ-2j-X71" userLabel="Identity Verification"/>
+                    <navigationItem key="navigationItem" title="Move Service" id="wsQ-2j-X71" userLabel="Identity Verification"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="continueButton" destination="mwy-mx-ah8" id="PUc-hU-3Lz"/>
@@ -343,7 +343,7 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Hhg-hc-jGC">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Hhg-hc-jGC">
                                                             <rect key="frame" x="263" y="0.0" width="72" height="64"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" priority="999" constant="72" id="3t9-Fy-DLa"/>
