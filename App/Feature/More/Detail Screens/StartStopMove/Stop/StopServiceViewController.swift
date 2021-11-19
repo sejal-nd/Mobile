@@ -214,7 +214,7 @@ class StopServiceViewController: UIViewController {
 
                 if let selectedDate = date {
                     self?.selectedDateLabel.text = DateFormatter.mmDdYyyyFormatter.string(from: selectedDate)
-                    self?.selectedDateLabel.accessibilityLabel = "\(selectedDate.weekday),  \(selectedDate.fullMonthDayAndYearString)"
+                    self?.stopDateButton.accessibilityLabel = "Stop Date, " + "\(selectedDate.weekday),  \(selectedDate.fullMonthDayAndYearString)"
                 }
             })
             .disposed(by: disposeBag)
