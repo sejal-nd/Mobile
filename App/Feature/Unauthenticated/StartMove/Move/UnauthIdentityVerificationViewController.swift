@@ -106,7 +106,7 @@ class UnauthIdentityVerificationViewController: KeyboardAvoidingStickyFooterView
         }
         DispatchQueue.main.async {
             self.presentAlert(title: NSLocalizedString("That doesn't match our records.", comment: ""),
-                               message: NSLocalizedString("Please try again\nIf you need assistance, contact Customer Service at 1-800-685-0123.", comment: ""),
+                               message: NSLocalizedString("Please try again.\nIf you need assistance, contact Customer Service at 1-800-685-0123.", comment: ""),
                                style: .alert,
                                actions: [cancelAction, contactUsAction])
         }
