@@ -97,7 +97,7 @@ class ContactUsViewModel {
         let urlString: String
         switch Configuration.shared.opco {
         case .bge:
-            urlString = "https://bge.custhelp.com/app/ContactUs"
+            urlString = "https://bgeknowledge--elly-stag.custhelp.com/app/ContactUs"
         case .comEd:
             urlString = "https://secure.comed.com/MyAccount/CustomerSupport/Pages/ContactUsForms.aspx"
         case .peco:
