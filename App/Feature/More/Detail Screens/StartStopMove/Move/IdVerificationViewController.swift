@@ -45,7 +45,11 @@ class IdVerificationViewController: KeyboardAvoidingStickyFooterViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        FirebaseUtility.logScreenView(.moveIdVerificationView(className: self.className))
+        if viewModel.isUnauth {
+            FirebaseUtility.logScreenView(.unauthMoveIdVerificationView(className: self.className))
+        } else {
+            FirebaseUtility.logScreenView(.moveIdVerificationView(className: self.className))
+        }
     }
     
     private func configureTextFields(){

@@ -11,6 +11,10 @@ class IdVerificationViewModel {
     
     var moveDataFlow: MoveServiceFlowData
     var idVerification: IdVerification!
+    
+    var isUnauth: Bool {
+        return moveDataFlow.unauthMoveData?.isUnauthMove ?? false
+    }
 
     init(moveDataFlow: MoveServiceFlowData) {
         

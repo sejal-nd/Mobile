@@ -54,7 +54,11 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        FirebaseUtility.logScreenView(.moveNewAddressView(className: self.className))
+        if viewModel.isUnauth {
+            FirebaseUtility.logScreenView(.unauthMoveNewAddressView(className: self.className))
+        } else {
+            FirebaseUtility.logScreenView(.moveNewAddressView(className: self.className))
+        }
         self.view.endEditing(true)
     }
     

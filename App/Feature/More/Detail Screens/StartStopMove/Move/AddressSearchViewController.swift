@@ -56,9 +56,17 @@ class AddressSearchViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if searchType == .street {
-            FirebaseUtility.logScreenView(.moveNewAddressStreetView(className: self.className))
+            if viewModel.isUnauthMove {
+                FirebaseUtility.logScreenView(.unauthMoveNewAddressStreetView(className: self.className))
+            } else {
+                FirebaseUtility.logScreenView(.moveNewAddressStreetView(className: self.className))
+            }
         } else {
-            FirebaseUtility.logScreenView(.moveNewAddressApartmentView(className: self.className))
+            if viewModel.isUnauthMove {
+                FirebaseUtility.logScreenView(.unauthMoveNewAddressApartmentView(className: self.className))
+            } else {
+                FirebaseUtility.logScreenView(.moveNewAddressApartmentView(className: self.className))
+            }
         }
         reloadTableView()
     }
