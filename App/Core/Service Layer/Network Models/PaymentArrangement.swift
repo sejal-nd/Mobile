@@ -41,11 +41,12 @@ struct CustomerInfoModel: Decodable {
 }
 
 struct PaDataModel: Decodable {
-    let monthlyInstallment: String?
+    let monthlyInstallment: Any?
     let remainingPaymentAmount: String?
     let numberOfInstallments: String?
     let finalInstallmentAmount: String?
     let noOfInstallmentsLeft: String?
+    let dpaEnrollmentStatus: Bool?
     
     enum CodingKeys: String, CodingKey {
         case monthlyInstallment = "monthlyInstallment"
@@ -53,14 +54,20 @@ struct PaDataModel: Decodable {
         case numberOfInstallments = "numberOfInstallments"
         case finalInstallmentAmount = "finalInstallmentAmount"
         case noOfInstallmentsLeft = "noOfInstallmentsLeft"
+        case dpaEnrollmentStatus = "dpaEnrollmentStatus"
     }
     
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        if Configuration.shared.opco == .bge {
+            monthlyInstallment = (try container.decodeIfPresent(Double.self, forKey: .monthlyInstallment))?.twoDecimalString
+        } else{
         monthlyInstallment = (try container.decodeIfPresent(String.self, forKey: .monthlyInstallment))
+        }
         remainingPaymentAmount = (try container.decodeIfPresent(String.self, forKey: .remainingPaymentAmount))
         numberOfInstallments = (try container.decodeIfPresent(String.self, forKey: .numberOfInstallments))
         finalInstallmentAmount = (try container.decodeIfPresent(String.self, forKey: .finalInstallmentAmount))
         noOfInstallmentsLeft = (try container.decodeIfPresent(String.self, forKey: .noOfInstallmentsLeft))
+        dpaEnrollmentStatus = (try container.decodeIfPresent(Bool.self, forKey: .dpaEnrollmentStatus))
     }
 }

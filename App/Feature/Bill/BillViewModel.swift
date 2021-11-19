@@ -901,15 +901,18 @@ class BillViewModel {
             dueDateExtensionDetails?.isPaymentExtensionEligible == false :
             dueDateExtensionDetails?.errorCode == "30011"
         
+        let dpaEnrolledCondtion = (Configuration.shared.opco == .comEd || Configuration.shared.opco == .peco) ?
+            accountDetail.billingInfo.isDpaEnrolled == "true" :
+        (paymentArrangementDetails?.pAData?.first?.dpaEnrollmentStatus ?? false)
+        
         if FeatureFlagUtility.shared.bool(forKey: .hasAssistanceEnrollment) {
-            if accountDetail.billingInfo.isDpaEnrolled == "true" {
+            if dpaEnrolledCondtion {
                 if paymentArrangementDetails?.customerInfo?.hasPABilled == false {
                     return "Your request to enroll in a payment arrangement has been accepted. For further details log into your My Account."
                 } else if paymentArrangementDetails?.customerInfo?.hasPABilled == true  {
                     guard  let remainingPaymentAmount = paymentArrangementDetails?.pAData?.first?.remainingPaymentAmount,
                            let monthlyInstallment = paymentArrangementDetails?.pAData?.first?.monthlyInstallment,
-                           let noOfInstallmentsLeft = paymentArrangementDetails?.pAData?.first?.noOfInstallmentsLeft,
-                           let numberOfInstallments = paymentArrangementDetails?.pAData?.first?.numberOfInstallments else {
+                           let noOfInstallmentsLeft = paymentArrangementDetails?.pAData?.first?.noOfInstallmentsLeft else {
                         return ""
                     }
                     return " You’re enrolled in a payment arrangement. Your $\(monthlyInstallment) monthly installment is included in the current bill. You have \(noOfInstallmentsLeft) installments, for a total of $\(remainingPaymentAmount), left on your arrangement."
