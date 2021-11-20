@@ -24,8 +24,8 @@ class StopConfirmationScreenViewModel {
     
     func getFinalBillAddress()-> String {
         
-        if let finalBillEmail = stopServiceResponse.finalBillEmail, !finalBillEmail.isEmpty { return finalBillEmail }
-        
+        if let finalBillEmail = stopServiceResponse.finalBillEmail, !finalBillEmail.isEmpty, (stopServiceResponse.isEBillEnrollment ?? false) { return finalBillEmail }
+
         if let isResolved = stopServiceResponse.isResolved, isResolved && stopServiceResponse.finalBillAddress == nil {
             return "The service address above"
         }
