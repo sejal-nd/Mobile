@@ -164,7 +164,7 @@ class IdVerificationViewController: KeyboardAvoidingStickyFooterViewController {
         self.ssnTextField.textField.resignFirstResponder()
         self.driverLicenseTextField.textField.resignFirstResponder()
         PickerView.showStringPicker(
-            withTitle: "Select Employment Status", data: ["Employed more than 3 years", "Employed less than 3 years", "Retired", "Receives Assistance", "Other"], selectedIndex: 0,
+            withTitle: "Select Employment Status", data: EmployeeStatus.employeeStatusList, selectedIndex: 0,
             onDone: { [weak self] value, index in
                 self?.employmentStatusLabel.text = value
                 self?.employmentStatusStackView.isHidden = false

@@ -37,7 +37,9 @@ public struct MoveISUMServiceRequest: Encodable {
         let rentOwn: String
         let createOnlineProfile: Bool?
         let stopServiceAddress: StopServiceAddressRequest
-        
+        let stopRentOwn: String
+        let startRentOwn: String
+
         init(moveServiceFlowData: MoveServiceFlowData) {
 
             self.startServiceAddress = StartServiceAddressRequest(moveServiceFlowData: moveServiceFlowData)
@@ -51,6 +53,8 @@ public struct MoveISUMServiceRequest: Encodable {
             self.selectedStopServicePoints = moveServiceFlowData.verificationDetail?.serviceLists.map { $0.servicePointID }
             self.accountNumber = moveServiceFlowData.unauthMoveData?.accountDetails != nil ? (moveServiceFlowData.unauthMoveData?.accountDetails?.accountNumber ?? "") : (moveServiceFlowData.currentAccountDetail?.accountNumber ?? "")
             self.rentOwn = moveServiceFlowData.isOwner ? "BUYING OR OWNS" : "RENTING"
+            self.stopRentOwn = moveServiceFlowData.isOwner ? "BUYING OR OWNS" : "RENTING"
+            self.startRentOwn = moveServiceFlowData.isOwner ? "BUYING OR OWNS" : "RENTING"
             self.createOnlineProfile = false
             self.stopServiceAddress = StopServiceAddressRequest(moveServiceFlowData: moveServiceFlowData)
         }
@@ -70,6 +74,8 @@ public struct MoveISUMServiceRequest: Encodable {
             case rentOwn = "RentOwn"
             case createOnlineProfile = "CreateOnlineProfile"
             case stopServiceAddress = "StopServiceAddress"
+            case stopRentOwn = "StopRentOwn"
+            case startRentOwn = "StartRentOwn"
         }
     }
     
@@ -98,7 +104,7 @@ public struct MoveISUMServiceRequest: Encodable {
             self.state = USState.getState(state: moveServiceFlowData.verificationDetail?.startStopMoveServiceDetails.primaryCustInformation.billingAddress.state ?? "")
             self.country = moveServiceFlowData.verificationDetail?.startStopMoveServiceDetails.primaryCustInformation.billingAddress.country
             self.premiseID = moveServiceFlowData.addressLookupResponse?.first?.premiseID
-            self.serviceType = moveServiceFlowData.currentAccountDetail?.serviceType
+            self.serviceType = MoveISUMServiceRequest.getServiceType(meterInfoList: moveServiceFlowData.addressLookupResponse?.first?.meterInfo ?? [])
             self.meterInfo = moveServiceFlowData.addressLookupResponse?.first?.meterInfo.map { MeterInfoRequest(meterInfo: $0) }
         }
 
@@ -149,6 +155,7 @@ public struct MoveISUMServiceRequest: Encodable {
         let zipCode: String?
         let accountNumber: String?
         let premiseID: String?
+        let country: String?
         
         init(moveServiceFlowData: MoveServiceFlowData) {
 
@@ -159,6 +166,7 @@ public struct MoveISUMServiceRequest: Encodable {
             self.zipCode = moveServiceFlowData.verificationDetail?.startStopMoveServiceDetails.primaryCustInformation.billingAddress.zipCode
             self.accountNumber = moveServiceFlowData.verificationDetail?.startStopMoveServiceDetails.accountNumber
             self.premiseID = moveServiceFlowData.verificationDetail?.startStopMoveServiceDetails.stopServiceAddress.premiseID
+            self.country = "United States of America"
         }
         
         enum CodingKeys: String, CodingKey {
@@ -170,6 +178,7 @@ public struct MoveISUMServiceRequest: Encodable {
             case zipCode = "ZipCode"
             case accountNumber = "AccountNumber"
             case premiseID = "PremiseID"
+            case country = "Country"
         }
     }
     
@@ -185,7 +194,7 @@ public struct MoveISUMServiceRequest: Encodable {
 
             self.SSNNumber = moveServiceFlowData.idVerification!.ssn
             self.dateOfBirth = DateFormatter.mmDdYyyyFormatter.string(from: moveServiceFlowData.idVerification!.dateOfBirth!)
-            self.employmentStatus = moveServiceFlowData.idVerification!.employmentStatus?.0
+            self.employmentStatus = EmployeeStatus.getEmployeeStatus(moveServiceFlowData.idVerification?.employmentStatus?.0 ?? "")
             self.driverLicenseNumber = moveServiceFlowData.idVerification!.driverLicenseNumber
             self.stateOfIssueDriverLincense = moveServiceFlowData.idVerification!.stateOfIssueDriverLincense
         }
@@ -335,5 +344,16 @@ public struct MoveISUMServiceRequest: Encodable {
             case state = "State"
             case zipCode = "ZipCode"
         }
+    }
+    
+    static func getServiceType(meterInfoList: [AddressLookupResponse.MeterInfo])-> String {
+        
+        var serviceType = ""
+        for meterInfo in meterInfoList {
+            if !serviceType.contains(meterInfo.meterType) {
+                serviceType += serviceType.isEmpty ? meterInfo.meterType : "/\(meterInfo.meterType)"
+            }
+        }
+        return serviceType.uppercased()
     }
 }
