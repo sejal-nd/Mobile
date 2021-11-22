@@ -21,6 +21,7 @@ public struct StopServiceResponse: Decodable {
     let isResolved: Bool?
     let remoteShutoffCapable: Bool?
     let appointmentRequested: Bool?
+    var isEBillEnrollment: Bool?
 
     enum CodingKeys: String, CodingKey {
         
