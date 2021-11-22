@@ -77,6 +77,7 @@ class FinalReviewMoveServiceViewController: UIViewController {
 
     func initialUIBinding() {
 
+        viewModel.moveFlowData = self.moveFlowData
         refreshData()
 
         self.navigationItem.hidesBackButton = true

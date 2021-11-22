@@ -81,7 +81,7 @@ class StopConfirmationScreenViewController: UIViewController {
     
     private func dataBinding() {
         
-        stopServiceDateTimeLabel.text = viewModel.getStopServiceDate() + ", 8:00 a.m."
+        stopServiceDateTimeLabel.text = viewModel.getStopServiceDate()
         finalBillLabel.text = viewModel.getFinalBillAddress()
         stopServiceAddressLabel.text = viewModel.getStopServiceAddress().getValidISUMAddress()
         nextStepsDescriptionLabel.text = viewModel.getNextStepDescription()
