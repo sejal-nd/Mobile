@@ -92,7 +92,7 @@ class BillViewModel {
         }
     
     private(set) lazy var fetchBGEDdeDpaEligibility: Driver<Bool> = self.currentAccountDetail.map {_ in
-        if Configuration.shared.opco == .bge || FeatureFlagUtility.shared.bool(forKey: .hasAssistanceEnrollment) {
+        if Configuration.shared.opco == .bge || Configuration.shared.opco == .peco || Configuration.shared.opco == .comEd {
             self.ddeDpaEligiblityCheck()
         } else {
             self.isBgeDpaEligible.accept(false)
@@ -883,9 +883,10 @@ class BillViewModel {
         }
     private(set) lazy var showAssistanceCTA: Driver<Bool> =
         Driver.combineLatest(self.enrollmentStatus.asDriver(),
-                             showBgeDdeDpaEligibility.asDriver())
+                             showBgeDdeDpaEligibility.asDriver(),
+                             paymentAssistanceValues.asDriver())
         {
-            $1 && ($0 == "")
+            $1 && ($0 == "") && $2?.description != ""
         }
     
     private(set) lazy var showDDEExtendedView: Driver<Bool> =
