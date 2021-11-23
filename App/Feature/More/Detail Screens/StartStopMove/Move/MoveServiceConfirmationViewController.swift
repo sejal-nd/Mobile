@@ -47,7 +47,11 @@ class MoveServiceConfirmationViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        FirebaseUtility.logScreenView(.moveConfirmationView(className: self.className))
+        if viewModel.isUnauth {
+            FirebaseUtility.logScreenView(.unauthMoveConfirmationView(className: self.className))
+        } else {
+            FirebaseUtility.logScreenView(.moveConfirmationView(className: self.className))
+        }
     }
     
     private func intialSetup() {

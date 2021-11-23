@@ -11,10 +11,11 @@ import Foundation
 class MoveServiceConfirmationViewModel {
     
     var moveServiceResponse: MoveServiceResponse!
+    var isUnauth: Bool = false
     
-    init(moveServiceResponse: MoveServiceResponse) {
-        
+    init(moveServiceResponse: MoveServiceResponse, isUnauth: Bool = false) {
         self.moveServiceResponse = moveServiceResponse
+        self.isUnauth = isUnauth
     }
 
     func getBillingDescription()-> String {
@@ -55,13 +56,13 @@ class MoveServiceConfirmationViewModel {
         if let streetName = moveServiceResponse.startAddress?.streetName {
             address += "\(streetName), "
         }
-        if let city = moveServiceResponse.stopAddress?.city {
+        if let city = moveServiceResponse.startAddress?.city {
             address += "\(city), "
         }
-        if let state = moveServiceResponse.stopAddress?.state {
+        if let state = moveServiceResponse.startAddress?.state {
             address += "\(state) "
         }
-        if let zipCode = moveServiceResponse.stopAddress?.zipCode {
+        if let zipCode = moveServiceResponse.startAddress?.zipCode {
             address += "\(zipCode)"
         }
         return address

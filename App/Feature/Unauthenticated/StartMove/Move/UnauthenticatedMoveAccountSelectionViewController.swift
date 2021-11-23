@@ -48,6 +48,7 @@ class UnauthenticatedMoveAccountSelectionViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        FirebaseUtility.logScreenView(.unauthMoveAccountPickerView(className: self.className))
         tableView.reloadData()
     }
     @IBAction func selectAccountPressed(_ sender: Any) {

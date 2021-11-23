@@ -22,7 +22,7 @@ class MoveLandingViewController: UIViewController {
         didSet {
             estimatedTimeLabel.textColor = .deepGray
             estimatedTimeLabel.font = SystemFont.regular.of(textStyle: .caption1)
-            estimatedTimeLabel.text = NSLocalizedString("EST. 12-18 MINUTES", comment: "")
+            estimatedTimeLabel.text = NSLocalizedString("EST. 4-6 MINUTES", comment: "")
         }
     }
     @IBOutlet weak var youMightNeedLabel: UILabel! {
@@ -122,7 +122,11 @@ class MoveLandingViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        FirebaseUtility.logScreenView(.moveLandingView(className: self.className))
+        if viewModel.isUnauth {
+            FirebaseUtility.logScreenView(.unauthMoveLandingView(className: self.className))
+        } else {
+            FirebaseUtility.logScreenView(.moveLandingView(className: self.className))
+        }
     }
     
     func setupUIBinding(){

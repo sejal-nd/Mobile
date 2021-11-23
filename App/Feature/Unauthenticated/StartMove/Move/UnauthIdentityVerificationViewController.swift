@@ -22,10 +22,15 @@ class UnauthIdentityVerificationViewController: KeyboardAvoidingStickyFooterView
         initialSetup()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        FirebaseUtility.logScreenView(.unauthMoveValidationView(className: self.className))
+    }
+    
     private func initialSetup() {
         
         addCloseButton()
-        ssnTextField.placeholder = NSLocalizedString("SSN/Tax ID/BGE Pin*", comment: "")
+        ssnTextField.placeholder = NSLocalizedString("SSN/Business Tax ID/BGE Pin*", comment: "")
         ssnTextField.textField.isSecureTextEntry = true
         ssnTextField.textField.delegate = self
         ssnTextField.textField.keyboardType = .phonePad
@@ -85,6 +90,7 @@ class UnauthIdentityVerificationViewController: KeyboardAvoidingStickyFooterView
             guard let `self` = self else { return }
             self.loadAccounts()
         }
+        FirebaseUtility.logEvent(.unauthMoveService(parameters: [.api_error]))
         DispatchQueue.main.async {
             self.presentAlert(title: NSLocalizedString("We're experiencing technical issues", comment: ""),
                                message: NSLocalizedString("We can't retrieve the data you requested.\nPlease try again later.", comment: ""),
@@ -104,9 +110,10 @@ class UnauthIdentityVerificationViewController: KeyboardAvoidingStickyFooterView
         { _ in
             UIApplication.shared.openPhoneNumberIfCan("1-800-685-0123")
         }
+        FirebaseUtility.logEvent(.unauthMoveService(parameters: [.validation_error]))
         DispatchQueue.main.async {
             self.presentAlert(title: NSLocalizedString("That doesn't match our records.", comment: ""),
-                               message: NSLocalizedString("Please try again\nIf you need assistance, contact Customer Service at 1-800-685-0123.", comment: ""),
+                               message: NSLocalizedString("Please try again.\nIf you need assistance, contact Customer Service at 1-800-685-0123.", comment: ""),
                                style: .alert,
                                actions: [cancelAction, contactUsAction])
         }

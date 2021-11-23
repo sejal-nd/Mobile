@@ -51,13 +51,18 @@ class MoveFinalMailingAddressViewController: KeyboardAvoidingStickyFooterViewCon
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel = MoveFinalMailingAddressViewModel()
+        let isUnauth = moveFlowData.unauthMoveData?.isUnauthMove ?? false
+        viewModel = MoveFinalMailingAddressViewModel(isUnauth: isUnauth)
         setupUI()
         configureComponentBehavior()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        FirebaseUtility.logScreenView(.moveFinalBillAddressView(className: self.className))
+        if viewModel.isUnauth {
+            FirebaseUtility.logScreenView(.unauthMoveFinalBillAddressView(className: self.className))
+        } else {
+            FirebaseUtility.logScreenView(.moveFinalBillAddressView(className: self.className))
+        }
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     

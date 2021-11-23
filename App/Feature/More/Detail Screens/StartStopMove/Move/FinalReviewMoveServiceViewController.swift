@@ -67,12 +67,17 @@ class FinalReviewMoveServiceViewController: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        FirebaseUtility.logScreenView(.moveReviewSubmitView(className: self.className))
+        if viewModel.isUnauth {
+            FirebaseUtility.logScreenView(.unauthMoveReviewSubmitView(className: self.className))
+        } else {
+            FirebaseUtility.logScreenView(.moveReviewSubmitView(className: self.className))
+        }
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
 
     func initialUIBinding() {
 
+        viewModel.moveFlowData = self.moveFlowData
         refreshData()
 
         self.navigationItem.hidesBackButton = true
@@ -136,30 +141,32 @@ class FinalReviewMoveServiceViewController: UIViewController {
         submitBtn.rx.tap
             .subscribe(onNext: { [weak self] _ in
                 guard let `self` = self else { return }
-                FirebaseUtility.logEvent(.moveService(parameters: [.submit]))
+                self.logMoveServiceEvent(isUnauth: self.viewModel.isUnauth, parameters: [.submit])
                 self.navigationController?.view.isUserInteractionEnabled = false
                 LoadingView.show()
                 
                 self.viewModel.moveServiceRequest(moveFlowData: self.moveFlowData) { [weak self] response in
-                    
                     guard let `self` = self else { return }
-                    FirebaseUtility.logEvent(.moveService(parameters: [response.isResolved == true ? .complete_resolved : .complete_unresolved]))
+                    self.logMoveServiceEvent(isUnauth: self.viewModel.isUnauth, parameters: [response.isResolved == true ? .complete_resolved : .complete_unresolved])
                     LoadingView.hide()
                     self.navigationController?.view.isUserInteractionEnabled = true
 
                     let storyboard = UIStoryboard(name: "ISUMMove", bundle: nil)
                     let moveServiceConfirmationViewController = storyboard.instantiateViewController(withIdentifier: "MoveServiceConfirmationViewController") as! MoveServiceConfirmationViewController
-                    moveServiceConfirmationViewController.viewModel = MoveServiceConfirmationViewModel(moveServiceResponse: response)
+                    
+                    let isUnauth = self.moveFlowData.unauthMoveData?.isUnauthMove ?? false
+                    moveServiceConfirmationViewController.viewModel = MoveServiceConfirmationViewModel(moveServiceResponse: response, isUnauth: isUnauth)
                     moveServiceConfirmationViewController.viewModel.moveServiceResponse.isEBillEnrollment = (self.moveFlowData.unauthMoveData?.isUnauthMove ?? false) ? (self.moveFlowData.unauthMoveData?.accountDetails?.isEBillEnrollment ?? false) : (self.moveFlowData.currentAccountDetail?.isEBillEnrollment ?? true)
                     self.navigationController?.pushViewController(moveServiceConfirmationViewController, animated: true)
                 } onFailure: { [weak self] _ in
-                    FirebaseUtility.logEvent(.moveService(parameters: [.submit_error]))
+                    guard let `self` = self else { return }
+                    self.logMoveServiceEvent(isUnauth: self.viewModel.isUnauth, parameters: [.submit_error])
                     LoadingView.hide()
-                    self?.navigationController?.view.isUserInteractionEnabled = true
+                    self.navigationController?.view.isUserInteractionEnabled = true
 
                     let storyboard = UIStoryboard(name: "ISUMMove", bundle: nil)
                     let generalSubmitErrorViewController = storyboard.instantiateViewController(withIdentifier: "MoveGeneralSubmitErrorViewController") as! MoveGeneralSubmitErrorViewController
-                    self?.navigationController?.pushViewController(generalSubmitErrorViewController, animated: true)
+                    self.navigationController?.pushViewController(generalSubmitErrorViewController, animated: true)
                 }
             }).disposed(by: disposeBag)
 
@@ -277,6 +284,9 @@ class FinalReviewMoveServiceViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
 
+    private func logMoveServiceEvent(isUnauth: Bool, parameters: [MoveServiceParameter]) {
+        FirebaseUtility.logEvent(viewModel.isUnauth ? .unauthMoveService(parameters: parameters) : .authMoveService(parameters: parameters))
+    }
 }
 
 // MARK: - MoveFinalMailingAddressDelegate

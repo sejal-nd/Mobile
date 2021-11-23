@@ -17,6 +17,11 @@ class MoveFinalMailingAddressViewModel {
     var zipCode: String?
     var state: USState?
     var stateSelectedIndex = 0
+    var isUnauth = false
+    
+    init(isUnauth: Bool = false) {
+        self.isUnauth = isUnauth
+    }
 
     var isStreetAddressValid: Bool {
         guard let address = streetAddress, !address.isEmpty else { return false}

@@ -30,6 +30,8 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
     @IBOutlet weak var selectedAppartmentLabel: UILabel!
     @IBOutlet weak var appartmentFloatingLabel: UILabel!
     @IBOutlet weak var appartmentSelectionView: UIView!
+    @IBOutlet weak var appartmentDisclosureImageView: UIImageView!
+    @IBOutlet weak var streetDisclosureImageView: UIImageView!
 
     @IBOutlet weak var btnSteetAddress: UIButton!
     @IBOutlet weak var btnAppartment: UIButton!
@@ -52,7 +54,11 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        FirebaseUtility.logScreenView(.moveNewAddressView(className: self.className))
+        if viewModel.isUnauth {
+            FirebaseUtility.logScreenView(.unauthMoveNewAddressView(className: self.className))
+        } else {
+            FirebaseUtility.logScreenView(.moveNewAddressView(className: self.className))
+        }
         self.view.endEditing(true)
     }
     
@@ -75,6 +81,11 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
        }
 
     private func setupUIBinding(){
+        
+        selectedstreetAddressLabel.textColor = .deepGray
+        selectedAppartmentLabel.textColor = .deepGray
+        zipTextField.textField.textColor = .deepGray
+
         viewModel.showLoadingState
             .subscribe (onNext: { [weak self] status in
                 guard let `self` = self else {return }
@@ -149,7 +160,7 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
 
         continueButton.rx.tap
             .subscribe(onNext: { [weak self] _ in
-                guard let `self` = self, let addressLookupResponse = self.viewModel.addressLookupResponse.value else { return }
+                guard let `self` = self, var addressLookupResponse = self.viewModel.addressLookupResponse.value else { return }
                 if self.isLaunchedFromReviewScreen {
                     self.viewModel.moveServiceFlowData.addressLookupResponse = addressLookupResponse
                     self.delegate?.didSelectNewServiceAddress(self.viewModel.moveServiceFlowData)
@@ -157,6 +168,11 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
                 } else {
                     let storyboard = UIStoryboard(name: "ISUMMove", bundle: nil)
                     let moveStartServiceViewController = storyboard.instantiateViewController(withIdentifier: "MoveStartServiceViewController") as! MoveStartServiceViewController
+                    addressLookupResponse = addressLookupResponse.map { response -> AddressLookupResponse in
+                        var _response = response
+                        _response.apartmentUnitNo = self.selectedAppartmentLabel.text
+                        return _response
+                    }
                     self.viewModel.moveServiceFlowData.addressLookupResponse = addressLookupResponse
                     moveStartServiceViewController.viewModel = MoveStartServiceViewModel(moveServiceFlowData: self.viewModel.moveServiceFlowData)
                     self.navigationController?.pushViewController(moveStartServiceViewController, animated: true)
@@ -227,22 +243,30 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
         if (isEnabled){
             streetAddressSelectionView.roundCorners(.allCorners, radius: 10.0, borderColor:.accentGray, borderWidth: 1.0)
             streetAddressSelectionView.backgroundColor = .white
-            streetAddressPlaceHolderLabel.textColor = .deepGray
+            streetAddressPlaceHolderLabel.textColor = .middleGray
+            streetAddressPlaceHolderLabel.alpha = 1
+            streetDisclosureImageView.alpha = 1.0
         }else {
             streetAddressSelectionView.roundCorners(.allCorners, radius: 10.0, borderColor:.accentGray, borderWidth: 1.0)
             streetAddressSelectionView.backgroundColor = .softGray
             streetAddressPlaceHolderLabel.textColor = .middleGray
+            streetAddressPlaceHolderLabel.alpha = 0.5
+            streetDisclosureImageView.alpha = 0.4
         }
     }
     private func enableAppartmentColorState(_ isEnabled : Bool) {
         if (isEnabled){
             appartmentSelectionView.roundCorners(.allCorners, radius: 10.0, borderColor:.accentGray, borderWidth: 1.0)
             appartmentSelectionView.backgroundColor = .white
-            appartmentPlaceHolderLabel.textColor = .deepGray
+            appartmentPlaceHolderLabel.textColor = .middleGray
+            appartmentPlaceHolderLabel.alpha = 1
+            appartmentDisclosureImageView.alpha = 1.0
         }else {
             appartmentSelectionView.roundCorners(.allCorners, radius: 10.0, borderColor:.accentGray, borderWidth: 1.0)
             appartmentSelectionView.backgroundColor = .softGray
             appartmentPlaceHolderLabel.textColor = .middleGray
+            appartmentPlaceHolderLabel.alpha = 0.5
+            appartmentDisclosureImageView.alpha = 0.4
         }
     }
     private func setAppartmentError(_ error: String?) {

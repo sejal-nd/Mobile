@@ -18,6 +18,9 @@ enum USState: String, CaseIterable {
     
     static func getState(state: String)-> String? {
         
+        if state.count == 2 {
+            return state
+        }
         if let _state = USState(rawValue: state) {
             return "\(_state)"
         }
