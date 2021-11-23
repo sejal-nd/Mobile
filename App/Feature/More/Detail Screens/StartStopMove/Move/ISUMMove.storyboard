@@ -52,7 +52,7 @@
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WWk-rN-wiP">
                                                                         <rect key="frame" x="10" y="217" width="354" height="20.5"/>
-                                                                        <accessibility key="accessibilityConfiguration" label="Estimated Time, 12 to 18 minutes"/>
+                                                                        <accessibility key="accessibilityConfiguration" label="Estimated Time, 4 to 6 minutes"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
