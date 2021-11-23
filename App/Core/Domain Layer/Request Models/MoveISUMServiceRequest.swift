@@ -160,12 +160,12 @@ public struct MoveISUMServiceRequest: Encodable {
         init(moveServiceFlowData: MoveServiceFlowData) {
 
             self.address = moveServiceFlowData.unauthMoveData?.accountDetails != nil ? moveServiceFlowData.unauthMoveData?.accountDetails?.addressLine : moveServiceFlowData.currentAccountDetail?.address
-            self.streetName = moveServiceFlowData.verificationDetail?.startStopMoveServiceDetails.primaryCustInformation.billingAddress.streetName
-            self.city = moveServiceFlowData.verificationDetail?.startStopMoveServiceDetails.primaryCustInformation.billingAddress.city
-            self.state = USState.getState(state: moveServiceFlowData.verificationDetail?.startStopMoveServiceDetails.primaryCustInformation.billingAddress.state ?? "")
-            self.zipCode = moveServiceFlowData.verificationDetail?.startStopMoveServiceDetails.primaryCustInformation.billingAddress.zipCode
-            self.accountNumber = moveServiceFlowData.verificationDetail?.startStopMoveServiceDetails.accountNumber
-            self.premiseID = moveServiceFlowData.verificationDetail?.startStopMoveServiceDetails.stopServiceAddress.premiseID
+            self.streetName = moveServiceFlowData.unauthMoveData?.accountDetails != nil ? moveServiceFlowData.unauthMoveData?.accountDetails?.addressLine : (moveServiceFlowData.currentAccountDetail?.addressLine ?? moveServiceFlowData.currentAccountDetail?.street)
+            self.city = moveServiceFlowData.unauthMoveData?.accountDetails != nil ? moveServiceFlowData.unauthMoveData?.accountDetails?.city : moveServiceFlowData.currentAccountDetail?.city
+            self.state = moveServiceFlowData.unauthMoveData?.accountDetails != nil ? USState.getState(state: moveServiceFlowData.unauthMoveData?.accountDetails?.state ?? "") : USState.getState(state: moveServiceFlowData.currentAccountDetail?.state ?? "")
+            self.zipCode = moveServiceFlowData.unauthMoveData?.accountDetails != nil ? moveServiceFlowData.unauthMoveData?.accountDetails?.zipCode : moveServiceFlowData.currentAccountDetail?.zipCode
+            self.accountNumber = moveServiceFlowData.unauthMoveData?.accountDetails != nil ? moveServiceFlowData.unauthMoveData?.selectedAccountNumber : moveServiceFlowData.currentAccountDetail?.accountNumber
+            self.premiseID = moveServiceFlowData.unauthMoveData?.accountDetails != nil ? moveServiceFlowData.unauthMoveData?.accountDetails?.premiseNumber : moveServiceFlowData.currentPremise?.premiseNumber
             self.country = "United States of America"
         }
         

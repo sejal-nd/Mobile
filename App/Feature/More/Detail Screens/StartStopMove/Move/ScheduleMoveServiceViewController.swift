@@ -100,7 +100,7 @@ class ScheduleMoveServiceViewController: UIViewController {
             .subscribe(onNext: { [weak self] _ in
                 guard let `self` = self else { return }
                 let alertViewController = InfoAlertController(title: NSLocalizedString("Stop Service Date", comment: ""),
-                                                              message: "Please select a date up to 30 days from now to stop your service, excluding holidays and Sundays.\nConsider your move date to make sure you have access to your utility service during the move.")
+                                                              message: "Please select a date up to 30 days from now to stop your service, excluding holidays and Sundays.\n\nConsider your moving date to make sure you have access to your utility service during your move.")
                 self.present(alertViewController, animated: true)
             }).disposed(by: disposeBag)
         
@@ -277,11 +277,7 @@ class ScheduleMoveServiceViewController: UIViewController {
             { [weak self] _ in
                 guard let `self` = self else { return }
                 self.logMoveServiceEvent(parameters: [.exit])
-                if self.viewModel.isUnauth {
-                    self.navigationController?.popViewController(animated: true)
-                } else {
-                    self.dismiss(animated: true, completion: nil)
-                }
+                self.dismiss(animated: true, completion: nil)
             }
             let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel)
             presentAlert(title: NSLocalizedString("Do you want to exit?", comment: ""),
