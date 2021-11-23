@@ -93,11 +93,19 @@ class ContactUsViewModel {
     var delmarvaGasNumber: String {
         return "302-454-0317"
     }
+    
+    fileprivate let isProd = Configuration.shared.environmentName == .release ||
+        Configuration.shared.environmentName == .rc
+    
     var onlineFormUrl: URL {
         let urlString: String
         switch Configuration.shared.opco {
         case .bge:
-            urlString = "https://bge.custhelp.com/app/ContactUs"
+            if isProd {
+                urlString = "https://bgeknowledge.custhelp.com/app/ContactUs"
+            } else {
+                urlString = "https://bgeknowledge--elly-stag.custhelp.com/app/ContactUs"
+            }
         case .comEd:
             urlString = "https://secure.comed.com/MyAccount/CustomerSupport/Pages/ContactUsForms.aspx"
         case .peco:
