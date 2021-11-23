@@ -277,11 +277,7 @@ class ScheduleMoveServiceViewController: UIViewController {
             { [weak self] _ in
                 guard let `self` = self else { return }
                 self.logMoveServiceEvent(parameters: [.exit])
-                if self.viewModel.isUnauth {
-                    self.navigationController?.popViewController(animated: true)
-                } else {
-                    self.dismiss(animated: true, completion: nil)
-                }
+                self.dismiss(animated: true, completion: nil)
             }
             let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel)
             presentAlert(title: NSLocalizedString("Do you want to exit?", comment: ""),
