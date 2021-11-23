@@ -93,14 +93,14 @@ public struct StopISUMServiceRequest: Encodable {
 
         init(stopFlowData: StopServiceFlowData) {
             
-            self.streetName = stopFlowData.verificationDetail?.startStopMoveServiceDetails.primaryCustInformation.billingAddress.streetName
-            self.city = stopFlowData.verificationDetail?.startStopMoveServiceDetails.primaryCustInformation.billingAddress.city
-            self.state = USState.getState(state: stopFlowData.verificationDetail?.startStopMoveServiceDetails.primaryCustInformation.billingAddress.state ?? "")
-            self.country = stopFlowData.verificationDetail?.startStopMoveServiceDetails.primaryCustInformation.billingAddress.country
-            self.zipCode = stopFlowData.verificationDetail?.startStopMoveServiceDetails.primaryCustInformation.billingAddress.zipCode
-            self.accountNumber = stopFlowData.verificationDetail?.startStopMoveServiceDetails.accountNumber
-            self.customerID = stopFlowData.verificationDetail?.startStopMoveServiceDetails.customerID
-            self.premiseID = stopFlowData.verificationDetail?.startStopMoveServiceDetails.stopServiceAddress.premiseID
+            self.streetName = stopFlowData.currentAccountDetail.addressLine ?? stopFlowData.currentAccountDetail.street
+            self.city = stopFlowData.currentAccountDetail.city
+            self.state = USState.getState(state: stopFlowData.currentAccountDetail.state ?? "")
+            self.country = "United States of America"
+            self.zipCode = stopFlowData.currentAccountDetail.zipCode
+            self.accountNumber = stopFlowData.currentAccountDetail.accountNumber
+            self.customerID = stopFlowData.currentAccountDetail.customerNumber
+            self.premiseID = stopFlowData.currentPremise.premiseNumber
             self.revenueClass = stopFlowData.currentAccountDetail.revenueClass
         }
         
