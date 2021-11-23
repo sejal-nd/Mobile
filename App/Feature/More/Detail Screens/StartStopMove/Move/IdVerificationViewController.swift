@@ -45,7 +45,11 @@ class IdVerificationViewController: KeyboardAvoidingStickyFooterViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        FirebaseUtility.logScreenView(.moveIdVerificationView(className: self.className))
+        if viewModel.isUnauth {
+            FirebaseUtility.logScreenView(.unauthMoveIdVerificationView(className: self.className))
+        } else {
+            FirebaseUtility.logScreenView(.moveIdVerificationView(className: self.className))
+        }
     }
     
     private func configureTextFields(){
@@ -160,7 +164,7 @@ class IdVerificationViewController: KeyboardAvoidingStickyFooterViewController {
         self.ssnTextField.textField.resignFirstResponder()
         self.driverLicenseTextField.textField.resignFirstResponder()
         PickerView.showStringPicker(
-            withTitle: "Select Employment Status", data: ["Employed more than 3 years", "Employed less than 3 years", "Retired", "Receives Assistance", "Other"], selectedIndex: 0,
+            withTitle: "Select Employment Status", data: EmployeeStatus.employeeStatusList, selectedIndex: 0,
             onDone: { [weak self] value, index in
                 self?.employmentStatusLabel.text = value
                 self?.employmentStatusStackView.isHidden = false

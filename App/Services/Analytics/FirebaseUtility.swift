@@ -120,7 +120,8 @@ enum FirebaseEvent: Event {
     
     // ISUM
     case stopService(parameters: [StopServiceParameter])
-    case moveService(parameters: [MoveServiceParameter])
+    case authMoveService(parameters: [MoveServiceParameter])
+    case unauthMoveService(parameters: [MoveServiceParameter])
     
     case screenView(_ screen: Screen)
     
@@ -174,8 +175,10 @@ enum FirebaseEvent: Event {
             return "gamificationExperienceAccessed"
         case .stopService:
             return "authStop"
-        case .moveService:
+        case .authMoveService:
             return "authMove"
+        case .unauthMoveService:
+            return "unauthMove"
         case .screenView:
             return AnalyticsEventScreenView
         default:
@@ -624,10 +627,11 @@ enum MoveServiceParameter: String, EventParameter {
     
     case submit_error
     case api_error
+    case validation_error
     
     var type: ParameterType {
         switch self {
-        case .submit_error, .api_error:
+        case .submit_error, .api_error, .validation_error:
             return .error
         default:
             return .action
@@ -673,13 +677,14 @@ enum Screen {
     case paymentView(className: String)
     case alertPreferencesView(className: String)
     
-    // ISUM
+    // ISUM Auth Stop
     case stopLandingView(className: String)
     case stopSelectStopDateView(className: String)
     case stopFinalBillAddressView(className: String)
     case stopReviewSubmitView(className: String)
     case stopConfirmationView(className: String)
     
+    // ISUM Auth Move
     case moveLandingView(className: String)
     case moveSelectStopDateView(className: String)
     case moveNewAddressView(className: String)
@@ -691,6 +696,21 @@ enum Screen {
     case moveReviewView(className: String)
     case moveReviewSubmitView(className: String)
     case moveConfirmationView(className: String)
+    
+    // ISUM Unauth Move
+    case unauthMoveValidationView(className: String)
+    case unauthMoveAccountPickerView(className: String)
+    case unauthMoveLandingView(className: String)
+    case unauthMoveSelectStopDateView(className: String)
+    case unauthMoveNewAddressView(className: String)
+    case unauthMoveNewAddressStreetView(className: String)
+    case unauthMoveNewAddressApartmentView(className: String)
+    case unauthMoveIdVerificationView(className: String)
+    case unauthMoveSelectStartDateView(className: String)
+    case unauthMoveFinalBillAddressView(className: String)
+    case unauthMoveReviewView(className: String)
+    case unauthMoveReviewSubmitView(className: String)
+    case unauthMoveConfirmationView(className: String)
     
     // Apple Watch
     case watchSignInView(className: String)
@@ -737,7 +757,7 @@ enum Screen {
         case .stopLandingView:
             return "StopLandingView"
         case .stopSelectStopDateView:
-            return "StopLandingView"
+            return "StopSelectStopDateView"
         case .stopFinalBillAddressView:
             return "StopFinalBillAddressView"
         case .stopReviewSubmitView:
@@ -768,6 +788,33 @@ enum Screen {
             return "MoveReviewSubmitView"
         case .moveConfirmationView:
             return "MoveConfirmationView"
+            
+        case .unauthMoveValidationView:
+            return "UnauthMoveValidationView"
+        case .unauthMoveAccountPickerView:
+            return "UnauthMoveAccountPickerView"
+        case .unauthMoveLandingView:
+            return "UnauthMoveLandingView"
+        case .unauthMoveSelectStopDateView:
+            return "UnauthMoveSelectStopDateView"
+        case .unauthMoveNewAddressView:
+            return "UnauthMoveNewAddressView"
+        case .unauthMoveNewAddressStreetView:
+            return "UnauthMoveNewAddressStreetView"
+        case .unauthMoveNewAddressApartmentView:
+            return "UnauthMoveNewAddressApartmentView"
+        case .unauthMoveIdVerificationView:
+            return "UnauthMoveIdVerificationView"
+        case .unauthMoveSelectStartDateView:
+            return "UnauthMoveSelectStartDateView"
+        case .unauthMoveFinalBillAddressView:
+            return "UnauthMoveFinalBillAddressView"
+        case .unauthMoveReviewView:
+            return "UnauthMoveReviewView"
+        case .unauthMoveReviewSubmitView:
+            return "UnauthMoveReviewSubmitView"
+        case .unauthMoveConfirmationView:
+            return "UnauthMoveConfirmationView"
             
         case .watchSignInView:
             return "sign_in_screen_view"
@@ -806,6 +853,7 @@ enum Screen {
              .stopFinalBillAddressView(let className),
              .stopReviewSubmitView(let className),
              .stopConfirmationView(let className),
+            
              .moveLandingView(let className),
              .moveSelectStopDateView(let className),
              .moveNewAddressView(let className),
@@ -817,6 +865,20 @@ enum Screen {
              .moveReviewView(let className),
              .moveReviewSubmitView(let className),
              .moveConfirmationView(let className),
+            
+             .unauthMoveValidationView(let className),
+             .unauthMoveAccountPickerView(let className),
+             .unauthMoveLandingView(let className),
+             .unauthMoveSelectStopDateView(let className),
+             .unauthMoveNewAddressView(let className),
+             .unauthMoveNewAddressStreetView(let className),
+             .unauthMoveNewAddressApartmentView(let className),
+             .unauthMoveIdVerificationView(let className),
+             .unauthMoveSelectStartDateView(let className),
+             .unauthMoveFinalBillAddressView(let className),
+             .unauthMoveReviewView(let className),
+             .unauthMoveReviewSubmitView(let className),
+             .unauthMoveConfirmationView(let className),
              
              .watchSignInView(let className),
              .watchAccountListView(let className),

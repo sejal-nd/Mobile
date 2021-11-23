@@ -54,7 +54,11 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        FirebaseUtility.logScreenView(.moveNewAddressView(className: self.className))
+        if viewModel.isUnauth {
+            FirebaseUtility.logScreenView(.unauthMoveNewAddressView(className: self.className))
+        } else {
+            FirebaseUtility.logScreenView(.moveNewAddressView(className: self.className))
+        }
         self.view.endEditing(true)
     }
     
@@ -156,7 +160,7 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
 
         continueButton.rx.tap
             .subscribe(onNext: { [weak self] _ in
-                guard let `self` = self, let addressLookupResponse = self.viewModel.addressLookupResponse.value else { return }
+                guard let `self` = self, var addressLookupResponse = self.viewModel.addressLookupResponse.value else { return }
                 if self.isLaunchedFromReviewScreen {
                     self.viewModel.moveServiceFlowData.addressLookupResponse = addressLookupResponse
                     self.delegate?.didSelectNewServiceAddress(self.viewModel.moveServiceFlowData)
@@ -164,6 +168,11 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
                 } else {
                     let storyboard = UIStoryboard(name: "ISUMMove", bundle: nil)
                     let moveStartServiceViewController = storyboard.instantiateViewController(withIdentifier: "MoveStartServiceViewController") as! MoveStartServiceViewController
+                    addressLookupResponse = addressLookupResponse.map { response -> AddressLookupResponse in
+                        var _response = response
+                        _response.apartmentUnitNo = self.selectedAppartmentLabel.text
+                        return _response
+                    }
                     self.viewModel.moveServiceFlowData.addressLookupResponse = addressLookupResponse
                     moveStartServiceViewController.viewModel = MoveStartServiceViewModel(moveServiceFlowData: self.viewModel.moveServiceFlowData)
                     self.navigationController?.pushViewController(moveStartServiceViewController, animated: true)

@@ -14,10 +14,14 @@ enum ChnageDateServiceType{
 class ReviewMoveServiceViewModel {
     
     var moveFlowData: MoveServiceFlowData! = nil
+    
+    var isUnauth: Bool {
+        return moveFlowData.unauthMoveData?.isUnauthMove ?? false
+    }
 
     func moveServiceRequest(moveFlowData: MoveServiceFlowData, onSuccess: @escaping (MoveServiceResponse) -> (), onFailure: @escaping (NetworkingError) -> ()) {
         
-        if moveFlowData.unauthMoveData?.isUnauthMove ?? false {
+        if isUnauth {
             moveServiceUnauthenticationRequest(moveFlowData: moveFlowData, onSuccess: onSuccess, onFailure: onFailure)
         } else {
             moveServiceAuthenticationRequest(moveFlowData: moveFlowData, onSuccess: onSuccess, onFailure: onFailure)

@@ -55,7 +55,11 @@ class ScheduleMoveServiceViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
-        FirebaseUtility.logScreenView(.moveSelectStopDateView(className: self.className))
+        if viewModel.isUnauth {
+            FirebaseUtility.logScreenView(.unauthMoveSelectStopDateView(className: self.className))
+        } else {
+            FirebaseUtility.logScreenView(.moveSelectStopDateView(className: self.className))
+        }
         if isFirstLoad {
             isFirstLoad = false
             fetchAccounts()
@@ -96,13 +100,13 @@ class ScheduleMoveServiceViewController: UIViewController {
             .subscribe(onNext: { [weak self] _ in
                 guard let `self` = self else { return }
                 let alertViewController = InfoAlertController(title: NSLocalizedString("Stop Service Date", comment: ""),
-                                                              message: "Please select a date up to 30 days from now to stop your service, excluding holidays and Sundays.\nConsider your move date to make sure you have access to your utility service during the move.")
+                                                              message: "Please select a date up to 30 days from now to stop your service, excluding holidays and Sundays.\n\nConsider your moving date to make sure you have access to your utility service during your move.")
                 self.present(alertViewController, animated: true)
             }).disposed(by: disposeBag)
         
         stopDateButton.rx.touchUpInside.asDriver()
             .drive(onNext: { [weak self] in
-                FirebaseUtility.logEvent(.moveService(parameters: [.calendar_stop_date]))
+                self?.logMoveServiceEvent(parameters: [.calendar_stop_date])
                 guard let self = self else { return }
                 self.view.endEditing(true)
                 
@@ -185,10 +189,10 @@ class ScheduleMoveServiceViewController: UIViewController {
                 self?.stopDateStackView.isHidden = (accountDetails.isFinaled || accountDetails.isPendingDisconnect)
                 
                 if accountDetails.isFinaled {
-                    FirebaseUtility.logEvent(.moveService(parameters: [.finaled]))
+                    self?.logMoveServiceEvent(parameters: [.finaled])
                 }
                 if accountDetails.isPendingDisconnect {
-                    FirebaseUtility.logEvent(.moveService(parameters: [.pending_disconnect]))
+                    self?.logMoveServiceEvent(parameters: [.pending_disconnect])
                 }
             })
             .disposed(by: disposeBag)
@@ -237,7 +241,7 @@ class ScheduleMoveServiceViewController: UIViewController {
                 self?.continueButton.setTitleColor(hasSelectedDate ? UIColor.white : UIColor(red: 74.0/255.0, green: 74.0/255.0, blue: 74.0/255.0, alpha: 0.5), for: .normal)
 
                 if let selectedDate = date {
-                    self?.selectedDateLabel.text = DateFormatter.MMddyyyyFormatter.string(from: selectedDate)
+                    self?.selectedDateLabel.text = DateFormatter.mmDdYyyyFormatter.string(from: selectedDate)
                     self?.selectedDateLabel.accessibilityLabel = "\(selectedDate.weekday),  \(selectedDate.fullMonthDayAndYearString)"
                 }
             })
@@ -272,12 +276,8 @@ class ScheduleMoveServiceViewController: UIViewController {
             let exitAction = UIAlertAction(title: NSLocalizedString("Exit", comment: ""), style: .default)
             { [weak self] _ in
                 guard let `self` = self else { return }
-                FirebaseUtility.logEvent(.moveService(parameters: [.exit]))
-                if self.viewModel.isUnauth {
-                    self.navigationController?.popViewController(animated: true)
-                } else {
-                    self.dismiss(animated: true, completion: nil)
-                }
+                self.logMoveServiceEvent(parameters: [.exit])
+                self.dismiss(animated: true, completion: nil)
             }
             let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel)
             presentAlert(title: NSLocalizedString("Do you want to exit?", comment: ""),
@@ -314,6 +314,10 @@ class ScheduleMoveServiceViewController: UIViewController {
             }
         }
     }
+    
+    private func logMoveServiceEvent(parameters: [MoveServiceParameter]) {
+        FirebaseUtility.logEvent(viewModel.isUnauth ? .unauthMoveService(parameters: parameters) : .authMoveService(parameters: parameters))
+    }
 }
 
 
@@ -335,7 +339,7 @@ extension ScheduleMoveServiceViewController: PDTSimpleCalendarViewDelegate {
 extension ScheduleMoveServiceViewController: AccountSelectDelegate {
     
     internal func didSelectAccount(_ account: Account, premiseIndexPath: IndexPath?) {
-        FirebaseUtility.logEvent(.moveService(parameters: [.account_changed]))
+        self.logMoveServiceEvent(parameters: [.account_changed])
         hasChangedData = true
         let selectedAccountIndex = accounts.firstIndex(of: account)
         
