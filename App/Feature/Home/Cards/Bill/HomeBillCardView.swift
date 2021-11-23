@@ -356,7 +356,7 @@ class HomeBillCardView: UIView {
                 (description?.description == "") {
                 self.assistanceView.isHidden = true
             } else {
-                self.assistanceView.isHidden = false
+                //self.assistanceView.isHidden = false
             }
             DispatchQueue.main.async {
                 if description?.ctaType == "Reinstate Payment Arrangement" {

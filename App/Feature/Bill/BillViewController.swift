@@ -663,7 +663,11 @@ class BillViewController: AccountPickerViewController {
         viewModel.showAutoPayEnrolledView.not().drive(autoPayEnrolledView.rx.isHidden).disposed(by: bag)
         viewModel.autoPayDetailLabelText.drive(autoPayDetailLabel.rx.attributedText).disposed(by: bag)
         viewModel.showBudgetEnrolledView.not().drive(budgetEnrolledView.rx.isHidden).disposed(by: bag)
-        viewModel.showAssistanceCTA.not().drive(assistanceView.rx.isHidden).disposed(by: bag)
+        viewModel.showAssistanceCTA.not().drive(onNext: { [weak self] showHideCTA in
+            DispatchQueue.main.async {
+                self?.assistanceView.isHidden = showHideCTA
+            }
+        }).disposed(by: bag)
         viewModel.showDDEExtendedView.not().drive(ddeExtendedDateView.rx.isHidden).disposed(by: bag)
         
         

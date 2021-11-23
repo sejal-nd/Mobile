@@ -122,7 +122,7 @@ class HomeBillCardViewModel {
     }
     
     private(set) lazy var fetchBGEDdeDpaEligibility: Driver<Bool> = Driver.combineLatest(accountDetailDriver, fetchTracker, scheduledPaymentEvents.elements().asDriver(onErrorDriveWith: .empty())) { (accountDetail, fetchTrackerValue, scheduledPay) in
-        if Configuration.shared.opco == .bge || FeatureFlagUtility.shared.bool(forKey: .hasAssistanceEnrollment) {
+        if Configuration.shared.opco == .bge || Configuration.shared.opco == .peco || Configuration.shared.opco == .comEd {
             if !fetchTrackerValue {
                 // Fetch BGE DDE
                 AccountService.fetchDDE  { [weak self] result in
@@ -491,9 +491,10 @@ class HomeBillCardViewModel {
     
     private(set) lazy var showAssistanceCTA: Driver<Bool> =
         Driver.combineLatest(self.enrollmentStatus.asDriver(),
-                             showBgeDdeDpaEligibility.asDriver())
+                             showBgeDdeDpaEligibility.asDriver(),
+                             paymentAssistanceValues.asDriver())
         {
-            $1 && ($0 == "")
+            $1 && ($0 == "") && $2?.description != ""
         }
     
     private(set) lazy var showCatchUpDisclaimer: Driver<Bool> = Driver.combineLatest(showBgeDdeDpaEligibility.asDriver(), enrollmentStatus.asDriver()) {(showBgeDdeDpaEligibility, enrollmentStatus) in
