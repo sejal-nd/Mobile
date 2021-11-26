@@ -33,6 +33,8 @@ class MoveStartServiceViewController: UIViewController {
     @IBOutlet weak var startDateLargeStaticLabel: UILabel!
     @IBOutlet weak var serviceStartStaticLabel: UILabel!
 
+    @IBOutlet weak var startDateButton: UIButton!
+
     var viewModel: MoveStartServiceViewModel!
     
     @IBOutlet weak var continueButton: PrimaryButton!
@@ -109,7 +111,8 @@ class MoveStartServiceViewController: UIViewController {
     private func refreshUI(startDate: Date) {
         viewModel.moveServiceFlow.startServiceDate = startDate
         selectedDateLabel.text = DateFormatter.mmDdYyyyFormatter.string(from: startDate)
-        selectedDateLabel.accessibilityLabel = "\(startDate.weekday),  \(startDate.fullMonthDayAndYearString)"
+        startDateButton.accessibilityLabel = "Start Date, " + "\(startDate.weekday),  \(startDate.fullMonthDayAndYearString)"
+
         continueButton.isEnabled = true
         continueButton.isUserInteractionEnabled = true
         self.dateStackView.isHidden = false
