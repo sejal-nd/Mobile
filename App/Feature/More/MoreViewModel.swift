@@ -88,7 +88,7 @@ class MoreViewModel {
     let startServiceWebURL: URL? = {
         switch Configuration.shared.opco {
         case .bge:
-            return URL(string: "https://\(Configuration.shared.associatedDomain)/CustomerServices/service/landing?flowtype=startservice&referrer=mobileapp")
+            return URL(string: "https://\(Configuration.shared.associatedDomain)/CustomerServices/service/start?referrer=mobileapp")
         case .ace, .comEd, .delmarva, .peco, .pepco:
             return URL(string: "https://\(Configuration.shared.associatedDomain)/CustomerServices/service/start?utm_source=StartLink&utm_medium=MobileApp&utm_id=SSMRedirect")
         default:

@@ -13,7 +13,7 @@ class UnauthenticatedUserViewController: UIViewController, UIGestureRecognizerDe
     let startServiceWebURL: URL? = {
         switch Configuration.shared.opco {
         case .bge:
-            return URL(string: "https://\(Configuration.shared.associatedDomain)/CustomerServices/service/landing?flowtype=startservice&referrer=mobileappunauth")
+            return URL(string: "https://\(Configuration.shared.associatedDomain)/CustomerServices/service/landing?flowtype=startservice&referrer=mobileapp")
         default:
             return nil
         }
