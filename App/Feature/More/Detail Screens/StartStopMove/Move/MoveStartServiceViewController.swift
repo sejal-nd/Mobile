@@ -33,6 +33,8 @@ class MoveStartServiceViewController: UIViewController {
     @IBOutlet weak var startDateLargeStaticLabel: UILabel!
     @IBOutlet weak var serviceStartStaticLabel: UILabel!
 
+    @IBOutlet weak var startDateButton: UIButton!
+
     var viewModel: MoveStartServiceViewModel!
     
     @IBOutlet weak var continueButton: PrimaryButton!
@@ -109,7 +111,8 @@ class MoveStartServiceViewController: UIViewController {
     private func refreshUI(startDate: Date) {
         viewModel.moveServiceFlow.startServiceDate = startDate
         selectedDateLabel.text = DateFormatter.mmDdYyyyFormatter.string(from: startDate)
-        selectedDateLabel.accessibilityLabel = "\(startDate.weekday),  \(startDate.fullMonthDayAndYearString)"
+        startDateButton.accessibilityLabel = "Start Date, " + "\(startDate.weekday),  \(startDate.fullMonthDayAndYearString)"
+
         continueButton.isEnabled = true
         continueButton.isUserInteractionEnabled = true
         self.dateStackView.isHidden = false
@@ -144,7 +147,7 @@ class MoveStartServiceViewController: UIViewController {
     @IBAction func onToolTipClicked(_ sender: Any) {
         
         let alertViewController = InfoAlertController(title: NSLocalizedString("Start Service Date", comment: ""),
-                                                      message: "Please select a date up to 30 days from now to start your service, excluding holidays and Sundays.\n Consider your move date to make sure you have access to your utility service during the move")
+                                                      message: "Please select a date up to 30 days from now to stop your service, excluding holidays and Sundays.\n\nConsider your moving date to make sure you have access to your utility service during your move.")
         present(alertViewController, animated: true)
     }
 

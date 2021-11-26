@@ -70,7 +70,7 @@ class ScheduleMoveServiceViewController: UIViewController {
     func intialUIBiding() {
 
         let backButtonIconName = viewModel.isUnauth ? "ic_back" : "ic_close"
-        let backButtonAccesibilityLabelText = viewModel.isUnauth ? "Close" : "Back"
+        let backButtonAccesibilityLabelText = viewModel.isUnauth ? "Back" : "Close"
         self.navigationItem.hidesBackButton = true
         let newBackButton = UIBarButtonItem(image: UIImage(named: backButtonIconName), style: UIBarButtonItem.Style.plain, target: self, action: #selector(ScheduleMoveServiceViewController.back(sender:)))
         self.navigationItem.leftBarButtonItem = newBackButton
@@ -242,7 +242,7 @@ class ScheduleMoveServiceViewController: UIViewController {
 
                 if let selectedDate = date {
                     self?.selectedDateLabel.text = DateFormatter.mmDdYyyyFormatter.string(from: selectedDate)
-                    self?.selectedDateLabel.accessibilityLabel = "\(selectedDate.weekday),  \(selectedDate.fullMonthDayAndYearString)"
+                    self?.stopDateButton.accessibilityLabel = "Stop Date, " + "\(selectedDate.weekday),  \(selectedDate.fullMonthDayAndYearString)"
                 }
             })
             .disposed(by: disposeBag)
