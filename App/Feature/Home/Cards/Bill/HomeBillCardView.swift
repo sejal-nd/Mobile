@@ -93,6 +93,12 @@ class HomeBillCardView: UIView {
     @IBOutlet weak var ddeExtendedDateView: UIView!
     @IBOutlet weak var ddeExtendedDateLabel: UILabel!
     
+    @IBOutlet weak var enrolmentStatusViewBillNotReady: UIView!
+    @IBOutlet weak var enrolmentStatusLabelBillNotReady: UILabel!
+    
+    @IBOutlet weak var ddeExtendedDateViewBillNotReady: UIView!
+    @IBOutlet weak var ddeExtendedDateLabelBillNotReady: UILabel!
+    
     
     let shouldPushWallet = PublishSubject<Void>()
     
@@ -150,8 +156,14 @@ class HomeBillCardView: UIView {
         enrolmentStatusLabel.textColor = .deepGray
         enrolmentStatusLabel.font = SystemFont.regular.of(textStyle: .caption1)
         
+        enrolmentStatusLabelBillNotReady.textColor = .deepGray
+        enrolmentStatusLabelBillNotReady.font = SystemFont.regular.of(textStyle: .caption1)
+        
         ddeExtendedDateLabel.textColor = .deepGray
         ddeExtendedDateLabel.font = SystemFont.semibold.of(textStyle: .caption1)
+        
+        ddeExtendedDateLabelBillNotReady.textColor = .deepGray
+        ddeExtendedDateLabelBillNotReady.font = SystemFont.semibold.of(textStyle: .caption1)
         
         layer.borderColor = UIColor.accentGray.cgColor
         layer.borderWidth = 1
@@ -344,6 +356,10 @@ class HomeBillCardView: UIView {
         viewModel.enrollmentStatus.drive(enrolmentStatusLabel.rx.text).disposed(by: bag)
         viewModel.showDDEExtendedView.not().drive(ddeExtendedDateView.rx.isHidden).disposed(by: bag)
         viewModel.showAssistanceCTA.not().drive(assistanceView.rx.isHidden).disposed(by: bag)
+        
+        viewModel.showCatchUpDisclaimer.not().drive(enrolmentStatusViewBillNotReady.rx.isHidden).disposed(by: bag)
+        viewModel.enrollmentStatus.drive(enrolmentStatusLabelBillNotReady.rx.text).disposed(by: bag)
+        viewModel.showDDEExtendedView.not().drive(ddeExtendedDateViewBillNotReady.rx.isHidden).disposed(by: bag)
         
         viewModel.paymentAssistanceValues.drive(onNext: { [weak self] description in
             guard let self = self else { return }
