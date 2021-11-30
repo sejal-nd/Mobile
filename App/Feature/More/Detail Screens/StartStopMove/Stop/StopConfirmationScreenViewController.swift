@@ -55,6 +55,7 @@ class StopConfirmationScreenViewController: UIViewController {
         stopServiceAddressStaticLabel.font = SystemFont.regular.of(textStyle: .footnote)
         finalBillStaticLabel.font = SystemFont.regular.of(textStyle: .footnote)
         accountNumberStaticLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        accountNumberLabel.font = SystemFont.semibold.of(size: 15.0)
     }
     
     private func navigationSetup() {

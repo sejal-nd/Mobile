@@ -70,7 +70,8 @@ class MoveServiceConfirmationViewController: UIViewController {
         startServiceAddressStaticLabel.font = SystemFont.regular.of(textStyle: .footnote)
         billingDescriptionLabel.font = SystemFont.regular.of(textStyle: .footnote)
         billChargesStaticLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        accountNumberLabel.font = SystemFont.semibold.of(textStyle: .footnote)
+        accountNumberStaticLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        accountNumberLabel.font = SystemFont.semibold.of(size: 15.0)
 
         for view in [stopServiceView, startServiceView, billingAddressView, billChargeView, accountNumberView] {
             view?.roundCorners(.allCorners, radius: 10.0, borderColor: UIColor(red: 216.0/255.0, green: 216.0/255.0, blue: 216.0/255.0, alpha: 1.0), borderWidth: 1.0)
