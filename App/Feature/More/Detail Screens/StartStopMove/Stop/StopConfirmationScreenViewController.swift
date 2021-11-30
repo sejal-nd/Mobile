@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MessageUI
 
 class StopConfirmationScreenViewController: UIViewController {
 
@@ -18,7 +19,7 @@ class StopConfirmationScreenViewController: UIViewController {
     @IBOutlet weak var finalBillStaticLabel: UILabel!
     @IBOutlet weak var finalBillLabel: UILabel!
     @IBOutlet weak var nextStepsDescriptionLabel: UILabel!
-    @IBOutlet weak var helplineDescriptionLabel: UILabel!
+    @IBOutlet weak var helplineDescriptionTextView: UITextView!
     @IBOutlet weak var accountNumberStaticLabel: UILabel!
     @IBOutlet weak var accountNumberLabel: UILabel!
     @IBOutlet weak var serviceRequestView: UIView!
@@ -90,7 +91,40 @@ class StopConfirmationScreenViewController: UIViewController {
         let helplineDescription = "If you have questions or need to make changes to your request, please email myhomerep@bge.com and provide your account number. We will respond within 24-48 business hours."
         let range = (helplineDescription as NSString).range(of: "myhomerep@bge.com")
         let attributedString = NSMutableAttributedString(string: helplineDescription)
+        attributedString.addAttribute(NSAttributedString.Key.link, value: "mailto:", range: range)
+        attributedString.addAttributes([ NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17, weight: .regular), NSAttributedString.Key.foregroundColor: UIColor.deepGray], range: NSRange(location: 0, length: helplineDescription.count))
         attributedString.addAttributes([ NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17, weight: .semibold), NSAttributedString.Key.foregroundColor: UIColor.actionBlue], range: range)
-        helplineDescriptionLabel.attributedText = attributedString
+        helplineDescriptionTextView.attributedText = attributedString
+        helplineDescriptionTextView.isUserInteractionEnabled = true
+        helplineDescriptionTextView.isEditable = false
+        helplineDescriptionTextView.textContainerInset = .zero
+        helplineDescriptionTextView.delegate = self
+    }
+    
+    func openMFMail() {
+        if MFMailComposeViewController.canSendMail() {
+            let mailComposer = MFMailComposeViewController()
+            mailComposer.mailComposeDelegate = self
+            mailComposer.setToRecipients(["myhomerep@bge.com"])
+            mailComposer.setMessageBody("", isHTML: false)
+            present(mailComposer, animated: true, completion: nil)
+        }
+    }
+}
+
+extension StopConfirmationScreenViewController: UITextViewDelegate {
+    
+    func textView(_ textView: UITextView, shouldInteractWith url: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+        if (url.scheme?.contains("mailto")) ?? false {
+            openMFMail()
+        }
+        return false
+    }
+}
+
+extension StopConfirmationScreenViewController: MFMailComposeViewControllerDelegate {
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
     }
 }
