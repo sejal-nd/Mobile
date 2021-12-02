@@ -90,6 +90,11 @@ class MoveLandingViewController: UIViewController {
             if isAccountResidential {
                 navigateToStopServiceVC()
             }else {
+                if viewModel.isUnauth {
+                    FirebaseUtility.logEvent(.unauthMoveService(parameters: [.commercial]))
+                } else {
+                    FirebaseUtility.logEvent(.authMoveService(parameters: [.commercial]))
+                }
                 UIApplication.shared.openUrlIfCan(viewModel.moveCommercialServiceWebURL)
             }
         }
@@ -139,7 +144,12 @@ class MoveLandingViewController: UIViewController {
                             LoadingView.hide()
                             if self.isAccountResidential {
                                 self.navigateToStopServiceVC()
-                            }else {
+                            } else {
+                                if self.viewModel.isUnauth {
+                                    FirebaseUtility.logEvent(.unauthMoveService(parameters: [.commercial]))
+                                } else {
+                                    FirebaseUtility.logEvent(.authMoveService(parameters: [.commercial]))
+                                }
                                 UIApplication.shared.openUrlIfCan(self.viewModel.moveCommercialServiceWebURL)
                             }
                         }

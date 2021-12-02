@@ -156,6 +156,7 @@ class UnauthIdentityVerificationViewController: KeyboardAvoidingStickyFooterView
                     self.navigationController?.pushViewController(moveServiceViewController, animated: true)
                 }
             } else {
+                FirebaseUtility.logEvent(.unauthMoveService(parameters: [.commercial]))
                 UIApplication.shared.openUrlIfCan(self.viewModel.moveServiceWebURL)
             }
         } onError: { [weak self] error in
