@@ -145,7 +145,7 @@ class MoveLandingViewController: UIViewController {
                             if self.isAccountResidential {
                                 self.navigateToStopServiceVC()
                             } else {
-                                if viewModel.isUnauth {
+                                if self.viewModel.isUnauth {
                                     FirebaseUtility.logEvent(.unauthMoveService(parameters: [.commercial]))
                                 } else {
                                     FirebaseUtility.logEvent(.authMoveService(parameters: [.commercial]))
