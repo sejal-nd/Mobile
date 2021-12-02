@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Outage Tracker View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="OutageTracker" id="Y6W-OH-hqX" customClass="OutageTrackerViewController" customModule="EUMobile" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gHw-Lc-y7P">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="TQ6-L9-gYP">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="250"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Coq-sI-Mvg">
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="250"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="40" placeholderIntrinsicHeight="250" translatesAutoresizingMaskIntoConstraints="NO" id="pzG-3y-RS4">
+                                                        <rect key="frame" x="0.0" y="0.0" width="40" height="250"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </view>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="yYF-B1-mBW">
+                                                        <rect key="frame" x="55" y="0.0" width="359" height="250"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Outage Reported" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IYR-hO-aTU">
+                                                                <rect key="frame" x="0.0" y="0.0" width="359" height="23.5"/>
+                                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Crew Assigned" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="br3-kL-PCS">
+                                                                <rect key="frame" x="0.0" y="56.5" width="359" height="23.5"/>
+                                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Crew En Route" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WrB-M9-PAR">
+                                                                <rect key="frame" x="0.0" y="113.5" width="359" height="23.5"/>
+                                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Crew On Site" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uMU-UK-gke">
+                                                                <rect key="frame" x="0.0" y="170" width="359" height="23.5"/>
+                                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Power Restored" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5aA-Ta-Bfm">
+                                                                <rect key="frame" x="0.0" y="226.5" width="359" height="23.5"/>
+                                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="Coq-sI-Mvg" firstAttribute="leading" secondItem="TQ6-L9-gYP" secondAttribute="leading" id="SNF-yl-cT4"/>
+                                            <constraint firstAttribute="trailing" secondItem="Coq-sI-Mvg" secondAttribute="trailing" id="XsV-og-g4U"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="TQ6-L9-gYP" firstAttribute="top" secondItem="gHw-Lc-y7P" secondAttribute="top" id="Laq-Nr-XHd"/>
+                                    <constraint firstItem="TQ6-L9-gYP" firstAttribute="centerX" secondItem="gHw-Lc-y7P" secondAttribute="centerX" id="MJU-cg-z18"/>
+                                    <constraint firstItem="TQ6-L9-gYP" firstAttribute="leading" secondItem="gHw-Lc-y7P" secondAttribute="leading" id="SoN-yl-13Q"/>
+                                    <constraint firstAttribute="trailing" secondItem="TQ6-L9-gYP" secondAttribute="trailing" id="daC-Mr-zfp"/>
+                                    <constraint firstAttribute="bottom" secondItem="TQ6-L9-gYP" secondAttribute="bottom" id="hQ0-Ul-x91"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="gHw-Lc-y7P" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="Euy-7q-flP"/>
+                            <constraint firstItem="gHw-Lc-y7P" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="SUw-N7-Umy"/>
+                            <constraint firstItem="gHw-Lc-y7P" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="rlz-Z4-Evy"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="top" secondItem="gHw-Lc-y7P" secondAttribute="top" id="u30-6p-Vwv"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="crewAssignedLabel" destination="br3-kL-PCS" id="wnL-gk-oNi"/>
+                        <outlet property="crewEnRouteLabel" destination="WrB-M9-PAR" id="7XE-nT-yOS"/>
+                        <outlet property="crewOnSiteLabel" destination="uMU-UK-gke" id="en5-jT-b3q"/>
+                        <outlet property="outageReportedLabel" destination="IYR-hO-aTU" id="VKS-In-BqR"/>
+                        <outlet property="powerRestoredLabel" destination="5aA-Ta-Bfm" id="W9y-bZ-Dt2"/>
+                        <outlet property="progressAnimationContainer" destination="pzG-3y-RS4" id="EBD-a3-DoU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-25" y="44"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
