@@ -59,7 +59,7 @@ class StopLandingViewModel {
     let stopCommercialServiceWebURL: URL? = {
         switch Configuration.shared.opco {
         case .bge:
-            return URL(string: "https://\(Configuration.shared.associatedDomain)/CustomerServices/service/landing?flowtype=stopservice&referrer=mobileapp")
+            return URL(string: "https://\(Configuration.shared.associatedDomain)/CustomerServices/service/stop?referrer=mobileapp")
         default:
             return nil
         }

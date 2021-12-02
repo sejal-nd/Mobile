@@ -93,6 +93,7 @@ class ReviewStopServiceViewController: UIViewController {
         changeStopServiceDateButton.rx.tap
             .subscribe(onNext: { [weak self] _ in
                 guard let `self` = self else { return }
+                FirebaseUtility.logEvent(.stopService(parameters: [.calendar]))
                 let calendarVC = PDTSimpleCalendarViewController()
                 calendarVC.calendar = .opCo
                 calendarVC.delegate = self

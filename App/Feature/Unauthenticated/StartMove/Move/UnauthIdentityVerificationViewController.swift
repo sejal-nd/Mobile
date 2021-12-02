@@ -30,7 +30,7 @@ class UnauthIdentityVerificationViewController: KeyboardAvoidingStickyFooterView
     private func initialSetup() {
         
         addCloseButton()
-        ssnTextField.placeholder = NSLocalizedString("SSN/Business Tax ID/BGE Pin*", comment: "")
+        ssnTextField.placeholder = NSLocalizedString("SSN/Tax ID/BGE Pin*", comment: "")
         ssnTextField.textField.isSecureTextEntry = true
         ssnTextField.textField.delegate = self
         ssnTextField.textField.keyboardType = .phonePad
@@ -156,6 +156,7 @@ class UnauthIdentityVerificationViewController: KeyboardAvoidingStickyFooterView
                     self.navigationController?.pushViewController(moveServiceViewController, animated: true)
                 }
             } else {
+                FirebaseUtility.logEvent(.unauthMoveService(parameters: [.commercial]))
                 UIApplication.shared.openUrlIfCan(self.viewModel.moveServiceWebURL)
             }
         } onError: { [weak self] error in

@@ -80,7 +80,7 @@ class IdVerificationViewController: KeyboardAvoidingStickyFooterViewController {
         eyeBallButton.accessibilityLabel = NSLocalizedString("Show/Hide SSN Tax I.D. or Pin", comment: "")
         
 
-        driverLicenseTextField.placeholder = NSLocalizedString("Drivers License/State ID", comment: "")
+        driverLicenseTextField.placeholder = NSLocalizedString("Driver's License/State ID", comment: "")
         driverLicenseTextField.textField.delegate = self
         driverLicenseTextField.textField.keyboardType = .default
         driverLicenseTextField.textField.returnKeyType = .done

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MessageUI
 
 class MoveServiceConfirmationViewController: UIViewController {
     
@@ -32,7 +33,7 @@ class MoveServiceConfirmationViewController: UIViewController {
     @IBOutlet weak var billChargeView: UIView!
     @IBOutlet weak var billChargesStaticLabel: UILabel!
     @IBOutlet weak var billChargesLabel: UILabel!
-    @IBOutlet weak var helplineDescriptionLabel: UILabel!
+    @IBOutlet weak var helplineDescriptionTextView: UITextView!
 
     @IBOutlet weak var accountNumberView: UIView!
     @IBOutlet weak var accountNumberStaticLabel: UILabel!
@@ -70,7 +71,8 @@ class MoveServiceConfirmationViewController: UIViewController {
         startServiceAddressStaticLabel.font = SystemFont.regular.of(textStyle: .footnote)
         billingDescriptionLabel.font = SystemFont.regular.of(textStyle: .footnote)
         billChargesStaticLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        accountNumberLabel.font = SystemFont.semibold.of(textStyle: .footnote)
+        accountNumberStaticLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        accountNumberLabel.font = SystemFont.semibold.of(size: 15.0)
 
         for view in [stopServiceView, startServiceView, billingAddressView, billChargeView, accountNumberView] {
             view?.roundCorners(.allCorners, radius: 10.0, borderColor: UIColor(red: 216.0/255.0, green: 216.0/255.0, blue: 216.0/255.0, alpha: 1.0), borderWidth: 1.0)
@@ -111,10 +113,15 @@ class MoveServiceConfirmationViewController: UIViewController {
         let helplineDescription = "If you have questions or need to make changes to your request, please email myhomerep@bge.com and provide your account number. We will respond within 24-48 business hours."
         let range = (helplineDescription as NSString).range(of: "myhomerep@bge.com")
         let attributedString = NSMutableAttributedString(string: helplineDescription)
+        attributedString.addAttribute(NSAttributedString.Key.link, value: "mailto:", range: range)
         attributedString.addAttributes([ NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17, weight: .regular), NSAttributedString.Key.foregroundColor: UIColor.deepGray], range: NSRange(location: 0, length: helplineDescription.count))
         attributedString.addAttributes([ NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17, weight: .semibold), NSAttributedString.Key.foregroundColor: UIColor.actionBlue], range: range)
-        helplineDescriptionLabel.attributedText = attributedString
-        
+        helplineDescriptionTextView.attributedText = attributedString
+        helplineDescriptionTextView.isUserInteractionEnabled = true
+        helplineDescriptionTextView.isEditable = false
+        helplineDescriptionTextView.textContainerInset = .zero
+        helplineDescriptionTextView.delegate = self
+
         stopServiceDateLabel.text = viewModel.moveServiceResponse.stopDate + ", 8:00 a.m."
         stopServiceAddressLabel.text = viewModel.getStopServiceAddress().getValidISUMAddress()
         startServiceDateLabel.text = viewModel.moveServiceResponse.startDate + ", 8:00 a.m. -  6:00 p.m."
@@ -123,5 +130,33 @@ class MoveServiceConfirmationViewController: UIViewController {
         billingAddressLabel.text = viewModel.getBillingAddress()
         accountNumberLabel.text = viewModel.moveServiceResponse.accountNumber
         nextStepStackView.isHidden = viewModel.moveServiceResponse.isResolved ?? false
+    }
+    
+    func openMFMail() {
+        if MFMailComposeViewController.canSendMail() {
+            let mailComposer = MFMailComposeViewController()
+            mailComposer.mailComposeDelegate = self
+            mailComposer.setToRecipients(["myhomerep@bge.com"])
+            mailComposer.setMessageBody("", isHTML: false)
+            present(mailComposer, animated: true, completion: nil)
+        }
+    }
+}
+
+extension MoveServiceConfirmationViewController: UITextViewDelegate {
+    
+    func textView(_ textView: UITextView, shouldInteractWith url: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+        if (url.scheme?.contains("mailto")) ?? false {
+            openMFMail()
+        }
+        return false
+    }
+}
+
+extension MoveServiceConfirmationViewController: MFMailComposeViewControllerDelegate {
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        
+        controller.dismiss(animated: true, completion: nil)
     }
 }

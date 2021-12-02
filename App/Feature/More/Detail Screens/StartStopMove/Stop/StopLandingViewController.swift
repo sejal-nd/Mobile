@@ -54,6 +54,7 @@ class StopLandingViewController: UIViewController {
             if isAccountResidential {
                 navigateToStopServiceVC()
             }else {
+                FirebaseUtility.logEvent(.stopService(parameters: [.commercial]))
                 UIApplication.shared.openUrlIfCan(viewModel.stopCommercialServiceWebURL)
             }
         }
@@ -94,6 +95,7 @@ class StopLandingViewController: UIViewController {
                             if self.isAccountResidential {
                                 self.navigateToStopServiceVC()
                             } else {
+                                FirebaseUtility.logEvent(.stopService(parameters: [.commercial]))
                                 UIApplication.shared.openUrlIfCan(self.viewModel.stopCommercialServiceWebURL)
                             }
                         }
