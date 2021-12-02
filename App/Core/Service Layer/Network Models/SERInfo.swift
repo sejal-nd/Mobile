@@ -21,7 +21,7 @@ public struct SERInfo: Decodable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
         controlGroupFlag = try container.decodeIfPresent(String.self, forKey: .controlGroupFlag)
-        eventResults = try container.decodeIfPresent([SERResult].self, forKey: .eventResults) ?? []
+        eventResults = try container.decodeIfPresent([SERResult].self, forKey: .eventResults)?.sorted(by: { $0.eventEnd.compare($1.eventEnd) == .orderedDescending }) ?? []
     }
 }
 
