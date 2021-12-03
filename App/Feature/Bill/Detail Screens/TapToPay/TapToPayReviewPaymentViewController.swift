@@ -635,7 +635,7 @@ class TapToPayReviewPaymentViewController: UIViewController {
         }
         
         // Animated View
-        animatedView.frame =  self.view.frame
+        animatedView.frame =  self.view.window?.frame ?? self.view.frame
         animatedView.frame.size.width = animatedView.frame.size.height + 150
         animatedView.layer.cornerRadius = animatedView.frame.size.height / 2
         animatedView.frame.origin = CGPoint.init(x: self.view.frame.size.width - 100, y: self.view.frame.size.height)
@@ -644,6 +644,7 @@ class TapToPayReviewPaymentViewController: UIViewController {
         
         let handleError = { [weak self] (error: NetworkingError) in
             guard let self = self else { return }
+            self.animatedView.removeFromSuperview()
             
           //  LoadingView.hide()
             self.submitButton.reset()

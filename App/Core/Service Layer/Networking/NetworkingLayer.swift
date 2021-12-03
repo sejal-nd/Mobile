@@ -250,6 +250,9 @@ public enum NetworkingLayer {
             
             do {
                 if ProcessInfo.processInfo.arguments.contains("-shouldLogAPI") {
+                    if let url = urlRequest.url {
+                        Log.custom("📬", url.absoluteString)
+                    }
                     Log.custom("✉️", "RAW RESPONSE:\n\(String(data: data, encoding: .utf8) ?? "******* ERROR CONVERTING DATA TO STRING CHECK ENCODING ********")")
                 }
                 
@@ -272,11 +275,7 @@ public enum NetworkingLayer {
         dataTask.resume()
     }
     
-    private static func decode<T: Decodable>(data: Data) throws -> T {
-        if ProcessInfo.processInfo.arguments.contains("-shouldLogAPI") {
-            Log.custom("✉️", "Data Response:\n\(String(decoding: data, as: UTF8.self))")
-        }
-        
+    public static func decode<T: Decodable>(data: Data) throws -> T {
         let jsonDecoder = JSONDecoder()
         jsonDecoder.dateDecodingStrategy = .custom() { decoder throws -> Date in
             let container = try decoder.singleValueContainer()

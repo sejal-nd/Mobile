@@ -35,6 +35,18 @@ enum PickerView {
                        onCancel: onCancel)
             .showInWindow()
     }
+
+    static func showDatePicker(withTitle title: String,
+                               selectedTime: Date,
+                               onDone: ((_ selectedDate: Date) -> ())?,
+                               onCancel: (()->())?) {
+        
+        DatePickerView(title: title,
+                       selectedTime: selectedTime,
+                       onDone: onDone,
+                       onCancel: onCancel)
+            .showInWindow()
+    }
 }
 
 fileprivate class BasePickerView: UIView {
@@ -326,3 +338,38 @@ extension StringPickerView: UIPickerViewDataSource {
 }
 
 
+
+fileprivate class DatePickerView: BasePickerView {
+    let datePicker = UIDatePicker()
+    let onDone: ((_ selectedDate: Date) -> ())?
+    
+    init(title: String?,
+         selectedTime: Date,
+         onDone: ((_ selectedDate: Date) -> ())?,
+         onCancel: (() -> ())?) {
+        self.onDone = onDone
+        super.init(title: title, onCancel: onCancel)
+        datePicker.date = selectedTime
+    }
+    
+    override func commonInit() {
+        super.commonInit()
+        datePicker.timeZone = .opCo
+        datePicker.calendar = .opCo
+        datePicker.datePickerMode = .date
+        if #available(iOS 13.4, *) {
+            datePicker.preferredDatePickerStyle = .wheels
+        }
+        mainStack.addArrangedSubview(datePicker)
+        accessibleElements = [cancelButton, doneButton, datePicker]
+    }
+    
+    @objc override func doneButtonPressed() {
+        onDone?(datePicker.date)
+        super.doneButtonPressed()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("Not implemented")
+    }
+}

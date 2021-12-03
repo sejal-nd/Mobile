@@ -10,6 +10,15 @@ import UIKit
 
 class UnauthenticatedUserViewController: UIViewController, UIGestureRecognizerDelegate {
     
+    let startServiceWebURL: URL? = {
+        switch Configuration.shared.opco {
+        case .bge:
+            return URL(string: "https://\(Configuration.shared.associatedDomain)/CustomerServices/service/landing?flowtype=startservice&referrer=mobileapp")
+        default:
+            return nil
+        }
+    }()
+
     @IBOutlet weak var fakeNavBarView: UIView! {
         didSet {
             fakeNavBarView.backgroundColor = .primaryColor
@@ -139,10 +148,15 @@ class UnauthenticatedUserViewController: UIViewController, UIGestureRecognizerDe
 extension UnauthenticatedUserViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+                
+        return FeatureFlagUtility.shared.bool(forKey: .hasUnauthenticatedISUM) ? 3 : 2
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        if FeatureFlagUtility.shared.bool(forKey: .hasUnauthenticatedISUM) && section == 1 {
+            return 2
+        }
         return 4
     }
     
@@ -180,6 +194,27 @@ extension UnauthenticatedUserViewController: UITableViewDataSource, UITableViewD
                 return UITableViewCell()
             }
         case 1:
+            switch indexPath.row {
+            case 0:
+                if FeatureFlagUtility.shared.bool(forKey: .hasUnauthenticatedISUM) {
+                    cell.configure(image: #imageLiteral (resourceName: "ic_morestartservice"), text: NSLocalizedString("Start Service", comment: ""))
+                } else {
+                    cell.configure(image: #imageLiteral(resourceName: "ic_moreupdates"), text: NSLocalizedString("News and Updates", comment: ""))
+                }
+            case 1:
+                if FeatureFlagUtility.shared.bool(forKey: .hasUnauthenticatedISUM) {
+                    cell.configure(image: #imageLiteral (resourceName: "ic_isummoveservice"), text: NSLocalizedString("Move Service", comment: ""))
+                } else {
+                    cell.configure(image: #imageLiteral(resourceName: "ic_morecontact"), text: NSLocalizedString("Contact Us", comment: ""))
+                }
+            case 2:
+                cell.configure(image: #imageLiteral(resourceName: "ic_morevideo.pdf"), text: NSLocalizedString("Billing Videos", comment: ""))
+            case 3:
+                cell.configure(image: #imageLiteral(resourceName: "ic_moretos"), text: NSLocalizedString("Policies and Terms", comment: ""))
+            default:
+                return UITableViewCell()
+            }
+        case 2:
             switch indexPath.row {
             case 0:
                 cell.configure(image: #imageLiteral(resourceName: "ic_moreupdates"), text: NSLocalizedString("News and Updates", comment: ""))
@@ -221,6 +256,30 @@ extension UnauthenticatedUserViewController: UITableViewDataSource, UITableViewD
         case 1:
             switch indexPath.row {
             case 0:
+                if FeatureFlagUtility.shared.bool(forKey: .hasUnauthenticatedISUM) {
+                    UIApplication.shared.openUrlIfCan(startServiceWebURL)
+                } else {
+                    performSegue(withIdentifier: "updatesSegue", sender: nil)
+                }
+            case 1:
+                if FeatureFlagUtility.shared.bool(forKey: .hasUnauthenticatedISUM) {
+                    performSegue(withIdentifier: "unauthIDVerificationSegue", sender: nil)
+                } else {
+                    performSegue(withIdentifier: "contactUsSegue", sender: nil)
+                }
+            case 2:
+                FirebaseUtility.logEvent(.unauth(parameters: [.billing_videos]))
+                
+                UIApplication.shared.openUrlIfCan(billingVideosUrl)
+            case 3:
+                performSegue(withIdentifier: "termPoliciesSegue", sender: nil)
+            default:
+                break
+            }
+            
+        case 2:
+            switch indexPath.row {
+            case 0:
                 performSegue(withIdentifier: "updatesSegue", sender: nil)
             case 1:
                 performSegue(withIdentifier: "contactUsSegue", sender: nil)
@@ -249,6 +308,12 @@ extension UnauthenticatedUserViewController: UITableViewDataSource, UITableViewD
         case 0:
             headerView.configure(text: NSLocalizedString("Outage", comment: ""))
         case 1:
+            if FeatureFlagUtility.shared.bool(forKey: .hasUnauthenticatedISUM) {
+                headerView.configure(text: NSLocalizedString("Moving", comment: ""))
+            } else {
+                headerView.configure(text: NSLocalizedString("Help & Support", comment: ""))
+            }
+        case 2:
             headerView.configure(text: NSLocalizedString("Help & Support", comment: ""))
         default:
             break

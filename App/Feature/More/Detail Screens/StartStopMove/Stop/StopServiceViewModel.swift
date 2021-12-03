@@ -12,17 +12,15 @@ import RxCocoa
 
 class StopServiceViewModel {
 
-    var getAccountDetailSubject = PublishSubject<Void>()
-    var getAccountListSubject = PublishSubject<Void>()
     var workDays = BehaviorRelay<[WorkdaysResponse.WorkDay]>(value: [])
     var selectedDate = BehaviorRelay<Date?>(value: nil)
     var accountDetailEvents: Observable<AccountDetail?> { return currentAccountDetails.asObservable() }
     private var currentAccountDetails = BehaviorRelay<AccountDetail?>(value: nil)
+    var accountVerificationResponse = BehaviorRelay<StopServiceVerificationResponse?>(value: nil)
     var disposeBag = DisposeBag()
     var invalidDateAMI = [String]()
     private (set) lazy var showLoadingState: Observable<Bool> = isLoading.asObservable()
     private let isLoading = BehaviorRelay(value: true)
-    private var getWorkdays = PublishSubject<Void>()
     private var currentAccountIndex = 0
 
     init() {
@@ -30,60 +28,92 @@ class StopServiceViewModel {
         if AccountsStore.shared.currentIndex != nil {
             currentAccountIndex = AccountsStore.shared.currentIndex
         }
-        getAccountListSubject
-            .toAsyncRequest { AccountService.rx.fetchAccounts() } .subscribe(onNext: { [weak self] result in
-                if AccountsStore.shared.accounts != nil {
-                    AccountsStore.shared.currentIndex = self?.currentAccountIndex ?? 0
-                }
-                self?.getAccountDetailSubject.onNext(())
-                self?.getWorkdays.onNext(())
-            }).disposed(by: disposeBag)
-
-            
-        getAccountDetailSubject
-            .toAsyncRequest { [weak self] _ -> Observable<AccountDetail> in
-                
-                guard let `self` = self else { return Observable.empty() }
-                if !self.isLoading.value {
-                    self.isLoading.accept(true)
-                }
-                if AccountsStore.shared.accounts != nil {
-                    return AccountService.rx.fetchAccountDetails()
-                }
-                return Observable.empty()
-            }.subscribe(onNext: { [weak self] result in
-                guard let `self` = self, let accountDetails = result.element else {return }
-                self.currentAccountDetails.accept(accountDetails)
-                self.isLoading.accept(false)
-            }).disposed(by: disposeBag)
-
+    }
+    
+    func getAccounts(completion: @escaping (Result<Bool, NetworkingError>) -> ()) {
         
-        getWorkdays
-            .toAsyncRequest { [weak self] _ -> Observable<WorkdaysResponse> in
-                
-                guard let `self` = self else { return Observable.empty() }
-                if !self.isLoading.value {
-                    self.isLoading.accept(true)
+        self.isLoading.accept(true)
+        if AccountsStore.shared.accounts != nil {
+            self.getAccountDetails { [weak self] result in
+                switch result {
+                case .success:
+                    self?.isLoading.accept(false)
+                    completion(.success(true))
+                case .failure(let error):
+                    completion(.failure(error))
                 }
-                return StopService.rx.fetchWorkdays()
-            }.subscribe(onNext: { [weak self] result in
-                guard let `self` = self, let workdaysResponse = result.element else {return }
-                self.workDays.accept(workdaysResponse.list)
-            }).disposed(by: disposeBag)
+            }
+        } else {
+            AccountService.fetchAccounts { [weak self] result in
+                switch result {
+                case .success:
+                    if AccountsStore.shared.accounts != nil {
+                        AccountsStore.shared.currentIndex = self?.currentAccountIndex ?? 0
+                    }
+                    self?.isLoading.accept(false)
+                    self?.getAccountDetails(completion: completion)
+                case .failure(let error):
+                    completion(.failure(error))
+                }
+            }
+        }
+    }
+    
+    private func getAccountDetails(completion: @escaping (Result<Bool, NetworkingError>) -> ()) {
+        
+        AccountService.fetchAccountDetails { [weak self] (result: Result<AccountDetail, NetworkingError>) in
+            
+            switch result {
+            case .success(let accountDetails):
+                self?.currentAccountDetails.accept(accountDetails)
+                if accountDetails.isFinaled {
+                    completion(.success(true))
+                    return
+                }
+                self?.getAccountVerification(completion: completion)
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    private func getAccountVerification(completion: @escaping (Result<Bool, NetworkingError>) -> ()) {
+        
+        StopService.stopServiceVerification { [weak self] (result: Result<StopServiceVerificationResponse, NetworkingError>) in
+            
+            switch result {
+            case .success(let verificationResponse):
+                self?.accountVerificationResponse.accept(verificationResponse)
+                if (self?.workDays.value.count ?? 0) == 0 {
+                    self?.getWorkdays(completion: completion)
+                } else {
+                    completion(.success(true))
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    private func getWorkdays(completion: @escaping (Result<Bool, NetworkingError>) -> ()) {
+        
+        StopService.fetchWorkdays { [weak self] (result: Result<WorkdaysResponse, NetworkingError>) in
+            guard let `self` = self, let accountDetails = self.currentAccountDetails.value else { return }
+            switch result {
+            case .success(let workdaysResponse):
+                let validWorkdays = WorkdaysResponse.getValidWorkdays(workdays: workdaysResponse.list, isAMIAccount: accountDetails.isAMIAccount, isRCDCapable: accountDetails.isRCDCapable)
+                self.workDays.accept(validWorkdays)
+                self.isLoading.accept(false)
+                completion(.success(true))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
     }
     
     func isValidDate(_ date: Date)-> Bool {
         
-        guard let accountDetails = self.currentAccountDetails.value else { return false }
         let calendarDate = DateFormatter.mmDdYyyyFormatter.string(from: date)
-        if !accountDetails.isAMIAccount {
-            let firstDay = DateFormatter.mmDdYyyyFormatter.string(from: Calendar.opCo.date(byAdding: .day, value: 0, to: Date())!)
-            let secondDay = DateFormatter.mmDdYyyyFormatter.string(from: Calendar.opCo.date(byAdding: .day, value: 1, to: Date())!)
-            let thirdDay = DateFormatter.mmDdYyyyFormatter.string(from: Calendar.opCo.date(byAdding: .day, value: 2, to: Date())!)
-            if calendarDate == firstDay || calendarDate == secondDay || calendarDate == thirdDay {
-                return false
-            }
-        }
         return self.workDays.value.contains { $0.value == calendarDate}
     }
 }

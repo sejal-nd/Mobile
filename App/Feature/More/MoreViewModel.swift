@@ -15,9 +15,8 @@ class MoreViewModel {
     
     var username = BehaviorRelay(value: "")
     var password = BehaviorRelay(value: "")
-        
+
     init() {
-        
         // We should always have a stored username unless user skipped login, in which case this will probably change
         // in a future sprint anyway
         if let storedUsername = BiometricService.getStoredUsername() {
@@ -48,7 +47,7 @@ class MoreViewModel {
     func fetchAccounts() -> Observable<[Account]> {
         return AccountService.rx.fetchAccounts()
     }
-    
+       
     func validateCredentials(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
         AuthenticationService.validateLogin(username: username.value,
                                            password: password.value) { [weak self] result in
@@ -62,18 +61,38 @@ class MoreViewModel {
                                             }
         }
     }
-    
+
+ 
     let billingVideosUrl: URL? = {
         return URL(string: FeatureFlagUtility.shared.string(forKey: .billingVideoURL))
     }()
     
-    let startServiceWebURL: URL? = {
+    let moveServiceWebURL: URL? = {
         switch Configuration.shared.opco {
-        case .bge:
-            return URL(string: "https://\(Configuration.shared.associatedDomain)/CustomerServices/service/start")
+        case .ace, .comEd, .delmarva, .peco, .pepco:
+            return URL(string: "https://\(Configuration.shared.associatedDomain)/CustomerServices/service/move?utm_source=MoveLink&utm_medium=MobileApp&utm_id=SSMRedirect")
         default:
             return nil
         }
     }()
     
+    let stopServiceWebURL: URL? = {
+        switch Configuration.shared.opco {
+        case .ace, .comEd, .delmarva, .peco, .pepco:
+            return URL(string: "https://\(Configuration.shared.associatedDomain)/accounts/login?TARGET=%2FCustomerServices%2Fservice%2Fstop&utm_source=StopLink&utm_medium=MobileApp&utm_campaign=SSMRedirect")
+        default:
+            return nil
+        }
+    }()
+    
+    let startServiceWebURL: URL? = {
+        switch Configuration.shared.opco {
+        case .bge:
+            return URL(string: "https://\(Configuration.shared.associatedDomain)/CustomerServices/service/start?referrer=mobileapp")
+        case .ace, .comEd, .delmarva, .peco, .pepco:
+            return URL(string: "https://\(Configuration.shared.associatedDomain)/CustomerServices/service/start?utm_source=StartLink&utm_medium=MobileApp&utm_id=SSMRedirect")
+        default:
+            return nil
+        }
+    }()
 }

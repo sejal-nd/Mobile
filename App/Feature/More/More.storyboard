@@ -104,7 +104,7 @@
                         <segue destination="UIb-7z-3ok" kind="show" identifier="energyBuddySegue" id="Vcb-HZ-KXB"/>
                         <segue destination="eT5-Kx-SqK" kind="show" identifier="editAccountNicknameSegue" id="mIW-jA-D3y"/>
                         <segue destination="lLF-sC-Dqz" kind="presentation" identifier="stopServiceSegue" modalPresentationStyle="fullScreen" id="bh0-Uq-aCg"/>
-                        <segue destination="cnK-aM-W1s" kind="show" identifier="moveServiceSegue" id="d44-fv-cIx"/>
+                        <segue destination="cnK-aM-W1s" kind="presentation" identifier="moveServiceSegue" modalPresentationStyle="fullScreen" id="d44-fv-cIx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8fO-a1-RXL" userLabel="First Responder" sceneMemberID="firstResponder"/>

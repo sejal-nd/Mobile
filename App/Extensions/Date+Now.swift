@@ -16,7 +16,7 @@ extension Date {
         case .aut:
             // All dates in mock data should be set relative to this date (1/1/2019, 00:00:00 OpCo Time)
             // If this date is changed, mock data must be updated
-            return Calendar.opCo.date(from: DateComponents(year: 2019))!
+            return Calendar.opCo.date(from: DateComponents(year: 2021, month: 10, day: 7))!
         default:
             return Date()
         }
