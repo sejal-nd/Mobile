@@ -25,6 +25,10 @@ extension Date {
         return DateFormatter.shortMonthAndDayFormatter.string(from: self)
     }
     
+    @nonobjc var shortMonthDayAndTimeString: String {
+        return DateFormatter.shortMonthDayAndTimeFormatter.string(from: self)
+    }
+    
     @nonobjc var fullMonthAndDayString: String {
         return DateFormatter.fullMonthAndDayFormatter.string(from: self)
     }
@@ -250,6 +254,14 @@ extension DateFormatter {
         dateFormatter.calendar = .opCo
         dateFormatter.timeZone = .opCo
         dateFormatter.dateFormat = "MMM dd"
+        return dateFormatter
+    }()
+    
+    @nonobjc static let shortMonthDayAndTimeFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.calendar = .opCo
+        dateFormatter.timeZone = .opCo
+        dateFormatter.dateFormat = "MMM d, h:mm a"
         return dateFormatter
     }()
     
