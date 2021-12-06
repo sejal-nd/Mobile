@@ -11,7 +11,7 @@ import RxSwift
 class OutageTrackerViewModel {
     
     let disposeBag = DisposeBag()
-    var outageTracker: OutageTracker?
+    var outageTracker: Observable<OutageTracker?> = nil
     
     var status: OutageTracker.Status {
         if let trackerStatus = outageTracker?.trackerStatus {
@@ -21,3 +21,5 @@ class OutageTrackerViewModel {
         return .none
     }
 }
+
+

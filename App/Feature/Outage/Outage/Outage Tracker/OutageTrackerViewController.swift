@@ -13,19 +13,41 @@ import Lottie
 class OutageTrackerViewController: UIViewController {
     
     @IBOutlet weak var progressAnimationContainer: UIView!
+    @IBOutlet weak var statusTitleView: UIView!
+    @IBOutlet weak var statusTitleLabel: UILabel!
     
-    @IBOutlet weak var outageReportedLabel: UILabel!
-    @IBOutlet weak var crewAssignedLabel: UILabel!
-    @IBOutlet weak var crewEnRouteLabel: UILabel!
-    @IBOutlet weak var crewOnSiteLabel: UILabel!
-    @IBOutlet weak var powerRestoredLabel: UILabel!
+    @IBOutlet weak var trackerStatusView: TrackerStatusView!
     
+    let disposeBag = DisposeBag()
     let viewModel = OutageTrackerViewModel()
     var progressAnimation = AnimationView(name: "appointment_tracker")
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setupBinding()
     }
+    
+    private func setupBinding() {
+        self.viewModel.outageTracker
+            .subscribe(onNext: { [weak self] tracker in
+                self?.updateTracker(forStatus: viewModel.status)
+            })
+            .disposed(by: self.disposeBag)
+    }
+    
+    private func updateTracker(forStatus status: OutageTracker.Status) {
+        let title = NSLocalizedString(viewModel.status.statusTitleString, comment: "")
+        statusTitleLabel.text = title
+        trackerStatusView.update(status: status)
+    }
+    
+    
+}
+
+extension OutageTrackerViewController {
+    
+    // MARK - Lottie Animation
     
     func setUpProgressAnimation() {
         progressAnimation.loopMode = .playOnce
@@ -49,18 +71,18 @@ class OutageTrackerViewController: UIViewController {
     
     func frameForStatus(_ status: OutageTracker.Status) -> CGFloat {
         switch status {
-        case .reported:
-            return 67
-        case .assigned:
-            fallthrough
-        case .enRoute:
-            return 136
-        case .onSite:
-            return 206
-        case .restored:
-            return 270
-        default:
-            return 0
+            case .reported:
+                return 67
+            case .assigned:
+                fallthrough
+            case .enRoute:
+                return 136
+            case .onSite:
+                return 206
+            case .restored:
+                return 270
+            default:
+                return 0
         }
     }
     
@@ -77,4 +99,5 @@ class OutageTrackerViewController: UIViewController {
         progressAnimation.stop()
         progressAnimation.play(fromFrame: startFrame, toFrame: stopFrame, loopMode: .playOnce, completion: nil)
     }
+    
 }

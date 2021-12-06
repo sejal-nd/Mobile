@@ -4,20 +4,14 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TrackerStatusView" customModule="EUMobile" customModuleProvider="target">
             <connections>
-                <outlet property="assignedStatusView" destination="bqk-Ov-3Ap" id="hnf-t0-5F8"/>
                 <outlet property="contentView" destination="iN0-l3-epB" id="aVv-XS-SoS"/>
                 <outlet property="dateLabel" destination="s7q-qK-lAl" id="bZk-nR-0q7"/>
-                <outlet property="enRouteStatusView" destination="KKb-av-fxc" id="r3u-FD-HSx"/>
-                <outlet property="onSiteStatusView" destination="KYY-O0-jf4" id="aj6-iq-BaD"/>
-                <outlet property="reportedStatusView" destination="WRd-KL-LGd" id="Xxd-yq-3eK"/>
-                <outlet property="restoredStatusView" destination="aSG-9A-FB3" id="QjS-qs-cXq"/>
                 <outlet property="stackView" destination="Ncn-Fz-Bir" id="UVS-jM-LoP"/>
             </connections>
         </placeholder>
@@ -36,7 +30,6 @@
                         <view contentMode="scaleToFill" id="bqk-Ov-3Ap" userLabel="Assigned" customClass="StatusView" customModule="EUMobile" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="100" width="414" height="100"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <viewLayoutGuide key="safeArea" id="TuA-yA-CQZ"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KKb-av-fxc" userLabel="EnRoute" customClass="StatusView" customModule="EUMobile" customModuleProvider="target">
@@ -62,14 +55,23 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jl1-BX-6ur">
+                    <rect key="frame" x="0.0" y="500" width="414" height="100"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain"/>
+                </button>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="Ncn-Fz-Bir" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Jna-yX-hXp"/>
                 <constraint firstItem="s7q-qK-lAl" firstAttribute="top" secondItem="Ncn-Fz-Bir" secondAttribute="bottom" constant="8" symbolic="YES" id="RhU-aS-Qe9"/>
+                <constraint firstAttribute="bottom" secondItem="Jl1-BX-6ur" secondAttribute="bottom" id="Ur6-YK-u6a"/>
                 <constraint firstAttribute="trailing" secondItem="Ncn-Fz-Bir" secondAttribute="trailing" id="XV2-aO-QA6"/>
+                <constraint firstItem="Jl1-BX-6ur" firstAttribute="top" secondItem="Ncn-Fz-Bir" secondAttribute="bottom" id="YFS-Tr-ZQ7"/>
                 <constraint firstAttribute="bottom" secondItem="s7q-qK-lAl" secondAttribute="bottom" constant="30" id="csL-SB-GDv"/>
                 <constraint firstItem="Ncn-Fz-Bir" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="jdK-JZ-gC3"/>
+                <constraint firstAttribute="trailing" secondItem="Jl1-BX-6ur" secondAttribute="trailing" id="rFU-Qn-VGq"/>
+                <constraint firstItem="Jl1-BX-6ur" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="rcx-eR-DFP"/>
                 <constraint firstItem="s7q-qK-lAl" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="wDz-a4-h0a"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

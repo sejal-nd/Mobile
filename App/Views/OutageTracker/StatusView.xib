@@ -12,9 +12,9 @@
             <connections>
                 <outlet property="barView" destination="lde-ya-N4f" id="VXO-br-Gha"/>
                 <outlet property="barWidthConstraint" destination="N16-f6-oo5" id="iua-3H-mSY"/>
-                <outlet property="circleImageView" destination="EAS-s5-XWb" id="USa-7P-5gX"/>
                 <outlet property="contentView" destination="iN0-l3-epB" id="d9E-yy-8Fc"/>
                 <outlet property="statusDateLabel" destination="Zh1-2S-Pjl" id="DA2-Vg-cjW"/>
+                <outlet property="statusImageView" destination="EAS-s5-XWb" id="ewz-H9-GNR"/>
                 <outlet property="statusTitleLabel" destination="xwd-RL-U5Z" id="OS9-kY-r9W"/>
             </connections>
         </placeholder>

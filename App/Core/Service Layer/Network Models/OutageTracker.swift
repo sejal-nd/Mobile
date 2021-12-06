@@ -56,5 +56,29 @@ extension OutageTracker {
         case onSite = "Crew On Site"
         case restored = "Power Restored"
         case none
+        
+        var statusTitleString: String {
+            switch self {
+                case .reported:
+                    return StatusTitleString.reported
+                case .assigned:
+                    return StatusTitleString.assigned
+                case .enRoute:
+                    return StatusTitleString.enRoute
+                case .onSite:
+                    return StatusTitleString.onSite
+                case .restored:
+                    return StatusTitleString.restored
+            }
+        }
     }
+}
+
+struct StatusTitleString {
+    // todo - add copy for errors
+    static let reported = NSLocalizedString("BGE has received a report of an outage at your address.", comment: "")
+    static let assigned = NSLocalizedString("A BGE restoration crew is assigned to your outage.", comment: "")
+    static let enRoute = NSLocalizedString("A BGE restoration crew is en route to your outage.", comment: "")
+    static let enSite = NSLocalizedString("A BGE restoration crew is at the scene of your outage and working hard to resolve the issue.", comment: "")
+    static let restored = NSLocalizedString("Your power has been restored!", comment: "")
 }

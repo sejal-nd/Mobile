@@ -7,52 +7,43 @@
 //
 
 import UIKit
-import RxSwift
-import RxCocoa
+
+enum TrackerStatus: String {
+    case notStarted = "not-started"
+    case inProgress = "in-progress"
+    case completed = "completed"
+    
+    var image: UIImage? {
+        switch self {
+            case .notStarted:
+                return UIImage(named: "todo")
+            case .inProgress:
+                return UIImage(named: "todo")
+            case .completed:
+                return UIImage(named: "todo")
+        }
+    }
+}
 
 class StatusView: UIView {
 
     @IBOutlet private weak var contentView: UIView!
-    @IBOutlet private weak var circleImageView: UIImageView!
-    @IBOutlet private weak var barView: UIView!
+    @IBOutlet private weak var statusImageView: UIImageView!
     @IBOutlet private weak var statusTitleLabel: UILabel!
     @IBOutlet private weak var statusDateLabel: UILabel!
+    @IBOutlet private weak var barView: UIView!
     @IBOutlet private weak var barWidthConstraint: NSLayoutConstraint!
     
-    var trackerStatus = BehaviorRelay<OutageTracker.Status>(value: .none)
-    var trackerState = BehaviorRelay<TrackerState>(value: .open)
-    
-    func configure(withStatus status: OutageTracker.Status) {
-        self.trackerStatus.accept(status)
-    }
-    
-    func next(status: OutageTracker.Status) {
-        guard trackerState.value == .complete { return }
-        if status == trackerStatus.value {
-            trackerState.accept(.reported)
-        } else {
-            if trackerState.value == .reported {
-                trackerState.accept(.complete)
-            }
+    init(withEvent event: EventSet) {
+        let status = TrackerState(rawValue: event.status)
+        statusImageView.image = status.image
+        statusTitleLabel.text = event.eventSetDescription
+        if let dateString = event.dateTime {
+            let date = DateFormatter.yyyyMMddTHHmmssSSSFormatter.date(from: dateString)
+            let dateTime = DateFormatter.shortMonthDayAndTimeFormatter.string(from: date)
+            statusDateLabel.text = dateTime
         }
-    
-    private func setupBinding() {
-        self.trackerStatus
-            .subscribe(onNext:{ [unowned self] status in
-                self.statusTitleLabel.text = status.rawValue
-                self.updateUI(forState: self.trackerState)
-            }).disposed(by: disposeBag)
-        
-        self.trackerState
-            .subscribe(onNext:{ [unowned self] state in
-                self.updateUI(forState: state)
-            }).disposed(by: disposeBag)
-    }
-    
-    private func updateUI(forState state: TrackerState) {
-        statusDateLabel.text = state == .open ? "" : Date().shortMonthDayAndTimeString
-        barWidthConstraint.constant = state == .complete ? 5 : 2
-        self.circleImageView.image = state.image
+        barWidthConstraint.constant = status.completed ? 5 : 2
     }
     
     // MARK: Init
@@ -72,10 +63,7 @@ class StatusView: UIView {
         addSubview(contentView)
         contentView.frame = self.bounds
         contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        contentView.layer.cornerRadius = 2
         contentView.backgroundColor = UIColor.softGray
-        
-        setupBinding()
     }
 
 }
