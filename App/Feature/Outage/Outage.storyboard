@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="yf6-8Y-4nw">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="yf6-8Y-4nw">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -141,7 +141,7 @@
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SR6-kO-7rL">
-                                <rect key="frame" x="0.0" y="144" width="414" height="718"/>
+                                <rect key="frame" x="0.0" y="144" width="414" height="752"/>
                                 <connections>
                                     <segue destination="3ey-kF-zsV" kind="embed" id="MCR-9y-DOk"/>
                                 </connections>
@@ -162,7 +162,7 @@
                             <constraint firstItem="2M7-jH-97W" firstAttribute="leading" secondItem="W6a-Rg-J5C" secondAttribute="leading" id="DbY-wj-RQI"/>
                             <constraint firstItem="hW1-hm-7uS" firstAttribute="trailing" secondItem="rLJ-mF-oEY" secondAttribute="trailing" id="Dc6-nT-W9K"/>
                             <constraint firstItem="Ndp-bw-rV5" firstAttribute="top" secondItem="2M7-jH-97W" secondAttribute="bottom" id="EKx-gY-yjh"/>
-                            <constraint firstAttribute="bottom" secondItem="SR6-kO-7rL" secondAttribute="bottom" constant="34" id="GuW-xh-2aX"/>
+                            <constraint firstAttribute="bottom" secondItem="SR6-kO-7rL" secondAttribute="bottom" id="GuW-xh-2aX"/>
                             <constraint firstItem="2M7-jH-97W" firstAttribute="top" secondItem="rLJ-mF-oEY" secondAttribute="top" id="JuS-H4-BDy"/>
                             <constraint firstItem="Ndp-bw-rV5" firstAttribute="leading" secondItem="W6a-Rg-J5C" secondAttribute="leading" id="K5Q-s9-QDz"/>
                             <constraint firstItem="SR6-kO-7rL" firstAttribute="top" secondItem="2M7-jH-97W" secondAttribute="bottom" id="M5J-lS-AmN"/>
@@ -876,6 +876,7 @@
                     <view key="view" contentMode="scaleToFill" id="BSN-pv-EZb">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="xuj-8Q-AcX"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                 </viewController>
