@@ -22,6 +22,8 @@ class TrackerStatusView: UIView {
             statusView.configure(withEvent: event)
             stackView.addArrangedSubview(statusView)
         }
+        let time = DateFormatter.hmmaFormatter.string(from: Date())
+        dateLabel.text = "Last Update: \(time)"
     }
 
     // MARK: Init
@@ -41,7 +43,6 @@ class TrackerStatusView: UIView {
         addSubview(contentView)
         contentView.frame = self.bounds
         contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        contentView.layer.cornerRadius = 2
         contentView.backgroundColor = UIColor.softGray
     }
 

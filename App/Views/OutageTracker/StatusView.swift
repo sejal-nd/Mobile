@@ -16,11 +16,11 @@ enum TrackerState: String {
     var image: UIImage? {
         switch self {
             case .notStarted:
-                return UIImage(named: "todo")
+                return UIImage(named: "ic_appt_otw")
             case .inProgress:
-                return UIImage(named: "todo")
+                return UIImage(named: "ic_appt_inprogress")
             case .completed:
-                return UIImage(named: "todo")
+                return UIImage(named: "ic_appt_complete")
         }
     }
 }
@@ -38,13 +38,16 @@ class StatusView: UIView {
         if let status = event.status, let state = TrackerState(rawValue: status) {
             statusImageView.image = state.image
             statusTitleLabel.text = event.eventSetDescription
+            statusDateLabel.text = ""
             if let dateString = event.dateTime {
-                if let date = DateFormatter.yyyyMMddTHHmmssSSSFormatter.date(from: dateString) {
+                if let date = DateFormatter.apiFormatter.date(from: dateString) {
                     let dateTime = DateFormatter.shortMonthDayAndTimeFormatter.string(from: date)
                     statusDateLabel.text = dateTime
                 }
             }
             barWidthConstraint.constant = state == .completed ? 5 : 2
+            let eventStatus = OutageTracker.Status(rawValue: event.eventSetDescription ?? "")
+            barView.isHidden = eventStatus == .restored
         }
     }
     

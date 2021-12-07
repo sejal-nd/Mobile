@@ -21,10 +21,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="1200"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BAo-5l-oWG" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1306.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1326.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="cSX-fc-17H">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="1306.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="1326.5"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" placeholderIntrinsicWidth="250" placeholderIntrinsicHeight="250" translatesAutoresizingMaskIntoConstraints="NO" id="hhk-NV-joZ">
                                                         <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
@@ -284,12 +284,21 @@
                                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isEditable" value="YES"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ytu-oi-mMn" customClass="TrackerStatusView" customModule="EUMobile" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="706.5" width="414" height="600"/>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VDq-ML-APe">
+                                                        <rect key="frame" x="0.0" y="706.5" width="414" height="620"/>
+                                                        <subviews>
+                                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="364" placeholderIntrinsicHeight="360" translatesAutoresizingMaskIntoConstraints="NO" id="Ytu-oi-mMn" customClass="TrackerStatusView" customModule="EUMobile" customModuleProvider="target">
+                                                                <rect key="frame" x="25" y="10" width="364" height="600"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </view>
+                                                        </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="600" id="jop-Pa-7Iq"/>
+                                                            <constraint firstAttribute="bottom" secondItem="Ytu-oi-mMn" secondAttribute="bottom" constant="10" id="9Yi-4f-eH0"/>
+                                                            <constraint firstAttribute="trailing" secondItem="Ytu-oi-mMn" secondAttribute="trailing" constant="25" id="hyX-Y0-dbk"/>
+                                                            <constraint firstItem="Ytu-oi-mMn" firstAttribute="top" secondItem="VDq-ML-APe" secondAttribute="top" constant="10" id="rSq-fF-imP"/>
+                                                            <constraint firstItem="Ytu-oi-mMn" firstAttribute="leading" secondItem="VDq-ML-APe" secondAttribute="leading" constant="25" id="wND-eZ-bZn"/>
                                                         </constraints>
                                                     </view>
                                                 </subviews>

@@ -23,7 +23,7 @@ class OutageTrackerViewModel {
     }
     
     var events: [EventSet] {
-        guard let events = outageTracker.value?.eventSet else { return [] }
+        guard let events = outageTracker.value?.eventSet else { return mockEvents }
         return events
     }
     var statusTitle: String {
@@ -62,6 +62,28 @@ class OutageTrackerViewModel {
     }
     var outageCount: String {
         return NSLocalizedString("1,271", comment: "")
+    }
+    
+    var mockEvents: [EventSet] {
+        var events: [EventSet] = []
+        
+        let event1 = EventSet(status: "completed", eventSetDescription: "Outage Reported", dateTime: "2021-10-28T04:20:39")
+        events.append(event1)
+        
+        let event2 = EventSet(status: "in-progress", eventSetDescription: "Crew Assigned", dateTime: "2021-10-29T04:20:39")
+        events.append(event2)
+        
+        let event3 = EventSet(status: "not-started", eventSetDescription: "Crew En Route", dateTime: nil)
+        events.append(event3)
+        
+        let event4 = EventSet(status: "not-started", eventSetDescription: "Crew On Site", dateTime: nil)
+        events.append(event4)
+        
+        let event5 = EventSet(status: "not-started", eventSetDescription: "Power Restored", dateTime: nil)
+        events.append(event5)
+        
+        return events
+        
     }
     
 }
