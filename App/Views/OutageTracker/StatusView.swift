@@ -8,7 +8,7 @@
 
 import UIKit
 
-enum TrackerStatus: String {
+enum TrackerState: String {
     case notStarted = "not-started"
     case inProgress = "in-progress"
     case completed = "completed"
@@ -34,16 +34,18 @@ class StatusView: UIView {
     @IBOutlet private weak var barView: UIView!
     @IBOutlet private weak var barWidthConstraint: NSLayoutConstraint!
     
-    init(withEvent event: EventSet) {
-        let status = TrackerState(rawValue: event.status)
-        statusImageView.image = status.image
-        statusTitleLabel.text = event.eventSetDescription
-        if let dateString = event.dateTime {
-            let date = DateFormatter.yyyyMMddTHHmmssSSSFormatter.date(from: dateString)
-            let dateTime = DateFormatter.shortMonthDayAndTimeFormatter.string(from: date)
-            statusDateLabel.text = dateTime
+    func configure(withEvent event: EventSet) {
+        if let status = event.status, let state = TrackerState(rawValue: status) {
+            statusImageView.image = state.image
+            statusTitleLabel.text = event.eventSetDescription
+            if let dateString = event.dateTime {
+                if let date = DateFormatter.yyyyMMddTHHmmssSSSFormatter.date(from: dateString) {
+                    let dateTime = DateFormatter.shortMonthDayAndTimeFormatter.string(from: date)
+                    statusDateLabel.text = dateTime
+                }
+            }
+            barWidthConstraint.constant = state == .completed ? 5 : 2
         }
-        barWidthConstraint.constant = status.completed ? 5 : 2
     }
     
     // MARK: Init

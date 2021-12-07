@@ -69,6 +69,8 @@ extension OutageTracker {
                     return StatusTitleString.onSite
                 case .restored:
                     return StatusTitleString.restored
+                default:
+                    return ""
             }
         }
     }
@@ -79,6 +81,14 @@ struct StatusTitleString {
     static let reported = NSLocalizedString("BGE has received a report of an outage at your address.", comment: "")
     static let assigned = NSLocalizedString("A BGE restoration crew is assigned to your outage.", comment: "")
     static let enRoute = NSLocalizedString("A BGE restoration crew is en route to your outage.", comment: "")
-    static let enSite = NSLocalizedString("A BGE restoration crew is at the scene of your outage and working hard to resolve the issue.", comment: "")
+    static let onSite = NSLocalizedString("A BGE restoration crew is at the scene of your outage and working hard to resolve the issue.", comment: "")
     static let restored = NSLocalizedString("Your power has been restored!", comment: "")
+}
+
+struct StatusDetailString {
+    // todo - guessing here...there are more
+    
+    static let crewLeftSite = NSLocalizedString("The outage affecting your addresss requires additional repair work to be completed at another location before we can begin work in your area. We appreciate your patience durig this difficult restoration process.", comment: "")
+    static let crewDiverted = NSLocalizedString("This can occur during severe emergencies or potentially hazardous situations. A new BGE crew will be dispatched as soon as possible to retore your service.", comment: "")
+    static let CrewExtDamage = NSLocalizedString("We have multiple crews on site working hard to restore your power. Thank you for your patience.", comment: "")
 }

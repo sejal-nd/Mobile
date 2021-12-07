@@ -9,12 +9,27 @@
 import Foundation
 import UIKit
 import Lottie
+import RxSwift
 
 class OutageTrackerViewController: UIViewController {
     
     @IBOutlet weak var progressAnimationContainer: UIView!
     @IBOutlet weak var statusTitleView: UIView!
     @IBOutlet weak var statusTitleLabel: UILabel!
+    @IBOutlet weak var statusDetailView: UIView!
+    @IBOutlet weak var statusDetailLabel: UILabel!
+    @IBOutlet weak var etaContainerView: UIView!
+    @IBOutlet weak var etaView: UIView!
+    @IBOutlet weak var etaTitleLabel: UILabel!
+    @IBOutlet weak var etaDateTimeLabel: UILabel!
+    @IBOutlet weak var etaDetailLabel: UILabel!
+    @IBOutlet weak var etaCauseLabel: UILabel!
+    @IBOutlet weak var etaUpdatedView: UIView!
+    @IBOutlet weak var etaInfoButton: UIButton!
+    @IBOutlet weak var countContainerView: UIView!
+    @IBOutlet weak var countView: UIView!
+    @IBOutlet weak var neighborCount: UILabel!
+    @IBOutlet weak var outageCount: UILabel!
     
     @IBOutlet weak var trackerStatusView: TrackerStatusView!
     
@@ -25,21 +40,49 @@ class OutageTrackerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupUI()
         setupBinding()
     }
     
     private func setupBinding() {
         self.viewModel.outageTracker
-            .subscribe(onNext: { [weak self] tracker in
-                self?.updateTracker(forStatus: viewModel.status)
+            .subscribe(onNext: { [weak self] _ in
+                self?.update()
             })
             .disposed(by: self.disposeBag)
     }
     
-    private func updateTracker(forStatus status: OutageTracker.Status) {
-        let title = NSLocalizedString(viewModel.status.statusTitleString, comment: "")
-        statusTitleLabel.text = title
-        trackerStatusView.update(status: status)
+    private func setupUI() {
+        // todo: get colors
+        etaView.roundCorners(.allCorners, radius: 10, borderColor: UIColor.bgeGreen, borderWidth: 1.0)
+        
+        etaUpdatedView.roundCorners(.allCorners, radius: 10, borderColor: UIColor(red: 216.0/255.0, green: 216.0/255.0, blue: 216.0/255.0, alpha: 1.0), borderWidth: 1.0)
+        
+        countView.roundCorners(.allCorners, radius: 10, borderColor: UIColor(red: 216.0/255.0, green: 216.0/255.0, blue: 216.0/255.0, alpha: 1.0), borderWidth: 1.0)
+    }
+    
+    private func update() {
+        trackerStatusView.configure(withEvents: viewModel.events)
+        statusTitleLabel.text = viewModel.statusTitle
+        statusDetailView.isHidden = viewModel.statusDetails.isEmpty
+        statusDetailLabel.text = viewModel.statusDetails
+        
+        updateETA()
+    }
+    
+    private func updateETA() {
+        etaTitleLabel.text = viewModel.etaTitle
+        etaDateTimeLabel.text = viewModel.etaDateTime
+        etaDetailLabel.text = viewModel.etaDetail
+        etaCauseLabel.text = viewModel.etaCause
+        
+        // show/hide info button
+        // show/hide update view
+        
+    }
+    
+    @IBAction func infoButtonPressed(_ sender: Any) {
+        print("info button pressed")
     }
     
     

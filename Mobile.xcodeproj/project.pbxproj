@@ -5814,7 +5814,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1240;
-				LastUpgradeCheck = 1250;
+				LastUpgradeCheck = 1300;
 				ORGANIZATIONNAME = "Exelon Corporation";
 				TargetAttributes = {
 					35F9DD222333C33F00AAA2B2 = {
@@ -6847,11 +6847,6 @@
 				4A74A0C9273A4FBE00F87986 /* UnauthIdentityVerificationViewModelTests.swift in Sources */,
 				2112AAB1272C2C530089FD05 /* MoveFinalMailingAddressViewModelTests.swift in Sources */,
 				21852B03272EB8EA00C0A10E /* MoveStartServiceViewModelTests.swift in Sources */,
-				4AC1E08C272979AD00740A37 /* StopConfirmationScreenViewModelTests.swift in Sources */,
-				4A74A0B5272EACA500F87986 /* ScheduleMoveServiceViewModelTests.swift in Sources */,
-				4AC1E0862729659C00740A37 /* ReviewStopServiceViewModelTests.swift in Sources */,
-				4AC1E08A2729711400740A37 /* FinalMailingAddressViewModelTests.swift in Sources */,
-				4A74A0B7272EB03D00F87986 /* MoveServiceConfirmationViewModelTests.swift in Sources */,
 				6716595226F0FBC6004546DE /* UnitTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

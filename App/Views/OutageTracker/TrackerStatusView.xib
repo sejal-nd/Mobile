@@ -55,23 +55,14 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jl1-BX-6ur">
-                    <rect key="frame" x="0.0" y="500" width="414" height="100"/>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain"/>
-                </button>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="Ncn-Fz-Bir" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Jna-yX-hXp"/>
                 <constraint firstItem="s7q-qK-lAl" firstAttribute="top" secondItem="Ncn-Fz-Bir" secondAttribute="bottom" constant="8" symbolic="YES" id="RhU-aS-Qe9"/>
-                <constraint firstAttribute="bottom" secondItem="Jl1-BX-6ur" secondAttribute="bottom" id="Ur6-YK-u6a"/>
                 <constraint firstAttribute="trailing" secondItem="Ncn-Fz-Bir" secondAttribute="trailing" id="XV2-aO-QA6"/>
-                <constraint firstItem="Jl1-BX-6ur" firstAttribute="top" secondItem="Ncn-Fz-Bir" secondAttribute="bottom" id="YFS-Tr-ZQ7"/>
                 <constraint firstAttribute="bottom" secondItem="s7q-qK-lAl" secondAttribute="bottom" constant="30" id="csL-SB-GDv"/>
                 <constraint firstItem="Ncn-Fz-Bir" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="jdK-JZ-gC3"/>
-                <constraint firstAttribute="trailing" secondItem="Jl1-BX-6ur" secondAttribute="trailing" id="rFU-Qn-VGq"/>
-                <constraint firstItem="Jl1-BX-6ur" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="rcx-eR-DFP"/>
                 <constraint firstItem="s7q-qK-lAl" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="wDz-a4-h0a"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

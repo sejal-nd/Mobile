@@ -18,7 +18,8 @@ class TrackerStatusView: UIView {
             $0.removeFromSuperview()
         }
         for event in events {
-            let statusView = StatusView(withEvent: event)
+            let statusView = StatusView()
+            statusView.configure(withEvent: event)
             stackView.addArrangedSubview(statusView)
         }
     }
