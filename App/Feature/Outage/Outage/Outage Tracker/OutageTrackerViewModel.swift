@@ -86,6 +86,18 @@ class OutageTrackerViewModel {
         
     }
     
+    func getOutageTracker(onSuccess: @escaping () -> Void, onError: @escaping (NetworkingError) -> Void) {
+        OutageService.fetchOutageTracker(accountNumber: AccountsStore.shared.currentAccount.accountNumber) { [weak self] result in
+            switch result {
+                case .success(let outageTracker):
+                    self?.outageTracker.accept(outageTracker)
+                    onSuccess()
+                case .failure(let error):
+                    self?.outageTracker.accept(nil)
+                    onError(error)
+            }
+        }
+    }
 }
 
 

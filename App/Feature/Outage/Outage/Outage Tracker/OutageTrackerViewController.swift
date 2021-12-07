@@ -40,8 +40,17 @@ class OutageTrackerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        loadOutageTracker()
         setupUI()
         setupBinding()
+    }
+    
+    private func loadOutageTracker() {
+        self.viewModel.getOutageTracker {
+            print("fetching tracker")
+        } onError: { error in
+            print("error fetching tracker: \(error.localizedDescription)")
+        }
     }
     
     private func setupBinding() {

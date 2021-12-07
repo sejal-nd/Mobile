@@ -33,6 +33,7 @@
 		215BD787275ACDE30011F642 /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BD786275ACDE30011F642 /* StatusView.swift */; };
 		215BD789275ACE3A0011F642 /* StatusView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 215BD788275ACE3A0011F642 /* StatusView.xib */; };
 		215BD78B275ACE4B0011F642 /* TrackerStatusView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 215BD78A275ACE4B0011F642 /* TrackerStatusView.xib */; };
+		215BD78F275FFFD00011F642 /* OutageTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C372B65E275850E600E38F64 /* OutageTracker.swift */; };
 		217E2AD6271EA90C009D3587 /* MoveLandingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217E2AD5271EA90C009D3587 /* MoveLandingViewModel.swift */; };
 		21852AFB272D1DF500C0A10E /* ReviewMoveServiceViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21852AFA272D1DF500C0A10E /* ReviewMoveServiceViewModelTest.swift */; };
 		21852AFD272E9A1900C0A10E /* MockModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21852AFC272E9A1900C0A10E /* MockModel.swift */; };
@@ -6699,6 +6700,7 @@
 				670DE2A626CC15FC00D4C863 /* TegKeychainConstants.swift in Sources */,
 				67247F4725D2DDE20024467D /* ErrorContainerView.swift in Sources */,
 				67247F2325D2D90C0024467D /* AccountList.swift in Sources */,
+				215BD78F275FFFD00011F642 /* OutageTracker.swift in Sources */,
 				C3055BF02538FB11000DB89C /* AlertPreferencesRequest.swift in Sources */,
 				4A74A0C4273127B600F87986 /* AccountDetailsAnonRequest.swift in Sources */,
 				C3055B552538F81B000DB89C /* Payments.swift in Sources */,

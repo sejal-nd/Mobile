@@ -151,6 +151,7 @@ public enum Router {
     case meterPingAnon(request: AnonMeterPingRequest)
     case reportOutage(accountNumber: String, request: OutageRequest)
     case reportOutageAnon(request: OutageRequest)
+    case outageTracker(accountNumber: String)
     
     // Unauthenticated    
     case passwordChangeAnon(request: ChangePasswordRequest)
@@ -370,6 +371,8 @@ public enum Router {
             return "\(basePath)/\(apiAccess.path)/recover/username"
         case .outageStatus(let accountNumber, _):
             return "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/outage"
+        case .outageTracker(let accountNumber):
+            return "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/outage/tracker"
         case .reportOutage(let accountNumber, _):
             return "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/outage"
         case .meterPing(let accountNumber, let premiseNumber):
@@ -413,7 +416,7 @@ public enum Router {
     
     public var method: String {
         switch self {
-        case .outageStatusAnon, .fetchToken, .refreshToken, .wallet, .scheduledPayment, .billingHistory, .compareBill, .autoPayEnroll, .autoPayEnrollBGE, .scheduledPaymentDelete, .autoPayUnenroll, .budgetBillingUnenroll, .accountLookup, .recoverPassword, .recoverUsername, .recoverMaskedUsername, .reportOutage, .registration, .checkDuplicateRegistration, .validateRegistration, .sendConfirmationEmail, .fetchDailyUsage, .reportOutageAnon, .registerForAlerts, .addWalletItem, .deleteWalletItem, .walletEncryptionKey, .scheduleOverride, .updateDeviceSettings, .updateThermostatSchedule, .meterPingAnon, .setAccountNickname, .fetchDPA, .getAzureToken, .fetchB2CJWT, .workDays, .stopServiceVerification, .stopISUMService,.streetAddress,.appartment,.addressLookup, .moveISUMService, .accountDetailsAnon, .workDaysAnon, .stopServiceVerificationAnon, .streetAddressAnon, .appartmentAnon, .addressLookupAnon, .moveISUMServiceAnon:
+            case .outageStatusAnon, .fetchToken, .refreshToken, .wallet, .scheduledPayment, .billingHistory, .compareBill, .autoPayEnroll, .autoPayEnrollBGE, .scheduledPaymentDelete, .autoPayUnenroll, .budgetBillingUnenroll, .accountLookup, .recoverPassword, .recoverUsername, .recoverMaskedUsername, .reportOutage, .registration, .checkDuplicateRegistration, .validateRegistration, .sendConfirmationEmail, .fetchDailyUsage, .reportOutageAnon, .registerForAlerts, .addWalletItem, .deleteWalletItem, .walletEncryptionKey, .scheduleOverride, .updateDeviceSettings, .updateThermostatSchedule, .meterPingAnon, .setAccountNickname, .fetchDPA, .getAzureToken, .fetchB2CJWT, .workDays, .stopServiceVerification, .stopISUMService,.streetAddress,.appartment,.addressLookup, .moveISUMService, .accountDetailsAnon, .workDaysAnon, .stopServiceVerificationAnon, .streetAddressAnon, .appartmentAnon, .addressLookupAnon, .moveISUMServiceAnon, .outageTracker:
             return "POST"
         case .maintenanceMode, .accountDetails, .accounts, .getFeatureFlags, .minVersion, .weather, .payments, .alertBanner, .newsAndUpdates, .billPDF, .autoPayInfo, .budgetBillingInfo, .forecastBill, .ssoData, .ffssoData, .iTronssoData, .energyTips, .energyTip, .homeProfileLoad, .energyRewardsLoad, .alertPreferencesLoad, .appointments, .outageStatus, .meterPing, .fetchGameUser, .registrationQuestions, .fetchAlertLanguage, .bankName, .peakRewardsSummary, .peakRewardsOverrides, .deviceSettings, .thermostatSchedule, .fetchDueDate, .validateZipCode, .validateZipCodeAnon:
             return "GET"
@@ -526,6 +529,8 @@ public enum Router {
             return "OutageStatusMock"
         case .outageStatusAnon:
             return "AnonOutageStatusMock"
+        case .outageTracker:
+            return "outageTrackerMock"
         case .reportOutage, .reportOutageAnon: // todo vlaidate anon is same response as auth
             return "ReportOutageMock"
         case .meterPing:
