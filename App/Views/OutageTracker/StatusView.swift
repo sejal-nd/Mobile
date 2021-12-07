@@ -68,7 +68,6 @@ class StatusView: UIView {
         addSubview(contentView)
         contentView.frame = self.bounds
         contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        contentView.backgroundColor = UIColor.softGray
     }
 
 }
