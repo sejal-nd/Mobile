@@ -406,6 +406,7 @@
                         <outlet property="neighborCount" destination="1pn-tZ-0pf" id="jVB-QG-o8s"/>
                         <outlet property="outageCount" destination="UPo-Gi-eGr" id="TlW-7O-wtc"/>
                         <outlet property="progressAnimationContainer" destination="hhk-NV-joZ" id="Lzn-eP-r8Y"/>
+                        <outlet property="scrollView" destination="FM4-Ab-ESP" id="GE6-71-PIZ"/>
                         <outlet property="statusDetailLabel" destination="ocR-a0-LuO" id="HBw-YZ-b6l"/>
                         <outlet property="statusDetailView" destination="QXU-DZ-xsh" id="7Lf-LF-3LS"/>
                         <outlet property="statusTitleLabel" destination="8R8-mV-Ey9" id="ZMo-kA-ijs"/>

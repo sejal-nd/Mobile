@@ -12,7 +12,7 @@ import Lottie
 import RxSwift
 
 class OutageTrackerViewController: UIViewController {
-    
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var progressAnimationContainer: UIView!
     @IBOutlet weak var statusTitleView: UIView!
     @IBOutlet weak var statusTitleLabel: UILabel!
@@ -38,27 +38,25 @@ class OutageTrackerViewController: UIViewController {
     let disposeBag = DisposeBag()
     let viewModel = OutageTrackerViewModel()
     var progressAnimation = AnimationView(name: "outage_reported")
-    
-    lazy var refreshControl: UIRefreshControl = {
-        let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(loadOutageTracker(sender:)), for: .valueChanged)
-        refreshControl.tintColor = .deepGray
-        refreshControl.backgroundColor = .softGray
-        return refreshControl
-    }()
+    var refreshControl: UIRefreshControl?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loadOutageTracker()
         configureTableView()
         configureFooterTextView()
         setupUI()
         setupBinding()
     }
     
-    @objc
-    private func loadOutageTracker(sender: UIRefreshControl? = nil) {
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        setRefreshControlEnabled(enabled: false)
+        loadOutageTracker()
+    }
+    
+    private func loadOutageTracker() {
         self.viewModel.getOutageTracker {
             print("fetching tracker")
         } onError: { error in
@@ -97,6 +95,7 @@ class OutageTrackerViewController: UIViewController {
     }
     
     private func setupUI() {
+        
         // todo: get colors
         etaView.roundCorners(.allCorners, radius: 10, borderColor: UIColor.bgeGreen, borderWidth: 1.0)
         
@@ -114,6 +113,8 @@ class OutageTrackerViewController: UIViewController {
         statusDetailLabel.text = viewModel.statusDetails
         
         updateETA()
+        refreshControl?.endRefreshing()
+        setRefreshControlEnabled(enabled: true)
     }
     
     private func updateETA() {
@@ -145,6 +146,38 @@ class OutageTrackerViewController: UIViewController {
         if let outageMapVC = storyboard.instantiateViewController(withIdentifier: "OutageMapViewController") as?  OutageMapViewController {
             outageMapVC.hasPressedStreetlightOutageMapButton = isStreetMap
             navigationController?.pushViewController(outageMapVC, animated: true)
+        }
+    }
+    
+    @objc private func setRefreshControlEnabled(enabled: Bool) {
+        if enabled {
+            guard refreshControl == nil else { return }
+            
+            let rc = UIRefreshControl()
+            
+            rc.rx.controlEvent(.valueChanged)
+                .subscribe(onNext: { [weak self] in
+                    self?.loadOutageTracker()
+                })
+                .disposed(by: disposeBag)
+            
+            scrollView?.insertSubview(rc, at: 0)
+            scrollView?.alwaysBounceVertical = true
+            refreshControl = rc
+        } else {
+            refreshControl?.endRefreshing()
+            refreshControl?.removeFromSuperview()
+            refreshControl = nil
+            scrollView?.alwaysBounceVertical = false
+        }
+    }
+    
+    @objc func onPullToRefresh() {
+        loadOutageTracker()
+        FeatureFlagUtility.shared.fetchCloudValues()
+        UIAccessibility.post(notification: .screenChanged, argument: nil)
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
+            self.refreshControl?.endRefreshing()
         }
     }
     
