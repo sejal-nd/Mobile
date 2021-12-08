@@ -84,6 +84,7 @@ class OutageTrackerViewController: UIViewController {
     private func setupBinding() {
         self.viewModel.outageTracker
             .subscribe(onNext: { [weak self] _ in
+                self?.setUpProgressAnimation()
                 self?.update()
             })
             .disposed(by: self.disposeBag)
@@ -159,56 +160,19 @@ extension OutageTrackerViewController {
     // MARK - Lottie Animation
     
     func setUpProgressAnimation() {
-        progressAnimation.loopMode = .playOnce
-        progressAnimation.translatesAutoresizingMaskIntoConstraints = false
-        progressAnimation.contentMode = .scaleAspectFill
+        let animationName = viewModel.animationName
+        progressAnimation.removeFromSuperview()
+        progressAnimation = AnimationView(name: animationName)
         
-        progressAnimation.setContentHuggingPriority(.required, for: .horizontal)
-        progressAnimation.setContentHuggingPriority(.required, for: .vertical)
-        progressAnimation.setContentCompressionResistancePriority(.required, for: .horizontal)
-        progressAnimation.setContentCompressionResistancePriority(.required, for: .vertical)
+        progressAnimation.frame = CGRect(x: 0, y: 1, width: progressAnimationContainer.frame.size.width, height: progressAnimationContainer.frame.size.height)
+        progressAnimation.loopMode = .loop
+        progressAnimation.backgroundBehavior = .pauseAndRestore
+        progressAnimation.contentMode = .scaleAspectFill
         
         progressAnimationContainer.addSubview(progressAnimation)
         
-        progressAnimationContainer.addConstraints([
-            progressAnimation.topAnchor.constraint(equalTo: progressAnimationContainer.topAnchor),
-            progressAnimation.bottomAnchor.constraint(equalTo: progressAnimationContainer.bottomAnchor),
-            progressAnimation.leadingAnchor.constraint(equalTo: progressAnimationContainer.leadingAnchor),
-            progressAnimation.trailingAnchor.constraint(equalTo: progressAnimationContainer.trailingAnchor)
-        ])
+        progressAnimation.play()
     }
-    
-    func frameForStatus(_ status: OutageTracker.Status) -> CGFloat {
-        switch status {
-            case .reported:
-                return 67
-            case .assigned:
-                fallthrough
-            case .enRoute:
-                return 136
-            case .onSite:
-                return 206
-            case .restored:
-                return 270
-            default:
-                return 0
-        }
-    }
-    
-    func playProgressAnimation() {
-        let stopFrame = frameForStatus(viewModel.status)
-        progressAnimation.stop()
-        progressAnimation.play(fromFrame: 0.0, toFrame: stopFrame, loopMode: .playOnce, completion: nil)
-    }
-    
-    func playProgressAnimation(fromStatus: OutageTracker.Status) {
-        let startFrame = frameForStatus(fromStatus)
-        let stopFrame = frameForStatus(viewModel.status)
-        
-        progressAnimation.stop()
-        progressAnimation.play(fromFrame: startFrame, toFrame: stopFrame, loopMode: .playOnce, completion: nil)
-    }
-    
 }
 
 // MARK: - Table View Data Source

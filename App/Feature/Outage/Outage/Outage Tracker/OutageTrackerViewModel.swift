@@ -87,6 +87,23 @@ class OutageTrackerViewModel {
         return attributedText
     }
     
+    var animationName: String {
+        switch status {
+            case .reported:
+                return "outage_reported"
+            case .assigned:
+                return "outage_reported"
+            case .enRoute:
+                return "outage_reported"
+            case .onSite:
+                return "outage_reported"
+            case .restored:
+                return "outage_reported"
+            default:
+                return "outage_reported"
+        }
+    }
+    
     var mockEvents: [EventSet] {
         var events: [EventSet] = []
         
@@ -128,6 +145,7 @@ class OutageTrackerViewModel {
                 case .success(let outageStatus):
                     self?.outageStatus.accept(outageStatus)
                 case .failure(let error):
+                    print("Outage Status error: \(error.localizedDescription)")
                     self?.outageStatus.accept(nil)
             }
         }
