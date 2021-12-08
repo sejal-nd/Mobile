@@ -14,6 +14,7 @@ class OutageTrackerViewModel {
     
     let disposeBag = DisposeBag()
     var outageTracker = BehaviorRelay<OutageTracker?>(value: nil)
+    var outageStatus = BehaviorRelay<OutageStatus?>(value: nil)
     
     var status: OutageTracker.Status {
         guard let trackerStatus = outageTracker.value?.trackerStatus else {
@@ -68,7 +69,7 @@ class OutageTrackerViewModel {
         let phone2 = "1-877-778-7798"
         let phone3 = "1-877-778-2222"
         let phoneNumbers = [phone1, phone2, phone3]
-        var localizedString = String.localizedStringWithFormat(
+        let localizedString = String.localizedStringWithFormat(
                 """
                 If you smell natural gas, leave the area immediately and call %@ or %@\n
                 For downed or sparking power lines, please call %@ or %@
@@ -117,6 +118,17 @@ class OutageTrackerViewModel {
                 case .failure(let error):
                     self?.outageTracker.accept(nil)
                     onError(error)
+            }
+        }
+    }
+    
+    func getOutageStatus() {
+        OutageService.fetchOutageStatus(accountNumber: AccountsStore.shared.currentAccount.accountNumber, premiseNumberString: AccountsStore.shared.currentAccount.currentPremise?.premiseNumber ?? "") { [weak self] result in
+            switch result {
+                case .success(let outageStatus):
+                    self?.outageStatus.accept(outageStatus)
+                case .failure(let error):
+                    self?.outageStatus.accept(nil)
             }
         }
     }

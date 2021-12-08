@@ -87,6 +87,12 @@ class OutageTrackerViewController: UIViewController {
                 self?.update()
             })
             .disposed(by: self.disposeBag)
+        
+        self.viewModel.outageStatus
+            .subscribe(onNext: { [weak self] _ in
+                self?.reportOutage()
+            })
+            .disposed(by: self.disposeBag)
     }
     
     private func setupUI() {
@@ -118,6 +124,27 @@ class OutageTrackerViewController: UIViewController {
         // show/hide info button
         // show/hide update view
         
+    }
+    
+    private func reportOutage() {
+        let storyboard = UIStoryboard(name: "Outage", bundle: Bundle.main)
+        if let reportOutageVC = storyboard.instantiateViewController(withIdentifier: "ReportOutageViewController") as?  ReportOutageViewController {
+            if let outageStatus = viewModel.outageStatus.value {
+                reportOutageVC.viewModel.outageStatus = outageStatus
+                reportOutageVC.viewModel.phoneNumber.accept(outageStatus.contactHomeNumber ?? "")
+                navigationController?.pushViewController(reportOutageVC, animated: true)
+            } else {
+                // show alert maybe
+            }
+        }
+    }
+    
+    private func openOutageMap(forStreetMap isStreetMap: Bool) {
+        let storyboard = UIStoryboard(name: "Outage", bundle: Bundle.main)
+        if let outageMapVC = storyboard.instantiateViewController(withIdentifier: "OutageMapViewController") as?  OutageMapViewController {
+            outageMapVC.hasPressedStreetlightOutageMapButton = isStreetMap
+            navigationController?.pushViewController(outageMapVC, animated: true)
+        }
     }
     
     @IBAction func infoButtonPressed(_ sender: Any) {
@@ -220,18 +247,11 @@ extension OutageTrackerViewController: UITableViewDelegate {
         guard let cell = tableView.cellForRow(at: indexPath) as? TitleSubTitleRow, cell.isEnabled else { return }
         tableView.deselectRow(at: indexPath, animated: true)
         
-        switch indexPath.row {
-            case 0:
-                // todo
-                performSegue(withIdentifier: "reportOutageSegue", sender: self)
-            case 1:
-                // todo
-                performSegue(withIdentifier: "outageMapSegue", sender: true)
-            case 2:
-                // todo
-                performSegue(withIdentifier: "outageMapSegue", sender: false)
-            default:
-                break
+        if indexPath.row == 0 {
+            viewModel.getOutageStatus()
+        } else {
+            let isStreetMap = indexPath.row == 1
+            openOutageMap(forStreetMap: isStreetMap)
         }
     }
 }
