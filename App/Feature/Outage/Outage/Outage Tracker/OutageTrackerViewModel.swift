@@ -63,6 +63,28 @@ class OutageTrackerViewModel {
     var outageCount: String {
         return NSLocalizedString("1,271", comment: "")
     }
+    var footerText: NSAttributedString {
+        let phone1 = "1-800-685-0123"
+        let phone2 = "1-877-778-7798"
+        let phone3 = "1-877-778-2222"
+        let phoneNumbers = [phone1, phone2, phone3]
+        var localizedString = String.localizedStringWithFormat(
+                """
+                If you smell natural gas, leave the area immediately and call %@ or %@\n
+                For downed or sparking power lines, please call %@ or %@
+                """
+                ,phone1, phone2, phone1, phone3)
+
+        let attributedText = NSMutableAttributedString(string: localizedString, attributes: [.font: SystemFont.regular.of(textStyle: .caption1)])
+        for phone in phoneNumbers {
+            localizedString.ranges(of: phone, options: .regularExpression)
+                .map { NSRange($0, in: localizedString) }
+                .forEach {
+                    attributedText.addAttribute(.font, value: SystemFont.semibold.of(textStyle: .caption1), range: $0)
+                }
+        }
+        return attributedText
+    }
     
     var mockEvents: [EventSet] {
         var events: [EventSet] = []

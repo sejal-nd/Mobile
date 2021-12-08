@@ -30,27 +30,55 @@ class OutageTrackerViewController: UIViewController {
     @IBOutlet weak var countView: UIView!
     @IBOutlet weak var neighborCount: UILabel!
     @IBOutlet weak var outageCount: UILabel!
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var footerTextView: ZeroInsetDataDetectorTextView!
     
     @IBOutlet weak var trackerStatusView: TrackerStatusView!
     
     let disposeBag = DisposeBag()
     let viewModel = OutageTrackerViewModel()
-    var progressAnimation = AnimationView(name: "appointment_tracker")
+    var progressAnimation = AnimationView(name: "outage_reported")
+    
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(loadOutageTracker(sender:)), for: .valueChanged)
+        refreshControl.tintColor = .deepGray
+        refreshControl.backgroundColor = .softGray
+        return refreshControl
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         loadOutageTracker()
+        configureTableView()
+        configureFooterTextView()
         setupUI()
         setupBinding()
     }
     
-    private func loadOutageTracker() {
+    @objc
+    private func loadOutageTracker(sender: UIRefreshControl? = nil) {
         self.viewModel.getOutageTracker {
             print("fetching tracker")
         } onError: { error in
             print("error fetching tracker: \(error.localizedDescription)")
         }
+    }
+    
+    private func configureTableView() {
+        let titleDetailCell = UINib(nibName: TitleSubTitleRow.className, bundle: nil)
+        tableView.register(titleDetailCell, forCellReuseIdentifier: TitleSubTitleRow.className)
+        tableView.accessibilityLabel = "outageTableView"
+        tableView.reloadData()
+    }
+    
+    private func configureFooterTextView() {
+        // todo  make phone numbers work
+        footerTextView.font = SystemFont.regular.of(textStyle: .footnote)
+        footerTextView.attributedText = viewModel.footerText
+        footerTextView.textColor = .blackText
+        footerTextView.tintColor = .actionBlue // For the phone numbers
     }
     
     private func setupBinding() {
@@ -68,6 +96,8 @@ class OutageTrackerViewController: UIViewController {
         etaUpdatedView.roundCorners(.allCorners, radius: 10, borderColor: UIColor(red: 216.0/255.0, green: 216.0/255.0, blue: 216.0/255.0, alpha: 1.0), borderWidth: 1.0)
         
         countView.roundCorners(.allCorners, radius: 10, borderColor: UIColor(red: 216.0/255.0, green: 216.0/255.0, blue: 216.0/255.0, alpha: 1.0), borderWidth: 1.0)
+        
+        tableView.roundCorners(.allCorners, radius: 0, borderColor: UIColor(red: 216.0/255.0, green: 216.0/255.0, blue: 216.0/255.0, alpha: 1.0), borderWidth: 1.0)
     }
     
     private func update() {
@@ -152,4 +182,56 @@ extension OutageTrackerViewController {
         progressAnimation.play(fromFrame: startFrame, toFrame: stopFrame, loopMode: .playOnce, completion: nil)
     }
     
+}
+
+// MARK: - Table View Data Source
+
+extension OutageTrackerViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let count = 3
+        return count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: TitleSubTitleRow.className, for: indexPath) as? TitleSubTitleRow else { fatalError("Invalid cell type.") }
+        cell.backgroundColor = UIColor.systemGray6
+        
+        switch indexPath.row {
+            case 0:
+                cell.configure(image: UIImage(named: "ic_reportoutage"), title: "Report Outage", detail: nil)
+            case 1:
+                cell.configure(image: #imageLiteral(resourceName: "ic_streetlightoutage"), title: "Report Streetlight Outage", detail: nil)
+            case 2:
+                cell.configure(image: UIImage(named: "ic_mapoutage"), title: "View Outage Map", detail: nil)
+            default:
+                fatalError("Invalid index path.")
+        }
+        
+        return cell
+    }
+    
+}
+
+
+// MARK: - Table View Delegate
+
+extension OutageTrackerViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let cell = tableView.cellForRow(at: indexPath) as? TitleSubTitleRow, cell.isEnabled else { return }
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        switch indexPath.row {
+            case 0:
+                // todo
+                performSegue(withIdentifier: "reportOutageSegue", sender: self)
+            case 1:
+                // todo
+                performSegue(withIdentifier: "outageMapSegue", sender: true)
+            case 2:
+                // todo
+                performSegue(withIdentifier: "outageMapSegue", sender: false)
+            default:
+                break
+        }
+    }
 }

@@ -21,10 +21,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="1200"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BAo-5l-oWG" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1326.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1694.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="cSX-fc-17H">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="1326.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="1694.5"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" placeholderIntrinsicWidth="250" placeholderIntrinsicHeight="250" translatesAutoresizingMaskIntoConstraints="NO" id="hhk-NV-joZ">
                                                         <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
@@ -284,7 +284,7 @@
                                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isEditable" value="YES"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VDq-ML-APe">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VDq-ML-APe" userLabel="tracker status">
                                                         <rect key="frame" x="0.0" y="706.5" width="414" height="620"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="364" placeholderIntrinsicHeight="360" translatesAutoresizingMaskIntoConstraints="NO" id="Ytu-oi-mMn" customClass="TrackerStatusView" customModule="EUMobile" customModuleProvider="target">
@@ -297,6 +297,51 @@
                                                             <constraint firstAttribute="trailing" secondItem="Ytu-oi-mMn" secondAttribute="trailing" constant="25" id="hyX-Y0-dbk"/>
                                                             <constraint firstItem="Ytu-oi-mMn" firstAttribute="top" secondItem="VDq-ML-APe" secondAttribute="top" constant="10" id="rSq-fF-imP"/>
                                                             <constraint firstItem="Ytu-oi-mMn" firstAttribute="leading" secondItem="VDq-ML-APe" secondAttribute="leading" constant="25" id="wND-eZ-bZn"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2qx-Az-4kU">
+                                                        <rect key="frame" x="0.0" y="1346.5" width="414" height="180"/>
+                                                        <subviews>
+                                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="8k8-H8-DxT">
+                                                                <rect key="frame" x="0.0" y="0.0" width="414" height="180"/>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="180" id="NQD-Ft-ZnY"/>
+                                                                </constraints>
+                                                                <connections>
+                                                                    <outlet property="dataSource" destination="j3V-0d-zjQ" id="XEt-sE-5Qm"/>
+                                                                    <outlet property="delegate" destination="j3V-0d-zjQ" id="bjd-Li-jKQ"/>
+                                                                </connections>
+                                                            </tableView>
+                                                        </subviews>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <constraints>
+                                                            <constraint firstItem="8k8-H8-DxT" firstAttribute="leading" secondItem="2qx-Az-4kU" secondAttribute="leading" id="15D-VU-tWd"/>
+                                                            <constraint firstAttribute="bottom" secondItem="8k8-H8-DxT" secondAttribute="bottom" id="NXi-B9-Dyr"/>
+                                                            <constraint firstAttribute="trailing" secondItem="8k8-H8-DxT" secondAttribute="trailing" id="XQe-8g-5dc"/>
+                                                            <constraint firstItem="8k8-H8-DxT" firstAttribute="top" secondItem="2qx-Az-4kU" secondAttribute="top" id="nQO-Wp-QST"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GEr-TU-ilh">
+                                                        <rect key="frame" x="0.0" y="1546.5" width="414" height="148"/>
+                                                        <subviews>
+                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="mQ7-7L-FjM" customClass="ZeroInsetDataDetectorTextView" customModule="EUMobile" customModuleProvider="target">
+                                                                <rect key="frame" x="25" y="10" width="364" height="128"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="128" id="5jU-yU-V9i"/>
+                                                                </constraints>
+                                                                <color key="textColor" systemColor="labelColor"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                            </textView>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstItem="mQ7-7L-FjM" firstAttribute="top" secondItem="GEr-TU-ilh" secondAttribute="top" constant="10" id="9aZ-2F-egI"/>
+                                                            <constraint firstAttribute="bottom" secondItem="mQ7-7L-FjM" secondAttribute="bottom" constant="10" id="CNq-bD-Q9G"/>
+                                                            <constraint firstAttribute="trailing" secondItem="mQ7-7L-FjM" secondAttribute="trailing" constant="25" id="OkA-wc-HxQ"/>
+                                                            <constraint firstItem="mQ7-7L-FjM" firstAttribute="leading" secondItem="GEr-TU-ilh" secondAttribute="leading" constant="25" id="jgh-Vl-mOa"/>
                                                         </constraints>
                                                     </view>
                                                 </subviews>
@@ -345,6 +390,7 @@
                         <outlet property="etaTitleLabel" destination="5B7-cc-xFG" id="nyW-Hf-Q4B"/>
                         <outlet property="etaUpdatedView" destination="CtI-3O-2j6" id="eZB-gf-odK"/>
                         <outlet property="etaView" destination="ZPR-jk-lhd" id="Ucc-zM-ipu"/>
+                        <outlet property="footerTextView" destination="mQ7-7L-FjM" id="ZQ2-MJ-wai"/>
                         <outlet property="neighborCount" destination="1pn-tZ-0pf" id="jVB-QG-o8s"/>
                         <outlet property="outageCount" destination="UPo-Gi-eGr" id="TlW-7O-wtc"/>
                         <outlet property="progressAnimationContainer" destination="hhk-NV-joZ" id="Lzn-eP-r8Y"/>
@@ -352,6 +398,7 @@
                         <outlet property="statusDetailView" destination="QXU-DZ-xsh" id="7Lf-LF-3LS"/>
                         <outlet property="statusTitleLabel" destination="8R8-mV-Ey9" id="ZMo-kA-ijs"/>
                         <outlet property="statusTitleView" destination="4rc-GQ-SVh" id="rfo-Kr-g0a"/>
+                        <outlet property="tableView" destination="8k8-H8-DxT" id="Iv2-KR-opQ"/>
                         <outlet property="trackerStatusView" destination="Ytu-oi-mMn" id="1Ke-Dh-0Tf"/>
                     </connections>
                 </viewController>
@@ -361,6 +408,9 @@
         </scene>
     </scenes>
     <resources>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
