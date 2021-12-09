@@ -344,7 +344,7 @@ struct Configuration {
             case .delmarva:
                 redirecturi = ""
             case .pepco:
-                redirecturi = "msauth.com.exelon.mobile.pepco.testing"
+                redirecturi = "msauth.com.exelon.mobile.pepco"
             case .bge:
                 redirecturi = ""
             case .comEd:
@@ -378,7 +378,7 @@ struct Configuration {
                 case .delmarva:
                     redirecturi = ""
                 case .pepco:
-                    redirecturi = "msauth.com.exelon.mobile.pepco.testing"
+                    redirecturi = "msauth.com.exelon.mobile.pepco.staging"
                 case .bge:
                     redirecturi = ""
                 case .comEd:
