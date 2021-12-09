@@ -40,29 +40,14 @@ public enum AuthenticationService {
                               password: String,
                               completion: @escaping (Result<Void, NetworkingError>) -> ()) {
         
-        if FeatureFlagUtility.shared.bool(forKey: .isAzureAuthentication) {
-            let tokenRequest = B2CTokenRequest(username: username,
-                                               password: password)
-            NetworkingLayer.request(router: .getAzureToken(request: tokenRequest)) { (result: Result<VoidDecodable, NetworkingError>) in
-                switch result {
-                case .success:
-                    completion(.success(()))
-                case .failure(let error):
-                    completion(.failure(error))
-                }
-            }
-        } else {
-            let tokenRequest = TokenRequest(clientId: Configuration.shared.clientID,
-                                            clientSecret: Configuration.shared.clientSecret,
-                                            username: "\(Configuration.shared.opco.urlString)\\\(username)",
-                                            password: password)
-            NetworkingLayer.request(router: .fetchToken(request: tokenRequest)) { (result: Result<VoidDecodable, NetworkingError>) in
-                switch result {
-                case .success:
-                    completion(.success(()))
-                case .failure(let error):
-                    completion(.failure(error))
-                }
+        let tokenRequest = B2CTokenRequest(username: username,
+                                           password: password)
+        NetworkingLayer.request(router: .getAzureToken(request: tokenRequest)) { (result: Result<VoidDecodable, NetworkingError>) in
+            switch result {
+            case .success:
+                completion(.success(()))
+            case .failure(let error):
+                completion(.failure(error))
             }
         }
     }
@@ -118,31 +103,14 @@ extension AuthenticationService {
     private static func fetchLoginToken(username: String,
                              password: String,
                              completion: @escaping (Result<TokenResponse, NetworkingError>) -> ()) {
-        if FeatureFlagUtility.shared.bool(forKey: .isAzureAuthentication) {
-            // B2C Authentication
-            let tokenRequest = B2CTokenRequest(username: username,
-                                               password: password)
-            NetworkingLayer.request(router: .getAzureToken(request: tokenRequest)) { (result: Result<TokenResponse, NetworkingError>) in
-                switch result {
-                case .success(let tokenResponse):
-                    completion(.success(tokenResponse))
-                case .failure(let error):
-                    completion(.failure(error))
-                }
-            }
-        } else {
-            // Apigee Authentication
-            let tokenRequest = TokenRequest(clientId: Configuration.shared.clientID,
-                                            clientSecret: Configuration.shared.clientSecret,
-                                            username: "\(Configuration.shared.opco.urlString)\\\(username)",
-                                            password: password)
-            NetworkingLayer.request(router: .fetchToken(request: tokenRequest)) { (result: Result<TokenResponse, NetworkingError>) in
-                switch result {
-                case .success(let tokenResponse):
-                    completion(.success(tokenResponse))
-                case .failure(let error):
-                    completion(.failure(error))
-                }
+        let tokenRequest = B2CTokenRequest(username: username,
+                                           password: password)
+        NetworkingLayer.request(router: .getAzureToken(request: tokenRequest)) { (result: Result<TokenResponse, NetworkingError>) in
+            switch result {
+            case .success(let tokenResponse):
+                completion(.success(tokenResponse))
+            case .failure(let error):
+                completion(.failure(error))
             }
         }
     }

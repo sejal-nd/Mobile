@@ -29,14 +29,8 @@ public struct TokenResponse: Decodable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        if FeatureFlagUtility.shared.bool(forKey: .isAzureAuthentication) {
-            // B2C JSON has a key access_token instead of token
-            self.token = try container.decodeIfPresent(String.self,
-                                                           forKey: .access_token)
-        } else {
-            self.token = try container.decodeIfPresent(String.self,
-                                                           forKey: .token)
-        }
+        self.token = try container.decodeIfPresent(String.self,
+                                                       forKey: .access_token)
         
         do {
             expiresIn = try String(container.decodeIfPresent(Int.self, forKey: .expiresIn) ?? 0)
@@ -47,48 +41,23 @@ public struct TokenResponse: Decodable {
         self.refreshToken = try container.decodeIfPresent(String.self,
                                                           forKey: .refreshToken)
         
-        if FeatureFlagUtility.shared.bool(forKey: .isAzureAuthentication) {
-            do {
-                self.refreshTokenExpiresIn = try String(container.decodeIfPresent(Int.self, forKey: .refreshTokenExpiresIn) ?? 0)
-            } catch DecodingError.typeMismatch {
-                self.refreshTokenExpiresIn = try container.decodeIfPresent(String.self, forKey: .refreshTokenExpiresIn)
-            }
-        } else {
-            self.refreshTokenExpiresIn = try container.decodeIfPresent(String.self,
-                                                                       forKey: .refreshTokenExpiresIn)
+        do {
+            self.refreshTokenExpiresIn = try String(container.decodeIfPresent(Int.self, forKey: .refreshTokenExpiresIn) ?? 0)
+        } catch DecodingError.typeMismatch {
+            self.refreshTokenExpiresIn = try container.decodeIfPresent(String.self, forKey: .refreshTokenExpiresIn)
         }
         
         self.refreshTokenIssuedAt = try container.decodeIfPresent(String.self,
                                                                   forKey: .refreshTokenIssuedAt)
         
-        if FeatureFlagUtility.shared.bool(forKey: .isAzureAuthentication) {
-            // Map additional data from b2c token if any
-            if let token = self.token, let base64Data = decode(token: token) {
-                do {
-                    let json = try JSONSerialization.jsonObject(with: base64Data, options: .mutableContainers) as? [String:AnyObject]
-                    if let json = json, let code = json["type"] as? String {
-                        self.userType = code
-                    }
-                } catch {
-                    Log.error("Error with B2C token structure")
+        if let token = self.token, let base64Data = decode(token: token) {
+            do {
+                let json = try JSONSerialization.jsonObject(with: base64Data, options: .mutableContainers) as? [String:AnyObject]
+                if let json = json, let code = json["type"] as? String {
+                    self.userType = code
                 }
-            }
-        } else {
-            // Profile Status
-            if let token = token, let base64Data = decode(token: token) {
-                let statuses = try? JSONDecoder().decode(StatusContainer.self, from: base64Data)
-                
-                let hasTempPassword = statuses?.status.contains(where: { $0.name == "tempPassword" }) ?? false
-                let hasTempPasswordExpired = statuses?.status.contains(where: { $0.tempPasswordFailReason != nil }) ?? false
-                let isPrimaryAccount = statuses?.status.contains(where: { $0.name == "primary" }) ?? false
-                let isInactive = statuses?.status.contains(where: { $0.name == "inactive" }) ?? false
-                let isLockedPassword = statuses?.status.contains(where: { $0.name == "isLockedPassword" }) ?? false
-                
-                profileStatus = ProfileStatus(inactive: isInactive,
-                                              primary: isPrimaryAccount,
-                                              passwordLocked: isLockedPassword,
-                                              tempPassword: hasTempPassword,
-                                              expiredTempPassword: hasTempPasswordExpired)
+            } catch {
+                Log.error("Error with B2C token structure")
             }
         }
         

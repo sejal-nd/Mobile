@@ -871,7 +871,7 @@ class UsageViewController: AccountPickerViewController {
     func usageToolCardTapped(_ usageTool: UsageTool, accountDetail: AccountDetail) {
         switch usageTool {
         case .usageData:
-            let segueIdentifier = FeatureFlagUtility.shared.bool(forKey: .isAzureAuthentication) ? "usageWebViewB2cSegue" : "usageWebViewSegue"
+            let segueIdentifier = "usageWebViewB2cSegue"
             performSegue(withIdentifier: segueIdentifier, sender: accountDetail)
         case .energyTips:
             performSegue(withIdentifier: "top5EnergyTipsSegue", sender: accountDetail)
@@ -882,7 +882,7 @@ class UsageViewController: AccountPickerViewController {
             performSegue(withIdentifier: "peakRewardsSegue", sender: accountDetail)
         case .smartEnergyRewards:
             GoogleAnalytics.log(event: .viewSmartEnergyRewards)
-            let segueIdentifier = FeatureFlagUtility.shared.bool(forKey: .isAzureAuthentication) ? "serWebViewB2cSegue" : "serWebViewSegue"
+            let segueIdentifier = "serWebViewB2cSegue"
             performSegue(withIdentifier: segueIdentifier, sender: accountDetail)
         case .hourlyPricing:
             if accountDetail.isHourlyPricing {

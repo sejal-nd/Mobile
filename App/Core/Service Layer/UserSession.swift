@@ -65,8 +65,9 @@ extension UserSession {
             tokenExpirationSeconds  = newTokenExpirationMilisecondsDouble // B2C returns value in seconds
             refreshTokenExpirationSeconds  = newRefreshTokenExpirationMilisecondsDouble // B2C returns value in seconds
         }else{
-            tokenExpirationSeconds  = newTokenExpirationMilisecondsDouble / 1000
-            refreshTokenExpirationSeconds  = newRefreshTokenExpirationMilisecondsDouble / 1000
+            //add logic if necessary for pkce
+            tokenExpirationSeconds  = newTokenExpirationMilisecondsDouble // B2C returns value in seconds
+            refreshTokenExpirationSeconds  = newRefreshTokenExpirationMilisecondsDouble // B2C returns value in seconds
         }
         
         let newTokenExpirationDate = Date(timeIntervalSinceNow: tokenExpirationSeconds)
