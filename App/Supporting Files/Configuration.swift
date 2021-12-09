@@ -208,6 +208,14 @@ struct Configuration {
         return tenant
     }
     
+    var b2cPolicy: String {
+        if FeatureFlagUtility.shared.bool(forKey: .isAzureAuthentication){
+            return "B2C_1A_SIGNIN_MOBILE"
+        }else{
+            return "B2C_1A_Signin_ROPC"
+        }
+    }
+    
     var b2cHost: String {
         let host: String
         switch Configuration.shared.environmentName {

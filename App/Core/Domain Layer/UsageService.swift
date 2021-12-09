@@ -93,11 +93,11 @@ struct UsageService {
     }
     
     static func fetchOpowerToken(request: B2CTokenRequest, completion: @escaping (Result<TokenResponse, NetworkingError>) -> ()) {
-        if FeatureFlagUtility.shared.bool(forKey: .isAzureAuthentication){
-            NetworkingLayer.request(router: .getAzureToken(request: request), completion: completion)
-        }else{
-            NetworkingLayer.request(router: .getAzureToken(request: request), completion: completion)
-        }
+        NetworkingLayer.request(router: .getAzureToken(request: request), completion: completion)
+    }
+    
+    static func fetchOpowerToken(request: PKCEB2CTokenRequest, completion: @escaping (Result<TokenResponse, NetworkingError>) -> ()) {
+        NetworkingLayer.request(router: .getPKCEAzureToken(request: request), completion: completion)
     }
     
     static func clearCache() {

@@ -89,8 +89,8 @@ extension AuthenticationService {
     
     private static func fetchLoginTokenWithCode(code: String,
                              completion: @escaping (Result<TokenResponse, NetworkingError>) -> ()) {
-        let tokenRequest = PKCEB2CTokenRequest(code:code)
-        NetworkingLayer.request(router: .getPKCEAzureToken(request: tokenRequest)) { (result: Result<TokenResponse, NetworkingError>) in
+        let tokenRequest = B2CTokenRequest(grantType: "authorization_code",code:code)
+        NetworkingLayer.request(router: .getAzureToken(request: tokenRequest)) { (result: Result<TokenResponse, NetworkingError>) in
             switch result {
             case .success(let tokenResponse):
                 completion(.success(tokenResponse))

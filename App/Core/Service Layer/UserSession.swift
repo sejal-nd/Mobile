@@ -62,10 +62,10 @@ extension UserSession {
         let refreshTokenExpirationSeconds : Double
         
         if FeatureFlagUtility.shared.bool(forKey: .isAzureAuthentication){
+            //add logic if necessary for pkce
             tokenExpirationSeconds  = newTokenExpirationMilisecondsDouble // B2C returns value in seconds
             refreshTokenExpirationSeconds  = newRefreshTokenExpirationMilisecondsDouble // B2C returns value in seconds
         }else{
-            //add logic if necessary for pkce
             tokenExpirationSeconds  = newTokenExpirationMilisecondsDouble // B2C returns value in seconds
             refreshTokenExpirationSeconds  = newRefreshTokenExpirationMilisecondsDouble // B2C returns value in seconds
         }

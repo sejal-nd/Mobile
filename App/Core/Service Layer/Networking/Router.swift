@@ -269,7 +269,7 @@ public enum Router {
         case .refreshToken:
             return "/eu/digital/v1/oauth/refresh"
         case .getAzureToken:
-            return "/\(Configuration.shared.b2cTenant).onmicrosoft.com/B2C_1A_Signin_ROPC/oauth2/v2.0/token"
+            return "/\(Configuration.shared.b2cTenant).onmicrosoft.com/\(Configuration.shared.b2cPolicy)/oauth2/v2.0/token"
         case .getPKCEAzureToken:
             return "/\(Configuration.shared.b2cTenant).onmicrosoft.com/B2C_1A_SIGNIN_MOBILE/oauth2/v2.0/token"
         case .fetchB2CJWT:
