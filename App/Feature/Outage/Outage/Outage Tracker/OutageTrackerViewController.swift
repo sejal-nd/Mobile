@@ -97,13 +97,13 @@ class OutageTrackerViewController: UIViewController {
     private func setupUI() {
         
         // todo: get colors
-        etaView.roundCorners(.allCorners, radius: 10, borderColor: UIColor.bgeGreen, borderWidth: 1.0)
+        etaView.roundCorners(.allCorners, radius: 10, borderColor: .successGreenText, borderWidth: 1.0)
         
-        etaUpdatedView.roundCorners(.allCorners, radius: 10, borderColor: UIColor(red: 216.0/255.0, green: 216.0/255.0, blue: 216.0/255.0, alpha: 1.0), borderWidth: 1.0)
+        etaUpdatedView.roundCorners(.allCorners, radius: 8, borderColor: .successGreenText, borderWidth: 1.0)
         
-        countView.roundCorners(.allCorners, radius: 10, borderColor: UIColor(red: 216.0/255.0, green: 216.0/255.0, blue: 216.0/255.0, alpha: 1.0), borderWidth: 1.0)
+        countView.roundCorners(.allCorners, radius: 10, borderColor: .accentGray, borderWidth: 1.0)
         
-        tableView.roundCorners(.allCorners, radius: 0, borderColor: UIColor(red: 216.0/255.0, green: 216.0/255.0, blue: 216.0/255.0, alpha: 1.0), borderWidth: 1.0)
+        tableView.roundCorners(.allCorners, radius: 0, borderColor: .accentGray, borderWidth: 1.0)
     }
     
     private func update() {
@@ -218,7 +218,7 @@ extension OutageTrackerViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: TitleSubTitleRow.className, for: indexPath) as? TitleSubTitleRow else { fatalError("Invalid cell type.") }
-        cell.backgroundColor = UIColor.systemGray6
+        cell.backgroundColor = .softGray
         
         switch indexPath.row {
             case 0:

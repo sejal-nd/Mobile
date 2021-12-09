@@ -12,31 +12,24 @@ enum TrackerState: String {
     case notStarted = "not-started"
     case inProgress = "in-progress"
     case completed = "completed"
-    
-    var image: UIImage? {
-        switch self {
-            case .notStarted:
-                return UIImage(named: "ic_appt_otw")
-            case .inProgress:
-                return UIImage(named: "ic_appt_inprogress")
-            case .completed:
-                return UIImage(named: "ic_appt_complete")
-        }
-    }
 }
 
 class StatusView: UIView {
 
     @IBOutlet private weak var contentView: UIView!
-    @IBOutlet private weak var statusImageView: UIImageView!
     @IBOutlet private weak var statusTitleLabel: UILabel!
     @IBOutlet private weak var statusDateLabel: UILabel!
+    @IBOutlet private weak var innerView: UIView!
+    @IBOutlet private weak var outerView: UIView!
     @IBOutlet private weak var barView: UIView!
+    @IBOutlet private weak var checkmarkImageView: UIImageView!
     @IBOutlet private weak var barWidthConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var barTopConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var barBottomConstraint: NSLayoutConstraint!
     
     func configure(withEvent event: EventSet) {
         if let status = event.status, let state = TrackerState(rawValue: status) {
-            statusImageView.image = state.image
+            update(forState: state)
             statusTitleLabel.text = event.eventSetDescription
             statusDateLabel.text = ""
             if let dateString = event.dateTime {
@@ -45,9 +38,33 @@ class StatusView: UIView {
                     statusDateLabel.text = dateTime
                 }
             }
-            barWidthConstraint.constant = state == .completed ? 5 : 2
+            barWidthConstraint.constant = state == .completed ? 4 : 2
+            barBottomConstraint.constant = state == .completed ? 3 : 0
+            barTopConstraint.constant = state == .inProgress ? 3 : 0
+            
             let eventStatus = OutageTracker.Status(rawValue: event.eventSetDescription ?? "")
             barView.isHidden = eventStatus == .restored
+        }
+    }
+    
+    private func update(forState state: TrackerState) {
+        
+        outerView.roundCorners(.allCorners, radius: 16, borderColor: .successGreenText, borderWidth: 1.0)
+        innerView.roundCorners(.allCorners, radius: 12, borderColor: .successGreenText, borderWidth: 1.0)
+        
+        switch state {
+            case .notStarted:
+                innerView.backgroundColor = .white
+                outerView.isHidden = true
+                checkmarkImageView.isHidden = true
+            case .inProgress:
+                innerView.backgroundColor = .successGreenText
+                outerView.isHidden = false
+                checkmarkImageView.isHidden = true
+            case .completed:
+                innerView.backgroundColor = .successGreenText
+                outerView.isHidden = true
+                checkmarkImageView.isHidden = false
         }
     }
     
