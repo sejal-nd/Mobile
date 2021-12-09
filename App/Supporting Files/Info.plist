@@ -43,7 +43,9 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>msauth.com.exelon.mobile.pepco.testing</string>
+				<string>msauth.$(BUNDLE_ID).testing</string>
+				<string>msauth.$(BUNDLE_ID).staging</string>
+				<string>msauth.$(BUNDLE_ID)</string>
 			</array>
 		</dict>
 	</array>

@@ -7507,6 +7507,7 @@
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = NO;
+				NEW_SETTING = "";
 				OAUTH_URL = api.exeloncorp.com;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
@@ -11259,6 +11260,7 @@
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = YES;
+				NEW_SETTING = "";
 				OAUTH_URL = "api-development.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
@@ -11563,6 +11565,7 @@
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = YES;
+				NEW_SETTING = "";
 				OAUTH_URL = "api-stage.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
@@ -11777,6 +11780,7 @@
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = NO;
+				NEW_SETTING = "";
 				OAUTH_URL = api.exeloncorp.com;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
@@ -11996,6 +12000,7 @@
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = NO;
+				NEW_SETTING = "";
 				OAUTH_URL = api.exeloncorp.com;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
@@ -12222,6 +12227,7 @@
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = YES;
+				NEW_SETTING = "";
 				OAUTH_URL = "api-development.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
@@ -12526,6 +12532,7 @@
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = YES;
+				NEW_SETTING = "";
 				OAUTH_URL = "api-stage.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
@@ -12741,6 +12748,7 @@
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = NO;
+				NEW_SETTING = "";
 				OAUTH_URL = api.exeloncorp.com;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
@@ -12961,6 +12969,7 @@
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = NO;
+				NEW_SETTING = "";
 				OAUTH_URL = api.exeloncorp.com;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
@@ -13188,6 +13197,7 @@
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = YES;
+				NEW_SETTING = "";
 				OAUTH_URL = "api-development.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
@@ -13492,6 +13502,7 @@
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = YES;
+				NEW_SETTING = "";
 				OAUTH_URL = "api-stage.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
@@ -13707,6 +13718,7 @@
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = NO;
+				NEW_SETTING = "";
 				OAUTH_URL = api.exeloncorp.com;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
@@ -13927,6 +13939,7 @@
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = NO;
+				NEW_SETTING = "";
 				OAUTH_URL = api.exeloncorp.com;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
@@ -14154,6 +14167,7 @@
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = YES;
+				NEW_SETTING = "";
 				OAUTH_URL = "api-development.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
@@ -14458,6 +14472,7 @@
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = YES;
+				NEW_SETTING = "";
 				OAUTH_URL = "api-stage.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
@@ -14673,6 +14688,7 @@
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = NO;
+				NEW_SETTING = "";
 				OAUTH_URL = api.exeloncorp.com;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
@@ -14893,6 +14909,7 @@
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = NO;
+				NEW_SETTING = "";
 				OAUTH_URL = api.exeloncorp.com;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
@@ -15120,6 +15137,7 @@
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = YES;
+				NEW_SETTING = "";
 				OAUTH_URL = "api-development.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
@@ -15424,6 +15442,7 @@
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = YES;
+				NEW_SETTING = "";
 				OAUTH_URL = "api-stage.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
@@ -15638,6 +15657,7 @@
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = NO;
+				NEW_SETTING = "";
 				OAUTH_URL = api.exeloncorp.com;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
@@ -15857,6 +15877,7 @@
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = NO;
+				NEW_SETTING = "";
 				OAUTH_URL = api.exeloncorp.com;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
@@ -16083,6 +16104,7 @@
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = YES;
+				NEW_SETTING = "";
 				OAUTH_URL = "api-development.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
@@ -16209,6 +16231,7 @@
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = NO;
+				NEW_SETTING = "";
 				OAUTH_URL = api.exeloncorp.com;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
@@ -16346,6 +16369,7 @@
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = YES;
+				NEW_SETTING = "";
 				OAUTH_URL = "api-stage.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";

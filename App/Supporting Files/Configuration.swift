@@ -191,18 +191,57 @@ struct Configuration {
     }
     
     var b2cTenant: String {
-        let tenant: String
+        var tenant: String
         switch Configuration.shared.environmentName {
         case .rc, .release:
-            tenant = "euazurephi"
+            switch opco {
+            case .ace:
+                tenant = "euazurephi"
+            case .delmarva:
+                tenant = "euazurephi"
+            case .pepco:
+                tenant = "euazurephi"
+            case .bge:
+                tenant = "euazurebge"
+            case .comEd:
+                tenant = "euazurecomed"
+            case .peco:
+                tenant = "euazurepeco"
+            }
         default:
             let projectTierRawValue = UserDefaults.standard.string(forKey: "selectedProjectTier") ?? "Stage"
             let projectTier = ProjectTier(rawValue: projectTierRawValue) ?? .stage
             switch projectTier {
             case .dev, .test:
-                tenant = "euazurephitest"
+                switch opco {
+                case .ace:
+                    tenant = "euazurephitest"
+                case .delmarva:
+                    tenant = "euazurephitest"
+                case .pepco:
+                    tenant = "euazurephitest"
+                case .bge:
+                    tenant = "euazurebgetest"
+                case .comEd:
+                    tenant = "euazurecomedtest"
+                case .peco:
+                    tenant = "euazurepecotest"
+                }
             case .stage:
-                tenant = "euazurephistage"
+                switch opco {
+                case .ace:
+                    tenant = "euazurephistage"
+                case .delmarva:
+                    tenant = "euazurephistage"
+                case .pepco:
+                    tenant = "euazurephistage"
+                case .bge:
+                    tenant = "euazurebgestage"
+                case .comEd:
+                    tenant = "euazurecomedstage"
+                case .peco:
+                    tenant = "euazurepecostage"
+                }
             }
         }
         return tenant
@@ -244,17 +283,17 @@ struct Configuration {
         case .rc, .release:
             switch opco {
             case .ace:
-                clientId = "64930d53-e888-45f9-9b02-aeed39ba48ca"
+                clientId = "4facf595-5fc3-44c1-a908-391e98ddc687"
             case .delmarva:
-                clientId = "571ee0e4-c2cc-4d39-b784-6395571cb077"
+                clientId = "f900262f-eeb9-4ada-82a2-ade9e10e2c1b"
             case .pepco:
-                clientId = "bb13a5b0-c61c-4194-960b-c44cebe992c2"
+                clientId = "733a9d3b-9769-4ef3-8444-34128c5d0d63"
             case .bge:
-                clientId = ""
+                clientId = "831eeb00-a9c5-4752-be90-13a0d506ef92"
             case .comEd:
-                clientId = ""
+                clientId = "83028f96-b357-4920-a1d9-dd749627b6f4"
             case .peco:
-                clientId = ""
+                clientId = "8d6822d5-a419-41d9-8b8f-4edada5e6901"
             }
         default:
             let projectTierRawValue = UserDefaults.standard.string(forKey: "selectedProjectTier") ?? "Stage"
@@ -269,26 +308,26 @@ struct Configuration {
                 case .pepco:
                     clientId = "733a9d3b-9769-4ef3-8444-34128c5d0d63"
                 case .bge:
-                    clientId = ""
+                    clientId = "831eeb00-a9c5-4752-be90-13a0d506ef92"
                 case .comEd:
-                    clientId = ""
+                    clientId = "83028f96-b357-4920-a1d9-dd749627b6f4"
                 case .peco:
-                    clientId = ""
+                    clientId = "8d6822d5-a419-41d9-8b8f-4edada5e6901"
                 }
             case .stage:
                 switch opco {
                 case .ace:
-                    clientId = "67368fd4-d3d0-4f38-b443-94742e6af8c3"
+                    clientId = "4facf595-5fc3-44c1-a908-391e98ddc687"
                 case .delmarva:
-                    clientId = "548fe95f-b6c8-4791-b02b-b95ca3b3e31c"
+                    clientId = "f900262f-eeb9-4ada-82a2-ade9e10e2c1b"
                 case .pepco:
-                    clientId = "37abcf6f-b74d-4756-8ff7-05a6817575c5"
+                    clientId = "733a9d3b-9769-4ef3-8444-34128c5d0d63"
                 case .bge:
-                    clientId = ""
+                    clientId = "831eeb00-a9c5-4752-be90-13a0d506ef92"
                 case .comEd:
-                    clientId = ""
+                    clientId = "83028f96-b357-4920-a1d9-dd749627b6f4"
                 case .peco:
-                    clientId = ""
+                    clientId = "8d6822d5-a419-41d9-8b8f-4edada5e6901"
                 }
             }
         }

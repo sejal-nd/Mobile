@@ -23,22 +23,22 @@ class PKCEAuthenticationService:UIViewController {
         
         authSession = ASWebAuthenticationSession(url: url, callbackURLScheme: callbackScheme, completionHandler: { (callbackURL, error) in
             guard error == nil, let successURL = callbackURL else {
-                print("Nothing")
+                Log.error("ASWebAuthentication Session failed/terminated")
                 completion(false)
                 return
             }
             
             let oauthToken = NSURLComponents(string: (successURL.absoluteString))?.queryItems?.filter({$0.name == "code"}).first
             
-            print(successURL.absoluteString)
+            Log.info(successURL.absoluteString)
             
             AuthenticationService.loginWithCode(code: oauthToken?.value ?? "nil"){ [weak self] (result: Result<Bool, NetworkingError>) in
                                         switch result {
                                         case .success(let hasTempPassword):
-                                            print("loggedin")
+                                            Log.info("user has logged in succesfully")
                                             completion(true)
                                         case .failure(let error):
-                                            print("failed")
+                                            Log.error("login error \(error.localizedDescription)")
                                         }
             }
         })
