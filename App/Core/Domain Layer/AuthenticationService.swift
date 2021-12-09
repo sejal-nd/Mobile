@@ -10,6 +10,18 @@ import Foundation
 import RxSwift
 
 public enum AuthenticationService {
+    
+    static func loginWithCode(code: String,
+                      completion: @escaping (Result<Bool, NetworkingError>) -> ()) {
+        
+        if Configuration.shared.environmentName != .aut {
+            performLoginWithCode(code: code, completion: completion)
+        } else {
+            performLoginMock(username: "pkceuser",
+                             completion: completion)
+        }
+    }
+    
     static func login(username: String,
                       password: String,
                       completion: @escaping (Result<Bool, NetworkingError>) -> ()) {
@@ -89,6 +101,20 @@ public enum AuthenticationService {
 // MARK: Private methods
     
 extension AuthenticationService {
+    
+    private static func fetchLoginTokenWithCode(code: String,
+                             completion: @escaping (Result<TokenResponse, NetworkingError>) -> ()) {
+        let tokenRequest = PKCEB2CTokenRequest(code:code)
+        NetworkingLayer.request(router: .getPKCEAzureToken(request: tokenRequest)) { (result: Result<TokenResponse, NetworkingError>) in
+            switch result {
+            case .success(let tokenResponse):
+                completion(.success(tokenResponse))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
     private static func fetchLoginToken(username: String,
                              password: String,
                              completion: @escaping (Result<TokenResponse, NetworkingError>) -> ()) {
@@ -117,6 +143,59 @@ extension AuthenticationService {
                 case .failure(let error):
                     completion(.failure(error))
                 }
+            }
+        }
+    }
+    
+    private static func performLoginWithCode(code: String,
+                                     completion: @escaping (Result<Bool, NetworkingError>) -> ()) {
+        fetchLoginTokenWithCode(code: code) { (result: (Result<TokenResponse, NetworkingError>)) in
+            switch result {
+            case .success(let tokenResponse):
+                #if os(iOS)
+                FirebaseUtility.logEvent(.loginTokenNetworkComplete)
+                #endif
+
+                // Handle Temp Password
+                if tokenResponse.profileStatus?.tempPassword ?? false {
+                    completion(.success(true))
+                    return
+                }
+                do {
+                    try UserSession.createSession(tokenResponse: tokenResponse)
+                } catch {
+                    completion(.failure(.invalidToken))
+                }
+                
+                AccountService.fetchAccounts { (result: Result<[Account], NetworkingError>) in
+                    switch result {
+                    case .success(let accounts):
+                        #if os(iOS)
+                        FirebaseUtility.logEvent(.loginAccountNetworkComplete)
+                        #endif
+                        
+                        guard let accNumber = accounts.first?.accountNumber else {
+                            completion(.failure(.invalidResponse))
+                            return
+                        }
+                        AccountService.fetchAccountDetails(accountNumber: accNumber,
+                                                           alertPreferenceEligibilities: Configuration.shared.opco.isPHI) { (result: Result<AccountDetail, NetworkingError>) in
+                            switch result {
+                            case .success(let accountDetail):
+                                UserDefaults.standard.set(accountDetail.customerNumber, forKey: UserDefaultKeys.customerIdentifier)
+                                AccountsStore.shared.customerIdentifier = accountDetail.customerNumber
+                                AccountsStore.shared.accountOpco = accountDetail.opcoType ?? Configuration.shared.opco
+                                completion(.success((false)))
+                            case .failure(let error):
+                                completion(.failure(error))
+                            }
+                        }
+                    case .failure(let error):
+                        completion(.failure(error))
+                    }
+                }
+            case .failure(let error):
+                completion(.failure(error))
             }
         }
     }

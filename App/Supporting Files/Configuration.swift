@@ -275,6 +275,10 @@ struct Configuration {
         return clientId
     }
     
+    var b2cRedirectURI: String {
+        "msauth.com.exelon.mobile.pepco.testing://auth"
+    }
+    
     var b2cScope: String {
         "openid offline_access \(b2cClientID)"
     }

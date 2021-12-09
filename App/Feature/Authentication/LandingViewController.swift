@@ -133,7 +133,25 @@ class LandingViewController: UIViewController {
     }
     
     @IBAction func onSignInPress() {
-        performSegue(withIdentifier: "loginSegue", sender: self)
+        //performSegue(withIdentifier: "loginSegue", sender: self)
+        //Present ASWebAuthentication
+        PKCEAuthenticationService.sharedService.presentLoginForm { result in
+            if result == true{
+                FirebaseUtility.logEvent(.initialAuthenticatedScreenStart)
+                GoogleAnalytics.log(event: .loginComplete)
+
+                guard let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as? MainTabBarController,
+                    let navController = self.navigationController else {
+                        return
+                }
+                navController.navigationBar.prefersLargeTitles = false
+                navController.navigationItem.largeTitleDisplayMode = .never
+                navController.setNavigationBarHidden(true, animated: false)
+                navController.setViewControllers([viewController], animated: false)
+            }else{
+                print("login failed")
+            }
+        }
     }
     
     @IBAction func onRegistrationInPress() {

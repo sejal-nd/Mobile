@@ -38,6 +38,15 @@
 	<string>$(ENVIRONMENT_TIER)</string>
 	<key>Google Analytics ID</key>
 	<string>$(GOOGLE_ANALYTICS_ID)</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>msauth.com.exelon.mobile.pepco.testing</string>
+			</array>
+		</dict>
+	</array>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fb</string>

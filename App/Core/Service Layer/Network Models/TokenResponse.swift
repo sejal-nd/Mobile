@@ -19,8 +19,8 @@ public struct TokenResponse: Decodable {
     
     enum CodingKeys: String, CodingKey {
         case token
-        case access_token = "access_token"
-        case expiresIn = "expires_in"
+        case access_token = "id_token"
+        case expiresIn = "id_token_expires_in"
         case refreshToken = "refresh_token"
         case refreshTokenExpiresIn = "refresh_token_expires_in"
         case refreshTokenIssuedAt = "refresh_token_issued_at"
@@ -48,8 +48,11 @@ public struct TokenResponse: Decodable {
                                                           forKey: .refreshToken)
         
         if FeatureFlagUtility.shared.bool(forKey: .isAzureAuthentication) {
-            self.refreshTokenExpiresIn = try container.decodeIfPresent(String.self,
-                                                                       forKey: .refreshTokenExpiresIn) ?? "3600"
+            do {
+                self.refreshTokenExpiresIn = try String(container.decodeIfPresent(Int.self, forKey: .refreshTokenExpiresIn) ?? 0)
+            } catch DecodingError.typeMismatch {
+                self.refreshTokenExpiresIn = try container.decodeIfPresent(String.self, forKey: .refreshTokenExpiresIn)
+            }
         } else {
             self.refreshTokenExpiresIn = try container.decodeIfPresent(String.self,
                                                                        forKey: .refreshTokenExpiresIn)
