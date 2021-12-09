@@ -135,21 +135,37 @@ class LandingViewController: UIViewController {
     @IBAction func onSignInPress() {
         //performSegue(withIdentifier: "loginSegue", sender: self)
         //Present ASWebAuthentication
+        signInButton.tintWhite = false
+        signInButton.setLoading()
+        signInButton.accessibilityLabel = NSLocalizedString("Loading", comment: "")
+        signInButton.accessibilityViewIsModal = true
+        
         PKCEAuthenticationService.sharedService.presentLoginForm { result in
             if result == true{
-                FirebaseUtility.logEvent(.initialAuthenticatedScreenStart)
-                GoogleAnalytics.log(event: .loginComplete)
+                self.signInButton.tintWhite = true
+                self.signInButton.reset()
+                self.signInButton.accessibilityLabel = "Sign In"
+                self.signInButton.accessibilityViewIsModal = false
+                
+                self.signInButton.setSuccess {
+                    FirebaseUtility.logEvent(.initialAuthenticatedScreenStart)
+                    GoogleAnalytics.log(event: .loginComplete)
 
-                guard let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as? MainTabBarController,
-                    let navController = self.navigationController else {
-                        return
+                    guard let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as? MainTabBarController,
+                        let navController = self.navigationController else {
+                            return
+                    }
+                    navController.navigationBar.prefersLargeTitles = false
+                    navController.navigationItem.largeTitleDisplayMode = .never
+                    navController.setNavigationBarHidden(true, animated: false)
+                    navController.setViewControllers([viewController], animated: false)
                 }
-                navController.navigationBar.prefersLargeTitles = false
-                navController.navigationItem.largeTitleDisplayMode = .never
-                navController.setNavigationBarHidden(true, animated: false)
-                navController.setViewControllers([viewController], animated: false)
             }else{
                 print("login failed")
+                self.signInButton.tintWhite = true
+                self.signInButton.reset()
+                self.signInButton.accessibilityLabel = "Sign In"
+                self.signInButton.accessibilityViewIsModal = false
             }
         }
     }

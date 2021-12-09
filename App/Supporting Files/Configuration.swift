@@ -249,8 +249,12 @@ struct Configuration {
                 clientId = "571ee0e4-c2cc-4d39-b784-6395571cb077"
             case .pepco:
                 clientId = "bb13a5b0-c61c-4194-960b-c44cebe992c2"
-            case .bge, .comEd, .peco:
-                clientId = "" //TODO("Waiting for other environments to be set up")
+            case .bge:
+                clientId = ""
+            case .comEd:
+                clientId = ""
+            case .peco:
+                clientId = ""
             }
         default:
             let projectTierRawValue = UserDefaults.standard.string(forKey: "selectedProjectTier") ?? "Stage"
@@ -264,8 +268,12 @@ struct Configuration {
                     clientId = "f900262f-eeb9-4ada-82a2-ade9e10e2c1b"
                 case .pepco:
                     clientId = "733a9d3b-9769-4ef3-8444-34128c5d0d63"
-                case .bge, .comEd, .peco:
-                    clientId = "" //TODO("Waiting for other environments to be set up")
+                case .bge:
+                    clientId = ""
+                case .comEd:
+                    clientId = ""
+                case .peco:
+                    clientId = ""
                 }
             case .stage:
                 switch opco {
@@ -275,8 +283,12 @@ struct Configuration {
                     clientId = "548fe95f-b6c8-4791-b02b-b95ca3b3e31c"
                 case .pepco:
                     clientId = "37abcf6f-b74d-4756-8ff7-05a6817575c5"
-                case .bge, .comEd, .peco:
-                    clientId = "" //TODO("Waiting for other environments to be set up")
+                case .bge:
+                    clientId = ""
+                case .comEd:
+                    clientId = ""
+                case .peco:
+                    clientId = ""
                 }
             }
         }
@@ -284,7 +296,60 @@ struct Configuration {
     }
     
     var b2cRedirectURI: String {
-        "msauth.com.exelon.mobile.pepco.testing://auth"
+        var redirecturi: String
+        switch Configuration.shared.environmentName {
+        case .rc, .release:
+            switch opco {
+            case .ace:
+                redirecturi = ""
+            case .delmarva:
+                redirecturi = ""
+            case .pepco:
+                redirecturi = "msauth.com.exelon.mobile.pepco.testing"
+            case .bge:
+                redirecturi = ""
+            case .comEd:
+                redirecturi = ""
+            case .peco:
+                redirecturi = ""
+            }
+        default:
+            let projectTierRawValue = UserDefaults.standard.string(forKey: "selectedProjectTier") ?? "Stage"
+            let projectTier = ProjectTier(rawValue: projectTierRawValue) ?? .stage
+            switch projectTier {
+            case .dev, .test:
+                switch opco {
+                case .ace:
+                    redirecturi = ""
+                case .delmarva:
+                    redirecturi = ""
+                case .pepco:
+                    redirecturi = "msauth.com.exelon.mobile.pepco.testing"
+                case .bge:
+                    redirecturi = ""
+                case .comEd:
+                    redirecturi = ""
+                case .peco:
+                    redirecturi = ""
+                }
+            case .stage:
+                switch opco {
+                case .ace:
+                    redirecturi = ""
+                case .delmarva:
+                    redirecturi = ""
+                case .pepco:
+                    redirecturi = "msauth.com.exelon.mobile.pepco.testing"
+                case .bge:
+                    redirecturi = ""
+                case .comEd:
+                    redirecturi = ""
+                case .peco:
+                    redirecturi = ""
+                }
+            }
+        }
+        return redirecturi
     }
     
     var b2cScope: String {

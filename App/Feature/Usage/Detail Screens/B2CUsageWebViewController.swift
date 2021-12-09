@@ -62,43 +62,22 @@ class B2CUsageWebViewController: UIViewController {
     }
     
     private func fetchJWT() {
-        if FeatureFlagUtility.shared.bool(forKey: .isAzureAuthentication){
-            let request = PKCEB2CTokenRequest(scope: "https://\(Configuration.shared.b2cTenant).onmicrosoft.com/opower/opower_connect",
-                                       nonce: accountDetail?.accountNumber ?? "",
-                                       grantType: "refresh_token",
-                                       responseType: "token",
-                                       refreshToken: UserSession.refreshToken)
-            UsageService.fetchOpowerToken(request: request) { [weak self] result in
-                switch result {
-                case .success(let tokenResponse):
-                    guard let self = self else { return }
-                    self.errorView.isHidden = true
+        let request = B2CTokenRequest(scope: "https://\(Configuration.shared.b2cTenant).onmicrosoft.com/opower/opower_connect",
+                                   nonce: accountDetail?.accountNumber ?? "",
+                                   grantType: "refresh_token",
+                                   responseType: "token",
+                                   refreshToken: UserSession.refreshToken)
+        UsageService.fetchOpowerToken(request: request) { [weak self] result in
+            switch result {
+            case .success(let tokenResponse):
+                guard let self = self else { return }
+                self.errorView.isHidden = true
 
-                    self.loadWebView(token: tokenResponse.token ?? "")
-                case .failure:
-                    guard let self = self else { return }
-                    self.errorView.isHidden = false
-                    self.loadingIndicator.isHidden = true
-                }
-            }
-        }else{
-            let request = B2CTokenRequest(scope: "https://\(Configuration.shared.b2cTenant).onmicrosoft.com/opower/opower_connect",
-                                       nonce: accountDetail?.accountNumber ?? "",
-                                       grantType: "refresh_token",
-                                       responseType: "token",
-                                       refreshToken: UserSession.refreshToken)
-            UsageService.fetchOpowerToken(request: request) { [weak self] result in
-                switch result {
-                case .success(let tokenResponse):
-                    guard let self = self else { return }
-                    self.errorView.isHidden = true
-
-                    self.loadWebView(token: tokenResponse.token ?? "")
-                case .failure:
-                    guard let self = self else { return }
-                    self.errorView.isHidden = false
-                    self.loadingIndicator.isHidden = true
-                }
+                self.loadWebView(token: tokenResponse.token ?? "")
+            case .failure:
+                guard let self = self else { return }
+                self.errorView.isHidden = false
+                self.loadingIndicator.isHidden = true
             }
         }
     }
