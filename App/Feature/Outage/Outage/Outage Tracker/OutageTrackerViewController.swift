@@ -37,6 +37,7 @@ class OutageTrackerViewController: UIViewController {
     
     let disposeBag = DisposeBag()
     let viewModel = OutageTrackerViewModel()
+    let infoView = StatusInfoView()
     var progressAnimation = AnimationView(name: "outage_reported")
     var refreshControl: UIRefreshControl?
     
@@ -96,10 +97,15 @@ class OutageTrackerViewController: UIViewController {
     
     private func setupUI() {
         
-        // todo: get colors
+        infoView.frame = self.view.bounds
+        self.view.addSubview(infoView)
+        self.infoView.delegate = self
+        self.infoView.isHidden = true
+        
         etaView.roundCorners(.allCorners, radius: 10, borderColor: .successGreenText, borderWidth: 1.0)
         
-        etaUpdatedView.roundCorners(.allCorners, radius: 8, borderColor: .successGreenText, borderWidth: 1.0)
+        let radius = etaUpdatedView.frame.size.height / 2
+        etaUpdatedView.roundCorners(.allCorners, radius: radius, borderColor: .successGreenText, borderWidth: 1.0)
         
         countView.roundCorners(.allCorners, radius: 10, borderColor: .accentGray, borderWidth: 1.0)
         
@@ -182,10 +188,27 @@ class OutageTrackerViewController: UIViewController {
     }
     
     @IBAction func infoButtonPressed(_ sender: Any) {
-        print("info button pressed")
+        // todo: determine info
+//        etrToolTip
+//        hazardMessage
+//        rerouted
+//        hasOutageDef
+//        hasOutageNondef
+//        whyStop
+        
+        let info = StatusInfoMessage.whyStop
+        infoView.configure(withInfo: info)
+        infoView.isHidden = false
     }
-    
-    
+}
+
+extension OutageTrackerViewController: StatusInfoViewDelegate {
+    func dismissInfoView() {
+        infoView.isHidden = true
+    }
+    func reportOutagePressed() {
+        openOutageMap(forStreetMap: false)
+    }
 }
 
 extension OutageTrackerViewController {
