@@ -32,7 +32,7 @@ class MoveLandingViewModel {
                     if !self.isDetailsLoading {
                         self.isDetailsLoading = true
                     }
-                    return AccountService.rx.fetchAccountDetails(isGetRCDCapable: true)
+                    return AccountService.rx.fetchAccountDetails()
                 }
                 return Observable.empty()
             }.subscribe(onNext: { [weak self] result in
