@@ -196,7 +196,7 @@ class OutageTrackerViewController: UIViewController {
 //        hasOutageNondef
 //        whyStop
         
-        let info = StatusInfoMessage.whyStop
+        let info = StatusInfoMessage.etrToolTip
         infoView.configure(withInfo: info)
         infoView.isHidden = false
     }
