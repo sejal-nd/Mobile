@@ -13,7 +13,7 @@ class TrackerStatusView: UIView {
     @IBOutlet private weak var stackView: UIStackView!
     @IBOutlet private weak var dateLabel: UILabel!
     
-    func configure(withEvents events: [EventSet]) {
+    func configure(withEvents events: [EventSet], lastUpdated time: String) {
         stackView.arrangedSubviews.forEach {
             $0.removeFromSuperview()
         }
@@ -22,7 +22,6 @@ class TrackerStatusView: UIView {
             statusView.configure(withEvent: event)
             stackView.addArrangedSubview(statusView)
         }
-        let time = DateFormatter.hmmaFormatter.string(from: Date())
         dateLabel.text = "Last Update: \(time)"
     }
 

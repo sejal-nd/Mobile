@@ -32,8 +32,7 @@ class OutageTrackerViewModel {
         return "BGE has received a report of an outage at your address."
     }
     var statusDetails: String {
-        guard let tracker = outageTracker.value else { return "We have multiple crews on site working hard to restore your power. Thank you for your patience."
-        }
+        guard let tracker = outageTracker.value else { return "" }
         var details = ""
         if tracker.isCrewDiverted == true {
             details = StatusDetailString.crewDiverted
@@ -45,7 +44,7 @@ class OutageTrackerViewModel {
         return NSLocalizedString(details, comment: "")
     }
     
-    // todo - where does this come from?
+    // todo - where does these come from?
     var etaTitle: String {
         return NSLocalizedString("Estimated Time of Restoration (ETR)", comment: "")
     }
@@ -59,10 +58,28 @@ class OutageTrackerViewModel {
         return NSLocalizedString("The outage was caused by a lightening strike", comment: "")
     }
     var neighborCount: String {
-        return NSLocalizedString("378", comment: "")
+        // todo - this field is missing
+        guard let tracker = outageTracker.value, let count = tracker.customersOutOnOutage else { return "" }
+        return NSLocalizedString(count, comment: "")
     }
     var outageCount: String {
-        return NSLocalizedString("1,271", comment: "")
+        guard let tracker = outageTracker.value, let count = tracker.customersOutOnOutage else { return "" }
+        return NSLocalizedString(count, comment: "")
+    }
+    var lastUpdated: String {
+        var time = ""
+        guard let tracker = outageTracker.value else { return "" }
+        if let dateString = tracker.lastUpdated {
+            if let date = DateFormatter.apiFormatter.date(from: dateString) {
+                time = DateFormatter.hmmaFormatter.string(from: date)
+            }
+        }
+        
+        return time
+    }
+    var isPartialRestoration: Bool {
+        guard let tracker = outageTracker.value else { return false }
+        return tracker.isPartialRestoration ?? false
     }
     var footerText: NSAttributedString {
         let phone1 = "1-800-685-0123"

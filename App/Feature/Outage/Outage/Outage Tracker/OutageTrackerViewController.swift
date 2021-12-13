@@ -113,7 +113,7 @@ class OutageTrackerViewController: UIViewController {
     }
     
     private func update() {
-        trackerStatusView.configure(withEvents: viewModel.events)
+        trackerStatusView.configure(withEvents: viewModel.events, lastUpdated: viewModel.lastUpdated)
         statusTitleLabel.text = viewModel.statusTitle
         statusDetailView.isHidden = viewModel.statusDetails.isEmpty
         statusDetailLabel.text = viewModel.statusDetails
