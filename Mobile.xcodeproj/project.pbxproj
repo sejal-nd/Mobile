@@ -19,6 +19,10 @@
 		212629ED27328D85002D3407 /* UnauthenticatedMoveAccountSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212629EC27328D85002D3407 /* UnauthenticatedMoveAccountSelectionViewController.swift */; };
 		212629EF2732A37F002D3407 /* UnauthenticatedMoveAccountSelectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212629EE2732A37F002D3407 /* UnauthenticatedMoveAccountSelectionViewModel.swift */; };
 		214006552762AEE700430C6E /* StatusInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214006542762AEE700430C6E /* StatusInfoView.swift */; };
+		2140065B2767F58E00430C6E /* ot_assigned.json in Resources */ = {isa = PBXBuildFile; fileRef = 214006572767F58C00430C6E /* ot_assigned.json */; };
+		2140065C2767F58E00430C6E /* ot_onsite.json in Resources */ = {isa = PBXBuildFile; fileRef = 214006582767F58D00430C6E /* ot_onsite.json */; };
+		2140065D2767F58E00430C6E /* ot_reported.json in Resources */ = {isa = PBXBuildFile; fileRef = 214006592767F58D00430C6E /* ot_reported.json */; };
+		2140065E2767F58E00430C6E /* ot_enroute.json in Resources */ = {isa = PBXBuildFile; fileRef = 2140065A2767F58E00430C6E /* ot_enroute.json */; };
 		215A1B70270AE9A5003A4EE9 /* StreetAddressResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215A1B6F270AE9A5003A4EE9 /* StreetAddressResponse.swift */; };
 		215A1B73270AE9DA003A4EE9 /* StreetAddressRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215A1B72270AE9DA003A4EE9 /* StreetAddressRequest.swift */; };
 		215A1B74270AE9DA003A4EE9 /* StreetAddressRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215A1B72270AE9DA003A4EE9 /* StreetAddressRequest.swift */; };
@@ -1255,6 +1259,10 @@
 		212629EC27328D85002D3407 /* UnauthenticatedMoveAccountSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnauthenticatedMoveAccountSelectionViewController.swift; sourceTree = "<group>"; };
 		212629EE2732A37F002D3407 /* UnauthenticatedMoveAccountSelectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnauthenticatedMoveAccountSelectionViewModel.swift; sourceTree = "<group>"; };
 		214006542762AEE700430C6E /* StatusInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusInfoView.swift; sourceTree = "<group>"; };
+		214006572767F58C00430C6E /* ot_assigned.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ot_assigned.json; sourceTree = "<group>"; };
+		214006582767F58D00430C6E /* ot_onsite.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ot_onsite.json; sourceTree = "<group>"; };
+		214006592767F58D00430C6E /* ot_reported.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ot_reported.json; sourceTree = "<group>"; };
+		2140065A2767F58E00430C6E /* ot_enroute.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ot_enroute.json; sourceTree = "<group>"; };
 		215A1B6F270AE9A5003A4EE9 /* StreetAddressResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreetAddressResponse.swift; sourceTree = "<group>"; };
 		215A1B72270AE9DA003A4EE9 /* StreetAddressRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreetAddressRequest.swift; sourceTree = "<group>"; };
 		215A1B75270B12DF003A4EE9 /* AppartmentRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppartmentRequest.swift; sourceTree = "<group>"; };
@@ -3055,6 +3063,17 @@
 				8FE74F933532900AC7962FBA /* Pods-UnitTests.peco-release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		214006562767F55F00430C6E /* OutageTracker */ = {
+			isa = PBXGroup;
+			children = (
+				214006572767F58C00430C6E /* ot_assigned.json */,
+				2140065A2767F58E00430C6E /* ot_enroute.json */,
+				214006582767F58D00430C6E /* ot_onsite.json */,
+				214006592767F58D00430C6E /* ot_reported.json */,
+			);
+			path = OutageTracker;
 			sourceTree = "<group>";
 		};
 		215BD783275AC2A70011F642 /* OutageTracker */ = {
@@ -5677,6 +5696,7 @@
 		E8FE30AD1E7875E5009D28B7 /* BGE */ = {
 			isa = PBXGroup;
 			children = (
+				214006562767F55F00430C6E /* OutageTracker */,
 				B0B083C821710BAE00B1C632 /* Appointments */,
 				359BB2782148349200FBAD83 /* outage-FlavorBGE.json */,
 				359BB27E2148517F00FBAD83 /* sm_outage_loading-FlavorBGE.json */,
@@ -6085,6 +6105,8 @@
 				675F4DDA24AB828200A828F9 /* AutoPayEnrollMock.json in Resources */,
 				3559C8B62301E4FF00481A87 /* AutoPay.storyboard in Resources */,
 				C3C5696C256C33F60039C8A4 /* foresee_configuration.json in Resources */,
+				2140065B2767F58E00430C6E /* ot_assigned.json in Resources */,
+				2140065D2767F58E00430C6E /* ot_reported.json in Resources */,
 				E87926D61F85580300794CA9 /* BillBreakdownViewController.xib in Resources */,
 				C338283424E30D6900F133C5 /* PeakRewardsOverridesMock.json in Resources */,
 				82E22B611F9FC7CE001F1A1B /* EnergyTipTableViewCell.xib in Resources */,
@@ -6160,6 +6182,7 @@
 				675F4D8C24AB828200A828F9 /* MinVersionMock.json in Resources */,
 				35A6C6FA2121D64100C2A58F /* ToggleTableViewCell.xib in Resources */,
 				67D5632824EDC6F600852551 /* sm_outage_loading-FlavorCOMED.json in Resources */,
+				2140065C2767F58E00430C6E /* ot_onsite.json in Resources */,
 				B5D415781F3A6C6300AC32B2 /* GoogleService-Info-RELEASE-FlavorBGE.plist in Resources */,
 				B0030D0C2097BC9A00327A3D /* MaintenanceModeView.xib in Resources */,
 				54B31A6E1EE065E20002E657 /* Bill.storyboard in Resources */,
@@ -6169,6 +6192,7 @@
 				C3087B0224BDEE8B005AE544 /* EnergyTipMock.json in Resources */,
 				9C0EA5A4237DA45A00D1E18F /* EnergyBuddyView.xib in Resources */,
 				675F4D9E24AB828200A828F9 /* PaymentsMock.json in Resources */,
+				2140065E2767F58E00430C6E /* ot_enroute.json in Resources */,
 				B07E17E82209F0CA00B6E3C7 /* account_details.json in Resources */,
 				35AE569D214AD98500F633D0 /* ellipses_loading_white.json in Resources */,
 				9C0A2C3623A042DC002C4B8E /* message_bubble_quiz.json in Resources */,

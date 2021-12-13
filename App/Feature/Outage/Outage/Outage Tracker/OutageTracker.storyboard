@@ -42,11 +42,20 @@
                                                                     <constraint firstAttribute="height" constant="125" id="uDZ-ow-Uww"/>
                                                                 </constraints>
                                                             </view>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_mederror" translatesAutoresizingMaskIntoConstraints="NO" id="aoU-w4-5LM">
+                                                                <rect key="frame" x="147" y="15" width="120" height="120"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="120" id="6cc-BT-S00"/>
+                                                                    <constraint firstAttribute="height" constant="120" id="cug-eK-40i"/>
+                                                                </constraints>
+                                                            </imageView>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstItem="hhk-NV-joZ" firstAttribute="centerX" secondItem="973-D0-8rB" secondAttribute="centerX" id="3Lw-Vf-m7x"/>
                                                             <constraint firstItem="hhk-NV-joZ" firstAttribute="centerY" secondItem="973-D0-8rB" secondAttribute="centerY" id="AB2-Tt-ug6"/>
+                                                            <constraint firstItem="aoU-w4-5LM" firstAttribute="centerX" secondItem="973-D0-8rB" secondAttribute="centerX" id="Tg9-ML-959"/>
+                                                            <constraint firstItem="aoU-w4-5LM" firstAttribute="centerY" secondItem="973-D0-8rB" secondAttribute="centerY" id="crg-qh-yID"/>
                                                             <constraint firstAttribute="height" constant="150" id="hrv-VL-LMJ"/>
                                                         </constraints>
                                                     </view>
@@ -247,7 +256,7 @@
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sc2-HV-meh">
                                                                         <rect key="frame" x="191.5" y="0.0" width="190.5" height="80"/>
                                                                         <subviews>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Neighbors affected by outage" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5t5-L3-8xE">
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total customers affected by outages" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5t5-L3-8xE">
                                                                                 <rect key="frame" x="10" y="10" width="175.5" height="31.5"/>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                                 <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
@@ -397,6 +406,7 @@
                     <connections>
                         <outlet property="countContainerView" destination="Pnt-P8-RZO" id="OOm-73-JWi"/>
                         <outlet property="countView" destination="cWI-09-Uc4" id="yEx-DR-55a"/>
+                        <outlet property="errorImageView" destination="aoU-w4-5LM" id="n9u-uC-7VH"/>
                         <outlet property="etaCauseLabel" destination="A4I-GM-Im0" id="8d3-nh-f9w"/>
                         <outlet property="etaContainerView" destination="VaI-QQ-0qz" id="iTa-Zi-KSw"/>
                         <outlet property="etaDateTimeLabel" destination="Imn-5M-Vov" id="wZs-zW-rwj"/>
@@ -406,8 +416,8 @@
                         <outlet property="etaUpdatedView" destination="CtI-3O-2j6" id="eZB-gf-odK"/>
                         <outlet property="etaView" destination="ZPR-jk-lhd" id="Ucc-zM-ipu"/>
                         <outlet property="footerTextView" destination="mQ7-7L-FjM" id="ZQ2-MJ-wai"/>
-                        <outlet property="neighborCount" destination="1pn-tZ-0pf" id="jVB-QG-o8s"/>
-                        <outlet property="outageCount" destination="UPo-Gi-eGr" id="TlW-7O-wtc"/>
+                        <outlet property="neighborCountLabel" destination="1pn-tZ-0pf" id="UX5-sT-CSX"/>
+                        <outlet property="outageCountLabel" destination="UPo-Gi-eGr" id="v02-2T-b0i"/>
                         <outlet property="progressAnimationContainer" destination="hhk-NV-joZ" id="Lzn-eP-r8Y"/>
                         <outlet property="scrollView" destination="FM4-Ab-ESP" id="GE6-71-PIZ"/>
                         <outlet property="statusDetailLabel" destination="ocR-a0-LuO" id="HBw-YZ-b6l"/>
@@ -415,6 +425,7 @@
                         <outlet property="statusTitleLabel" destination="8R8-mV-Ey9" id="ZMo-kA-ijs"/>
                         <outlet property="statusTitleView" destination="4rc-GQ-SVh" id="rfo-Kr-g0a"/>
                         <outlet property="tableView" destination="8k8-H8-DxT" id="Iv2-KR-opQ"/>
+                        <outlet property="trackerStatusContainer" destination="VDq-ML-APe" id="qaO-kB-qk6"/>
                         <outlet property="trackerStatusView" destination="Ytu-oi-mMn" id="1Ke-Dh-0Tf"/>
                     </connections>
                 </viewController>
@@ -424,6 +435,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="ic_mederror" width="49" height="48"/>
         <image name="ic_tooltip" width="24" height="24"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

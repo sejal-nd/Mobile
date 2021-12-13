@@ -24,15 +24,18 @@ class OutageTrackerViewModel {
     }
     
     var events: [EventSet] {
-        guard let events = outageTracker.value?.eventSet else { return mockEvents }
+        guard let events = outageTracker.value?.eventSet else {
+            return mockEvents
+        }
         return events
     }
     var statusTitle: String {
-        //return NSLocalizedString(status.statusTitleString, comment: "")
-        return "BGE has received a report of an outage at your address."
+        return NSLocalizedString(status.statusTitleString, comment: "")
     }
     var statusDetails: String {
-        guard let tracker = outageTracker.value else { return "" }
+        guard let tracker = outageTracker.value else {
+            return StatusDetailString.trackerNone
+        }
         var details = ""
         if tracker.isCrewDiverted == true {
             details = StatusDetailString.crewDiverted
@@ -107,27 +110,27 @@ class OutageTrackerViewModel {
     var animationName: String {
         switch status {
             case .reported:
-                return "outage_reported"
+                return "ot_reported"
             case .assigned:
-                return "outage_reported"
+                return "ot_assigned"
             case .enRoute:
-                return "outage_reported"
+                return "ot_enroute"
             case .onSite:
-                return "outage_reported"
+                return "ot_onsite"
             case .restored:
-                return "outage_reported"
+                return "Appt_Complete-FlavorBGE"
             default:
-                return "outage_reported"
+                return "Appt_Complete-FlavorBGE"
         }
     }
     
     var mockEvents: [EventSet] {
         var events: [EventSet] = []
         
-        let event1 = EventSet(status: "completed", eventSetDescription: "Outage Reported", dateTime: "2021-10-28T04:20:39")
+        let event1 = EventSet(status: "not-started", eventSetDescription: "Outage Reported", dateTime: nil)
         events.append(event1)
         
-        let event2 = EventSet(status: "in-progress", eventSetDescription: "Crew Assigned", dateTime: "2021-10-29T04:20:39")
+        let event2 = EventSet(status: "not-started", eventSetDescription: "Crew Assigned", dateTime: nil)
         events.append(event2)
         
         let event3 = EventSet(status: "not-started", eventSetDescription: "Crew En Route", dateTime: nil)

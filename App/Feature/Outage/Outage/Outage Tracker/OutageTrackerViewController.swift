@@ -28,17 +28,18 @@ class OutageTrackerViewController: UIViewController {
     @IBOutlet weak var etaInfoButton: UIButton!
     @IBOutlet weak var countContainerView: UIView!
     @IBOutlet weak var countView: UIView!
-    @IBOutlet weak var neighborCount: UILabel!
-    @IBOutlet weak var outageCount: UILabel!
+    @IBOutlet weak var neighborCountLabel: UILabel!
+    @IBOutlet weak var outageCountLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var footerTextView: ZeroInsetDataDetectorTextView!
-    
+    @IBOutlet weak var errorImageView: UIImageView!
+    @IBOutlet weak var trackerStatusContainer: UIView!
     @IBOutlet weak var trackerStatusView: TrackerStatusView!
     
     let disposeBag = DisposeBag()
     let viewModel = OutageTrackerViewModel()
     let infoView = StatusInfoView()
-    var progressAnimation = AnimationView(name: "outage_reported")
+    var progressAnimation = AnimationView(name: "ot_reported")
     var refreshControl: UIRefreshControl?
     
     override func viewDidLoad() {
@@ -96,11 +97,11 @@ class OutageTrackerViewController: UIViewController {
     }
     
     private func setupUI() {
-        
         infoView.frame = self.view.bounds
         self.view.addSubview(infoView)
         self.infoView.delegate = self
         self.infoView.isHidden = true
+        self.errorImageView.isHidden = true
         
         etaView.roundCorners(.allCorners, radius: 10, borderColor: .successGreenText, borderWidth: 1.0)
         
@@ -115,8 +116,18 @@ class OutageTrackerViewController: UIViewController {
     private func update() {
         trackerStatusView.configure(withEvents: viewModel.events, lastUpdated: viewModel.lastUpdated)
         statusTitleLabel.text = viewModel.statusTitle
-        statusDetailView.isHidden = viewModel.statusDetails.isEmpty
         statusDetailLabel.text = viewModel.statusDetails
+        neighborCountLabel.text = viewModel.neighborCount
+        outageCountLabel.text = viewModel.outageCount
+        
+        statusDetailView.isHidden = viewModel.statusDetails.isEmpty
+        if viewModel.status == .none {
+            etaContainerView.isHidden = true
+            countContainerView.isHidden = true
+            trackerStatusContainer.isHidden = true
+            progressAnimationContainer.isHidden = true
+            errorImageView.isHidden = false
+        }
         
         updateETA()
         refreshControl?.endRefreshing()
