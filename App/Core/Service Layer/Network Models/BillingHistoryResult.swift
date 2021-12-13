@@ -22,7 +22,11 @@ public struct BillingHistoryResult: Decodable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let optionalDateItems = try container.decode([BillingHistoryItem].self, forKey: .billingHistoryItems)
         billingHistoryItems = optionalDateItems.filter({ $0._date != nil && $0.kwhElec != nil })
-                
+        billingHistoryItems = billingHistoryItems.map {
+        if $0.kwhElec == nil { 
+            $0.kwhElec = 0.00
+            }
+        }        
         upcoming = billingHistoryItems.filter{ $0.isFuture }.sorted(by: { $0.date < $1.date })
         past = billingHistoryItems.filter { !$0.isFuture }.sorted(by: { $0.date > $1.date })
         
