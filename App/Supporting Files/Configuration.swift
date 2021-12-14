@@ -274,7 +274,29 @@ struct Configuration {
     }
     
     var b2cAuthEndpoint: String {
-        "\(b2cHost).exeloncorp.com"
+        //"\(b2cHost).exeloncorp.com"
+        "\(b2cTenant).b2clogin.com"
+    }
+    
+    var b2cOpowerAuthEndpoint: String {
+        var endpoint: String
+        
+        switch opco {
+        case .ace:
+            endpoint = "\(b2cHost).ace.com"
+        case .delmarva:
+            endpoint = "\(b2cHost).delmarva.com"
+        case .pepco:
+            endpoint = "\(b2cHost).pep.com"
+        case .bge:
+            endpoint = "\(b2cHost).bge.com"
+        case .comEd:
+            endpoint = "\(b2cHost).comed.com"
+        case .peco:
+            endpoint = "\(b2cHost).peco.com"
+        }
+        
+        return endpoint
     }
     
     var b2cClientID: String {
@@ -289,11 +311,11 @@ struct Configuration {
             case .pepco:
                 clientId = "733a9d3b-9769-4ef3-8444-34128c5d0d63"
             case .bge:
-                clientId = "831eeb00-a9c5-4752-be90-13a0d506ef92"
+                clientId = "202e1b60-9ba3-4e49-ab43-a1ebd438aa97"
             case .comEd:
-                clientId = "83028f96-b357-4920-a1d9-dd749627b6f4"
+                clientId = "b587ed2d-28a5-462c-8c1f-835f9d73f7c3"
             case .peco:
-                clientId = "8d6822d5-a419-41d9-8b8f-4edada5e6901"
+                clientId = "e555f5eb-b9ec-48b8-9452-fa0ed2ddeeda"
             }
         default:
             let projectTierRawValue = UserDefaults.standard.string(forKey: "selectedProjectTier") ?? "Stage"
@@ -323,11 +345,11 @@ struct Configuration {
                 case .pepco:
                     clientId = "733a9d3b-9769-4ef3-8444-34128c5d0d63"
                 case .bge:
-                    clientId = "831eeb00-a9c5-4752-be90-13a0d506ef92"
+                    clientId = "483c8402-2721-43f0-bbe6-ce7d223c4207"
                 case .comEd:
-                    clientId = "83028f96-b357-4920-a1d9-dd749627b6f4"
+                    clientId = "749d55e6-8b0f-4e15-9f26-f4401a96ec24"
                 case .peco:
-                    clientId = "8d6822d5-a419-41d9-8b8f-4edada5e6901"
+                    clientId = "908a6388-59f5-4074-84fa-5d61308f85df"
                 }
             }
         }
@@ -340,17 +362,17 @@ struct Configuration {
         case .rc, .release:
             switch opco {
             case .ace:
-                redirecturi = ""
+                redirecturi = "msauth.com.ifactorconsulting.ace"
             case .delmarva:
-                redirecturi = ""
+                redirecturi = "msauth.com.ifactorconsulting.delmarva"
             case .pepco:
                 redirecturi = "msauth.com.exelon.mobile.pepco"
             case .bge:
-                redirecturi = ""
+                redirecturi = "msauth.com.exelon.mobile.bge"
             case .comEd:
-                redirecturi = ""
+                redirecturi = "msauth.com.iphoneproduction.exelon"
             case .peco:
-                redirecturi = ""
+                redirecturi = "msauth.com.exelon.mobile.pepco"
             }
         default:
             let projectTierRawValue = UserDefaults.standard.string(forKey: "selectedProjectTier") ?? "Stage"
@@ -359,32 +381,32 @@ struct Configuration {
             case .dev, .test:
                 switch opco {
                 case .ace:
-                    redirecturi = ""
+                    redirecturi = "msauth.com.exelon.mobile.ace.testing"
                 case .delmarva:
-                    redirecturi = ""
+                    redirecturi = "msauth.com.exelon.mobile.delmarva.testing"
                 case .pepco:
                     redirecturi = "msauth.com.exelon.mobile.pepco.testing"
                 case .bge:
-                    redirecturi = ""
+                    redirecturi = "msauth.com.exelon.mobile.bge.testing"
                 case .comEd:
-                    redirecturi = ""
+                    redirecturi = "msauth.com.exelon.mobile.comed.testing"
                 case .peco:
-                    redirecturi = ""
+                    redirecturi = "msauth.com.exelon.mobile.peco.testing"
                 }
             case .stage:
                 switch opco {
                 case .ace:
-                    redirecturi = ""
+                    redirecturi = "msauth.com.exelon.mobile.ace.staging"
                 case .delmarva:
-                    redirecturi = ""
+                    redirecturi = "msauth.com.exelon.mobile.delmarva.staging"
                 case .pepco:
                     redirecturi = "msauth.com.exelon.mobile.pepco.staging"
                 case .bge:
-                    redirecturi = ""
+                    redirecturi = "msauth.com.exelon.mobile.bge.staging"
                 case .comEd:
-                    redirecturi = ""
+                    redirecturi = "msauth.com.exelon.mobile.comed.staging"
                 case .peco:
-                    redirecturi = ""
+                    redirecturi = "msauth.com.exelon.mobile.peco.staging"
                 }
             }
         }
@@ -415,7 +437,7 @@ struct Configuration {
                     oPowerURLString = "https://d-c-\(projectURLSuffix.projectURLString)-\(accountOpCo.urlString)-ui-01.azurewebsites.net/pages/mobileopower.aspx"
                 }
             case .test:
-                oPowerURLString = "https://azst1-secure.\(accountOpCo.urlDisplayString).com/pages/mobileopower.aspx"
+                oPowerURLString = "https://aztst1-secure.\(accountOpCo.urlDisplayString).com/pages/mobileopower.aspx"
             case .stage:
                 oPowerURLString = "https://azstg-secure.\(accountOpCo.urlDisplayString).com/pages/mobileopower.aspx"
             }

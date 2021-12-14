@@ -19,7 +19,8 @@ public struct TokenResponse: Decodable {
     
     enum CodingKeys: String, CodingKey {
         case token
-        case access_token = "id_token"
+        case id_token = "id_token"
+        case access_token = "access_token"
         case expiresIn = "id_token_expires_in"
         case refreshToken = "refresh_token"
         case refreshTokenExpiresIn = "refresh_token_expires_in"
@@ -29,6 +30,8 @@ public struct TokenResponse: Decodable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
+        self.token = try container.decodeIfPresent(String.self,
+                                                   forKey: .id_token)
         self.token = try container.decodeIfPresent(String.self,
                                                        forKey: .access_token)
         
