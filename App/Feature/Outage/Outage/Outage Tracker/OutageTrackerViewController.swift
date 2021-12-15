@@ -59,11 +59,7 @@ class OutageTrackerViewController: UIViewController {
     }
     
     private func loadOutageTracker() {
-        self.viewModel.getOutageTracker {
-            print("fetching tracker")
-        } onError: { error in
-            print("error fetching tracker: \(error.localizedDescription)")
-        }
+        self.viewModel.fetchOutageTracker()
     }
     
     private func configureTableView() {

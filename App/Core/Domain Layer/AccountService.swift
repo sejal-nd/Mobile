@@ -29,6 +29,25 @@ enum AccountService {
         }
     }
     
+    static func fetchAccountSummary(accountNumber: String = AccountsStore.shared.currentAccount.accountNumber,
+                                    includeDevice: Bool = false,
+                                    includeMDM: Bool = false,
+                                    completion: @escaping (Result<AccountSummary, NetworkingError>) -> ()) {
+        
+        var queryItems = [URLQueryItem]()
+        queryItems.append(URLQueryItem(name: "summary", value: "true"))
+        
+        if includeDevice {
+            queryItems.append(URLQueryItem(name: "includeDevice", value: "true"))
+        }
+        
+        if includeMDM {
+            queryItems.append(URLQueryItem(name: "includeMDM", value: "true"))
+        }
+    
+        NetworkingLayer.request(router: .accountDetails(accountNumber: accountNumber, queryItems: queryItems), completion: completion)
+    }
+    
     static func fetchAccountDetails(accountNumber: String = AccountsStore.shared.currentAccount.accountNumber,
                                     payments: Bool = true,
                                     programs: Bool = true,
@@ -51,9 +70,9 @@ enum AccountService {
             queryItems.append(URLQueryItem(name: "alertPreferenceEligibilities", value: "true"))
         }
         
-        if FeatureFlagUtility.shared.bool(forKey: .hasAuthenticatedISUM) {
-            queryItems.append(URLQueryItem(name: "isGetRCDCapable", value: "true"))
-        }
+//        if FeatureFlagUtility.shared.bool(forKey: .hasAuthenticatedISUM) {
+//            queryItems.append(URLQueryItem(name: "isGetRCDCapable", value: "true"))
+//        }
     
         NetworkingLayer.request(router: .accountDetails(accountNumber: accountNumber, queryItems: queryItems), completion: completion)
     }

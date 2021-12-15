@@ -146,17 +146,15 @@ class OutageTrackerViewModel {
         
     }
     
-    func getOutageTracker(onSuccess: @escaping () -> Void, onError: @escaping (NetworkingError) -> Void) {
-        OutageService.fetchOutageTracker(accountNumber: AccountsStore.shared.currentAccount.accountNumber) { [weak self] result in
-            switch result {
-                case .success(let outageTracker):
-                    self?.outageTracker.accept(outageTracker)
-                    onSuccess()
-                case .failure(let error):
-                    self?.outageTracker.accept(nil)
-                    onError(error)
-            }
-        }
+    func fetchOutageTracker() {
+        AccountService.rx.fetchAccountSummary(includeDevice: true, includeMDM: false).flatMap {
+            OutageService.rx.fetchOutageTracker(accountNumber: $0.accountNumber, deviceId: $0.deviceId ?? "", servicePointId: $0.servicePointId ?? "")
+        }.subscribe(onNext: { tracker in
+            self.outageTracker.accept(tracker)
+        }, onError: { error in
+            self.outageTracker.accept(nil)
+            print("error fetching tracker: \(error.localizedDescription)")
+        }).disposed(by: disposeBag)
     }
     
     func getOutageStatus() {
