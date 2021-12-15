@@ -305,11 +305,11 @@ struct Configuration {
         case .rc, .release:
             switch opco {
             case .ace:
-                clientId = "4facf595-5fc3-44c1-a908-391e98ddc687"
+                clientId = "64930d53-e888-45f9-9b02-aeed39ba48ca"
             case .delmarva:
-                clientId = "f900262f-eeb9-4ada-82a2-ade9e10e2c1b"
+                clientId = "571ee0e4-c2cc-4d39-b784-6395571cb077"
             case .pepco:
-                clientId = "733a9d3b-9769-4ef3-8444-34128c5d0d63"
+                clientId = "bb13a5b0-c61c-4194-960b-c44cebe992c2"
             case .bge:
                 clientId = "202e1b60-9ba3-4e49-ab43-a1ebd438aa97"
             case .comEd:
@@ -339,11 +339,11 @@ struct Configuration {
             case .stage:
                 switch opco {
                 case .ace:
-                    clientId = "4facf595-5fc3-44c1-a908-391e98ddc687"
+                    clientId = "67368fd4-d3d0-4f38-b443-94742e6af8c3"
                 case .delmarva:
-                    clientId = "f900262f-eeb9-4ada-82a2-ade9e10e2c1b"
+                    clientId = "548fe95f-b6c8-4791-b02b-b95ca3b3e31c"
                 case .pepco:
-                    clientId = "733a9d3b-9769-4ef3-8444-34128c5d0d63"
+                    clientId = "37abcf6f-b74d-4756-8ff7-05a6817575c5"
                 case .bge:
                     clientId = "483c8402-2721-43f0-bbe6-ce7d223c4207"
                 case .comEd:
