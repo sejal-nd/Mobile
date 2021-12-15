@@ -18,6 +18,9 @@ class OutageTrackerViewController: UIViewController {
     @IBOutlet weak var statusTitleLabel: UILabel!
     @IBOutlet weak var statusDetailView: UIView!
     @IBOutlet weak var statusDetailLabel: UILabel!
+    @IBOutlet weak var whyButtonContainer: UIView!
+    @IBOutlet weak var whyButtonView: UIView!
+    @IBOutlet weak var whyButton: UIButton!
     @IBOutlet weak var etaContainerView: UIView!
     @IBOutlet weak var etaView: UIView!
     @IBOutlet weak var etaTitleLabel: UILabel!
@@ -102,11 +105,15 @@ class OutageTrackerViewController: UIViewController {
         self.infoView.delegate = self
         self.infoView.isHidden = true
         self.errorImageView.isHidden = true
+        self.etaUpdatedView.isHidden = true
         
         etaView.roundCorners(.allCorners, radius: 10, borderColor: .successGreenText, borderWidth: 1.0)
         
-        let radius = etaUpdatedView.frame.size.height / 2
-        etaUpdatedView.roundCorners(.allCorners, radius: radius, borderColor: .successGreenText, borderWidth: 1.0)
+        let updatedViewRadius = etaUpdatedView.frame.size.height / 2
+        etaUpdatedView.roundCorners(.allCorners, radius: updatedViewRadius, borderColor: .successGreenText, borderWidth: 1.0)
+        
+        let whyViewRadius = whyButtonView.frame.size.height / 2
+        whyButtonView.roundCorners(.allCorners, radius: whyViewRadius, borderColor: .accentGray, borderWidth: 1.0)
         
         countView.roundCorners(.allCorners, radius: 10, borderColor: .accentGray, borderWidth: 1.0)
         
@@ -121,12 +128,19 @@ class OutageTrackerViewController: UIViewController {
         outageCountLabel.text = viewModel.outageCount
         
         statusDetailView.isHidden = viewModel.statusDetails.isEmpty
+        
         if viewModel.status == .none {
             etaContainerView.isHidden = true
             countContainerView.isHidden = true
             trackerStatusContainer.isHidden = true
             progressAnimationContainer.isHidden = true
             errorImageView.isHidden = false
+        }
+        whyButtonContainer.isHidden = viewModel.hideWhyButton
+        if viewModel.status == .restored {
+            whyButton.setTitle(NSLocalizedString("Still Have an Outage?", comment: ""), for: .normal)
+        } else {
+            whyButton.setTitle(NSLocalizedString("Why Did This Happen?", comment: ""), for: .normal)
         }
         
         updateETA()
@@ -137,10 +151,22 @@ class OutageTrackerViewController: UIViewController {
     private func updateETA() {
         etaTitleLabel.text = viewModel.etaTitle
         etaDateTimeLabel.text = viewModel.etaDateTime
-        etaDetailLabel.text = viewModel.etaDetail
-        etaCauseLabel.text = viewModel.etaCause
         
-        // show/hide info button
+        etaCauseLabel.text = viewModel.etaCause
+        etaCauseLabel.isHidden = viewModel.etaCause.isEmpty
+        
+        etaDetailLabel.isHidden = false
+        etaInfoButton.isHidden = false
+        switch viewModel.status {
+            case .reported, .assigned, .enRoute:
+                etaDetailLabel.text = viewModel.etaDetail
+            case .onSite:
+                etaDetailLabel.text = viewModel.etaOnSiteDetail
+            case .restored, .none:
+                etaDetailLabel.isHidden = true
+                etaInfoButton.isHidden = true
+        }
+        
         // show/hide update view
         
     }
@@ -175,6 +201,7 @@ class OutageTrackerViewController: UIViewController {
             rc.rx.controlEvent(.valueChanged)
                 .subscribe(onNext: { [weak self] in
                     self?.loadOutageTracker()
+                    self?.etaUpdatedView.isHidden = false
                 })
                 .disposed(by: disposeBag)
             
@@ -199,15 +226,29 @@ class OutageTrackerViewController: UIViewController {
     }
     
     @IBAction func infoButtonPressed(_ sender: Any) {
-        // todo: determine info
-//        etrToolTip
-//        hazardMessage
-//        rerouted
-//        hasOutageDef
-//        hasOutageNondef
-//        whyStop
-        
         let info = StatusInfoMessage.etrToolTip
+        infoView.configure(withInfo: info)
+        infoView.isHidden = false
+    }
+    
+    @IBAction func whyButtonPressed(_ sender: Any) {
+        guard let tracker = viewModel.outageTracker.value else { return }
+        
+        var info = StatusInfoMessage.none
+        
+        if tracker.isSafetyHazard == true {
+            info = StatusInfoMessage.hazardMessage
+        }
+        if tracker.isCrewDiverted == true {
+            info = StatusInfoMessage.rerouted
+        }
+        if tracker.isCrewLeftSite == true {
+            info = StatusInfoMessage.whyStop
+        }
+        if viewModel.status == .restored {
+            // todo: determine def vs non-def
+            info = StatusInfoMessage.hasOutageDef
+        }
         infoView.configure(withInfo: info)
         infoView.isHidden = false
     }

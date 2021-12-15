@@ -15,6 +15,7 @@ enum StatusInfoMessage: Int {
     case hasOutageDef
     case hasOutageNondef
     case whyStop
+    case none
     
     var title: String {
         switch self {
@@ -28,6 +29,8 @@ enum StatusInfoMessage: Int {
                 return "Still have an outage?"
             case .whyStop:
                 return "Why did the BGE crew need to temporarily stop their work?"
+            case .none:
+                return ""
         }
     }
     
@@ -45,6 +48,8 @@ enum StatusInfoMessage: Int {
                 return "If you are still experiencing a power outage, please check that your fuses or circuit breakers are on.\n\nIf you still do not have power, please help us by reporting the outage."
             case .whyStop:
                 return "This can occur when specialized equipment is needed, or to take appropriate safety precautions for our workers due to system damage and severe weather.\n\nA BGE crew will return as soon as possible to continue working to restore your service."
+            case .none:
+                return ""
         }
     }
 }

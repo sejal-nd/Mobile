@@ -42,12 +42,14 @@ class OutageTrackerViewModel {
         } else if tracker.isCrewLeftSite == true {
             details = StatusDetailString.crewLeftSite
         } else if tracker.isCrewExtDamage == true {
-            details = StatusDetailString.CrewExtDamage
+            details = StatusDetailString.crewExtDamage
+        } else if tracker.isSafetyHazard == true {
+            details = StatusDetailString.crewSafetyHazard
+        } else if tracker.isPartialRestoration == true {
+            details = StatusDetailString.partialRestoration
         }
         return NSLocalizedString(details, comment: "")
     }
-    
-    // todo - where does these come from?
     var etaTitle: String {
         return NSLocalizedString("Estimated Time of Restoration (ETR)", comment: "")
     }
@@ -57,8 +59,14 @@ class OutageTrackerViewModel {
     var etaDetail: String {
         return NSLocalizedString("The current estimate is based on outage restoration history.", comment: "")
     }
+    var etaOnSiteDetail: String {
+        return NSLocalizedString("The current estimate is up-to-date based on the latest reports from the repair crew.", comment: "")
+    }
     var etaCause: String {
-        return NSLocalizedString("The outage was caused by a lightening strike", comment: "")
+        guard let tracker = outageTracker.value, let cause = tracker.cause else {
+            return ""
+        }
+        return NSLocalizedString(cause, comment: "")
     }
     var neighborCount: String {
         // todo - this field is missing
@@ -80,9 +88,16 @@ class OutageTrackerViewModel {
         
         return time
     }
-    var isPartialRestoration: Bool {
-        guard let tracker = outageTracker.value else { return false }
-        return tracker.isPartialRestoration ?? false
+    var hideWhyButton: Bool {
+        guard let tracker = outageTracker.value else { return true }
+        
+        if tracker.isSafetyHazard == true { return false }
+        if status == .onSite && tracker.isCrewLeftSite == true {
+            return false
+        } else if status == .enRoute && tracker.isCrewDiverted == true {
+            return false
+        } else if status == .restored { return false }
+        return true
     }
     var footerText: NSAttributedString {
         let phone1 = "1-800-685-0123"
@@ -120,7 +135,7 @@ class OutageTrackerViewModel {
             case .restored:
                 return "Appt_Complete-FlavorBGE"
             default:
-                return "Appt_Complete-FlavorBGE"
+                return ""
         }
     }
     
