@@ -628,7 +628,7 @@ class BillViewController: AccountPickerViewController {
         viewModel.alertBannerText.drive(alertBannerView.label.rx.text).disposed(by: bag)
         viewModel.alertBannerA11yText.drive(alertBannerView.label.rx.accessibilityLabel).disposed(by: bag)
 
-        totalAmountLabel.text = "test"
+        viewModel.totalAmountText.drive(totalAmountLabel.rx.text).disposed(by: bag)
         viewModel.totalAmountText.drive(creditScenarioAmountLabel.rx.text).disposed(by: bag)
         viewModel.totalAmountDescriptionText.drive(totalAmountDescriptionLabel.rx.attributedText).disposed(by: bag)
 
