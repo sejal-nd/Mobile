@@ -274,7 +274,7 @@ class BillViewController: AccountPickerViewController {
         billCardView.layer.borderColor = UIColor.accentGray.cgColor
         billCardView.layer.borderWidth = 1
         
-        multipremiseHeaderView.layer.borderColor = UIColor.accentGray.cgColor21
+        multipremiseHeaderView.layer.borderColor = UIColor.accentGray.cgColor
         multipremiseHeaderView.layer.borderWidth = 1
         multipremiseHeaderLabel.textColor = .deepGray
         multipremiseHeaderLabel.font = SystemFont.semibold.of(textStyle: .caption1)
@@ -628,24 +628,24 @@ class BillViewController: AccountPickerViewController {
         viewModel.alertBannerText.drive(alertBannerView.label.rx.text).disposed(by: bag)
         viewModel.alertBannerA11yText.drive(alertBannerView.label.rx.accessibilityLabel).disposed(by: bag)
 
-        totalAmountLabel.text = "TAmount"
-        creditScenarioAmountLabel.text = "CSAL"
-       
-        totalAmountDescriptionLabel.text = "2TAmount"
+        totalAmountLabel.text = "test"
+        viewModel.totalAmountText.drive(creditScenarioAmountLabel.rx.text).disposed(by: bag)
+        viewModel.totalAmountDescriptionText.drive(totalAmountDescriptionLabel.rx.attributedText).disposed(by: bag)
+
         viewModel.enrollmentStatus.drive(catchUpDisclaimerLabel.rx.text).disposed(by: bag)
         viewModel.pastDueText.drive(pastDueLabel.rx.text).disposed(by: bag)
-        pastDueAmountLabel.text = "PDAmount"
+        viewModel.pastDueAmountText.drive(pastDueAmountLabel.rx.text).disposed(by: bag)
         viewModel.pastDueDateText.drive(pastDueDateLabel.rx.attributedText).disposed(by: bag)
-        currentBillAmountLabel.text = "CBAmount"
+        viewModel.currentBillAmountText.drive(currentBillAmountLabel.rx.text).disposed(by: bag)
         viewModel.currentBillDateText.drive(currentBillDateLabel.rx.text).disposed(by: bag)
-        paymentReceivedAmountLabel.text = "pRAmount"
+        viewModel.paymentReceivedAmountText.drive(paymentReceivedAmountLabel.rx.text).disposed(by: bag)
         viewModel.paymentReceivedDateText.drive(paymentReceivedDateLabel.rx.text).disposed(by: bag)
 
         pendingPaymentLabel.text = viewModel.pendingPaymentsText
-        pendingPaymentAmountLabel.text = "PPAmount"
+        viewModel.pendingPaymentsTotalAmountText.drive(pendingPaymentAmountLabel.rx.text).disposed(by: bag)
 
         remainingBalanceDueLabel.text = viewModel.remainingBalanceDueText
-        remainingBalanceDueAmountLabel.text = "rBDA"
+        viewModel.remainingBalanceDueAmountText.drive(remainingBalanceDueAmountLabel.rx.text).disposed(by: bag)
 
         viewModel.paymentStatusText.drive(makeAPaymentStatusLabel.rx.text).disposed(by: bag)
         viewModel.paymentStatusText.drive(makeAPaymentStatusButton.rx.accessibilityLabel).disposed(by: bag)
@@ -696,8 +696,6 @@ class BillViewController: AccountPickerViewController {
         
         viewModel.fetchBGEDdeDpaEligibility.asDriver().drive().disposed(by: bag)
         viewModel.enrollmentStatus.asDriver().drive().disposed(by: bag)
-        
-        
     }
 
     func bindButtonTaps() {
