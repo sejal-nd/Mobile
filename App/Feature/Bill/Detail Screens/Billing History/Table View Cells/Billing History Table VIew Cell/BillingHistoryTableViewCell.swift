@@ -20,7 +20,6 @@ class BillingHistoryTableViewCell: UITableViewCell {
     @IBOutlet weak var caretImageView: UIImageView!
     
     var disposeBag = DisposeBag()
-    let defaultAmount = 0.00
 
     private(set) lazy var didSelect: Driver<Void> = self.innerContentView.rx.touchUpInside.asDriver()
     
@@ -46,6 +45,7 @@ class BillingHistoryTableViewCell: UITableViewCell {
             iconImageView.image = #imageLiteral(resourceName: "ic_bill")
             let titleText = NSLocalizedString("Bill Issued", comment: "")
             titleLabel.text = titleText
+            let defaultAmount = 0.00
             amountLabel.text = item.totalAmountDue?.currencyString ?? defaultAmount.currencyString
             a11y = String(format: NSLocalizedString("%@. %@. %@. View PDF", comment: ""), titleText, dateString, amountLabel.text ?? "")
         } else {
