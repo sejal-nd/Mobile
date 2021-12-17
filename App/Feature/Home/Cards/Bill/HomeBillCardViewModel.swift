@@ -121,10 +121,11 @@ class HomeBillCardViewModel {
         }
     }
     
-    private(set) lazy var fetchBGEDdeDpaEligibility: Driver<Bool> = Driver.combineLatest(accountDetailDriver, fetchTracker, scheduledPaymentEvents.elements().asDriver(onErrorDriveWith: .empty())) { (accountDetail, fetchTrackerValue, scheduledPay) in
+    // Fetch DDE and DPA Core service details
+    private(set) lazy var fetchDdeDpaCoreServiceDetails: Driver<Bool> = Driver.combineLatest(accountDetailDriver, fetchTracker, scheduledPaymentEvents.elements().asDriver(onErrorDriveWith: .empty())) { (accountDetail, fetchTrackerValue, scheduledPay) in
         if Configuration.shared.opco == .bge || Configuration.shared.opco == .peco || Configuration.shared.opco == .comEd {
             if !fetchTrackerValue {
-                // Fetch BGE DDE
+                // Fetch  DDE core service
                 AccountService.fetchDDE  { [weak self] result in
                     AssistanceProgramStore.shared.dueDateExtensionData = result
                     switch result {
@@ -136,7 +137,7 @@ class HomeBillCardViewModel {
                     }
                 }
                 
-                // Fetch BGE DPA
+                // Fetch  DPA core service
                 let customerNumber = accountDetail.customerNumber
                 let premiseNumber = accountDetail.premiseNumber ?? ""
                 let paymentAmount = (String(describing: accountDetail.billingInfo.netDueAmount ?? 0.0))
@@ -154,6 +155,7 @@ class HomeBillCardViewModel {
                 }
             }
         } else {
+            // Default case
             self.isBgeDpaEligible.accept(false)
             self.isBgeDdeEligible.accept(false)
         }
@@ -511,13 +513,25 @@ class HomeBillCardViewModel {
     
     // MARK: - Enrollment Status
     private(set) lazy var enrollmentStatus: Driver<String?> = Driver.combineLatest(accountDetailDriver, showBgeDdeDpaEligibility.asDriver(), paymentArrangementDetails.asDriver(), dueDateExtensionDetails.asDriver()) { (accountDetail, bgeDdeDpaEligibilityChecked, paymentArrangementDetails, dueDateExtensionDetails) in
+        /*
+         - DDE Enrolment status conditions are different for comed and peco vs BGE
+         - For BGE , comed and peco DDE core service call is refered
+         - BGE- error code == 30011 is rfered while for come and peco "isPaymentExtensionEligible" flag is used.
+         */
         let dueDaeExtensionEnrolledCondtion = (Configuration.shared.opco == .comEd || Configuration.shared.opco == .peco) ?
             dueDateExtensionDetails?.isPaymentExtensionEligible == false :
             dueDateExtensionDetails?.errorCode == "30011"
+        
+        /*
+         - DPA Enrolment status conditions are different for comed and peco vs BGE
+         - For BGE "dpaEnrollmentStatus" flag is refered from payment arrangement core services
+         - For comed and peco "isDpaEnrolled" flag is refered from account detail service.
+         */
         let dpaEnrolledCondtion = (Configuration.shared.opco == .comEd || Configuration.shared.opco == .peco) ?
             accountDetail.billingInfo.isDpaEnrolled == "true" :
-        (paymentArrangementDetails?.pAData?.first?.dpaEnrollmentStatus ?? false)
+            (paymentArrangementDetails?.pAData?.first?.dpaEnrollmentStatus ?? false)
         
+        // Conditions to check enrolment status message, Feature flag "hasAssistanceEnrollment" is only applicable to comed , peco and BGE
         if FeatureFlagUtility.shared.bool(forKey: .hasAssistanceEnrollment) {
             if dpaEnrolledCondtion {
                 if paymentArrangementDetails?.customerInfo?.hasPABilled == false {
@@ -535,7 +549,7 @@ class HomeBillCardViewModel {
                         dueDateExtensionDetails?.extensionDueAmt != nil {
                 guard let extendedDueDate = dueDateExtensionDetails?.extendedDueDate,
                       let extensionDueAmt = dueDateExtensionDetails?.extensionDueAmt else {return nil}
-                    return "You're enrolled in a Due Date Extension. You have until \(String(describing: extendedDueDate.mmDdYyyyString)) to pay your extended bill of $\(extensionDueAmt)."
+                return "You're enrolled in a Due Date Extension. You have until \(String(describing: extendedDueDate.mmDdYyyyString)) to pay your extended bill of $\(extensionDueAmt)."
             }
         }
         return ""

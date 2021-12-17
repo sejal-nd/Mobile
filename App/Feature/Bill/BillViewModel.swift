@@ -91,7 +91,7 @@ class BillViewModel {
                                                          useCache: false)
         }
     
-    private(set) lazy var fetchBGEDdeDpaEligibility: Driver<Bool> = self.currentAccountDetail.map {_ in
+    private(set) lazy var fetchDdeDpaCoreServiceDetails: Driver<Bool> = self.currentAccountDetail.map {_ in
         if Configuration.shared.opco == .bge || Configuration.shared.opco == .peco || Configuration.shared.opco == .comEd {
             self.ddeDpaEligiblityCheck()
         } else {
@@ -101,10 +101,11 @@ class BillViewModel {
         return false
     }
     
+    // Getting DDE and DPA core service responses which are called once in home tab.
     func ddeDpaEligiblityCheck() {
         guard let dDEData = AssistanceProgramStore.shared.dueDateExtensionData,
               let dPAData = AssistanceProgramStore.shared.paymentArrangementData else { return }
-        // BGE DDE
+        // DDE core service response check
         switch dDEData {
         case .success(let resultObject):
             self.isBgeDdeEligible.accept( resultObject.isPaymentExtensionEligible ?? false)
@@ -113,7 +114,7 @@ class BillViewModel {
             self.isBgeDdeEligible.accept(false)
         }
         
-        // BGE DPA
+        //  DPA core service response check
         switch dPAData {
         case .success(let paymentEnhancement):
             self.isBgeDpaEligible.accept(paymentEnhancement.customerInfo?.paEligibility == "true" ? true : false)
@@ -518,7 +519,7 @@ class BillViewModel {
         }
     }
     
-    //MARK: - Catch Up
+    //MARK: - Show Enrolment status
     private(set) lazy var showCatchUpDisclaimer: Driver<Bool> = Driver.combineLatest(showBgeDdeDpaEligibility.asDriver(), enrollmentStatus.asDriver()) {(showBgeDdeDpaEligibility, enrollmentStatus) in
         return showBgeDdeDpaEligibility && !(enrollmentStatus ?? "").isEmpty
     }
@@ -898,14 +899,26 @@ class BillViewModel {
         }
     // MARK: - Enrollment Status
     private(set) lazy var enrollmentStatus: Driver<String?> = Driver.combineLatest(currentAccountDetail, showBgeDdeDpaEligibility.asDriver(), paymentArrangementDetails.asDriver(), dueDateExtensionDetails.asDriver()) { (accountDetail, bgeDdeDpaEligibilityChecked, paymentArrangementDetails, dueDateExtensionDetails) in
+        
+        /*
+         - DDE Enrolment status conditions are different for comed and peco vs BGE
+         - For BGE , comed and peco DDE core service call is refered
+         - BGE- error code == 30011 is rfered while for come and peco "isPaymentExtensionEligible" flag is used.
+        */
         let dueDaeExtensionEnrolledCondtion = (Configuration.shared.opco == .comEd || Configuration.shared.opco == .peco) ?
             dueDateExtensionDetails?.isPaymentExtensionEligible == false :
             dueDateExtensionDetails?.errorCode == "30011"
         
+        /*
+         - DPA Enrolment status conditions are different for comed and peco vs BGE
+         - For BGE "dpaEnrollmentStatus" flag is refered from payment arrangement core services
+         - For comed and peco "isDpaEnrolled" flag is refered from account detail service.
+        */
         let dpaEnrolledCondtion = (Configuration.shared.opco == .comEd || Configuration.shared.opco == .peco) ?
             accountDetail.billingInfo.isDpaEnrolled == "true" :
         (paymentArrangementDetails?.pAData?.first?.dpaEnrollmentStatus ?? false)
         
+        // Conditions to check enrolment status message, Feature flag "hasAssistanceEnrollment" is only applicable to comed , peco and BGE
         if FeatureFlagUtility.shared.bool(forKey: .hasAssistanceEnrollment) {
             if dpaEnrolledCondtion {
                 if paymentArrangementDetails?.customerInfo?.hasPABilled == false {
