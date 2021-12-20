@@ -81,18 +81,21 @@ struct StatusTitleString {
     static let reported = NSLocalizedString("BGE has received a report of an outage at your address.", comment: "")
     static let assigned = NSLocalizedString("A BGE restoration crew is assigned to your outage.", comment: "")
     static let enRoute = NSLocalizedString("A BGE restoration crew is en route to your outage.", comment: "")
+    static let enRouteRerouted = NSLocalizedString("The BGE crew en route to your outage was required to reroute to a new location.", comment: "")
     static let onSite = NSLocalizedString("A BGE restoration crew is at the scene of your outage and working hard to resolve the issue.", comment: "")
+    static let onSiteExtDamage = NSLocalizedString("There is extensive equipment damage in your area.", comment: "")
+    static let onSiteTempStop = NSLocalizedString("The BGE crew working on your outage needed to temporarily stop their work.", comment: "")
     static let restored = NSLocalizedString("Your power has been restored!", comment: "")
     static let none = NSLocalizedString("Outage Tracker is Unavailable", comment: "")
 }
 
 struct StatusDetailString {
     
-    static let crewLeftSite = NSLocalizedString("The outage affecting your addresss requires additional repair work to be completed at another location before we can begin work in your area. We appreciate your patience durig this difficult restoration process.", comment: "")
+    static let crewLeftSite = NSLocalizedString("The outage affecting your address requires additional repair work to be completed at another location before we can begin work in your area. We appreciate your patience during this difficult restoration process.", comment: "")
     static let crewDiverted = NSLocalizedString("This can occur during severe emergencies or potentially hazardous situations. A new BGE crew will be dispatched as soon as possible to retore your service.", comment: "")
     static let crewExtDamage = NSLocalizedString("We have multiple crews on site working hard to restore your power. Thank you for your patience.", comment: "")
     static let crewSafetyHazard = NSLocalizedString("", comment: "")
-    static let partialRestoration = NSLocalizedString("BGE was able to restore service to some customers in your area, but due to the location of the damage, you and 25 others are still affected by this outage.", comment: "")
+    static let partialRestoration = "BGE was able to restore service to some customers in your area, but due to the location of the damage, you and %@ others are still affected by this outage."
     static let trackerNone = NSLocalizedString("We’re actively trying to fix the problem, please check back soon. If your power is not on, please help us by reporting the outage.", comment: "")
     
     // restored

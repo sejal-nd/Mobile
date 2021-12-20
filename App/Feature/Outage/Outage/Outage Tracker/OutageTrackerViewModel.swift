@@ -30,23 +30,36 @@ class OutageTrackerViewModel {
         return events
     }
     var statusTitle: String {
-        return NSLocalizedString(status.statusTitleString, comment: "")
+        guard let tracker = outageTracker.value else {
+            return StatusTitleString.none
+        }
+        if status == .enRoute && tracker.isCrewDiverted == true {
+            return StatusTitleString.enRouteRerouted
+        }
+        if status == .onSite {
+            if tracker.isCrewExtDamage == true {
+                return StatusTitleString.onSiteExtDamage
+            }
+            else if tracker.isCrewDiverted == true {
+                return StatusTitleString.onSiteTempStop
+            }
+        }
+        return status.statusTitleString
     }
     var statusDetails: String {
         guard let tracker = outageTracker.value else {
             return StatusDetailString.trackerNone
         }
         var details = ""
-        if tracker.isCrewDiverted == true {
-            details = StatusDetailString.crewDiverted
-        } else if tracker.isCrewLeftSite == true {
+        if tracker.isCrewLeftSite == true {
             details = StatusDetailString.crewLeftSite
         } else if tracker.isCrewExtDamage == true {
             details = StatusDetailString.crewExtDamage
         } else if tracker.isSafetyHazard == true {
             details = StatusDetailString.crewSafetyHazard
         } else if tracker.isPartialRestoration == true {
-            details = StatusDetailString.partialRestoration
+            let count = tracker.customersOutOnOutage ?? ""
+            details = String.localizedStringWithFormat(StatusDetailString.partialRestoration, count)
         }
         return NSLocalizedString(details, comment: "")
     }
@@ -54,13 +67,15 @@ class OutageTrackerViewModel {
         return NSLocalizedString("Estimated Time of Restoration (ETR)", comment: "")
     }
     var etaDateTime: String {
-        return NSLocalizedString("January 1, 4:20 pm", comment: "")
+        // todo where does this come from???
+        // if unavailable, return Currently Unavailable else return time
+        return NSLocalizedString("Currently Unavailable", comment: "")
     }
     var etaDetail: String {
-        return NSLocalizedString("The current estimate is based on outage restoration history.", comment: "")
+        return NSLocalizedString("The current estimate is based on outage restoration history. ETRs are updated as new information becomes available.", comment: "")
     }
     var etaOnSiteDetail: String {
-        return NSLocalizedString("The current estimate is up-to-date based on the latest reports from the repair crew.", comment: "")
+        return NSLocalizedString("The current ETR is up-to-date based on the latest reports from the repair crew. ETRs are updated as new information becomes available.", comment: "")
     }
     var etaCause: String {
         guard let tracker = outageTracker.value, let cause = tracker.cause else {
@@ -92,8 +107,10 @@ class OutageTrackerViewModel {
         guard let tracker = outageTracker.value else { return true }
         
         if tracker.isSafetyHazard == true { return false }
-        if status == .onSite && tracker.isCrewLeftSite == true {
-            return false
+        if status == .onSite {
+            if tracker.isCrewLeftSite == true || tracker.isCrewDiverted == true {
+                return false
+            }
         } else if status == .enRoute && tracker.isCrewDiverted == true {
             return false
         } else if status == .restored { return false }
