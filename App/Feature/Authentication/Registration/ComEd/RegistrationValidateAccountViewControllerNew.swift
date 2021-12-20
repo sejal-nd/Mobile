@@ -276,7 +276,7 @@ class RegistrationValidateAccountViewControllerNew: KeyboardAvoidingStickyFooter
             if self?.viewModel.hasMultipleAccount ?? false {
                 self?.performSegue(withIdentifier: "chooseAccountSegue", sender: self)
             } else {
-                let segueIdentifier = "createCredentialsB2cSegue"
+                let segueIdentifier = FeatureFlagUtility.shared.bool(forKey: .isAzureAuthentication) ? "createCredentialsB2cSegue" : "createCredentialsSegue"
                 self?.performSegue(withIdentifier: segueIdentifier, sender: self)
             }
            

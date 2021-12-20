@@ -304,7 +304,7 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
         case 1:
             switch indexPath.row {
             case 0:
-                cell.configure(image: #imageLiteral(resourceName: "ic_morepassword"), text: NSLocalizedString("Change Password", comment: ""))
+                cell.configure(image: #imageLiteral(resourceName: "ic_morepassword"), text: NSLocalizedString(FeatureFlagUtility.shared.bool(forKey: .isPkceAuthentication) ? "My Security" : "Change Password", comment: ""))
             case 1:
                 guard let toggleCell = tableView.dequeueReusableCell(withIdentifier: ToggleTableViewCell.className) as? ToggleTableViewCell else { return UITableViewCell() }
                 
@@ -386,7 +386,17 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
         case 1:
             switch indexPath.row {
             case 0:
-                performSegue(withIdentifier: "changePasswordSegue", sender: nil)
+                #warning("This is where we decide the method to use for password change")
+                if FeatureFlagUtility.shared.bool(forKey: .isPkceAuthentication){
+                    PKCEAuthenticationService.sharedService.presentMySecurityForm { success, result in
+                        if success {
+                            #warning("CODY : This is where you decode the token to decide what popup to show.")
+                            print("PROFILE EDIT TOKEN is \(result)")
+                        }
+                    }
+                }else{
+                    performSegue(withIdentifier: "changePasswordSegue", sender: nil)
+                }
             case 2:
                 performSegue(withIdentifier: "defaultAccountSegue", sender: nil)
             case 3:

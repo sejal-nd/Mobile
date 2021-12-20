@@ -283,11 +283,11 @@ struct Configuration {
         
         switch opco {
         case .ace:
-            endpoint = "\(b2cHost).ace.com"
+            endpoint = "\(b2cHost).exeloncorp.com"
         case .delmarva:
-            endpoint = "\(b2cHost).delmarva.com"
+            endpoint = "\(b2cHost).exeloncorp.com"
         case .pepco:
-            endpoint = "\(b2cHost).pep.com"
+            endpoint = "\(b2cHost).exeloncorp.com"
         case .bge:
             endpoint = "\(b2cHost).bge.com"
         case .comEd:

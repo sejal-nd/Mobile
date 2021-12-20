@@ -83,13 +83,15 @@ class ForgotUsernameResultViewController: UIViewController {
             answerSecurityQuestionButton.isEnabled = false
         }
         
-        answerSecurityQuestionButton.setTitle("Done", for: .normal)
+        answerSecurityQuestionButton.setTitle(FeatureFlagUtility.shared.bool(forKey: .isAzureAuthentication) ? "Done" : "Answer Security Question", for: .normal)
         
-        selectLabel.text = ""
-        topLabel1.text = ""
-        topLabel2.text = ""
-        topLabel3.text = NSLocalizedString("We found multiple accounts based on the information you gave us.", comment: "")
-        signInButton.isHidden = true
+        if FeatureFlagUtility.shared.bool(forKey: .isAzureAuthentication) {
+            selectLabel.text = ""
+            topLabel1.text = ""
+            topLabel2.text = ""
+            topLabel3.text = NSLocalizedString("We found multiple accounts based on the information you gave us.", comment: "")
+            signInButton.isHidden = true
+        }
     }
     
     func styleTopLabels() {
@@ -121,18 +123,22 @@ class ForgotUsernameResultViewController: UIViewController {
     }
     
     @IBAction func onAnswerSecurityQuestionsPress(_ sender: Any) {
-        guard let rootNavVc = self.navigationController?.presentingViewController as? LargeTitleNavigationController else { return }
-        for vc in rootNavVc.viewControllers {
-            guard let dest = vc as? LoginViewController else {
-                continue
+        if FeatureFlagUtility.shared.bool(forKey: .isAzureAuthentication) {
+            guard let rootNavVc = self.navigationController?.presentingViewController as? LargeTitleNavigationController else { return }
+            for vc in rootNavVc.viewControllers {
+                guard let dest = vc as? LoginViewController else {
+                    continue
+                }
+
+                self.delegate = dest
+
+                FirebaseUtility.logEvent(.forgotUsername(parameters: [.answer_question_complete]))
+
+                self.delegate?.forgotUsernameResultViewController(self, didUnmaskUsername: viewModel.maskedUsernames[viewModel.selectedUsernameIndex].email ?? "")
+                self.dismissModal()
             }
-
-            self.delegate = dest
-
-            FirebaseUtility.logEvent(.forgotUsername(parameters: [.answer_question_complete]))
-
-            self.delegate?.forgotUsernameResultViewController(self, didUnmaskUsername: viewModel.maskedUsernames[viewModel.selectedUsernameIndex].email ?? "")
-            self.dismissModal()
+        } else {
+            performSegue(withIdentifier: "securityQuestionSegue", sender: nil)
         }
     }
     

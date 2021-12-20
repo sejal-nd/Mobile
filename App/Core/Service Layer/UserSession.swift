@@ -61,14 +61,12 @@ extension UserSession {
         let tokenExpirationSeconds : Double
         let refreshTokenExpirationSeconds : Double
         
-        #warning("PKCE-need to verify and remove this piece if not required")
         if FeatureFlagUtility.shared.bool(forKey: .isAzureAuthentication){
-            //add logic if necessary for pkce
             tokenExpirationSeconds  = newTokenExpirationMilisecondsDouble // B2C returns value in seconds
             refreshTokenExpirationSeconds  = newRefreshTokenExpirationMilisecondsDouble // B2C returns value in seconds
         }else{
-            tokenExpirationSeconds  = newTokenExpirationMilisecondsDouble // B2C returns value in seconds
-            refreshTokenExpirationSeconds  = newRefreshTokenExpirationMilisecondsDouble // B2C returns value in seconds
+            tokenExpirationSeconds  = newTokenExpirationMilisecondsDouble / 1000
+            refreshTokenExpirationSeconds  = newRefreshTokenExpirationMilisecondsDouble / 1000
         }
         
         let newTokenExpirationDate = Date(timeIntervalSinceNow: tokenExpirationSeconds)

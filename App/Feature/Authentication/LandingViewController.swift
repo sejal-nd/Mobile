@@ -134,7 +134,7 @@ class LandingViewController: UIViewController {
     
     @IBAction func onSignInPress() {
         
-        if FeatureFlagUtility.shared.bool(forKey: .isAzureAuthentication){
+        if FeatureFlagUtility.shared.bool(forKey: .isPkceAuthentication){
             //Present ASWebAuthentication
             signInButton.tintWhite = false
             signInButton.setLoading()

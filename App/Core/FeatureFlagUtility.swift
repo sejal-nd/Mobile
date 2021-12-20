@@ -19,6 +19,7 @@ final class FeatureFlagUtility {
         case hasAssistanceEnrollment
         case agentisWidgets
         case isAzureAuthentication
+        case isPkceAuthentication
         case hasAuthenticatedISUM
         case hasUnauthenticatedISUM
     }
@@ -43,6 +44,7 @@ final class FeatureFlagUtility {
             FeatureFlagKey.hasAssistanceEnrollment.rawValue : false,
             FeatureFlagKey.agentisWidgets.rawValue : false,
             FeatureFlagKey.isAzureAuthentication.rawValue : false,
+            FeatureFlagKey.isPkceAuthentication.rawValue : false,
             FeatureFlagKey.hasAuthenticatedISUM.rawValue : false,
             FeatureFlagKey.hasUnauthenticatedISUM.rawValue : false
         ]
@@ -71,6 +73,7 @@ final class FeatureFlagUtility {
                     FeatureFlagKey.hasAssistanceEnrollment.rawValue : featureFlags.hasAssistanceEnrollment,
                     FeatureFlagKey.agentisWidgets.rawValue : featureFlags.agentisWidgets,
                     FeatureFlagKey.isAzureAuthentication.rawValue : featureFlags.isAzureAuthentication,
+                    FeatureFlagKey.isPkceAuthentication.rawValue : featureFlags.isPkceAuthentication,
                     FeatureFlagKey.hasAuthenticatedISUM.rawValue : featureFlags.hasAuthenticatedISUM,
                     FeatureFlagKey.hasUnauthenticatedISUM.rawValue : featureFlags.hasUnauthenticatedISUM
                 ]

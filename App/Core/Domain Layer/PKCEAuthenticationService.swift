@@ -49,6 +49,32 @@ class PKCEAuthenticationService:UIViewController {
         
     }
     
+    func presentMySecurityForm(completion: @escaping (Bool, String) -> ()){
+        let urlString = "https://\(Configuration.shared.b2cTenant).b2clogin.com/\(Configuration.shared.b2cTenant).onmicrosoft.com/oauth2/v2.0/authorize?p=B2C_1A_PROFILEEDIT_MOBILE&client_id=\(Configuration.shared.b2cClientID)&nonce=defaultNonce&redirect_uri=\(Configuration.shared.b2cRedirectURI)://auth&scope=openid%20offline_access&response_type=id_token"
+        
+        guard let url = URL(string: urlString) else { return }
+        
+        let callbackScheme = Configuration.shared.b2cRedirectURI
+        
+        authSession = ASWebAuthenticationSession(url: url, callbackURLScheme: callbackScheme, completionHandler: { (callbackURL, error) in
+            guard error == nil, let successURL = callbackURL else {
+                Log.error("ASWebAuthentication Session failed/terminated")
+                completion(false, error?.localizedDescription ?? "nil")
+                return
+            }
+            
+            let oauthToken = NSURLComponents(string: (successURL.absoluteString))?.queryItems?.filter({$0.name == "id_token"}).first
+            Log.info(successURL.absoluteString)
+            completion(true, oauthToken?.value ?? "nil")
+            
+        })
+        
+        authSession.presentationContextProvider = self
+        authSession.start()
+        
+        
+    }
+    
 }
 
 extension PKCEAuthenticationService: ASWebAuthenticationPresentationContextProviding {
