@@ -45,7 +45,7 @@ class BillingHistoryTableViewCell: UITableViewCell {
             iconImageView.image = #imageLiteral(resourceName: "ic_bill")
             let titleText = NSLocalizedString("Bill Issued", comment: "")
             titleLabel.text = titleText
-            amountLabel.text = item.totalAmountDue?.currencyString
+            amountLabel.text = item.totalAmountDue?.currencyString ?? Double(0.00).currencyString
             a11y = String(format: NSLocalizedString("%@. %@. %@. View PDF", comment: ""), titleText, dateString, amountLabel.text ?? "")
         } else {
             guard let amountPaid = item.amountPaid?.currencyString else {
