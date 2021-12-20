@@ -227,6 +227,13 @@ class OutageTrackerViewController: UIViewController {
         infoView.isHidden = false
     }
     
+    @IBAction func surveyButtonPressed(_ sender: Any) {
+        guard let url = URL(string: viewModel.surveyURL) else { return }
+        let survey = WebViewController(title: NSLocalizedString("", comment: ""),
+                                         url: url)
+        navigationController?.present(survey, animated: true, completion: nil)
+    }
+    
     @IBAction func whyButtonPressed(_ sender: Any) {
         guard let tracker = viewModel.outageTracker.value else { return }
         

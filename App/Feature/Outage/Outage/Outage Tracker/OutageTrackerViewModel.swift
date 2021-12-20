@@ -133,7 +133,24 @@ class OutageTrackerViewModel {
             case .onSite:
                 return "ot_onsite"
             case .restored:
-                return "Appt_Complete-FlavorBGE"
+                return "outage_on"
+            default:
+                return ""
+        }
+    }
+    
+    var surveyURL: String {
+        switch status {
+            case .reported:
+                return ""
+            case .assigned:
+                return ""
+            case .enRoute:
+                return ""
+            case .onSite:
+                return ""
+            case .restored:
+                return ""
             default:
                 return ""
         }

@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="j3V-0d-zjQ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="j3V-0d-zjQ">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="OpenSans-Bold.ttf">
+            <string>OpenSans-Bold</string>
+        </array>
+        <array key="OpenSans-Regular.ttf">
+            <string>OpenSans</string>
+        </array>
         <array key="OpenSans-Semibold.ttf">
             <string>OpenSans-Semibold</string>
         </array>
@@ -26,10 +32,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="1200"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BAo-5l-oWG" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1714"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1895"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="cSX-fc-17H">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="1714"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="1895"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="973-D0-8rB">
                                                         <rect key="frame" x="0.0" y="0.0" width="414" height="150"/>
@@ -360,8 +366,40 @@
                                                             <constraint firstItem="Ytu-oi-mMn" firstAttribute="leading" secondItem="VDq-ML-APe" secondAttribute="leading" constant="20" id="wND-eZ-bZn"/>
                                                         </constraints>
                                                     </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pbc-9G-tyI">
+                                                        <rect key="frame" x="0.0" y="1366" width="414" height="161"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AWU-mk-2LM">
+                                                                <rect key="frame" x="30" y="94" width="354" height="37"/>
+                                                                <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="18"/>
+                                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                                <state key="normal" title="Share Feedback">
+                                                                    <color key="titleColor" red="0.0" green="0.34509803919999998" blue="0.64313725489999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                                </state>
+                                                                <connections>
+                                                                    <action selector="surveyButtonPressed:" destination="j3V-0d-zjQ" eventType="touchUpInside" id="VRk-XH-uBj"/>
+                                                                </connections>
+                                                            </button>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We are always striving to improve and welcome your suggestions." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tsf-JK-TAb">
+                                                                <rect key="frame" x="30" y="30" width="354" height="44"/>
+                                                                <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="16"/>
+                                                                <color key="textColor" red="0.13725490196078433" green="0.12156862745098039" blue="0.12549019607843137" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <constraints>
+                                                            <constraint firstItem="tsf-JK-TAb" firstAttribute="top" secondItem="pbc-9G-tyI" secondAttribute="top" constant="30" id="6KF-Wy-Y50"/>
+                                                            <constraint firstItem="tsf-JK-TAb" firstAttribute="leading" secondItem="pbc-9G-tyI" secondAttribute="leading" constant="30" id="GTT-60-hCE"/>
+                                                            <constraint firstItem="AWU-mk-2LM" firstAttribute="leading" secondItem="pbc-9G-tyI" secondAttribute="leading" constant="30" id="XIX-2p-Y2i"/>
+                                                            <constraint firstItem="AWU-mk-2LM" firstAttribute="top" secondItem="tsf-JK-TAb" secondAttribute="bottom" constant="20" id="cXp-Ai-EQh"/>
+                                                            <constraint firstAttribute="bottom" secondItem="AWU-mk-2LM" secondAttribute="bottom" constant="30" id="di4-pq-O1s"/>
+                                                            <constraint firstAttribute="trailing" secondItem="tsf-JK-TAb" secondAttribute="trailing" constant="30" id="iws-SV-TWc"/>
+                                                            <constraint firstAttribute="trailing" secondItem="AWU-mk-2LM" secondAttribute="trailing" constant="30" id="ngs-vp-QTp"/>
+                                                        </constraints>
+                                                    </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2qx-Az-4kU">
-                                                        <rect key="frame" x="0.0" y="1366" width="414" height="180"/>
+                                                        <rect key="frame" x="0.0" y="1547" width="414" height="180"/>
                                                         <subviews>
                                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="8k8-H8-DxT">
                                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="180"/>
@@ -384,7 +422,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GEr-TU-ilh">
-                                                        <rect key="frame" x="0.0" y="1566" width="414" height="148"/>
+                                                        <rect key="frame" x="0.0" y="1747" width="414" height="148"/>
                                                         <subviews>
                                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="mQ7-7L-FjM" customClass="ZeroInsetDataDetectorTextView" customModule="EUMobile" customModuleProvider="target">
                                                                 <rect key="frame" x="20" y="10" width="374" height="128"/>
@@ -463,6 +501,7 @@
                         <outlet property="tableView" destination="8k8-H8-DxT" id="Iv2-KR-opQ"/>
                         <outlet property="trackerStatusContainer" destination="VDq-ML-APe" id="qaO-kB-qk6"/>
                         <outlet property="trackerStatusView" destination="Ytu-oi-mMn" id="1Ke-Dh-0Tf"/>
+                        <outlet property="whyButton" destination="hA5-lP-I8o" id="2la-kO-OWy"/>
                         <outlet property="whyButtonContainer" destination="MnI-Rd-Ylp" id="IBP-pF-PSu"/>
                         <outlet property="whyButtonView" destination="Xlz-Yf-g8n" id="VR1-QD-kjn"/>
                     </connections>
