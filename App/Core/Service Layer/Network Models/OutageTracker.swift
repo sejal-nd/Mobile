@@ -30,7 +30,25 @@ struct OutageTracker: Codable {
     let isCrewExtDamage: Bool?
 
     enum CodingKeys: String, CodingKey {
-        case isOutageValid, isMultipleOutage, outageID, switchPlanID, accountID, trackerStatus, isSafetyHazard, isPartialRestoration, lastUpdated, etrType, etrOverrideOn, stormMode, meterStatus, cause, customersOutOnOutage, eventSet, isCrewLeftSite, isCrewDiverted, isCrewExtDamage
+        case isOutageValid
+        case isMultipleOutage
+        case outageID
+        case switchPlanID
+        case accountID
+        case trackerStatus
+        case isSafetyHazard
+        case isPartialRestoration
+        case lastUpdated
+        case etrType
+        case etrOverrideOn
+        case stormMode
+        case meterStatus
+        case cause
+        case customersOutOnOutage
+        case eventSet
+        case isCrewLeftSite
+        case isCrewDiverted
+        case isCrewExtDamage
     }
 }
 

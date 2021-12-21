@@ -206,7 +206,7 @@ class OutageTrackerViewModel {
     }
     
     func fetchOutageTracker() {
-        AccountService.rx.fetchAccountSummary(includeDevice: true, includeMDM: false).flatMap {
+        AccountService.rx.fetchAccountSummary(includeDevice: true, includeMDM: true).flatMap {
             OutageService.rx.fetchOutageTracker(accountNumber: $0.accountNumber, deviceId: $0.deviceId ?? "", servicePointId: $0.servicePointId ?? "")
         }.subscribe(onNext: { tracker in
             self.outageTracker.accept(tracker)

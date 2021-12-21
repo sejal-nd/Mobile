@@ -83,7 +83,8 @@ enum OutageService {
     }
     
     static func fetchOutageTracker(accountNumber: String, deviceId: String, servicePointId: String, completion: @escaping (Result<OutageTracker, NetworkingError>) -> ()) {
-        NetworkingLayer.request(router: .outageTracker(accountNumber: accountNumber)) { (result: Result<OutageTracker, NetworkingError>) in
+        let request = OutageTrackerRequest(accountID: accountNumber, deviceID: deviceId, servicePointID: servicePointId)
+        NetworkingLayer.request(router: .outageTracker(accountNumber: accountNumber, request: request)) { (result: Result<OutageTracker, NetworkingError>) in
             switch result {
                 case .success(let outageTracker):
                     completion(.success(outageTracker))
