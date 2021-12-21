@@ -47,6 +47,8 @@
 		21852B03272EB8EA00C0A10E /* MoveStartServiceViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21852B02272EB8EA00C0A10E /* MoveStartServiceViewModelTests.swift */; };
 		21852B05272EC26600C0A10E /* IdVerificationViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21852B04272EC26600C0A10E /* IdVerificationViewModelTests.swift */; };
 		21AB86D3273912B0004FBC18 /* UnauthenticatedMoveAccountSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AB86D2273912B0004FBC18 /* UnauthenticatedMoveAccountSelectionCell.swift */; };
+		21C72A712772526700C31411 /* GasOnlyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C72A702772526700C31411 /* GasOnlyView.swift */; };
+		21C72A732772527700C31411 /* GasOnlyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21C72A722772527700C31411 /* GasOnlyView.xib */; };
 		21D1C512270ADF6400EFAFAC /* AddressSearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D1C50E270ADF6100EFAFAC /* AddressSearchModel.swift */; };
 		21D1C513270ADF6400EFAFAC /* AddressSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D1C50F270ADF6100EFAFAC /* AddressSearchViewController.swift */; };
 		21D1C515270ADF6400EFAFAC /* AddressSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D1C511270ADF6300EFAFAC /* AddressSearchCell.swift */; };
@@ -1288,6 +1290,8 @@
 		21852B04272EC26600C0A10E /* IdVerificationViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdVerificationViewModelTests.swift; sourceTree = "<group>"; };
 		21AB86D2273912B0004FBC18 /* UnauthenticatedMoveAccountSelectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnauthenticatedMoveAccountSelectionCell.swift; sourceTree = "<group>"; };
 		21C06E439FF0E3B0841F704C /* Pods-EUMobile-Watch Extension.peco-rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch Extension.peco-rc.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch Extension/Pods-EUMobile-Watch Extension.peco-rc.xcconfig"; sourceTree = "<group>"; };
+		21C72A702772526700C31411 /* GasOnlyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GasOnlyView.swift; sourceTree = "<group>"; };
+		21C72A722772527700C31411 /* GasOnlyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GasOnlyView.xib; sourceTree = "<group>"; };
 		21D1C50E270ADF6100EFAFAC /* AddressSearchModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressSearchModel.swift; sourceTree = "<group>"; };
 		21D1C50F270ADF6100EFAFAC /* AddressSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressSearchViewController.swift; sourceTree = "<group>"; };
 		21D1C511270ADF6300EFAFAC /* AddressSearchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressSearchCell.swift; sourceTree = "<group>"; };
@@ -3094,6 +3098,8 @@
 				215BD788275ACE3A0011F642 /* StatusView.xib */,
 				214006542762AEE700430C6E /* StatusInfoView.swift */,
 				215BD793276298790011F642 /* StatusInfoView.xib */,
+				21C72A702772526700C31411 /* GasOnlyView.swift */,
+				21C72A722772527700C31411 /* GasOnlyView.xib */,
 			);
 			path = OutageTracker;
 			sourceTree = "<group>";
@@ -6016,6 +6022,7 @@
 				E80043261E65FF70005CF531 /* OpenSans-Bold.ttf in Resources */,
 				4A74A0BB27304D6C00F87986 /* ISUMUnauthMove.storyboard in Resources */,
 				35532445253D6B8E0080589F /* PaymentAmount.storyboard in Resources */,
+				21C72A732772527700C31411 /* GasOnlyView.xib in Resources */,
 				9C62446822C42B4200F14DA0 /* FloatLabelTextView.xib in Resources */,
 				351241EF22B3DB8700E8BD25 /* AccountSheet.storyboard in Resources */,
 				30DD883625498122007C320D /* ItronSSODataMock.json in Resources */,
@@ -6957,6 +6964,7 @@
 				824A96651FB5F30D0026FA4B /* AdjustThermostatViewController.swift in Sources */,
 				35A2B88824A1E0E0004B38BC /* RegistrationViewModel.swift in Sources */,
 				4AC1E07C27228C6A00740A37 /* MoveServiceConfirmationViewController.swift in Sources */,
+				21C72A712772526700C31411 /* GasOnlyView.swift in Sources */,
 				4AC1E0802726739900740A37 /* MoveGeneralSubmitErrorViewController.swift in Sources */,
 				4A8CE7582703604300C78B05 /* StopISUMServiceRequest.swift in Sources */,
 				C3DC821F251A518B0014D571 /* AccountsStore.swift in Sources */,

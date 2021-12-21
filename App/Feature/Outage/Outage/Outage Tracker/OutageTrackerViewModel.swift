@@ -92,6 +92,10 @@ class OutageTrackerViewModel {
         guard let tracker = outageTracker.value, let count = tracker.customersOutOnOutage else { return "" }
         return NSLocalizedString(count, comment: "")
     }
+    var isGasOnly: Bool {
+        // todo: get value
+        return true
+    }
     var lastUpdated: String {
         var time = ""
         guard let tracker = outageTracker.value else { return "" }
@@ -115,6 +119,13 @@ class OutageTrackerViewModel {
             return false
         } else if status == .restored { return false }
         return true
+    }
+    var whyButtonText: String {
+        if status == .restored {
+             return NSLocalizedString("Still Have an Outage?", comment: "")
+        } else {
+             return NSLocalizedString("Why Did This Happen?", comment: "")
+        }
     }
     var footerText: NSAttributedString {
         let phone1 = "1-800-685-0123"

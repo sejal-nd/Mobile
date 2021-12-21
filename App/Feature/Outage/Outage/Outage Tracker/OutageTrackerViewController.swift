@@ -38,6 +38,12 @@ class OutageTrackerViewController: UIViewController {
     @IBOutlet weak var errorImageView: UIImageView!
     @IBOutlet weak var trackerStatusContainer: UIView!
     @IBOutlet weak var trackerStatusView: TrackerStatusView!
+    @IBOutlet weak var surveyContainer: UIView!
+    
+    @IBOutlet weak var titleLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var titleTrailingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var detailLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var detailTrailingConstraint: NSLayoutConstraint!
     
     let disposeBag = DisposeBag()
     let viewModel = OutageTrackerViewModel()
@@ -73,7 +79,6 @@ class OutageTrackerViewController: UIViewController {
     }
     
     private func configureFooterTextView() {
-        // todo  make phone numbers work
         footerTextView.font = SystemFont.regular.of(textStyle: .footnote)
         footerTextView.attributedText = viewModel.footerText
         footerTextView.textColor = .blackText
@@ -102,6 +107,7 @@ class OutageTrackerViewController: UIViewController {
         self.infoView.isHidden = true
         self.errorImageView.isHidden = true
         self.etaUpdatedView.isHidden = true
+        self.whyButtonContainer.isHidden = true
         
         etaView.roundCorners(.allCorners, radius: 10, borderColor: .successGreenText, borderWidth: 1.0)
         
@@ -117,31 +123,54 @@ class OutageTrackerViewController: UIViewController {
     }
     
     private func update() {
-        trackerStatusView.configure(withEvents: viewModel.events, lastUpdated: viewModel.lastUpdated)
-        statusTitleLabel.text = viewModel.statusTitle
-        statusDetailLabel.text = viewModel.statusDetails
-        neighborCountLabel.text = viewModel.neighborCount
-        outageCountLabel.text = viewModel.outageCount
-        
-        statusDetailView.isHidden = viewModel.statusDetails.isEmpty
-        
-        if viewModel.status == .none {
-            etaContainerView.isHidden = true
-            countContainerView.isHidden = true
-            trackerStatusContainer.isHidden = true
-            progressAnimationContainer.isHidden = true
-            errorImageView.isHidden = false
-        }
-        whyButtonContainer.isHidden = viewModel.hideWhyButton
-        if viewModel.status == .restored {
-            whyButton.setTitle(NSLocalizedString("Still Have an Outage?", comment: ""), for: .normal)
+        if viewModel.isGasOnly {
+            let gasOnlyView = GasOnlyView()
+            gasOnlyView.frame = self.view.bounds
+            self.view.addSubview(gasOnlyView)
         } else {
-            whyButton.setTitle(NSLocalizedString("Why Did This Happen?", comment: ""), for: .normal)
+            statusTitleLabel.text = viewModel.statusTitle
+            statusDetailLabel.text = viewModel.statusDetails
+            
+            if viewModel.status == .none {
+                etaContainerView.isHidden = true
+                countContainerView.isHidden = true
+                trackerStatusContainer.isHidden = true
+                surveyContainer.isHidden = true
+                progressAnimationContainer.isHidden = true
+                errorImageView.isHidden = false
+                errorImageView.image = UIImage(named: "ic_bigerror_sm")
+                
+                statusTitleLabel.textAlignment = .center
+                titleLeadingConstraint.constant = 30
+                titleTrailingConstraint.constant = 30
+                detailLeadingConstraint.constant = 50
+                detailTrailingConstraint.constant = 50
+            } else {
+                etaContainerView.isHidden = false
+                countContainerView.isHidden = false
+                trackerStatusContainer.isHidden = false
+                surveyContainer.isHidden = false
+                progressAnimationContainer.isHidden = false
+                errorImageView.isHidden = true
+                statusDetailView.isHidden = viewModel.statusDetails.isEmpty
+                
+                statusTitleLabel.textAlignment = .left
+                titleLeadingConstraint.constant = 20
+                titleTrailingConstraint.constant = 20
+                detailLeadingConstraint.constant = 20
+                detailTrailingConstraint.constant = 20
+                
+                trackerStatusView.configure(withEvents: viewModel.events, lastUpdated: viewModel.lastUpdated)
+                whyButtonContainer.isHidden = viewModel.hideWhyButton
+                whyButton.setTitle(viewModel.whyButtonText, for: .normal)
+                neighborCountLabel.text = viewModel.neighborCount
+                outageCountLabel.text = viewModel.outageCount
+                updateETA()
+            }
+            
+            refreshControl?.endRefreshing()
+            setRefreshControlEnabled(enabled: true)
         }
-        
-        updateETA()
-        refreshControl?.endRefreshing()
-        setRefreshControlEnabled(enabled: true)
     }
     
     private func updateETA() {

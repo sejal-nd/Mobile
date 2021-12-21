@@ -48,7 +48,7 @@
                                                                     <constraint firstAttribute="height" constant="125" id="uDZ-ow-Uww"/>
                                                                 </constraints>
                                                             </view>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_mederror" translatesAutoresizingMaskIntoConstraints="NO" id="aoU-w4-5LM">
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_bigerror_sm" translatesAutoresizingMaskIntoConstraints="NO" id="aoU-w4-5LM">
                                                                 <rect key="frame" x="147" y="15" width="120" height="120"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="120" id="6cc-BT-S00"/>
@@ -387,7 +387,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstItem="tsf-JK-TAb" firstAttribute="top" secondItem="pbc-9G-tyI" secondAttribute="top" constant="30" id="6KF-Wy-Y50"/>
                                                             <constraint firstItem="tsf-JK-TAb" firstAttribute="leading" secondItem="pbc-9G-tyI" secondAttribute="leading" constant="30" id="GTT-60-hCE"/>
@@ -425,7 +425,7 @@
                                                         <rect key="frame" x="0.0" y="1747" width="414" height="148"/>
                                                         <subviews>
                                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="mQ7-7L-FjM" customClass="ZeroInsetDataDetectorTextView" customModule="EUMobile" customModuleProvider="target">
-                                                                <rect key="frame" x="20" y="10" width="374" height="128"/>
+                                                                <rect key="frame" x="30" y="10" width="354" height="128"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="128" id="5jU-yU-V9i"/>
@@ -439,8 +439,8 @@
                                                         <constraints>
                                                             <constraint firstItem="mQ7-7L-FjM" firstAttribute="top" secondItem="GEr-TU-ilh" secondAttribute="top" constant="10" id="9aZ-2F-egI"/>
                                                             <constraint firstAttribute="bottom" secondItem="mQ7-7L-FjM" secondAttribute="bottom" constant="10" id="CNq-bD-Q9G"/>
-                                                            <constraint firstAttribute="trailing" secondItem="mQ7-7L-FjM" secondAttribute="trailing" constant="20" id="OkA-wc-HxQ"/>
-                                                            <constraint firstItem="mQ7-7L-FjM" firstAttribute="leading" secondItem="GEr-TU-ilh" secondAttribute="leading" constant="20" id="jgh-Vl-mOa"/>
+                                                            <constraint firstAttribute="trailing" secondItem="mQ7-7L-FjM" secondAttribute="trailing" constant="30" id="OkA-wc-HxQ"/>
+                                                            <constraint firstItem="mQ7-7L-FjM" firstAttribute="leading" secondItem="GEr-TU-ilh" secondAttribute="leading" constant="30" id="jgh-Vl-mOa"/>
                                                         </constraints>
                                                     </view>
                                                 </subviews>
@@ -480,6 +480,8 @@
                     <connections>
                         <outlet property="countContainerView" destination="Pnt-P8-RZO" id="OOm-73-JWi"/>
                         <outlet property="countView" destination="cWI-09-Uc4" id="yEx-DR-55a"/>
+                        <outlet property="detailLeadingConstraint" destination="AJc-1m-RdI" id="xK0-QE-OtW"/>
+                        <outlet property="detailTrailingConstraint" destination="usx-k6-UJG" id="43i-aZ-0hJ"/>
                         <outlet property="errorImageView" destination="aoU-w4-5LM" id="n9u-uC-7VH"/>
                         <outlet property="etaCauseLabel" destination="A4I-GM-Im0" id="8d3-nh-f9w"/>
                         <outlet property="etaContainerView" destination="VaI-QQ-0qz" id="iTa-Zi-KSw"/>
@@ -498,7 +500,10 @@
                         <outlet property="statusDetailView" destination="QXU-DZ-xsh" id="7Lf-LF-3LS"/>
                         <outlet property="statusTitleLabel" destination="8R8-mV-Ey9" id="ZMo-kA-ijs"/>
                         <outlet property="statusTitleView" destination="4rc-GQ-SVh" id="rfo-Kr-g0a"/>
+                        <outlet property="surveyContainer" destination="pbc-9G-tyI" id="2rk-Um-NCx"/>
                         <outlet property="tableView" destination="8k8-H8-DxT" id="Iv2-KR-opQ"/>
+                        <outlet property="titleLeadingConstraint" destination="xKn-P8-xYe" id="ZsX-lQ-6Ww"/>
+                        <outlet property="titleTrailingConstraint" destination="OTH-3k-FgG" id="KQW-ds-g4K"/>
                         <outlet property="trackerStatusContainer" destination="VDq-ML-APe" id="qaO-kB-qk6"/>
                         <outlet property="trackerStatusView" destination="Ytu-oi-mMn" id="1Ke-Dh-0Tf"/>
                         <outlet property="whyButton" destination="hA5-lP-I8o" id="2la-kO-OWy"/>
@@ -512,7 +517,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="ic_mederror" width="49" height="48"/>
+        <image name="ic_bigerror_sm" width="120" height="120"/>
         <image name="ic_tooltip" width="24" height="24"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
