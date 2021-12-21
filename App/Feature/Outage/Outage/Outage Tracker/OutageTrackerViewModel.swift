@@ -93,8 +93,7 @@ class OutageTrackerViewModel {
         return NSLocalizedString(count, comment: "")
     }
     var isGasOnly: Bool {
-        // todo: get value
-        return true
+        return outageStatus.value?.isGasOnly ?? false
     }
     var lastUpdated: String {
         var time = ""
