@@ -33,11 +33,5 @@ public struct AccountSummary: Decodable {
         public var premiseNumber: String?
         public var deviceId: String?
         public var servicePointId: String?
-        
-        enum CodingKeys: String, CodingKey {
-            case premiseNumber
-            case deviceId = "deviceID"
-            case servicePointId = "servicePointID"
-        }
     }
 }
