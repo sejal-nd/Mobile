@@ -81,7 +81,7 @@ public struct TokenResponse: Decodable {
                         
                         self.isMfaJustEnabled = json["isMfaJustEnabled"] as? Bool ?? false
                         self.isMfaEnabled = json["isMfaEnabled"] as? Bool ?? false
-                        self.mfaSignUpSelection = json["mfaSignUpSelection"] as? String
+                        self.mfaSignUpSelection = json["mfaSignupSelection"] as? String
                     }
                 } catch {
                     Log.error("Error with B2C token structure")

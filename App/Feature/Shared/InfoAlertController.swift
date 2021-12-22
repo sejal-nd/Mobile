@@ -24,7 +24,7 @@ class InfoAlertController: UIViewController {
     private let titleLabel = UILabel().usingAutoLayout()
     private let messageLabel = UILabel().usingAutoLayout()
     private let xButton = UIButton(type: .custom).usingAutoLayout()
-    private var ctaButton: PrimaryButton?
+    private var ctaButton: UIButton?
     
     private let titleString: String
     private let message: String?
@@ -107,14 +107,24 @@ class InfoAlertController: UIViewController {
         stackView.addArrangedSubview(messageLabel)
         
         if let _ = action {
-            let ctaButton = PrimaryButton(frame: .zero).usingAutoLayout()
+            var ctaButton: UIButton
+            
+            if buttonType == .primary {
+                ctaButton = PrimaryButton(frame: .zero).usingAutoLayout()
+            } else if buttonType == .secondary {
+                ctaButton = SecondaryButton(frame: .zero).usingAutoLayout()
+            } else {
+                ctaButton = UIButton(type: .system).usingAutoLayout()
+            }
             
             stackView.addArrangedSubview(ctaButton)
             
-            constraints += [
-                ctaButton.heightAnchor.constraint(equalToConstant: 45),
-                ctaButton.widthAnchor.constraint(equalToConstant: 215)
-            ]
+            if buttonType != .system {
+                constraints += [
+                    ctaButton.heightAnchor.constraint(equalToConstant: 45),
+                    ctaButton.widthAnchor.constraint(equalToConstant: 215)
+                ]
+            }
             
             self.ctaButton = ctaButton
         }
@@ -143,8 +153,13 @@ class InfoAlertController: UIViewController {
         messageLabel.numberOfLines = 0
         messageLabel.textAlignment = .center
         
-        ctaButton?.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
-        ctaButton?.layer.cornerRadius = 22
+        if buttonType != .system {
+            ctaButton?.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
+            ctaButton?.layer.cornerRadius = 22
+        } else {
+            ctaButton?.setTitleColor(.actionBlue, for: .normal)
+            ctaButton?.titleLabel?.font = SystemFont.semibold.of(textStyle: .body)
+        }
     }
     
     private func populateViews() {
