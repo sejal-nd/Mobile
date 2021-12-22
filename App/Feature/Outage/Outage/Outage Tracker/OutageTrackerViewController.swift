@@ -12,6 +12,7 @@ import Lottie
 import RxSwift
 
 class OutageTrackerViewController: UIViewController {
+    @IBOutlet weak var loadingIndicator: LoadingIndicator!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var progressAnimationContainer: UIView!
     @IBOutlet weak var statusTitleView: UIView!
@@ -34,6 +35,7 @@ class OutageTrackerViewController: UIViewController {
     @IBOutlet weak var neighborCountLabel: UILabel!
     @IBOutlet weak var outageCountLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableViewContainer: UIView!
     @IBOutlet weak var footerTextView: ZeroInsetDataDetectorTextView!
     @IBOutlet weak var errorImageView: UIImageView!
     @IBOutlet weak var trackerStatusContainer: UIView!
@@ -68,6 +70,9 @@ class OutageTrackerViewController: UIViewController {
     }
     
     private func loadOutageTracker() {
+        scrollView.isHidden = true
+        loadingIndicator.isHidden = false
+        self.viewModel.getOutageStatus()
         self.viewModel.fetchOutageTracker()
     }
     
@@ -90,12 +95,13 @@ class OutageTrackerViewController: UIViewController {
             .subscribe(onNext: { [weak self] _ in
                 self?.setUpProgressAnimation()
                 self?.update()
+                self?.scrollView.isHidden = false
+                self?.loadingIndicator.isHidden = true
             })
             .disposed(by: self.disposeBag)
         
         self.viewModel.outageStatus
-            .subscribe(onNext: { [weak self] _ in
-                self?.reportOutage()
+            .subscribe(onNext: { _ in
             })
             .disposed(by: self.disposeBag)
     }
@@ -119,7 +125,7 @@ class OutageTrackerViewController: UIViewController {
         
         countView.roundCorners(.allCorners, radius: 10, borderColor: .accentGray, borderWidth: 1.0)
         
-        tableView.roundCorners(.allCorners, radius: 0, borderColor: .accentGray, borderWidth: 1.0)
+        tableViewContainer.roundCorners(.allCorners, radius: 0, borderColor: .accentGray, borderWidth: 1.0)
     }
     
     private func update() {
@@ -154,18 +160,35 @@ class OutageTrackerViewController: UIViewController {
                 errorImageView.isHidden = true
                 statusDetailView.isHidden = viewModel.statusDetails.isEmpty
                 
-                statusTitleLabel.textAlignment = .left
-                titleLeadingConstraint.constant = 20
-                titleTrailingConstraint.constant = 20
-                detailLeadingConstraint.constant = 20
-                detailTrailingConstraint.constant = 20
+                if viewModel.status == .restored {
+                    statusTitleLabel.textAlignment = .center
+                    countContainerView.isHidden = true
+                    
+                    statusTitleLabel.textAlignment = .center
+                    titleLeadingConstraint.constant = 30
+                    titleTrailingConstraint.constant = 30
+                    detailLeadingConstraint.constant = 50
+                    detailTrailingConstraint.constant = 50
+                } else {
+                    statusTitleLabel.textAlignment = .left
+                    titleLeadingConstraint.constant = 20
+                    titleTrailingConstraint.constant = 20
+                    detailLeadingConstraint.constant = 20
+                    detailTrailingConstraint.constant = 20
+                }
                 
-                trackerStatusView.configure(withEvents: viewModel.events, lastUpdated: viewModel.lastUpdated)
                 whyButtonContainer.isHidden = viewModel.hideWhyButton
                 whyButton.setTitle(viewModel.whyButtonText, for: .normal)
                 neighborCountLabel.text = viewModel.neighborCount
                 outageCountLabel.text = viewModel.outageCount
                 updateETA()
+                
+                if viewModel.events.isEmpty {
+                    trackerStatusContainer.isHidden = true
+                } else {
+                    trackerStatusContainer.isHidden = false
+                    trackerStatusView.configure(withEvents: viewModel.events, lastUpdated: viewModel.lastUpdated)
+                }
             }
             
             refreshControl?.endRefreshing()
@@ -191,9 +214,6 @@ class OutageTrackerViewController: UIViewController {
                 etaDetailLabel.isHidden = true
                 etaInfoButton.isHidden = true
         }
-        
-        // show/hide update view
-        
     }
     
     private func reportOutage() {
@@ -352,7 +372,7 @@ extension OutageTrackerViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         
         if indexPath.row == 0 {
-            viewModel.getOutageStatus()
+            reportOutage()
         } else {
             let isStreetMap = indexPath.row == 1
             openOutageMap(forStreetMap: isStreetMap)

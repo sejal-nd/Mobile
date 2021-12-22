@@ -51,24 +51,35 @@ class OutageTrackerViewModel {
             return StatusDetailString.trackerNone
         }
         var details = ""
-        if tracker.isCrewLeftSite == true {
-            details = StatusDetailString.crewLeftSite
-        } else if tracker.isCrewExtDamage == true {
-            details = StatusDetailString.crewExtDamage
-        } else if tracker.isSafetyHazard == true {
-            details = StatusDetailString.crewSafetyHazard
-        } else if tracker.isPartialRestoration == true {
-            let count = tracker.customersOutOnOutage ?? ""
-            details = String.localizedStringWithFormat(StatusDetailString.partialRestoration, count)
+        if status == .restored {
+            // todo: determine
+            details = StatusDetailString.restoredDefReg
+        } else {
+            if tracker.isCrewLeftSite == true {
+                details = StatusDetailString.crewLeftSite
+            } else if tracker.isCrewExtDamage == true {
+                details = StatusDetailString.crewExtDamage
+            } else if tracker.isSafetyHazard == true {
+                details = StatusDetailString.crewSafetyHazard
+            } else if tracker.isPartialRestoration == true {
+                let count = tracker.customersOutOnOutage ?? ""
+                details = String.localizedStringWithFormat(StatusDetailString.partialRestoration, count)
+            }
         }
-        return NSLocalizedString(details, comment: "")
+        
+        return details
     }
     var etaTitle: String {
-        return NSLocalizedString("Estimated Time of Restoration (ETR)", comment: "")
+        if status == .restored {
+            return NSLocalizedString("Your power was restored at:", comment: "")
+        } else {
+            return NSLocalizedString("Estimated Time of Restoration (ETR)", comment: "")
+        }
     }
     var etaDateTime: String {
-        // todo where does this come from???
-        // if unavailable, return Currently Unavailable else return time
+        if let etrDate = outageStatus.value?.estimatedRestorationDate {
+            return DateFormatter.fullMonthDayAndTimeFormatter.string(from: etrDate)
+        }
         return NSLocalizedString("Currently Unavailable", comment: "")
     }
     var etaDetail: String {
@@ -78,18 +89,22 @@ class OutageTrackerViewModel {
         return NSLocalizedString("The current ETR is up-to-date based on the latest reports from the repair crew. ETRs are updated as new information becomes available.", comment: "")
     }
     var etaCause: String {
-        guard let tracker = outageTracker.value, let cause = tracker.cause else {
+        guard let cause = outageTracker.value?.cause else {
             return ""
         }
         return NSLocalizedString(cause, comment: "")
     }
     var neighborCount: String {
         // todo - this field is missing
-        guard let tracker = outageTracker.value, let count = tracker.customersOutOnOutage else { return "" }
+        guard let count = outageTracker.value?.customersOutOnOutage else {
+            return ""
+        }
         return NSLocalizedString(count, comment: "")
     }
     var outageCount: String {
-        guard let tracker = outageTracker.value, let count = tracker.customersOutOnOutage else { return "" }
+        guard let count = outageTracker.value?.customersOutOnOutage else {
+            return ""
+        }
         return NSLocalizedString(count, comment: "")
     }
     var isGasOnly: Bool {
@@ -97,13 +112,11 @@ class OutageTrackerViewModel {
     }
     var lastUpdated: String {
         var time = ""
-        guard let tracker = outageTracker.value else { return "" }
-        if let dateString = tracker.lastUpdated {
+        if let dateString = outageTracker.value?.lastUpdated {
             if let date = DateFormatter.apiFormatter.date(from: dateString) {
                 time = DateFormatter.hmmaFormatter.string(from: date)
             }
         }
-        
         return time
     }
     var hideWhyButton: Bool {
@@ -173,7 +186,7 @@ class OutageTrackerViewModel {
             case .assigned:
                 return ""
             case .enRoute:
-                return ""
+                return "https://www.surveymonkey.com/r/HPTDG6T"
             case .onSite:
                 return ""
             case .restored:

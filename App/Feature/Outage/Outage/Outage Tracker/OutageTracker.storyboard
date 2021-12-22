@@ -28,6 +28,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="1200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="fBN-OV-SP7" customClass="LoadingIndicator" customModule="EUMobile" customModuleProvider="target">
+                                <rect key="frame" x="177" y="594" width="60" height="12"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FM4-Ab-ESP">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="1200"/>
                                 <subviews>
@@ -355,12 +359,12 @@
                                                         <rect key="frame" x="0.0" y="726" width="414" height="620"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="364" placeholderIntrinsicHeight="360" translatesAutoresizingMaskIntoConstraints="NO" id="Ytu-oi-mMn" customClass="TrackerStatusView" customModule="EUMobile" customModuleProvider="target">
-                                                                <rect key="frame" x="20" y="10" width="374" height="600"/>
+                                                                <rect key="frame" x="20" y="10" width="374" height="610"/>
                                                             </view>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="bottom" secondItem="Ytu-oi-mMn" secondAttribute="bottom" constant="10" id="9Yi-4f-eH0"/>
+                                                            <constraint firstAttribute="bottom" secondItem="Ytu-oi-mMn" secondAttribute="bottom" id="9Yi-4f-eH0"/>
                                                             <constraint firstAttribute="trailing" secondItem="Ytu-oi-mMn" secondAttribute="trailing" constant="20" id="hyX-Y0-dbk"/>
                                                             <constraint firstItem="Ytu-oi-mMn" firstAttribute="top" secondItem="VDq-ML-APe" secondAttribute="top" constant="10" id="rSq-fF-imP"/>
                                                             <constraint firstItem="Ytu-oi-mMn" firstAttribute="leading" secondItem="VDq-ML-APe" secondAttribute="leading" constant="20" id="wND-eZ-bZn"/>
@@ -369,8 +373,15 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pbc-9G-tyI">
                                                         <rect key="frame" x="0.0" y="1366" width="414" height="161"/>
                                                         <subviews>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FkM-sN-yIp">
+                                                                <rect key="frame" x="0.0" y="0.0" width="414" height="1"/>
+                                                                <color key="backgroundColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="1" id="kAB-ow-14W"/>
+                                                                </constraints>
+                                                            </view>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AWU-mk-2LM">
-                                                                <rect key="frame" x="30" y="94" width="354" height="37"/>
+                                                                <rect key="frame" x="30" y="94" width="354" height="57"/>
                                                                 <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="18"/>
                                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                                 <state key="normal" title="Share Feedback">
@@ -392,10 +403,13 @@
                                                             <constraint firstItem="tsf-JK-TAb" firstAttribute="top" secondItem="pbc-9G-tyI" secondAttribute="top" constant="30" id="6KF-Wy-Y50"/>
                                                             <constraint firstItem="tsf-JK-TAb" firstAttribute="leading" secondItem="pbc-9G-tyI" secondAttribute="leading" constant="30" id="GTT-60-hCE"/>
                                                             <constraint firstItem="AWU-mk-2LM" firstAttribute="leading" secondItem="pbc-9G-tyI" secondAttribute="leading" constant="30" id="XIX-2p-Y2i"/>
+                                                            <constraint firstItem="FkM-sN-yIp" firstAttribute="top" secondItem="pbc-9G-tyI" secondAttribute="top" id="bwg-zZ-g2U"/>
                                                             <constraint firstItem="AWU-mk-2LM" firstAttribute="top" secondItem="tsf-JK-TAb" secondAttribute="bottom" constant="20" id="cXp-Ai-EQh"/>
-                                                            <constraint firstAttribute="bottom" secondItem="AWU-mk-2LM" secondAttribute="bottom" constant="30" id="di4-pq-O1s"/>
+                                                            <constraint firstAttribute="trailing" secondItem="FkM-sN-yIp" secondAttribute="trailing" id="d8y-qJ-eED"/>
+                                                            <constraint firstAttribute="bottom" secondItem="AWU-mk-2LM" secondAttribute="bottom" constant="10" id="di4-pq-O1s"/>
                                                             <constraint firstAttribute="trailing" secondItem="tsf-JK-TAb" secondAttribute="trailing" constant="30" id="iws-SV-TWc"/>
                                                             <constraint firstAttribute="trailing" secondItem="AWU-mk-2LM" secondAttribute="trailing" constant="30" id="ngs-vp-QTp"/>
+                                                            <constraint firstItem="FkM-sN-yIp" firstAttribute="leading" secondItem="pbc-9G-tyI" secondAttribute="leading" id="yRl-dU-xMD"/>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2qx-Az-4kU">
@@ -447,6 +461,7 @@
                                                 <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </stackView>
                                         </subviews>
+                                        <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="cSX-fc-17H" secondAttribute="trailing" id="8fV-Tg-Rm5"/>
                                             <constraint firstAttribute="bottom" secondItem="cSX-fc-17H" secondAttribute="bottom" id="Jtj-hb-ois"/>
@@ -455,6 +470,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
+                                <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="BAo-5l-oWG" secondAttribute="trailing" id="GdE-4U-qAW"/>
                                     <constraint firstItem="BAo-5l-oWG" firstAttribute="top" secondItem="FM4-Ab-ESP" secondAttribute="top" id="XQy-CJ-Xef"/>
@@ -466,9 +482,11 @@
                             </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="nwx-OG-d1t"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="fBN-OV-SP7" firstAttribute="centerY" secondItem="pWR-20-TKy" secondAttribute="centerY" id="11N-xR-fHP"/>
                             <constraint firstItem="FM4-Ab-ESP" firstAttribute="trailing" secondItem="nwx-OG-d1t" secondAttribute="trailing" id="KMG-eD-Zwh"/>
+                            <constraint firstItem="fBN-OV-SP7" firstAttribute="centerX" secondItem="pWR-20-TKy" secondAttribute="centerX" id="bjE-xm-f6k"/>
                             <constraint firstItem="FM4-Ab-ESP" firstAttribute="leading" secondItem="nwx-OG-d1t" secondAttribute="leading" id="vw0-ub-XVW"/>
                             <constraint firstItem="BAo-5l-oWG" firstAttribute="width" secondItem="pWR-20-TKy" secondAttribute="width" id="yGj-i2-6CR"/>
                             <constraint firstAttribute="bottom" secondItem="FM4-Ab-ESP" secondAttribute="bottom" id="yRi-xz-cFb"/>
@@ -492,6 +510,7 @@
                         <outlet property="etaUpdatedView" destination="CtI-3O-2j6" id="eZB-gf-odK"/>
                         <outlet property="etaView" destination="ZPR-jk-lhd" id="Ucc-zM-ipu"/>
                         <outlet property="footerTextView" destination="mQ7-7L-FjM" id="ZQ2-MJ-wai"/>
+                        <outlet property="loadingIndicator" destination="fBN-OV-SP7" id="Rcf-6y-CW0"/>
                         <outlet property="neighborCountLabel" destination="1pn-tZ-0pf" id="UX5-sT-CSX"/>
                         <outlet property="outageCountLabel" destination="UPo-Gi-eGr" id="v02-2T-b0i"/>
                         <outlet property="progressAnimationContainer" destination="hhk-NV-joZ" id="Lzn-eP-r8Y"/>
@@ -502,6 +521,7 @@
                         <outlet property="statusTitleView" destination="4rc-GQ-SVh" id="rfo-Kr-g0a"/>
                         <outlet property="surveyContainer" destination="pbc-9G-tyI" id="2rk-Um-NCx"/>
                         <outlet property="tableView" destination="8k8-H8-DxT" id="Iv2-KR-opQ"/>
+                        <outlet property="tableViewContainer" destination="2qx-Az-4kU" id="5Hr-PQ-id4"/>
                         <outlet property="titleLeadingConstraint" destination="xKn-P8-xYe" id="ZsX-lQ-6Ww"/>
                         <outlet property="titleTrailingConstraint" destination="OTH-3k-FgG" id="KQW-ds-g4K"/>
                         <outlet property="trackerStatusContainer" destination="VDq-ML-APe" id="qaO-kB-qk6"/>
