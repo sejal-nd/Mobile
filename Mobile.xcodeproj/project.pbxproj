@@ -40,6 +40,12 @@
 		215BD78B275ACE4B0011F642 /* TrackerStatusView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 215BD78A275ACE4B0011F642 /* TrackerStatusView.xib */; };
 		215BD78F275FFFD00011F642 /* OutageTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C372B65E275850E600E38F64 /* OutageTracker.swift */; };
 		215BD794276298790011F642 /* StatusInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 215BD793276298790011F642 /* StatusInfoView.xib */; };
+		215D05B227739542009377AC /* SM_ot_enroute.json in Resources */ = {isa = PBXBuildFile; fileRef = 215D05AC27739540009377AC /* SM_ot_enroute.json */; };
+		215D05B327739542009377AC /* SM_alerticon.json in Resources */ = {isa = PBXBuildFile; fileRef = 215D05AD27739540009377AC /* SM_alerticon.json */; };
+		215D05B427739542009377AC /* SM_ot_onsite.json in Resources */ = {isa = PBXBuildFile; fileRef = 215D05AE27739541009377AC /* SM_ot_onsite.json */; };
+		215D05B527739542009377AC /* SM_ot_assigned.json in Resources */ = {isa = PBXBuildFile; fileRef = 215D05AF27739541009377AC /* SM_ot_assigned.json */; };
+		215D05B627739543009377AC /* SM_OnWhite.json in Resources */ = {isa = PBXBuildFile; fileRef = 215D05B027739542009377AC /* SM_OnWhite.json */; };
+		215D05B727739543009377AC /* SM_ReportedWhite.json in Resources */ = {isa = PBXBuildFile; fileRef = 215D05B127739542009377AC /* SM_ReportedWhite.json */; };
 		217E2AD6271EA90C009D3587 /* MoveLandingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217E2AD5271EA90C009D3587 /* MoveLandingViewModel.swift */; };
 		21852AFB272D1DF500C0A10E /* ReviewMoveServiceViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21852AFA272D1DF500C0A10E /* ReviewMoveServiceViewModelTest.swift */; };
 		21852AFD272E9A1900C0A10E /* MockModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21852AFC272E9A1900C0A10E /* MockModel.swift */; };
@@ -1282,6 +1288,12 @@
 		215BD788275ACE3A0011F642 /* StatusView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatusView.xib; sourceTree = "<group>"; };
 		215BD78A275ACE4B0011F642 /* TrackerStatusView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrackerStatusView.xib; sourceTree = "<group>"; };
 		215BD793276298790011F642 /* StatusInfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatusInfoView.xib; sourceTree = "<group>"; };
+		215D05AC27739540009377AC /* SM_ot_enroute.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SM_ot_enroute.json; sourceTree = "<group>"; };
+		215D05AD27739540009377AC /* SM_alerticon.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SM_alerticon.json; sourceTree = "<group>"; };
+		215D05AE27739541009377AC /* SM_ot_onsite.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SM_ot_onsite.json; sourceTree = "<group>"; };
+		215D05AF27739541009377AC /* SM_ot_assigned.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SM_ot_assigned.json; sourceTree = "<group>"; };
+		215D05B027739542009377AC /* SM_OnWhite.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SM_OnWhite.json; sourceTree = "<group>"; };
+		215D05B127739542009377AC /* SM_ReportedWhite.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SM_ReportedWhite.json; sourceTree = "<group>"; };
 		217E2AD5271EA90C009D3587 /* MoveLandingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveLandingViewModel.swift; sourceTree = "<group>"; };
 		21852AFA272D1DF500C0A10E /* ReviewMoveServiceViewModelTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewMoveServiceViewModelTest.swift; sourceTree = "<group>"; };
 		21852AFC272E9A1900C0A10E /* MockModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockModel.swift; sourceTree = "<group>"; };
@@ -3081,6 +3093,7 @@
 		214006562767F55F00430C6E /* OutageTracker */ = {
 			isa = PBXGroup;
 			children = (
+				215D05AB2773950D009377AC /* SM */,
 				214006572767F58C00430C6E /* ot_assigned.json */,
 				2140065A2767F58E00430C6E /* ot_enroute.json */,
 				214006582767F58D00430C6E /* ot_onsite.json */,
@@ -3102,6 +3115,19 @@
 				21C72A722772527700C31411 /* GasOnlyView.xib */,
 			);
 			path = OutageTracker;
+			sourceTree = "<group>";
+		};
+		215D05AB2773950D009377AC /* SM */ = {
+			isa = PBXGroup;
+			children = (
+				215D05AD27739540009377AC /* SM_alerticon.json */,
+				215D05B027739542009377AC /* SM_OnWhite.json */,
+				215D05AF27739541009377AC /* SM_ot_assigned.json */,
+				215D05AC27739540009377AC /* SM_ot_enroute.json */,
+				215D05AE27739541009377AC /* SM_ot_onsite.json */,
+				215D05B127739542009377AC /* SM_ReportedWhite.json */,
+			);
+			path = SM;
 			sourceTree = "<group>";
 		};
 		282B4F7426E746A500ACD33C /* StartStopMove */ = {
@@ -6006,10 +6032,12 @@
 				B0B083FB21710CDB00B1C632 /* Appt_Confirmed-FlavorBGE.json in Resources */,
 				356AC13325064E5F000CF867 /* TapToPay.storyboard in Resources */,
 				21D4983027310C3300EAE112 /* AddressLookupResponseMock.json in Resources */,
+				215D05B227739542009377AC /* SM_ot_enroute.json in Resources */,
 				B07E17E92209F0CA00B6E3C7 /* bill_comparison.json in Resources */,
 				67D5632024EDC14D00852551 /* landing_video-FlavorCOMED.mp4 in Resources */,
 				B089571F2217455200A97965 /* account_lookup.json in Resources */,
 				675F4D5624AB828200A828F9 /* HomeProfileLoadMock.json in Resources */,
+				215D05B527739542009377AC /* SM_ot_assigned.json in Resources */,
 				675F4DCE24AB828200A828F9 /* WalletMock.json in Resources */,
 				B0726939212757AA009B2BFF /* HomeUpdateView.xib in Resources */,
 				822BBBA41EFC1A01004EBBAB /* WebViewController.xib in Resources */,
@@ -6161,6 +6189,7 @@
 				9C50EBD322B971D500A89DBF /* AccountPicker.xib in Resources */,
 				675F4D5024AB828200A828F9 /* TokenMock.json in Resources */,
 				8FD5AE9A1E54EAB8003F640D /* checkmark.json in Resources */,
+				215D05B327739542009377AC /* SM_alerticon.json in Resources */,
 				E800433E1E65FF70005CF531 /* OpenSans-Semibold.ttf in Resources */,
 				9C8775B622A082CE0087F0BA /* FirstFuelWidget.html in Resources */,
 				9C0A2C3C23A042DC002C4B8E /* message_bubble_unique.json in Resources */,
@@ -6205,6 +6234,7 @@
 				B5D415781F3A6C6300AC32B2 /* GoogleService-Info-RELEASE-FlavorBGE.plist in Resources */,
 				B0030D0C2097BC9A00327A3D /* MaintenanceModeView.xib in Resources */,
 				54B31A6E1EE065E20002E657 /* Bill.storyboard in Resources */,
+				215D05B427739542009377AC /* SM_ot_onsite.json in Resources */,
 				0E5BEF0D202E2390009D1ADB /* GoogleService-Info-RC-FlavorBGE.plist in Resources */,
 				C372B65B2758416800E38F64 /* OutageTracker.storyboard in Resources */,
 				C30079382436637600A9BEB0 /* BGEStrings.strings in Resources */,
@@ -6221,12 +6251,14 @@
 				35A6C6B9211C6CCE00C2A58F /* TitleTableViewHeaderView.xib in Resources */,
 				9C0EA5BE237DAD2900D1E18F /* buddy_face_normal.json in Resources */,
 				B0EE78F12214766700F53C56 /* appointments.json in Resources */,
+				215D05B627739543009377AC /* SM_OnWhite.json in Resources */,
 				B08956F22215C27100A97965 /* sso_data.json in Resources */,
 				358BD21720F8FB2D00DA2012 /* BillImpactView.xib in Resources */,
 				67A986D624FD419700BD46E7 /* GoogleService-Info-RC-FlavorACE.plist in Resources */,
 				9CEE411923722444005A4AD3 /* Game.storyboard in Resources */,
 				679CC727250003C000A46BBE /* splash-FlavorACE.json in Resources */,
 				B089573422175BFE00A97965 /* budget_billing_info.json in Resources */,
+				215D05B727739543009377AC /* SM_ReportedWhite.json in Resources */,
 				9C0EA5B8237DAD2900D1E18F /* buddy_face_happy.json in Resources */,
 				E82FF1EE1F97CC7900C50F8F /* HomeUsageCardView.xib in Resources */,
 				B07E17E72209F0CA00B6E3C7 /* accounts.json in Resources */,

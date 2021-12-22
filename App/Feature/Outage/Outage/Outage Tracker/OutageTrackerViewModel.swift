@@ -182,15 +182,15 @@ class OutageTrackerViewModel {
     var surveyURL: String {
         switch status {
             case .reported:
-                return ""
+                return "https://www.surveymonkey.com/r/HHCD7YP"
             case .assigned:
-                return ""
+                return "https://www.surveymonkey.com/r/HPSN8XX"
             case .enRoute:
                 return "https://www.surveymonkey.com/r/HPTDG6T"
             case .onSite:
-                return ""
+                return "https://www.surveymonkey.com/r/HPXXPCW"
             case .restored:
-                return ""
+                return "https://www.surveymonkey.com/r/HPXZBBD"
             default:
                 return ""
         }
