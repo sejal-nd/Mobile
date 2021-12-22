@@ -31,13 +31,21 @@ class InfoAlertController: UIViewController {
     private let attributedMessage: NSAttributedString?
     private let icon: UIImage?
     private let action: InfoAlertAction?
+    private let buttonType: ButtonType
     
-    init(title: String, message: String, icon: UIImage? = nil, action: InfoAlertAction? = nil) {
+    enum ButtonType: String {
+        case primary
+        case secondary
+        case system
+    }
+    
+    init(title: String, message: String, icon: UIImage? = nil, action: InfoAlertAction? = nil, buttonType: ButtonType = .primary) {
         self.titleString = title
         self.message = message
         self.attributedMessage = nil
         self.icon = icon
         self.action = action
+        self.buttonType = buttonType
         super.init(nibName: nil, bundle: nil)
         
         modalPresentationStyle = .overCurrentContext
@@ -50,6 +58,7 @@ class InfoAlertController: UIViewController {
         self.attributedMessage = attributedMessage
         self.icon = icon
         self.action = action
+        self.buttonType = .primary
         super.init(nibName: nil, bundle: nil)
         
         modalPresentationStyle = .overCurrentContext
