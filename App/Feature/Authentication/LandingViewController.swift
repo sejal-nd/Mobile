@@ -141,7 +141,7 @@ class LandingViewController: UIViewController {
             signInButton.accessibilityLabel = NSLocalizedString("Loading", comment: "")
             signInButton.accessibilityViewIsModal = true
             
-            PKCEAuthenticationService.sharedService.presentLoginForm { result in
+            PKCEAuthenticationService.sharedService.presentLoginForm { result, redirect_policy in
                 if result == true{
                     self.signInButton.tintWhite = true
                     self.signInButton.reset()
@@ -161,6 +161,15 @@ class LandingViewController: UIViewController {
                         navController.setNavigationBarHidden(true, animated: false)
                         navController.setViewControllers([viewController], animated: false)
                     }
+                }else if redirect_policy == "find_email"{
+                    print("redirect to find email flow")
+                    self.signInButton.tintWhite = true
+                    self.signInButton.reset()
+                    self.signInButton.setTitle("Sign In", for: .normal)
+                    self.signInButton.accessibilityLabel = "Sign In"
+                    self.signInButton.accessibilityViewIsModal = false
+                    
+                    self.performSegue(withIdentifier: "forgotUsernameSegue", sender: self)
                 }else{
                     print("login failed")
                     self.signInButton.tintWhite = true
@@ -273,5 +282,12 @@ extension LandingViewController: RegistrationViewControllerDelegate {
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
             UIApplication.shared.keyWindow?.rootViewController?.view.showToast(NSLocalizedString("Account registered", comment: ""))
         })
+    }
+}
+
+extension LandingViewController: ForgotUsernameResultViewControllerDelegate {
+    func forgotUsernameResultViewController(_ forgotUsernameResultViewController: UIViewController, didUnmaskUsername username: String) {
+        print("unmasked email is \(username)")
+        GoogleAnalytics.log(event: .forgotUsernameCompleteAutoPopup)
     }
 }

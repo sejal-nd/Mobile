@@ -14,7 +14,7 @@ class PKCEAuthenticationService:UIViewController {
     
     var authSession: ASWebAuthenticationSession!
     
-    func presentLoginForm(completion: @escaping (Bool) -> ()){
+    func presentLoginForm(completion: @escaping (Bool, String) -> ()){
         let urlString = "https://\(Configuration.shared.b2cTenant).b2clogin.com/\(Configuration.shared.b2cTenant).onmicrosoft.com/oauth2/v2.0/authorize?p=\(Configuration.shared.b2cPolicy)&client_id=\(Configuration.shared.b2cClientID)&nonce=defaultNonce&redirect_uri=\(Configuration.shared.b2cRedirectURI)://auth&scope=openid%20offline_access&response_type=code&prompt=login#"
         
         guard let url = URL(string: urlString) else { return }
@@ -24,23 +24,30 @@ class PKCEAuthenticationService:UIViewController {
         authSession = ASWebAuthenticationSession(url: url, callbackURLScheme: callbackScheme, completionHandler: { (callbackURL, error) in
             guard error == nil, let successURL = callbackURL else {
                 Log.error("ASWebAuthentication Session failed/terminated")
-                completion(false)
+                completion(false, "nil")
                 return
             }
             
-            let oauthToken = NSURLComponents(string: (successURL.absoluteString))?.queryItems?.filter({$0.name == "code"}).first
             
             Log.info(successURL.absoluteString)
             
-            AuthenticationService.loginWithCode(code: oauthToken?.value ?? "nil"){ [weak self] (result: Result<Bool, NetworkingError>) in
-                                        switch result {
-                                        case .success(let hasTempPassword):
-                                            Log.info("user has logged in succesfully")
-                                            completion(true)
-                                        case .failure(let error):
-                                            Log.error("login error \(error.localizedDescription)")
-                                        }
+            if let oauthToken = NSURLComponents(string: (successURL.absoluteString))?.queryItems?.filter({$0.name == "code"}).first{
+                AuthenticationService.loginWithCode(code: oauthToken.value ?? "nil"){ [weak self] (result: Result<Bool, NetworkingError>) in
+                                            switch result {
+                                            case .success(let hasTempPassword):
+                                                Log.info("user has logged in succesfully")
+                                                completion(true, "nil")
+                                            case .failure(let error):
+                                                Log.error("login error \(error.localizedDescription)")
+                                            }
+                }
+            }else if let redirect_policy = NSURLComponents(string: (successURL.absoluteString))?.queryItems?.filter({$0.name == "redirect"}).first{
+                completion(false, redirect_policy.value ?? "nil")
+            }else{
+                completion(false, "nil")
             }
+            
+            
         })
         
         authSession.presentationContextProvider = self
