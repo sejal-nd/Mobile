@@ -17,6 +17,9 @@ struct RxNotifications {
     let outageReported = PublishSubject<Void>()
     let configureQuickActions = PublishSubject<Bool>()
     
+    let mfaJustEnabled = BehaviorSubject<Bool>(value: false)
+    let mfaRemindMeLater = BehaviorSubject<Bool>(value: false)
+    
     private init() { }
     
 }

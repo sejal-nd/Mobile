@@ -178,9 +178,27 @@ class LandingViewController: UIViewController {
                     self.signInButton.accessibilityViewIsModal = false
                 }
             }
-        }else{
+        } else {
             performSegue(withIdentifier: "loginSegue", sender: self)
         }
+    }
+    
+    func show2SVJustEnabled() {
+        let twoSVEnabledAlert = InfoAlertController(title: NSLocalizedString("You are set up to use Two-Step Verification.", comment: ""),
+                                                    message: NSLocalizedString("Two-Step Verification is now enabled. In the future, we'll notify you whenever someone attempts to log in to your account.", comment: ""),
+                                                    icon: #imageLiteral(resourceName: "ic_confirmation_mini"))
+        
+        self.present(twoSVEnabledAlert, animated: true, completion: nil)
+    }
+    
+    func show2SVReminder() {
+        let action = InfoAlertAction(ctaText: NSLocalizedString("Enable Two-Step Verification", comment: ""))
+        
+        let alert = InfoAlertController(title: NSLocalizedString("Two-Step Verification is not enabled.", comment: ""),
+                                        message: NSLocalizedString("To enable this feature or make changes, go to the more tab.", comment: ""),
+                                        action: action)
+        
+        self.present(alert, animated: true, completion: nil)
     }
     
     @IBAction func onRegistrationInPress() {

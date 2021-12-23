@@ -17,6 +17,13 @@ public struct TokenResponse: Decodable {
     public var refreshTokenExpiresIn: String?
     public var refreshTokenIssuedAt: String?
     
+    public var isMfaJustEnabled: Bool = false
+    public var isMfaEnabled: Bool = false
+    public var mfaSignUpSelection: String?
+    public var isMfaRemindMeLater: Bool {
+        return mfaSignUpSelection == "Remind"
+    }
+    
     enum CodingKeys: String, CodingKey {
         case token
         case id_token = "id_token"
@@ -67,9 +74,14 @@ public struct TokenResponse: Decodable {
             // Map additional data from b2c token if any
             if let token = self.token, let base64Data = decode(token: token) {
                 do {
-                    let json = try JSONSerialization.jsonObject(with: base64Data, options: .mutableContainers) as? [String:AnyObject]
-                    if let json = json, let code = json["type"] as? String {
-                        self.userType = code
+                    if let json = try JSONSerialization.jsonObject(with: base64Data, options: .mutableContainers) as? [String:AnyObject] {
+                        if let code = json["type"] as? String {
+                            self.userType = code
+                        }
+                        
+                        self.isMfaJustEnabled = json["isMfaJustEnabled"] as? Bool ?? false
+                        self.isMfaEnabled = json["isMfaEnabled"] as? Bool ?? false
+                        self.mfaSignUpSelection = json["mfaSignupSelection"] as? String
                     }
                 } catch {
                     Log.error("Error with B2C token structure")
