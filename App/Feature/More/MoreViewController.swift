@@ -387,14 +387,22 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
             switch indexPath.row {
             case 0:
                 #warning("This is where we decide the method to use for password change")
-                if FeatureFlagUtility.shared.bool(forKey: .isPkceAuthentication){
+                if FeatureFlagUtility.shared.bool(forKey: .isPkceAuthentication) {
                     PKCEAuthenticationService.sharedService.presentMySecurityForm { success, result in
-                        if success {
-                            #warning("CODY : This is where you decode the token to decide what popup to show.")
-                            print("PROFILE EDIT TOKEN is \(result)")
+                        if success,
+                           let json = TokenResponse.decodeToJson(token: result),
+                           let editAction = json["profileEditActionTaken"] as? String {
+                            
+                            if editAction.contains("mfa") {
+                                self.view.showToast("Two-Step Verification settings updated")
+                            } else if editAction.contains("password") {
+                                self.view.showToast("Password changed")
+                            }
+                        } else {
+                            // TODO display error message?
                         }
                     }
-                }else{
+                } else {
                     performSegue(withIdentifier: "changePasswordSegue", sender: nil)
                 }
             case 2:
