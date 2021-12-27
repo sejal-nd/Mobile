@@ -468,19 +468,13 @@ class HomeViewController: AccountPickerViewController {
             GoogleAnalytics.log(event: .alertsiOSPushInitial)
         }
         
-        RxNotifications.shared.mfaRemindMeLater
-            .filter { $0 }
-            .subscribe(onNext: { [weak self] _ in
-                self?.showMFAReminder()
-                RxNotifications.shared.mfaRemindMeLater.onCompleted() // don't show again
-            }).disposed(by: bag)
-        
-        RxNotifications.shared.mfaJustEnabled
-            .filter { $0 }
-            .subscribe(onNext: { [weak self] _ in
-                self?.showMFAJustEnabled()
-                RxNotifications.shared.mfaJustEnabled.onCompleted() // don't show again
-            }).disposed(by: bag)
+        if RxNotifications.shared.mfaRemindMeLater.value {
+            self.showMFAReminder()
+            RxNotifications.shared.mfaRemindMeLater.accept(false)
+        } else if RxNotifications.shared.mfaJustEnabled.value {
+            self.showMFAJustEnabled()
+            RxNotifications.shared.mfaJustEnabled.accept(false)
+        }
     }
     
     override func viewDidLayoutSubviews() {
