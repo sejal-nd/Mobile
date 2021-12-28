@@ -155,11 +155,8 @@ extension AuthenticationService {
                 FirebaseUtility.logEvent(.loginTokenNetworkComplete)
                 #endif
 
-                if tokenResponse.isMfaJustEnabled {
-                    RxNotifications.shared.mfaJustEnabled.onNext(true)
-                } else if !tokenResponse.isMfaEnabled && tokenResponse.isMfaRemindMeLater {
-                    RxNotifications.shared.mfaRemindMeLater.onNext(true)
-                }
+                RxNotifications.shared.mfaJustEnabled.accept(tokenResponse.isMfaJustEnabled)
+                RxNotifications.shared.mfaRemindMeLater.accept(tokenResponse.isMfaRemindMeLater)
                 
                 // Handle Temp Password
                 if tokenResponse.profileStatus?.tempPassword ?? false {

@@ -7,6 +7,7 @@
 //
 
 import RxSwift
+import RxRelay
 
 struct RxNotifications {
     static let shared = RxNotifications()
@@ -17,8 +18,8 @@ struct RxNotifications {
     let outageReported = PublishSubject<Void>()
     let configureQuickActions = PublishSubject<Bool>()
     
-    let mfaJustEnabled = BehaviorSubject<Bool>(value: false)
-    let mfaRemindMeLater = BehaviorSubject<Bool>(value: false)
+    let mfaJustEnabled = BehaviorRelay<Bool>(value: false)
+    let mfaRemindMeLater = BehaviorRelay<Bool>(value: false)
     
     private init() { }
     

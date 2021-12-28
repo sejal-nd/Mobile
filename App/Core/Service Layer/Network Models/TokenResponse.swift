@@ -72,24 +72,18 @@ public struct TokenResponse: Decodable {
         
         if FeatureFlagUtility.shared.bool(forKey: .isAzureAuthentication) {
             // Map additional data from b2c token if any
-            if let token = self.token, let base64Data = decode(token: token) {
-                do {
-                    if let json = try JSONSerialization.jsonObject(with: base64Data, options: .mutableContainers) as? [String:AnyObject] {
-                        if let code = json["type"] as? String {
-                            self.userType = code
-                        }
-                        
-                        self.isMfaJustEnabled = json["isMfaJustEnabled"] as? Bool ?? false
-                        self.isMfaEnabled = json["isMfaEnabled"] as? Bool ?? false
-                        self.mfaSignUpSelection = json["mfaSignupSelection"] as? String
-                    }
-                } catch {
-                    Log.error("Error with B2C token structure")
+            if let json = TokenResponse.decodeToJson(token: token) {
+                if let code = json["type"] as? String {
+                    self.userType = code
                 }
+                
+                self.isMfaJustEnabled = json["isMfaJustEnabled"] as? Bool ?? false
+                self.isMfaEnabled = json["isMfaEnabled"] as? Bool ?? false
+                self.mfaSignUpSelection = json["mfaSignupSelection"] as? String
             }
         } else {
             // Profile Status
-            if let token = token, let base64Data = decode(token: token) {
+            if let token = token, let base64Data = TokenResponse.decode(token: token) {
                 let statuses = try? JSONDecoder().decode(StatusContainer.self, from: base64Data)
                 
                 let hasTempPassword = statuses?.status.contains(where: { $0.name == "tempPassword" }) ?? false
@@ -107,7 +101,7 @@ public struct TokenResponse: Decodable {
         }
         
         
-        if let token = token, let base64Data = decode(token: token) {
+        if let token = token, let base64Data = TokenResponse.decode(token: token) {
             let identity = try? JSONDecoder().decode(IdToken.self, from: base64Data)
             self.refreshTokenIssuedAt = identity?.issuedAt
         }
@@ -158,14 +152,14 @@ public struct TokenResponse: Decodable {
 // MARK: Parse JWT
 
 extension TokenResponse {
-    private func decode(token: String) -> Data? {
+    private static func decode(token: String) -> Data? {
         let segments = token.components(separatedBy: ".")
         guard segments.indices.contains(1) else { return nil }
         let bodySegment = segments[1]
         return base64UrlDecode(bodySegment)
     }
     
-    private func base64UrlDecode(_ value: String) -> Data? {
+    private static func base64UrlDecode(_ value: String) -> Data? {
         var base64 = value
             .replacingOccurrences(of: "-", with: "+")
             .replacingOccurrences(of: "_", with: "/")
@@ -178,6 +172,19 @@ extension TokenResponse {
             base64 = base64 + padding
         }
         return Data(base64Encoded: base64, options: .ignoreUnknownCharacters)
+    }
+    
+    public static func decodeToJson(token: String?) -> [String:AnyObject]? {
+        if let token = token,
+           let base64Data = decode(token: token) {
+            do {
+                return try JSONSerialization.jsonObject(with: base64Data, options: .mutableContainers) as? [String:AnyObject]
+            } catch {
+                Log.error("Error with B2C token structure")
+            }
+        }
+        
+        return nil
     }
 }
 
