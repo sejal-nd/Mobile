@@ -20,8 +20,10 @@ public struct TokenResponse: Decodable {
     public var isMfaJustEnabled: Bool = false
     public var isMfaEnabled: Bool = false
     public var mfaSignUpSelection: String?
-    public var isMfaRemindMeLater: Bool {
-        return mfaSignUpSelection == "Remind"
+    public var profileEditAction: String?
+    
+    public var isMfaBypass: Bool {
+        return mfaSignUpSelection == "Bypass"
     }
     
     enum CodingKeys: String, CodingKey {
@@ -80,6 +82,7 @@ public struct TokenResponse: Decodable {
                 self.isMfaJustEnabled = json["isMfaJustEnabled"] as? Bool ?? false
                 self.isMfaEnabled = json["isMfaEnabled"] as? Bool ?? false
                 self.mfaSignUpSelection = json["mfaSignupSelection"] as? String
+                self.profileEditAction = json["profileEditActionTaken"] as? String
             }
         } else {
             // Profile Status

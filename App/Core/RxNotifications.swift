@@ -19,7 +19,8 @@ struct RxNotifications {
     let configureQuickActions = PublishSubject<Bool>()
     
     let mfaJustEnabled = BehaviorRelay<Bool>(value: false)
-    let mfaRemindMeLater = BehaviorRelay<Bool>(value: false)
+    let mfaBypass = BehaviorRelay<Bool>(value: false)
+    let profileEditAction = BehaviorRelay<String?>(value: nil)
     
     private init() { }
     

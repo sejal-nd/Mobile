@@ -156,7 +156,8 @@ extension AuthenticationService {
                 #endif
 
                 RxNotifications.shared.mfaJustEnabled.accept(tokenResponse.isMfaJustEnabled)
-                RxNotifications.shared.mfaRemindMeLater.accept(tokenResponse.isMfaRemindMeLater)
+                RxNotifications.shared.mfaBypass.accept(tokenResponse.isMfaBypass)
+                RxNotifications.shared.profileEditAction.accept(tokenResponse.profileEditAction)
                 
                 // Handle Temp Password
                 if tokenResponse.profileStatus?.tempPassword ?? false {

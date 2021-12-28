@@ -468,9 +468,14 @@ class HomeViewController: AccountPickerViewController {
             GoogleAnalytics.log(event: .alertsiOSPushInitial)
         }
         
-        if RxNotifications.shared.mfaRemindMeLater.value {
+        if let editAction = RxNotifications.shared.profileEditAction.value {
+            if editAction.contains("password") {
+                self.view.showToast("Password changed")
+                RxNotifications.shared.profileEditAction.accept(nil)
+            }
+        } else if RxNotifications.shared.mfaBypass.value {
             self.showMFAReminder()
-            RxNotifications.shared.mfaRemindMeLater.accept(false)
+            RxNotifications.shared.mfaBypass.accept(false)
         } else if RxNotifications.shared.mfaJustEnabled.value {
             self.showMFAJustEnabled()
             RxNotifications.shared.mfaJustEnabled.accept(false)
