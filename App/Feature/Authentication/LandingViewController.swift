@@ -201,6 +201,18 @@ class LandingViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
+    func showFindEmailAlert(foundEmail: String) {
+        
+        let action = InfoAlertAction(ctaText: NSLocalizedString("Copy email to clipboard", comment: "")) {
+            UIPasteboard.general.string = foundEmail
+        }
+        
+        let alert = InfoAlertController(title: NSLocalizedString("Email Found", comment: ""),
+                                        message: NSLocalizedString("You may now use \(foundEmail) to login to your account", comment: ""),
+                                        action: action)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     @IBAction func onRegistrationInPress() {
         performSegue(withIdentifier: "registrationSegueNew", sender: self)
     }
@@ -307,5 +319,9 @@ extension LandingViewController: ForgotUsernameResultViewControllerDelegate {
     func forgotUsernameResultViewController(_ forgotUsernameResultViewController: UIViewController, didUnmaskUsername username: String) {
         print("unmasked email is \(username)")
         GoogleAnalytics.log(event: .forgotUsernameCompleteAutoPopup)
+        
+        DispatchQueue.main.async {
+            self.showFindEmailAlert(foundEmail: username)
+        }
     }
 }
