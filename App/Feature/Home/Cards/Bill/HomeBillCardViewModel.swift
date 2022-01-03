@@ -121,7 +121,7 @@ class HomeBillCardViewModel {
         }
     }
     
-    private(set) lazy var fetchBGEDdeDpaEligibility: Driver<Bool> = Driver.combineLatest(accountDetailDriver, fetchTracker, scheduledPaymentEvents.elements().asDriver(onErrorDriveWith: .empty())) { (accountDetail, fetchTrackerValue, scheduledPay) in
+    private(set) lazy var fetchCoreSerivicesDdeDpaDetails: Driver<Bool> = Driver.combineLatest(accountDetailDriver, fetchTracker, scheduledPaymentEvents.elements().asDriver(onErrorDriveWith: .empty())) { (accountDetail, fetchTrackerValue, scheduledPay) in
         if Configuration.shared.opco == .bge || Configuration.shared.opco == .peco || Configuration.shared.opco == .comEd {
             if !fetchTrackerValue {
                 // Fetch BGE DDE

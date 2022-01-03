@@ -91,7 +91,7 @@ class BillViewModel {
                                                          useCache: false)
         }
     
-    private(set) lazy var fetchBGEDdeDpaEligibility: Driver<Bool> = self.currentAccountDetail.map {_ in
+    private(set) lazy var fetchCoreSerivicesDdeDpaDetails: Driver<Bool> = self.currentAccountDetail.map {_ in
         if Configuration.shared.opco == .bge || Configuration.shared.opco == .peco || Configuration.shared.opco == .comEd {
             self.ddeDpaEligiblityCheck()
         } else {
