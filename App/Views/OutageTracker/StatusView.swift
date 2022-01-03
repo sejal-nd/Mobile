@@ -11,7 +11,7 @@ import UIKit
 enum TrackerState: String {
     case notStarted = "not-started"
     case inProgress = "in-progress"
-    case completed = "completed"
+    case completed = "complete"
 }
 
 class StatusView: UIView {
@@ -27,9 +27,9 @@ class StatusView: UIView {
     @IBOutlet private weak var barTopConstraint: NSLayoutConstraint!
     @IBOutlet private weak var barBottomConstraint: NSLayoutConstraint!
     
-    func configure(withEvent event: EventSet) {
+    func configure(withEvent event: EventSet, isPaused: Bool) {
         if let status = event.status, let state = TrackerState(rawValue: status) {
-            update(forState: state)
+            update(forState: state, isPaused: isPaused)
             statusTitleLabel.text = event.eventSetDescription
             statusDateLabel.text = ""
             if let dateString = event.dateTime {
@@ -47,8 +47,7 @@ class StatusView: UIView {
         }
     }
     
-    private func update(forState state: TrackerState) {
-        
+    private func update(forState state: TrackerState, isPaused: Bool) {
         outerView.roundCorners(.allCorners, radius: 16, borderColor: .successGreenText, borderWidth: 1.0)
         innerView.roundCorners(.allCorners, radius: 12, borderColor: .successGreenText, borderWidth: 1.0)
         
@@ -58,7 +57,7 @@ class StatusView: UIView {
                 outerView.isHidden = true
                 checkmarkImageView.isHidden = true
             case .inProgress:
-                innerView.backgroundColor = .successGreenText
+                innerView.backgroundColor = isPaused ? .white : .successGreenText
                 outerView.isHidden = false
                 checkmarkImageView.isHidden = true
             case .completed:

@@ -18,6 +18,7 @@ struct OutageTracker: Codable {
     let isSafetyHazard: Bool?
     let isPartialRestoration: Bool?
     let lastUpdated: String?
+    let etr: String?
     let etrType: String?
     let etrOverrideOn: String?
     let stormMode: String?
@@ -39,6 +40,7 @@ struct OutageTracker: Codable {
         case isSafetyHazard
         case isPartialRestoration
         case lastUpdated
+        case etr
         case etrType
         case etrOverrideOn
         case stormMode

@@ -187,7 +187,8 @@ class OutageTrackerViewController: UIViewController {
                     trackerStatusContainer.isHidden = true
                 } else {
                     trackerStatusContainer.isHidden = false
-                    trackerStatusView.configure(withEvents: viewModel.events, lastUpdated: viewModel.lastUpdated)
+                    let paused = viewModel.isPaused
+                    trackerStatusView.configure(withEvents: viewModel.events, lastUpdated: viewModel.lastUpdated, isPaused: paused)
                 }
             }
             

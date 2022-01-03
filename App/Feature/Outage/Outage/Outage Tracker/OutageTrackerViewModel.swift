@@ -77,8 +77,10 @@ class OutageTrackerViewModel {
         }
     }
     var etaDateTime: String {
-        if let etrDate = outageStatus.value?.estimatedRestorationDate {
-            return DateFormatter.fullMonthDayAndTimeFormatter.string(from: etrDate)
+        if let etr = outageTracker.value?.etr {
+            if let date = DateFormatter.apiFormatter.date(from: etr) {
+                return DateFormatter.fullMonthDayAndTimeFormatter.string(from: date)
+            }
         }
         return NSLocalizedString("Currently Unavailable", comment: "")
     }
@@ -107,8 +109,20 @@ class OutageTrackerViewModel {
         }
         return NSLocalizedString(count, comment: "")
     }
+    var isActiveOutage: Bool {
+        return outageStatus.value?.isActiveOutage ?? false
+    }
     var isGasOnly: Bool {
         return outageStatus.value?.isGasOnly ?? false
+    }
+    var isPaused: Bool {
+        guard let tracker = outageTracker.value else {
+            return false
+        }
+        if tracker.isCrewLeftSite == true || tracker.isCrewDiverted == true {
+            return true
+        }
+        return false
     }
     var lastUpdated: String {
         var time = ""
@@ -163,19 +177,23 @@ class OutageTrackerViewModel {
     }
     
     var animationName: String {
-        switch status {
-            case .reported:
-                return "ot_reported"
-            case .assigned:
-                return "ot_assigned"
-            case .enRoute:
-                return "ot_enroute"
-            case .onSite:
-                return "ot_onsite"
-            case .restored:
-                return "outage_on"
-            default:
-                return ""
+        if isActiveOutage == false {
+            return "outage_on"
+        } else {
+            switch status {
+                case .reported:
+                    return "ot_reported"
+                case .assigned:
+                    return "ot_assigned"
+                case .enRoute:
+                    return "ot_enroute"
+                case .onSite:
+                    return "ot_onsite"
+                case .restored:
+                    return "outage_on"
+                default:
+                    return ""
+            }
         }
     }
     
