@@ -41,6 +41,7 @@ class OutageTrackerViewController: UIViewController {
     @IBOutlet weak var trackerStatusContainer: UIView!
     @IBOutlet weak var trackerStatusView: TrackerStatusView!
     @IBOutlet weak var surveyContainer: UIView!
+    @IBOutlet weak var powerOnContainer: UIView!
     
     @IBOutlet weak var titleLeadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var titleTrailingConstraint: NSLayoutConstraint!
@@ -134,35 +135,27 @@ class OutageTrackerViewController: UIViewController {
             gasOnlyView.frame = self.view.bounds
             self.view.addSubview(gasOnlyView)
         } else {
-            statusTitleLabel.text = viewModel.statusTitle
-            statusDetailLabel.text = viewModel.statusDetails
+            etaContainerView.isHidden = true
+            countContainerView.isHidden = true
+            trackerStatusContainer.isHidden = true
+            surveyContainer.isHidden = true
             
-            if viewModel.status == .none {
-                etaContainerView.isHidden = true
-                countContainerView.isHidden = true
-                trackerStatusContainer.isHidden = true
-                surveyContainer.isHidden = true
-                progressAnimationContainer.isHidden = true
-                errorImageView.isHidden = false
-                errorImageView.image = UIImage(named: "ic_bigerror_sm")
-                
-                statusTitleLabel.textAlignment = .center
-                titleLeadingConstraint.constant = 30
-                titleTrailingConstraint.constant = 30
-                detailLeadingConstraint.constant = 50
-                detailTrailingConstraint.constant = 50
+            if viewModel.isActiveOutage == false {
+                statusTitleView.isHidden = true
+                statusDetailView.isHidden = true
+                powerOnContainer.isHidden = false
             } else {
-                etaContainerView.isHidden = false
-                countContainerView.isHidden = false
-                trackerStatusContainer.isHidden = false
-                surveyContainer.isHidden = false
-                progressAnimationContainer.isHidden = false
-                errorImageView.isHidden = true
-                statusDetailView.isHidden = viewModel.statusDetails.isEmpty
+                statusTitleView.isHidden = false
+                statusDetailView.isHidden = false
+                powerOnContainer.isHidden = true
                 
-                if viewModel.status == .restored {
-                    statusTitleLabel.textAlignment = .center
-                    countContainerView.isHidden = true
+                statusTitleLabel.text = viewModel.statusTitle
+                statusDetailLabel.text = viewModel.statusDetails
+                
+                if viewModel.status == .none {
+                    progressAnimationContainer.isHidden = true
+                    errorImageView.isHidden = false
+                    errorImageView.image = UIImage(named: "ic_bigerror_sm")
                     
                     statusTitleLabel.textAlignment = .center
                     titleLeadingConstraint.constant = 30
@@ -170,25 +163,43 @@ class OutageTrackerViewController: UIViewController {
                     detailLeadingConstraint.constant = 50
                     detailTrailingConstraint.constant = 50
                 } else {
-                    statusTitleLabel.textAlignment = .left
-                    titleLeadingConstraint.constant = 20
-                    titleTrailingConstraint.constant = 20
-                    detailLeadingConstraint.constant = 20
-                    detailTrailingConstraint.constant = 20
-                }
-                
-                whyButtonContainer.isHidden = viewModel.hideWhyButton
-                whyButton.setTitle(viewModel.whyButtonText, for: .normal)
-                neighborCountLabel.text = viewModel.neighborCount
-                outageCountLabel.text = viewModel.outageCount
-                updateETA()
-                
-                if viewModel.events.isEmpty {
-                    trackerStatusContainer.isHidden = true
-                } else {
+                    etaContainerView.isHidden = false
+                    countContainerView.isHidden = false
                     trackerStatusContainer.isHidden = false
-                    let paused = viewModel.isPaused
-                    trackerStatusView.configure(withEvents: viewModel.events, lastUpdated: viewModel.lastUpdated, isPaused: paused)
+                    surveyContainer.isHidden = false
+                    errorImageView.isHidden = true
+                    statusDetailView.isHidden = viewModel.statusDetails.isEmpty
+                    
+                    if viewModel.status == .restored {
+                        statusTitleLabel.textAlignment = .center
+                        countContainerView.isHidden = true
+                        
+                        statusTitleLabel.textAlignment = .center
+                        titleLeadingConstraint.constant = 30
+                        titleTrailingConstraint.constant = 30
+                        detailLeadingConstraint.constant = 50
+                        detailTrailingConstraint.constant = 50
+                    } else {
+                        statusTitleLabel.textAlignment = .left
+                        titleLeadingConstraint.constant = 20
+                        titleTrailingConstraint.constant = 20
+                        detailLeadingConstraint.constant = 20
+                        detailTrailingConstraint.constant = 20
+                    }
+                    
+                    whyButtonContainer.isHidden = viewModel.hideWhyButton
+                    whyButton.setTitle(viewModel.whyButtonText, for: .normal)
+                    neighborCountLabel.text = viewModel.neighborCount
+                    outageCountLabel.text = viewModel.outageCount
+                    updateETA()
+                    
+                    if viewModel.events.isEmpty {
+                        trackerStatusContainer.isHidden = true
+                    } else {
+                        trackerStatusContainer.isHidden = false
+                        let paused = viewModel.isPaused
+                        trackerStatusView.configure(withEvents: viewModel.events, lastUpdated: viewModel.lastUpdated, isPaused: paused)
+                    }
                 }
             }
             

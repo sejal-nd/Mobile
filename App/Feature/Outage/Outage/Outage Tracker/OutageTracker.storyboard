@@ -36,10 +36,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="1200"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BAo-5l-oWG" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1895"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1990"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="cSX-fc-17H">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="1895"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="1990"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="973-D0-8rB">
                                                         <rect key="frame" x="0.0" y="0.0" width="414" height="150"/>
@@ -69,8 +69,36 @@
                                                             <constraint firstAttribute="height" constant="150" id="hrv-VL-LMJ"/>
                                                         </constraints>
                                                     </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yyt-U9-0tJ">
+                                                        <rect key="frame" x="0.0" y="170" width="414" height="75"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Our records indicate" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dgR-ao-ARO">
+                                                                <rect key="frame" x="20" y="0.0" width="374" height="18"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                                <color key="textColor" red="0.13725490196078433" green="0.12156862745098039" blue="0.12549019607843137" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="POWER IS ON" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t2R-hi-ue9">
+                                                                <rect key="frame" x="20" y="31.5" width="374" height="38.5"/>
+                                                                <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="28"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstItem="t2R-hi-ue9" firstAttribute="leading" secondItem="Yyt-U9-0tJ" secondAttribute="leading" constant="20" id="EFi-W6-HHy"/>
+                                                            <constraint firstAttribute="height" constant="75" id="GPG-qe-4bC"/>
+                                                            <constraint firstAttribute="bottom" secondItem="t2R-hi-ue9" secondAttribute="bottom" constant="5" id="Ijz-uH-Qn2"/>
+                                                            <constraint firstAttribute="trailing" secondItem="t2R-hi-ue9" secondAttribute="trailing" constant="20" id="NQR-WU-Dgj"/>
+                                                            <constraint firstAttribute="trailing" secondItem="dgR-ao-ARO" secondAttribute="trailing" constant="20" id="TA2-F9-1YM"/>
+                                                            <constraint firstItem="dgR-ao-ARO" firstAttribute="leading" secondItem="Yyt-U9-0tJ" secondAttribute="leading" constant="20" id="cuN-Jy-XjB"/>
+                                                            <constraint firstItem="t2R-hi-ue9" firstAttribute="top" secondItem="dgR-ao-ARO" secondAttribute="bottom" constant="13.5" id="o4P-XI-x8N"/>
+                                                            <constraint firstItem="dgR-ao-ARO" firstAttribute="top" secondItem="Yyt-U9-0tJ" secondAttribute="top" id="q1J-aU-hCr"/>
+                                                        </constraints>
+                                                    </view>
                                                     <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="96" translatesAutoresizingMaskIntoConstraints="NO" id="4rc-GQ-SVh" customClass="UserInfoView" customModule="EUMobile" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="170" width="414" height="96"/>
+                                                        <rect key="frame" x="0.0" y="265" width="414" height="96"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BGE has received a report of an outage at your address." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8R8-mV-Ey9">
                                                                 <rect key="frame" x="20" y="0.0" width="374" height="96"/>
@@ -92,7 +120,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="96" translatesAutoresizingMaskIntoConstraints="NO" id="QXU-DZ-xsh" customClass="MultiInfoView" customModule="EUMobile" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="286" width="414" height="96"/>
+                                                        <rect key="frame" x="0.0" y="381" width="414" height="96"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We have multiple crews on site working hard to restore your power. Thank you for your patience." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ocR-a0-LuO">
                                                                 <rect key="frame" x="20" y="0.0" width="374" height="96"/>
@@ -114,7 +142,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MnI-Rd-Ylp">
-                                                        <rect key="frame" x="0.0" y="402" width="414" height="45"/>
+                                                        <rect key="frame" x="0.0" y="497" width="414" height="45"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xlz-Yf-g8n">
                                                                 <rect key="frame" x="77" y="0.0" width="260" height="45"/>
@@ -150,7 +178,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="96" translatesAutoresizingMaskIntoConstraints="NO" id="VaI-QQ-0qz">
-                                                        <rect key="frame" x="0.0" y="467" width="414" height="139"/>
+                                                        <rect key="frame" x="0.0" y="562" width="414" height="139"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZPR-jk-lhd">
                                                                 <rect key="frame" x="16" y="5" width="382" height="129"/>
@@ -248,7 +276,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="96" translatesAutoresizingMaskIntoConstraints="NO" id="Pnt-P8-RZO">
-                                                        <rect key="frame" x="0.0" y="626" width="414" height="80"/>
+                                                        <rect key="frame" x="0.0" y="721" width="414" height="80"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cWI-09-Uc4">
                                                                 <rect key="frame" x="16" y="0.0" width="382" height="80"/>
@@ -356,7 +384,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VDq-ML-APe" userLabel="tracker status">
-                                                        <rect key="frame" x="0.0" y="726" width="414" height="620"/>
+                                                        <rect key="frame" x="0.0" y="821" width="414" height="620"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="364" placeholderIntrinsicHeight="360" translatesAutoresizingMaskIntoConstraints="NO" id="Ytu-oi-mMn" customClass="TrackerStatusView" customModule="EUMobile" customModuleProvider="target">
                                                                 <rect key="frame" x="20" y="10" width="374" height="610"/>
@@ -371,7 +399,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pbc-9G-tyI">
-                                                        <rect key="frame" x="0.0" y="1366" width="414" height="161"/>
+                                                        <rect key="frame" x="0.0" y="1461" width="414" height="161"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FkM-sN-yIp">
                                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="1"/>
@@ -413,7 +441,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2qx-Az-4kU">
-                                                        <rect key="frame" x="0.0" y="1547" width="414" height="180"/>
+                                                        <rect key="frame" x="0.0" y="1642" width="414" height="180"/>
                                                         <subviews>
                                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="8k8-H8-DxT">
                                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="180"/>
@@ -436,7 +464,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GEr-TU-ilh">
-                                                        <rect key="frame" x="0.0" y="1747" width="414" height="148"/>
+                                                        <rect key="frame" x="0.0" y="1842" width="414" height="148"/>
                                                         <subviews>
                                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="mQ7-7L-FjM" customClass="ZeroInsetDataDetectorTextView" customModule="EUMobile" customModuleProvider="target">
                                                                 <rect key="frame" x="30" y="10" width="354" height="128"/>
@@ -513,6 +541,7 @@
                         <outlet property="loadingIndicator" destination="fBN-OV-SP7" id="Rcf-6y-CW0"/>
                         <outlet property="neighborCountLabel" destination="1pn-tZ-0pf" id="UX5-sT-CSX"/>
                         <outlet property="outageCountLabel" destination="UPo-Gi-eGr" id="v02-2T-b0i"/>
+                        <outlet property="powerOnContainer" destination="Yyt-U9-0tJ" id="Soj-Cu-pcO"/>
                         <outlet property="progressAnimationContainer" destination="hhk-NV-joZ" id="Lzn-eP-r8Y"/>
                         <outlet property="scrollView" destination="FM4-Ab-ESP" id="GE6-71-PIZ"/>
                         <outlet property="statusDetailLabel" destination="ocR-a0-LuO" id="HBw-YZ-b6l"/>

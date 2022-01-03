@@ -43,6 +43,9 @@ class OutageTrackerViewModel {
             else if tracker.isCrewDiverted == true {
                 return StatusTitleString.onSiteTempStop
             }
+            else if tracker.isCrewLeftSite == true {
+                return StatusTitleString.onSiteTempStop
+            }
         }
         return status.statusTitleString
     }
@@ -55,9 +58,7 @@ class OutageTrackerViewModel {
             // todo: determine
             details = StatusDetailString.restoredDefReg
         } else {
-            if tracker.isCrewLeftSite == true {
-                details = StatusDetailString.crewLeftSite
-            } else if tracker.isCrewExtDamage == true {
+            if tracker.isCrewExtDamage == true {
                 details = StatusDetailString.crewExtDamage
             } else if tracker.isSafetyHazard == true {
                 details = StatusDetailString.crewSafetyHazard
