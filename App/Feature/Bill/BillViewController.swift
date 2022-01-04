@@ -694,6 +694,7 @@ class BillViewController: AccountPickerViewController {
             self.assistanceCTA.setTitle(description?.ctaType, for: .normal)
         }).disposed(by: bag)
         
+
         viewModel.fetchCoreSerivicesDdeDpaDetails.asDriver().drive().disposed(by: bag)
         viewModel.enrollmentStatus.asDriver().drive().disposed(by: bag)
 	}
