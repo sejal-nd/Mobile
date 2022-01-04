@@ -92,10 +92,10 @@ class OutageTrackerViewModel {
         return NSLocalizedString("The current ETR is up-to-date based on the latest reports from the repair crew. ETRs are updated as new information becomes available.", comment: "")
     }
     var etaCause: String {
-        guard let cause = outageTracker.value?.cause else {
+        guard let cause = outageTracker.value?.cause, !cause.isEmpty else {
             return ""
         }
-        return NSLocalizedString(cause, comment: "")
+        return NSLocalizedString("The outage was caused by a \(cause)", comment: "")
     }
     var neighborCount: String {
         // todo - this field is missing
@@ -111,7 +111,15 @@ class OutageTrackerViewModel {
         return NSLocalizedString(count, comment: "")
     }
     var isActiveOutage: Bool {
-        return outageStatus.value?.isActiveOutage ?? false
+        // restored state shows as no longer active but may have tracker data
+        if outageStatus.value?.isActiveOutage == true {
+            return true
+        } else {
+            guard let tracker = outageTracker.value else {
+                return false
+            }
+            return tracker.isOutageValid
+        }
     }
     var isGasOnly: Bool {
         return outageStatus.value?.isGasOnly ?? false

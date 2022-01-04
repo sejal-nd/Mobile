@@ -73,13 +73,19 @@
                                                         <rect key="frame" x="0.0" y="170" width="414" height="75"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Our records indicate" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dgR-ao-ARO">
-                                                                <rect key="frame" x="20" y="0.0" width="374" height="18"/>
+                                                                <rect key="frame" x="20" y="0.0" width="374" height="20"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="hnt-0D-m8c"/>
+                                                                </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                 <color key="textColor" red="0.13725490196078433" green="0.12156862745098039" blue="0.12549019607843137" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="POWER IS ON" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t2R-hi-ue9">
                                                                 <rect key="frame" x="20" y="31.5" width="374" height="38.5"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="38" id="Vrl-Jv-Vqx"/>
+                                                                </constraints>
                                                                 <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="28"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -93,7 +99,7 @@
                                                             <constraint firstAttribute="trailing" secondItem="t2R-hi-ue9" secondAttribute="trailing" constant="20" id="NQR-WU-Dgj"/>
                                                             <constraint firstAttribute="trailing" secondItem="dgR-ao-ARO" secondAttribute="trailing" constant="20" id="TA2-F9-1YM"/>
                                                             <constraint firstItem="dgR-ao-ARO" firstAttribute="leading" secondItem="Yyt-U9-0tJ" secondAttribute="leading" constant="20" id="cuN-Jy-XjB"/>
-                                                            <constraint firstItem="t2R-hi-ue9" firstAttribute="top" secondItem="dgR-ao-ARO" secondAttribute="bottom" constant="13.5" id="o4P-XI-x8N"/>
+                                                            <constraint firstItem="t2R-hi-ue9" firstAttribute="top" secondItem="dgR-ao-ARO" secondAttribute="bottom" constant="11.5" id="dh0-dL-PcB"/>
                                                             <constraint firstItem="dgR-ao-ARO" firstAttribute="top" secondItem="Yyt-U9-0tJ" secondAttribute="top" id="q1J-aU-hCr"/>
                                                         </constraints>
                                                     </view>

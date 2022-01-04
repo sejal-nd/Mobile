@@ -214,6 +214,7 @@ class OutageTrackerViewController: UIViewController {
         
         etaCauseLabel.text = viewModel.etaCause
         etaCauseLabel.isHidden = viewModel.etaCause.isEmpty
+        etaCauseLabel.font = SystemFont.bold.of(textStyle: .footnote)
         
         etaDetailLabel.isHidden = false
         etaInfoButton.isHidden = false
@@ -225,6 +226,7 @@ class OutageTrackerViewController: UIViewController {
             case .restored, .none:
                 etaDetailLabel.isHidden = true
                 etaInfoButton.isHidden = true
+                etaCauseLabel.font = SystemFont.regular.of(textStyle: .footnote)
         }
     }
     
