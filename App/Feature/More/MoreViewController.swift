@@ -393,7 +393,7 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
                            let json = TokenResponse.decodeToJson(token: result),
                            let editAction = json["profileEditActionTaken"] as? String {
                             
-                            if editAction.contains("password") {
+                            if editAction == "PasswordUpdate" {
                                 self.view.showToast("Password changed")
                             } else {
                                 self.view.showToast("Two-Step Verification settings updated")

@@ -70,9 +70,9 @@ class PKCEAuthenticationService:UIViewController {
                 return
             }
             
-            let oauthToken = NSURLComponents(string: (successURL.absoluteString))?.queryItems?.filter({$0.name == "id_token"}).first
+            let oauthToken = NSURLComponents(string: (successURL.absoluteString))?.fragment?.components(separatedBy: "id_token=").get(at: 1)
             Log.info(successURL.absoluteString)
-            completion(true, oauthToken?.value ?? "nil")
+            completion(true, oauthToken ?? "nil")
             
         })
         
