@@ -95,12 +95,12 @@
                                                         <constraints>
                                                             <constraint firstItem="t2R-hi-ue9" firstAttribute="leading" secondItem="Yyt-U9-0tJ" secondAttribute="leading" constant="20" id="EFi-W6-HHy"/>
                                                             <constraint firstAttribute="height" constant="75" id="GPG-qe-4bC"/>
-                                                            <constraint firstAttribute="bottom" secondItem="t2R-hi-ue9" secondAttribute="bottom" constant="5" id="Ijz-uH-Qn2"/>
                                                             <constraint firstAttribute="trailing" secondItem="t2R-hi-ue9" secondAttribute="trailing" constant="20" id="NQR-WU-Dgj"/>
                                                             <constraint firstAttribute="trailing" secondItem="dgR-ao-ARO" secondAttribute="trailing" constant="20" id="TA2-F9-1YM"/>
                                                             <constraint firstItem="dgR-ao-ARO" firstAttribute="leading" secondItem="Yyt-U9-0tJ" secondAttribute="leading" constant="20" id="cuN-Jy-XjB"/>
                                                             <constraint firstItem="t2R-hi-ue9" firstAttribute="top" secondItem="dgR-ao-ARO" secondAttribute="bottom" constant="11.5" id="dh0-dL-PcB"/>
                                                             <constraint firstItem="dgR-ao-ARO" firstAttribute="top" secondItem="Yyt-U9-0tJ" secondAttribute="top" id="q1J-aU-hCr"/>
+                                                            <constraint firstItem="t2R-hi-ue9" firstAttribute="top" secondItem="dgR-ao-ARO" secondAttribute="bottom" constant="11.5" id="wCg-im-QF4"/>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="96" translatesAutoresizingMaskIntoConstraints="NO" id="4rc-GQ-SVh" customClass="UserInfoView" customModule="EUMobile" customModuleProvider="target">

@@ -10,6 +10,25 @@ import RxSwift
 import RxCocoa
 import RxSwiftExt
 
+enum TimeToRestore: Int {
+    case short
+    case regular
+    case long
+    case none
+    
+    func detailText(isDefinitive: Bool) -> String {
+        switch self {
+            case .short:
+                return StatusDetailString.restoredDefShort
+            case .regular:
+                return isDefinitive ? StatusDetailString.restoredDefReg : StatusDetailString.restoredNonDefReg
+            case .long:
+                return isDefinitive ? StatusDetailString.restoredDefLong : StatusDetailString.restoredNonDefLong
+            case .none: return ""
+        }
+    }
+}
+
 class OutageTrackerViewModel {
     
     let disposeBag = DisposeBag()
@@ -22,7 +41,6 @@ class OutageTrackerViewModel {
         }
         return OutageTracker.Status(rawValue: trackerStatus) ?? .none
     }
-    
     var events: [EventSet] {
         guard let events = outageTracker.value?.eventSet else {
             return mockEvents
@@ -47,6 +65,9 @@ class OutageTrackerViewModel {
                 return StatusTitleString.onSiteTempStop
             }
         }
+        if status == .restored && !isDefinitive {
+            return StatusTitleString.restoredNonDef
+        }
         return status.statusTitleString
     }
     var statusDetails: String {
@@ -55,8 +76,7 @@ class OutageTrackerViewModel {
         }
         var details = ""
         if status == .restored {
-            // todo: determine
-            details = StatusDetailString.restoredDefReg
+            details = timeToRestore().detailText(isDefinitive: isDefinitive)
         } else {
             if tracker.isCrewExtDamage == true {
                 details = StatusDetailString.crewExtDamage
@@ -133,6 +153,10 @@ class OutageTrackerViewModel {
         }
         return false
     }
+    var isDefinitive: Bool {
+        // todo: where does this come from
+        return outageStatus.value?.isSmartMeter ?? false
+    }
     var lastUpdated: String {
         var time = ""
         if let dateString = outageTracker.value?.lastUpdated {
@@ -184,7 +208,6 @@ class OutageTrackerViewModel {
         }
         return attributedText
     }
-    
     var animationName: String {
         if isActiveOutage == false {
             return "outage_on"
@@ -205,7 +228,6 @@ class OutageTrackerViewModel {
             }
         }
     }
-    
     var surveyURL: String {
         switch status {
             case .reported:
@@ -222,7 +244,6 @@ class OutageTrackerViewModel {
                 return ""
         }
     }
-    
     var mockEvents: [EventSet] {
         var events: [EventSet] = []
         
@@ -242,7 +263,28 @@ class OutageTrackerViewModel {
         events.append(event5)
         
         return events
+    }
+    
+    func timeToRestore() -> TimeToRestore {
+        var restoreTime: TimeToRestore = .none
         
+        guard let timeReportedString = events.filter( { $0.eventSetDescription == OutageTracker.Status.reported.rawValue }).first?.dateTime, let timeReported = DateFormatter.apiFormatter.date(from: timeReportedString) else {
+            return .none
+        }
+        guard let timeRestoredString = events.filter( { $0.eventSetDescription == OutageTracker.Status.reported.rawValue }).first?.dateTime, let timeRestored = DateFormatter.apiFormatter.date(from: timeRestoredString) else {
+            return .none
+        }
+        let diffComponents = Calendar.current.dateComponents([.hour], from: timeReported, to: timeRestored)
+        let hours = diffComponents.hour
+        if hours == 0 {
+            restoreTime = .short
+        } else if hours > 1 && hours < 3 {
+            restoreTime = .regular
+        } else {
+            restoreTime = .long
+        }
+        
+        return restoreTime
     }
     
     func fetchOutageTracker() {
