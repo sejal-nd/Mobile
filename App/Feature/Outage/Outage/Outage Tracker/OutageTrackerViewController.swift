@@ -312,8 +312,7 @@ class OutageTrackerViewController: UIViewController {
             info = StatusInfoMessage.whyStop
         }
         if viewModel.status == .restored {
-            // todo: determine def vs non-def
-            info = StatusInfoMessage.hasOutageDef
+            info = viewModel.isDefinitive ? StatusInfoMessage.hasOutageDef : StatusInfoMessage.hasOutageNondef
         }
         infoView.configure(withInfo: info)
         infoView.isHidden = false
