@@ -57,7 +57,7 @@ class ScheduleMoveServiceViewModel {
     
     private func getAccountDetails(completion: @escaping (Result<Bool, NetworkingError>) -> ()) {
         
-        AccountService.fetchAccountDetails { [weak self] (result: Result<AccountDetail, NetworkingError>) in
+        AccountService.fetchAccountDetails(isGetRCDCapable: true) { [weak self] (result: Result<AccountDetail, NetworkingError>) in
             
             switch result {
             case .success(let accountDetails):

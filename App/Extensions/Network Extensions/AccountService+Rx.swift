@@ -24,9 +24,10 @@ extension Reactive where Base == AccountService {
                                     payments: Bool = true,
                                     programs: Bool = true,
                                     budgetBilling: Bool = Configuration.shared.opco.isPHI ? true : false,
-                                    alertPreferenceEligibilities: Bool = false) -> Observable<AccountDetail> {
+                                    alertPreferenceEligibilities: Bool = false,
+                                    isGetRCDCapable: Bool = false) -> Observable<AccountDetail> {
         return Observable.create { observer -> Disposable in
-            AccountService.fetchAccountDetails(accountNumber: accountNumber, payments: payments, programs: programs, budgetBilling: budgetBilling, alertPreferenceEligibilities: alertPreferenceEligibilities) { observer.handle(result: $0) }
+            AccountService.fetchAccountDetails(accountNumber: accountNumber, payments: payments, programs: programs, budgetBilling: budgetBilling, alertPreferenceEligibilities: alertPreferenceEligibilities, isGetRCDCapable: isGetRCDCapable) { observer.handle(result: $0) }
             
             return Disposables.create()
         }
