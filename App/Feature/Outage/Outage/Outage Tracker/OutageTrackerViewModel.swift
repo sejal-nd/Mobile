@@ -271,7 +271,7 @@ class OutageTrackerViewModel {
         guard let timeReportedString = events.filter( { $0.eventSetDescription == OutageTracker.Status.reported.rawValue }).first?.dateTime, let timeReported = DateFormatter.apiFormatter.date(from: timeReportedString) else {
             return .none
         }
-        guard let timeRestoredString = events.filter( { $0.eventSetDescription == OutageTracker.Status.reported.rawValue }).first?.dateTime, let timeRestored = DateFormatter.apiFormatter.date(from: timeRestoredString) else {
+        guard let timeRestoredString = events.filter( { $0.eventSetDescription == OutageTracker.Status.restored.rawValue }).first?.dateTime, let timeRestored = DateFormatter.apiFormatter.date(from: timeRestoredString) else {
             return .none
         }
         let diffComponents = Calendar.current.dateComponents([.hour], from: timeReported, to: timeRestored)
