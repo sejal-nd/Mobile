@@ -39,7 +39,7 @@ enum StatusInfoMessage: Int {
             case .etrToolTip:
                 return "At BGE we strive to give our customers the most up to date ETRs available. New information will be provided to keep you updated on our team's most recent estimate.\n\nETRs are first based on restoration repair history or data from previous storms. After that, the most accurate estimates come from our field crews."
             case .hazardMessage:
-                return "BGE is investigating safety hazards reported in your area. Please keep in mind that fallen powerlines, street lights, sparking wires, and equipment on fire should never be approached or touched.\n\nCall BGE at 1-877-778-2222 immediately to report a hazard."
+                return "BGE is investigating safety hazards reported in your area. Please keep in mind that fallen powerlines, street lights, sparking wires, and equipment on fire should never be approached or touched.\n\nCall BGE at %@ immediately to report a hazard."
             case .rerouted:
                 return "This can occur during severe emergencies or potentially hazardous situations.\n\nA new BGE crew will be dispatched as soon as possible to restore your service."
             case .hasOutageDef:
