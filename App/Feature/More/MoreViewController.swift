@@ -304,7 +304,7 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
         case 1:
             switch indexPath.row {
             case 0:
-                cell.configure(image: #imageLiteral(resourceName: "ic_morepassword"), text: NSLocalizedString(FeatureFlagUtility.shared.bool(forKey: .isPkceAuthentication) ? "My Security" : "Change Password", comment: ""))
+                cell.configure(image: #imageLiteral(resourceName: FeatureFlagUtility.shared.bool(forKey: .isPkceAuthentication) ? "ic_moremysecurity" : "ic_morepassword"), text: NSLocalizedString(FeatureFlagUtility.shared.bool(forKey: .isPkceAuthentication) ? "My Security" : "Change Password", comment: ""))
             case 1:
                 guard let toggleCell = tableView.dequeueReusableCell(withIdentifier: ToggleTableViewCell.className) as? ToggleTableViewCell else { return UITableViewCell() }
                 
