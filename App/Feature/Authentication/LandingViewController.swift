@@ -205,6 +205,7 @@ class LandingViewController: UIViewController {
         
         let action = InfoAlertAction(ctaText: NSLocalizedString("Copy email to clipboard", comment: "")) {
             UIPasteboard.general.string = foundEmail
+            self.view.showToast(NSLocalizedString("Email copied to clipboard", comment: ""))
         }
         
         let alert = InfoAlertController(title: NSLocalizedString("Email Found", comment: ""),

@@ -124,18 +124,32 @@ class ForgotUsernameResultViewController: UIViewController {
     
     @IBAction func onAnswerSecurityQuestionsPress(_ sender: Any) {
         if FeatureFlagUtility.shared.bool(forKey: .isAzureAuthentication) {
-            guard let rootNavVc = self.navigationController?.presentingViewController as? LargeTitleNavigationController else { return }
-            for vc in rootNavVc.viewControllers {
-                guard let dest = vc as? LoginViewController else {
-                    continue
+            if FeatureFlagUtility.shared.bool(forKey: .isPkceAuthentication){
+                let rootNavVc = ((self as! ForgotUsernameResultViewController).presentingViewController as! LargeTitleNavigationController)
+                for vc in rootNavVc.viewControllers {
+                    guard let dest = vc as? LandingViewController else {
+                        continue
+                    }
+                    self.delegate = dest
+                    FirebaseUtility.logEvent(.forgotUsername(parameters: [.answer_question_complete]))
+
+                    self.delegate?.forgotUsernameResultViewController(self, didUnmaskUsername: viewModel.maskedUsernames[viewModel.selectedUsernameIndex].email ?? "")
+                    self.dismissModal()
                 }
+            }else{
+                guard let rootNavVc = self.navigationController?.presentingViewController as? LargeTitleNavigationController else { return }
+                for vc in rootNavVc.viewControllers {
+                    guard let dest = vc as? LoginViewController else {
+                        continue
+                    }
 
-                self.delegate = dest
+                    self.delegate = dest
 
-                FirebaseUtility.logEvent(.forgotUsername(parameters: [.answer_question_complete]))
+                    FirebaseUtility.logEvent(.forgotUsername(parameters: [.answer_question_complete]))
 
-                self.delegate?.forgotUsernameResultViewController(self, didUnmaskUsername: viewModel.maskedUsernames[viewModel.selectedUsernameIndex].email ?? "")
-                self.dismissModal()
+                    self.delegate?.forgotUsernameResultViewController(self, didUnmaskUsername: viewModel.maskedUsernames[viewModel.selectedUsernameIndex].email ?? "")
+                    self.dismissModal()
+                }
             }
         } else {
             performSegue(withIdentifier: "securityQuestionSegue", sender: nil)

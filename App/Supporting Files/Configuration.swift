@@ -195,11 +195,7 @@ struct Configuration {
         switch Configuration.shared.environmentName {
         case .rc, .release:
             switch opco {
-            case .ace:
-                tenant = "euazurephi"
-            case .delmarva:
-                tenant = "euazurephi"
-            case .pepco:
+            case .ace, .delmarva, .pepco:
                 tenant = "euazurephi"
             case .bge:
                 tenant = "euazurebge"
@@ -214,11 +210,7 @@ struct Configuration {
             switch projectTier {
             case .dev, .test:
                 switch opco {
-                case .ace:
-                    tenant = "euazurephitest"
-                case .delmarva:
-                    tenant = "euazurephitest"
-                case .pepco:
+                case .ace, .delmarva, .pepco:
                     tenant = "euazurephitest"
                 case .bge:
                     tenant = "euazurebgetest"
@@ -229,11 +221,7 @@ struct Configuration {
                 }
             case .stage:
                 switch opco {
-                case .ace:
-                    tenant = "euazurephistage"
-                case .delmarva:
-                    tenant = "euazurephistage"
-                case .pepco:
+                case .ace, .delmarva, .pepco:
                     tenant = "euazurephistage"
                 case .bge:
                     tenant = "euazurebgestage"
