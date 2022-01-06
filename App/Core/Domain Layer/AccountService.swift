@@ -53,6 +53,7 @@ enum AccountService {
                                     programs: Bool = true,
                                     budgetBilling: Bool = true,
                                     alertPreferenceEligibilities: Bool = false,
+                                    isGetRCDCapable: Bool = false,
                                     completion: @escaping (Result<AccountDetail, NetworkingError>) -> ()) {
         
         var queryItems = [URLQueryItem]()
@@ -70,9 +71,9 @@ enum AccountService {
             queryItems.append(URLQueryItem(name: "alertPreferenceEligibilities", value: "true"))
         }
         
-//        if FeatureFlagUtility.shared.bool(forKey: .hasAuthenticatedISUM) {
-//            queryItems.append(URLQueryItem(name: "isGetRCDCapable", value: "true"))
-//        }
+        if isGetRCDCapable {
+            queryItems.append(URLQueryItem(name: "isGetRCDCapable", value: "true"))
+        }
     
         NetworkingLayer.request(router: .accountDetails(accountNumber: accountNumber, queryItems: queryItems), completion: completion)
     }

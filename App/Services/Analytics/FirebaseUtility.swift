@@ -210,7 +210,11 @@ enum FirebaseEvent: Event {
              .gamification(let parameters as [EventParameter]?),
              .gamificationOptOut(let parameters as [EventParameter]?),
              .gamificationExperienceAccessed(let parameters as [EventParameter]?),
-             .biometricsToggle(let parameters as [EventParameter]?):
+             .biometricsToggle(let parameters as [EventParameter]?),
+             .stopService(let parameters as [EventParameter]?),
+             .authMoveService(let parameters as [EventParameter]?),
+             .unauthMoveService(let parameters as [EventParameter]?)
+            :
             
             // Convert Event Parameter into dict if it exists
             let parametersDict = parameters?.reduce([String: Any]()) { (dict, eventParameter) -> [String: Any] in
@@ -904,12 +908,16 @@ struct FirebaseUtility {
     }
     
     public static func logEvent(_ event: FirebaseEvent) {
+        var parameterLogs = ""
         if let parameters = event.parameters {
-            Log.info("📊🔥 Firebase Event: \(event.name)")
+            parameterLogs = " ["
             parameters.forEach { parameter in
-                Log.info("\(parameter.key): \(parameter.value)")
+                parameterLogs.append("(\(parameter.key): \(parameter.value))")
             }
+            parameterLogs.append("]")
         }
+        
+        Log.info("📊🔥 Firebase Event: \(event.name)\(parameterLogs)")
 
         Analytics.logEvent(event.name, parameters: event.parameters)
     }

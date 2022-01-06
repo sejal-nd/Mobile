@@ -121,7 +121,7 @@ class UnauthenticatedOutageViewModel {
     
     var accountNonPayFinaledMessage: String {
         if Configuration.shared.opco == .bge {
-            return NSLocalizedString("Outage status and report an outage may not be available for this account. Please call Customer Service at 1-877-778-2222 for further information.", comment: "")
+            return NSLocalizedString("Our records indicate that your services have been disconnected due to non-payment. If you wish to restore services, please make a payment or contact Customer Service at 1-800-685-0123 for further assistance.", comment: "")
         } else {
             if selectedOutageStatus.value!.isFinaled {
                 return NSLocalizedString("Outage Status and Outage Reporting are not available for this account.", comment: "")

@@ -117,6 +117,7 @@ class MoveServiceConfirmationViewController: UIViewController {
         attributedString.addAttributes([ NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17, weight: .regular), NSAttributedString.Key.foregroundColor: UIColor.deepGray], range: NSRange(location: 0, length: helplineDescription.count))
         attributedString.addAttributes([ NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17, weight: .semibold), NSAttributedString.Key.foregroundColor: UIColor.actionBlue], range: range)
         helplineDescriptionTextView.attributedText = attributedString
+        helplineDescriptionTextView.linkTextAttributes = [ NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17, weight: .semibold), NSAttributedString.Key.foregroundColor: UIColor.actionBlue]
         helplineDescriptionTextView.isUserInteractionEnabled = true
         helplineDescriptionTextView.isEditable = false
         helplineDescriptionTextView.textContainerInset = .zero
