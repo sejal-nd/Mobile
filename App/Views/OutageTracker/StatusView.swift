@@ -29,7 +29,12 @@ class StatusView: UIView {
     
     func configure(withEvent event: EventSet, isPaused: Bool) {
         if let status = event.status, let state = TrackerState(rawValue: status) {
-            update(forState: state, isPaused: isPaused)
+            let eventStatus = OutageTracker.Status(rawValue: event.eventSetDescription ?? "")
+            
+            let lastOne = eventStatus == .restored
+            barView.isHidden = lastOne
+            
+            update(forState: state, isPaused: isPaused, isLast: lastOne)
             statusTitleLabel.text = event.eventSetDescription
             statusDateLabel.text = ""
             if let dateString = event.dateTime {
@@ -41,15 +46,13 @@ class StatusView: UIView {
             barWidthConstraint.constant = state == .completed ? 4 : 2
             barBottomConstraint.constant = state == .completed ? 3 : 0
             barTopConstraint.constant = state == .inProgress ? 3 : 0
-            
-            let eventStatus = OutageTracker.Status(rawValue: event.eventSetDescription ?? "")
-            barView.isHidden = eventStatus == .restored
         }
     }
     
-    private func update(forState state: TrackerState, isPaused: Bool) {
-        outerView.roundCorners(.allCorners, radius: 16, borderColor: .successGreenText, borderWidth: 1.0)
-        innerView.roundCorners(.allCorners, radius: 12, borderColor: .successGreenText, borderWidth: 1.0)
+    private func update(forState state: TrackerState, isPaused: Bool, isLast: Bool) {
+        outerView.roundCorners(.allCorners, radius: 16, borderColor: .successGreenText, borderWidth: 2.0)
+        innerView.roundCorners(.allCorners, radius: 12, borderColor: .successGreenText, borderWidth: 2.0)
+        statusTitleLabel.font = OpenSans.regular.of(size: 15)
         
         switch state {
             case .notStarted:
@@ -60,10 +63,14 @@ class StatusView: UIView {
                 innerView.backgroundColor = isPaused ? .white : .successGreenText
                 outerView.isHidden = false
                 checkmarkImageView.isHidden = true
+                statusTitleLabel.font = OpenSans.bold.of(size: 15)
             case .completed:
                 innerView.backgroundColor = .successGreenText
                 outerView.isHidden = true
                 checkmarkImageView.isHidden = false
+                if isLast {
+                    statusTitleLabel.font = OpenSans.bold.of(size: 15)
+                }
         }
     }
     

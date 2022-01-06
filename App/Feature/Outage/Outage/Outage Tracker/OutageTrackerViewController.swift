@@ -218,6 +218,8 @@ class OutageTrackerViewController: UIViewController {
         
         etaDetailLabel.isHidden = false
         etaInfoButton.isHidden = false
+        etaUpdatedView.isHidden = true
+        
         switch viewModel.status {
             case .reported, .assigned, .enRoute:
                 etaDetailLabel.text = viewModel.etaDetail
@@ -227,6 +229,23 @@ class OutageTrackerViewController: UIViewController {
                 etaDetailLabel.isHidden = true
                 etaInfoButton.isHidden = true
                 etaCauseLabel.font = SystemFont.regular.of(textStyle: .footnote)
+                
+        }
+        
+        // check for changes in ETA to show updated pill
+        let detailText = etaDetailLabel.text
+        let defaults = UserDefaults.standard
+        let dateTime = defaults.object(forKey: "etaDateTime") as? String ?? ""
+        let cause = defaults.object(forKey: "etaCause") as? String ?? ""
+        let details = defaults.object(forKey: "etaDetail") as? String ?? viewModel.etaDetail
+        
+        if dateTime != viewModel.etaDateTime ||
+            cause != viewModel.etaCause ||
+            details != detailText {
+            etaUpdatedView.isHidden = false
+            defaults.set(viewModel.etaDateTime, forKey: "etaDateTime")
+            defaults.set(viewModel.etaCause, forKey: "etaCause")
+            defaults.set(detailText, forKey: "etaDetail")
         }
     }
     
@@ -237,8 +256,6 @@ class OutageTrackerViewController: UIViewController {
                 reportOutageVC.viewModel.outageStatus = outageStatus
                 reportOutageVC.viewModel.phoneNumber.accept(outageStatus.contactHomeNumber ?? "")
                 navigationController?.pushViewController(reportOutageVC, animated: true)
-            } else {
-                // show alert maybe
             }
         }
     }
@@ -260,7 +277,6 @@ class OutageTrackerViewController: UIViewController {
             rc.rx.controlEvent(.valueChanged)
                 .subscribe(onNext: { [weak self] in
                     self?.loadOutageTracker()
-                    self?.etaUpdatedView.isHidden = false
                 })
                 .disposed(by: disposeBag)
             

@@ -115,7 +115,7 @@ class OutageTrackerViewModel {
         guard let cause = outageTracker.value?.cause, !cause.isEmpty else {
             return ""
         }
-        return NSLocalizedString("The outage was caused by a \(cause)", comment: "")
+        return NSLocalizedString("The outage was caused by \(cause).", comment: "")
     }
     var neighborCount: String {
         // todo - this field is missing
@@ -276,12 +276,21 @@ class OutageTrackerViewModel {
         }
         let diffComponents = Calendar.current.dateComponents([.hour], from: timeReported, to: timeRestored)
         let hours = diffComponents.hour
-        if hours == 0 {
-            restoreTime = .short
-        } else if hours > 1 && hours < 3 {
-            restoreTime = .regular
+        
+        if isDefinitive {
+            if hours == 0 {
+                restoreTime = .short
+            } else if hours >= 1 && hours < 3 {
+                restoreTime = .regular
+            } else {
+                restoreTime = .long
+            }
         } else {
-            restoreTime = .long
+            if hours < 3 {
+                restoreTime = .regular
+            } else {
+                restoreTime = .long
+            }
         }
         
         return restoreTime
