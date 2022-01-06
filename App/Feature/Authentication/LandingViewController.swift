@@ -309,10 +309,16 @@ class LandingViewController: UIViewController {
 
 extension LandingViewController: RegistrationViewControllerDelegate {
     func registrationViewControllerDidRegister(_ registrationViewController: UIViewController) {
-        performSegue(withIdentifier: "loginSegue", sender: self)
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
-            UIApplication.shared.keyWindow?.rootViewController?.view.showToast(NSLocalizedString("Account registered", comment: ""))
-        })
+        if FeatureFlagUtility.shared.bool(forKey: .isAzureAuthentication) && FeatureFlagUtility.shared.bool(forKey: .isPkceAuthentication){
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+                UIApplication.shared.keyWindow?.rootViewController?.view.showToast(NSLocalizedString("Account registered", comment: ""))
+            })
+        }else{
+            performSegue(withIdentifier: "loginSegue", sender: self)
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+                UIApplication.shared.keyWindow?.rootViewController?.view.showToast(NSLocalizedString("Account registered", comment: ""))
+            })
+        }
     }
 }
 
