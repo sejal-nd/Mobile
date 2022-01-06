@@ -469,7 +469,7 @@ class HomeViewController: AccountPickerViewController {
         }
         
         if let editAction = RxNotifications.shared.profileEditAction.value {
-            if editAction.contains("password") {
+            if editAction == "PasswordUpdate" {
                 self.view.showToast("Password changed")
                 RxNotifications.shared.profileEditAction.accept(nil)
             }
