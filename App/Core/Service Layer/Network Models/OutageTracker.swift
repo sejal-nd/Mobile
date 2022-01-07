@@ -97,7 +97,6 @@ extension OutageTracker {
 }
 
 struct StatusTitleString {
-    // todo - add copy for errors
     static let reported = NSLocalizedString("BGE has received a report of an outage at your address.", comment: "")
     static let assigned = NSLocalizedString("A BGE restoration crew is assigned to your outage.", comment: "")
     static let enRoute = NSLocalizedString("A BGE restoration crew is en route to your outage.", comment: "")
@@ -111,7 +110,6 @@ struct StatusTitleString {
 }
 
 struct StatusDetailString {
-    
     static let crewLeftSite = NSLocalizedString("The outage affecting your address requires additional repair work to be completed at another location before we can begin work in your area. We appreciate your patience during this difficult restoration process.", comment: "")
     static let crewDiverted = NSLocalizedString("This can occur during severe emergencies or potentially hazardous situations. A new BGE crew will be dispatched as soon as possible to retore your service.", comment: "")
     static let crewExtDamage = NSLocalizedString("We have multiple crews on site working hard to restore your power. Thank you for your patience.", comment: "")

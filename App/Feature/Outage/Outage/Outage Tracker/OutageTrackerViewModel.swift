@@ -78,9 +78,6 @@ class OutageTrackerViewModel {
         if status == .restored {
             details = timeToRestore().detailText(isDefinitive: isDefinitive)
         } else {
-            // testing
-            let time = timeToRestore()
-            print("**** \(time)")
             if tracker.isCrewExtDamage == true {
                 details = StatusDetailString.crewExtDamage
             } else if tracker.isSafetyHazard == true {
@@ -269,7 +266,6 @@ class OutageTrackerViewModel {
     }
     
     func hideETAUpdatedIndicator(detailText: String) -> Bool {
-        
         if status == .none || status == .reported {
             clearETA()
             return true
