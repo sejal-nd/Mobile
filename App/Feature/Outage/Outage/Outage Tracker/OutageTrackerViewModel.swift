@@ -78,6 +78,9 @@ class OutageTrackerViewModel {
         if status == .restored {
             details = timeToRestore().detailText(isDefinitive: isDefinitive)
         } else {
+            // testing
+            let time = timeToRestore()
+            print("**** \(time)")
             if tracker.isCrewExtDamage == true {
                 details = StatusDetailString.crewExtDamage
             } else if tracker.isSafetyHazard == true {
@@ -306,10 +309,9 @@ class OutageTrackerViewModel {
         guard let timeRestoredString = events.filter( { $0.eventSetDescription == OutageTracker.Status.restored.rawValue }).first?.dateTime, let timeRestored = DateFormatter.apiFormatter.date(from: timeRestoredString) else {
             return .none
         }
+    
         let diffComponents = Calendar.current.dateComponents([.hour], from: timeReported, to: timeRestored)
-        var hours = diffComponents.hour
-        hours = 0
-        
+        let hours = diffComponents.hour ?? 1
         
         if isDefinitive {
             if hours == 0 {
