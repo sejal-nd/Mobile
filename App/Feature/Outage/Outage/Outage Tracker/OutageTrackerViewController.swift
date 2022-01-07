@@ -197,8 +197,7 @@ class OutageTrackerViewController: UIViewController {
                         trackerStatusContainer.isHidden = true
                     } else {
                         trackerStatusContainer.isHidden = false
-                        let paused = viewModel.isPaused
-                        trackerStatusView.configure(withEvents: viewModel.events, lastUpdated: viewModel.lastUpdated, isPaused: paused)
+                        trackerStatusView.configure(withEvents: viewModel.events, lastUpdated: viewModel.lastUpdated, isPaused: viewModel.isPaused)
                     }
                 }
             }
@@ -211,6 +210,7 @@ class OutageTrackerViewController: UIViewController {
     private func updateETA() {
         etaTitleLabel.text = viewModel.etaTitle
         etaDateTimeLabel.text = viewModel.etaDateTime
+        etaDetailLabel.text = viewModel.etaDetail
         
         etaCauseLabel.text = viewModel.etaCause
         etaCauseLabel.isHidden = viewModel.etaCause.isEmpty
@@ -221,31 +221,17 @@ class OutageTrackerViewController: UIViewController {
         etaUpdatedView.isHidden = true
         
         switch viewModel.status {
-            case .reported, .assigned, .enRoute:
-                etaDetailLabel.text = viewModel.etaDetail
             case .onSite:
                 etaDetailLabel.text = viewModel.etaOnSiteDetail
             case .restored, .none:
                 etaDetailLabel.isHidden = true
                 etaInfoButton.isHidden = true
                 etaCauseLabel.font = SystemFont.regular.of(textStyle: .footnote)
-                
+            default:
+                break
         }
-        
-        // check for changes in ETA to show updated pill
-        let detailText = etaDetailLabel.text
-        let defaults = UserDefaults.standard
-        let dateTime = defaults.object(forKey: "etaDateTime") as? String ?? ""
-        let cause = defaults.object(forKey: "etaCause") as? String ?? ""
-        let details = defaults.object(forKey: "etaDetail") as? String ?? viewModel.etaDetail
-        
-        if dateTime != viewModel.etaDateTime ||
-            cause != viewModel.etaCause ||
-            details != detailText {
-            etaUpdatedView.isHidden = false
-            defaults.set(viewModel.etaDateTime, forKey: "etaDateTime")
-            defaults.set(viewModel.etaCause, forKey: "etaCause")
-            defaults.set(detailText, forKey: "etaDetail")
+        if let detailText = etaDetailLabel.text, !detailText.isEmpty {
+            etaUpdatedView.isHidden = viewModel.hideETAUpdatedIndicator(detailText: detailText)
         }
     }
     

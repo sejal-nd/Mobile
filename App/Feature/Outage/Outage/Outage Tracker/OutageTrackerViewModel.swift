@@ -265,6 +265,38 @@ class OutageTrackerViewModel {
         return events
     }
     
+    func hideETAUpdatedIndicator(detailText: String) -> Bool {
+        
+        if status == .none || status == .reported {
+            clearETA()
+            return true
+        }
+        let defaults = UserDefaults.standard
+        
+        // check for changes in ETA to show updated pill
+        let dateTime = defaults.object(forKey: "etaDateTime") as? String ?? ""
+        let cause = defaults.object(forKey: "etaCause") as? String ?? ""
+        let details = defaults.object(forKey: "etaDetail") as? String ?? etaDetail
+        
+        if dateTime != etaDateTime || cause != etaCause || details != detailText {
+            // save new values
+            defaults.set(etaDateTime, forKey: "etaDateTime")
+            defaults.set(etaCause, forKey: "etaCause")
+            defaults.set(detailText, forKey: "etaDetail")
+            
+            return false
+        } else {
+            return true
+        }
+    }
+    
+    func clearETA() {
+        let defaults = UserDefaults.standard
+        defaults.removeObject(forKey: "etaDateTime")
+        defaults.removeObject(forKey: "etaCause")
+        defaults.removeObject(forKey: "etaDetail")
+    }
+    
     func timeToRestore() -> TimeToRestore {
         var restoreTime: TimeToRestore = .none
         
@@ -275,7 +307,9 @@ class OutageTrackerViewModel {
             return .none
         }
         let diffComponents = Calendar.current.dateComponents([.hour], from: timeReported, to: timeRestored)
-        let hours = diffComponents.hour
+        var hours = diffComponents.hour
+        hours = 0
+        
         
         if isDefinitive {
             if hours == 0 {
