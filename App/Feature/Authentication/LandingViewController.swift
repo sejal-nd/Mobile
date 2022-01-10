@@ -134,15 +134,15 @@ class LandingViewController: UIViewController {
     
     @IBAction func onSignInPress() {
         
-        if FeatureFlagUtility.shared.bool(forKey: .isPkceAuthentication){
+        if FeatureFlagUtility.shared.bool(forKey: .isPkceAuthentication) {
             //Present ASWebAuthentication
             signInButton.tintWhite = false
             signInButton.setLoading()
             signInButton.accessibilityLabel = NSLocalizedString("Loading", comment: "")
             signInButton.accessibilityViewIsModal = true
             
-            PKCEAuthenticationService.sharedService.presentLoginForm { result, redirect_policy in
-                if result == true{
+            PKCEAuthenticationService.sharedService.presentLoginForm { result, message in
+                if result == true {
                     self.signInButton.tintWhite = true
                     self.signInButton.reset()
                     self.signInButton.accessibilityLabel = "Sign In"
@@ -161,7 +161,7 @@ class LandingViewController: UIViewController {
                         navController.setNavigationBarHidden(true, animated: false)
                         navController.setViewControllers([viewController], animated: false)
                     }
-                }else if redirect_policy == "find_email"{
+                } else if message == "find_email" {
                     print("redirect to find email flow")
                     self.signInButton.tintWhite = true
                     self.signInButton.reset()
@@ -170,17 +170,25 @@ class LandingViewController: UIViewController {
                     self.signInButton.accessibilityViewIsModal = false
                     
                     self.performSegue(withIdentifier: "forgotUsernameSegue", sender: self)
-                }else{
-                    print("login failed")
-                    self.signInButton.tintWhite = true
-                    self.signInButton.reset()
-                    self.signInButton.accessibilityLabel = "Sign In"
-                    self.signInButton.accessibilityViewIsModal = false
+                } else {
+                    self.showErrorAlertWith(title: nil, message: message)
                 }
             }
         } else {
             performSegue(withIdentifier: "loginSegue", sender: self)
         }
+    }
+    
+    func showErrorAlertWith(title: String?, message: String) {
+        print("login failed")
+        self.signInButton.tintWhite = true
+        signInButton.reset()
+        signInButton.accessibilityLabel = "Sign In"
+        signInButton.accessibilityViewIsModal = false
+
+        let errorAlert = UIAlertController(title: title != nil ? title : NSLocalizedString("Sign In Error", comment: ""), message: message, preferredStyle: .alert)
+        errorAlert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+        present(errorAlert, animated: true, completion: nil)
     }
     
     func show2SVJustEnabled() {

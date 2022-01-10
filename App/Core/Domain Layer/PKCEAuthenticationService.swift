@@ -31,23 +31,22 @@ class PKCEAuthenticationService:UIViewController {
             
             Log.info(successURL.absoluteString)
             
-            if let oauthToken = NSURLComponents(string: (successURL.absoluteString))?.queryItems?.filter({$0.name == "code"}).first{
-                AuthenticationService.loginWithCode(code: oauthToken.value ?? "nil"){ [weak self] (result: Result<Bool, NetworkingError>) in
+            if let oauthToken = NSURLComponents(string: (successURL.absoluteString))?.queryItems?.filter({$0.name == "code"}).first {
+                AuthenticationService.loginWithCode(code: oauthToken.value ?? "nil") { [weak self] (result: Result<Bool, NetworkingError>) in
                                             switch result {
                                             case .success(let hasTempPassword):
                                                 Log.info("user has logged in succesfully")
                                                 completion(true, "nil")
                                             case .failure(let error):
-                                                Log.error("login error \(error.localizedDescription)")
+                                                Log.error("login error \(error.description)")
+                                                completion(false, error.description)
                                             }
                 }
-            }else if let redirect_policy = NSURLComponents(string: (successURL.absoluteString))?.queryItems?.filter({$0.name == "redirect"}).first{
+            } else if let redirect_policy = NSURLComponents(string: (successURL.absoluteString))?.queryItems?.filter({$0.name == "redirect"}).first{
                 completion(false, redirect_policy.value ?? "nil")
-            }else{
+            } else {
                 completion(false, "nil")
             }
-            
-            
         })
         
         authSession.presentationContextProvider = self
