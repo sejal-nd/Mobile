@@ -26,6 +26,7 @@ class OutageViewController: AccountPickerViewController {
     }
     
     @IBOutlet weak var accountInfoBar: AccountInfoBar!
+    @IBOutlet weak var mainContainerView: UIView!
     @IBOutlet weak var maintenanceModeContainerView: UIView!
     @IBOutlet weak var noNetworkConnectionContainerView: UIView!
     @IBOutlet weak var loadingContainerView: UIView!
@@ -35,6 +36,26 @@ class OutageViewController: AccountPickerViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var outageStatusView: OutageStatusView!
     @IBOutlet weak var footerTextView: ZeroInsetDataDetectorTextView!
+    
+    private lazy var outageTrackerViewController: OutageTrackerViewController? = {
+        let storyboard = UIStoryboard(name: "OutageTracker", bundle: Bundle.main)
+        
+        if let vc = storyboard.instantiateViewController(withIdentifier: "OutageTrackerViewController") as? OutageTrackerViewController {
+            self.add(asChildViewController: vc)
+            return vc
+        }
+        return nil
+    }()
+    
+    private lazy var stormModeViewController: StormModeHomeViewController? = {
+        let storyboard = UIStoryboard(name: "Storm", bundle: nil)
+        
+        if let vc = storyboard.instantiateViewController(withIdentifier: "StormModeHomeViewController") as? StormModeHomeViewController {
+            self.add(asChildViewController: vc)
+            return vc
+        }
+        return nil
+    }()
     
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -69,6 +90,8 @@ class OutageViewController: AccountPickerViewController {
         viewModel.isUserAuthenticated = userState == .authenticated
         
         configureUserState(userState)
+        
+        setupBinding()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -141,6 +164,43 @@ class OutageViewController: AccountPickerViewController {
     
     
     // MARK: - Helper
+    
+    private func add(asChildViewController vc: UIViewController) {
+        addChild(vc)
+        view.addSubview(vc.view)
+        
+        vc.view.frame = view.bounds
+        vc.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        vc.didMove(toParent: self)
+    }
+    
+    private func remove(asChildViewController vc: UIViewController) {
+        vc.willMove(toParent: nil)
+        vc.view.removeFromSuperview()
+        vc.removeFromParent()
+    }
+    
+    private func setupBinding() {
+        self.viewModel.isStormMode
+            .subscribe(onNext: { [weak self] _ in
+                self?.updateView()
+            })
+            .disposed(by: self.viewModel.disposeBag)
+    }
+    
+    private func updateView() {
+        guard let outageTrackerVC = outageTrackerViewController, let stormModeVC = stormModeViewController else {
+            return
+        }
+        
+        if viewModel.isStormMode.value == true {
+            remove(asChildViewController: outageTrackerVC)
+            add(asChildViewController: stormModeVC)
+        } else {
+            remove(asChildViewController: stormModeVC)
+            add(asChildViewController: outageTrackerVC)
+        }
+    }
     
     private func configureAccountPicker() {
         accountPicker.delegate = self

@@ -23,7 +23,7 @@
         <!--Outage Tracker View Controller-->
         <scene sceneID="Zyp-1o-QbN">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="j3V-0d-zjQ" customClass="OutageTrackerViewController" customModule="EUMobile" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OutageTrackerViewController" hidesBottomBarWhenPushed="YES" id="j3V-0d-zjQ" customClass="OutageTrackerViewController" customModule="EUMobile" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pWR-20-TKy">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="1200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
