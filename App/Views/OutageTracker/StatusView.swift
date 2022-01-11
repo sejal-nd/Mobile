@@ -26,6 +26,8 @@ class StatusView: UIView {
     @IBOutlet private weak var barWidthConstraint: NSLayoutConstraint!
     @IBOutlet private weak var barTopConstraint: NSLayoutConstraint!
     @IBOutlet private weak var barBottomConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var innerViewWidthConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var innerViewHeightConstraint: NSLayoutConstraint!
     
     func configure(withEvent event: EventSet, isPaused: Bool) {
         if let status = event.status, let state = TrackerState(rawValue: status) {
@@ -50,11 +52,7 @@ class StatusView: UIView {
     }
     
     private func update(forState state: TrackerState, isPaused: Bool, isLast: Bool) {
-        outerView.roundCorners(.allCorners, radius: 17, borderColor: .successGreenText, borderWidth: 2.0)
-        innerView.roundCorners(.allCorners, radius: 12, borderColor: .successGreenText, borderWidth: 2.0)
-        statusTitleLabel.font = OpenSans.regular.of(size: 15)
-        let barViewRadius = barView.frame.size.width / 2
-        barView.roundCorners(.allCorners, radius: barViewRadius, borderColor: .successGreenText, borderWidth: 0.0)
+        var innerViewConstant: CGFloat = 26.0
         
         switch state {
             case .notStarted:
@@ -66,6 +64,7 @@ class StatusView: UIView {
                 outerView.isHidden = false
                 checkmarkImageView.isHidden = true
                 statusTitleLabel.font = OpenSans.bold.of(size: 15)
+                innerViewConstant = 24
             case .completed:
                 innerView.backgroundColor = .successGreenText
                 outerView.isHidden = true
@@ -74,6 +73,15 @@ class StatusView: UIView {
                     statusTitleLabel.font = OpenSans.bold.of(size: 15)
                 }
         }
+        innerViewWidthConstraint.constant = innerViewConstant
+        innerViewHeightConstraint.constant = innerViewConstant
+        innerView.roundCorners(.allCorners, radius: innerViewConstant/2, borderColor: .successGreenText, borderWidth: 2.0)
+        
+        outerView.roundCorners(.allCorners, radius: 17, borderColor: .successGreenText, borderWidth: 2.0)
+        statusTitleLabel.font = OpenSans.regular.of(size: 15)
+        
+        let barViewRadius = barView.frame.size.width
+        barView.roundCorners(.allCorners, radius: barViewRadius, borderColor: .successGreenText, borderWidth: 0.0)
     }
     
     // MARK: Init

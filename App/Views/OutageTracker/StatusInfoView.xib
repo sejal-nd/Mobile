@@ -27,7 +27,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="czp-7J-3de">
-                    <rect key="frame" x="31" y="248" width="352" height="395.5"/>
+                    <rect key="frame" x="31" y="248" width="352" height="385.5"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z8X-ax-Pxu">
                             <rect key="frame" x="15" y="15" width="24" height="24"/>
@@ -68,7 +68,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="hQT-RJ-6mB">
-                            <rect key="frame" x="20" y="138.5" width="312" height="217"/>
+                            <rect key="frame" x="20" y="128.5" width="312" height="217"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lgQ-Fp-STZ">
                                     <rect key="frame" x="0.0" y="0.0" width="312" height="142"/>
@@ -136,7 +136,7 @@
                     <constraints>
                         <constraint firstItem="WRX-xY-zvH" firstAttribute="centerX" secondItem="czp-7J-3de" secondAttribute="centerX" id="2fe-tI-Ljm"/>
                         <constraint firstItem="z8X-ax-Pxu" firstAttribute="leading" secondItem="czp-7J-3de" secondAttribute="leading" constant="15" id="4Go-xy-Syf"/>
-                        <constraint firstItem="hQT-RJ-6mB" firstAttribute="top" secondItem="WRX-xY-zvH" secondAttribute="bottom" constant="30" id="7hx-wJ-DxJ"/>
+                        <constraint firstItem="hQT-RJ-6mB" firstAttribute="top" secondItem="WRX-xY-zvH" secondAttribute="bottom" constant="20" id="7hx-wJ-DxJ"/>
                         <constraint firstItem="z8X-ax-Pxu" firstAttribute="top" secondItem="czp-7J-3de" secondAttribute="top" constant="15" id="B2D-wl-jPI"/>
                         <constraint firstItem="WRX-xY-zvH" firstAttribute="top" secondItem="czp-7J-3de" secondAttribute="top" constant="88" id="DZg-ol-1oO"/>
                         <constraint firstItem="hXi-D5-hgR" firstAttribute="centerX" secondItem="czp-7J-3de" secondAttribute="centerX" id="ETD-IK-bOq"/>

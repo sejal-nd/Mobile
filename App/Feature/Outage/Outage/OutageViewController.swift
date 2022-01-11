@@ -169,7 +169,7 @@ class OutageViewController: AccountPickerViewController {
     
     private func add(asChildViewController vc: UIViewController) {
         addChild(vc)
-        vc.view.frame = view.bounds
+        vc.view.frame = mainContainerView.bounds
         vc.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         mainContainerView.addSubview(vc.view)
         vc.didMove(toParent: self)
