@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="yf6-8Y-4nw">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="yf6-8Y-4nw">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -142,9 +142,7 @@
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SR6-kO-7rL">
                                 <rect key="frame" x="0.0" y="144" width="414" height="752"/>
-                                <connections>
-                                    <segue destination="3ey-kF-zsV" kind="embed" id="MCR-9y-DOk"/>
-                                </connections>
+                                <color key="backgroundColor" systemColor="systemGray2Color"/>
                             </containerView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="rLJ-mF-oEY"/>
@@ -192,6 +190,7 @@
                         <outlet property="footerTextView" destination="waI-lA-BTk" id="Idb-gl-Tis"/>
                         <outlet property="gasOnlyContainerView" destination="haH-7e-9Oh" id="NDc-yc-lnk"/>
                         <outlet property="loadingContainerView" destination="hW1-hm-7uS" id="nOO-1K-DbL"/>
+                        <outlet property="mainContainerView" destination="SR6-kO-7rL" id="jPc-df-Ta1"/>
                         <outlet property="maintenanceModeContainerView" destination="UoT-gg-gb1" id="ggl-Op-zsQ"/>
                         <outlet property="noNetworkConnectionContainerView" destination="kBP-rF-ByC" id="17C-Uf-CgA"/>
                         <outlet property="notAvailableContainerView" destination="Ndp-bw-rV5" id="Yqf-aY-Ra9"/>
@@ -204,16 +203,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="boy-9U-hSJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1418.840579710145" y="1833.4821428571427"/>
-        </scene>
-        <!--OutageTracker-->
-        <scene sceneID="uQD-fR-5iA">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="OutageTracker" storyboardName="OutageTracker" id="3ey-kF-zsV" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="101-vE-IQP"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="j2Q-Wc-35b" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1363" y="2457"/>
         </scene>
         <!--Outage Map-->
         <scene sceneID="YcY-ED-hEl">
@@ -890,6 +879,9 @@
         <image name="ic_lock_opco" width="125" height="126"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray2Color">
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

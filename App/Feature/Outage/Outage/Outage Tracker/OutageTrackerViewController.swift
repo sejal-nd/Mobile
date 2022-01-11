@@ -8,13 +8,12 @@
 
 import Foundation
 import UIKit
-import Lottie
 import RxSwift
 
 class OutageTrackerViewController: UIViewController {
     @IBOutlet weak var loadingIndicator: LoadingIndicator!
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var progressAnimationContainer: UIView!
+    @IBOutlet weak var progressAnimationView: StateAnimationView!
     @IBOutlet weak var statusTitleView: UIView!
     @IBOutlet weak var statusTitleLabel: UILabel!
     @IBOutlet weak var statusDetailView: UIView!
@@ -29,7 +28,7 @@ class OutageTrackerViewController: UIViewController {
     @IBOutlet weak var etaDetailLabel: UILabel!
     @IBOutlet weak var etaCauseLabel: UILabel!
     @IBOutlet weak var etaUpdatedView: UIView!
-    @IBOutlet weak var etaInfoButton: UIButton!
+    @IBOutlet weak var etaInfoButtonView: UIView!
     @IBOutlet weak var countContainerView: UIView!
     @IBOutlet weak var countView: UIView!
     @IBOutlet weak var neighborCountLabel: UILabel!
@@ -37,7 +36,6 @@ class OutageTrackerViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var tableViewContainer: UIView!
     @IBOutlet weak var footerTextView: ZeroInsetDataDetectorTextView!
-    @IBOutlet weak var errorImageView: UIImageView!
     @IBOutlet weak var trackerStatusContainer: UIView!
     @IBOutlet weak var trackerStatusView: TrackerStatusView!
     @IBOutlet weak var surveyContainer: UIView!
@@ -51,7 +49,6 @@ class OutageTrackerViewController: UIViewController {
     let disposeBag = DisposeBag()
     let viewModel = OutageTrackerViewModel()
     let infoView = StatusInfoView()
-    var progressAnimation = AnimationView(name: "ot_reported")
     var refreshControl: UIRefreshControl?
     
     override func viewDidLoad() {
@@ -94,15 +91,9 @@ class OutageTrackerViewController: UIViewController {
     private func setupBinding() {
         self.viewModel.outageTracker
             .subscribe(onNext: { [weak self] _ in
-                self?.setUpProgressAnimation()
                 self?.update()
                 self?.scrollView.isHidden = false
                 self?.loadingIndicator.isHidden = true
-            })
-            .disposed(by: self.disposeBag)
-        
-        self.viewModel.outageStatus
-            .subscribe(onNext: { _ in
             })
             .disposed(by: self.disposeBag)
     }
@@ -112,7 +103,6 @@ class OutageTrackerViewController: UIViewController {
         self.view.addSubview(infoView)
         self.infoView.delegate = self
         self.infoView.isHidden = true
-        self.errorImageView.isHidden = true
         self.etaUpdatedView.isHidden = true
         self.whyButtonContainer.isHidden = true
         
@@ -144,7 +134,9 @@ class OutageTrackerViewController: UIViewController {
                 statusTitleView.isHidden = true
                 statusDetailView.isHidden = true
                 powerOnContainer.isHidden = false
+                progressAnimationView.configure(withStatus: .restored)
             } else {
+                progressAnimationView.configure(withStatus: viewModel.status)
                 statusTitleView.isHidden = false
                 statusDetailView.isHidden = false
                 powerOnContainer.isHidden = true
@@ -152,22 +144,18 @@ class OutageTrackerViewController: UIViewController {
                 statusTitleLabel.text = viewModel.statusTitle
                 statusDetailLabel.text = viewModel.statusDetails
                 
+                detailLeadingConstraint.constant = 20
+                detailTrailingConstraint.constant = 20
+                
                 if viewModel.status == .none {
-                    progressAnimationContainer.isHidden = true
-                    errorImageView.isHidden = false
-                    errorImageView.image = UIImage(named: "ic_bigerror_sm")
-                    
                     statusTitleLabel.textAlignment = .center
                     titleLeadingConstraint.constant = 30
                     titleTrailingConstraint.constant = 30
-                    detailLeadingConstraint.constant = 50
-                    detailTrailingConstraint.constant = 50
                 } else {
                     etaContainerView.isHidden = false
                     countContainerView.isHidden = false
                     trackerStatusContainer.isHidden = false
                     surveyContainer.isHidden = false
-                    errorImageView.isHidden = true
                     statusDetailView.isHidden = viewModel.statusDetails.isEmpty
                     
                     if viewModel.status == .restored {
@@ -177,14 +165,10 @@ class OutageTrackerViewController: UIViewController {
                         statusTitleLabel.textAlignment = .center
                         titleLeadingConstraint.constant = 30
                         titleTrailingConstraint.constant = 30
-                        detailLeadingConstraint.constant = 50
-                        detailTrailingConstraint.constant = 50
                     } else {
                         statusTitleLabel.textAlignment = .left
                         titleLeadingConstraint.constant = 20
                         titleTrailingConstraint.constant = 20
-                        detailLeadingConstraint.constant = 20
-                        detailTrailingConstraint.constant = 20
                     }
                     
                     whyButtonContainer.isHidden = viewModel.hideWhyButton
@@ -217,7 +201,7 @@ class OutageTrackerViewController: UIViewController {
         etaCauseLabel.font = SystemFont.bold.of(textStyle: .footnote)
         
         etaDetailLabel.isHidden = false
-        etaInfoButton.isHidden = false
+        etaInfoButtonView.isHidden = false
         etaUpdatedView.isHidden = true
         
         switch viewModel.status {
@@ -225,7 +209,7 @@ class OutageTrackerViewController: UIViewController {
                 etaDetailLabel.text = viewModel.etaOnSiteDetail
             case .restored, .none:
                 etaDetailLabel.isHidden = true
-                etaInfoButton.isHidden = true
+                etaInfoButtonView.isHidden = true
                 etaCauseLabel.font = SystemFont.regular.of(textStyle: .footnote)
             default:
                 break
@@ -326,27 +310,7 @@ extension OutageTrackerViewController: StatusInfoViewDelegate {
         infoView.isHidden = true
     }
     func reportOutagePressed() {
-        openOutageMap(forStreetMap: false)
-    }
-}
-
-extension OutageTrackerViewController {
-    
-    // MARK - Lottie Animation
-    
-    func setUpProgressAnimation() {
-        let animationName = viewModel.animationName
-        progressAnimation.removeFromSuperview()
-        progressAnimation = AnimationView(name: animationName)
-        
-        progressAnimation.frame = CGRect(x: 0, y: 1, width: progressAnimationContainer.frame.size.width, height: progressAnimationContainer.frame.size.height)
-        progressAnimation.loopMode = .loop
-        progressAnimation.backgroundBehavior = .pauseAndRestore
-        progressAnimation.contentMode = .scaleAspectFill
-        
-        progressAnimationContainer.addSubview(progressAnimation)
-        
-        progressAnimation.play()
+        reportOutage()
     }
 }
 

@@ -72,11 +72,13 @@ class OutageTrackerViewModel {
     }
     var statusDetails: String {
         guard let tracker = outageTracker.value else {
-            return StatusDetailString.trackerNone
+            return StatusDetailString.none
         }
         var details = ""
         if status == .restored {
             details = timeToRestore().detailText(isDefinitive: isDefinitive)
+        } else if status == .none {
+            return StatusDetailString.none
         } else {
             if tracker.isCrewExtDamage == true {
                 details = StatusDetailString.crewExtDamage
@@ -207,26 +209,6 @@ class OutageTrackerViewModel {
                 }
         }
         return attributedText
-    }
-    var animationName: String {
-        if isActiveOutage == false {
-            return "outage_on"
-        } else {
-            switch status {
-                case .reported:
-                    return "ot_reported"
-                case .assigned:
-                    return "ot_assigned"
-                case .enRoute:
-                    return "ot_enroute"
-                case .onSite:
-                    return "ot_onsite"
-                case .restored:
-                    return "outage_on"
-                default:
-                    return ""
-            }
-        }
     }
     var surveyURL: String {
         switch status {

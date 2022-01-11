@@ -115,7 +115,7 @@ struct StatusDetailString {
     static let crewExtDamage = NSLocalizedString("We have multiple crews on site working hard to restore your power. Thank you for your patience.", comment: "")
     static let crewSafetyHazard = NSLocalizedString("", comment: "")
     static let partialRestoration = "BGE was able to restore service to some customers in your area, but due to the location of the damage, you and %@ others are still affected by this outage."
-    static let trackerNone = NSLocalizedString("We’re actively trying to fix the problem, please check back soon. If your power is not on, please help us by reporting the outage.", comment: "")
+    static let none = NSLocalizedString("We’re actively trying to fix the problem, please check back soon. If your power is not on, please help us by reporting the outage.", comment: "")
     
     // restored
     static let restoredDefLong = NSLocalizedString("Our systems indicate that the power has been restored to your address. We understand that you have been without power for an extended time. We appreciate your patience during this difficult restoration process.", comment: "")

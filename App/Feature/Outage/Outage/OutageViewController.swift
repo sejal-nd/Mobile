@@ -73,6 +73,8 @@ class OutageViewController: AccountPickerViewController {
     
     var accountsLoaded = false
     
+    var isStormMode = false
+    
     let disposeBag = DisposeBag()
     
     
@@ -167,10 +169,9 @@ class OutageViewController: AccountPickerViewController {
     
     private func add(asChildViewController vc: UIViewController) {
         addChild(vc)
-        view.addSubview(vc.view)
-        
         vc.view.frame = view.bounds
         vc.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        mainContainerView.addSubview(vc.view)
         vc.didMove(toParent: self)
     }
     
@@ -193,6 +194,7 @@ class OutageViewController: AccountPickerViewController {
             return
         }
         
+        // for testing: check value should be true *****
         if viewModel.isStormMode.value == true {
             remove(asChildViewController: outageTrackerVC)
             add(asChildViewController: stormModeVC)
