@@ -72,11 +72,13 @@ class OutageTrackerViewModel {
     }
     var statusDetails: String {
         guard let tracker = outageTracker.value else {
-            return StatusDetailString.trackerNone
+            return StatusDetailString.none
         }
         var details = ""
         if status == .restored {
             details = timeToRestore().detailText(isDefinitive: isDefinitive)
+        } else if status == .none {
+            return StatusDetailString.none
         } else {
             if tracker.isCrewExtDamage == true {
                 details = StatusDetailString.crewExtDamage

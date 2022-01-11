@@ -152,6 +152,9 @@ class OutageTrackerViewController: UIViewController {
                 statusTitleLabel.text = viewModel.statusTitle
                 statusDetailLabel.text = viewModel.statusDetails
                 
+                detailLeadingConstraint.constant = 20
+                detailTrailingConstraint.constant = 20
+                
                 if viewModel.status == .none {
                     progressAnimationContainer.isHidden = true
                     errorImageView.isHidden = false
@@ -160,8 +163,8 @@ class OutageTrackerViewController: UIViewController {
                     statusTitleLabel.textAlignment = .center
                     titleLeadingConstraint.constant = 30
                     titleTrailingConstraint.constant = 30
-                    detailLeadingConstraint.constant = 50
-                    detailTrailingConstraint.constant = 50
+                    detailLeadingConstraint.constant = 40
+                    detailTrailingConstraint.constant = 40
                 } else {
                     etaContainerView.isHidden = false
                     countContainerView.isHidden = false
@@ -177,14 +180,10 @@ class OutageTrackerViewController: UIViewController {
                         statusTitleLabel.textAlignment = .center
                         titleLeadingConstraint.constant = 30
                         titleTrailingConstraint.constant = 30
-                        detailLeadingConstraint.constant = 50
-                        detailTrailingConstraint.constant = 50
                     } else {
                         statusTitleLabel.textAlignment = .left
                         titleLeadingConstraint.constant = 20
                         titleTrailingConstraint.constant = 20
-                        detailLeadingConstraint.constant = 20
-                        detailTrailingConstraint.constant = 20
                     }
                     
                     whyButtonContainer.isHidden = viewModel.hideWhyButton

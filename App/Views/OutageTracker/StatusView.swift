@@ -50,7 +50,7 @@ class StatusView: UIView {
     }
     
     private func update(forState state: TrackerState, isPaused: Bool, isLast: Bool) {
-        outerView.roundCorners(.allCorners, radius: 16, borderColor: .successGreenText, borderWidth: 2.0)
+        outerView.roundCorners(.allCorners, radius: 17, borderColor: .successGreenText, borderWidth: 2.0)
         innerView.roundCorners(.allCorners, radius: 12, borderColor: .successGreenText, borderWidth: 2.0)
         statusTitleLabel.font = OpenSans.regular.of(size: 15)
         
