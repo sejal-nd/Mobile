@@ -23,6 +23,10 @@ class ETAView: UIView {
     
     weak var delegate: ETAViewDelegate?
     
+    var isStormMode: Bool {
+        return StormModeStatus.shared.isOn
+    }
+    
     var hideUpdatedView: Bool = true {
         didSet {
             etaUpdatedView.isHidden = hideUpdatedView

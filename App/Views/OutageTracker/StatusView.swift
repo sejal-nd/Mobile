@@ -29,6 +29,10 @@ class StatusView: UIView {
     @IBOutlet private weak var innerViewWidthConstraint: NSLayoutConstraint!
     @IBOutlet private weak var innerViewHeightConstraint: NSLayoutConstraint!
     
+    var isStormMode: Bool {
+        return StormModeStatus.shared.isOn
+    }
+    
     func configure(withEvent event: EventSet, isPaused: Bool) {
         if let status = event.status, let state = TrackerState(rawValue: status) {
             let eventStatus = OutageTracker.Status(rawValue: event.eventSetDescription ?? "")
