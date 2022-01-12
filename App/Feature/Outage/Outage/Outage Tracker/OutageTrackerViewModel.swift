@@ -156,8 +156,10 @@ class OutageTrackerViewModel {
         return false
     }
     var isDefinitive: Bool {
-        // todo: where does this come from
-        return outageStatus.value?.isSmartMeter ?? false
+        guard let tracker = outageTracker.value, let status = tracker.meterStatus else {
+            return false
+        }
+        return status.uppercased() == "ON"
     }
     var lastUpdated: String {
         var time = ""

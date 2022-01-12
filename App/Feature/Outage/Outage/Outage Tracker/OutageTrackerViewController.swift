@@ -174,7 +174,6 @@ class OutageTrackerViewController: UIViewController {
                     statusDetailView.isHidden = viewModel.statusDetails.isEmpty
                     
                     if viewModel.status == .restored {
-                        statusTitleLabel.textAlignment = .center
                         countContainerView.isHidden = true
                         
                         statusTitleLabel.textAlignment = .center
@@ -325,7 +324,7 @@ extension OutageTrackerViewController: StatusInfoViewDelegate {
         infoView.isHidden = true
     }
     func reportOutagePressed() {
-        openOutageMap(forStreetMap: false)
+        reportOutage()
     }
 }
 
