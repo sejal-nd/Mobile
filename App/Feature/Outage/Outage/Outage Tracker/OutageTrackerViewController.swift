@@ -14,10 +14,7 @@ class OutageTrackerViewController: UIViewController {
     @IBOutlet weak var loadingIndicator: LoadingIndicator!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var progressAnimationView: StateAnimationView!
-    @IBOutlet weak var statusTitleView: UIView!
-    @IBOutlet weak var statusTitleLabel: UILabel!
-    @IBOutlet weak var statusDetailView: UIView!
-    @IBOutlet weak var statusDetailLabel: UILabel!
+    @IBOutlet weak var statusTextView: StatusTextView!
     @IBOutlet weak var whyButtonContainer: UIView!
     @IBOutlet weak var whyButtonView: UIView!
     @IBOutlet weak var whyButton: UIButton!
@@ -40,11 +37,6 @@ class OutageTrackerViewController: UIViewController {
     @IBOutlet weak var trackerStatusView: TrackerStatusView!
     @IBOutlet weak var surveyContainer: UIView!
     @IBOutlet weak var powerOnContainer: UIView!
-    
-    @IBOutlet weak var titleLeadingConstraint: NSLayoutConstraint!
-    @IBOutlet weak var titleTrailingConstraint: NSLayoutConstraint!
-    @IBOutlet weak var detailLeadingConstraint: NSLayoutConstraint!
-    @IBOutlet weak var detailTrailingConstraint: NSLayoutConstraint!
     
     let disposeBag = DisposeBag()
     let viewModel = OutageTrackerViewModel()
@@ -125,50 +117,30 @@ class OutageTrackerViewController: UIViewController {
             gasOnlyView.frame = self.view.bounds
             self.view.addSubview(gasOnlyView)
         } else {
+            statusTextView.isHidden = true
             etaContainerView.isHidden = true
             countContainerView.isHidden = true
             trackerStatusContainer.isHidden = true
             surveyContainer.isHidden = true
+            powerOnContainer.isHidden = true
             
             if viewModel.isActiveOutage == false {
-                statusTitleView.isHidden = true
-                statusDetailView.isHidden = true
                 powerOnContainer.isHidden = false
                 progressAnimationView.configure(withStatus: .restored)
             } else {
                 progressAnimationView.configure(withStatus: viewModel.status)
-                statusTitleView.isHidden = false
-                statusDetailView.isHidden = false
-                powerOnContainer.isHidden = true
                 
-                statusTitleLabel.text = viewModel.statusTitle
-                statusDetailLabel.text = viewModel.statusDetails
+                statusTextView.isHidden = false
+                statusTextView.configure(withTitle: viewModel.statusTitle, detail: viewModel.statusDetails, status: viewModel.status)
                 
-                detailLeadingConstraint.constant = 20
-                detailTrailingConstraint.constant = 20
-                
-                if viewModel.status == .none {
-                    statusTitleLabel.textAlignment = .center
-                    titleLeadingConstraint.constant = 30
-                    titleTrailingConstraint.constant = 30
-                } else {
+                if viewModel.status != .none {
                     etaContainerView.isHidden = false
                     countContainerView.isHidden = false
                     trackerStatusContainer.isHidden = false
                     surveyContainer.isHidden = false
-                    statusDetailView.isHidden = viewModel.statusDetails.isEmpty
                     
                     if viewModel.status == .restored {
-                        statusTitleLabel.textAlignment = .center
                         countContainerView.isHidden = true
-                        
-                        statusTitleLabel.textAlignment = .center
-                        titleLeadingConstraint.constant = 30
-                        titleTrailingConstraint.constant = 30
-                    } else {
-                        statusTitleLabel.textAlignment = .left
-                        titleLeadingConstraint.constant = 20
-                        titleTrailingConstraint.constant = 20
                     }
                     
                     whyButtonContainer.isHidden = viewModel.hideWhyButton
