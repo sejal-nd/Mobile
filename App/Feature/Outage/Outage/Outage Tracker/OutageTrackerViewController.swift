@@ -15,6 +15,8 @@ class OutageTrackerViewController: UIViewController {
     @IBOutlet weak var loadingIndicator: LoadingIndicator!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var progressAnimationContainer: UIView!
+    @IBOutlet weak var hazardContainerView: UIView!
+    @IBOutlet weak var hazardView: UIView!
     @IBOutlet weak var statusTitleView: UIView!
     @IBOutlet weak var statusTitleLabel: UILabel!
     @IBOutlet weak var statusDetailView: UIView!
@@ -126,6 +128,8 @@ class OutageTrackerViewController: UIViewController {
         
         countView.roundCorners(.allCorners, radius: 10, borderColor: .accentGray, borderWidth: 1.0)
         
+        hazardView.roundCorners(.allCorners, radius: 10, borderColor: .accentGray, borderWidth: 1.0)
+        
         tableViewContainer.roundCorners(.allCorners, radius: 0, borderColor: .accentGray, borderWidth: 1.0)
     }
     
@@ -139,6 +143,11 @@ class OutageTrackerViewController: UIViewController {
             countContainerView.isHidden = true
             trackerStatusContainer.isHidden = true
             surveyContainer.isHidden = true
+            hazardContainerView.isHidden = true
+            
+            if let tracker = viewModel.outageTracker.value, let show = tracker.isSafetyHazard {
+                hazardContainerView.isHidden = !show
+            }
             
             if viewModel.isActiveOutage == false {
                 statusTitleView.isHidden = true
@@ -295,6 +304,12 @@ class OutageTrackerViewController: UIViewController {
         let survey = WebViewController(title: NSLocalizedString("", comment: ""),
                                          url: url)
         navigationController?.present(survey, animated: true, completion: nil)
+    }
+    
+    @IBAction func showHazardPressed(_ sender: Any) {
+        let info = StatusInfoMessage.hazardMessage
+        infoView.configure(withInfo: info)
+        infoView.isHidden = false
     }
     
     @IBAction func whyButtonPressed(_ sender: Any) {
