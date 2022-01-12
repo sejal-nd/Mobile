@@ -19,13 +19,7 @@ class OutageTrackerViewController: UIViewController {
     @IBOutlet weak var whyButtonView: UIView!
     @IBOutlet weak var whyButton: UIButton!
     @IBOutlet weak var etaContainerView: UIView!
-    @IBOutlet weak var etaView: UIView!
-    @IBOutlet weak var etaTitleLabel: UILabel!
-    @IBOutlet weak var etaDateTimeLabel: UILabel!
-    @IBOutlet weak var etaDetailLabel: UILabel!
-    @IBOutlet weak var etaCauseLabel: UILabel!
-    @IBOutlet weak var etaUpdatedView: UIView!
-    @IBOutlet weak var etaInfoButtonView: UIView!
+    @IBOutlet weak var etaView: ETAView!
     @IBOutlet weak var countContainerView: UIView!
     @IBOutlet weak var countView: UIView!
     @IBOutlet weak var neighborCountLabel: UILabel!
@@ -95,13 +89,10 @@ class OutageTrackerViewController: UIViewController {
         self.view.addSubview(infoView)
         self.infoView.delegate = self
         self.infoView.isHidden = true
-        self.etaUpdatedView.isHidden = true
         self.whyButtonContainer.isHidden = true
         
+        etaView.delegate = self
         etaView.roundCorners(.allCorners, radius: 10, borderColor: .successGreenText, borderWidth: 1.0)
-        
-        let updatedViewRadius = etaUpdatedView.frame.size.height / 2
-        etaUpdatedView.roundCorners(.allCorners, radius: updatedViewRadius, borderColor: .successGreenText, borderWidth: 1.0)
         
         let whyViewRadius = whyButtonView.frame.size.height / 2
         whyButtonView.roundCorners(.allCorners, radius: whyViewRadius, borderColor: .accentGray, borderWidth: 1.0)
@@ -164,30 +155,13 @@ class OutageTrackerViewController: UIViewController {
     }
     
     private func updateETA() {
-        etaTitleLabel.text = viewModel.etaTitle
-        etaDateTimeLabel.text = viewModel.etaDateTime
-        etaDetailLabel.text = viewModel.etaDetail
+        let details = viewModel.status == .onSite ? viewModel.etaOnSiteDetail : viewModel.etaDetail
+        let eta = OutageTrackerETA(etaTitle: viewModel.etaTitle, etaDateTime: viewModel.etaDateTime, etaDetail: details, etaCause: viewModel.etaCause)
         
-        etaCauseLabel.text = viewModel.etaCause
-        etaCauseLabel.isHidden = viewModel.etaCause.isEmpty
-        etaCauseLabel.font = SystemFont.bold.of(textStyle: .footnote)
+        etaView.configure(withETA: eta, status: viewModel.status)
         
-        etaDetailLabel.isHidden = false
-        etaInfoButtonView.isHidden = false
-        etaUpdatedView.isHidden = true
-        
-        switch viewModel.status {
-            case .onSite:
-                etaDetailLabel.text = viewModel.etaOnSiteDetail
-            case .restored, .none:
-                etaDetailLabel.isHidden = true
-                etaInfoButtonView.isHidden = true
-                etaCauseLabel.font = SystemFont.regular.of(textStyle: .footnote)
-            default:
-                break
-        }
-        if let detailText = etaDetailLabel.text, !detailText.isEmpty {
-            etaUpdatedView.isHidden = viewModel.hideETAUpdatedIndicator(detailText: detailText)
+        if !details.isEmpty {
+            etaView.hideUpdatedView = viewModel.hideETAUpdatedIndicator(detailText: details)
         }
     }
     
@@ -242,12 +216,6 @@ class OutageTrackerViewController: UIViewController {
         }
     }
     
-    @IBAction func infoButtonPressed(_ sender: Any) {
-        let info = StatusInfoMessage.etrToolTip
-        infoView.configure(withInfo: info)
-        infoView.isHidden = false
-    }
-    
     @IBAction func surveyButtonPressed(_ sender: Any) {
         guard let url = URL(string: viewModel.surveyURL) else { return }
         let survey = WebViewController(title: NSLocalizedString("", comment: ""),
@@ -283,6 +251,14 @@ extension OutageTrackerViewController: StatusInfoViewDelegate {
     }
     func reportOutagePressed() {
         reportOutage()
+    }
+}
+
+extension OutageTrackerViewController: ETAViewDelegate {
+    func showInfoView() {
+        let info = StatusInfoMessage.etrToolTip
+        infoView.configure(withInfo: info)
+        infoView.isHidden = false
     }
 }
 

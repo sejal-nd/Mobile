@@ -10,25 +10,6 @@ import RxSwift
 import RxCocoa
 import RxSwiftExt
 
-enum TimeToRestore: Int {
-    case short
-    case regular
-    case long
-    case none
-    
-    func detailText(isDefinitive: Bool) -> String {
-        switch self {
-            case .short:
-                return StatusDetailString.restoredDefShort
-            case .regular:
-                return isDefinitive ? StatusDetailString.restoredDefReg : StatusDetailString.restoredNonDefReg
-            case .long:
-                return isDefinitive ? StatusDetailString.restoredDefLong : StatusDetailString.restoredNonDefLong
-            case .none: return ""
-        }
-    }
-}
-
 class OutageTrackerViewModel {
     
     let disposeBag = DisposeBag()
