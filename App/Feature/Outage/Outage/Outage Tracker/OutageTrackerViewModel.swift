@@ -10,25 +10,6 @@ import RxSwift
 import RxCocoa
 import RxSwiftExt
 
-enum TimeToRestore: Int {
-    case short
-    case regular
-    case long
-    case none
-    
-    func detailText(isDefinitive: Bool) -> String {
-        switch self {
-            case .short:
-                return StatusDetailString.restoredDefShort
-            case .regular:
-                return isDefinitive ? StatusDetailString.restoredDefReg : StatusDetailString.restoredNonDefReg
-            case .long:
-                return isDefinitive ? StatusDetailString.restoredDefLong : StatusDetailString.restoredNonDefLong
-            case .none: return ""
-        }
-    }
-}
-
 class OutageTrackerViewModel {
     
     let disposeBag = DisposeBag()
@@ -211,26 +192,6 @@ class OutageTrackerViewModel {
                 }
         }
         return attributedText
-    }
-    var animationName: String {
-        if isActiveOutage == false {
-            return "outage_on"
-        } else {
-            switch status {
-                case .reported:
-                    return "ot_reported"
-                case .assigned:
-                    return "ot_assigned"
-                case .enRoute:
-                    return "ot_enroute"
-                case .onSite:
-                    return "ot_onsite"
-                case .restored:
-                    return "outage_on"
-                default:
-                    return ""
-            }
-        }
     }
     var surveyURL: String {
         switch status {

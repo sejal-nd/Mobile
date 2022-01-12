@@ -17,6 +17,8 @@
                 <outlet property="checkmarkImageView" destination="kkg-uo-MeX" id="Otv-o0-yF9"/>
                 <outlet property="contentView" destination="iN0-l3-epB" id="d9E-yy-8Fc"/>
                 <outlet property="innerView" destination="Dwb-kJ-o2B" id="DMg-yI-nRf"/>
+                <outlet property="innerViewHeightConstraint" destination="uu3-rd-8QV" id="SNZ-Bk-6oj"/>
+                <outlet property="innerViewWidthConstraint" destination="WOW-83-BIO" id="wBQ-w0-NKB"/>
                 <outlet property="outerView" destination="HFQ-Ee-Ha9" id="6ZZ-GM-bt4"/>
                 <outlet property="statusDateLabel" destination="Zh1-2S-Pjl" id="DA2-Vg-cjW"/>
                 <outlet property="statusTitleLabel" destination="xwd-RL-U5Z" id="OS9-kY-r9W"/>

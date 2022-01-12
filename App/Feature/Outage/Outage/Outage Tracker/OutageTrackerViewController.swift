@@ -8,30 +8,20 @@
 
 import Foundation
 import UIKit
-import Lottie
 import RxSwift
 
 class OutageTrackerViewController: UIViewController {
     @IBOutlet weak var loadingIndicator: LoadingIndicator!
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var progressAnimationContainer: UIView!
     @IBOutlet weak var hazardContainerView: UIView!
     @IBOutlet weak var hazardView: UIView!
-    @IBOutlet weak var statusTitleView: UIView!
-    @IBOutlet weak var statusTitleLabel: UILabel!
-    @IBOutlet weak var statusDetailView: UIView!
-    @IBOutlet weak var statusDetailLabel: UILabel!
+    @IBOutlet weak var progressAnimationView: StateAnimationView!
+    @IBOutlet weak var statusTextView: StatusTextView!
     @IBOutlet weak var whyButtonContainer: UIView!
     @IBOutlet weak var whyButtonView: UIView!
     @IBOutlet weak var whyButton: UIButton!
     @IBOutlet weak var etaContainerView: UIView!
-    @IBOutlet weak var etaView: UIView!
-    @IBOutlet weak var etaTitleLabel: UILabel!
-    @IBOutlet weak var etaDateTimeLabel: UILabel!
-    @IBOutlet weak var etaDetailLabel: UILabel!
-    @IBOutlet weak var etaCauseLabel: UILabel!
-    @IBOutlet weak var etaUpdatedView: UIView!
-    @IBOutlet weak var etaInfoButton: UIButton!
+    @IBOutlet weak var etaView: ETAView!
     @IBOutlet weak var countContainerView: UIView!
     @IBOutlet weak var countView: UIView!
     @IBOutlet weak var neighborCountLabel: UILabel!
@@ -39,21 +29,14 @@ class OutageTrackerViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var tableViewContainer: UIView!
     @IBOutlet weak var footerTextView: ZeroInsetDataDetectorTextView!
-    @IBOutlet weak var errorImageView: UIImageView!
     @IBOutlet weak var trackerStatusContainer: UIView!
     @IBOutlet weak var trackerStatusView: TrackerStatusView!
     @IBOutlet weak var surveyContainer: UIView!
     @IBOutlet weak var powerOnContainer: UIView!
     
-    @IBOutlet weak var titleLeadingConstraint: NSLayoutConstraint!
-    @IBOutlet weak var titleTrailingConstraint: NSLayoutConstraint!
-    @IBOutlet weak var detailLeadingConstraint: NSLayoutConstraint!
-    @IBOutlet weak var detailTrailingConstraint: NSLayoutConstraint!
-    
     let disposeBag = DisposeBag()
     let viewModel = OutageTrackerViewModel()
     let infoView = StatusInfoView()
-    var progressAnimation = AnimationView(name: "ot_reported")
     var refreshControl: UIRefreshControl?
     
     override func viewDidLoad() {
@@ -96,15 +79,9 @@ class OutageTrackerViewController: UIViewController {
     private func setupBinding() {
         self.viewModel.outageTracker
             .subscribe(onNext: { [weak self] _ in
-                self?.setUpProgressAnimation()
                 self?.update()
                 self?.scrollView.isHidden = false
                 self?.loadingIndicator.isHidden = true
-            })
-            .disposed(by: self.disposeBag)
-        
-        self.viewModel.outageStatus
-            .subscribe(onNext: { _ in
             })
             .disposed(by: self.disposeBag)
     }
@@ -114,14 +91,10 @@ class OutageTrackerViewController: UIViewController {
         self.view.addSubview(infoView)
         self.infoView.delegate = self
         self.infoView.isHidden = true
-        self.errorImageView.isHidden = true
-        self.etaUpdatedView.isHidden = true
         self.whyButtonContainer.isHidden = true
         
+        etaView.delegate = self
         etaView.roundCorners(.allCorners, radius: 10, borderColor: .successGreenText, borderWidth: 1.0)
-        
-        let updatedViewRadius = etaUpdatedView.frame.size.height / 2
-        etaUpdatedView.roundCorners(.allCorners, radius: updatedViewRadius, borderColor: .successGreenText, borderWidth: 1.0)
         
         let whyViewRadius = whyButtonView.frame.size.height / 2
         whyButtonView.roundCorners(.allCorners, radius: whyViewRadius, borderColor: .accentGray, borderWidth: 1.0)
@@ -139,6 +112,7 @@ class OutageTrackerViewController: UIViewController {
             gasOnlyView.frame = self.view.bounds
             self.view.addSubview(gasOnlyView)
         } else {
+            statusTextView.isHidden = true
             etaContainerView.isHidden = true
             countContainerView.isHidden = true
             trackerStatusContainer.isHidden = true
@@ -150,49 +124,24 @@ class OutageTrackerViewController: UIViewController {
             }
             
             if viewModel.isActiveOutage == false {
-                statusTitleView.isHidden = true
-                statusDetailView.isHidden = true
                 powerOnContainer.isHidden = false
+                progressAnimationView.configure(withStatus: .restored)
             } else {
-                statusTitleView.isHidden = false
-                statusDetailView.isHidden = false
                 powerOnContainer.isHidden = true
+                progressAnimationView.configure(withStatus: viewModel.status)
                 
-                statusTitleLabel.text = viewModel.statusTitle
-                statusDetailLabel.text = viewModel.statusDetails
+                statusTextView.isHidden = false
+                statusTextView.configure(withTitle: viewModel.statusTitle, detail: viewModel.statusDetails, status: viewModel.status)
                 
-                detailLeadingConstraint.constant = 20
-                detailTrailingConstraint.constant = 20
-                
-                if viewModel.status == .none {
-                    progressAnimationContainer.isHidden = true
-                    errorImageView.isHidden = false
-                    errorImageView.image = UIImage(named: "ic_bigerror_sm")
-                    
-                    statusTitleLabel.textAlignment = .center
-                    titleLeadingConstraint.constant = 30
-                    titleTrailingConstraint.constant = 30
-                    detailLeadingConstraint.constant = 40
-                    detailTrailingConstraint.constant = 40
-                } else {
+                if viewModel.status != .none {
                     etaContainerView.isHidden = false
                     countContainerView.isHidden = false
                     trackerStatusContainer.isHidden = false
                     surveyContainer.isHidden = false
-                    errorImageView.isHidden = true
-                    statusDetailView.isHidden = viewModel.statusDetails.isEmpty
                     
                     if viewModel.status == .restored {
                         countContainerView.isHidden = true
-                        
-                        statusTitleLabel.textAlignment = .center
-                        titleLeadingConstraint.constant = 30
-                        titleTrailingConstraint.constant = 30
-                    } else {
-                        statusTitleLabel.textAlignment = .left
-                        titleLeadingConstraint.constant = 20
-                        titleTrailingConstraint.constant = 20
-                    }
+                    } 
                     
                     whyButtonContainer.isHidden = viewModel.hideWhyButton
                     whyButton.setTitle(viewModel.whyButtonText, for: .normal)
@@ -215,30 +164,13 @@ class OutageTrackerViewController: UIViewController {
     }
     
     private func updateETA() {
-        etaTitleLabel.text = viewModel.etaTitle
-        etaDateTimeLabel.text = viewModel.etaDateTime
-        etaDetailLabel.text = viewModel.etaDetail
+        let details = viewModel.status == .onSite ? viewModel.etaOnSiteDetail : viewModel.etaDetail
+        let eta = OutageTrackerETA(etaTitle: viewModel.etaTitle, etaDateTime: viewModel.etaDateTime, etaDetail: details, etaCause: viewModel.etaCause)
         
-        etaCauseLabel.text = viewModel.etaCause
-        etaCauseLabel.isHidden = viewModel.etaCause.isEmpty
-        etaCauseLabel.font = SystemFont.bold.of(textStyle: .footnote)
+        etaView.configure(withETA: eta, status: viewModel.status)
         
-        etaDetailLabel.isHidden = false
-        etaInfoButton.isHidden = false
-        etaUpdatedView.isHidden = true
-        
-        switch viewModel.status {
-            case .onSite:
-                etaDetailLabel.text = viewModel.etaOnSiteDetail
-            case .restored, .none:
-                etaDetailLabel.isHidden = true
-                etaInfoButton.isHidden = true
-                etaCauseLabel.font = SystemFont.regular.of(textStyle: .footnote)
-            default:
-                break
-        }
-        if let detailText = etaDetailLabel.text, !detailText.isEmpty {
-            etaUpdatedView.isHidden = viewModel.hideETAUpdatedIndicator(detailText: detailText)
+        if !details.isEmpty {
+            etaView.hideUpdatedView = viewModel.hideETAUpdatedIndicator(detailText: details)
         }
     }
     
@@ -293,12 +225,6 @@ class OutageTrackerViewController: UIViewController {
         }
     }
     
-    @IBAction func infoButtonPressed(_ sender: Any) {
-        let info = StatusInfoMessage.etrToolTip
-        infoView.configure(withInfo: info)
-        infoView.isHidden = false
-    }
-    
     @IBAction func surveyButtonPressed(_ sender: Any) {
         guard let url = URL(string: viewModel.surveyURL) else { return }
         let survey = WebViewController(title: NSLocalizedString("", comment: ""),
@@ -343,23 +269,11 @@ extension OutageTrackerViewController: StatusInfoViewDelegate {
     }
 }
 
-extension OutageTrackerViewController {
-    
-    // MARK - Lottie Animation
-    
-    func setUpProgressAnimation() {
-        let animationName = viewModel.animationName
-        progressAnimation.removeFromSuperview()
-        progressAnimation = AnimationView(name: animationName)
-        
-        progressAnimation.frame = CGRect(x: 0, y: 1, width: progressAnimationContainer.frame.size.width, height: progressAnimationContainer.frame.size.height)
-        progressAnimation.loopMode = .loop
-        progressAnimation.backgroundBehavior = .pauseAndRestore
-        progressAnimation.contentMode = .scaleAspectFill
-        
-        progressAnimationContainer.addSubview(progressAnimation)
-        
-        progressAnimation.play()
+extension OutageTrackerViewController: ETAViewDelegate {
+    func showInfoView() {
+        let info = StatusInfoMessage.etrToolTip
+        infoView.configure(withInfo: info)
+        infoView.isHidden = false
     }
 }
 

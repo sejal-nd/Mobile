@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="OpenSans-Semibold.ttf">
+            <string>OpenSans-Semibold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StatusTextView" customModule="EUMobile" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="fmo-di-m0S" id="phM-Yo-4Tg"/>
+                <outlet property="detailLeadingConstraint" destination="3YT-V7-82S" id="HcM-I9-sia"/>
+                <outlet property="detailTrailingConstraint" destination="4Et-Mq-dcN" id="Z7h-nr-McM"/>
+                <outlet property="statusDetailLabel" destination="XOJ-mF-KqG" id="WHJ-p3-q6U"/>
+                <outlet property="statusDetailView" destination="A6Z-Kq-S5W" id="b9O-QS-WRG"/>
+                <outlet property="statusTitleLabel" destination="MbL-gb-hWN" id="7eM-PU-wz5"/>
+                <outlet property="statusTitleView" destination="Tnt-Bx-3v4" id="U2N-bT-6hI"/>
+                <outlet property="titleLeadingConstraint" destination="qvH-Px-4tW" id="Ft8-aU-LlG"/>
+                <outlet property="titleTrailingConstraint" destination="D3H-ss-AUx" id="EmW-Dm-lL9"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="96" id="fmo-di-m0S">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="150"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="d5r-Gg-6NT">
+                    <rect key="frame" x="20" y="0.0" width="374" height="150"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" placeholderIntrinsicWidth="374" placeholderIntrinsicHeight="27.5" translatesAutoresizingMaskIntoConstraints="NO" id="Tnt-Bx-3v4">
+                            <rect key="frame" x="0.0" y="0.0" width="374" height="27.5"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="374" placeholderIntrinsicHeight="27.5" text="BGE has received a report of an outage at your address." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MbL-gb-hWN">
+                                    <rect key="frame" x="0.0" y="0.0" width="374" height="27.5"/>
+                                    <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="20"/>
+                                    <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="MbL-gb-hWN" firstAttribute="top" secondItem="Tnt-Bx-3v4" secondAttribute="top" id="3Dt-mw-RHk"/>
+                                <constraint firstAttribute="bottom" secondItem="MbL-gb-hWN" secondAttribute="bottom" id="84l-tR-yJU"/>
+                                <constraint firstAttribute="trailing" secondItem="MbL-gb-hWN" secondAttribute="trailing" id="D3H-ss-AUx"/>
+                                <constraint firstItem="MbL-gb-hWN" firstAttribute="leading" secondItem="Tnt-Bx-3v4" secondAttribute="leading" id="qvH-Px-4tW"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A6Z-Kq-S5W">
+                            <rect key="frame" x="0.0" y="49.5" width="374" height="100.5"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="374" placeholderIntrinsicHeight="142.5" text="We have multiple crews on site working hard to restore your power. Thank you for your patience." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XOJ-mF-KqG">
+                                    <rect key="frame" x="0.0" y="0.0" width="374" height="100.5"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                    <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="XOJ-mF-KqG" firstAttribute="leading" secondItem="A6Z-Kq-S5W" secondAttribute="leading" id="3YT-V7-82S"/>
+                                <constraint firstAttribute="trailing" secondItem="XOJ-mF-KqG" secondAttribute="trailing" id="4Et-Mq-dcN"/>
+                                <constraint firstAttribute="bottom" secondItem="XOJ-mF-KqG" secondAttribute="bottom" id="LRu-03-ZUn"/>
+                                <constraint firstItem="XOJ-mF-KqG" firstAttribute="top" secondItem="A6Z-Kq-S5W" secondAttribute="top" id="vUo-hy-sHp"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="31W-0e-gXN"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="d5r-Gg-6NT" secondAttribute="trailing" constant="20" id="ZZ4-M6-1nW"/>
+                <constraint firstItem="d5r-Gg-6NT" firstAttribute="top" secondItem="fmo-di-m0S" secondAttribute="top" id="c0H-vA-nKN"/>
+                <constraint firstItem="d5r-Gg-6NT" firstAttribute="leading" secondItem="fmo-di-m0S" secondAttribute="leading" constant="20" id="hZh-99-b45"/>
+                <constraint firstAttribute="bottom" secondItem="d5r-Gg-6NT" secondAttribute="bottom" id="wSo-ya-dDW"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="132" y="86"/>
+        </view>
+    </objects>
+</document>

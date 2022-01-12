@@ -96,6 +96,25 @@ extension OutageTracker {
     }
 }
 
+enum TimeToRestore: Int {
+    case short
+    case regular
+    case long
+    case none
+    
+    func detailText(isDefinitive: Bool) -> String {
+        switch self {
+            case .short:
+                return StatusDetailString.restoredDefShort
+            case .regular:
+                return isDefinitive ? StatusDetailString.restoredDefReg : StatusDetailString.restoredNonDefReg
+            case .long:
+                return isDefinitive ? StatusDetailString.restoredDefLong : StatusDetailString.restoredNonDefLong
+            case .none: return ""
+        }
+    }
+}
+
 struct StatusTitleString {
     static let reported = NSLocalizedString("BGE has received a report of an outage at your address.", comment: "")
     static let assigned = NSLocalizedString("A BGE restoration crew is assigned to your outage.", comment: "")
