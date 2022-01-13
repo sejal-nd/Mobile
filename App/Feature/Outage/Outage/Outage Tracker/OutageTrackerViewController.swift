@@ -129,8 +129,10 @@ class OutageTrackerViewController: UIViewController {
                 powerOnContainer.isHidden = true
                 progressAnimationView.configure(withStatus: viewModel.status)
                 
-                statusTextView.isHidden = false
-                statusTextView.configure(withTitle: viewModel.statusTitle, detail: viewModel.statusDetails, status: viewModel.status)
+                if let tracker = viewModel.outageTracker.value {
+                    statusTextView.isHidden = false
+                    statusTextView.configure(tracker: tracker, status: viewModel.status)
+                }
                 
                 if viewModel.status != .none {
                     etaContainerView.isHidden = false
@@ -163,13 +165,8 @@ class OutageTrackerViewController: UIViewController {
     }
     
     private func updateETA() {
-        let details = viewModel.status == .onSite ? viewModel.etaOnSiteDetail : viewModel.etaDetail
-        let eta = OutageTrackerETA(etaTitle: viewModel.etaTitle, etaDateTime: viewModel.etaDateTime, etaDetail: details, etaCause: viewModel.etaCause)
-        
-        etaView.configure(withETA: eta, status: viewModel.status)
-        
-        if !details.isEmpty {
-            etaView.hideUpdatedView = viewModel.hideETAUpdatedIndicator(detailText: details)
+        if let tracker = viewModel.outageTracker.value {
+            etaView.configure(tracker: tracker, status: viewModel.status)
         }
     }
     
