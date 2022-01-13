@@ -28,7 +28,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="czp-7J-3de">
-                    <rect key="frame" x="31" y="248" width="352" height="385.5"/>
+                    <rect key="frame" x="31" y="248" width="352" height="400"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z8X-ax-Pxu">
                             <rect key="frame" x="15" y="15" width="24" height="24"/>
@@ -69,13 +69,13 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="hQT-RJ-6mB">
-                            <rect key="frame" x="20" y="128.5" width="312" height="217"/>
+                            <rect key="frame" x="20" y="128.5" width="312" height="231.5"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lgQ-Fp-STZ">
-                                    <rect key="frame" x="0.0" y="0.0" width="312" height="142"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="312" height="156.5"/>
                                     <subviews>
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="312" placeholderIntrinsicHeight="142" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="CVQ-Uf-kAT" customClass="ZeroInsetDataDetectorTextView" customModule="EUMobile" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="312" height="142"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="312" height="156.5"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="6Ag-Sk-NI2"/>
@@ -94,7 +94,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Emu-YC-cM6">
-                                    <rect key="frame" x="0.0" y="172" width="312" height="45"/>
+                                    <rect key="frame" x="0.0" y="186.5" width="312" height="45"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XHZ-vV-50m">
                                             <rect key="frame" x="48" y="0.0" width="216" height="45"/>
@@ -154,9 +154,8 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" white="0.0" alpha="0.40384133446295528" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="czp-7J-3de" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="31" id="93N-tW-oIj"/>
                 <constraint firstItem="czp-7J-3de" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="204" id="CFb-MT-X4l"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="czp-7J-3de" secondAttribute="trailing" constant="31" id="PWl-fd-iad"/>
+                <constraint firstItem="czp-7J-3de" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="DdO-RI-A01"/>
             </constraints>
             <point key="canvasLocation" x="131.8840579710145" y="95.758928571428569"/>
         </view>
