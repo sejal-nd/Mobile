@@ -36,7 +36,7 @@ class StormModeHomeViewController: AccountPickerViewController {
         didSet {
             headerContentView.layer.cornerRadius = 10.0
             headerContentView.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 3)
-            headerContentView.accessibilityLabel = NSLocalizedString("Storm mode is in effect. Due to severe weather, the most relevant features are optimized to allow us to better serve you.", comment: "")
+            headerContentView.accessibilityLabel = NSLocalizedString("The app is adjusted temporarily due to severe weather.", comment: "")
         }
     }
     
@@ -177,12 +177,27 @@ class StormModeHomeViewController: AccountPickerViewController {
         }
     }
     
-    /// This houses both the outage status button and the loading view for the button
-    @IBOutlet private weak var loadingContentView: UIView!
-    @IBOutlet private weak var loadingView: UIView!
-    @IBOutlet private weak var loadingBackgroundView: UIView!
-    @IBOutlet private weak var loadingAnimationView: UIView!
-    @IBOutlet private weak var outageStatusButton: OutageStatusButton!
+    /// Outage Trcker
+    @IBOutlet weak var hazardContainerView: UIView!
+    @IBOutlet weak var hazardView: UIView!
+    @IBOutlet weak var progressAnimationView: StateAnimationView!
+    @IBOutlet weak var statusTextView: StatusTextView!
+    @IBOutlet weak var whyButtonContainer: UIView!
+    @IBOutlet weak var whyButtonView: UIView!
+    @IBOutlet weak var whyButton: UIButton!
+    @IBOutlet weak var etaContainerView: UIView!
+    @IBOutlet weak var etaView: ETAView!
+    @IBOutlet weak var countContainerView: UIView!
+    @IBOutlet weak var countView: UIView!
+    @IBOutlet weak var neighborCountLabel: UILabel!
+    @IBOutlet weak var outageCountLabel: UILabel!
+    @IBOutlet weak var trackerStatusContainer: UIView!
+    @IBOutlet weak var trackerStatusView: TrackerStatusView!
+    @IBOutlet weak var surveyContainer: UIView!
+    @IBOutlet weak var powerOnContainer: UIView!
+    
+    let infoView = StatusInfoView()
+    
     @IBOutlet private weak var noNetworkConnectionView: NoNetworkConnectionView!
     
     @IBOutlet private weak var outageSectionContainer: UIView!
@@ -256,19 +271,11 @@ class StormModeHomeViewController: AccountPickerViewController {
         accountPicker.delegate = self
         accountPicker.parentViewController = self
         
-        outageStatusButton.delegate = self
-        
-        loadingLottieAnimation.frame = CGRect(x: 0, y: 0, width: loadingAnimationView.frame.size.width, height: loadingAnimationView.frame.size.height)
-        loadingLottieAnimation.loopMode = .loop
-        loadingLottieAnimation.backgroundBehavior = .pauseAndRestore
-        loadingLottieAnimation.contentMode = .scaleAspectFill
-        loadingAnimationView.addSubview(loadingLottieAnimation)
-        loadingLottieAnimation.play()
-        
         viewModel.getStormModeUpdate()
         
         configureContactText()
         configureGasOnlyText()
+        setupUI()
         
         // Events
         RxNotifications.shared.outageReported.asDriver(onErrorDriveWith: .empty())
@@ -281,7 +288,6 @@ class StormModeHomeViewController: AccountPickerViewController {
             .disposed(by: disposeBag)
         
         outageSectionContainer.isHidden = true
-        outageStatusButton.isHidden = true
         gasOnlyView.isHidden = true
         finalPayView.isHidden = true
         accountDisallowView.isHidden = true
@@ -337,7 +343,25 @@ class StormModeHomeViewController: AccountPickerViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         gradientLayer.frame = gradientView.bounds
-        loadingBackgroundView.layer.cornerRadius = loadingBackgroundView.frame.height / 2
+    }
+    
+    // MARK: Outage Tracker
+    
+    private func setupUI() {
+        infoView.frame = self.view.bounds
+        self.view.addSubview(infoView)
+        self.infoView.delegate = self
+        self.infoView.isHidden = true
+        self.whyButtonContainer.isHidden = true
+        
+        etaView.delegate = self
+        
+        let whyViewRadius = whyButtonView.frame.size.height / 2
+        whyButtonView.roundCorners(.allCorners, radius: whyViewRadius, borderColor: .accentGray, borderWidth: 1.0)
+        
+        countView.roundCorners(.allCorners, radius: 10, borderColor: .white, borderWidth: 1.0)
+        
+        hazardView.roundCorners(.allCorners, radius: 10, borderColor: .clear, borderWidth: 1.0)
     }
     
     
@@ -359,6 +383,27 @@ class StormModeHomeViewController: AccountPickerViewController {
     
     @IBAction func payButtonPress(_ sender: Any) {
         performSegue(withIdentifier: "BillSegue", sender: nil)
+    }
+    
+    @IBAction func whyButtonPressed(_ sender: Any) {
+//        guard let tracker = viewModel.outageTracker.value else { return }
+//
+//        var info = StatusInfoMessage.none
+//
+//        if tracker.isSafetyHazard == true {
+//            info = StatusInfoMessage.hazardMessage
+//        }
+//        if tracker.isCrewDiverted == true {
+//            info = StatusInfoMessage.rerouted
+//        }
+//        if tracker.isCrewLeftSite == true {
+//            info = StatusInfoMessage.whyStop
+//        }
+//        if viewModel.status == .restored {
+//            info = viewModel.isDefinitive ? StatusInfoMessage.hasOutageDef : StatusInfoMessage.hasOutageNondef
+//        }
+//        infoView.configure(withInfo: info)
+//        infoView.isHidden = false
     }
     
     @IBAction func onPhoneNumberPress(_ sender: ButtonControl) {
@@ -502,7 +547,6 @@ class StormModeHomeViewController: AccountPickerViewController {
         let noAction = UIAlertAction(title: NSLocalizedString("No, Thanks", comment: ""), style: .cancel)
         { [weak self] _ in
             self?.exitView.isHidden = false
-            self?.headerContentView.isHidden = true
         }
         
         presentAlert(title: NSLocalizedString("Exit Storm Mode", comment: ""),
@@ -513,16 +557,13 @@ class StormModeHomeViewController: AccountPickerViewController {
     
     private func getOutageStatus(didPullToRefresh: Bool = false) {
         if !didPullToRefresh {
-            loadingContentView.isHidden = false
             outageSectionContainer.isHidden = true
-            outageStatusButton.isHidden = true
             footerStackView.isHidden = true
             noNetworkConnectionView.isHidden = true
             gasOnlyView.isHidden = true
             billButton.isHidden = false
             finalPayView.isHidden = true
             accountDisallowView.isHidden = true
-            loadingView.isHidden = false
             scrollView?.isHidden = false
             setRefreshControlEnabled(enabled: false)
         } else {
@@ -540,7 +581,6 @@ class StormModeHomeViewController: AccountPickerViewController {
             self.outageSectionContainer.isHidden = false
             self.noNetworkConnectionView.isHidden = true
             self.scrollView?.isHidden = false
-            self.loadingView.isHidden = true
             self.finalPayTitleLabel.isHidden = false
             self.setRefreshControlEnabled(enabled: true)
             self.updateContent(outageJustReported: false)
@@ -583,11 +623,8 @@ class StormModeHomeViewController: AccountPickerViewController {
                 self.billButton.isHidden = false
             }
             
-            self.loadingContentView.isHidden = true
             self.finalPayButtonContainer.isHidden = true
-            
             self.footerStackView.isHidden = false
-            self.loadingView.isHidden = true
             self.setRefreshControlEnabled(enabled: true)
         })
     }
@@ -612,18 +649,12 @@ class StormModeHomeViewController: AccountPickerViewController {
         if currentOutageStatus.isGasOnly {
             gasOnlyView.isHidden = false
             footerStackView.isHidden = true
-            loadingContentView.isHidden = true
-            outageStatusButton.isHidden = true
             outageSectionContainer.isHidden = true
         } else {
             finalPayView.isHidden = true
             gasOnlyView.isHidden = true
             footerStackView.isHidden = false
             outageSectionContainer.isHidden = false
-            loadingContentView.isHidden = false
-            outageStatusButton.onLottieAnimation?.currentProgress = 0.0
-            outageStatusButton.onLottieAnimation?.play()
-            outageStatusButton.isHidden = false
         }
         
         if viewModel.reportedOutage != nil {
@@ -639,19 +670,11 @@ class StormModeHomeViewController: AccountPickerViewController {
     
     private func layoutBigButtonContent(outageJustReported: Bool) {
         let currentOutageStatus = viewModel.currentOutageStatus!
-        
-        if outageJustReported && viewModel.reportedOutage != nil {
-            outageStatusButton.setReportedState(estimatedRestorationDateString: viewModel.estimatedRestorationDateString)
-        } else if currentOutageStatus.isFinaled || currentOutageStatus.isNoPay || currentOutageStatus.isNonService {
-            loadingContentView.isHidden = true
-            outageStatusButton.isHidden = true
+            
+        if currentOutageStatus.isFinaled || currentOutageStatus.isNoPay || currentOutageStatus.isNonService {
             finalPayView.isHidden = false
             finalPayTextView.text = viewModel.accountNonPayFinaledMessage
             finalPayButtonContainer.isHidden = !currentOutageStatus.isNoPay
-        } else if currentOutageStatus.isActiveOutage {
-            outageStatusButton.setOutageState(estimatedRestorationDateString: viewModel.estimatedRestorationDateString)
-        } else { // Power is on
-            outageStatusButton.setPowerOnState()
         }
     }
     
@@ -740,4 +763,21 @@ extension StormModeHomeViewController: DataDetectorTextViewLinkTapDelegate {
         GoogleAnalytics.log(event: .outageAuthEmergencyCall)
     }
     
+}
+
+extension StormModeHomeViewController: StatusInfoViewDelegate {
+    func dismissInfoView() {
+        infoView.isHidden = true
+    }
+    func reportOutagePressed() {
+        
+    }
+}
+
+extension StormModeHomeViewController: ETAViewDelegate {
+    func showInfoView() {
+        let info = StatusInfoMessage.etrToolTip
+        infoView.configure(withInfo: info)
+        infoView.isHidden = false
+    }
 }

@@ -84,6 +84,9 @@ class ETAView: UIView {
         contentView.frame = self.bounds
         contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
+        self.roundCorners(.allCorners, radius: 10, borderColor: .successGreenText, borderWidth: 1.0)
+        self.clipsToBounds = true
+        
         let updatedViewRadius = etaUpdatedView.frame.size.height / 2
         etaUpdatedView.roundCorners(.allCorners, radius: updatedViewRadius, borderColor: .successGreenText, borderWidth: 1.0)
         etaUpdatedView.isHidden = true

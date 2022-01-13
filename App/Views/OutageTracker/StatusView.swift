@@ -52,40 +52,53 @@ class StatusView: UIView {
             barWidthConstraint.constant = state == .completed ? 4 : 2
             barBottomConstraint.constant = state == .completed ? 3 : 0
             barTopConstraint.constant = state == .inProgress ? 3 : 0
+            
+            let textColor = isStormMode ? UIColor.white : UIColor.deepGray
+            statusTitleLabel.textColor = textColor
+            statusDateLabel.textColor = textColor
         }
     }
     
     private func update(forState state: TrackerState, isPaused: Bool, isLast: Bool) {
         var innerViewConstant: CGFloat = 26.0
         
+        let imageName = isStormMode ? "ic_check_white_2" : "ic_check_white"
+        checkmarkImageView.image = UIImage(named: imageName)
+        
         switch state {
             case .notStarted:
-                innerView.backgroundColor = .white
+                let bgColor: UIColor = isStormMode ? .stormModeBlack : .white
+                innerView.backgroundColor = bgColor
                 outerView.isHidden = true
                 checkmarkImageView.isHidden = true
             case .inProgress:
-                innerView.backgroundColor = isPaused ? .white : .successGreenText
+                let bgColor: UIColor = isStormMode ? .stormModeBlack : .white
+                let bgColor2: UIColor = isStormMode ? .mediumSpringBud : .successGreenText
+                innerView.backgroundColor = isPaused ? bgColor : bgColor2
                 outerView.isHidden = false
                 checkmarkImageView.isHidden = true
                 statusTitleLabel.font = OpenSans.bold.of(size: 15)
                 innerViewConstant = 24
             case .completed:
-                innerView.backgroundColor = .successGreenText
+                let bgColor: UIColor = isStormMode ? .mediumSpringBud : .successGreenText
+                innerView.backgroundColor = bgColor
                 outerView.isHidden = true
                 checkmarkImageView.isHidden = false
                 if isLast {
                     statusTitleLabel.font = OpenSans.bold.of(size: 15)
                 }
         }
+        
+        let borderColor: UIColor = isStormMode ? .mediumSpringBud : .successGreenText
         innerViewWidthConstraint.constant = innerViewConstant
         innerViewHeightConstraint.constant = innerViewConstant
-        innerView.roundCorners(.allCorners, radius: innerViewConstant/2, borderColor: .successGreenText, borderWidth: 2.0)
+        innerView.roundCorners(.allCorners, radius: innerViewConstant/2, borderColor: borderColor, borderWidth: 2.0)
         
-        outerView.roundCorners(.allCorners, radius: 17, borderColor: .successGreenText, borderWidth: 2.0)
+        outerView.roundCorners(.allCorners, radius: 17, borderColor: borderColor, borderWidth: 2.0)
         statusTitleLabel.font = OpenSans.regular.of(size: 15)
         
         let barViewRadius = barView.frame.size.width
-        barView.roundCorners(.allCorners, radius: barViewRadius, borderColor: .successGreenText, borderWidth: 0.0)
+        barView.roundCorners(.allCorners, radius: barViewRadius, borderColor: borderColor, borderWidth: 0.0)
     }
     
     // MARK: Init

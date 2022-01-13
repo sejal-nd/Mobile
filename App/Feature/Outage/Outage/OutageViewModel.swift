@@ -12,7 +12,6 @@ import RxSwiftExt
 
 class OutageViewModel {
     let disposeBag = DisposeBag()
-    var isStormMode = BehaviorRelay<Bool>(value: false)
     
     var outageStatus: OutageStatus?
     var isOutageStatusInactive = false
@@ -52,7 +51,6 @@ class OutageViewModel {
             switch result {
             case .success(let outageStatus):
                 self.outageStatus = outageStatus
-                self.isStormMode.accept(StormModeStatus.shared.isOn)
                 
                 // todo i think i can refactor this out.
                 if outageStatus.isInactive {

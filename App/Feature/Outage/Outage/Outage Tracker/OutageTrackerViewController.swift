@@ -94,7 +94,6 @@ class OutageTrackerViewController: UIViewController {
         self.whyButtonContainer.isHidden = true
         
         etaView.delegate = self
-        etaView.roundCorners(.allCorners, radius: 10, borderColor: .successGreenText, borderWidth: 1.0)
         
         let whyViewRadius = whyButtonView.frame.size.height / 2
         whyButtonView.roundCorners(.allCorners, radius: whyViewRadius, borderColor: .accentGray, borderWidth: 1.0)

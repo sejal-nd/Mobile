@@ -47,16 +47,6 @@ class OutageViewController: AccountPickerViewController {
         return nil
     }()
     
-    private lazy var stormModeViewController: StormModeHomeViewController? = {
-        let storyboard = UIStoryboard(name: "Storm", bundle: nil)
-        
-        if let vc = storyboard.instantiateViewController(withIdentifier: "StormModeHomeViewController") as? StormModeHomeViewController {
-            self.add(asChildViewController: vc)
-            return vc
-        }
-        return nil
-    }()
-    
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(loadOutageStatus(sender:)), for: .valueChanged)
@@ -72,8 +62,6 @@ class OutageViewController: AccountPickerViewController {
     var shortcutItem: ShortcutItem = .none
     
     var accountsLoaded = false
-    
-    var isStormMode = false
     
     let disposeBag = DisposeBag()
     
@@ -93,7 +81,7 @@ class OutageViewController: AccountPickerViewController {
         
         configureUserState(userState)
         
-        setupBinding()
+        updateView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -181,27 +169,11 @@ class OutageViewController: AccountPickerViewController {
         vc.removeFromParent()
     }
     
-    private func setupBinding() {
-        self.viewModel.isStormMode
-            .subscribe(onNext: { [weak self] _ in
-                self?.updateView()
-            })
-            .disposed(by: self.viewModel.disposeBag)
-    }
-    
     private func updateView() {
-        guard let outageTrackerVC = outageTrackerViewController, let stormModeVC = stormModeViewController else {
+        guard let outageTrackerVC = outageTrackerViewController else {
             return
         }
-        
-        // for testing: check value should be true *****
-        if viewModel.isStormMode.value == true {
-            remove(asChildViewController: outageTrackerVC)
-            add(asChildViewController: stormModeVC)
-        } else {
-            remove(asChildViewController: stormModeVC)
-            add(asChildViewController: outageTrackerVC)
-        }
+        add(asChildViewController: outageTrackerVC)
     }
     
     private func configureAccountPicker() {
