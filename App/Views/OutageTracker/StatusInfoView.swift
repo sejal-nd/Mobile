@@ -69,6 +69,7 @@ class StatusInfoView: UIView {
     @IBOutlet private weak var buttonView: UIView!
     @IBOutlet private weak var alertImageView: UIImageView!
     @IBOutlet private weak var titleTopConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var messageViewWidthConstraint: NSLayoutConstraint!
     
     weak var delegate: StatusInfoViewDelegate?
     
@@ -134,6 +135,14 @@ class StatusInfoView: UIView {
         
         messageView.roundCorners(.allCorners, radius: 10)
         buttonView.layer.cornerRadius = buttonView.frame.size.height / 2
+        
+        let screenSize: CGRect = UIScreen.main.bounds
+        let screenWidth = screenSize.width
+        var newWidth = screenWidth - 62
+        if newWidth > 398 {
+            newWidth = 398
+        }
+        messageViewWidthConstraint.constant = newWidth
     }
 
 }

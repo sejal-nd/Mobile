@@ -84,11 +84,14 @@ class StatusTextView: UIView {
             details = timeToRestore().detailText(isDefinitive: isDefinitive)
         } else if status == OutageTracker.Status.none {
             return StatusDetailString.none
-        } else {
+        } 
+        else {
             if tracker.isCrewExtDamage == true {
                 details = StatusDetailString.crewExtDamage
             } else if tracker.isSafetyHazard == true {
                 details = StatusDetailString.crewSafetyHazard
+            } else if tracker.isCrewDiverted == true {
+                details = StatusDetailString.crewLeftSite
             } else if tracker.isPartialRestoration == true {
                 let count = tracker.customersOutOnOutage ?? ""
                 details = String.localizedStringWithFormat(StatusDetailString.partialRestoration, count)
@@ -110,19 +113,19 @@ class StatusTextView: UIView {
             return .none
         }
         
-        let diffComponents = Calendar.current.dateComponents([.hour], from: timeReported, to: timeRestored)
-        let hours = diffComponents.hour ?? 1
+        let diffComponents = Calendar.current.dateComponents([.minute], from: timeReported, to: timeRestored)
+        let mins = diffComponents.minute ?? 60
         
         if isDefinitive {
-            if hours == 0 {
+            if mins <= 45 {
                 restoreTime = .short
-            } else if hours >= 1 && hours < 3 {
+            } else if mins > 45 && mins < 180 {
                 restoreTime = .regular
             } else {
                 restoreTime = .long
             }
         } else {
-            if hours < 3 {
+            if mins < 180 {
                 restoreTime = .regular
             } else {
                 restoreTime = .long
