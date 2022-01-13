@@ -118,8 +118,8 @@ class ETAView: UIView {
         
         if dateTime != etaDateTime() || cause != etaCause() || details != detailText {
             // save new values
-            defaults.set(etaDateTime, forKey: "etaDateTime")
-            defaults.set(etaCause, forKey: "etaCause")
+            defaults.set(etaDateTime(), forKey: "etaDateTime")
+            defaults.set(etaCause(), forKey: "etaCause")
             defaults.set(detailText, forKey: "etaDetail")
             
             return false

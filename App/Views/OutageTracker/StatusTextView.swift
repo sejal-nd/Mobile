@@ -44,8 +44,8 @@ class StatusTextView: UIView {
         
         if status == .none || status == .restored {
             statusTitleLabel.textAlignment = .center
-            titleLeadingConstraint.constant = 30
-            titleTrailingConstraint.constant = 30
+            titleLeadingConstraint.constant = 40
+            titleTrailingConstraint.constant = 39
         }
         
         let textColor = isStormMode ? UIColor.white : UIColor.deepGray

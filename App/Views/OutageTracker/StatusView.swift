@@ -65,6 +65,8 @@ class StatusView: UIView {
         let imageName = isStormMode ? "ic_check_white_2" : "ic_check_white"
         checkmarkImageView.image = UIImage(named: imageName)
         
+        statusTitleLabel.font = OpenSans.regular.of(size: 15)
+        
         switch state {
             case .notStarted:
                 let bgColor: UIColor = isStormMode ? .stormModeBlack : .white
@@ -95,7 +97,6 @@ class StatusView: UIView {
         innerView.roundCorners(.allCorners, radius: innerViewConstant/2, borderColor: borderColor, borderWidth: 2.0)
         
         outerView.roundCorners(.allCorners, radius: 17, borderColor: borderColor, borderWidth: 2.0)
-        statusTitleLabel.font = OpenSans.regular.of(size: 15)
         
         let barViewRadius = barView.frame.size.width
         barView.roundCorners(.allCorners, radius: barViewRadius, borderColor: borderColor, borderWidth: 0.0)

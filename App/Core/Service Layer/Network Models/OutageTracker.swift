@@ -104,7 +104,7 @@ struct StatusTitleString {
     static let onSite = NSLocalizedString("A BGE restoration crew is at the scene of your outage and working hard to resolve the issue.", comment: "")
     static let onSiteExtDamage = NSLocalizedString("There is extensive equipment damage in your area.", comment: "")
     static let onSiteTempStop = NSLocalizedString("The BGE crew working on your outage needed to temporarily stop their work.", comment: "")
-    static let restored = NSLocalizedString("Your power has been restored!", comment: "")
+    static let restored = NSLocalizedString("Your power has been restored.", comment: "")
     static let restoredNonDef = NSLocalizedString("Restoration Notification", comment: "")
     static let none = NSLocalizedString("Outage Tracker is Unavailable", comment: "")
 }
