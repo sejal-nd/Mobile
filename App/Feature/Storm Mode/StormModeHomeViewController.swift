@@ -316,6 +316,8 @@ class StormModeHomeViewController: AccountPickerViewController {
         super.viewWillAppear(animated)
         
         navigationController?.setNavigationBarHidden(true, animated: true)
+
+        GoogleAnalytics.log(event: .stormModeLanding)
     }
     
     override func viewDidAppear(_ animated: Bool) {

@@ -241,6 +241,8 @@ enum GoogleAnalyticsEvent: String {
     
     case viewStreetlightMapOfferComplete = "ViewStreetlightMapOfferComplete"
     case profileLoaded = "ProfileLoaded"
+
+    case stormModeLanding = "StormModeLanding"
 }
 
 enum AnalyticsOutageSource {
