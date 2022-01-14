@@ -51,6 +51,14 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="stormMode" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="DCH-Ja-7CZ" customClass="LoadingIndicator" customModule="EUMobile" customModuleProvider="target">
+                                <rect key="frame" x="157.5" y="1194" width="60" height="12"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="5ML-xH-Nfk"/>
+                                    <constraint firstAttribute="height" constant="12" id="ZTp-Yo-cST"/>
+                                </constraints>
+                            </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FxF-xR-Hyf">
                                 <rect key="frame" x="0.0" y="50" width="375" height="2350"/>
                                 <subviews>
@@ -976,8 +984,10 @@
                             <constraint firstItem="mLx-1J-TCL" firstAttribute="leading" secondItem="NPq-OC-mEq" secondAttribute="leading" id="4rq-6h-Qnv"/>
                             <constraint firstItem="FxF-xR-Hyf" firstAttribute="top" secondItem="jT6-gQ-uaJ" secondAttribute="bottom" id="5Bz-fk-Hra"/>
                             <constraint firstItem="NPq-OC-mEq" firstAttribute="trailing" secondItem="jT6-gQ-uaJ" secondAttribute="trailing" id="8sL-Dg-4ha"/>
+                            <constraint firstItem="DCH-Ja-7CZ" firstAttribute="centerY" secondItem="y2F-qh-7Mk" secondAttribute="centerY" id="A3p-Rn-Ilp"/>
                             <constraint firstItem="jT6-gQ-uaJ" firstAttribute="top" secondItem="NPq-OC-mEq" secondAttribute="top" id="Bsw-YN-syF"/>
                             <constraint firstItem="jT6-gQ-uaJ" firstAttribute="leading" secondItem="NPq-OC-mEq" secondAttribute="leading" id="HbZ-oX-xkt"/>
+                            <constraint firstItem="DCH-Ja-7CZ" firstAttribute="centerX" secondItem="y2F-qh-7Mk" secondAttribute="centerX" id="Htn-JQ-jbx"/>
                             <constraint firstAttribute="bottom" secondItem="Ybl-Tq-eQ9" secondAttribute="bottom" id="NM1-Vg-Xtt"/>
                             <constraint firstItem="NPq-OC-mEq" firstAttribute="trailing" secondItem="FxF-xR-Hyf" secondAttribute="trailing" id="RDf-je-OWs"/>
                             <constraint firstItem="Wuk-bq-YQH" firstAttribute="width" secondItem="y2F-qh-7Mk" secondAttribute="width" id="RkX-zJ-aTO"/>
@@ -1031,6 +1041,7 @@
                         <outlet property="headerContentView" destination="kAd-jD-Fyb" id="NRW-Cf-k4g"/>
                         <outlet property="headerViewDescriptionLabel" destination="KFG-l4-4FT" id="wad-D4-Z6E"/>
                         <outlet property="headerViewTitleLabel" destination="f4G-79-UPu" id="hJj-0Z-IUn"/>
+                        <outlet property="loadingIndicator" destination="DCH-Ja-7CZ" id="x1Q-Uh-ova"/>
                         <outlet property="moreButton" destination="XfI-7E-3vd" id="RSI-A2-VEN"/>
                         <outlet property="moreOptionsLabel" destination="8Kw-fl-tsR" id="EJi-f8-SSQ"/>
                         <outlet property="neighborCountLabel" destination="Pqv-LU-mOn" id="ifQ-gH-jDc"/>
@@ -1052,6 +1063,7 @@
                         <outlet property="reportStreetlightOutageButton" destination="GuV-10-Zdv" id="MKV-YQ-48H"/>
                         <outlet property="scrollView" destination="FxF-xR-Hyf" id="5z0-oR-Sax"/>
                         <outlet property="statusTextView" destination="Pfp-5M-Ver" id="nql-o0-Z5A"/>
+                        <outlet property="surveyView" destination="mdk-Bn-4Ys" id="55b-r6-mWT"/>
                         <outlet property="trackerStatusContainer" destination="Tzl-BF-dyw" id="PhY-qs-fvx"/>
                         <outlet property="trackerStatusView" destination="KpA-hU-uRO" id="MG5-k2-Hpy"/>
                         <outlet property="whyButton" destination="soV-Ql-OmA" id="7uw-c4-yas"/>

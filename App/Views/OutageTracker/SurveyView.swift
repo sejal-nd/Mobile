@@ -49,8 +49,8 @@ class SurveyView: UIView {
         if isStormMode {
             feedbackLabel.textColor = .white
             surveyButton.setTitleColor(.white, for: .normal)
-            topBarView.backgroundColor = .white
-            bottomBarView.backgroundColor = .white
+            topBarView.backgroundColor = UIColor(white: 1, alpha: 0.3)
+            bottomBarView.backgroundColor = UIColor(white: 1, alpha: 0.3)
         } else {
             feedbackLabel.textColor = .blackText
             surveyButton.setTitleColor(.actionBlue, for: .normal)

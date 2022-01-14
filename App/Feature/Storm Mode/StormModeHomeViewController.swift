@@ -178,6 +178,7 @@ class StormModeHomeViewController: AccountPickerViewController {
     }
     
     /// Outage Trcker
+    @IBOutlet weak var loadingIndicator: LoadingIndicator!
     @IBOutlet weak var hazardContainerView: UIView!
     @IBOutlet weak var hazardView: UIView!
     @IBOutlet weak var progressAnimationView: StateAnimationView!
@@ -296,6 +297,9 @@ class StormModeHomeViewController: AccountPickerViewController {
         noNetworkConnectionView.isHidden = true
         setRefreshControlEnabled(enabled: false)
         
+        self.scrollView?.isHidden = true
+        self.loadingIndicator.isHidden = false
+        
         viewModel.stormModeUpdate.asDriver().isNil().drive(onNext: { [weak self] noUpdate in
             self?.headerCaretImageView.isHidden = noUpdate
             self?.headerContentView.accessibilityTraits = noUpdate ? .staticText : .button
@@ -371,6 +375,8 @@ class StormModeHomeViewController: AccountPickerViewController {
         self.viewModel.outageTracker
             .subscribe(onNext: { [weak self] _ in
                 self?.update()
+                self?.scrollView?.isHidden = false
+                self?.loadingIndicator.isHidden = true
             })
             .disposed(by: self.disposeBag)
     }
@@ -631,6 +637,9 @@ class StormModeHomeViewController: AccountPickerViewController {
     }
     
     private func getOutageStatus(didPullToRefresh: Bool = false) {
+        self.scrollView?.isHidden = true
+        self.loadingIndicator.isHidden = false
+        
         if !didPullToRefresh {
             outageSectionContainer.isHidden = true
             footerStackView.isHidden = true
@@ -639,7 +648,6 @@ class StormModeHomeViewController: AccountPickerViewController {
             billButton.isHidden = false
             finalPayView.isHidden = true
             accountDisallowView.isHidden = true
-            scrollView?.isHidden = false
             setRefreshControlEnabled(enabled: false)
         } else {
             FeatureFlagUtility.shared.fetchCloudValues()
@@ -647,7 +655,6 @@ class StormModeHomeViewController: AccountPickerViewController {
         
         viewModel.fetchData(onSuccess: { [weak self] in
             guard let self = self else { return }
-            
             if didPullToRefresh {
                 self.refreshControl?.endRefreshing()
             }
@@ -655,7 +662,6 @@ class StormModeHomeViewController: AccountPickerViewController {
             UIAccessibility.post(notification: .screenChanged, argument: nil)
             self.outageSectionContainer.isHidden = false
             self.noNetworkConnectionView.isHidden = true
-            self.scrollView?.isHidden = false
             self.finalPayTitleLabel.isHidden = false
             self.setRefreshControlEnabled(enabled: true)
             self.updateContent(outageJustReported: false)

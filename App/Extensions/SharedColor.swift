@@ -62,6 +62,10 @@ extension UIColor {
         return UIColor(red: 188/255, green: 228/255, blue: 139/255, alpha: 1)
     }
     
+    @nonobjc static var mediumJungleGreen: UIColor {
+        return UIColor(red: 44/255, green: 38/255, blue: 51/255, alpha: 1)
+    }
+    
     @nonobjc static var richElectricBlue: UIColor {
         return UIColor(red: 13/255, green: 157/255, blue: 219/255, alpha: 1)
     }

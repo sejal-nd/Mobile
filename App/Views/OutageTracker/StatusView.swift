@@ -67,23 +67,22 @@ class StatusView: UIView {
         
         statusTitleLabel.font = OpenSans.regular.of(size: 15)
         
+        let emptyColor: UIColor = isStormMode ? .mediumJungleGreen : .white
+        let fillColor: UIColor = isStormMode ? .mediumSpringBud : .successGreenText
+        
         switch state {
             case .notStarted:
-                let bgColor: UIColor = isStormMode ? .stormModeBlack : .white
-                innerView.backgroundColor = bgColor
+                innerView.backgroundColor = emptyColor
                 outerView.isHidden = true
                 checkmarkImageView.isHidden = true
             case .inProgress:
-                let bgColor: UIColor = isStormMode ? .stormModeBlack : .white
-                let bgColor2: UIColor = isStormMode ? .mediumSpringBud : .successGreenText
-                innerView.backgroundColor = isPaused ? bgColor : bgColor2
+                innerView.backgroundColor = isPaused ? emptyColor : fillColor
                 outerView.isHidden = false
                 checkmarkImageView.isHidden = true
                 statusTitleLabel.font = OpenSans.bold.of(size: 15)
                 innerViewConstant = 24
             case .completed:
-                let bgColor: UIColor = isStormMode ? .mediumSpringBud : .successGreenText
-                innerView.backgroundColor = bgColor
+                innerView.backgroundColor = fillColor
                 outerView.isHidden = true
                 checkmarkImageView.isHidden = false
                 if isLast {
@@ -91,15 +90,16 @@ class StatusView: UIView {
                 }
         }
         
-        let borderColor: UIColor = isStormMode ? .mediumSpringBud : .successGreenText
         innerViewWidthConstraint.constant = innerViewConstant
         innerViewHeightConstraint.constant = innerViewConstant
-        innerView.roundCorners(.allCorners, radius: innerViewConstant/2, borderColor: borderColor, borderWidth: 2.0)
+        innerView.roundCorners(.allCorners, radius: innerViewConstant/2, borderColor: fillColor, borderWidth: 2.0)
         
-        outerView.roundCorners(.allCorners, radius: 17, borderColor: borderColor, borderWidth: 2.0)
+        outerView.roundCorners(.allCorners, radius: 17, borderColor: fillColor, borderWidth: 2.0)
+        outerView.backgroundColor = isStormMode ? .mediumJungleGreen : .white
         
         let barViewRadius = barView.frame.size.width
-        barView.roundCorners(.allCorners, radius: barViewRadius, borderColor: borderColor, borderWidth: 0.0)
+        barView.roundCorners(.allCorners, radius: barViewRadius, borderColor: fillColor, borderWidth: 0.0)
+        barView.backgroundColor = fillColor
     }
     
     // MARK: Init
