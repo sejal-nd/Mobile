@@ -9,9 +9,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="OpenSans-Bold.ttf">
-            <string>OpenSans-Bold</string>
-        </array>
         <array key="OpenSans-Regular.ttf">
             <string>OpenSans</string>
         </array>
@@ -36,10 +33,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="415" height="1200"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BAo-5l-oWG" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="415" height="1911"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="415" height="1910"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="cSX-fc-17H">
-                                                <rect key="frame" x="0.0" y="0.0" width="415" height="1911"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="415" height="1910"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MyT-Fp-mgl">
                                                         <rect key="frame" x="0.0" y="0.0" width="415" height="75"/>
@@ -339,50 +336,12 @@
                                                             <constraint firstItem="Ytu-oi-mMn" firstAttribute="leading" secondItem="VDq-ML-APe" secondAttribute="leading" constant="20" id="wND-eZ-bZn"/>
                                                         </constraints>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pbc-9G-tyI">
-                                                        <rect key="frame" x="0.0" y="1382" width="415" height="161"/>
-                                                        <subviews>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FkM-sN-yIp">
-                                                                <rect key="frame" x="0.0" y="0.0" width="415" height="1"/>
-                                                                <color key="backgroundColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="1" id="kAB-ow-14W"/>
-                                                                </constraints>
-                                                            </view>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AWU-mk-2LM">
-                                                                <rect key="frame" x="30" y="94" width="355" height="57"/>
-                                                                <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="18"/>
-                                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                                <state key="normal" title="Share Feedback">
-                                                                    <color key="titleColor" red="0.0" green="0.34509803919999998" blue="0.64313725489999995" alpha="1" colorSpace="calibratedRGB"/>
-                                                                </state>
-                                                                <connections>
-                                                                    <action selector="surveyButtonPressed:" destination="j3V-0d-zjQ" eventType="touchUpInside" id="VRk-XH-uBj"/>
-                                                                </connections>
-                                                            </button>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We are always striving to improve and welcome your suggestions." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tsf-JK-TAb">
-                                                                <rect key="frame" x="30" y="30" width="355" height="44"/>
-                                                                <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="16"/>
-                                                                <color key="textColor" red="0.13725490196078433" green="0.12156862745098039" blue="0.12549019607843137" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                        </subviews>
+                                                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="415" placeholderIntrinsicHeight="160" translatesAutoresizingMaskIntoConstraints="NO" id="pbc-9G-tyI" customClass="SurveyView" customModule="EUMobile" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="1382" width="415" height="160"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <constraints>
-                                                            <constraint firstItem="tsf-JK-TAb" firstAttribute="top" secondItem="pbc-9G-tyI" secondAttribute="top" constant="30" id="6KF-Wy-Y50"/>
-                                                            <constraint firstItem="tsf-JK-TAb" firstAttribute="leading" secondItem="pbc-9G-tyI" secondAttribute="leading" constant="30" id="GTT-60-hCE"/>
-                                                            <constraint firstItem="AWU-mk-2LM" firstAttribute="leading" secondItem="pbc-9G-tyI" secondAttribute="leading" constant="30" id="XIX-2p-Y2i"/>
-                                                            <constraint firstItem="FkM-sN-yIp" firstAttribute="top" secondItem="pbc-9G-tyI" secondAttribute="top" id="bwg-zZ-g2U"/>
-                                                            <constraint firstItem="AWU-mk-2LM" firstAttribute="top" secondItem="tsf-JK-TAb" secondAttribute="bottom" constant="20" id="cXp-Ai-EQh"/>
-                                                            <constraint firstAttribute="trailing" secondItem="FkM-sN-yIp" secondAttribute="trailing" id="d8y-qJ-eED"/>
-                                                            <constraint firstAttribute="bottom" secondItem="AWU-mk-2LM" secondAttribute="bottom" constant="10" id="di4-pq-O1s"/>
-                                                            <constraint firstAttribute="trailing" secondItem="tsf-JK-TAb" secondAttribute="trailing" constant="30" id="iws-SV-TWc"/>
-                                                            <constraint firstAttribute="trailing" secondItem="AWU-mk-2LM" secondAttribute="trailing" constant="30" id="ngs-vp-QTp"/>
-                                                            <constraint firstItem="FkM-sN-yIp" firstAttribute="leading" secondItem="pbc-9G-tyI" secondAttribute="leading" id="yRl-dU-xMD"/>
-                                                        </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2qx-Az-4kU">
-                                                        <rect key="frame" x="0.0" y="1563" width="415" height="180"/>
+                                                        <rect key="frame" x="0.0" y="1562" width="415" height="180"/>
                                                         <subviews>
                                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="8k8-H8-DxT">
                                                                 <rect key="frame" x="0.0" y="0.0" width="415" height="180"/>
@@ -405,7 +364,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GEr-TU-ilh">
-                                                        <rect key="frame" x="0.0" y="1763" width="415" height="148"/>
+                                                        <rect key="frame" x="0.0" y="1762" width="415" height="148"/>
                                                         <subviews>
                                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="mQ7-7L-FjM" customClass="ZeroInsetDataDetectorTextView" customModule="EUMobile" customModuleProvider="target">
                                                                 <rect key="frame" x="30" y="10" width="355" height="128"/>
@@ -483,7 +442,7 @@
                         <outlet property="progressAnimationView" destination="hhk-NV-joZ" id="n2a-g2-OeF"/>
                         <outlet property="scrollView" destination="FM4-Ab-ESP" id="GE6-71-PIZ"/>
                         <outlet property="statusTextView" destination="4rc-GQ-SVh" id="0Vh-8r-NUs"/>
-                        <outlet property="surveyContainer" destination="pbc-9G-tyI" id="2rk-Um-NCx"/>
+                        <outlet property="surveyView" destination="pbc-9G-tyI" id="Fbc-01-593"/>
                         <outlet property="tableView" destination="8k8-H8-DxT" id="Iv2-KR-opQ"/>
                         <outlet property="tableViewContainer" destination="2qx-Az-4kU" id="5Hr-PQ-id4"/>
                         <outlet property="trackerStatusContainer" destination="VDq-ML-APe" id="qaO-kB-qk6"/>

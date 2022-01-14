@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="OpenSans-Bold.ttf">
+            <string>OpenSans-Bold</string>
+        </array>
+        <array key="OpenSans-Regular.ttf">
+            <string>OpenSans</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SurveyView" customModule="EUMobile" customModuleProvider="target">
+            <connections>
+                <outlet property="bottomBarView" destination="KCD-sd-LPV" id="NA7-mj-R27"/>
+                <outlet property="contentView" destination="ggN-ZD-sr6" id="oEz-Qk-YB3"/>
+                <outlet property="feedbackLabel" destination="tjn-Kr-qGB" id="92E-OM-LEa"/>
+                <outlet property="surveyButton" destination="9rC-45-Yf2" id="TfR-6W-oRY"/>
+                <outlet property="topBarView" destination="Jsn-WG-Sbs" id="N2W-fq-eWN"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="ggN-ZD-sr6">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="160"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jsn-WG-Sbs">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="1"/>
+                    <color key="backgroundColor" white="1" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="iXr-Z0-w44"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9rC-45-Yf2">
+                    <rect key="frame" x="30" y="94" width="354" height="56"/>
+                    <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="18"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="Share Feedback">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="surveyButtonPressed:" destination="-1" eventType="touchUpInside" id="Msv-xN-mKl"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We are always striving to improve and welcome your suggestions." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tjn-Kr-qGB">
+                    <rect key="frame" x="30" y="30" width="354" height="44"/>
+                    <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="16"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KCD-sd-LPV">
+                    <rect key="frame" x="0.0" y="159" width="414" height="1"/>
+                    <color key="backgroundColor" white="1" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="ZIL-ji-Usd"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="U4R-3z-BGL"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="KCD-sd-LPV" secondAttribute="bottom" id="0Iw-KE-FC8"/>
+                <constraint firstAttribute="trailing" secondItem="tjn-Kr-qGB" secondAttribute="trailing" constant="30" id="3Qf-ph-d3o"/>
+                <constraint firstAttribute="trailing" secondItem="KCD-sd-LPV" secondAttribute="trailing" id="5Ue-Yg-n2c"/>
+                <constraint firstItem="Jsn-WG-Sbs" firstAttribute="leading" secondItem="ggN-ZD-sr6" secondAttribute="leading" id="NEX-pI-VT0"/>
+                <constraint firstItem="tjn-Kr-qGB" firstAttribute="top" secondItem="ggN-ZD-sr6" secondAttribute="top" constant="30" id="QgP-o2-MSK"/>
+                <constraint firstItem="Jsn-WG-Sbs" firstAttribute="top" secondItem="ggN-ZD-sr6" secondAttribute="top" id="RPz-8s-wl6"/>
+                <constraint firstAttribute="trailing" secondItem="Jsn-WG-Sbs" secondAttribute="trailing" id="S7f-Oc-RN4"/>
+                <constraint firstItem="KCD-sd-LPV" firstAttribute="leading" secondItem="ggN-ZD-sr6" secondAttribute="leading" id="VXI-wk-YCB"/>
+                <constraint firstAttribute="bottom" secondItem="9rC-45-Yf2" secondAttribute="bottom" constant="10" id="Ved-V8-nbi"/>
+                <constraint firstAttribute="trailing" secondItem="9rC-45-Yf2" secondAttribute="trailing" constant="30" id="dif-YH-XYf"/>
+                <constraint firstItem="9rC-45-Yf2" firstAttribute="leading" secondItem="ggN-ZD-sr6" secondAttribute="leading" constant="30" id="fFL-zj-R59"/>
+                <constraint firstItem="9rC-45-Yf2" firstAttribute="top" secondItem="tjn-Kr-qGB" secondAttribute="bottom" constant="20" id="mhn-SI-5zT"/>
+                <constraint firstItem="tjn-Kr-qGB" firstAttribute="leading" secondItem="ggN-ZD-sr6" secondAttribute="leading" constant="30" id="w6W-RR-H4f"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-138" y="78"/>
+        </view>
+    </objects>
+</document>

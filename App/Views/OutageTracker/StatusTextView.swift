@@ -67,6 +67,9 @@ class StatusTextView: UIView {
             else if tracker.isCrewLeftSite == true {
                 return StatusTitleString.onSiteTempStop
             }
+            else if tracker.isSafetyHazard == true {
+                return StatusTitleString.onSiteTempStop
+            }
         }
         
         let isDefinitive = tracker.meterStatus?.uppercased() == "ON"
@@ -86,15 +89,17 @@ class StatusTextView: UIView {
             return StatusDetailString.none
         } 
         else {
-            if tracker.isCrewExtDamage == true {
-                details = StatusDetailString.crewExtDamage
-            } else if tracker.isSafetyHazard == true {
-                details = StatusDetailString.crewSafetyHazard
-            } else if tracker.isCrewDiverted == true {
-                details = StatusDetailString.crewLeftSite
-            } else if tracker.isPartialRestoration == true {
-                let count = tracker.customersOutOnOutage ?? ""
-                details = String.localizedStringWithFormat(StatusDetailString.partialRestoration, count)
+            if status == .onSite {
+                if tracker.isCrewExtDamage == true {
+                    details = StatusDetailString.crewExtDamage
+                } else if tracker.isPartialRestoration == true {
+                    let count = tracker.customersOutOnOutage ?? ""
+                    details = String.localizedStringWithFormat(StatusDetailString.partialRestoration, count)
+                }
+            } else if status == .reported {
+                if tracker.isCrewDiverted == true {
+                    details = StatusDetailString.crewLeftSite
+                }
             }
         }
         
@@ -180,7 +185,6 @@ struct StatusDetailString {
     static let crewLeftSite = NSLocalizedString("The outage affecting your address requires additional repair work to be completed at another location before we can begin work in your area. We appreciate your patience during this difficult restoration process.", comment: "")
     static let crewDiverted = NSLocalizedString("This can occur during severe emergencies or potentially hazardous situations. A new BGE crew will be dispatched as soon as possible to retore your service.", comment: "")
     static let crewExtDamage = NSLocalizedString("We have multiple crews on site working hard to restore your power. Thank you for your patience.", comment: "")
-    static let crewSafetyHazard = NSLocalizedString("", comment: "")
     static let partialRestoration = "BGE was able to restore service to some customers in your area, but due to the location of the damage, you and %@ others are still affected by this outage."
     static let none = NSLocalizedString("We’re actively trying to fix the problem, please check back soon. If your power is not on, please help us by reporting the outage.", comment: "")
     

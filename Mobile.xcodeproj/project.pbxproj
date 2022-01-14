@@ -60,6 +60,8 @@
 		21852B03272EB8EA00C0A10E /* MoveStartServiceViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21852B02272EB8EA00C0A10E /* MoveStartServiceViewModelTests.swift */; };
 		21852B05272EC26600C0A10E /* IdVerificationViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21852B04272EC26600C0A10E /* IdVerificationViewModelTests.swift */; };
 		21AB86D3273912B0004FBC18 /* UnauthenticatedMoveAccountSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AB86D2273912B0004FBC18 /* UnauthenticatedMoveAccountSelectionCell.swift */; };
+		21C66E202791EF7F00DC1A07 /* SurveyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C66E1F2791EF7F00DC1A07 /* SurveyView.swift */; };
+		21C66E222791EF8E00DC1A07 /* SurveyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21C66E212791EF8E00DC1A07 /* SurveyView.xib */; };
 		21C72A712772526700C31411 /* GasOnlyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C72A702772526700C31411 /* GasOnlyView.swift */; };
 		21C72A732772527700C31411 /* GasOnlyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21C72A722772527700C31411 /* GasOnlyView.xib */; };
 		21D1C512270ADF6400EFAFAC /* AddressSearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D1C50E270ADF6100EFAFAC /* AddressSearchModel.swift */; };
@@ -1316,6 +1318,8 @@
 		21852B04272EC26600C0A10E /* IdVerificationViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdVerificationViewModelTests.swift; sourceTree = "<group>"; };
 		21AB86D2273912B0004FBC18 /* UnauthenticatedMoveAccountSelectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnauthenticatedMoveAccountSelectionCell.swift; sourceTree = "<group>"; };
 		21C06E439FF0E3B0841F704C /* Pods-EUMobile-Watch Extension.peco-rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch Extension.peco-rc.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch Extension/Pods-EUMobile-Watch Extension.peco-rc.xcconfig"; sourceTree = "<group>"; };
+		21C66E1F2791EF7F00DC1A07 /* SurveyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyView.swift; sourceTree = "<group>"; };
+		21C66E212791EF8E00DC1A07 /* SurveyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SurveyView.xib; sourceTree = "<group>"; };
 		21C72A702772526700C31411 /* GasOnlyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GasOnlyView.swift; sourceTree = "<group>"; };
 		21C72A722772527700C31411 /* GasOnlyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GasOnlyView.xib; sourceTree = "<group>"; };
 		21D1C50E270ADF6100EFAFAC /* AddressSearchModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressSearchModel.swift; sourceTree = "<group>"; };
@@ -3133,6 +3137,8 @@
 				216AE55A278E4B4E0018E220 /* StatusTextView.xib */,
 				216AE55E278E5A7E0018E220 /* ETAView.swift */,
 				216AE560278E5A8C0018E220 /* ETAView.xib */,
+				21C66E1F2791EF7F00DC1A07 /* SurveyView.swift */,
+				21C66E212791EF8E00DC1A07 /* SurveyView.xib */,
 			);
 			path = OutageTracker;
 			sourceTree = "<group>";
@@ -6294,6 +6300,7 @@
 				B07D247720C590BE00BD22EB /* HomeWeatherView.xib in Resources */,
 				3575232D22C53A1B00A0AFAC /* AccountListRow.xib in Resources */,
 				359BDB7B22D8F9B2007002B0 /* outage_on.json in Resources */,
+				21C66E222791EF8E00DC1A07 /* SurveyView.xib in Resources */,
 				82AC2A111FAA691000EACB3B /* PeakRewards.storyboard in Resources */,
 				B0CB1C87227CB4510081F99B /* TabCollectionViewCell.xib in Resources */,
 				675F4D3224AB828200A828F9 /* ReportOutageMock.json in Resources */,
@@ -7160,6 +7167,7 @@
 				675F4CE424AB828200A828F9 /* MinimumVersion.swift in Sources */,
 				30636F0824C82F2F00CCBFAE /* OpcoIdentityCardView.swift in Sources */,
 				4AEB19A726F387AA00879046 /* StopServiceFlowData.swift in Sources */,
+				21C66E202791EF7F00DC1A07 /* SurveyView.swift in Sources */,
 				E87C41471FAB72E700448F86 /* UpdatesTableViewCell.swift in Sources */,
 				9C19983523A9614900250417 /* GameEnrollmentViewController.swift in Sources */,
 				35ACCB4520EA5ECE0022907F /* HomeOutageCardView.swift in Sources */,

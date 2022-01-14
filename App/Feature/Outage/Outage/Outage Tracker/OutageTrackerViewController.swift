@@ -31,7 +31,7 @@ class OutageTrackerViewController: UIViewController {
     @IBOutlet weak var footerTextView: ZeroInsetDataDetectorTextView!
     @IBOutlet weak var trackerStatusContainer: UIView!
     @IBOutlet weak var trackerStatusView: TrackerStatusView!
-    @IBOutlet weak var surveyContainer: UIView!
+    @IBOutlet weak var surveyView: SurveyView!
     @IBOutlet weak var powerOnContainer: UIView!
     
     let disposeBag = DisposeBag()
@@ -94,6 +94,7 @@ class OutageTrackerViewController: UIViewController {
         self.whyButtonContainer.isHidden = true
         
         etaView.delegate = self
+        surveyView.delegate = self
         
         let whyViewRadius = whyButtonView.frame.size.height / 2
         whyButtonView.roundCorners(.allCorners, radius: whyViewRadius, borderColor: .accentGray, borderWidth: 1.0)
@@ -115,7 +116,7 @@ class OutageTrackerViewController: UIViewController {
             etaContainerView.isHidden = true
             countContainerView.isHidden = true
             trackerStatusContainer.isHidden = true
-            surveyContainer.isHidden = true
+            surveyView.isHidden = true
             hazardContainerView.isHidden = true
             
             if let tracker = viewModel.outageTracker.value, let show = tracker.isSafetyHazard {
@@ -138,7 +139,9 @@ class OutageTrackerViewController: UIViewController {
                     etaContainerView.isHidden = false
                     countContainerView.isHidden = false
                     trackerStatusContainer.isHidden = false
-                    surveyContainer.isHidden = false
+                    surveyView.isHidden = false
+                    
+                    surveyView.configure(status: viewModel.status)
                     
                     if viewModel.status == .restored {
                         countContainerView.isHidden = true
@@ -221,13 +224,6 @@ class OutageTrackerViewController: UIViewController {
         }
     }
     
-    @IBAction func surveyButtonPressed(_ sender: Any) {
-        guard let url = URL(string: viewModel.surveyURL) else { return }
-        let survey = WebViewController(title: NSLocalizedString("", comment: ""),
-                                         url: url)
-        navigationController?.present(survey, animated: true, completion: nil)
-    }
-    
     @IBAction func showHazardPressed(_ sender: Any) {
         let info = StatusInfoMessage.hazardMessage
         infoView.configure(withInfo: info)
@@ -270,6 +266,14 @@ extension OutageTrackerViewController: ETAViewDelegate {
         let info = StatusInfoMessage.etrToolTip
         infoView.configure(withInfo: info)
         infoView.isHidden = false
+    }
+}
+
+extension OutageTrackerViewController: SurveyViewDelegate {
+    func surveySelected(url: URL) {
+        let survey = WebViewController(title: NSLocalizedString("", comment: ""),
+                                       url: url)
+        navigationController?.present(survey, animated: true, completion: nil)
     }
 }
 

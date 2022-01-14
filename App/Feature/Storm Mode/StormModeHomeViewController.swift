@@ -193,7 +193,7 @@ class StormModeHomeViewController: AccountPickerViewController {
     @IBOutlet weak var outageCountLabel: UILabel!
     @IBOutlet weak var trackerStatusContainer: UIView!
     @IBOutlet weak var trackerStatusView: TrackerStatusView!
-    @IBOutlet weak var surveyContainer: UIView!
+    @IBOutlet weak var surveyView: SurveyView!
     @IBOutlet weak var powerOnContainer: UIView!
     
     let infoView = StatusInfoView()
@@ -276,6 +276,7 @@ class StormModeHomeViewController: AccountPickerViewController {
         configureContactText()
         configureGasOnlyText()
         setupUI()
+        setupBinding()
         
         // Events
         RxNotifications.shared.outageReported.asDriver(onErrorDriveWith: .empty())
@@ -347,6 +348,7 @@ class StormModeHomeViewController: AccountPickerViewController {
     
     // MARK: Outage Tracker
     
+    
     private func setupUI() {
         infoView.frame = self.view.bounds
         self.view.addSubview(infoView)
@@ -355,13 +357,107 @@ class StormModeHomeViewController: AccountPickerViewController {
         self.whyButtonContainer.isHidden = true
         
         etaView.delegate = self
+        surveyView.delegate = self
         
         let whyViewRadius = whyButtonView.frame.size.height / 2
         whyButtonView.roundCorners(.allCorners, radius: whyViewRadius, borderColor: .accentGray, borderWidth: 1.0)
         
-        countView.roundCorners(.allCorners, radius: 10, borderColor: .white, borderWidth: 1.0)
+        countView.roundCorners(.allCorners, radius: 10, borderColor: .accentGray, borderWidth: 1.0)
         
-        hazardView.roundCorners(.allCorners, radius: 10, borderColor: .clear, borderWidth: 1.0)
+        hazardView.roundCorners(.allCorners, radius: 10, borderColor: .accentGray, borderWidth: 1.0)
+    }
+    
+    private func setupBinding() {
+        self.viewModel.outageTracker
+            .subscribe(onNext: { [weak self] _ in
+                self?.update()
+            })
+            .disposed(by: self.disposeBag)
+    }
+    
+    private func update() {
+        statusTextView.isHidden = true
+        etaContainerView.isHidden = true
+        countContainerView.isHidden = true
+        trackerStatusContainer.isHidden = true
+        surveyView.isHidden = true
+        hazardContainerView.isHidden = true
+        
+        if let tracker = viewModel.outageTracker.value, let show = tracker.isSafetyHazard {
+            hazardContainerView.isHidden = !show
+        }
+        
+        if viewModel.isActiveOutage == false {
+            powerOnContainer.isHidden = false
+            progressAnimationView.configure(withStatus: .restored)
+        } else {
+            powerOnContainer.isHidden = true
+            progressAnimationView.configure(withStatus: viewModel.status)
+            
+            if let tracker = viewModel.outageTracker.value {
+                statusTextView.isHidden = false
+                statusTextView.configure(tracker: tracker, status: viewModel.status)
+            }
+            
+            if viewModel.status != .none {
+                etaContainerView.isHidden = false
+                countContainerView.isHidden = false
+                trackerStatusContainer.isHidden = false
+                surveyView.isHidden = false
+                
+                surveyView.configure(status: viewModel.status)
+                
+                if viewModel.status == .restored {
+                    countContainerView.isHidden = true
+                }
+                
+                whyButtonContainer.isHidden = viewModel.hideWhyButton
+                whyButton.setTitle(viewModel.whyButtonText, for: .normal)
+                neighborCountLabel.text = viewModel.neighborCount
+                outageCountLabel.text = viewModel.outageCount
+                updateETA()
+                
+                if viewModel.events.isEmpty {
+                    trackerStatusContainer.isHidden = true
+                } else {
+                    trackerStatusContainer.isHidden = false
+                    trackerStatusView.configure(withEvents: viewModel.events, lastUpdated: viewModel.lastUpdated, isPaused: viewModel.isPaused)
+                }
+            }
+        }
+    }
+    
+    private func updateETA() {
+        if let tracker = viewModel.outageTracker.value {
+            etaView.configure(tracker: tracker, status: viewModel.status)
+        }
+    }
+    
+    @IBAction func showHazardPressed(_ sender: Any) {
+        let info = StatusInfoMessage.hazardMessage
+        infoView.configure(withInfo: info)
+        infoView.isHidden = false
+    }
+    
+    @IBAction func whyButtonPressed(_ sender: Any) {
+        guard let tracker = viewModel.outageTracker.value else { return }
+        
+        var info = StatusInfoMessage.none
+        
+        if tracker.isSafetyHazard == true {
+            info = StatusInfoMessage.hazardMessage
+        }
+        if tracker.isCrewDiverted == true {
+            info = StatusInfoMessage.rerouted
+        }
+        if tracker.isCrewLeftSite == true {
+            info = StatusInfoMessage.whyStop
+        }
+        if viewModel.status == .restored {
+            info = viewModel.isDefinitive ? StatusInfoMessage.hasOutageDef : StatusInfoMessage.hasOutageNondef
+        }
+        infoView.configure(withInfo: info)
+        infoView.isHidden = false
     }
     
     
@@ -383,27 +479,6 @@ class StormModeHomeViewController: AccountPickerViewController {
     
     @IBAction func payButtonPress(_ sender: Any) {
         performSegue(withIdentifier: "BillSegue", sender: nil)
-    }
-    
-    @IBAction func whyButtonPressed(_ sender: Any) {
-//        guard let tracker = viewModel.outageTracker.value else { return }
-//
-//        var info = StatusInfoMessage.none
-//
-//        if tracker.isSafetyHazard == true {
-//            info = StatusInfoMessage.hazardMessage
-//        }
-//        if tracker.isCrewDiverted == true {
-//            info = StatusInfoMessage.rerouted
-//        }
-//        if tracker.isCrewLeftSite == true {
-//            info = StatusInfoMessage.whyStop
-//        }
-//        if viewModel.status == .restored {
-//            info = viewModel.isDefinitive ? StatusInfoMessage.hasOutageDef : StatusInfoMessage.hasOutageNondef
-//        }
-//        infoView.configure(withInfo: info)
-//        infoView.isHidden = false
     }
     
     @IBAction func onPhoneNumberPress(_ sender: ButtonControl) {
@@ -779,5 +854,13 @@ extension StormModeHomeViewController: ETAViewDelegate {
         let info = StatusInfoMessage.etrToolTip
         infoView.configure(withInfo: info)
         infoView.isHidden = false
+    }
+}
+
+extension StormModeHomeViewController: SurveyViewDelegate {
+    func surveySelected(url: URL) {
+        let survey = WebViewController(title: NSLocalizedString("", comment: ""),
+                                       url: url)
+        navigationController?.present(survey, animated: true, completion: nil)
     }
 }

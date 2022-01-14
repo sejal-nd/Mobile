@@ -24,7 +24,7 @@ class OutageTrackerViewModel {
     }
     var events: [EventSet] {
         guard let events = outageTracker.value?.eventSet else {
-            return mockEvents
+            return []
         }
         return events
     }
@@ -120,42 +120,6 @@ class OutageTrackerViewModel {
                 }
         }
         return attributedText
-    }
-    var surveyURL: String {
-        switch status {
-            case .reported:
-                return "https://www.surveymonkey.com/r/HHCD7YP"
-            case .assigned:
-                return "https://www.surveymonkey.com/r/HPSN8XX"
-            case .enRoute:
-                return "https://www.surveymonkey.com/r/HPTDG6T"
-            case .onSite:
-                return "https://www.surveymonkey.com/r/HPXXPCW"
-            case .restored:
-                return "https://www.surveymonkey.com/r/HPXZBBD"
-            default:
-                return ""
-        }
-    }
-    var mockEvents: [EventSet] {
-        var events: [EventSet] = []
-        
-        let event1 = EventSet(status: "not-started", eventSetDescription: "Outage Reported", dateTime: nil)
-        events.append(event1)
-        
-        let event2 = EventSet(status: "not-started", eventSetDescription: "Crew Assigned", dateTime: nil)
-        events.append(event2)
-        
-        let event3 = EventSet(status: "not-started", eventSetDescription: "Crew En Route", dateTime: nil)
-        events.append(event3)
-        
-        let event4 = EventSet(status: "not-started", eventSetDescription: "Crew On Site", dateTime: nil)
-        events.append(event4)
-        
-        let event5 = EventSet(status: "not-started", eventSetDescription: "Power Restored", dateTime: nil)
-        events.append(event5)
-        
-        return events
     }
     
     func fetchOutageTracker() {
