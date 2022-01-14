@@ -837,7 +837,6 @@ extension StormModeHomeViewController: DataDetectorTextViewLinkTapDelegate {
     func dataDetectorTextView(_ textView: DataDetectorTextView, didInteractWith URL: URL) {
         GoogleAnalytics.log(event: .outageAuthEmergencyCall)
     }
-    
 }
 
 extension StormModeHomeViewController: StatusInfoViewDelegate {
@@ -845,7 +844,7 @@ extension StormModeHomeViewController: StatusInfoViewDelegate {
         infoView.isHidden = true
     }
     func reportOutagePressed() {
-        
+        self.performSegue(withIdentifier: "ReportOutageSegue", sender: nil)
     }
 }
 
