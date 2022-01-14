@@ -51,6 +51,9 @@ class ETAView: UIView {
         self.tracker = tracker
         self.status = status
         
+        hideInfoButtonView = status == .restored
+        hideUpdatedView = true
+        
         etaTitleLabel.text = etaTitle()
         etaDateTimeLabel.text = etaDateTime()
         etaDetailLabel.text = etaDetails()
@@ -59,9 +62,6 @@ class ETAView: UIView {
         etaCauseLabel.text = cause
         etaCauseLabel.font = SystemFont.bold.of(textStyle: .footnote)
         etaCauseLabel.isHidden = cause.isEmpty
-        
-        hideInfoButtonView = status == .restored
-        hideUpdatedView = true
         
         switch status {
             case .restored, .none:
