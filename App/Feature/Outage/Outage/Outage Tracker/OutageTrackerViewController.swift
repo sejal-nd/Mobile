@@ -102,8 +102,6 @@ class OutageTrackerViewController: UIViewController {
         countView.roundCorners(.allCorners, radius: 10, borderColor: .accentGray, borderWidth: 1.0)
         
         hazardView.roundCorners(.allCorners, radius: 10, borderColor: .accentGray, borderWidth: 1.0)
-        
-        tableViewContainer.roundCorners(.allCorners, radius: 0, borderColor: .accentGray, borderWidth: 1.0)
     }
     
     private func update() {
@@ -118,7 +116,7 @@ class OutageTrackerViewController: UIViewController {
             trackerStatusContainer.isHidden = true
             surveyView.isHidden = true
             hazardContainerView.isHidden = true
-            
+
             if let tracker = viewModel.outageTracker.value, let show = tracker.isSafetyHazard {
                 hazardContainerView.isHidden = !show
             }

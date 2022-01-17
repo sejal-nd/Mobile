@@ -21,7 +21,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" placeholderIntrinsicWidth="250" placeholderIntrinsicHeight="250" translatesAutoresizingMaskIntoConstraints="NO" id="Nud-pw-84i">
-                    <rect key="frame" x="144.5" y="12.5" width="125" height="125"/>
+                    <rect key="frame" x="144.5" y="25" width="125" height="125"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="125" id="Blw-ky-3kJ"/>
@@ -40,9 +40,10 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="udZ-Xq-iCh" firstAttribute="centerX" secondItem="bwf-EG-tnt" secondAttribute="centerX" id="ADI-Y2-btd"/>
-                <constraint firstItem="Nud-pw-84i" firstAttribute="centerX" secondItem="bwf-EG-tnt" secondAttribute="centerX" id="Pt4-Ej-oFT"/>
+                <constraint firstItem="Nud-pw-84i" firstAttribute="centerX" secondItem="bwf-EG-tnt" secondAttribute="centerX" id="Fed-Va-a2G"/>
                 <constraint firstItem="udZ-Xq-iCh" firstAttribute="centerY" secondItem="bwf-EG-tnt" secondAttribute="centerY" id="RzD-f4-WgC"/>
-                <constraint firstItem="Nud-pw-84i" firstAttribute="centerY" secondItem="bwf-EG-tnt" secondAttribute="centerY" id="ygV-Ky-rAa"/>
+                <constraint firstItem="1H3-fV-cje" firstAttribute="bottom" secondItem="Nud-pw-84i" secondAttribute="bottom" id="qtG-4W-ggk"/>
+                <constraint firstItem="Nud-pw-84i" firstAttribute="top" secondItem="bwf-EG-tnt" secondAttribute="top" constant="25" id="sKr-65-bMc"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="132" y="102"/>

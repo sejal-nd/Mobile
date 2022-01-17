@@ -28,7 +28,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="czp-7J-3de">
-                    <rect key="frame" x="31" y="248" width="352" height="400"/>
+                    <rect key="frame" x="31" y="248" width="352" height="390"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z8X-ax-Pxu">
                             <rect key="frame" x="15" y="15" width="24" height="24"/>
@@ -68,8 +68,8 @@
                             <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="hQT-RJ-6mB">
-                            <rect key="frame" x="20" y="128.5" width="312" height="231.5"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="hQT-RJ-6mB">
+                            <rect key="frame" x="20" y="128.5" width="312" height="221.5"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lgQ-Fp-STZ">
                                     <rect key="frame" x="0.0" y="0.0" width="312" height="156.5"/>
@@ -77,9 +77,6 @@
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="312" placeholderIntrinsicHeight="142" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="CVQ-Uf-kAT" customClass="ZeroInsetDataDetectorTextView" customModule="EUMobile" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="312" height="156.5"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="6Ag-Sk-NI2"/>
-                                            </constraints>
                                             <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -94,13 +91,13 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Emu-YC-cM6">
-                                    <rect key="frame" x="0.0" y="186.5" width="312" height="45"/>
+                                    <rect key="frame" x="0.0" y="176.5" width="312" height="45"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XHZ-vV-50m">
-                                            <rect key="frame" x="48" y="0.0" width="216" height="45"/>
+                                            <rect key="frame" x="29" y="0.0" width="254" height="45"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="txQ-Ix-60e">
-                                                    <rect key="frame" x="0.0" y="0.0" width="216" height="45"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="254" height="45"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                                     <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -126,8 +123,8 @@
                                     <constraints>
                                         <constraint firstItem="XHZ-vV-50m" firstAttribute="top" secondItem="Emu-YC-cM6" secondAttribute="top" id="6if-LY-gAt"/>
                                         <constraint firstAttribute="bottom" secondItem="XHZ-vV-50m" secondAttribute="bottom" id="EVg-5r-L2d"/>
-                                        <constraint firstItem="XHZ-vV-50m" firstAttribute="leading" secondItem="Emu-YC-cM6" secondAttribute="leading" constant="48" id="Lok-0a-6xC"/>
-                                        <constraint firstAttribute="trailing" secondItem="XHZ-vV-50m" secondAttribute="trailing" constant="48" id="xln-cP-SY2"/>
+                                        <constraint firstItem="XHZ-vV-50m" firstAttribute="leading" secondItem="Emu-YC-cM6" secondAttribute="leading" constant="29" id="Lok-0a-6xC"/>
+                                        <constraint firstAttribute="trailing" secondItem="XHZ-vV-50m" secondAttribute="trailing" constant="29" id="xln-cP-SY2"/>
                                     </constraints>
                                 </view>
                             </subviews>
