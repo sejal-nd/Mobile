@@ -260,17 +260,14 @@ class StormModeHomeViewController: AccountPickerViewController {
         super.viewDidLoad()
         
         configureFeatureFlags()
+        showOutageTracker = Configuration.shared.opco == .bge
         
         view.backgroundColor = .stormModeBlack
-        outageTrackerStackView.isHidden = true
-        loadingContentView.isHidden = false
         
         let gradientColor: UIColor
         switch Configuration.shared.opco {
         case .bge:
             gradientColor = .bgeGreen
-            outageTrackerStackView.isHidden = false
-            loadingContentView.isHidden = true
         case .ace, .comEd, .delmarva, .peco, .pepco:
             gradientColor = .primaryColor
         }
@@ -298,8 +295,6 @@ class StormModeHomeViewController: AccountPickerViewController {
         
         configureContactText()
         configureGasOnlyText()
-        setupUI()
-        setupBinding()
         
         // Events
         RxNotifications.shared.outageReported.asDriver(onErrorDriveWith: .empty())
@@ -769,10 +764,22 @@ class StormModeHomeViewController: AccountPickerViewController {
             gasOnlyView.isHidden = true
             footerStackView.isHidden = false
             outageSectionContainer.isHidden = false
-            loadingContentView.isHidden = false
-            outageStatusButton.onLottieAnimation?.currentProgress = 0.0
-            outageStatusButton.onLottieAnimation?.play()
-            outageStatusButton.isHidden = false
+            
+            if showOutageTracker {
+                loadingContentView.isHidden = true
+                outageStatusButton.isHidden = true
+                outageTrackerStackView.isHidden = false
+                setupUI()
+                setupBinding()
+            } else {
+                outageStatusButton.onLottieAnimation?.currentProgress = 0.0
+                outageStatusButton.onLottieAnimation?.play()
+                outageTrackerStackView.isHidden = true
+                loadingContentView.isHidden = false
+                outageStatusButton.isHidden = false
+                scrollView?.isHidden = false
+                loadingIndicator.isHidden = true
+            }
         }
         
         if viewModel.reportedOutage != nil {
