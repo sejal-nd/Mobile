@@ -170,10 +170,15 @@ class OutageViewController: AccountPickerViewController {
     }
     
     private func updateView() {
-        guard let outageTrackerVC = outageTrackerViewController else {
-            return
+        if Configuration.shared.opco == .bge {
+            guard let outageTrackerVC = outageTrackerViewController else {
+                return
+            }
+            add(asChildViewController: outageTrackerVC)
+            mainContainerView.isHidden = false
+        } else {
+            mainContainerView.isHidden = true
         }
-        add(asChildViewController: outageTrackerVC)
     }
     
     private func configureAccountPicker() {
@@ -386,6 +391,7 @@ extension OutageViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: TitleSubTitleRow.className, for: indexPath) as? TitleSubTitleRow else { fatalError("Invalid cell type.") }
         cell.backgroundColor = .softGray
+        cell.hideSeparator = true
         
         switch indexPath {
         case IndexPath(row: 0, section: 0):

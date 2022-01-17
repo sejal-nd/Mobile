@@ -178,6 +178,7 @@ class StormModeHomeViewController: AccountPickerViewController {
     }
     
     /// Outage Trcker
+    @IBOutlet private weak var outageTrackerStackView: UIStackView!
     @IBOutlet weak var loadingIndicator: LoadingIndicator!
     @IBOutlet weak var hazardContainerView: UIView!
     @IBOutlet weak var hazardView: UIView!
@@ -253,11 +254,13 @@ class StormModeHomeViewController: AccountPickerViewController {
         configureFeatureFlags()
         
         view.backgroundColor = .stormModeBlack
+        outageTrackerStackView.isHidden = true
         
         let gradientColor: UIColor
         switch Configuration.shared.opco {
         case .bge:
             gradientColor = .bgeGreen
+            //outageTrackerStackView.isHidden = false
         case .ace, .comEd, .delmarva, .peco, .pepco:
             gradientColor = .primaryColor
         }
