@@ -13,6 +13,7 @@ class TitleSubTitleRow: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subTitleLabel: UILabel!
     @IBOutlet weak var disclosureIndicatorImageView: UIImageView!
+    @IBOutlet weak var separatorView: UIView!
     
     var isEnabled = true {
         didSet {
@@ -33,6 +34,12 @@ class TitleSubTitleRow: UITableViewCell {
                 selectionStyle = .none
                 accessibilityTraits = [.button, .notEnabled]
             }
+        }
+    }
+    
+    var hideSeparator: Bool = false {
+        didSet {
+            self.separatorView.isHidden = hideSeparator
         }
     }
     

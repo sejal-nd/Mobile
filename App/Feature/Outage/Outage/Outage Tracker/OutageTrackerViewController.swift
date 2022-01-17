@@ -65,6 +65,7 @@ class OutageTrackerViewController: UIViewController {
     private func configureTableView() {
         let titleDetailCell = UINib(nibName: TitleSubTitleRow.className, bundle: nil)
         tableView.register(titleDetailCell, forCellReuseIdentifier: TitleSubTitleRow.className)
+        tableView.separatorStyle = .none
         tableView.accessibilityLabel = "outageTableView"
         tableView.reloadData()
     }
@@ -116,6 +117,8 @@ class OutageTrackerViewController: UIViewController {
             trackerStatusContainer.isHidden = true
             surveyView.isHidden = true
             hazardContainerView.isHidden = true
+            
+            surveyView.configure(status: viewModel.status)
 
             if let tracker = viewModel.outageTracker.value, let show = tracker.isSafetyHazard {
                 hazardContainerView.isHidden = !show
@@ -138,8 +141,6 @@ class OutageTrackerViewController: UIViewController {
                     countContainerView.isHidden = false
                     trackerStatusContainer.isHidden = false
                     surveyView.isHidden = false
-                    
-                    surveyView.configure(status: viewModel.status)
                     
                     if viewModel.status == .restored {
                         countContainerView.isHidden = true
@@ -286,6 +287,7 @@ extension OutageTrackerViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: TitleSubTitleRow.className, for: indexPath) as? TitleSubTitleRow else { fatalError("Invalid cell type.") }
         cell.backgroundColor = .softGray
+        cell.hideSeparator = false
         
         switch indexPath.row {
             case 0:
@@ -294,6 +296,7 @@ extension OutageTrackerViewController: UITableViewDataSource {
                 cell.configure(image: #imageLiteral(resourceName: "ic_streetlightoutage"), title: "Report Streetlight Outage", detail: nil)
             case 2:
                 cell.configure(image: UIImage(named: "ic_mapoutage"), title: "View Outage Map", detail: nil)
+                cell.hideSeparator = true
             default:
                 fatalError("Invalid index path.")
         }

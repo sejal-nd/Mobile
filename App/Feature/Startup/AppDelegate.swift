@@ -98,6 +98,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             .disposed(by: disposeBag)
         
         ForeSee.start()
+        showStormMode()
         
         return true
     }
