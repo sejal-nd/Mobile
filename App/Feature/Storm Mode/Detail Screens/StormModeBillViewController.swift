@@ -71,6 +71,8 @@ class StormModeBillViewController: AccountPickerViewController {
         navigationController?.setNavigationBarHidden(false, animated: true)
         
         setRefreshControlEnabled(enabled: true)
+        GoogleAnalytics.log(event: .stormModeLanded)
+        print("Will appear")
     }
 
     @objc func setRefreshControlEnabled(enabled: Bool) {

@@ -314,18 +314,16 @@ class StormModeHomeViewController: AccountPickerViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GoogleAnalytics.log(event: .stormModeLanding)
-        print("Will appear")
         navigationController?.setNavigationBarHidden(true, animated: true)
-
+        GoogleAnalytics.log(event: .stormModeLanded)
+        print("Will appear")
         
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-
-        GoogleAnalytics.log(event: .stormModeLanding)
-        print("Did appear")
+         GoogleAnalytics.log(event: .stormModeLanded)
+            print("Did appear")
 
         // Start polling when the home screen appears, only if storm mode hasn't ended yet
         stormModePollingDisposable?.dispose()
@@ -333,6 +331,7 @@ class StormModeHomeViewController: AccountPickerViewController {
             stormModePollingDisposable = viewModel.startStormModePolling()
                 .drive(onNext: { [weak self] in self?.stormModeDidEnd() })
         }
+       
     }
     
     override func viewDidDisappear(_ animated: Bool) {
