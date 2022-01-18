@@ -186,14 +186,11 @@ class StormModeHomeViewModel {
     }
     var neighborCount: String {
         // todo - this field is missing
-        guard let count = outageTracker.value?.customersOutOnOutage else {
-            return ""
-        }
-        return NSLocalizedString(count, comment: "")
+        return NSLocalizedString("No Data", comment: "")
     }
     var outageCount: String {
         guard let count = outageTracker.value?.customersOutOnOutage else {
-            return ""
+            return "No Data"
         }
         return NSLocalizedString(count, comment: "")
     }
