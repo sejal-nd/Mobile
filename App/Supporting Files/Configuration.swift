@@ -236,9 +236,9 @@ struct Configuration {
     }
     
     var b2cPolicy: String {
-        if FeatureFlagUtility.shared.bool(forKey: .isAzureAuthentication){
+        if FeatureFlagUtility.shared.bool(forKey: .isPkceAuthentication) {
             return "B2C_1A_SIGNIN_MOBILE"
-        }else{
+        } else {
             return "B2C_1A_Signin_ROPC"
         }
     }

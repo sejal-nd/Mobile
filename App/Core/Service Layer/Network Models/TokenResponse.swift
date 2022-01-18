@@ -30,7 +30,7 @@ public struct TokenResponse: Decodable {
         case token
         case id_token = "id_token"
         case access_token = "access_token"
-        case expiresIn = "id_token_expires_in"
+        case expiresIn = "expires_in"
         case refreshToken = "refresh_token"
         case refreshTokenExpiresIn = "refresh_token_expires_in"
         case refreshTokenIssuedAt = "refresh_token_issued_at"
