@@ -27,7 +27,7 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="ggN-ZD-sr6">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="160"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="180"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jsn-WG-Sbs">
@@ -55,7 +55,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KCD-sd-LPV">
-                    <rect key="frame" x="0.0" y="159" width="414" height="1"/>
+                    <rect key="frame" x="0.0" y="179" width="414" height="1"/>
                     <color key="backgroundColor" white="1" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="ZIL-ji-Usd"/>
@@ -73,7 +73,7 @@
                 <constraint firstItem="Jsn-WG-Sbs" firstAttribute="top" secondItem="ggN-ZD-sr6" secondAttribute="top" id="RPz-8s-wl6"/>
                 <constraint firstAttribute="trailing" secondItem="Jsn-WG-Sbs" secondAttribute="trailing" id="S7f-Oc-RN4"/>
                 <constraint firstItem="KCD-sd-LPV" firstAttribute="leading" secondItem="ggN-ZD-sr6" secondAttribute="leading" id="VXI-wk-YCB"/>
-                <constraint firstAttribute="bottom" secondItem="9rC-45-Yf2" secondAttribute="bottom" constant="10" id="Ved-V8-nbi"/>
+                <constraint firstAttribute="bottom" secondItem="9rC-45-Yf2" secondAttribute="bottom" constant="30" id="Ved-V8-nbi"/>
                 <constraint firstAttribute="trailing" secondItem="9rC-45-Yf2" secondAttribute="trailing" constant="30" id="dif-YH-XYf"/>
                 <constraint firstItem="9rC-45-Yf2" firstAttribute="leading" secondItem="ggN-ZD-sr6" secondAttribute="leading" constant="30" id="fFL-zj-R59"/>
                 <constraint firstItem="9rC-45-Yf2" firstAttribute="top" secondItem="tjn-Kr-qGB" secondAttribute="bottom" constant="20" id="mhn-SI-5zT"/>

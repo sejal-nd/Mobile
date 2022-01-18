@@ -10,6 +10,7 @@ import RxSwift
 import RxCocoa
 import RxSwiftExt
 import Lottie
+import UIKit
 
 class StormModeHomeViewController: AccountPickerViewController {
         
@@ -32,13 +33,13 @@ class StormModeHomeViewController: AccountPickerViewController {
         }
     }
     
-    var showOutageTracker: Bool = false
+    var showOutageTracker: Bool {
+        return Configuration.shared.opco == .bge
+    }
     @IBOutlet private weak var headerContentView: ButtonControl! {
         didSet {
             headerContentView.layer.cornerRadius = 10.0
             headerContentView.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 3)
-            let label = showOutageTracker ? "The app is adjusted temporarily due to severe weather." : "Storm mode is in effect. Due to severe weather, the most relevant features are optimized to allow us to better serve you."
-            headerContentView.accessibilityLabel = NSLocalizedString(label, comment: "")
         }
     }
     
@@ -199,6 +200,9 @@ class StormModeHomeViewController: AccountPickerViewController {
     @IBOutlet weak var trackerStatusView: TrackerStatusView!
     @IBOutlet weak var surveyView: SurveyView!
     @IBOutlet weak var powerOnContainer: UIView!
+    @IBOutlet weak var hazardWidthConstraint: NSLayoutConstraint!
+    @IBOutlet weak var etaWidthConstraint: NSLayoutConstraint!
+    @IBOutlet weak var countWidthConstraint: NSLayoutConstraint!
     
     let infoView = StatusInfoView()
     
@@ -260,7 +264,6 @@ class StormModeHomeViewController: AccountPickerViewController {
         super.viewDidLoad()
         
         configureFeatureFlags()
-        showOutageTracker = Configuration.shared.opco == .bge
         
         view.backgroundColor = .stormModeBlack
         
@@ -383,19 +386,17 @@ class StormModeHomeViewController: AccountPickerViewController {
         surveyView.delegate = self
         
         let whyViewRadius = whyButtonView.frame.size.height / 2
-        whyButtonView.roundCorners(.allCorners, radius: whyViewRadius, borderColor: .accentGray, borderWidth: 1.0)
+        whyButtonView.roundCorners(.allCorners, radius: whyViewRadius, borderColor: .white, borderWidth: 1.0)
         
-        countView.roundCorners(.allCorners, radius: 10, borderColor: .accentGray, borderWidth: 1.0)
+        countView.roundCorners(.allCorners, radius: 10, borderColor: .white, borderWidth: 1.0)
         
-        hazardView.roundCorners(.allCorners, radius: 10, borderColor: .accentGray, borderWidth: 1.0)
+        hazardView.roundCorners(.allCorners, radius: 10, borderColor: .clear, borderWidth: 1.0)
     }
     
     private func setupBinding() {
         self.viewModel.outageTracker
             .subscribe(onNext: { [weak self] _ in
                 self?.update()
-                self?.scrollView?.isHidden = false
-                self?.loadingIndicator.isHidden = true
             })
             .disposed(by: self.disposeBag)
     }
@@ -406,11 +407,14 @@ class StormModeHomeViewController: AccountPickerViewController {
         countContainerView.isHidden = true
         trackerStatusContainer.isHidden = true
         surveyView.isHidden = true
-        hazardContainerView.isHidden = true
-        
-        if let tracker = viewModel.outageTracker.value, let show = tracker.isSafetyHazard {
-            hazardContainerView.isHidden = !show
-        }
+        //hazardContainerView.isHidden = true
+        hazardWidthConstraint.constant = headerContentView.frame.width
+        etaWidthConstraint.constant = headerContentView.frame.width
+        countWidthConstraint.constant = headerContentView.frame.width
+
+//        if let tracker = viewModel.outageTracker.value, let show = tracker.isSafetyHazard {
+//            hazardContainerView.isHidden = !show
+//        }
         
         if viewModel.isActiveOutage == false {
             powerOnContainer.isHidden = false
@@ -436,7 +440,7 @@ class StormModeHomeViewController: AccountPickerViewController {
                     countContainerView.isHidden = true
                 }
                 
-                whyButtonContainer.isHidden = viewModel.hideWhyButton
+                whyButtonContainer.isHidden = false//viewModel.hideWhyButton
                 whyButton.setTitle(viewModel.whyButtonText, for: .normal)
                 neighborCountLabel.text = viewModel.neighborCount
                 outageCountLabel.text = viewModel.outageCount
@@ -450,6 +454,9 @@ class StormModeHomeViewController: AccountPickerViewController {
                 }
             }
         }
+        
+        scrollView?.isHidden = false
+        loadingIndicator.isHidden = true
     }
     
     private func updateETA() {
@@ -751,6 +758,10 @@ class StormModeHomeViewController: AccountPickerViewController {
     
     private func updateContent(outageJustReported: Bool) {
         guard let currentOutageStatus = viewModel.currentOutageStatus  else { return }
+        
+        let label = showOutageTracker ? "The app is adjusted temporarily due to severe weather." : "Storm mode is in effect. Due to severe weather, the most relevant features are optimized to allow us to better serve you."
+        headerContentView.accessibilityLabel = NSLocalizedString(label, comment: "")
+        headerViewDescriptionLabel.text = NSLocalizedString(label, comment: "")
 
         // Show/hide the top level container views
         if currentOutageStatus.isGasOnly {

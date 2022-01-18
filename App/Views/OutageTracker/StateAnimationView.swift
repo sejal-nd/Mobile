@@ -37,11 +37,14 @@ class StateAnimationView: UIView {
     }
     
     func configure(withStatus status: OutageTracker.Status) {
-        self.progressAnimationContainer.isHidden = status == .none
-        self.errorImageView.isHidden = status != .none
-        if status != .none {
+        progressAnimationContainer.isHidden = true
+        errorImageView.isHidden = true
+        if status == .none {
+            errorImageView.isHidden = false
+        } else {
             self.status = status
             setUpProgressAnimation()
+            progressAnimationContainer.isHidden = false
         }
     }
 
@@ -63,6 +66,8 @@ class StateAnimationView: UIView {
         addSubview(contentView)
         contentView.frame = self.bounds
         contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        progressAnimationContainer.isHidden = true
+        errorImageView.isHidden = true
     }
 }
 
