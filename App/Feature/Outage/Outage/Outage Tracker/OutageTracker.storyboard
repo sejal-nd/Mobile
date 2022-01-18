@@ -33,10 +33,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="415" height="1200"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BAo-5l-oWG" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="415" height="1920.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="415" height="1910.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="cSX-fc-17H">
-                                                <rect key="frame" x="0.0" y="0.0" width="415" height="1920.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="415" height="1910.5"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MyT-Fp-mgl">
                                                         <rect key="frame" x="0.0" y="0.0" width="415" height="75"/>
@@ -334,12 +334,12 @@
                                                             <constraint firstItem="Ytu-oi-mMn" firstAttribute="leading" secondItem="VDq-ML-APe" secondAttribute="leading" constant="20" id="wND-eZ-bZn"/>
                                                         </constraints>
                                                     </view>
-                                                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="415" placeholderIntrinsicHeight="160" translatesAutoresizingMaskIntoConstraints="NO" id="pbc-9G-tyI" customClass="SurveyView" customModule="EUMobile" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="1390.5" width="415" height="160"/>
+                                                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="0.0" placeholderIntrinsicHeight="150" translatesAutoresizingMaskIntoConstraints="NO" id="pbc-9G-tyI" customClass="SurveyView" customModule="EUMobile" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="1390.5" width="415" height="150"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2qx-Az-4kU">
-                                                        <rect key="frame" x="0.0" y="1570.5" width="415" height="182"/>
+                                                        <rect key="frame" x="0.0" y="1560.5" width="415" height="182"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="afE-uz-0RA">
                                                                 <rect key="frame" x="0.0" y="0.0" width="415" height="1"/>
@@ -384,7 +384,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GEr-TU-ilh">
-                                                        <rect key="frame" x="0.0" y="1772.5" width="415" height="148"/>
+                                                        <rect key="frame" x="0.0" y="1762.5" width="415" height="148"/>
                                                         <subviews>
                                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="mQ7-7L-FjM" customClass="ZeroInsetDataDetectorTextView" customModule="EUMobile" customModuleProvider="target">
                                                                 <rect key="frame" x="30" y="10" width="355" height="128"/>

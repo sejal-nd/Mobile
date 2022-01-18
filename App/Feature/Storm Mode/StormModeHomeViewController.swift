@@ -271,6 +271,7 @@ class StormModeHomeViewController: AccountPickerViewController {
         switch Configuration.shared.opco {
         case .bge:
             gradientColor = .bgeGreen
+            setupBinding()
         case .ace, .comEd, .delmarva, .peco, .pepco:
             gradientColor = .primaryColor
         }
@@ -298,6 +299,7 @@ class StormModeHomeViewController: AccountPickerViewController {
         
         configureContactText()
         configureGasOnlyText()
+        configureOutageTracker()
         
         // Events
         RxNotifications.shared.outageReported.asDriver(onErrorDriveWith: .empty())
@@ -375,7 +377,7 @@ class StormModeHomeViewController: AccountPickerViewController {
     // MARK: Outage Tracker
     
     
-    private func setupUI() {
+    private func configureOutageTracker() {
         infoView.frame = self.view.bounds
         self.view.addSubview(infoView)
         self.infoView.delegate = self
@@ -407,14 +409,14 @@ class StormModeHomeViewController: AccountPickerViewController {
         countContainerView.isHidden = true
         trackerStatusContainer.isHidden = true
         surveyView.isHidden = true
-        //hazardContainerView.isHidden = true
+        hazardContainerView.isHidden = true
         hazardWidthConstraint.constant = headerContentView.frame.width
         etaWidthConstraint.constant = headerContentView.frame.width
         countWidthConstraint.constant = headerContentView.frame.width
 
-//        if let tracker = viewModel.outageTracker.value, let show = tracker.isSafetyHazard {
-//            hazardContainerView.isHidden = !show
-//        }
+        if let tracker = viewModel.outageTracker.value, let show = tracker.isSafetyHazard {
+            hazardContainerView.isHidden = !show
+        }
         
         if viewModel.isActiveOutage == false {
             powerOnContainer.isHidden = false
@@ -440,7 +442,7 @@ class StormModeHomeViewController: AccountPickerViewController {
                     countContainerView.isHidden = true
                 }
                 
-                whyButtonContainer.isHidden = false//viewModel.hideWhyButton
+                whyButtonContainer.isHidden = viewModel.hideWhyButton
                 whyButton.setTitle(viewModel.whyButtonText, for: .normal)
                 neighborCountLabel.text = viewModel.neighborCount
                 outageCountLabel.text = viewModel.outageCount
@@ -770,6 +772,7 @@ class StormModeHomeViewController: AccountPickerViewController {
             loadingContentView.isHidden = true
             outageStatusButton.isHidden = true
             outageSectionContainer.isHidden = true
+            outageTrackerStackView.isHidden = true
         } else {
             finalPayView.isHidden = true
             gasOnlyView.isHidden = true
@@ -780,8 +783,6 @@ class StormModeHomeViewController: AccountPickerViewController {
                 loadingContentView.isHidden = true
                 outageStatusButton.isHidden = true
                 outageTrackerStackView.isHidden = false
-                setupUI()
-                setupBinding()
             } else {
                 outageStatusButton.onLottieAnimation?.currentProgress = 0.0
                 outageStatusButton.onLottieAnimation?.play()

@@ -18,6 +18,7 @@ class SurveyView: UIView {
     @IBOutlet private weak var surveyButton: UIButton!
     @IBOutlet private weak var topBarView: UIView!
     @IBOutlet private weak var bottomBarView: UIView!
+    @IBOutlet private weak var buttonBottomConstraint: NSLayoutConstraint!
     
     weak var delegate: SurveyViewDelegate?
     var status: OutageTracker.Status?
@@ -51,11 +52,13 @@ class SurveyView: UIView {
             surveyButton.setTitleColor(.white, for: .normal)
             topBarView.backgroundColor = UIColor(white: 1, alpha: 0.3)
             bottomBarView.backgroundColor = UIColor(white: 1, alpha: 0.3)
+            buttonBottomConstraint.constant = 30
         } else {
             feedbackLabel.textColor = .blackText
             surveyButton.setTitleColor(.actionBlue, for: .normal)
             topBarView.backgroundColor = .accentGray
             bottomBarView.backgroundColor = .clear
+            buttonBottomConstraint.constant = 10
         }
     }
 
