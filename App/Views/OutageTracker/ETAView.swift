@@ -43,6 +43,9 @@ class ETAView: UIView {
     var etaDetail: String {
         return NSLocalizedString("The current estimate is based on outage restoration history. ETRs are updated as new information becomes available.", comment: "")
     }
+    var etaDetailUnavailable: String {
+        return NSLocalizedString("BGE team members are actively working to restore power and will provide an updated ETR as soon as new information becomes available.", comment: "")
+    }
     var etaOnSiteDetail: String {
         return NSLocalizedString("The current ETR is up-to-date based on the latest reports from the repair crew. ETRs are updated as new information becomes available.", comment: "")
     }
@@ -81,9 +84,12 @@ class ETAView: UIView {
     }
     
     func etaDetails() -> String {
-        let details = status == .onSite ? etaOnSiteDetail : etaDetail
+        var details = status == .onSite ? etaOnSiteDetail : etaDetail
         if !details.isEmpty {
             hideUpdatedView = hideETAUpdatedIndicator(detailText: details)
+        }
+        if etaDateTime() == "Currently Unavailable" {
+            details = etaDetailUnavailable
         }
         return details
     }
@@ -98,7 +104,7 @@ class ETAView: UIView {
     }
     
     func etaCause() -> String {
-        guard let cause = tracker.cause, !cause.isEmpty else {
+        guard let cause = tracker.cause?.lowercased(), !cause.isEmpty else {
             return ""
         }
         return NSLocalizedString("The outage was caused by \(cause).", comment: "")
