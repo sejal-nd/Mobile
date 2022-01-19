@@ -475,17 +475,13 @@ class StormModeHomeViewController: AccountPickerViewController {
     
     @IBAction func whyButtonPressed(_ sender: Any) {
         guard let tracker = viewModel.outageTracker.value else { return }
-        guard let isSafetyHazard = tracker.isSafetyHazard,
-              let isCrewLeftSite = tracker.isCrewLeftSite,
+        guard let isCrewLeftSite = tracker.isCrewLeftSite,
               let isCrewDiverted = tracker.isCrewDiverted else {
                   return
               }
         
         var info = StatusInfoMessage.none
         
-        if isSafetyHazard {
-            info = StatusInfoMessage.hazardMessage
-        }
         if isCrewDiverted {
             info = StatusInfoMessage.rerouted
         }

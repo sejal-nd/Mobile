@@ -78,19 +78,18 @@ class OutageTrackerViewModel {
     }
     var hideWhyButton: Bool {
         guard let tracker = outageTracker.value else { return true }
-        guard let isSafetyHazard = tracker.isSafetyHazard,
-              let isCrewLeftSite = tracker.isCrewLeftSite,
+        guard let isCrewLeftSite = tracker.isCrewLeftSite,
               let isCrewDiverted = tracker.isCrewDiverted else {
                   return true
               }
         
         if status == .restored { return false }
         if status == .onSite {
-            if isCrewLeftSite || isCrewDiverted || isSafetyHazard {
+            if isCrewLeftSite || isCrewDiverted {
                 return false
             }
         } else if status == .enRoute {
-            if isCrewDiverted || isSafetyHazard {
+            if isCrewDiverted {
                 return false
             }
         }
