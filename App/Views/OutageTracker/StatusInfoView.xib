@@ -18,6 +18,7 @@
                 <outlet property="infoTitleLabel" destination="WRX-xY-zvH" id="LOq-aZ-pUf"/>
                 <outlet property="messageView" destination="czp-7J-3de" id="hrV-R5-5S1"/>
                 <outlet property="messageViewWidthConstraint" destination="G2V-PC-J5d" id="1P4-YQ-axT"/>
+                <outlet property="reportButton" destination="txQ-Ix-60e" id="QEk-mG-Jxs"/>
                 <outlet property="textView" destination="CVQ-Uf-kAT" id="BNg-jK-vpZ"/>
                 <outlet property="titleTopConstraint" destination="DZg-ol-1oO" id="RTF-5f-7oY"/>
             </connections>
@@ -96,7 +97,7 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XHZ-vV-50m">
                                             <rect key="frame" x="29" y="0.0" width="254" height="45"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="txQ-Ix-60e">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="txQ-Ix-60e" customClass="PrimaryButton" customModule="EUMobile" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="254" height="45"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                                     <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -109,7 +110,7 @@
                                                     </connections>
                                                 </button>
                                             </subviews>
-                                            <color key="backgroundColor" red="0.0" green="0.34901960784313724" blue="0.64313725490196072" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="txQ-Ix-60e" secondAttribute="bottom" id="CJL-jt-THa"/>
                                                 <constraint firstItem="txQ-Ix-60e" firstAttribute="leading" secondItem="XHZ-vV-50m" secondAttribute="leading" id="V9v-m8-p4b"/>
