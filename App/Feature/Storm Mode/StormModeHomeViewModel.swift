@@ -85,7 +85,7 @@ class StormModeHomeViewModel {
             self.outageTracker.accept(tracker)
         }, onError: { error in
             self.outageTracker.accept(nil)
-            print("error fetching tracker: \(error.localizedDescription)")
+            Log.info("error fetching tracker: \(error.localizedDescription)")
         }).disposed(by: disposeBag)
     }
     
@@ -234,15 +234,23 @@ class StormModeHomeViewModel {
     }
     var hideWhyButton: Bool {
         guard let tracker = outageTracker.value else { return true }
+        guard let isSafetyHazard = tracker.isSafetyHazard,
+              let isCrewLeftSite = tracker.isCrewLeftSite,
+              let isCrewDiverted = tracker.isCrewDiverted else {
+                  return true
+              }
         
-        if tracker.isSafetyHazard == true { return false }
+        if status == .restored { return false }
         if status == .onSite {
-            if tracker.isCrewLeftSite == true || tracker.isCrewDiverted == true {
+            if isCrewLeftSite || isCrewDiverted || isSafetyHazard {
                 return false
             }
-        } else if status == .enRoute && tracker.isCrewDiverted == true {
-            return false
-        } else if status == .restored { return false }
+        } else if status == .enRoute {
+            if isCrewDiverted || isSafetyHazard {
+                return false
+            }
+        }
+        
         return true
     }
     var whyButtonText: String {

@@ -78,15 +78,23 @@ class OutageTrackerViewModel {
     }
     var hideWhyButton: Bool {
         guard let tracker = outageTracker.value else { return true }
+        guard let isSafetyHazard = tracker.isSafetyHazard,
+              let isCrewLeftSite = tracker.isCrewLeftSite,
+              let isCrewDiverted = tracker.isCrewDiverted else {
+                  return true
+              }
         
-        if tracker.isSafetyHazard == true { return false }
+        if status == .restored { return false }
         if status == .onSite {
-            if tracker.isCrewLeftSite == true || tracker.isCrewDiverted == true {
+            if isCrewLeftSite || isCrewDiverted || isSafetyHazard {
                 return false
             }
-        } else if status == .enRoute && tracker.isCrewDiverted == true {
-            return false
-        } else if status == .restored { return false }
+        } else if status == .enRoute {
+            if isCrewDiverted || isSafetyHazard {
+                return false
+            }
+        }
+        
         return true
     }
     var whyButtonText: String {
@@ -126,7 +134,7 @@ class OutageTrackerViewModel {
             self.outageTracker.accept(tracker)
         }, onError: { error in
             self.outageTracker.accept(nil)
-            print("error fetching tracker: \(error.localizedDescription)")
+            Log.info("error fetching tracker: \(error.localizedDescription)")
         }).disposed(by: disposeBag)
     }
     
@@ -136,7 +144,7 @@ class OutageTrackerViewModel {
                 case .success(let outageStatus):
                     self?.outageStatus.accept(outageStatus)
                 case .failure(let error):
-                    print("Outage Status error: \(error.localizedDescription)")
+                    Log.info("Outage Status error: \(error.localizedDescription)")
                     self?.outageStatus.accept(nil)
             }
         }

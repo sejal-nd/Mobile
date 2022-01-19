@@ -231,23 +231,30 @@ class OutageTrackerViewController: UIViewController {
     
     @IBAction func whyButtonPressed(_ sender: Any) {
         guard let tracker = viewModel.outageTracker.value else { return }
+        guard let isSafetyHazard = tracker.isSafetyHazard,
+              let isCrewLeftSite = tracker.isCrewLeftSite,
+              let isCrewDiverted = tracker.isCrewDiverted else {
+                  return
+              }
         
         var info = StatusInfoMessage.none
         
-        if tracker.isSafetyHazard == true {
+        if isSafetyHazard {
             info = StatusInfoMessage.hazardMessage
         }
-        if tracker.isCrewDiverted == true {
+        if isCrewDiverted {
             info = StatusInfoMessage.rerouted
         }
-        if tracker.isCrewLeftSite == true {
+        if isCrewLeftSite {
             info = StatusInfoMessage.whyStop
         }
         if viewModel.status == .restored {
             info = viewModel.isDefinitive ? StatusInfoMessage.hasOutageDef : StatusInfoMessage.hasOutageNondef
         }
-        infoView.configure(withInfo: info)
-        infoView.isHidden = false
+        if info != .none {
+            infoView.configure(withInfo: info)
+            infoView.isHidden = false
+        }
     }
 }
 
