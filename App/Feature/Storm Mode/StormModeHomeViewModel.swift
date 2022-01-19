@@ -281,7 +281,7 @@ class StormModeHomeViewModel {
     var headerContentText: String {
         var text = "Due to severe weather, the most relevant features are optimized to allow us to better serve you."
         
-        if showOutageTracker && currentOutageStatus?.isGasOnly == false {
+        if showOutageTracker {
             text = "The app is adjusted temporarily due to severe weather."
         }
         return NSLocalizedString(text, comment: "")
