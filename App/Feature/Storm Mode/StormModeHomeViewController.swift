@@ -33,9 +33,6 @@ class StormModeHomeViewController: AccountPickerViewController {
         }
     }
     
-    var showOutageTracker: Bool {
-        return Configuration.shared.opco == .bge
-    }
     @IBOutlet private weak var headerContentView: ButtonControl! {
         didSet {
             headerContentView.layer.cornerRadius = 10.0
@@ -764,10 +761,6 @@ class StormModeHomeViewController: AccountPickerViewController {
     private func updateContent(outageJustReported: Bool) {
         guard let currentOutageStatus = viewModel.currentOutageStatus  else { return }
         
-        let label = showOutageTracker ? "The app is adjusted temporarily due to severe weather." : "Storm mode is in effect. Due to severe weather, the most relevant features are optimized to allow us to better serve you."
-        headerContentView.accessibilityLabel = NSLocalizedString(label, comment: "")
-        headerViewDescriptionLabel.text = NSLocalizedString(label, comment: "")
-
         // Show/hide the top level container views
         if currentOutageStatus.isGasOnly {
             gasOnlyView.isHidden = false
@@ -782,7 +775,7 @@ class StormModeHomeViewController: AccountPickerViewController {
             footerStackView.isHidden = false
             outageSectionContainer.isHidden = false
             
-            if showOutageTracker {
+            if viewModel.showOutageTracker {
                 loadingContentView.isHidden = true
                 outageStatusButton.isHidden = true
                 outageTrackerStackView.isHidden = false
@@ -796,6 +789,9 @@ class StormModeHomeViewController: AccountPickerViewController {
                 loadingIndicator.isHidden = true
             }
         }
+        
+        headerContentView.accessibilityLabel = viewModel.headerContentText
+        headerViewDescriptionLabel.text = viewModel.headerContentText
         
         if viewModel.reportedOutage != nil {
             // Reported State

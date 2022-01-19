@@ -172,6 +172,9 @@ class StormModeHomeViewModel {
     
     // MARK  OutageTracker
     
+    var showOutageTracker: Bool {
+        return Configuration.shared.opco == .bge
+    }
     var status: OutageTracker.Status {
         guard let trackerStatus = outageTracker.value?.trackerStatus else {
             return .none
@@ -274,5 +277,13 @@ class StormModeHomeViewModel {
             default:
                 return ""
         }
+    }
+    var headerContentText: String {
+        var text = "Due to severe weather, the most relevant features are optimized to allow us to better serve you."
+        
+        if showOutageTracker && currentOutageStatus?.isGasOnly == false {
+            text = "The app is adjusted temporarily due to severe weather."
+        }
+        return NSLocalizedString(text, comment: "")
     }
 }
