@@ -67,7 +67,7 @@ class StatusView: UIView {
         
         statusTitleLabel.font = OpenSans.regular.of(size: 15)
         
-        let emptyColor: UIColor = isStormMode ? .mediumJungleGreen : .white
+        let emptyColor: UIColor = isStormMode ? .clear : .white
         let fillColor: UIColor = isStormMode ? .mediumSpringBud : .successGreenText
         
         switch state {

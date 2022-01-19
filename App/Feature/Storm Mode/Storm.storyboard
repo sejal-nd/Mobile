@@ -218,7 +218,7 @@
         <!--Storm Mode Home View Controller-->
         <scene sceneID="QlF-Zl-igh">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="24J-Pb-BvB" customClass="StormModeHomeViewController" customModule="stormMode" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="24J-Pb-BvB" customClass="StormModeHomeViewController" customModule="EUMobile" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="p35-NQ-0kr">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="2400"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -230,14 +230,14 @@
                                     <constraint firstAttribute="height" constant="656" id="KGW-G9-p7F"/>
                                 </constraints>
                             </view>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eQy-kO-ri1" customClass="NoNetworkConnectionView" customModule="stormMode" customModuleProvider="target">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eQy-kO-ri1" customClass="NoNetworkConnectionView" customModule="EUMobile" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="2400"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isColorBackground" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="50" translatesAutoresizingMaskIntoConstraints="NO" id="bOQ-Em-wPc" customClass="AccountPicker" customModule="stormMode" customModuleProvider="target">
+                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="50" translatesAutoresizingMaskIntoConstraints="NO" id="bOQ-Em-wPc" customClass="AccountPicker" customModule="EUMobile" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="44" width="375" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
@@ -278,7 +278,7 @@
                                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
-                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RjE-SG-e6U" customClass="ButtonControl" customModule="stormMode" customModuleProvider="target">
+                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RjE-SG-e6U" customClass="ButtonControl" customModule="EUMobile" customModuleProvider="target">
                                                                                 <rect key="frame" x="13" y="45.5" width="317" height="60"/>
                                                                                 <subviews>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Exit Storm Mode" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xdt-Rf-YFB">
@@ -318,14 +318,18 @@
                                                                             <constraint firstItem="RjE-SG-e6U" firstAttribute="top" secondItem="p3a-DH-g6e" secondAttribute="bottom" constant="16" id="qG5-mH-RR5"/>
                                                                         </constraints>
                                                                     </view>
-                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pki-iP-mf1" customClass="ButtonControl" customModule="stormMode" customModuleProvider="target">
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pki-iP-mf1" customClass="ButtonControl" customModule="EUMobile" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="125.5" width="343" height="111.5"/>
                                                                         <subviews>
-                                                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" image="ic_storm" translatesAutoresizingMaskIntoConstraints="NO" id="f3T-S9-vZt">
-                                                                                <rect key="frame" x="29" y="23" width="60" height="66"/>
+                                                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" image="ic_storm_comed" translatesAutoresizingMaskIntoConstraints="NO" id="f3T-S9-vZt">
+                                                                                <rect key="frame" x="15" y="28.5" width="50" height="55"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="height" constant="55" id="ORN-Vq-fvX"/>
+                                                                                    <constraint firstAttribute="width" constant="50" id="kbx-Dr-NOP"/>
+                                                                                </constraints>
                                                                             </imageView>
                                                                             <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="qr2-Lp-0eu">
-                                                                                <rect key="frame" x="113" y="20" width="192" height="66.5"/>
+                                                                                <rect key="frame" x="80" y="20" width="225" height="66.5"/>
                                                                                 <subviews>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Storm Mode is in effect." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kv1-kG-kYc">
                                                                                         <rect key="frame" x="0.0" y="0.0" width="182" height="20.5"/>
@@ -334,7 +338,7 @@
                                                                                         <nil key="highlightedColor"/>
                                                                                     </label>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Due to severe weather, the most relevant features are optimized to allow us to better serve you." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EHt-rG-TLK">
-                                                                                        <rect key="frame" x="0.0" y="23.5" width="192" height="43"/>
+                                                                                        <rect key="frame" x="0.0" y="23.5" width="225" height="43"/>
                                                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                         <nil key="highlightedColor"/>
@@ -347,14 +351,14 @@
                                                                         </subviews>
                                                                         <color key="backgroundColor" white="1" alpha="0.098967251709999995" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <constraints>
-                                                                            <constraint firstItem="f3T-S9-vZt" firstAttribute="leading" secondItem="Pki-iP-mf1" secondAttribute="leading" constant="29" id="247-ru-mUe"/>
+                                                                            <constraint firstItem="f3T-S9-vZt" firstAttribute="leading" secondItem="Pki-iP-mf1" secondAttribute="leading" constant="15" id="247-ru-mUe"/>
                                                                             <constraint firstItem="D2a-f3-Ep8" firstAttribute="centerY" secondItem="Pki-iP-mf1" secondAttribute="centerY" id="TbK-qv-aVj"/>
                                                                             <constraint firstAttribute="bottom" secondItem="qr2-Lp-0eu" secondAttribute="bottom" constant="25" id="UIs-g8-Czq"/>
                                                                             <constraint firstItem="qr2-Lp-0eu" firstAttribute="top" secondItem="Pki-iP-mf1" secondAttribute="top" constant="20" id="dB3-af-aL7"/>
                                                                             <constraint firstAttribute="trailing" secondItem="D2a-f3-Ep8" secondAttribute="trailing" constant="14" id="eFu-6y-1Cf"/>
                                                                             <constraint firstItem="D2a-f3-Ep8" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="qr2-Lp-0eu" secondAttribute="trailing" constant="16" id="eXI-wx-1Do"/>
                                                                             <constraint firstItem="f3T-S9-vZt" firstAttribute="centerY" secondItem="Pki-iP-mf1" secondAttribute="centerY" id="kSP-fZ-yfv"/>
-                                                                            <constraint firstItem="qr2-Lp-0eu" firstAttribute="leading" secondItem="f3T-S9-vZt" secondAttribute="trailing" constant="24" id="rNS-Ui-nTB"/>
+                                                                            <constraint firstItem="qr2-Lp-0eu" firstAttribute="leading" secondItem="f3T-S9-vZt" secondAttribute="trailing" constant="15" id="rNS-Ui-nTB"/>
                                                                         </constraints>
                                                                         <userDefinedRuntimeAttributes>
                                                                             <userDefinedRuntimeAttribute type="boolean" keyPath="shouldFadeSubviewsOnPress" value="YES"/>
@@ -374,7 +378,7 @@
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qw1-d3-8wO">
                                                                 <rect key="frame" x="38" y="237" width="267" height="302"/>
                                                                 <subviews>
-                                                                    <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="267" placeholderIntrinsicHeight="267" translatesAutoresizingMaskIntoConstraints="NO" id="ge5-2q-bpz" customClass="OutageStatusButton" customModule="stormMode" customModuleProvider="target">
+                                                                    <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="267" placeholderIntrinsicHeight="267" translatesAutoresizingMaskIntoConstraints="NO" id="ge5-2q-bpz" customClass="OutageStatusButton" customModule="EUMobile" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="16" width="267" height="267"/>
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                         <userDefinedRuntimeAttributes>
@@ -395,7 +399,7 @@
                                                                                         <rect key="frame" x="8" y="8" width="214" height="214"/>
                                                                                         <color key="backgroundColor" white="1" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                     </view>
-                                                                                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="fia-Gq-t5D" customClass="LoadingIndicator" customModule="stormMode" customModuleProvider="target">
+                                                                                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="fia-Gq-t5D" customClass="LoadingIndicator" customModule="EUMobile" customModuleProvider="target">
                                                                                         <rect key="frame" x="85" y="109" width="60" height="12"/>
                                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                                         <userDefinedRuntimeAttributes>
@@ -451,14 +455,14 @@
                                                                                 <rect key="frame" x="0.0" y="20" width="343" height="55"/>
                                                                                 <subviews>
                                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_alert_small" translatesAutoresizingMaskIntoConstraints="NO" id="VOO-ad-p9b">
-                                                                                        <rect key="frame" x="36" y="15" width="24" height="24"/>
+                                                                                        <rect key="frame" x="20" y="15" width="24" height="24"/>
                                                                                         <constraints>
                                                                                             <constraint firstAttribute="height" constant="24" id="Dig-ic-KMj"/>
                                                                                             <constraint firstAttribute="width" constant="24" id="Sb8-wt-CHY"/>
                                                                                         </constraints>
                                                                                     </imageView>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BGE is investigating safety hazards reported in your area…" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cwy-1O-KXF">
-                                                                                        <rect key="frame" x="70" y="0.0" width="235" height="55"/>
+                                                                                        <rect key="frame" x="54" y="0.0" width="251" height="55"/>
                                                                                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
                                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                         <nil key="highlightedColor"/>
@@ -481,7 +485,7 @@
                                                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="width" constant="343" id="27z-fL-uFR"/>
-                                                                                    <constraint firstItem="VOO-ad-p9b" firstAttribute="leading" secondItem="NQ3-bL-Mvd" secondAttribute="leading" constant="36" id="3H2-Th-bYy"/>
+                                                                                    <constraint firstItem="VOO-ad-p9b" firstAttribute="leading" secondItem="NQ3-bL-Mvd" secondAttribute="leading" constant="20" id="3H2-Th-bYy"/>
                                                                                     <constraint firstAttribute="bottom" secondItem="udP-Sh-qiA" secondAttribute="bottom" id="3fb-qW-i5R"/>
                                                                                     <constraint firstItem="UHP-TI-rh6" firstAttribute="top" secondItem="NQ3-bL-Mvd" secondAttribute="top" constant="21" id="4y4-KK-0D5"/>
                                                                                     <constraint firstAttribute="height" priority="750" constant="55" id="5bJ-zD-jJr"/>
@@ -508,11 +512,11 @@
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UdC-Fz-fZM">
                                                                         <rect key="frame" x="0.0" y="95" width="343" height="140"/>
                                                                         <subviews>
-                                                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="250" placeholderIntrinsicHeight="250" translatesAutoresizingMaskIntoConstraints="NO" id="0Xu-ll-UcS" customClass="StateAnimationView" customModule="stormMode" customModuleProvider="target">
+                                                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="250" placeholderIntrinsicHeight="250" translatesAutoresizingMaskIntoConstraints="NO" id="0Xu-ll-UcS" customClass="StateAnimationView" customModule="EUMobile" customModuleProvider="target">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="343" height="140"/>
                                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <constraints>
-                                                                                    <constraint firstAttribute="height" constant="140" id="Rfw-ZB-R3o"/>
+                                                                                    <constraint firstAttribute="height" constant="140" id="cqm-tU-8Wi"/>
                                                                                 </constraints>
                                                                             </view>
                                                                         </subviews>
@@ -557,7 +561,7 @@
                                                                             <constraint firstAttribute="bottom" secondItem="3ud-Q3-KUe" secondAttribute="bottom" constant="20" id="q6b-PN-guD"/>
                                                                         </constraints>
                                                                     </view>
-                                                                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="96" translatesAutoresizingMaskIntoConstraints="NO" id="FyF-zt-nIy" customClass="StatusTextView" customModule="stormMode" customModuleProvider="target">
+                                                                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="96" translatesAutoresizingMaskIntoConstraints="NO" id="FyF-zt-nIy" customClass="StatusTextView" customModule="EUMobile" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="353.5" width="343" height="96"/>
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <userDefinedRuntimeAttributes>
@@ -604,7 +608,7 @@
                                                                     <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="96" translatesAutoresizingMaskIntoConstraints="NO" id="cbc-3f-LbY">
                                                                         <rect key="frame" x="0.0" y="534.5" width="343" height="96"/>
                                                                         <subviews>
-                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dDm-KC-49a" customClass="ETAView" customModule="stormMode" customModuleProvider="target">
+                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dDm-KC-49a" customClass="ETAView" customModule="EUMobile" customModuleProvider="target">
                                                                                 <rect key="frame" x="0.0" y="5" width="343" height="86"/>
                                                                                 <color key="backgroundColor" red="0.92549019610000005" green="0.97647058819999999" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                 <constraints>
@@ -730,7 +734,7 @@
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nxz-VT-fMl" userLabel="tracker status">
                                                                         <rect key="frame" x="0.0" y="750.5" width="343" height="620"/>
                                                                         <subviews>
-                                                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="364" placeholderIntrinsicHeight="360" translatesAutoresizingMaskIntoConstraints="NO" id="xwh-tR-mve" customClass="TrackerStatusView" customModule="stormMode" customModuleProvider="target">
+                                                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="364" placeholderIntrinsicHeight="360" translatesAutoresizingMaskIntoConstraints="NO" id="xwh-tR-mve" customClass="TrackerStatusView" customModule="EUMobile" customModuleProvider="target">
                                                                                 <rect key="frame" x="4" y="10" width="335" height="610"/>
                                                                             </view>
                                                                         </subviews>
@@ -742,7 +746,7 @@
                                                                             <constraint firstAttribute="bottom" secondItem="xwh-tR-mve" secondAttribute="bottom" id="rxg-Hi-ZVH"/>
                                                                         </constraints>
                                                                     </view>
-                                                                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="343" placeholderIntrinsicHeight="150" translatesAutoresizingMaskIntoConstraints="NO" id="P77-q2-8hZ" customClass="SurveyView" customModule="stormMode" customModuleProvider="target">
+                                                                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="343" placeholderIntrinsicHeight="150" translatesAutoresizingMaskIntoConstraints="NO" id="P77-q2-8hZ" customClass="SurveyView" customModule="EUMobile" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="1390.5" width="343" height="150"/>
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     </view>
@@ -770,7 +774,7 @@
                                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="WjD-FN-pv5">
                                                                         <rect key="frame" x="14" y="246.5" width="315.5" height="50"/>
                                                                         <subviews>
-                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fDI-9h-kPM" customClass="ButtonControl" customModule="stormMode" customModuleProvider="target">
+                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fDI-9h-kPM" customClass="ButtonControl" customModule="EUMobile" customModuleProvider="target">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="114" height="50"/>
                                                                                 <subviews>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1-800-685-0123" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yK3-zp-6hM">
@@ -797,7 +801,7 @@
                                                                                     <action selector="onPhoneNumberPress:" destination="24J-Pb-BvB" eventType="touchUpInside" id="dve-1O-OFq"/>
                                                                                 </connections>
                                                                             </view>
-                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RxV-uM-cWk" customClass="ButtonControl" customModule="stormMode" customModuleProvider="target">
+                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RxV-uM-cWk" customClass="ButtonControl" customModule="EUMobile" customModuleProvider="target">
                                                                                 <rect key="frame" x="124" y="0.0" width="191.5" height="50"/>
                                                                                 <subviews>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1-800-685-0123" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YXt-We-Fuf">
@@ -864,7 +868,7 @@
                                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
-                                                                            <textView verifyAmbiguity="off" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" scrollEnabled="NO" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="aoU-cQ-Miy" customClass="ZeroInsetDataDetectorTextView" customModule="stormMode" customModuleProvider="target">
+                                                                            <textView verifyAmbiguity="off" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" scrollEnabled="NO" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="aoU-cQ-Miy" customClass="ZeroInsetDataDetectorTextView" customModule="EUMobile" customModuleProvider="target">
                                                                                 <rect key="frame" x="2" y="194" width="307.5" height="111.5"/>
                                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                                 <string key="text">We currently do not allow reporting of gas issues online but want to hear from you right away.\n\nTo report a gas emergency or a downed or sparking power line, please call x-xxx-xxx-xxxx.</string>
@@ -876,7 +880,7 @@
                                                                             <view verifyAmbiguity="off" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VG4-oX-lhe" userLabel="Spacer View">
                                                                                 <rect key="frame" x="55.5" y="314" width="200" height="67"/>
                                                                                 <subviews>
-                                                                                    <view verifyAmbiguity="off" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IoD-hy-EFV" customClass="ButtonControl" customModule="stormMode" customModuleProvider="target">
+                                                                                    <view verifyAmbiguity="off" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IoD-hy-EFV" customClass="ButtonControl" customModule="EUMobile" customModuleProvider="target">
                                                                                         <rect key="frame" x="0.0" y="17" width="200" height="50"/>
                                                                                         <subviews>
                                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pay Bill" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Npl-2j-EFf">
@@ -984,7 +988,7 @@
                                                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Nz7-yk-eWp">
                                                                                 <rect key="frame" x="0.0" y="83.5" width="315" height="50"/>
                                                                                 <subviews>
-                                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cnx-Ks-krV" customClass="ButtonControl" customModule="stormMode" customModuleProvider="target">
+                                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cnx-Ks-krV" customClass="ButtonControl" customModule="EUMobile" customModuleProvider="target">
                                                                                         <rect key="frame" x="0.0" y="0.0" width="114" height="50"/>
                                                                                         <subviews>
                                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1-800-685-0123" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CJq-h7-13M">
@@ -1011,7 +1015,7 @@
                                                                                             <action selector="onPhoneNumberPress:" destination="24J-Pb-BvB" eventType="touchUpInside" id="M1a-V7-4nc"/>
                                                                                         </connections>
                                                                                     </view>
-                                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cii-rq-gyn" customClass="ButtonControl" customModule="stormMode" customModuleProvider="target">
+                                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cii-rq-gyn" customClass="ButtonControl" customModule="EUMobile" customModuleProvider="target">
                                                                                         <rect key="frame" x="124" y="0.0" width="191" height="50"/>
                                                                                         <subviews>
                                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1-800-685-0123" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dVM-Oj-bt2">
@@ -1054,7 +1058,7 @@
                                                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="9Rd-Kg-Sfz">
                                                                                 <rect key="frame" x="0.0" y="24.5" width="315" height="50"/>
                                                                                 <subviews>
-                                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xH6-Yh-BbZ" customClass="ButtonControl" customModule="stormMode" customModuleProvider="target">
+                                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xH6-Yh-BbZ" customClass="ButtonControl" customModule="EUMobile" customModuleProvider="target">
                                                                                         <rect key="frame" x="0.0" y="0.0" width="114" height="50"/>
                                                                                         <subviews>
                                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1-800-685-0123" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ci-jK-fr7">
@@ -1081,7 +1085,7 @@
                                                                                             <action selector="onPhoneNumberPress:" destination="24J-Pb-BvB" eventType="touchUpInside" id="j5D-uW-ghD"/>
                                                                                         </connections>
                                                                                     </view>
-                                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="23f-TN-Q6f" customClass="ButtonControl" customModule="stormMode" customModuleProvider="target">
+                                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="23f-TN-Q6f" customClass="ButtonControl" customModule="EUMobile" customModuleProvider="target">
                                                                                         <rect key="frame" x="124" y="0.0" width="191" height="50"/>
                                                                                         <subviews>
                                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1-800-685-0123" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X7Y-kB-Rmo">
@@ -1149,15 +1153,15 @@
                                                                             <constraint firstItem="sqb-eY-onG" firstAttribute="leading" secondItem="cqW-aY-lEd" secondAttribute="leading" constant="20" id="wYc-nw-yJX"/>
                                                                         </constraints>
                                                                     </view>
-                                                                    <view contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="60" translatesAutoresizingMaskIntoConstraints="NO" id="ifv-q5-iup" customClass="DisclosureCellButton" customModule="stormMode" customModuleProvider="target">
+                                                                    <view contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="60" translatesAutoresizingMaskIntoConstraints="NO" id="ifv-q5-iup" customClass="DisclosureCellButton" customModule="EUMobile" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="0.5" width="375" height="60"/>
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     </view>
-                                                                    <view contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="60" translatesAutoresizingMaskIntoConstraints="NO" id="cKg-Aj-uRG" customClass="DisclosureCellButton" customModule="stormMode" customModuleProvider="target">
+                                                                    <view contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="60" translatesAutoresizingMaskIntoConstraints="NO" id="cKg-Aj-uRG" customClass="DisclosureCellButton" customModule="EUMobile" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="60.5" width="375" height="60"/>
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     </view>
-                                                                    <view contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="60" translatesAutoresizingMaskIntoConstraints="NO" id="Kbl-Fg-BYj" customClass="DisclosureCellButton" customModule="stormMode" customModuleProvider="target">
+                                                                    <view contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="60" translatesAutoresizingMaskIntoConstraints="NO" id="Kbl-Fg-BYj" customClass="DisclosureCellButton" customModule="EUMobile" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="120.5" width="375" height="60"/>
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     </view>
@@ -1204,11 +1208,11 @@
                                                             <constraint firstAttribute="trailing" secondItem="wBu-Pa-1th" secondAttribute="trailing" id="wU4-lA-WHu"/>
                                                         </constraints>
                                                     </view>
-                                                    <view contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="60" translatesAutoresizingMaskIntoConstraints="NO" id="z8a-Dp-wRV" customClass="DisclosureCellButton" customModule="stormMode" customModuleProvider="target">
+                                                    <view contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="60" translatesAutoresizingMaskIntoConstraints="NO" id="z8a-Dp-wRV" customClass="DisclosureCellButton" customModule="EUMobile" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="3659" width="375" height="60"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </view>
-                                                    <view contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="60" translatesAutoresizingMaskIntoConstraints="NO" id="Pnw-LE-Mad" customClass="DisclosureCellButton" customModule="stormMode" customModuleProvider="target">
+                                                    <view contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="60" translatesAutoresizingMaskIntoConstraints="NO" id="Pnw-LE-Mad" customClass="DisclosureCellButton" customModule="EUMobile" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="3719" width="375" height="60"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </view>
@@ -1387,7 +1391,7 @@
         <image name="ic_gasonly_sm" width="125" height="126"/>
         <image name="ic_lock_opco" width="125" height="126"/>
         <image name="ic_nooutage_sm" width="125" height="126"/>
-        <image name="ic_storm" width="60" height="66"/>
+        <image name="ic_storm_comed" width="50" height="55"/>
         <systemColor name="systemGray4Color">
             <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

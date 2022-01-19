@@ -43,7 +43,6 @@
                 <constraint firstItem="Nud-pw-84i" firstAttribute="centerX" secondItem="bwf-EG-tnt" secondAttribute="centerX" id="Fed-Va-a2G"/>
                 <constraint firstItem="udZ-Xq-iCh" firstAttribute="centerY" secondItem="bwf-EG-tnt" secondAttribute="centerY" id="RzD-f4-WgC"/>
                 <constraint firstItem="1H3-fV-cje" firstAttribute="bottom" secondItem="Nud-pw-84i" secondAttribute="bottom" id="qtG-4W-ggk"/>
-                <constraint firstItem="Nud-pw-84i" firstAttribute="top" secondItem="bwf-EG-tnt" secondAttribute="top" constant="25" id="sKr-65-bMc"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="132" y="102"/>
