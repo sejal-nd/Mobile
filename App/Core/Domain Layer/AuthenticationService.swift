@@ -12,13 +12,14 @@ import RxSwift
 public enum AuthenticationService {
     
     static func loginWithCode(code: String,
-                      completion: @escaping (Result<Bool, NetworkingError>) -> ()) {
+                      completion: @escaping (Result<TokenResponse, NetworkingError>) -> ()) {
         
         if Configuration.shared.environmentName != .aut {
             performLoginWithCode(code: code, completion: completion)
         } else {
-            performLoginMock(username: "pkceuser",
-                             completion: completion)
+            #warning("need to create performLoginWithCodeMock")
+//            performLoginMock(username: "pkceuser",
+//                             completion: completion)
         }
     }
     
@@ -147,7 +148,7 @@ extension AuthenticationService {
     }
     
     private static func performLoginWithCode(code: String,
-                                     completion: @escaping (Result<Bool, NetworkingError>) -> ()) {
+                                     completion: @escaping (Result<TokenResponse, NetworkingError>) -> ()) {
         fetchLoginTokenWithCode(code: code) { (result: (Result<TokenResponse, NetworkingError>)) in
             switch result {
             case .success(let tokenResponse):
@@ -161,7 +162,7 @@ extension AuthenticationService {
                 
                 // Handle Temp Password
                 if tokenResponse.profileStatus?.tempPassword ?? false {
-                    completion(.success(true))
+                    completion(.success(tokenResponse))
                     return
                 }
                 do {
@@ -188,7 +189,7 @@ extension AuthenticationService {
                                 UserDefaults.standard.set(accountDetail.customerNumber, forKey: UserDefaultKeys.customerIdentifier)
                                 AccountsStore.shared.customerIdentifier = accountDetail.customerNumber
                                 AccountsStore.shared.accountOpco = accountDetail.opcoType ?? Configuration.shared.opco
-                                completion(.success((false)))
+                                completion(.success(tokenResponse))
                             case .failure(let error):
                                 completion(.failure(error))
                             }

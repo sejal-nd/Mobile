@@ -996,6 +996,8 @@
 		C36C39A624ED95A800BA83B6 /* ProfileStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36C396824ED95A700BA83B6 /* ProfileStatus.swift */; };
 		C36C39B224ED95A800BA83B6 /* BankAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36C396924ED95A700BA83B6 /* BankAccount.swift */; };
 		C38F484F2537D02D00EC87B5 /* PECOReleaseOfInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E873DA641EE8536E00020D1B /* PECOReleaseOfInfoViewController.swift */; };
+		C3943F392799D1B9005E5327 /* PKCEResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3943F382799D1B8005E5327 /* PKCEResult.swift */; };
+		C3943F3A2799D1B9005E5327 /* PKCEResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3943F382799D1B8005E5327 /* PKCEResult.swift */; };
 		C39F2B4D253920C60095A8F1 /* PaymentAmountSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3595B25025328E6E006F7EBC /* PaymentAmountSheetViewController.swift */; };
 		C3B5F38525E97EDA005D3740 /* FeatureFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B5F38425E97EDA005D3740 /* FeatureFlags.swift */; };
 		C3B5F38625E97EDA005D3740 /* FeatureFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B5F38425E97EDA005D3740 /* FeatureFlags.swift */; };
@@ -2315,6 +2317,7 @@
 		C36C396724ED95A700BA83B6 /* Version.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Version.swift; sourceTree = "<group>"; };
 		C36C396824ED95A700BA83B6 /* ProfileStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileStatus.swift; sourceTree = "<group>"; };
 		C36C396924ED95A700BA83B6 /* BankAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BankAccount.swift; sourceTree = "<group>"; };
+		C3943F382799D1B8005E5327 /* PKCEResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKCEResult.swift; sourceTree = "<group>"; };
 		C3B5F38425E97EDA005D3740 /* FeatureFlags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureFlags.swift; sourceTree = "<group>"; };
 		C3B5F38B25E98418005D3740 /* FeatureFlagUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureFlagUtility.swift; sourceTree = "<group>"; };
 		C3B5F39225E98441005D3740 /* FeatureFlagService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureFlagService.swift; sourceTree = "<group>"; };
@@ -5559,6 +5562,7 @@
 				C36C396624ED95A700BA83B6 /* PushNotification.swift */,
 				C36C396724ED95A700BA83B6 /* Version.swift */,
 				C36C396824ED95A700BA83B6 /* ProfileStatus.swift */,
+				C3943F382799D1B8005E5327 /* PKCEResult.swift */,
 				C36C396924ED95A700BA83B6 /* BankAccount.swift */,
 				674A11F2252387A100AF0D38 /* SubOpCo.swift */,
 			);
@@ -6644,6 +6648,7 @@
 				67247FCE25D33B400024467D /* CardView.swift in Sources */,
 				C3055BD52538FB04000DB89C /* NetworkingError.swift in Sources */,
 				C3B5F39425E98441005D3740 /* FeatureFlagService.swift in Sources */,
+				C3943F3A2799D1B9005E5327 /* PKCEResult.swift in Sources */,
 				35F9DDB62333D8EE00AAA2B2 /* NumberFormatter.swift in Sources */,
 				6797115B25DD901F008A0080 /* Arc.swift in Sources */,
 				C3055B6A2538F81B000DB89C /* ForgotMaskedUsername.swift in Sources */,
@@ -7079,6 +7084,7 @@
 				21E797F92718541C0063CB84 /* StopLandingViewModel.swift in Sources */,
 				822BBBA11EFC1A01004EBBAB /* WebViewController.swift in Sources */,
 				35ACCB4720EA60F50022907F /* HomeOutageCardViewModel.swift in Sources */,
+				C3943F392799D1B9005E5327 /* PKCEResult.swift in Sources */,
 				C3087B0C24BDEFA3005AE544 /* AnyObserver.swift in Sources */,
 				9CEE412123722AD9005A4AD3 /* DailyInsightCoinView.swift in Sources */,
 				E827D23C1ED491F6004DA1D6 /* InfoModalViewController.swift in Sources */,

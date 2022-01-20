@@ -141,40 +141,49 @@ class LandingViewController: UIViewController {
             signInButton.accessibilityLabel = NSLocalizedString("Loading", comment: "")
             signInButton.accessibilityViewIsModal = true
             
-            PKCEAuthenticationService.default.presentLoginForm { result, message in
-                if result == true {
-                    self.signInButton.tintWhite = true
-                    self.signInButton.reset()
-                    self.signInButton.accessibilityLabel = "Sign In"
-                    self.signInButton.accessibilityViewIsModal = false
-                    
-                    self.signInButton.setSuccess {
-                        FirebaseUtility.logEvent(.initialAuthenticatedScreenStart)
-                        GoogleAnalytics.log(event: .loginComplete)
+            PKCEAuthenticationService.default.presentLoginForm { result in
+                switch (result) {
+                case .success(let pkceResult):
+                    if pkceResult.tokenResponse != nil {
+                        self.signInButton.tintWhite = true
+                        self.signInButton.reset()
+                        self.signInButton.accessibilityLabel = "Sign In"
+                        self.signInButton.accessibilityViewIsModal = false
+                        
+                        self.signInButton.setSuccess {
+                            FirebaseUtility.logEvent(.initialAuthenticatedScreenStart)
+                            GoogleAnalytics.log(event: .loginComplete)
 
-                        guard let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as? MainTabBarController,
-                            let navController = self.navigationController else {
-                                return
+                            guard let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as? MainTabBarController,
+                                let navController = self.navigationController else {
+                                    return
+                            }
+                            navController.navigationBar.prefersLargeTitles = false
+                            navController.navigationItem.largeTitleDisplayMode = .never
+                            navController.setNavigationBarHidden(true, animated: false)
+                            navController.setViewControllers([viewController], animated: false)
                         }
-                        navController.navigationBar.prefersLargeTitles = false
-                        navController.navigationItem.largeTitleDisplayMode = .never
-                        navController.setNavigationBarHidden(true, animated: false)
-                        navController.setViewControllers([viewController], animated: false)
+                    } else if pkceResult.redirect == "find_email" {
+                        Log.info("redirect to find email flow")
+                        self.signInButton.tintWhite = true
+                        self.signInButton.reset()
+                        self.signInButton.setTitle("Sign In", for: .normal)
+                        self.signInButton.accessibilityLabel = "Sign In"
+                        self.signInButton.accessibilityViewIsModal = false
+                        
+                        FirebaseUtility.logEvent(.login(parameters: [.forgot_username_press]))
+                        GoogleAnalytics.log(event: .forgotUsernameOffer)
+                        
+                        self.performSegue(withIdentifier: "forgotUsernameSegue", sender: self)
+                    } else {
+                        self.signInButton.tintWhite = true
+                        self.signInButton.reset()
+                        self.signInButton.setTitle("Sign In", for: .normal)
+                        self.signInButton.accessibilityLabel = "Sign In"
+                        self.signInButton.accessibilityViewIsModal = false
                     }
-                } else if message == "find_email" {
-                    Log.info("redirect to find email flow")
-                    self.signInButton.tintWhite = true
-                    self.signInButton.reset()
-                    self.signInButton.setTitle("Sign In", for: .normal)
-                    self.signInButton.accessibilityLabel = "Sign In"
-                    self.signInButton.accessibilityViewIsModal = false
-                    
-                    FirebaseUtility.logEvent(.login(parameters: [.forgot_username_press]))
-                    GoogleAnalytics.log(event: .forgotUsernameOffer)
-                    
-                    self.performSegue(withIdentifier: "forgotUsernameSegue", sender: self)
-                } else {
-                    self.showErrorAlertWith(title: nil, message: message)
+                case .failure(let error):
+                    self.showErrorAlertWith(title: nil, message: error.localizedDescription)
                 }
             }
         } else {

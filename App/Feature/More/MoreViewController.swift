@@ -387,17 +387,19 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
             switch indexPath.row {
             case 0:
                 if FeatureFlagUtility.shared.bool(forKey: .isPkceAuthentication) {
-                    PKCEAuthenticationService.default.presentMySecurityForm { success, result in
-                        if success,
-                           let json = TokenResponse.decodeToJson(token: result),
-                           let editAction = json["profileEditActionTaken"] as? String {
-                            
-                            if editAction == "PasswordUpdate" {
-                                self.view.showToast("Password changed")
-                            } else {
-                                self.view.showToast("Two-Step Verification settings updated")
+                    PKCEAuthenticationService.default.presentMySecurityForm { result in
+                        switch (result) {
+                        case .success(let token):
+                            if let json = TokenResponse.decodeToJson(token: token),
+                               let editAction = json["profileEditActionTaken"] as? String {
+                                
+                                if editAction == "PasswordUpdate" {
+                                    self.view.showToast("Password changed")
+                                } else {
+                                    self.view.showToast("Two-Step Verification settings updated")
+                                }
                             }
-                        } else {
+                        case .failure(_):
                             self.view.showToast("Error updating security credentials.")
                         }
                     }
