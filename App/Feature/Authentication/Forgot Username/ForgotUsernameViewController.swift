@@ -182,7 +182,7 @@ class ForgotUsernameViewController: KeyboardAvoidingStickyFooterViewController {
         viewModel.validateAccount(onSuccess: { [weak self] in
             LoadingView.hide()
             
-            if FeatureFlagUtility.shared.bool(forKey: .isAzureAuthentication) {
+            if FeatureFlagUtility.shared.bool(forKey: .isB2CAuthentication) {
                 guard let self = self else { return }
                 
                 if self.viewModel.maskedUsernames.count > 1 {

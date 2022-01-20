@@ -437,7 +437,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func resetNavigation(sendToLogin: Bool = false) {
         var sendToLoginBool = sendToLogin
         
-        if FeatureFlagUtility.shared.bool(forKey: .isAzureAuthentication){
+        if FeatureFlagUtility.shared.bool(forKey: .isB2CAuthentication){
             sendToLoginBool = false
             
             //making sure the user is pushed back to landing screen always in case of PKCE flow rather than the login screen ROPC uses

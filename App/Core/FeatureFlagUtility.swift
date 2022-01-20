@@ -18,12 +18,12 @@ final class FeatureFlagUtility {
         case paymentProgramAds
         case hasAssistanceEnrollment
         case agentisWidgets
-        case isAzureAuthentication
-        case isPkceAuthentication
+        case isAzureAuthentication // B2C login with ROPC
+        case isPkceAuthentication // B2C login with PKCE
         case hasAuthenticatedISUM
         case hasUnauthenticatedISUM
         
-        case isB2CAuthentication // calculated value
+        case isB2CAuthentication // calculated value = isAzureAuthentication || isPkceAuthentication
     }
     
     static let shared = FeatureFlagUtility()
@@ -48,7 +48,8 @@ final class FeatureFlagUtility {
             FeatureFlagKey.isAzureAuthentication.rawValue : false,
             FeatureFlagKey.isPkceAuthentication.rawValue : false,
             FeatureFlagKey.hasAuthenticatedISUM.rawValue : false,
-            FeatureFlagKey.hasUnauthenticatedISUM.rawValue : false
+            FeatureFlagKey.hasUnauthenticatedISUM.rawValue : false,
+            FeatureFlagKey.isB2CAuthentication.rawValue : false
         ]
         
         UserDefaults.standard.setValuesForKeys(appDefaults)
