@@ -459,9 +459,8 @@ class StormModeHomeViewController: AccountPickerViewController {
     }
     
     private func updateETA() {
-        if let tracker = viewModel.outageTracker.value {
-            etaView.configure(tracker: tracker, status: viewModel.status)
-        }
+        guard let tracker = viewModel.outageTracker.value else { return }
+        etaView.configure(tracker: tracker, status: viewModel.status)
     }
     
     @IBAction func showHazardPressed(_ sender: Any) {

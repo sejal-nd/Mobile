@@ -50,7 +50,6 @@
 		216AE557278CED8F0018E220 /* StateAnimationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 216AE556278CED8F0018E220 /* StateAnimationView.xib */; };
 		216AE559278E4B3E0018E220 /* StatusTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216AE558278E4B3E0018E220 /* StatusTextView.swift */; };
 		216AE55B278E4B4E0018E220 /* StatusTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 216AE55A278E4B4E0018E220 /* StatusTextView.xib */; };
-		216AE55D278E58CD0018E220 /* OutageTrackerETA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216AE55C278E58CD0018E220 /* OutageTrackerETA.swift */; };
 		216AE55F278E5A7E0018E220 /* ETAView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216AE55E278E5A7E0018E220 /* ETAView.swift */; };
 		216AE561278E5A8C0018E220 /* ETAView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 216AE560278E5A8C0018E220 /* ETAView.xib */; };
 		217E2AD6271EA90C009D3587 /* MoveLandingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217E2AD5271EA90C009D3587 /* MoveLandingViewModel.swift */; };
@@ -1307,7 +1306,6 @@
 		216AE556278CED8F0018E220 /* StateAnimationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StateAnimationView.xib; sourceTree = "<group>"; };
 		216AE558278E4B3E0018E220 /* StatusTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusTextView.swift; sourceTree = "<group>"; };
 		216AE55A278E4B4E0018E220 /* StatusTextView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatusTextView.xib; sourceTree = "<group>"; };
-		216AE55C278E58CD0018E220 /* OutageTrackerETA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutageTrackerETA.swift; sourceTree = "<group>"; };
 		216AE55E278E5A7E0018E220 /* ETAView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETAView.swift; sourceTree = "<group>"; };
 		216AE560278E5A8C0018E220 /* ETAView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ETAView.xib; sourceTree = "<group>"; };
 		217E2AD5271EA90C009D3587 /* MoveLandingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveLandingViewModel.swift; sourceTree = "<group>"; };
@@ -5694,7 +5692,6 @@
 				C372B65A2758416800E38F64 /* OutageTracker.storyboard */,
 				C372B65C2758418E00E38F64 /* OutageTrackerViewController.swift */,
 				C372B660275854FA00E38F64 /* OutageTrackerViewModel.swift */,
-				216AE55C278E58CD0018E220 /* OutageTrackerETA.swift */,
 			);
 			path = "Outage Tracker";
 			sourceTree = "<group>";
@@ -7260,7 +7257,6 @@
 				4AA4EAD02714428300B35F4D /* FinaledView.swift in Sources */,
 				B094A63D210270830028F90F /* BillBreakdownViewModel.swift in Sources */,
 				30DFE8612492641900FEFDE4 /* EditNicknameViewModel.swift in Sources */,
-				216AE55D278E58CD0018E220 /* OutageTrackerETA.swift in Sources */,
 				B085C44720FFD49400CE0893 /* ReportedOutagesStore.swift in Sources */,
 				B0030D082097BC8300327A3D /* MaintenanceModeView.swift in Sources */,
 				82A18E9E1EB919B300BE9F21 /* ForgotUsernameViewModel.swift in Sources */,

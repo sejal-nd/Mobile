@@ -95,16 +95,29 @@ class ETAView: UIView {
     }
     
     func etaDateTime() -> String {
-        if let etr = tracker.etr {
-            if let date = DateFormatter.apiFormatter.date(from: etr) {
-                return DateFormatter.fullMonthDayAndTimeFormatter.string(from: date)
+        let unavailable = NSLocalizedString("Currently Unavailable", comment: "")
+        
+        if status == .restored {
+            guard let events = tracker.eventSet else {
+                return unavailable
             }
+            guard let timeRestoredString = events.filter( { $0.eventSetDescription == OutageTracker.Status.restored.rawValue }).first?.dateTime, let timeRestored = DateFormatter.apiFormatter.date(from: timeRestoredString) else {
+                return unavailable
+            }
+            return DateFormatter.fullMonthDayAndTimeFormatter.string(from: timeRestored)
+        } else {
+            guard let etr = tracker.etr else {
+                return unavailable
+            }
+            guard let date = DateFormatter.apiFormatter.date(from: etr), date >= Date() else {
+                return unavailable
+            }
+            return DateFormatter.fullMonthDayAndTimeFormatter.string(from: date)
         }
-        return NSLocalizedString("Currently Unavailable", comment: "")
     }
     
     func etaCause() -> String {
-        guard let cause = tracker.cause?.lowercased(), !cause.isEmpty else {
+        guard let cause = tracker.cause?.lowercased(), !cause.isEmpty, cause != "none" else {
             return ""
         }
         return NSLocalizedString("The outage was caused by \(cause).", comment: "")

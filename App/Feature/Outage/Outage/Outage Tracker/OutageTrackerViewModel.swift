@@ -11,7 +11,6 @@ import RxCocoa
 import RxSwiftExt
 
 class OutageTrackerViewModel {
-    
     let disposeBag = DisposeBag()
     var outageTracker = BehaviorRelay<OutageTracker?>(value: nil)
     var outageStatus = BehaviorRelay<OutageStatus?>(value: nil)
