@@ -162,12 +162,15 @@ class LandingViewController: UIViewController {
                         navController.setViewControllers([viewController], animated: false)
                     }
                 } else if message == "find_email" {
-                    print("redirect to find email flow")
+                    Log.info("redirect to find email flow")
                     self.signInButton.tintWhite = true
                     self.signInButton.reset()
                     self.signInButton.setTitle("Sign In", for: .normal)
                     self.signInButton.accessibilityLabel = "Sign In"
                     self.signInButton.accessibilityViewIsModal = false
+                    
+                    FirebaseUtility.logEvent(.login(parameters: [.forgot_username_press]))
+                    GoogleAnalytics.log(event: .forgotUsernameOffer)
                     
                     self.performSegue(withIdentifier: "forgotUsernameSegue", sender: self)
                 } else {
@@ -180,7 +183,7 @@ class LandingViewController: UIViewController {
     }
     
     func showErrorAlertWith(title: String?, message: String) {
-        print("login failed")
+        Log.info("login failed")
         self.signInButton.tintWhite = true
         signInButton.reset()
         signInButton.accessibilityLabel = "Sign In"
@@ -317,11 +320,11 @@ class LandingViewController: UIViewController {
 
 extension LandingViewController: RegistrationViewControllerDelegate {
     func registrationViewControllerDidRegister(_ registrationViewController: UIViewController) {
-        if FeatureFlagUtility.shared.bool(forKey: .isAzureAuthentication) && FeatureFlagUtility.shared.bool(forKey: .isPkceAuthentication){
+        if FeatureFlagUtility.shared.bool(forKey: .isAzureAuthentication) && FeatureFlagUtility.shared.bool(forKey: .isPkceAuthentication) {
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
                 UIApplication.shared.keyWindow?.rootViewController?.view.showToast(NSLocalizedString("Account registered", comment: ""))
             })
-        }else{
+        } else {
             performSegue(withIdentifier: "loginSegue", sender: self)
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
                 UIApplication.shared.keyWindow?.rootViewController?.view.showToast(NSLocalizedString("Account registered", comment: ""))
@@ -332,7 +335,7 @@ extension LandingViewController: RegistrationViewControllerDelegate {
 
 extension LandingViewController: ForgotUsernameResultViewControllerDelegate {
     func forgotUsernameResultViewController(_ forgotUsernameResultViewController: UIViewController, didUnmaskUsername username: String) {
-        print("unmasked email is \(username)")
+        Log.info("unmasked email is \(username)")
         GoogleAnalytics.log(event: .forgotUsernameCompleteAutoPopup)
         
         DispatchQueue.main.async {

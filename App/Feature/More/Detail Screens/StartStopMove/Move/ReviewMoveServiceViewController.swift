@@ -208,7 +208,7 @@ class ReviewMoveServiceViewController: UIViewController {
 
             if address.meterInfo.contains(where: {$0.meterType.lowercased() == "ELECTRIC".lowercased()}) {
                 self.electricNewStackView.isHidden = false
-            }else {
+            } else {
                 self.electricNewStackView.isHidden = true
             }
 

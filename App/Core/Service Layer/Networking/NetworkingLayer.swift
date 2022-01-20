@@ -170,7 +170,7 @@ public enum NetworkingLayer {
                         refreshTokenDispatchGroup.leave()
                     }
                 }
-            }else{
+            } else {
                 //default authentication
                 let refreshTokenRequest = RefreshTokenRequest(clientId: Configuration.shared.clientID,clientSecret: Configuration.shared.clientSecret,refreshToken: UserSession.refreshToken)
                 NetworkingLayer.request(router: .refreshToken(request: refreshTokenRequest)) { (result: Result<TokenResponse, NetworkingError>) in

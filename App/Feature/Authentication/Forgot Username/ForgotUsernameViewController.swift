@@ -192,8 +192,9 @@ class ForgotUsernameViewController: KeyboardAvoidingStickyFooterViewController {
                     
                     GoogleAnalytics.log(event: .forgotUsernameCompleteAccountValidation)
                 } else {
-                    if FeatureFlagUtility.shared.bool(forKey: .isPkceAuthentication){
-                        let rootNavVc = ((self as! ForgotUsernameViewController).presentingViewController as! LargeTitleNavigationController)
+                    if FeatureFlagUtility.shared.bool(forKey: .isPkceAuthentication) {
+                        guard let rootNavVc = self.presentingViewController as? LargeTitleNavigationController else { return }
+                            
                         for vc in rootNavVc.viewControllers {
                             guard let dest = vc as? LandingViewController else {
                                 continue
@@ -209,7 +210,7 @@ class ForgotUsernameViewController: KeyboardAvoidingStickyFooterViewController {
                             
                             self.dismissModal()
                         }
-                    }else{
+                    } else {
                         guard let rootNavVc = self.navigationController?.presentingViewController as? LargeTitleNavigationController else { return }
                         for vc in rootNavVc.viewControllers {
                             guard let dest = vc as? LoginViewController else {

@@ -683,7 +683,7 @@ class HomeViewController: AccountPickerViewController {
                 } else if viewController is SFSafariViewController {
                     self?.present(viewController, animated: true, completion: nil)
                     
-                }else {
+                } else {
                     self?.present(viewController, animated: true, completion: nil)
                 }
             })

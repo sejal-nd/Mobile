@@ -14,7 +14,7 @@ class PKCEAuthenticationService:UIViewController {
     
     var authSession: ASWebAuthenticationSession!
     
-    func presentLoginForm(completion: @escaping (Bool, String) -> ()){
+    func presentLoginForm(completion: @escaping (Bool, String) -> ()) {
         let urlString = "https://\(Configuration.shared.b2cTenant).b2clogin.com/\(Configuration.shared.b2cTenant).onmicrosoft.com/oauth2/v2.0/authorize?p=\(Configuration.shared.b2cPolicy)&client_id=\(Configuration.shared.b2cClientID)&nonce=defaultNonce&redirect_uri=\(Configuration.shared.b2cRedirectURI)://auth&scope=openid%20offline_access&response_type=code&prompt=login#"
         
         guard let url = URL(string: urlString) else { return }

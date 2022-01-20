@@ -85,12 +85,12 @@ class B2CRegistrationViewController: UIViewController {
 extension B2CRegistrationViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
         
-        print("URL ---> \(webView.url?.absoluteString) \n\n")
+        Log.info("URL ---> \(webView.url?.absoluteString) \n\n")
         
         if let urlString = webView.url?.absoluteString,
            urlString.contains("selfAsserted-registration-main-ebill-mobile") {
             success()
-        }else if let urlString = webView.url?.absoluteString,
+        } else if let urlString = webView.url?.absoluteString,
                 urlString.contains("SelfAsserted/error") {
             self.errorView.isHidden = false
             self.loadingIndicator.isHidden = true
@@ -99,8 +99,11 @@ extension B2CRegistrationViewController: WKNavigationDelegate {
     }
     
     func webView(_ webView: WKWebView, didReceiveServerRedirectForProvisionalNavigation navigation: WKNavigation!) {
-        if let urlString = webView.url?.absoluteString,
-           urlString.contains("id_token=") {
+        guard let urlString = webView.url?.absoluteString else {
+            return
+        }
+        
+        if urlString.contains("id_token=") {
             success()
         }
     }

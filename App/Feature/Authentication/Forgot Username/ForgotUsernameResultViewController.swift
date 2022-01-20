@@ -124,8 +124,9 @@ class ForgotUsernameResultViewController: UIViewController {
     
     @IBAction func onAnswerSecurityQuestionsPress(_ sender: Any) {
         if FeatureFlagUtility.shared.bool(forKey: .isAzureAuthentication) {
-            if FeatureFlagUtility.shared.bool(forKey: .isPkceAuthentication){
-                let rootNavVc = ((self as! ForgotUsernameResultViewController).presentingViewController as! LargeTitleNavigationController)
+            if FeatureFlagUtility.shared.bool(forKey: .isPkceAuthentication) {
+                guard let rootNavVc = self.presentingViewController as? LargeTitleNavigationController else { return }
+                
                 for vc in rootNavVc.viewControllers {
                     guard let dest = vc as? LandingViewController else {
                         continue
@@ -136,7 +137,7 @@ class ForgotUsernameResultViewController: UIViewController {
                     self.delegate?.forgotUsernameResultViewController(self, didUnmaskUsername: viewModel.maskedUsernames[viewModel.selectedUsernameIndex].email ?? "")
                     self.dismissModal()
                 }
-            }else{
+            } else {
                 guard let rootNavVc = self.navigationController?.presentingViewController as? LargeTitleNavigationController else { return }
                 for vc in rootNavVc.viewControllers {
                     guard let dest = vc as? LoginViewController else {
