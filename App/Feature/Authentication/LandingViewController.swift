@@ -141,7 +141,7 @@ class LandingViewController: UIViewController {
             signInButton.accessibilityLabel = NSLocalizedString("Loading", comment: "")
             signInButton.accessibilityViewIsModal = true
             
-            PKCEAuthenticationService.sharedService.presentLoginForm { result, message in
+            PKCEAuthenticationService.default.presentLoginForm { result, message in
                 if result == true {
                     self.signInButton.tintWhite = true
                     self.signInButton.reset()
@@ -213,7 +213,6 @@ class LandingViewController: UIViewController {
     }
     
     func showFindEmailAlert(foundEmail: String) {
-        
         let action = InfoAlertAction(ctaText: NSLocalizedString("Copy email to clipboard", comment: "")) {
             UIPasteboard.general.string = foundEmail
             self.view.showToast(NSLocalizedString("Email copied to clipboard", comment: ""))

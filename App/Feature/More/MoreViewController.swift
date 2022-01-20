@@ -386,9 +386,8 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
         case 1:
             switch indexPath.row {
             case 0:
-                #warning("This is where we decide the method to use for password change")
                 if FeatureFlagUtility.shared.bool(forKey: .isPkceAuthentication) {
-                    PKCEAuthenticationService.sharedService.presentMySecurityForm { success, result in
+                    PKCEAuthenticationService.default.presentMySecurityForm { success, result in
                         if success,
                            let json = TokenResponse.decodeToJson(token: result),
                            let editAction = json["profileEditActionTaken"] as? String {

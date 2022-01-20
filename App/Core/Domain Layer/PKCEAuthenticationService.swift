@@ -9,8 +9,8 @@
 import Foundation
 import AuthenticationServices
 
-class PKCEAuthenticationService:UIViewController {
-    static let sharedService = PKCEAuthenticationService()
+class PKCEAuthenticationService: UIViewController {
+    static let `default` = PKCEAuthenticationService()
     
     var authSession: ASWebAuthenticationSession!
     
@@ -28,8 +28,7 @@ class PKCEAuthenticationService:UIViewController {
                 return
             }
             
-            
-            Log.info(successURL.absoluteString)
+            Log.info("ASWebAuthentication Success Callback URL: \(successURL.absoluteString)")
             
             if let oauthToken = NSURLComponents(string: (successURL.absoluteString))?.queryItems?.filter({$0.name == "code"}).first {
                 AuthenticationService.loginWithCode(code: oauthToken.value ?? "nil") { [weak self] (result: Result<Bool, NetworkingError>) in
@@ -51,8 +50,6 @@ class PKCEAuthenticationService:UIViewController {
         
         authSession.presentationContextProvider = self
         authSession.start()
-        
-        
     }
     
     func presentMySecurityForm(completion: @escaping (Bool, String) -> ()){
@@ -70,17 +67,13 @@ class PKCEAuthenticationService:UIViewController {
             }
             
             let oauthToken = NSURLComponents(string: (successURL.absoluteString))?.fragment?.components(separatedBy: "id_token=").get(at: 1)
-            Log.info(successURL.absoluteString)
+            Log.info("ASWebAuthentication Success Callback URL: \(successURL.absoluteString)")
             completion(true, oauthToken ?? "nil")
-            
         })
         
         authSession.presentationContextProvider = self
         authSession.start()
-        
-        
     }
-    
 }
 
 extension PKCEAuthenticationService: ASWebAuthenticationPresentationContextProviding {
