@@ -22,6 +22,8 @@ final class FeatureFlagUtility {
         case isPkceAuthentication
         case hasAuthenticatedISUM
         case hasUnauthenticatedISUM
+        
+        case isB2CAuthentication // calculated value
     }
     
     static let shared = FeatureFlagUtility()
@@ -75,7 +77,8 @@ final class FeatureFlagUtility {
                     FeatureFlagKey.isAzureAuthentication.rawValue : featureFlags.isAzureAuthentication,
                     FeatureFlagKey.isPkceAuthentication.rawValue : featureFlags.isPkceAuthentication,
                     FeatureFlagKey.hasAuthenticatedISUM.rawValue : featureFlags.hasAuthenticatedISUM,
-                    FeatureFlagKey.hasUnauthenticatedISUM.rawValue : featureFlags.hasUnauthenticatedISUM
+                    FeatureFlagKey.hasUnauthenticatedISUM.rawValue : featureFlags.hasUnauthenticatedISUM,
+                    FeatureFlagKey.isB2CAuthentication.rawValue : featureFlags.isAzureAuthentication || featureFlags.isPkceAuthentication
                 ]
                 
                 UserDefaults.standard.setValuesForKeys(keyedValues)

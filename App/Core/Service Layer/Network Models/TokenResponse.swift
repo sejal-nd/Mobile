@@ -39,7 +39,7 @@ public struct TokenResponse: Decodable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        if FeatureFlagUtility.shared.bool(forKey: .isAzureAuthentication) {
+        if FeatureFlagUtility.shared.bool(forKey: .isB2CAuthentication) {
             // B2C JSON has a key access_token instead of token
             self.token = try container.decodeIfPresent(String.self,
                                                        forKey: .id_token)
@@ -58,7 +58,7 @@ public struct TokenResponse: Decodable {
         
         self.refreshToken = try container.decodeIfPresent(String.self,
                                                           forKey: .refreshToken)
-        if FeatureFlagUtility.shared.bool(forKey: .isAzureAuthentication) {
+        if FeatureFlagUtility.shared.bool(forKey: .isB2CAuthentication) {
             do {
                 self.refreshTokenExpiresIn = try String(container.decodeIfPresent(Int.self, forKey: .refreshTokenExpiresIn) ?? 0)
             } catch DecodingError.typeMismatch {
@@ -72,7 +72,7 @@ public struct TokenResponse: Decodable {
         self.refreshTokenIssuedAt = try container.decodeIfPresent(String.self,
                                                                   forKey: .refreshTokenIssuedAt)
         
-        if FeatureFlagUtility.shared.bool(forKey: .isAzureAuthentication) {
+        if FeatureFlagUtility.shared.bool(forKey: .isB2CAuthentication) {
             // Map additional data from b2c token if any
             if let json = TokenResponse.decodeToJson(token: token) {
                 if let code = json["type"] as? String {
