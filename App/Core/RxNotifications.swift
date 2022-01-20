@@ -7,6 +7,7 @@
 //
 
 import RxSwift
+import RxRelay
 
 struct RxNotifications {
     static let shared = RxNotifications()
@@ -16,6 +17,10 @@ struct RxNotifications {
     let defaultWalletItemUpdated = PublishSubject<Void>()
     let outageReported = PublishSubject<Void>()
     let configureQuickActions = PublishSubject<Bool>()
+    
+    let mfaJustEnabled = BehaviorRelay<Bool>(value: false)
+    let mfaBypass = BehaviorRelay<Bool>(value: false)
+    let profileEditAction = BehaviorRelay<String?>(value: nil)
     
     private init() { }
     

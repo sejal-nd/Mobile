@@ -435,13 +435,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func resetNavigation(sendToLogin: Bool = false) {
+        var sendToLoginBool = sendToLogin
+        
+        if FeatureFlagUtility.shared.bool(forKey: .isAzureAuthentication){
+            sendToLoginBool = false
+            
+            //making sure the user is pushed back to landing screen always in case of PKCE flow rather than the login screen ROPC uses
+        }
+        
+        
         DispatchQueue.main.async {
             LoadingView.hide() // Just in case we left one stranded
             
             let loginStoryboard = UIStoryboard(name: "Login", bundle: nil)
             let landing = loginStoryboard.instantiateViewController(withIdentifier: "landingViewController")
             let login = loginStoryboard.instantiateViewController(withIdentifier: "loginViewController")
-            let vcArray = sendToLogin ? [landing, login] : [landing]
+            let vcArray = sendToLoginBool ? [landing, login] : [landing]
             
             self.window?.rootViewController?.dismiss(animated: false, completion: nil) // Dismiss the "Main" app (or the registration confirmation modal)
             

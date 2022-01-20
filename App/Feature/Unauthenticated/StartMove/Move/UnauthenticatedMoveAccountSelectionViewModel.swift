@@ -19,7 +19,7 @@ class UnauthenticatedMoveAccountSelectionViewModel {
         if !unauthMoveData.selectedAccountNumber.isEmpty {
             if let selAccount = accountsList.filter({ $0.accountNumber == unauthMoveData.selectedAccountNumber }).first {
                 setSelectedAccount(account: selAccount)
-            }else {
+            } else {
                 
             }
         }

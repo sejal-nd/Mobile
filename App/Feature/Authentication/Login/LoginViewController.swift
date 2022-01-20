@@ -401,7 +401,6 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
     func forgotPassword() {
         FirebaseUtility.logEvent(.login(parameters: [.forgot_password_press]))
         GoogleAnalytics.log(event: .forgotPasswordOffer)
-        
         let segueIdentifier = FeatureFlagUtility.shared.bool(forKey: .isAzureAuthentication) ? "forgotPasswordB2cSegue" : "forgotPasswordSegue"
         performSegue(withIdentifier: segueIdentifier, sender: self)
     }

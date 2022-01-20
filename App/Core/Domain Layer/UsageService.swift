@@ -93,7 +93,7 @@ struct UsageService {
     }
     
     static func fetchOpowerToken(request: B2CTokenRequest, completion: @escaping (Result<TokenResponse, NetworkingError>) -> ()) {
-        NetworkingLayer.request(router: .getAzureToken(request: request), completion: completion)
+        NetworkingLayer.request(router: .getOPowerAzureToken(request: request), completion: completion)
     }
     
     static func clearCache() {

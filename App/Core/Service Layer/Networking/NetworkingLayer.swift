@@ -133,7 +133,7 @@ public enum NetworkingLayer {
             refreshTokenDispatchGroup.enter()
             
             // Refresh Token
-            if FeatureFlagUtility.shared.bool(forKey: .isAzureAuthentication) {
+            if FeatureFlagUtility.shared.bool(forKey: .isAzureAuthentication){
                 let refreshTokenRequest = B2CTokenRequest(grantType: "refresh_token",
                                                           responseType: "id_token",
                                                           refreshToken: UserSession.refreshToken)
