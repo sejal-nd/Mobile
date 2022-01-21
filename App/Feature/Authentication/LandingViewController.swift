@@ -328,7 +328,7 @@ class LandingViewController: UIViewController {
 
 extension LandingViewController: RegistrationViewControllerDelegate {
     func registrationViewControllerDidRegister(_ registrationViewController: UIViewController) {
-        if FeatureFlagUtility.shared.bool(forKey: .isAzureAuthentication) && FeatureFlagUtility.shared.bool(forKey: .isPkceAuthentication) {
+        if FeatureFlagUtility.shared.bool(forKey: .isB2CAuthentication) {
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
                 UIApplication.shared.keyWindow?.rootViewController?.view.showToast(NSLocalizedString("Account registered", comment: ""))
             })

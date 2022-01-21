@@ -50,7 +50,7 @@ final class PeakEnergySavingsViewController: DismissableFormSheetViewController 
     }
 
     @IBAction func peakEnergySavingsHistoryButtonPress(_ sender: Any) {
-        let segueIdentifier = FeatureFlagUtility.shared.bool(forKey: .isAzureAuthentication) ? "peakSavingsHistoryB2cSegue" : "peakSavingsHistorySegue"
+        let segueIdentifier = FeatureFlagUtility.shared.bool(forKey: .isB2CAuthentication) ? "peakSavingsHistoryB2cSegue" : "peakSavingsHistorySegue"
         performSegue(withIdentifier: segueIdentifier, sender: accountDetail)
     }
     

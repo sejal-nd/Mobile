@@ -83,9 +83,9 @@ class ForgotUsernameResultViewController: UIViewController {
             answerSecurityQuestionButton.isEnabled = false
         }
         
-        answerSecurityQuestionButton.setTitle(FeatureFlagUtility.shared.bool(forKey: .isAzureAuthentication) ? "Done" : "Answer Security Question", for: .normal)
+        answerSecurityQuestionButton.setTitle(FeatureFlagUtility.shared.bool(forKey: .isB2CAuthentication) ? "Done" : "Answer Security Question", for: .normal)
         
-        if FeatureFlagUtility.shared.bool(forKey: .isAzureAuthentication) {
+        if FeatureFlagUtility.shared.bool(forKey: .isB2CAuthentication) {
             selectLabel.text = ""
             topLabel1.text = ""
             topLabel2.text = ""
@@ -123,7 +123,7 @@ class ForgotUsernameResultViewController: UIViewController {
     }
     
     @IBAction func onAnswerSecurityQuestionsPress(_ sender: Any) {
-        if FeatureFlagUtility.shared.bool(forKey: .isAzureAuthentication) {
+        if FeatureFlagUtility.shared.bool(forKey: .isB2CAuthentication) {
             if FeatureFlagUtility.shared.bool(forKey: .isPkceAuthentication) {
                 guard let rootNavVc = self.presentingViewController as? LargeTitleNavigationController else { return }
                 
