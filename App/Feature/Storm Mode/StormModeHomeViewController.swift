@@ -314,17 +314,15 @@ class StormModeHomeViewController: AccountPickerViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
+        FirebaseUtility.logScreenView(.stormModeHomeView(className: self.className))
         navigationController?.setNavigationBarHidden(true, animated: true)
-        GoogleAnalytics.log(event: .stormModeLanded)
-        print("Will appear")
+      
         
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-         GoogleAnalytics.log(event: .stormModeLanded)
-            print("Did appear")
-
         // Start polling when the home screen appears, only if storm mode hasn't ended yet
         stormModePollingDisposable?.dispose()
         if !viewModel.stormModeEnded {
