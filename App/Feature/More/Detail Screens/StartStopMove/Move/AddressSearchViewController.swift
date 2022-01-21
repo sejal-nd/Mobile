@@ -86,7 +86,7 @@ class AddressSearchViewController: UIViewController {
 
          if searchType == .appartment {
             streetAddressTextField.placeholder = NSLocalizedString("Apt/Unit #*", comment: "")
-        }else {
+        } else {
             streetAddressTextField.placeholder = NSLocalizedString("Street Address*", comment: "")
         }
         streetAddressTextField.accessibilityTraits = .searchField
@@ -188,7 +188,7 @@ extension AddressSearchViewController: UITableViewDelegate ,UITableViewDataSourc
         if searchType == .appartment{
             let appartment = filter_listAppartment[indexPath.row]
             cell.titleLabel.text = appartment.suiteNumber
-        }else {
+        } else {
             let streetAdd = viewModel.findStreetAddress(at: indexPath.row)
             cell.titleLabel.text = streetAdd
         }
@@ -201,7 +201,7 @@ extension AddressSearchViewController: UITableViewDelegate ,UITableViewDataSourc
         if searchType == .appartment{
             let appartment = filter_listAppartment[indexPath.row]
             self.delegate?.didSelectAppartment(result: appartment)
-        }else {
+        } else {
             let streetAdd = viewModel.findStreetAddress(at: indexPath.row)
             self.delegate?.didSelectStreetAddress(result: streetAdd)
         }

@@ -65,6 +65,7 @@ class B2CRegistrationViewController: UIViewController {
     }
     
     private func loadWebView(token: String) {
+        
         let registrationURLString = "https://\(Configuration.shared.b2cAuthEndpoint)/\(Configuration.shared.b2cTenant).onmicrosoft.com/oauth2/v2.0/authorize?p=B2C_1A_REGISTER_MOBILE&client_id=\(Configuration.shared.b2cClientID)&nonce=defaultNonce&redirect_uri=https%3A%2F%2Fjwt.ms&scope=openid&response_type=id_token&prompt=login&id_token_hint=\(token)"
         if let url = URL(string: registrationURLString) {
             webView.load(NSURLRequest(url: url) as URLRequest)
@@ -73,7 +74,7 @@ class B2CRegistrationViewController: UIViewController {
     
     private func success() {
         FirebaseUtility.logEvent(.register(parameters: [.complete]))
-
+        
         GoogleAnalytics.log(event: .registerAccountComplete)
         
         delegate?.registrationViewControllerDidRegister(self)
@@ -83,14 +84,27 @@ class B2CRegistrationViewController: UIViewController {
 
 extension B2CRegistrationViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+        
+        Log.info("URL ---> \(webView.url?.absoluteString) \n\n")
+        
         if let urlString = webView.url?.absoluteString,
            urlString.contains("selfAsserted-registration-main-ebill-mobile") {
             success()
         } else if let urlString = webView.url?.absoluteString,
-                  urlString.contains("SelfAsserted/error") {
+                urlString.contains("SelfAsserted/error") {
             self.errorView.isHidden = false
             self.loadingIndicator.isHidden = true
             self.webView.isHidden = true
+        }
+    }
+    
+    func webView(_ webView: WKWebView, didReceiveServerRedirectForProvisionalNavigation navigation: WKNavigation!) {
+        guard let urlString = webView.url?.absoluteString else {
+            return
+        }
+        
+        if urlString.contains("id_token=") {
+            success()
         }
     }
     

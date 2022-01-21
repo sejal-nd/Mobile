@@ -449,6 +449,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                         <segue destination="Sli-Tt-vCb" kind="presentation" identifier="termsPoliciesModalSegue" id="CiC-oU-f3I"/>
                         <segue destination="Pib-RC-igc" kind="show" identifier="loginSegue" id="l5Z-IJ-Ywz"/>
                         <segue destination="Gdt-5a-5uk" kind="presentation" identifier="registrationSegueNew" id="sSZ-cR-C8G"/>
+                        <segue destination="sVW-aP-hfQ" kind="presentation" identifier="forgotUsernameSegue" id="TQv-BD-6Dx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="upp-SQ-sws" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -4389,7 +4390,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
         <segue reference="BgF-Jk-rXb"/>
         <segue reference="9by-S4-ujE"/>
         <segue reference="6eI-mv-PAf"/>
-        <segue reference="k3X-XL-dO6"/>
+        <segue reference="TQv-BD-6Dx"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="error" width="120" height="120"/>

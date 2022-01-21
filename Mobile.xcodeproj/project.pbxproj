@@ -1031,6 +1031,8 @@
 		C39E1DCF2767F60100569B89 /* OutageTrackerRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39E1DCD2767F60100569B89 /* OutageTrackerRequest.swift */; };
 		C39E1DD127682C4600569B89 /* OutageService+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39E1DD027682C4500569B89 /* OutageService+Rx.swift */; };
 		C39E1DD227682C4600569B89 /* OutageService+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39E1DD027682C4500569B89 /* OutageService+Rx.swift */; };
+		C3943F392799D1B9005E5327 /* PKCEResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3943F382799D1B8005E5327 /* PKCEResult.swift */; };
+		C3943F3A2799D1B9005E5327 /* PKCEResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3943F382799D1B8005E5327 /* PKCEResult.swift */; };
 		C39F2B4D253920C60095A8F1 /* PaymentAmountSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3595B25025328E6E006F7EBC /* PaymentAmountSheetViewController.swift */; };
 		C3B5F38525E97EDA005D3740 /* FeatureFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B5F38425E97EDA005D3740 /* FeatureFlags.swift */; };
 		C3B5F38625E97EDA005D3740 /* FeatureFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B5F38425E97EDA005D3740 /* FeatureFlags.swift */; };
@@ -1058,6 +1060,7 @@
 		CEA215251F7900CC00689422 /* HomeBillCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEA215211F7900CC00689422 /* HomeBillCardView.xib */; };
 		E71EBE9C26A6EDFB005AE781 /* B2CTokenRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71EBE9B26A6EDFB005AE781 /* B2CTokenRequest.swift */; };
 		E71EBE9D26A6EDFB005AE781 /* B2CTokenRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71EBE9B26A6EDFB005AE781 /* B2CTokenRequest.swift */; };
+		E7F38E0F2760B73700F8711B /* PKCEAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F38E0E2760B73700F8711B /* PKCEAuthenticationService.swift */; };
 		E80043091E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80043071E64DEE2005CF531 /* ChangePasswordViewController.swift */; };
 		E80043261E65FF70005CF531 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E800431C1E65FF70005CF531 /* OpenSans-Bold.ttf */; };
 		E80043291E65FF70005CF531 /* OpenSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E800431D1E65FF70005CF531 /* OpenSans-BoldItalic.ttf */; };
@@ -2383,6 +2386,7 @@
 		C372B660275854FA00E38F64 /* OutageTrackerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutageTrackerViewModel.swift; sourceTree = "<group>"; };
 		C39E1DCD2767F60100569B89 /* OutageTrackerRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutageTrackerRequest.swift; sourceTree = "<group>"; };
 		C39E1DD027682C4500569B89 /* OutageService+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OutageService+Rx.swift"; sourceTree = "<group>"; };
+		C3943F382799D1B8005E5327 /* PKCEResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKCEResult.swift; sourceTree = "<group>"; };
 		C3B5F38425E97EDA005D3740 /* FeatureFlags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureFlags.swift; sourceTree = "<group>"; };
 		C3B5F38B25E98418005D3740 /* FeatureFlagUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureFlagUtility.swift; sourceTree = "<group>"; };
 		C3B5F39225E98441005D3740 /* FeatureFlagService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureFlagService.swift; sourceTree = "<group>"; };
@@ -2465,6 +2469,7 @@
 		E7A3A372E98EDBBEA14881D6 /* Pods-EUMobile-Watch.production beta-dpl.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch.production beta-dpl.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch/Pods-EUMobile-Watch.production beta-dpl.xcconfig"; sourceTree = "<group>"; };
 		E7C28C3D3D6585E147BA6005 /* Pods-EUMobileUITests.comed-beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobileUITests.comed-beta.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobileUITests/Pods-EUMobileUITests.comed-beta.xcconfig"; sourceTree = "<group>"; };
 		E7C92D899B3F95969C91CABF /* Pods-EUMobileUnitTests.prod-comed.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobileUnitTests.prod-comed.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobileUnitTests/Pods-EUMobileUnitTests.prod-comed.xcconfig"; sourceTree = "<group>"; };
+		E7F38E0E2760B73700F8711B /* PKCEAuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKCEAuthenticationService.swift; sourceTree = "<group>"; };
 		E80043071E64DEE2005CF531 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
 		E800431C1E65FF70005CF531 /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
 		E800431D1E65FF70005CF531 /* OpenSans-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-BoldItalic.ttf"; sourceTree = "<group>"; };
@@ -4487,6 +4492,7 @@
 				675F4AEA24AB828000A828F9 /* RegistrationService.swift */,
 				675F4AEB24AB828000A828F9 /* GameService.swift */,
 				675F4B0724AB828000A828F9 /* AuthenticationService.swift */,
+				E7F38E0E2760B73700F8711B /* PKCEAuthenticationService.swift */,
 				C3087A9824B65B0A005AE544 /* AccountService.swift */,
 				675F4B0824AB828000A828F9 /* WeatherService.swift */,
 				675F4B0924AB828000A828F9 /* PaymentService.swift */,
@@ -5680,6 +5686,7 @@
 				C36C396624ED95A700BA83B6 /* PushNotification.swift */,
 				C36C396724ED95A700BA83B6 /* Version.swift */,
 				C36C396824ED95A700BA83B6 /* ProfileStatus.swift */,
+				C3943F382799D1B8005E5327 /* PKCEResult.swift */,
 				C36C396924ED95A700BA83B6 /* BankAccount.swift */,
 				674A11F2252387A100AF0D38 /* SubOpCo.swift */,
 			);
@@ -6796,6 +6803,7 @@
 				67247FCE25D33B400024467D /* CardView.swift in Sources */,
 				C3055BD52538FB04000DB89C /* NetworkingError.swift in Sources */,
 				C3B5F39425E98441005D3740 /* FeatureFlagService.swift in Sources */,
+				C3943F3A2799D1B9005E5327 /* PKCEResult.swift in Sources */,
 				35F9DDB62333D8EE00AAA2B2 /* NumberFormatter.swift in Sources */,
 				6797115B25DD901F008A0080 /* Arc.swift in Sources */,
 				C3055B6A2538F81B000DB89C /* ForgotMaskedUsername.swift in Sources */,
@@ -7182,6 +7190,7 @@
 				82E22B671F9FCECE001F1A1B /* Top5EnergyTipsViewModel.swift in Sources */,
 				9CDB5E782399AE1300976BB2 /* GiftInventory.swift in Sources */,
 				675F4CD824AB828200A828F9 /* VoidDecodable.swift in Sources */,
+				E7F38E0F2760B73700F8711B /* PKCEAuthenticationService.swift in Sources */,
 				21FFBD222722D35D002F5009 /* ReviewMoveServiceViewController.swift in Sources */,
 				E8C453151EF3293600F5C781 /* ToastView.swift in Sources */,
 				824A96691FB5F3480026FA4B /* AdjustThermostatViewModel.swift in Sources */,
@@ -7236,6 +7245,7 @@
 				21E797F92718541C0063CB84 /* StopLandingViewModel.swift in Sources */,
 				822BBBA11EFC1A01004EBBAB /* WebViewController.swift in Sources */,
 				35ACCB4720EA60F50022907F /* HomeOutageCardViewModel.swift in Sources */,
+				C3943F392799D1B9005E5327 /* PKCEResult.swift in Sources */,
 				C3087B0C24BDEFA3005AE544 /* AnyObserver.swift in Sources */,
 				9CEE412123722AD9005A4AD3 /* DailyInsightCoinView.swift in Sources */,
 				E827D23C1ED491F6004DA1D6 /* InfoModalViewController.swift in Sources */,
@@ -7670,6 +7680,7 @@
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = NO;
+				NEW_SETTING = "";
 				OAUTH_URL = api.exeloncorp.com;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
@@ -11422,6 +11433,7 @@
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = YES;
+				NEW_SETTING = "";
 				OAUTH_URL = "api-development.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
@@ -11726,6 +11738,7 @@
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = YES;
+				NEW_SETTING = "";
 				OAUTH_URL = "api-stage.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
@@ -11940,6 +11953,7 @@
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = NO;
+				NEW_SETTING = "";
 				OAUTH_URL = api.exeloncorp.com;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
@@ -12159,6 +12173,7 @@
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = NO;
+				NEW_SETTING = "";
 				OAUTH_URL = api.exeloncorp.com;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
@@ -12385,6 +12400,7 @@
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = YES;
+				NEW_SETTING = "";
 				OAUTH_URL = "api-development.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
@@ -12689,6 +12705,7 @@
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = YES;
+				NEW_SETTING = "";
 				OAUTH_URL = "api-stage.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
@@ -12904,6 +12921,7 @@
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = NO;
+				NEW_SETTING = "";
 				OAUTH_URL = api.exeloncorp.com;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
@@ -13124,6 +13142,7 @@
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = NO;
+				NEW_SETTING = "";
 				OAUTH_URL = api.exeloncorp.com;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
@@ -13351,6 +13370,7 @@
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = YES;
+				NEW_SETTING = "";
 				OAUTH_URL = "api-development.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
@@ -13655,6 +13675,7 @@
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = YES;
+				NEW_SETTING = "";
 				OAUTH_URL = "api-stage.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
@@ -13870,6 +13891,7 @@
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = NO;
+				NEW_SETTING = "";
 				OAUTH_URL = api.exeloncorp.com;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
@@ -14090,6 +14112,7 @@
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = NO;
+				NEW_SETTING = "";
 				OAUTH_URL = api.exeloncorp.com;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
@@ -14317,6 +14340,7 @@
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = YES;
+				NEW_SETTING = "";
 				OAUTH_URL = "api-development.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
@@ -14621,6 +14645,7 @@
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = YES;
+				NEW_SETTING = "";
 				OAUTH_URL = "api-stage.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
@@ -14836,6 +14861,7 @@
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = NO;
+				NEW_SETTING = "";
 				OAUTH_URL = api.exeloncorp.com;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
@@ -15056,6 +15082,7 @@
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = NO;
+				NEW_SETTING = "";
 				OAUTH_URL = api.exeloncorp.com;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
@@ -15283,6 +15310,7 @@
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = YES;
+				NEW_SETTING = "";
 				OAUTH_URL = "api-development.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
@@ -15587,6 +15615,7 @@
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = YES;
+				NEW_SETTING = "";
 				OAUTH_URL = "api-stage.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
@@ -15801,6 +15830,7 @@
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = NO;
+				NEW_SETTING = "";
 				OAUTH_URL = api.exeloncorp.com;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
@@ -16020,6 +16050,7 @@
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = NO;
+				NEW_SETTING = "";
 				OAUTH_URL = api.exeloncorp.com;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
@@ -16246,6 +16277,7 @@
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = YES;
+				NEW_SETTING = "";
 				OAUTH_URL = "api-development.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
@@ -16372,6 +16404,7 @@
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = NO;
+				NEW_SETTING = "";
 				OAUTH_URL = api.exeloncorp.com;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
@@ -16509,6 +16542,7 @@
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = YES;
+				NEW_SETTING = "";
 				OAUTH_URL = "api-stage.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";

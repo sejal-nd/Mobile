@@ -25,7 +25,7 @@ class MoreViewModel {
     }
     
     func isDeviceBiometricCompatible() -> Bool {
-        return BiometricService.deviceBiometryType() != nil
+        return FeatureFlagUtility.shared.bool(forKey: .isPkceAuthentication) ? false : BiometricService.deviceBiometryType() != nil
     }
     
     func biometricsString() -> String? {

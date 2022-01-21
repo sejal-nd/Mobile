@@ -304,7 +304,7 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
         case 1:
             switch indexPath.row {
             case 0:
-                cell.configure(image: #imageLiteral(resourceName: "ic_morepassword"), text: NSLocalizedString("Change Password", comment: ""))
+                cell.configure(image: #imageLiteral(resourceName: FeatureFlagUtility.shared.bool(forKey: .isPkceAuthentication) ? "ic_moremysecurity" : "ic_morepassword"), text: NSLocalizedString(FeatureFlagUtility.shared.bool(forKey: .isPkceAuthentication) ? "My Security" : "Change Password", comment: ""))
             case 1:
                 guard let toggleCell = tableView.dequeueReusableCell(withIdentifier: ToggleTableViewCell.className) as? ToggleTableViewCell else { return UITableViewCell() }
                 
@@ -386,7 +386,26 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
         case 1:
             switch indexPath.row {
             case 0:
-                performSegue(withIdentifier: "changePasswordSegue", sender: nil)
+                if FeatureFlagUtility.shared.bool(forKey: .isPkceAuthentication) {
+                    PKCEAuthenticationService.default.presentMySecurityForm { result in
+                        switch (result) {
+                        case .success(let token):
+                            if let json = TokenResponse.decodeToJson(token: token),
+                               let editAction = json["profileEditActionTaken"] as? String {
+                                
+                                if editAction == "PasswordUpdate" {
+                                    self.view.showToast("Password changed")
+                                } else {
+                                    self.view.showToast("Two-Step Verification settings updated")
+                                }
+                            }
+                        case .failure(_):
+                            self.view.showToast("Error updating security credentials.")
+                        }
+                    }
+                } else {
+                    performSegue(withIdentifier: "changePasswordSegue", sender: nil)
+                }
             case 2:
                 performSegue(withIdentifier: "defaultAccountSegue", sender: nil)
             case 3:
