@@ -17,6 +17,7 @@ class StormModeHomeViewModel {
     
     var currentOutageStatus: OutageStatus?
     let stormModeUpdate = BehaviorRelay<Alert?>(value: nil)
+    var outageTracker = BehaviorRelay<OutageTracker?>(value: nil)
     
     var stormModeEnded = false
     
@@ -68,12 +69,24 @@ class StormModeHomeViewModel {
             switch result {
             case .success(let outageStatus):
                 self?.currentOutageStatus = outageStatus
+                self?.fetchOutageTracker()
                 onSuccess()
             case .failure(let error):
                 self?.currentOutageStatus = nil
                 onError(error)
             }
         }
+    }
+    
+    func fetchOutageTracker() {
+        AccountService.rx.fetchAccountSummary(includeDevice: true, includeMDM: true).flatMap {
+            OutageService.rx.fetchOutageTracker(accountNumber: $0.accountNumber, deviceId: $0.deviceId ?? "", servicePointId: $0.servicePointId ?? "")
+        }.subscribe(onNext: { tracker in
+            self.outageTracker.accept(tracker)
+        }, onError: { error in
+            self.outageTracker.accept(nil)
+            Log.info("error fetching tracker: \(error.localizedDescription)")
+        }).disposed(by: disposeBag)
     }
     
     func getStormModeUpdate() {
@@ -155,5 +168,122 @@ class StormModeHomeViewModel {
         return !(currentOutageStatus?.isFinaled ?? false ||
             currentOutageStatus?.isNoPay ?? false ||
             currentOutageStatus?.isNonService ?? false)
+    }
+    
+    // MARK  OutageTracker
+    
+    var showOutageTracker: Bool {
+        return Configuration.shared.opco == .bge
+    }
+    var status: OutageTracker.Status {
+        guard let trackerStatus = outageTracker.value?.trackerStatus else {
+            return .none
+        }
+        return OutageTracker.Status(rawValue: trackerStatus) ?? .none
+    }
+    var events: [EventSet] {
+        guard let events = outageTracker.value?.eventSet else {
+            return []
+        }
+        return events
+    }
+    var neighborCount: String {
+        // todo - this field is missing
+        return NSLocalizedString("No Data", comment: "")
+    }
+    var outageCount: String {
+        guard let count = outageTracker.value?.customersOutOnOutage else {
+            return "No Data"
+        }
+        return NSLocalizedString(count, comment: "")
+    }
+    var isActiveOutage: Bool {
+        // restored state shows as no longer active but may have tracker data
+        guard let outageStatus = currentOutageStatus else {
+            return false
+        }
+        if outageStatus.isActiveOutage == true {
+            return true
+        } else {
+            guard let tracker = outageTracker.value else {
+                return false
+            }
+            return tracker.isOutageValid
+        }
+    }
+    var isPaused: Bool {
+        guard let tracker = outageTracker.value else {
+            return false
+        }
+        if tracker.isCrewLeftSite == true || tracker.isCrewDiverted == true {
+            return true
+        }
+        return false
+    }
+    var isDefinitive: Bool {
+        guard let tracker = outageTracker.value, let status = tracker.meterStatus else {
+            return false
+        }
+        return status.uppercased() == "ON"
+    }
+    var lastUpdated: String {
+        var time = ""
+        if let dateString = outageTracker.value?.lastUpdated {
+            if let date = DateFormatter.apiFormatter.date(from: dateString) {
+                time = DateFormatter.hmmaFormatter.string(from: date)
+            }
+        }
+        return time
+    }
+    var hideWhyButton: Bool {
+        guard let tracker = outageTracker.value else { return true }
+        guard let isCrewLeftSite = tracker.isCrewLeftSite,
+              let isCrewDiverted = tracker.isCrewDiverted else {
+                  return true
+              }
+        
+        if status == .restored { return false }
+        if status == .onSite {
+            if isCrewLeftSite || isCrewDiverted {
+                return false
+            }
+        } else if status == .enRoute {
+            if isCrewDiverted {
+                return false
+            }
+        }
+        
+        return true
+    }
+    var whyButtonText: String {
+        if status == .restored {
+            return NSLocalizedString("Still Have an Outage?", comment: "")
+        } else {
+            return NSLocalizedString("Why Did This Happen?", comment: "")
+        }
+    }
+    var surveyURL: String {
+        switch status {
+            case .reported:
+                return "https://www.surveymonkey.com/r/HHCD7YP"
+            case .assigned:
+                return "https://www.surveymonkey.com/r/HPSN8XX"
+            case .enRoute:
+                return "https://www.surveymonkey.com/r/HPTDG6T"
+            case .onSite:
+                return "https://www.surveymonkey.com/r/HPXXPCW"
+            case .restored:
+                return "https://www.surveymonkey.com/r/HPXZBBD"
+            default:
+                return ""
+        }
+    }
+    var headerContentText: String {
+        var text = "Due to severe weather, the most relevant features are optimized to allow us to better serve you."
+        
+        if showOutageTracker {
+            text = "The app is adjusted temporarily due to severe weather."
+        }
+        return NSLocalizedString(text, comment: "")
     }
 }

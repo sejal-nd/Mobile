@@ -7,6 +7,8 @@
 //
 
 import RxSwift
+import RxCocoa
+import RxSwiftExt
 
 class OutageViewModel {
     let disposeBag = DisposeBag()
