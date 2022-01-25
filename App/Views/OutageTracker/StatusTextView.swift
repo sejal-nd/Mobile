@@ -190,7 +190,7 @@ struct StatusDetailString {
     
     // restored
     static let restoredDefLong = NSLocalizedString("Our systems indicate that the power has been restored to your address. We understand that you have been without power for an extended time. We appreciate your patience during this difficult restoration process.", comment: "")
-    static let restoredDefReg = NSLocalizedString("Our systems indicate that the power has been restored to your address.", comment: "")
+    static let restoredDefReg = NSLocalizedString("Our systems indicate that the power has been restored to your address. We understand that power outages are a significant inconvenience, and we appreciate your patience.", comment: "")
     static let restoredDefShort = NSLocalizedString("Our systems indicate that the power has been restored to your address. We understand that even brief power outages can be a significant inconvenience, and we appreciate your patience.", comment: "")
     static let restoredNonDefLong = NSLocalizedString("We have received notification from our repair crew that the power at your address has been restored. However, we have not yet received confirmation from your smart meter. We understand that you have been without power for an extended time. We appreciate your patience during this difficult restoration process.", comment: "")
     static let restoredNonDefReg = NSLocalizedString("We have received notification from our repair crew that the power at your address has been restored. However, we have not yet received confirmation from your smart meter.", comment: "")

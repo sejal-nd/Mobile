@@ -49,6 +49,15 @@ class ETAView: UIView {
     var etaOnSiteDetail: String {
         return NSLocalizedString("The current ETR is up-to-date based on the latest reports from the repair crew. ETRs are updated as new information becomes available.", comment: "")
     }
+    var etaDetailFeeder: String {
+        return NSLocalizedString("We expect the vast majority of customers in your area impacted by the storm to be restored at this time. We are working to establish an ETR specific to your outage.", comment: "")
+    }
+    var etaDetailGlobal: String {
+        return NSLocalizedString("We expect the vast majority of customers impacted by the storm to be restored by this time. We are working to establish an ETR specific to your outage.", comment: "")
+    }
+    var etaDetailOverrideOn: String {
+        return NSLocalizedString("BGE team members are actively working to restore power outages resulting from stormy weather conditions and will provide an ETR as quickly as possible.", comment: "")
+    }
     
     func configure(tracker: OutageTracker, status: OutageTracker.Status) {
         self.tracker = tracker
@@ -84,12 +93,28 @@ class ETAView: UIView {
     }
     
     func etaDetails() -> String {
-        var details = status == .onSite ? etaOnSiteDetail : etaDetail
+        var details: String = ""
+        let type = tracker.etrType?.uppercased() ?? ""
+        let override = tracker.etrOverrideOn?.uppercased() == "Y"
+        
+        if etaDateTime() == "Currently Unavailable" {
+            details = override ? etaDetailOverrideOn : etaDetailUnavailable
+        } else {
+            if status == .onSite {
+                details = etaOnSiteDetail
+            } else {
+                switch type {
+                    case "G":
+                        details = etaDetailGlobal
+                    case "F":
+                        details = etaDetailFeeder
+                    default:
+                        details = etaDetail
+                }
+            }
+        }
         if !details.isEmpty {
             hideUpdatedView = hideETAUpdatedIndicator(detailText: details)
-        }
-        if etaDateTime() == "Currently Unavailable" {
-            details = etaDetailUnavailable
         }
         return details
     }
