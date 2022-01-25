@@ -201,7 +201,7 @@ extension NetworkingError: LocalizedError {
         case .finaled:
             return NSLocalizedString("Finaled Account", comment: "Error title")
         case .noPay:
-            return NSLocalizedString("Finaled for Non-Pay", comment: "Error title")
+            return NSLocalizedString("Cut for non pay", comment: "Error title")
         case .noService:
             return NSLocalizedString("Non-Service Agreement", comment: "Error title")
         case .invalidToken:
