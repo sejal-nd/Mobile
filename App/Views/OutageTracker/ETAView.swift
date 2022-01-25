@@ -94,15 +94,15 @@ class ETAView: UIView {
     
     func etaDetails() -> String {
         var details: String = ""
-        let type = tracker.etrType?.uppercased() ?? ""
-        let override = tracker.etrOverrideOn?.uppercased() == "Y"
         
         if etaDateTime() == "Currently Unavailable" {
-            details = override ? etaDetailOverrideOn : etaDetailUnavailable
+            let overrideOn = tracker.etrOverrideOn?.uppercased() == "Y"
+            details = overrideOn ? etaDetailOverrideOn : etaDetailUnavailable
         } else {
             if status == .onSite {
                 details = etaOnSiteDetail
             } else {
+                let type = tracker.etrType?.uppercased() ?? ""
                 switch type {
                     case "G":
                         details = etaDetailGlobal
@@ -158,7 +158,7 @@ class ETAView: UIView {
         // check for changes in ETA to show updated pill
         let dateTime = defaults.object(forKey: "etaDateTime") as? String ?? ""
         let cause = defaults.object(forKey: "etaCause") as? String ?? ""
-        let details = defaults.object(forKey: "etaDetail") as? String ?? etaDetail
+        let details = defaults.object(forKey: "etaDetail") as? String ?? detailText
         
         if dateTime != etaDateTime() || cause != etaCause() || details != detailText {
             // save new values
