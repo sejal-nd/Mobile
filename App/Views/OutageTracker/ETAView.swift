@@ -149,7 +149,7 @@ class ETAView: UIView {
     }
     
     func hideETAUpdatedIndicator(detailText: String) -> Bool {
-        if status == OutageTracker.Status.none || status == .reported {
+        if status == OutageTracker.Status.none || status == OutageTracker.Status.restored {
             clearETA()
             return true
         }
@@ -165,6 +165,11 @@ class ETAView: UIView {
             defaults.set(etaDateTime(), forKey: "etaDateTime")
             defaults.set(etaCause(), forKey: "etaCause")
             defaults.set(detailText, forKey: "etaDetail")
+            
+            if dateTime.isEmpty && cause.isEmpty {
+                // first time
+                return true
+            }
             
             return false
         } else {
