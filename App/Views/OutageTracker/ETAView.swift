@@ -145,7 +145,36 @@ class ETAView: UIView {
         guard let cause = tracker.cause?.lowercased(), !cause.isEmpty, cause != "none" else {
             return ""
         }
-        return NSLocalizedString("The outage was caused by \(cause).", comment: "")
+        var causeText = cause
+        switch cause {
+            case "animal", "osprey", "wildlife":
+                causeText = "wildlife"
+            case "non-utility":
+                causeText = "a non-utility equipment problem"
+            case "underground":
+                causeText = "underground equipment damage"
+            case "equipment":
+                causeText = "equipment damage"
+            case "fire":
+                causeText = "a fire"
+            case "flooding":
+                causeText = "flooding"
+            case "lightning":
+                causeText = "a lightning strike"
+            case "power lines":
+                causeText = "damaged power lines"
+            case "tree":
+                causeText = "a downed tree or tree limb"
+            case "vehicle":
+                causeText = "a vehicle accident"
+            case "weather":
+                causeText = "severe weather"
+            default:
+                if cause.contains("maintenance") {
+                    causeText = "system maintenance"
+                }
+        }
+        return NSLocalizedString("The outage was caused by \(causeText).", comment: "")
     }
     
     func hideETAUpdatedIndicator(detailText: String) -> Bool {
