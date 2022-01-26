@@ -863,7 +863,7 @@ enum Screen {
              .stopReviewSubmitView(let className),
              .stopConfirmationView(let className),
             
-            .stormModeHomeLandingView(let className),
+             .stormModeHomeLandingView(let className),
 
              .moveLandingView(let className),
              .moveSelectStopDateView(let className),
