@@ -141,31 +141,14 @@ class LandingViewController: UIViewController {
             signInButton.accessibilityLabel = NSLocalizedString("Loading", comment: "")
             signInButton.accessibilityViewIsModal = true
             
-            PKCEAuthenticationService.default.presentLoginForm { result in
+            PKCEAuthenticationService.default.presentLoginForm { [weak self] result in
+                guard let self = self else { return }
                 switch (result) {
                 case .success(let pkceResult):
                     if pkceResult.tokenResponse != nil {
-                        self.signInButton.tintWhite = true
-                        self.signInButton.reset()
-                        self.signInButton.accessibilityLabel = "Sign In"
-                        self.signInButton.accessibilityViewIsModal = false
-                        
-                        self.signInButton.setSuccess {
-                            FirebaseUtility.logEvent(.initialAuthenticatedScreenStart)
-                            GoogleAnalytics.log(event: .loginComplete)
-
-                            guard let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as? MainTabBarController,
-                                let navController = self.navigationController else {
-                                    return
-                            }
-                            navController.navigationBar.prefersLargeTitles = false
-                            navController.navigationItem.largeTitleDisplayMode = .never
-                            navController.setNavigationBarHidden(true, animated: false)
-                            navController.setViewControllers([viewController], animated: false)
-                        }
+                        self.handleLoginSuccess()
                     } else if pkceResult.redirect == "find_email" {
                         Log.info("redirect to find email flow")
-                        self.signInButton.tintWhite = true
                         self.signInButton.reset()
                         self.signInButton.setTitle("Sign In", for: .normal)
                         self.signInButton.accessibilityLabel = "Sign In"
@@ -176,7 +159,6 @@ class LandingViewController: UIViewController {
                         
                         self.performSegue(withIdentifier: "forgotUsernameSegue", sender: self)
                     } else {
-                        self.signInButton.tintWhite = true
                         self.signInButton.reset()
                         self.signInButton.setTitle("Sign In", for: .normal)
                         self.signInButton.accessibilityLabel = "Sign In"
@@ -188,6 +170,47 @@ class LandingViewController: UIViewController {
             }
         } else {
             performSegue(withIdentifier: "loginSegue", sender: self)
+        }
+    }
+    
+    func handleLoginSuccess() {
+        self.getMaintenanceMode { maintenanceMode in
+            if maintenanceMode?.all ?? false {
+                (UIApplication.shared.delegate as? AppDelegate)?.showMaintenanceMode(maintenanceMode)
+            } else if maintenanceMode?.storm ?? false {
+                (UIApplication.shared.delegate as? AppDelegate)?.showStormMode()
+            } else {
+                self.signInButton.reset()
+                self.signInButton.accessibilityLabel = "Sign In"
+                self.signInButton.accessibilityViewIsModal = false
+                
+                self.signInButton.setSuccess {
+                    FirebaseUtility.logEvent(.initialAuthenticatedScreenStart)
+                    GoogleAnalytics.log(event: .loginComplete)
+
+                    guard let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as? MainTabBarController,
+                        let navController = self.navigationController else {
+                            return
+                    }
+                    navController.navigationBar.prefersLargeTitles = false
+                    navController.navigationItem.largeTitleDisplayMode = .never
+                    navController.setNavigationBarHidden(true, animated: false)
+                    navController.setViewControllers([viewController], animated: false)
+                }
+            }
+        }
+    }
+    
+    func getMaintenanceMode(completion: @escaping (MaintenanceMode?) -> ()) {
+        AnonymousService.maintenanceMode { (result: Result<MaintenanceMode, Error>) in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let maintenanceMode):
+                    completion(maintenanceMode)
+                case .failure(_):
+                    completion(nil)
+                }
+            }
         }
     }
     
@@ -329,9 +352,20 @@ class LandingViewController: UIViewController {
 extension LandingViewController: RegistrationViewControllerDelegate {
     func registrationViewControllerDidRegister(_ registrationViewController: UIViewController) {
         if FeatureFlagUtility.shared.bool(forKey: .isB2CAuthentication) {
-            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
-                UIApplication.shared.keyWindow?.rootViewController?.view.showToast(NSLocalizedString("Account registered", comment: ""))
-            })
+            if RxNotifications.shared.mfaBypass.value {
+                RxNotifications.shared.mfaBypass.accept(false)
+                DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+                    UIApplication.shared.keyWindow?.rootViewController?.view.showToast(NSLocalizedString("Two-Step Verification is not enabled.", comment: ""))
+                })
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(5500), execute: {
+                    UIApplication.shared.keyWindow?.rootViewController?.view.showToast(NSLocalizedString("Account registered", comment: ""))
+                })
+            } else {
+                DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+                    UIApplication.shared.keyWindow?.rootViewController?.view.showToast(NSLocalizedString("Account registered", comment: ""))
+                })
+            }
         } else {
             performSegue(withIdentifier: "loginSegue", sender: self)
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
