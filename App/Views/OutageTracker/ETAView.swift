@@ -24,6 +24,7 @@ class ETAView: UIView {
     weak var delegate: ETAViewDelegate?
     var tracker: OutageTracker!
     var status: OutageTracker.Status!
+    let viewModel = ETAViewModel()
     
     var isStormMode: Bool {
         return StormModeStatus.shared.isOn
@@ -38,25 +39,6 @@ class ETAView: UIView {
         didSet {
             etaInfoButtonView.isHidden = hideInfoButtonView
         }
-    }
-    
-    var etaDetail: String {
-        return NSLocalizedString("The current estimate is based on outage restoration history. ETRs are updated as new information becomes available.", comment: "")
-    }
-    var etaDetailUnavailable: String {
-        return NSLocalizedString("BGE team members are actively working to restore power and will provide an updated ETR as soon as new information becomes available.", comment: "")
-    }
-    var etaOnSiteDetail: String {
-        return NSLocalizedString("The current ETR is up-to-date based on the latest reports from the repair crew. ETRs are updated as new information becomes available.", comment: "")
-    }
-    var etaDetailFeeder: String {
-        return NSLocalizedString("We expect the vast majority of customers in your area impacted by the storm to be restored at this time. We are working to establish an ETR specific to your outage.", comment: "")
-    }
-    var etaDetailGlobal: String {
-        return NSLocalizedString("We expect the vast majority of customers impacted by the storm to be restored by this time. We are working to establish an ETR specific to your outage.", comment: "")
-    }
-    var etaDetailOverrideOn: String {
-        return NSLocalizedString("BGE team members are actively working to restore power outages resulting from stormy weather conditions and will provide an ETR as quickly as possible.", comment: "")
     }
     
     func configure(tracker: OutageTracker, status: OutageTracker.Status) {
@@ -97,19 +79,19 @@ class ETAView: UIView {
         
         if etaDateTime() == "Currently Unavailable" {
             let overrideOn = tracker.etrOverrideOn?.uppercased() == "Y"
-            details = overrideOn ? etaDetailOverrideOn : etaDetailUnavailable
+            details = overrideOn ? viewModel.etaDetailOverrideOn : viewModel.etaDetailUnavailable
         } else {
             if status == .onSite {
-                details = etaOnSiteDetail
+                details = viewModel.etaOnSiteDetail
             } else {
                 let type = tracker.etrType?.uppercased() ?? ""
                 switch type {
                     case "G":
-                        details = etaDetailGlobal
+                        details = viewModel.etaDetailGlobal
                     case "F":
-                        details = etaDetailFeeder
+                        details = viewModel.etaDetailFeeder
                     default:
-                        details = etaDetail
+                        details = viewModel.etaDetail
                 }
             }
         }
@@ -142,39 +124,14 @@ class ETAView: UIView {
     }
     
     func etaCause() -> String {
-        guard let cause = tracker.cause?.lowercased(), !cause.isEmpty, cause != "none" else {
+        guard let cause = tracker.cause, !cause.isEmpty else {
             return ""
         }
-        var causeText = cause
-        switch cause {
-            case "animal", "osprey", "wildlife":
-                causeText = "wildlife"
-            case "non-utility":
-                causeText = "a non-utility equipment problem"
-            case "underground":
-                causeText = "underground equipment damage"
-            case "equipment":
-                causeText = "equipment damage"
-            case "fire":
-                causeText = "a fire"
-            case "flooding":
-                causeText = "flooding"
-            case "lightning":
-                causeText = "a lightning strike"
-            case "power lines":
-                causeText = "damaged power lines"
-            case "tree":
-                causeText = "a downed tree or tree limb"
-            case "vehicle":
-                causeText = "a vehicle accident"
-            case "weather":
-                causeText = "severe weather"
-            default:
-                if cause.contains("maintenance") {
-                    causeText = "system maintenance"
-                }
+        guard let key = viewModel.causes[cause], let causeText = viewModel.causeText[key] else {
+            return ""
         }
-        return NSLocalizedString("The outage was caused by \(causeText).", comment: "")
+        
+        return NSLocalizedString(causeText, comment: "")
     }
     
     func hideETAUpdatedIndicator(detailText: String) -> Bool {
@@ -246,4 +203,8 @@ class ETAView: UIView {
         etaUpdatedView.isHidden = true
     }
 
+}
+
+extension ETAView {
+    
 }
