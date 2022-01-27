@@ -301,7 +301,7 @@ extension NetworkingError: LocalizedError {
         case .finaled:
             return NSLocalizedString("We can’t load the outage status for this account because it’s been closed.", comment: "Error description")
         case .noPay:
-            return NSLocalizedString("We can’t load the outage status for this account because it’s been closed for non-payment and is no longer connected to your premise address.", comment: "Error description")
+            return NSLocalizedString("Our records indicate that you have been cut for non-payment. If you wish to restore your power, please call PECO at 1-888-480-1533", comment: "Error description")
         case .noService:
             return NSLocalizedString("We can’t load the outage status for this account due to a non-service agreement.", comment: "Error description")
         case .invalidToken:
