@@ -681,6 +681,8 @@ enum Screen {
     case paymentView(className: String)
     case alertPreferencesView(className: String)
     
+    case stormModeHomeLandingView(className: String)
+    
     // ISUM Auth Stop
     case stopLandingView(className: String)
     case stopSelectStopDateView(className: String)
