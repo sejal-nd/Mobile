@@ -195,7 +195,7 @@ class UnauthenticatedOutageValidateAccountViewController: KeyboardAvoidingSticky
             let alertVc = UIAlertController(title: errTitle, message: errMessage, preferredStyle: .alert)
             
             if errTitle == NSLocalizedString("Cut for non pay", comment: "") {
-                alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: nil))
+                alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
                 //alertVc.addAction(UIAlertAction(title: NSLocalizedString("Pay Bill", comment: ""), style: .default, handler: { [weak self] _ in
                   //  let storyboard = UIStoryboard(name: "Login", bundle: nil)
                   //  let landingVC = storyboard.instantiateViewController(withIdentifier: "landingViewController")
