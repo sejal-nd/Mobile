@@ -314,7 +314,9 @@ class StormModeHomeViewController: AccountPickerViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
         FirebaseUtility.logScreenView(.stormModeHomeLandingView(className: self.className))
+        
         navigationController?.setNavigationBarHidden(true, animated: true)
         
     }
