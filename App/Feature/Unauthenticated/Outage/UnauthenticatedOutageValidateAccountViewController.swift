@@ -189,18 +189,18 @@ class UnauthenticatedOutageValidateAccountViewController: KeyboardAvoidingSticky
                 self.performSegue(withIdentifier: "outageValidateAccountResultSegue", sender: self)
             }
         }, onError: { errTitle, errMessage in
-            guard let self = self else { return }
+           // guard let self = self else { return }
             LoadingView.hide()
             
             let alertVc = UIAlertController(title: errTitle, message: errMessage, preferredStyle: .alert)
             
             if errTitle == NSLocalizedString("Cut for non pay", comment: "") {
                 alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-               // alertVc.addAction(UIAlertAction(title: NSLocalizedString("Pay Bill", comment: ""), style: .default, handler: { [weak self] _ in
-                 //   let storyboard = UIStoryboard(name: "Login", bundle: nil)
+                //alertVc.addAction(UIAlertAction(title: NSLocalizedString("Pay Bill", comment: ""), style: .default, handler: { [weak self] _ in
+                  //  let storyboard = UIStoryboard(name: "Login", bundle: nil)
                    // let landingVC = storyboard.instantiateViewController(withIdentifier: "landingViewController")
                    // let loginVC = storyboard.instantiateViewController(withIdentifier: "loginViewController")
-                    //self?.navigationController?.setViewControllers([landingVC, loginVC], animated: false)
+                   // self?.navigationController?.setViewControllers([landingVC, loginVC], animated: false)
                 //}))
             } else if let phoneRange = errMessage.range(of:"1-\\d{3}-\\d{3}-\\d{4}", options: .regularExpression) {
                 // use regular expression to check the US phone number format: start with 1, then -, then 3 3 4 digits grouped together that separated by dash
