@@ -73,7 +73,7 @@ public enum NetworkingLayer {
         var retryCount = 3
         
         // Check refresh token
-        if router.apiAccess == .auth && UserSession.isRefreshTokenExpired && Configuration.shared.environmentName != .aut {
+        if router.apiAccess == .auth && UserSession.isTokenExpired && UserSession.isRefreshTokenExpired && Configuration.shared.environmentName != .aut {
             // Refresh expired
             Log.error("Refresh Token Expired... Logging user out...")
             
