@@ -221,7 +221,7 @@ class HomeOutageCardView: UIView {
                         if error == .inactive || error == .finaled {
                             self?.errorLabel.text = NSLocalizedString("Outage Status and Outage Reporting are not available for this account.", comment: "")
                         } else if error == .noPay {
-                            self?.errorLabel.text = NSLocalizedString("Our records indicate that you have been cut for non-payment. If you wish to restore your power, please call PECO at 1-888-480-1533", comment: "")
+                            self?.errorLabel.text = NSLocalizedString("Our records indicate that you have been cut for non-payment. If you wish to restore your power, please make a payment.", comment: "")
                         } else {
                             self?.errorLabel.text = NSLocalizedString("Outage Status and Outage Reporting are not available for this account.", comment: "")
                         }
