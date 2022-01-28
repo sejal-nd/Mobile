@@ -16,7 +16,8 @@ public struct B2CTokenRequest: Encodable {
                 username: String? = nil,
                 password: String? = nil,
                 code: String? = nil,
-                refreshToken: String? = nil) {
+                refreshToken: String? = nil,
+                redirectURI: String? = nil) {
         if let scope = scope {
             self.scope = scope
         }
@@ -32,7 +33,7 @@ public struct B2CTokenRequest: Encodable {
     var clientID = Configuration.shared.b2cClientID
     var clientSecret = Configuration.shared.clientSecret
     var scope = Configuration.shared.b2cScope
-    var redirectURI = Configuration.shared.b2cRedirectURI
+    var redirectURI: String?
     var grantType: String?
     var responseType: String?
     var username: String?

@@ -262,8 +262,11 @@ struct Configuration {
     }
     
     var b2cAuthEndpoint: String {
-        //"\(b2cHost).exeloncorp.com"
-        "\(b2cTenant).b2clogin.com"
+        if FeatureFlagUtility.shared.bool(forKey: .isPkceAuthentication) {
+            return "\(b2cTenant).b2clogin.com"
+        } else {
+            return "\(b2cHost).exeloncorp.com"
+        }
     }
     
     var b2cOpowerAuthEndpoint: String {
