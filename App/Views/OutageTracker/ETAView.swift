@@ -24,6 +24,7 @@ class ETAView: UIView {
     weak var delegate: ETAViewDelegate?
     var tracker: OutageTracker!
     var status: OutageTracker.Status!
+    let viewModel = ETAViewModel()
     
     var isStormMode: Bool {
         return StormModeStatus.shared.isOn
@@ -38,16 +39,6 @@ class ETAView: UIView {
         didSet {
             etaInfoButtonView.isHidden = hideInfoButtonView
         }
-    }
-    
-    var etaDetail: String {
-        return NSLocalizedString("The current estimate is based on outage restoration history. ETRs are updated as new information becomes available.", comment: "")
-    }
-    var etaDetailUnavailable: String {
-        return NSLocalizedString("BGE team members are actively working to restore power and will provide an updated ETR as soon as new information becomes available.", comment: "")
-    }
-    var etaOnSiteDetail: String {
-        return NSLocalizedString("The current ETR is up-to-date based on the latest reports from the repair crew. ETRs are updated as new information becomes available.", comment: "")
     }
     
     func configure(tracker: OutageTracker, status: OutageTracker.Status) {
@@ -84,12 +75,28 @@ class ETAView: UIView {
     }
     
     func etaDetails() -> String {
-        var details = status == .onSite ? etaOnSiteDetail : etaDetail
+        var details: String = ""
+        
+        if etaDateTime() == "Currently Unavailable" {
+            let overrideOn = tracker.etrOverrideOn?.uppercased() == "Y"
+            details = overrideOn ? viewModel.etaDetailOverrideOn : viewModel.etaDetailUnavailable
+        } else {
+            if status == .onSite {
+                details = viewModel.etaOnSiteDetail
+            } else {
+                let type = tracker.etrType?.uppercased() ?? ""
+                switch type {
+                    case "G":
+                        details = viewModel.etaDetailGlobal
+                    case "F":
+                        details = viewModel.etaDetailFeeder
+                    default:
+                        details = viewModel.etaDetail
+                }
+            }
+        }
         if !details.isEmpty {
             hideUpdatedView = hideETAUpdatedIndicator(detailText: details)
-        }
-        if etaDateTime() == "Currently Unavailable" {
-            details = etaDetailUnavailable
         }
         return details
     }
@@ -117,14 +124,18 @@ class ETAView: UIView {
     }
     
     func etaCause() -> String {
-        guard let cause = tracker.cause?.lowercased(), !cause.isEmpty, cause != "none" else {
+        guard let cause = tracker.cause, !cause.isEmpty else {
             return ""
         }
-        return NSLocalizedString("The outage was caused by \(cause).", comment: "")
+        guard let key = viewModel.causes[cause], let causeText = viewModel.causeText[key] else {
+            return ""
+        }
+        
+        return NSLocalizedString(causeText, comment: "")
     }
     
     func hideETAUpdatedIndicator(detailText: String) -> Bool {
-        if status == OutageTracker.Status.none || status == .reported {
+        if status == OutageTracker.Status.none || status == OutageTracker.Status.restored {
             clearETA()
             return true
         }
@@ -133,13 +144,18 @@ class ETAView: UIView {
         // check for changes in ETA to show updated pill
         let dateTime = defaults.object(forKey: "etaDateTime") as? String ?? ""
         let cause = defaults.object(forKey: "etaCause") as? String ?? ""
-        let details = defaults.object(forKey: "etaDetail") as? String ?? etaDetail
+        let details = defaults.object(forKey: "etaDetail") as? String ?? detailText
         
         if dateTime != etaDateTime() || cause != etaCause() || details != detailText {
             // save new values
             defaults.set(etaDateTime(), forKey: "etaDateTime")
             defaults.set(etaCause(), forKey: "etaCause")
             defaults.set(detailText, forKey: "etaDetail")
+            
+            if dateTime.isEmpty && cause.isEmpty {
+                // first time
+                return true
+            }
             
             return false
         } else {
@@ -187,4 +203,8 @@ class ETAView: UIView {
         etaUpdatedView.isHidden = true
     }
 
+}
+
+extension ETAView {
+    
 }

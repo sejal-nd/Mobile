@@ -28,14 +28,14 @@ class OutageTrackerViewModel {
         return events
     }
     var neighborCount: String {
-        // todo - this field is missing
-        return NSLocalizedString("No Data", comment: "")
-    }
-    var outageCount: String {
         guard let count = outageTracker.value?.customersOutOnOutage else {
             return "No Data"
         }
         return NSLocalizedString(count, comment: "")
+    }
+    var outageCount: String {
+        // todo - this field is missing
+        return NSLocalizedString("No Data", comment: "")
     }
     var isActiveOutage: Bool {
         // restored state shows as no longer active but may have tracker data

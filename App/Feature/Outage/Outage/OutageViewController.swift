@@ -479,6 +479,7 @@ extension OutageViewController: AccountPickerDelegate {
         configureState(.loading)
         loadOutageStatus()
         clearTimestampForReportedOutage()
+        viewModel.clearETR()
     }
 }
 

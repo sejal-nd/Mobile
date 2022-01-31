@@ -81,6 +81,7 @@
 		21E45FC7272B367C0009E25E /* MoveFinalMailingAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E45FC4272B367B0009E25E /* MoveFinalMailingAddressViewController.swift */; };
 		21E45FC9272B38D00009E25E /* UIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E45FC8272B38D00009E25E /* UIAlertController.swift */; };
 		21E797F92718541C0063CB84 /* StopLandingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E797F82718541C0063CB84 /* StopLandingViewModel.swift */; };
+		21FE238727A3300A004D1ADE /* ETAViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FE238627A3300A004D1ADE /* ETAViewModel.swift */; };
 		21FFBD222722D35D002F5009 /* ReviewMoveServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FFBD202722D35C002F5009 /* ReviewMoveServiceViewController.swift */; };
 		21FFBD232722D35D002F5009 /* ReviewMoveServiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FFBD212722D35C002F5009 /* ReviewMoveServiceViewModel.swift */; };
 		224EFF18216E4E67008A0E40 /* HomeAppointmentCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224EFF17216E4E67008A0E40 /* HomeAppointmentCardView.swift */; };
@@ -1337,6 +1338,7 @@
 		21E45FC4272B367B0009E25E /* MoveFinalMailingAddressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoveFinalMailingAddressViewController.swift; sourceTree = "<group>"; };
 		21E45FC8272B38D00009E25E /* UIAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIAlertController.swift; sourceTree = "<group>"; };
 		21E797F82718541C0063CB84 /* StopLandingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopLandingViewModel.swift; sourceTree = "<group>"; };
+		21FE238627A3300A004D1ADE /* ETAViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETAViewModel.swift; sourceTree = "<group>"; };
 		21FFBD202722D35C002F5009 /* ReviewMoveServiceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewMoveServiceViewController.swift; sourceTree = "<group>"; };
 		21FFBD212722D35C002F5009 /* ReviewMoveServiceViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewMoveServiceViewModel.swift; sourceTree = "<group>"; };
 		224EFF17216E4E67008A0E40 /* HomeAppointmentCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAppointmentCardView.swift; sourceTree = "<group>"; };
@@ -3133,6 +3135,7 @@
 				216AE558278E4B3E0018E220 /* StatusTextView.swift */,
 				216AE55A278E4B4E0018E220 /* StatusTextView.xib */,
 				216AE55E278E5A7E0018E220 /* ETAView.swift */,
+				21FE238627A3300A004D1ADE /* ETAViewModel.swift */,
 				216AE560278E5A8C0018E220 /* ETAView.xib */,
 				21C66E1F2791EF7F00DC1A07 /* SurveyView.swift */,
 				21C66E212791EF8E00DC1A07 /* SurveyView.xib */,
@@ -7438,6 +7441,7 @@
 				82A18EA71EB919C200BE9F21 /* ContactUsViewModel.swift in Sources */,
 				675F4C3C24AB828100A828F9 /* SSODataResponse.swift in Sources */,
 				675F4BEE24AB828100A828F9 /* AutoPayEnrollBGERequest.swift in Sources */,
+				21FE238727A3300A004D1ADE /* ETAViewModel.swift in Sources */,
 				9C7774852368DB5C009AF0F0 /* GameHomeViewController.swift in Sources */,
 				21852AFD272E9A1900C0A10E /* MockModel.swift in Sources */,
 				B5AC06791E51763200BBA4ED /* Configuration.swift in Sources */,

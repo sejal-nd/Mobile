@@ -108,6 +108,13 @@ class OutageViewModel {
         }
     }
     
+    func clearETR() {
+        let defaults = UserDefaults.standard
+        defaults.removeObject(forKey: "etaDateTime")
+        defaults.removeObject(forKey: "etaCause")
+        defaults.removeObject(forKey: "etaDetail")
+    }
+    
     var reportedOutage: ReportedOutageResult? {
         if let accountNumber = accountNumber {
             return OutageService.getReportedOutageResult(accountNumber: accountNumber)
