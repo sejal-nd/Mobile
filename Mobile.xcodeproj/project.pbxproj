@@ -476,6 +476,7 @@
 		676434D425AF6D7200DA6448 /* Bundle+Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = 676434D325AF6D7200DA6448 /* Bundle+Version.swift */; };
 		676434DD25AF702800DA6448 /* ProjectURLSuffix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 676434DC25AF702800DA6448 /* ProjectURLSuffix.swift */; };
 		676434E425AF703C00DA6448 /* ProjectURLSuffix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 676434DC25AF702800DA6448 /* ProjectURLSuffix.swift */; };
+		676DF27E27A2F54000185DB5 /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 676DF27D27A2F54000185DB5 /* splash.json */; };
 		6779590125E44B9D00A08CC2 /* KeychainKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6779590025E44B9D00A08CC2 /* KeychainKeys.swift */; };
 		6779590225E44B9D00A08CC2 /* KeychainKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6779590025E44B9D00A08CC2 /* KeychainKeys.swift */; };
 		6781BCC4271F5D0100FBCD5F /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6781BCC2271F5D0100FBCD5F /* SafariView.swift */; };
@@ -504,9 +505,6 @@
 		679C6EBE24D1EBCA00535DE7 /* AppointmentService+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679C6EBD24D1EBCA00535DE7 /* AppointmentService+Rx.swift */; };
 		679C6ED824D1F0A800535DE7 /* Appointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679C6ED724D1F0A800535DE7 /* Appointment.swift */; };
 		679C6EE524D1FE7B00535DE7 /* WeatherService+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679C6EE424D1FE7B00535DE7 /* WeatherService+Rx.swift */; };
-		679CC725250003B800A46BBE /* splash-FlavorDPL.json in Resources */ = {isa = PBXBuildFile; fileRef = 679CC724250003B800A46BBE /* splash-FlavorDPL.json */; };
-		679CC727250003C000A46BBE /* splash-FlavorACE.json in Resources */ = {isa = PBXBuildFile; fileRef = 679CC726250003C000A46BBE /* splash-FlavorACE.json */; };
-		679CC729250003C900A46BBE /* splash-FlavorPEPCO.json in Resources */ = {isa = PBXBuildFile; fileRef = 679CC728250003C900A46BBE /* splash-FlavorPEPCO.json */; };
 		679CC72D2500041F00A46BBE /* landing_video-FlavorACE.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 679CC72A2500041E00A46BBE /* landing_video-FlavorACE.mp4 */; };
 		679CC72E2500041F00A46BBE /* landing_video-FlavorDPL.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 679CC72B2500041E00A46BBE /* landing_video-FlavorDPL.mp4 */; };
 		67A18B7324CA0EA100F7A77B /* ApigeeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A18B7224CA0EA100F7A77B /* ApigeeError.swift */; };
@@ -1388,7 +1386,6 @@
 		30353FC324D292C10060DE5D /* sm_outage_loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sm_outage_loading.json; sourceTree = "<group>"; };
 		30636F0724C82F2F00CCBFAE /* OpcoIdentityCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpcoIdentityCardView.swift; sourceTree = "<group>"; };
 		30636F0924C82F4200CCBFAE /* OpcoIdentityCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OpcoIdentityCardView.xib; sourceTree = "<group>"; };
-		3090A636247E426400815EA1 /* splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
 		3090A63E247F8EFA00815EA1 /* EditAccountNickNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAccountNickNameViewController.swift; sourceTree = "<group>"; };
 		30B0F53825C918420078D2AF /* PeakEnergySavingsHistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeakEnergySavingsHistoryViewController.swift; sourceTree = "<group>"; };
 		30B0F53925C918430078D2AF /* PeakSavingsHistoryViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeakSavingsHistoryViewModel.swift; sourceTree = "<group>"; };
@@ -1828,6 +1825,7 @@
 		676434CA25AF692600DA6448 /* InfoLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoLabel.swift; sourceTree = "<group>"; };
 		676434D325AF6D7200DA6448 /* Bundle+Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Version.swift"; sourceTree = "<group>"; };
 		676434DC25AF702800DA6448 /* ProjectURLSuffix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectURLSuffix.swift; sourceTree = "<group>"; };
+		676DF27D27A2F54000185DB5 /* splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
 		6779590025E44B9D00A08CC2 /* KeychainKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainKeys.swift; sourceTree = "<group>"; };
 		6781BCC2271F5D0100FBCD5F /* SafariView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
 		6781BCC3271F5D0100FBCD5F /* SafariContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafariContainerView.swift; sourceTree = "<group>"; };
@@ -1853,9 +1851,6 @@
 		679C6EBD24D1EBCA00535DE7 /* AppointmentService+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppointmentService+Rx.swift"; sourceTree = "<group>"; };
 		679C6ED724D1F0A800535DE7 /* Appointment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appointment.swift; sourceTree = "<group>"; };
 		679C6EE424D1FE7B00535DE7 /* WeatherService+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WeatherService+Rx.swift"; sourceTree = "<group>"; };
-		679CC724250003B800A46BBE /* splash-FlavorDPL.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "splash-FlavorDPL.json"; sourceTree = "<group>"; };
-		679CC726250003C000A46BBE /* splash-FlavorACE.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "splash-FlavorACE.json"; sourceTree = "<group>"; };
-		679CC728250003C900A46BBE /* splash-FlavorPEPCO.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "splash-FlavorPEPCO.json"; sourceTree = "<group>"; };
 		679CC72A2500041E00A46BBE /* landing_video-FlavorACE.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "landing_video-FlavorACE.mp4"; sourceTree = "<group>"; };
 		679CC72B2500041E00A46BBE /* landing_video-FlavorDPL.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "landing_video-FlavorDPL.mp4"; sourceTree = "<group>"; };
 		67A18B7224CA0EA100F7A77B /* ApigeeError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApigeeError.swift; sourceTree = "<group>"; };
@@ -1903,7 +1898,6 @@
 		691CC720EAFE43EE90B7F2BD /* Pods-EUMobileUITests.ace-rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobileUITests.ace-rc.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobileUITests/Pods-EUMobileUITests.ace-rc.xcconfig"; sourceTree = "<group>"; };
 		697855185BBFD538A59DA8A8 /* Pods-EUMobile-Watch Extension.bge-aut.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch Extension.bge-aut.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch Extension/Pods-EUMobile-Watch Extension.bge-aut.xcconfig"; sourceTree = "<group>"; };
 		69A6BDCE169D1F38DD08BD97 /* Pods-EUMobileUITests.testing-dpl.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobileUITests.testing-dpl.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobileUITests/Pods-EUMobileUITests.testing-dpl.xcconfig"; sourceTree = "<group>"; };
-		6A4FD46F61FB1F534F49F74E /* splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
 		6AA35A7B74F9EF1C134D8787 /* Pods-EUMobile-Watch Extension.automation-pepco.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch Extension.automation-pepco.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch Extension/Pods-EUMobile-Watch Extension.automation-pepco.xcconfig"; sourceTree = "<group>"; };
 		6B5C0982B8602EFFCAE08958 /* Pods-EUMobileUnitTests.staging-ace.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobileUnitTests.staging-ace.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobileUnitTests/Pods-EUMobileUnitTests.staging-ace.xcconfig"; sourceTree = "<group>"; };
 		6BD09DCEF20106546296795F /* Pods-EUMobile-Watch Extension.prodbeta-pepco.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch Extension.prodbeta-pepco.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch Extension/Pods-EUMobile-Watch Extension.prodbeta-pepco.xcconfig"; sourceTree = "<group>"; };
@@ -3229,29 +3223,11 @@
 			path = OpcoIdentityCardView;
 			sourceTree = "<group>";
 		};
-		3090A631247E410F00815EA1 /* ACE */ = {
-			isa = PBXGroup;
-			children = (
-				679CC726250003C000A46BBE /* splash-FlavorACE.json */,
-			);
-			path = ACE;
-			sourceTree = "<group>";
-		};
-		3090A632247E411F00815EA1 /* DPL */ = {
-			isa = PBXGroup;
-			children = (
-				679CC724250003B800A46BBE /* splash-FlavorDPL.json */,
-			);
-			path = DPL;
-			sourceTree = "<group>";
-		};
 		3090A633247E412E00815EA1 /* PEPCO */ = {
 			isa = PBXGroup;
 			children = (
 				30353FC324D292C10060DE5D /* sm_outage_loading.json */,
 				30353FBF24D1831C0060DE5D /* sm_outage.json */,
-				679CC728250003C900A46BBE /* splash-FlavorPEPCO.json */,
-				3090A636247E426400815EA1 /* splash.json */,
 			);
 			path = PEPCO;
 			sourceTree = "<group>";
@@ -5177,9 +5153,8 @@
 		8FD5AE971E54EA8C003F640D /* Lottie Animations */ = {
 			isa = PBXGroup;
 			children = (
+				676DF27D27A2F54000185DB5 /* splash.json */,
 				3090A633247E412E00815EA1 /* PEPCO */,
-				3090A632247E411F00815EA1 /* DPL */,
-				3090A631247E410F00815EA1 /* ACE */,
 				E8FE30AD1E7875E5009D28B7 /* BGE */,
 				E8FE30AE1E7875EA009D28B7 /* ComEd */,
 				E8FE30AF1E7875F0009D28B7 /* PECO */,
@@ -5798,7 +5773,6 @@
 				359BB27C214834BA00FBAD83 /* outage-FlavorPECO.json */,
 				359BB2822148519D00FBAD83 /* sm_outage_loading-FlavorPECO.json */,
 				359BB26A2146F08200FBAD83 /* sm_outage-FlavorPECO.json */,
-				6A4FD46F61FB1F534F49F74E /* splash.json */,
 			);
 			path = PECO;
 			sourceTree = "<group>";
@@ -6094,6 +6068,7 @@
 				67A986D524FD419700BD46E7 /* GoogleService-Info-BETA-FlavorACE.plist in Resources */,
 				B0728E49215C149A0007C608 /* AlertPreferencesTableViewCell.xib in Resources */,
 				675F4DBC24AB828200A828F9 /* AlertPreferencesLoadMock.json in Resources */,
+				676DF27E27A2F54000185DB5 /* splash.json in Resources */,
 				4A398A48271EAD4100FA7B89 /* AccountVerification.json in Resources */,
 				67A986DA24FD419A00BD46E7 /* GoogleService-Info-RC-FlavorDPL.plist in Resources */,
 				B0B12602221B0D6C00AF4DC4 /* peak_rewards_overrides.json in Resources */,
@@ -6108,7 +6083,6 @@
 				B01FF0AF221DFC77008CA222 /* autopay_info.json in Resources */,
 				E80043321E65FF70005CF531 /* OpenSans-Italic.ttf in Resources */,
 				67A986A124F9691600BD46E7 /* GoogleService-Info-RC-FlavorPECO.plist in Resources */,
-				679CC729250003C900A46BBE /* splash-FlavorPEPCO.json in Resources */,
 				B0882CA6210B926B00EB756B /* UsageToolCardView.xib in Resources */,
 				675F4DE024AB828200A828F9 /* EnergyTipsMock.json in Resources */,
 				675F4D4A24AB828200A828F9 /* AlertBannerMock.json in Resources */,
@@ -6120,7 +6094,6 @@
 				E800432F1E65FF70005CF531 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
 				9C34D746239EE92400DF7FE2 /* GameTasks.json in Resources */,
 				67A986A424F9693300BD46E7 /* Appt_Complete-FlavorPECO.json in Resources */,
-				679CC725250003B800A46BBE /* splash-FlavorDPL.json in Resources */,
 				675F4D6E24AB828200A828F9 /* BudgetBillingMock.json in Resources */,
 				215BD78B275ACE4B0011F642 /* TrackerStatusView.xib in Resources */,
 				67A9869B24F9691300BD46E7 /* GoogleService-Info-RC-FlavorCOMED.plist in Resources */,
@@ -6290,7 +6263,6 @@
 				358BD21720F8FB2D00DA2012 /* BillImpactView.xib in Resources */,
 				67A986D624FD419700BD46E7 /* GoogleService-Info-RC-FlavorACE.plist in Resources */,
 				9CEE411923722444005A4AD3 /* Game.storyboard in Resources */,
-				679CC727250003C000A46BBE /* splash-FlavorACE.json in Resources */,
 				B089573422175BFE00A97965 /* budget_billing_info.json in Resources */,
 				215D05B727739543009377AC /* SM_ReportedWhite.json in Resources */,
 				9C0EA5B8237DAD2900D1E18F /* buddy_face_happy.json in Resources */,
