@@ -58,12 +58,16 @@ public struct TokenResponse: Decodable {
         
         self.refreshToken = try container.decodeIfPresent(String.self,
                                                           forKey: .refreshToken)
-        if FeatureFlagUtility.shared.bool(forKey: .isB2CAuthentication) {
+        
+        if FeatureFlagUtility.shared.bool(forKey: .isPkceAuthentication) {
             do {
                 self.refreshTokenExpiresIn = try String(container.decodeIfPresent(Int.self, forKey: .refreshTokenExpiresIn) ?? 0)
             } catch DecodingError.typeMismatch {
                 self.refreshTokenExpiresIn = try container.decodeIfPresent(String.self, forKey: .refreshTokenExpiresIn)
             }
+        } else if FeatureFlagUtility.shared.bool(forKey: .isAzureAuthentication) {
+            self.refreshTokenExpiresIn = try container.decodeIfPresent(String.self, forKey: .refreshTokenExpiresIn) ?? "3600"
+
         } else {
             self.refreshTokenExpiresIn = try container.decodeIfPresent(String.self,
                                                                        forKey: .refreshTokenExpiresIn)
