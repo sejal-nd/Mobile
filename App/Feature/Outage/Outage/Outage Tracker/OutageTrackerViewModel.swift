@@ -34,8 +34,10 @@ class OutageTrackerViewModel {
         return NSLocalizedString(count, comment: "")
     }
     var outageCount: String {
-        // todo - this field is missing
-        return NSLocalizedString("No Data", comment: "")
+        guard let count = outageTracker.value?.outageSummary else {
+            return "No Data"
+        }
+        return NSLocalizedString(count, comment: "")
     }
     var isActiveOutage: Bool {
         // restored state shows as no longer active but may have tracker data
