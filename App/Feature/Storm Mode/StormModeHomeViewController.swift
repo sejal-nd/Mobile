@@ -422,10 +422,8 @@ class StormModeHomeViewController: AccountPickerViewController {
             powerOnContainer.isHidden = true
             progressAnimationView.configure(withStatus: viewModel.status)
             
-            if let tracker = viewModel.outageTracker.value {
-                statusTextView.isHidden = false
-                statusTextView.configure(tracker: tracker, status: viewModel.status)
-            }
+            statusTextView.isHidden = false
+            statusTextView.configure(tracker: viewModel.outageTracker.value, status: viewModel.status)
             
             if viewModel.status != .none {
                 etaContainerView.isHidden = false

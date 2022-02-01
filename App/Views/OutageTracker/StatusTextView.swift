@@ -22,11 +22,11 @@ class StatusTextView: UIView {
     var isStormMode: Bool {
         return StormModeStatus.shared.isOn
     }
-    var tracker: OutageTracker!
+    var outageTracker: OutageTracker?
     var status: OutageTracker.Status!
     
-    func configure(tracker: OutageTracker, status: OutageTracker.Status) {
-        self.tracker = tracker
+    func configure(tracker: OutageTracker?, status: OutageTracker.Status) {
+        self.outageTracker = tracker
         self.status = status
         
         statusTitleLabel.text = getTitle()
@@ -46,6 +46,8 @@ class StatusTextView: UIView {
             statusTitleLabel.textAlignment = .center
             titleLeadingConstraint.constant = 40
             titleTrailingConstraint.constant = 39
+            detailLeadingConstraint.constant = 40
+            detailTrailingConstraint.constant = 40
         }
         
         let textColor = isStormMode ? UIColor.white : UIColor.deepGray
@@ -54,6 +56,9 @@ class StatusTextView: UIView {
     }
     
     private func getTitle() -> String {
+        guard let tracker = self.outageTracker else {
+            return StatusTitleString.none
+        }
         if status == .enRoute && tracker.isCrewDiverted == true {
             return StatusTitleString.enRouteRerouted
         }
@@ -80,6 +85,9 @@ class StatusTextView: UIView {
     }
     
     private func getDetail() -> String {
+        guard let tracker = self.outageTracker else {
+            return StatusDetailString.none
+        }
         var details = ""
         let isDefinitive = tracker.meterStatus?.uppercased() == "ON"
         
@@ -107,6 +115,9 @@ class StatusTextView: UIView {
     }
     
     func timeToRestore() -> TimeToRestore {
+        guard let tracker = self.outageTracker else {
+            return .none
+        }
         var restoreTime: TimeToRestore = .none
         let isDefinitive = tracker.meterStatus?.uppercased() == "ON"
         let events = tracker.eventSet ?? []
