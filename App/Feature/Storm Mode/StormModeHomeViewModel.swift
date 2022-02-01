@@ -206,7 +206,7 @@ class StormModeHomeViewModel {
             return true
         } else {
             guard let tracker = outageTracker.value else {
-                return false
+                return true
             }
             return tracker.isOutageValid
         }
