@@ -25,6 +25,7 @@ struct OutageTracker: Codable {
     let meterStatus: String?
     let cause: String?
     let customersOutOnOutage: String?
+    let outageSummary: String?
     let eventSet: [EventSet]?
     let isCrewLeftSite: Bool?
     let isCrewDiverted: Bool?
@@ -47,6 +48,7 @@ struct OutageTracker: Codable {
         case meterStatus
         case cause
         case customersOutOnOutage
+        case outageSummary
         case eventSet
         case isCrewLeftSite
         case isCrewDiverted

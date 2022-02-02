@@ -64,14 +64,14 @@ class StormModeHomeViewController: AccountPickerViewController {
     }
     @IBOutlet weak var phone1Button: ButtonControl! {
         didSet {
-            phone1Button.roundCorners(.allCorners, radius: 10)
+            phone1Button.roundCorners(.allCorners, radius: 12)
             phone1Button.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 3)
         }
     }
     @IBOutlet weak var phone1Label: UILabel!
     @IBOutlet weak var phone2Button: ButtonControl! {
         didSet {
-            phone2Button.roundCorners(.allCorners, radius: 10)
+            phone2Button.roundCorners(.allCorners, radius: 12)
             phone2Button.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 3)
             phone2Button.isHidden = Configuration.shared.opco != .bge
         }
@@ -89,14 +89,14 @@ class StormModeHomeViewController: AccountPickerViewController {
     }
     @IBOutlet weak var phone3Button: ButtonControl! {
         didSet {
-            phone3Button.roundCorners(.allCorners, radius: 10)
+            phone3Button.roundCorners(.allCorners, radius: 12)
             phone3Button.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 3)
         }
     }
     @IBOutlet weak var phone3Label: UILabel!
     @IBOutlet weak var phone4Button: ButtonControl! {
         didSet {
-            phone4Button.roundCorners(.allCorners, radius: 10)
+            phone4Button.roundCorners(.allCorners, radius: 12)
             phone4Button.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 3)
         }
     }
@@ -422,10 +422,8 @@ class StormModeHomeViewController: AccountPickerViewController {
             powerOnContainer.isHidden = true
             progressAnimationView.configure(withStatus: viewModel.status)
             
-            if let tracker = viewModel.outageTracker.value {
-                statusTextView.isHidden = false
-                statusTextView.configure(tracker: tracker, status: viewModel.status)
-            }
+            statusTextView.isHidden = false
+            statusTextView.configure(tracker: viewModel.outageTracker.value, status: viewModel.status)
             
             if viewModel.status != .none {
                 etaContainerView.isHidden = false
