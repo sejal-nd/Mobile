@@ -170,7 +170,7 @@ class OutageViewController: AccountPickerViewController {
     }
     
     private func updateView() {
-        if Configuration.shared.opco == .bge {
+        if Configuration.shared.opco == .bge && viewModel.isUserAuthenticated {
             guard let outageTrackerVC = outageTrackerViewController else {
                 return
             }
