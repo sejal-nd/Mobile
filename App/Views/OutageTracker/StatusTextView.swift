@@ -105,7 +105,7 @@ class StatusTextView: UIView {
                     details = String.localizedStringWithFormat(StatusDetailString.partialRestoration, count)
                 }
             } else if status == .reported {
-                if tracker.isCrewDiverted == true {
+                if tracker.isMultipleOutage == true {
                     details = StatusDetailString.crewLeftSite
                 }
             }

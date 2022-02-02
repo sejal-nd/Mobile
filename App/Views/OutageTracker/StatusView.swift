@@ -77,6 +77,7 @@ class StatusView: UIView {
                 checkmarkImageView.isHidden = true
             case .inProgress:
                 innerView.backgroundColor = isPaused ? emptyColor : fillColor
+                outerView.backgroundColor = emptyColor
                 outerView.isHidden = false
                 checkmarkImageView.isHidden = true
                 statusTitleLabel.font = OpenSans.bold.of(size: 15)
@@ -95,7 +96,6 @@ class StatusView: UIView {
         innerView.roundCorners(.allCorners, radius: innerViewConstant/2, borderColor: fillColor, borderWidth: 2.0)
         
         outerView.roundCorners(.allCorners, radius: 17, borderColor: fillColor, borderWidth: 2.0)
-        outerView.backgroundColor = isStormMode ? .mediumJungleGreen : .white
         
         let barViewRadius = barView.frame.size.width
         barView.roundCorners(.allCorners, radius: barViewRadius, borderColor: fillColor, borderWidth: 0.0)
