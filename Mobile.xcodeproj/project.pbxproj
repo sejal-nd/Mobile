@@ -97,7 +97,7 @@
 		282B4F7C26E7817F00ACD33C /* ISUMMove.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 282B4F7B26E7817F00ACD33C /* ISUMMove.storyboard */; };
 		28C71DE326FB2961006148AA /* FinalMailingAddressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C71DE226FB2961006148AA /* FinalMailingAddressViewModel.swift */; };
 		2F86FB791F2661D900F1A55A /* BillingHistoryDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F86FB781F2661D900F1A55A /* BillingHistoryDetailsViewModel.swift */; };
-		2FA5D85F1F17D2A300A8B16B /* (null) in Sources */ = {isa = PBXBuildFile; };
+		2FA5D85F1F17D2A300A8B16B /* BuildFile in Sources */ = {isa = PBXBuildFile; };
 		2FA5D8641F17D88500A8B16B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA5D8631F17D88500A8B16B /* HomeViewController.swift */; };
 		301DE1F624BF0A7300992CA4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06C71E521B3200BBA4ED /* Assets.xcassets */; };
 		30636F0824C82F2F00CCBFAE /* OpcoIdentityCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30636F0724C82F2F00CCBFAE /* OpcoIdentityCardView.swift */; };
@@ -203,7 +203,7 @@
 		35F9DD6D2333C8A100AAA2B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7BD21907F2E00BA13C6 /* Assets.xcassets */; };
 		35F9DD7C2333D14D00AAA2B2 /* Date+DueBy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7EB2190804E00BA13C6 /* Date+DueBy.swift */; };
 		35F9DD842333D2B800AAA2B2 /* EUMobile-Watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 35F9DD2F2333C34100AAA2B2 /* EUMobile-Watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		35F9DD932333D83F00AAA2B2 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		35F9DD932333D83F00AAA2B2 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
 		35F9DDA22333D87E00AAA2B2 /* AccountsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D340901EBA6A8700BA2D42 /* AccountsStore.swift */; };
 		35F9DDA32333D88400AAA2B2 /* ReportedOutagesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B085C44620FFD49400CE0893 /* ReportedOutagesStore.swift */; };
 		35F9DDA42333D88800AAA2B2 /* StormModeStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0649A5E214834380041B299 /* StormModeStatus.swift */; };
@@ -548,7 +548,7 @@
 		67A986E024FD41A100BD46E7 /* Assets-FlavorPEPCO.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBD0924535EE6006CD6EB /* Assets-FlavorPEPCO.xcassets */; };
 		67A986E124FD41A100BD46E7 /* Assets-FlavorDPL.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBD872457389E006CD6EB /* Assets-FlavorDPL.xcassets */; };
 		67A986E224FD41A100BD46E7 /* Assets-FlavorACE.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBD8A245738B8006CD6EB /* Assets-FlavorACE.xcassets */; };
-		67A9873324FD4C5F00BD46E7 /* (null) in Resources */ = {isa = PBXBuildFile; };
+		67A9873324FD4C5F00BD46E7 /* BuildFile in Resources */ = {isa = PBXBuildFile; };
 		67AE888225BF5274008519B4 /* ProjectTier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AE888125BF5274008519B4 /* ProjectTier.swift */; };
 		67AE888B25BF5C8D008519B4 /* ProjectTier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AE888125BF5274008519B4 /* ProjectTier.swift */; };
 		67D08A962539E41D0047E4C5 /* Assets-FlavorACE.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67D08A922539E4170047E4C5 /* Assets-FlavorACE.xcassets */; };
@@ -578,7 +578,7 @@
 		67D73AE8246C47EF00450B63 /* NoNetworkConnectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67D73AE1246C47EF00450B63 /* NoNetworkConnectionView.xib */; };
 		67D73AF1246C480500450B63 /* BillingHistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67D73AEF246C480500450B63 /* BillingHistoryTableViewCell.xib */; };
 		67D73AF7246C480500450B63 /* BillingHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D73AF0246C480500450B63 /* BillingHistoryTableViewCell.swift */; };
-		67D73B00246C72F100450B63 /* (null) in Resources */ = {isa = PBXBuildFile; };
+		67D73B00246C72F100450B63 /* BuildFile in Resources */ = {isa = PBXBuildFile; };
 		67DDBDBF24646E38006CD6EB /* Color+OpCo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67DDBDBE24646E38006CD6EB /* Color+OpCo.swift */; };
 		67E78D892509541A001AB1BD /* landing_video-FlavorPEPCO.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 67E78D882509541A001AB1BD /* landing_video-FlavorPEPCO.mp4 */; };
 		67E78D8B25095439001AB1BD /* landing_video-FlavorPECO.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 67E78D8A25095439001AB1BD /* landing_video-FlavorPECO.mp4 */; };
@@ -1026,12 +1026,12 @@
 		C372B65F275850E600E38F64 /* OutageTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C372B65E275850E600E38F64 /* OutageTracker.swift */; };
 		C372B661275854FA00E38F64 /* OutageTrackerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C372B660275854FA00E38F64 /* OutageTrackerViewModel.swift */; };
 		C38F484F2537D02D00EC87B5 /* PECOReleaseOfInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E873DA641EE8536E00020D1B /* PECOReleaseOfInfoViewController.swift */; };
+		C3943F392799D1B9005E5327 /* PKCEResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3943F382799D1B8005E5327 /* PKCEResult.swift */; };
+		C3943F3A2799D1B9005E5327 /* PKCEResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3943F382799D1B8005E5327 /* PKCEResult.swift */; };
 		C39E1DCE2767F60100569B89 /* OutageTrackerRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39E1DCD2767F60100569B89 /* OutageTrackerRequest.swift */; };
 		C39E1DCF2767F60100569B89 /* OutageTrackerRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39E1DCD2767F60100569B89 /* OutageTrackerRequest.swift */; };
 		C39E1DD127682C4600569B89 /* OutageService+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39E1DD027682C4500569B89 /* OutageService+Rx.swift */; };
 		C39E1DD227682C4600569B89 /* OutageService+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39E1DD027682C4500569B89 /* OutageService+Rx.swift */; };
-		C3943F392799D1B9005E5327 /* PKCEResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3943F382799D1B8005E5327 /* PKCEResult.swift */; };
-		C3943F3A2799D1B9005E5327 /* PKCEResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3943F382799D1B8005E5327 /* PKCEResult.swift */; };
 		C39F2B4D253920C60095A8F1 /* PaymentAmountSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3595B25025328E6E006F7EBC /* PaymentAmountSheetViewController.swift */; };
 		C3B5F38525E97EDA005D3740 /* FeatureFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B5F38425E97EDA005D3740 /* FeatureFlags.swift */; };
 		C3B5F38625E97EDA005D3740 /* FeatureFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B5F38425E97EDA005D3740 /* FeatureFlags.swift */; };
@@ -2380,9 +2380,9 @@
 		C372B65C2758418E00E38F64 /* OutageTrackerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutageTrackerViewController.swift; sourceTree = "<group>"; };
 		C372B65E275850E600E38F64 /* OutageTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutageTracker.swift; sourceTree = "<group>"; };
 		C372B660275854FA00E38F64 /* OutageTrackerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutageTrackerViewModel.swift; sourceTree = "<group>"; };
+		C3943F382799D1B8005E5327 /* PKCEResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKCEResult.swift; sourceTree = "<group>"; };
 		C39E1DCD2767F60100569B89 /* OutageTrackerRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutageTrackerRequest.swift; sourceTree = "<group>"; };
 		C39E1DD027682C4500569B89 /* OutageService+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OutageService+Rx.swift"; sourceTree = "<group>"; };
-		C3943F382799D1B8005E5327 /* PKCEResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKCEResult.swift; sourceTree = "<group>"; };
 		C3B5F38425E97EDA005D3740 /* FeatureFlags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureFlags.swift; sourceTree = "<group>"; };
 		C3B5F38B25E98418005D3740 /* FeatureFlagUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureFlagUtility.swift; sourceTree = "<group>"; };
 		C3B5F39225E98441005D3740 /* FeatureFlagService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureFlagService.swift; sourceTree = "<group>"; };
@@ -5965,7 +5965,7 @@
 				67D5633524EEFAA600852551 /* Assets-FlavorCOMED.xcassets in Resources */,
 				67A986AD24F96CF600BD46E7 /* Assets-FlavorPECO.xcassets in Resources */,
 				67D08A9B2539E4C30047E4C5 /* Assets-FlavorDPL.xcassets in Resources */,
-				67A9873324FD4C5F00BD46E7 /* (null) in Resources */,
+				67A9873324FD4C5F00BD46E7 /* BuildFile in Resources */,
 				67D08A962539E41D0047E4C5 /* Assets-FlavorACE.xcassets in Resources */,
 				35F9DD672333C85B00AAA2B2 /* README.md in Resources */,
 				35F9DD5C2333C45300AAA2B2 /* Assets-FlavorBGE.xcassets in Resources */,
@@ -5993,7 +5993,7 @@
 				35F9DD5D2333C45900AAA2B2 /* Assets-FlavorBGE.xcassets in Resources */,
 				C338282824E30B0600F133C5 /* PeakRewardsSummaryMock.json in Resources */,
 				67D08A9C2539E4C30047E4C5 /* Assets-FlavorDPL.xcassets in Resources */,
-				67D73B00246C72F100450B63 /* (null) in Resources */,
+				67D73B00246C72F100450B63 /* BuildFile in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6483,10 +6483,10 @@
 				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 				"${BUILT_PRODUCTS_DIR}/zxcvbn-ios/zxcvbn_ios.framework",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ForeSee/Core/ForeSee.framework/ForeSee",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ForeSee/Core/ForeSeeUtilities.framework/ForeSeeUtilities",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ForeSee/Core/IngestionLogger.framework/IngestionLogger",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ForeSee/ForeSeeFeedback/ForeSeeFeedback.framework/ForeSeeFeedback",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ForeSee/ForeSee.framework/ForeSee",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ForeSeeUtilities/ForeSeeUtilities.framework/ForeSeeUtilities",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/IngestionLogger/IngestionLogger.framework/IngestionLogger",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ForeSeeFeedback/ForeSeeFeedback.framework/ForeSeeFeedback",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -6565,10 +6565,10 @@
 				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 				"${BUILT_PRODUCTS_DIR}/zxcvbn-ios/zxcvbn_ios.framework",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ForeSee/Core/ForeSee.framework/ForeSee",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ForeSee/Core/ForeSeeUtilities.framework/ForeSeeUtilities",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ForeSee/Core/IngestionLogger.framework/IngestionLogger",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ForeSee/ForeSeeFeedback/ForeSeeFeedback.framework/ForeSeeFeedback",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ForeSee/ForeSee.framework/ForeSee",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ForeSeeUtilities/ForeSeeUtilities.framework/ForeSeeUtilities",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/IngestionLogger/IngestionLogger.framework/IngestionLogger",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ForeSeeFeedback/ForeSeeFeedback.framework/ForeSeeFeedback",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -6647,10 +6647,10 @@
 				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 				"${BUILT_PRODUCTS_DIR}/zxcvbn-ios/zxcvbn_ios.framework",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ForeSee/Core/ForeSee.framework/ForeSee",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ForeSee/Core/ForeSeeUtilities.framework/ForeSeeUtilities",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ForeSee/Core/IngestionLogger.framework/IngestionLogger",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ForeSee/ForeSeeFeedback/ForeSeeFeedback.framework/ForeSeeFeedback",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ForeSee/ForeSee.framework/ForeSee",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ForeSeeUtilities/ForeSeeUtilities.framework/ForeSeeUtilities",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/IngestionLogger/IngestionLogger.framework/IngestionLogger",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ForeSeeFeedback/ForeSeeFeedback.framework/ForeSeeFeedback",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -6764,7 +6764,7 @@
 				35F9DDBD2333D91300AAA2B2 /* Optional+Comparable.swift in Sources */,
 				C3055B4D2538F812000DB89C /* PremiseInfo.swift in Sources */,
 				670DE2A426CC15FC00D4C863 /* KeychainSwift.swift in Sources */,
-				35F9DD932333D83F00AAA2B2 /* (null) in Sources */,
+				35F9DD932333D83F00AAA2B2 /* BuildFile in Sources */,
 				C3055BFD2538FB11000DB89C /* ValidateAccountRequest.swift in Sources */,
 				C3055B822538F81B000DB89C /* AccountLookupResults.swift in Sources */,
 				67247F1325D2D8EC0024467D /* SignInView.swift in Sources */,
@@ -7183,7 +7183,7 @@
 				215A1B7C270B1713003A4EE9 /* AddressLookupResponse.swift in Sources */,
 				675F4DF224AB828200A828F9 /* NetworkingLayer.swift in Sources */,
 				4AD0C77E26FCAE9E009DB068 /* USState.swift in Sources */,
-				2FA5D85F1F17D2A300A8B16B /* (null) in Sources */,
+				2FA5D85F1F17D2A300A8B16B /* BuildFile in Sources */,
 				2FA5D8641F17D88500A8B16B /* HomeViewController.swift in Sources */,
 				215A1B76270B12DF003A4EE9 /* AppartmentRequest.swift in Sources */,
 				4AE3468A26EDA8BE00F4155C /* WorkdaysRequest.swift in Sources */,
