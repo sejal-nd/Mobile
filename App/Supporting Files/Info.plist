@@ -38,6 +38,17 @@
 	<string>$(ENVIRONMENT_TIER)</string>
 	<key>Google Analytics ID</key>
 	<string>$(GOOGLE_ANALYTICS_ID)</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>msauth.$(BUNDLE_ID).testing</string>
+				<string>msauth.$(BUNDLE_ID).staging</string>
+				<string>msauth.$(BUNDLE_ID)</string>
+			</array>
+		</dict>
+	</array>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fb</string>

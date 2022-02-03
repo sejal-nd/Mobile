@@ -467,6 +467,19 @@ class HomeViewController: AccountPickerViewController {
         if !UserDefaults.standard.bool(forKey: UserDefaultKeys.isInitialPushNotificationPermissionsWorkflowCompleted) {
             GoogleAnalytics.log(event: .alertsiOSPushInitial)
         }
+        
+        if let editAction = RxNotifications.shared.profileEditAction.value {
+            if editAction == "PasswordUpdate" {
+                self.view.showToast("Password changed")
+                RxNotifications.shared.profileEditAction.accept(nil)
+            }
+        } else if RxNotifications.shared.mfaBypass.value {
+            self.showMFAReminder()
+            RxNotifications.shared.mfaBypass.accept(false)
+        } else if RxNotifications.shared.mfaJustEnabled.value {
+            self.showMFAJustEnabled()
+            RxNotifications.shared.mfaJustEnabled.accept(false)
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -670,7 +683,7 @@ class HomeViewController: AccountPickerViewController {
                 } else if viewController is SFSafariViewController {
                     self?.present(viewController, animated: true, completion: nil)
                     
-                }else {
+                } else {
                     self?.present(viewController, animated: true, completion: nil)
                 }
             })
@@ -900,6 +913,27 @@ class HomeViewController: AccountPickerViewController {
             ])
         
         UserDefaults.standard.setValue(Date.now, forKey: UserDefaultKeys.updatePhoneNumberReminderTimestamp)
+    }
+    
+    func showMFAJustEnabled() {
+        let twoSVEnabledAlert = InfoAlertController(title: NSLocalizedString("You are set up to use Two-Step Verification.", comment: ""),
+                                                    message: NSLocalizedString("Two-Step Verification is now enabled. In the future, we'll notify you whenever someone attempts to log in to your account.", comment: ""),
+                                                    icon: #imageLiteral(resourceName: "ic_confirmation_mini"))
+        
+        self.present(twoSVEnabledAlert, animated: true, completion: nil)
+    }
+    
+    func showMFAReminder() {
+        let action = InfoAlertAction(ctaText: NSLocalizedString("Enable Two-Step Verification", comment: "")) {
+            self.tabBarController?.selectedIndex = 4
+        }
+        
+        let alert = InfoAlertController(title: NSLocalizedString("Two-Step Verification is not enabled.", comment: ""),
+                                        message: NSLocalizedString("To enable this feature or make changes, go to the more tab.", comment: ""),
+                                        action: action,
+                                        buttonType: .system)
+        
+        self.present(alert, animated: true, completion: nil)
     }
 }
 

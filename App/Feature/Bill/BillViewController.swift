@@ -41,7 +41,7 @@ class BillViewController: AccountPickerViewController {
     @IBOutlet weak var billLedgerView: UIView!
     
     @IBOutlet weak var pastDueCurrentBillBox: UIView!
-	// Past Due
+    // Past Due
     @IBOutlet weak var pastDueView: UIView!
     @IBOutlet weak var pastDueLabel: UILabel!
     @IBOutlet weak var pastDueDateLabel: UILabel!
@@ -60,15 +60,15 @@ class BillViewController: AccountPickerViewController {
     @IBOutlet weak var paymentReceivedAmountLabel: UILabel!
 
     @IBOutlet weak var pendingPaymentRemainingBalanceBox: UIView!
-	// Payments
-	@IBOutlet weak var pendingPaymentView: UIView!
+    // Payments
+    @IBOutlet weak var pendingPaymentView: UIView!
     @IBOutlet weak var pendingPaymentLabel: UILabel!
     @IBOutlet weak var pendingPaymentAmountLabel: UILabel!
     @IBOutlet weak var pendingPaymentDividerLine: UIView!
-	// Remaining Balance Due
-	@IBOutlet weak var remainingBalanceDueView: UIView!
-	@IBOutlet weak var remainingBalanceDueLabel: UILabel!
-	@IBOutlet weak var remainingBalanceDueAmountLabel: UILabel!
+    // Remaining Balance Due
+    @IBOutlet weak var remainingBalanceDueView: UIView!
+    @IBOutlet weak var remainingBalanceDueLabel: UILabel!
+    @IBOutlet weak var remainingBalanceDueAmountLabel: UILabel!
     
     // Catch Up Disclaimer
     @IBOutlet weak var catchUpDisclaimerView: UIView!
@@ -86,7 +86,7 @@ class BillViewController: AccountPickerViewController {
 
     @IBOutlet weak var makeAPaymentButton: PrimaryButton!
     
-	@IBOutlet weak var billPaidFakeButtonView: UIView!
+    @IBOutlet weak var billPaidFakeButtonView: UIView!
     @IBOutlet weak var billPaidLabel: UILabel!
     
     @IBOutlet weak var makeAPaymentStatusLabel: UILabel!
@@ -423,9 +423,9 @@ class BillViewController: AccountPickerViewController {
     }
     
     func bindViews() {
-		bindLoadingStates()
-		bindViewHiding()
-		bindViewContent()
+        bindLoadingStates()
+        bindViewHiding()
+        bindViewContent()
     }
     
     func showLoadedState() {
@@ -548,7 +548,7 @@ class BillViewController: AccountPickerViewController {
         maintenanceModeView.isHidden = true
     }
 
-	func bindLoadingStates() {
+    func bindLoadingStates() {
         viewModel.refreshTracker.asDriver().filter(!).drive(onNext: { [weak self] refresh in
             self?.refreshControl?.endRefreshing()
         }).disposed(by: bag)
@@ -574,9 +574,9 @@ class BillViewController: AccountPickerViewController {
                 self?.shortcutItem = .none
             })
             .disposed(by: bag)
-	}
+    }
 
-	func bindViewHiding() {
+    func bindViewHiding() {
         viewModel.showPrepaidPending.not().drive(prepaidBannerButton.rx.isHidden).disposed(by: bag)
         
         viewModel.showAlertBanner.not().drive(alertBannerView.rx.isHidden).disposed(by: bag)
@@ -600,8 +600,8 @@ class BillViewController: AccountPickerViewController {
         
         viewModel.showPaymentReceived.not().drive(paymentReceivedView.rx.isHidden).disposed(by: bag)
         
-		viewModel.showPendingPayment.not().drive(pendingPaymentView.rx.isHidden).disposed(by: bag)
-		viewModel.showRemainingBalanceDue.not().drive(remainingBalanceDueView.rx.isHidden).disposed(by: bag)
+        viewModel.showPendingPayment.not().drive(pendingPaymentView.rx.isHidden).disposed(by: bag)
+        viewModel.showRemainingBalanceDue.not().drive(remainingBalanceDueView.rx.isHidden).disposed(by: bag)
         Driver.combineLatest(viewModel.showPendingPayment, viewModel.showRemainingBalanceDue).drive(onNext: { [weak self] in
             self?.pendingPaymentRemainingBalanceBox.isHidden = !$0 && !$1
             self?.pendingPaymentDividerLine.isHidden = !$0 || !$1
@@ -614,27 +614,27 @@ class BillViewController: AccountPickerViewController {
         viewModel.showBillNotReady.not().drive(billNotReadyView.rx.isHidden).disposed(by: bag)
         viewModel.showBillNotReady.drive(viewBillButton.rx.isHidden).disposed(by: bag)
 
-		viewModel.showMakeAPaymentButton.not().drive(makeAPaymentButton.rx.isHidden).disposed(by: bag)
-		viewModel.showBillPaidFakeButton.not().drive(billPaidFakeButtonView.rx.isHidden).disposed(by: bag)
+        viewModel.showMakeAPaymentButton.not().drive(makeAPaymentButton.rx.isHidden).disposed(by: bag)
+        viewModel.showBillPaidFakeButton.not().drive(billPaidFakeButtonView.rx.isHidden).disposed(by: bag)
         viewModel.showPaymentStatusText.not().drive(makeAPaymentStatusButton.rx.isHidden).disposed(by: bag)
         viewModel.hasBillBreakdownData.not().drive(billBreakdownButton.rx.isHidden).disposed(by: bag)
 
         viewModel.showAutoPay.not().drive(autoPayButton.rx.isHidden).disposed(by: bag)
-		viewModel.showPaperless.not().drive(paperlessButton.rx.isHidden).disposed(by: bag)
-		viewModel.showBudget.not().drive(budgetButton.rx.isHidden).disposed(by: bag)
-	}
+        viewModel.showPaperless.not().drive(paperlessButton.rx.isHidden).disposed(by: bag)
+        viewModel.showBudget.not().drive(budgetButton.rx.isHidden).disposed(by: bag)
+    }
 
     func bindViewContent() {
         viewModel.alertBannerText.drive(alertBannerView.label.rx.text).disposed(by: bag)
         viewModel.alertBannerA11yText.drive(alertBannerView.label.rx.accessibilityLabel).disposed(by: bag)
 
-		viewModel.totalAmountText.drive(totalAmountLabel.rx.text).disposed(by: bag)
+        viewModel.totalAmountText.drive(totalAmountLabel.rx.text).disposed(by: bag)
         viewModel.totalAmountText.drive(creditScenarioAmountLabel.rx.text).disposed(by: bag)
         viewModel.totalAmountDescriptionText.drive(totalAmountDescriptionLabel.rx.attributedText).disposed(by: bag)
 
         viewModel.enrollmentStatus.drive(catchUpDisclaimerLabel.rx.text).disposed(by: bag)
         viewModel.pastDueText.drive(pastDueLabel.rx.text).disposed(by: bag)
-		viewModel.pastDueAmountText.drive(pastDueAmountLabel.rx.text).disposed(by: bag)
+        viewModel.pastDueAmountText.drive(pastDueAmountLabel.rx.text).disposed(by: bag)
         viewModel.pastDueDateText.drive(pastDueDateLabel.rx.attributedText).disposed(by: bag)
         viewModel.currentBillAmountText.drive(currentBillAmountLabel.rx.text).disposed(by: bag)
         viewModel.currentBillDateText.drive(currentBillDateLabel.rx.text).disposed(by: bag)
@@ -681,7 +681,7 @@ class BillViewController: AccountPickerViewController {
             if (description?.title == "") &&
                 (description?.description == "") {
                 self.assistanceView.isHidden = true
-            } 
+            }
             
             DispatchQueue.main.async {
                 if description?.ctaType == "Reinstate Payment Arrangement" {
@@ -694,9 +694,10 @@ class BillViewController: AccountPickerViewController {
             self.assistanceCTA.setTitle(description?.ctaType, for: .normal)
         }).disposed(by: bag)
         
-        viewModel.fetchBGEDdeDpaEligibility.asDriver().drive().disposed(by: bag)
+
+        viewModel.fetchCoreSerivicesDdeDpaDetails.asDriver().drive().disposed(by: bag)
         viewModel.enrollmentStatus.asDriver().drive().disposed(by: bag)
-	}
+    }
 
     func bindButtonTaps() {
         maintenanceModeView.reload
@@ -770,14 +771,14 @@ class BillViewController: AccountPickerViewController {
                 
                 GoogleAnalytics.log(event: .billViewCurrentOfferComplete)
             })
-			.disposed(by: bag)
+            .disposed(by: bag)
 
-		autoPayButton.rx.touchUpInside.asDriver()
+        autoPayButton.rx.touchUpInside.asDriver()
             .withLatestFrom(viewModel.currentAccountDetail)
-			.drive(onNext: { [weak self] in
+            .drive(onNext: { [weak self] in
                 self?.navigateToAutoPay(accountDetail: $0)
-			})
-			.disposed(by: bag)
+            })
+            .disposed(by: bag)
         
         activityButton.rx.touchUpInside.asDriver()
             .withLatestFrom(viewModel.currentAccountDetail)
@@ -803,9 +804,9 @@ class BillViewController: AccountPickerViewController {
                 self?.tabBarController?.present(alert, animated: true)
             }).disposed(by: bag)
 
-		paperlessButton.rx.touchUpInside.asDriver()
-			.withLatestFrom(viewModel.currentAccountDetail)
-			.drive(onNext: { [weak self] accountDetail in
+        paperlessButton.rx.touchUpInside.asDriver()
+            .withLatestFrom(viewModel.currentAccountDetail)
+            .drive(onNext: { [weak self] accountDetail in
                 guard let self = self else { return }
                 if Configuration.shared.opco.isPHI {
                     self.performSegue(withIdentifier: "paperlessEBillSegue", sender: accountDetail)
@@ -816,8 +817,8 @@ class BillViewController: AccountPickerViewController {
                         self.performSegue(withIdentifier: "paperlessEBillSegue", sender: accountDetail)
                     }
                 }
-			})
-			.disposed(by: bag)
+            })
+            .disposed(by: bag)
 
         budgetButton.rx.touchUpInside.asDriver()
             .withLatestFrom(viewModel.currentAccountDetail)

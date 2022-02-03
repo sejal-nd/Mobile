@@ -90,7 +90,7 @@ class MoveStartServiceViewController: UIViewController {
 
             if address.meterInfo.contains(where: {$0.meterType.lowercased() == "ELECTRIC".lowercased()}) {
                 self.electricStackView.isHidden = false
-            }else {
+            } else {
                 self.electricStackView.isHidden = true
             }
 

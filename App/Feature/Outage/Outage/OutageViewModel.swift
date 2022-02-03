@@ -7,6 +7,8 @@
 //
 
 import RxSwift
+import RxCocoa
+import RxSwiftExt
 
 class OutageViewModel {
     let disposeBag = DisposeBag()
@@ -104,6 +106,13 @@ class OutageViewModel {
         case .delmarva:
             FirebaseUtility.logEvent(isAuthenticated ? .authOutage(parameters: [.phone_number_main]) : .unauthOutage(parameters: [.phone_number_main]))
         }
+    }
+    
+    func clearETR() {
+        let defaults = UserDefaults.standard
+        defaults.removeObject(forKey: "etaDateTime")
+        defaults.removeObject(forKey: "etaCause")
+        defaults.removeObject(forKey: "etaDetail")
     }
     
     var reportedOutage: ReportedOutageResult? {

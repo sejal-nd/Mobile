@@ -17,7 +17,7 @@ enum OutageState {
     case inactive
 }
 
-protocol OutageStatusDelegate: class {
+protocol OutageStatusDelegate: AnyObject {
     func didPressButton(button: UIButton, outageState: OutageState)
 }
 

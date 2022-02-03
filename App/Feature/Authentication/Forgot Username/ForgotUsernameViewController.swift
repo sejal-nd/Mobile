@@ -182,7 +182,7 @@ class ForgotUsernameViewController: KeyboardAvoidingStickyFooterViewController {
         viewModel.validateAccount(onSuccess: { [weak self] in
             LoadingView.hide()
             
-            if FeatureFlagUtility.shared.bool(forKey: .isAzureAuthentication) {
+            if FeatureFlagUtility.shared.bool(forKey: .isB2CAuthentication) {
                 guard let self = self else { return }
                 
                 if self.viewModel.maskedUsernames.count > 1 {
@@ -192,23 +192,43 @@ class ForgotUsernameViewController: KeyboardAvoidingStickyFooterViewController {
                     
                     GoogleAnalytics.log(event: .forgotUsernameCompleteAccountValidation)
                 } else {
-                    guard let rootNavVc = self.navigationController?.presentingViewController as? LargeTitleNavigationController else { return }
-                    for vc in rootNavVc.viewControllers {
-                        guard let dest = vc as? LoginViewController else {
-                            continue
+                    if FeatureFlagUtility.shared.bool(forKey: .isPkceAuthentication) {
+                        guard let rootNavVc = self.presentingViewController as? LargeTitleNavigationController else { return }
+                            
+                        for vc in rootNavVc.viewControllers {
+                            guard let dest = vc as? LandingViewController else {
+                                continue
+                            }
+                            self.delegate = dest
+                            FirebaseUtility.logEvent(.forgotUsername(parameters: [.answer_question_complete]))
+                            
+                            self.delegate?.forgotUsernameResultViewController(self, didUnmaskUsername: self.viewModel.maskedUsernames[self.viewModel.selectedUsernameIndex].email ?? "")
+                            
+                            FirebaseUtility.logEvent(.forgotUsername(parameters: [.verification_complete]))
+                            
+                            GoogleAnalytics.log(event: .forgotUsernameCompleteAccountValidation)
+                            
+                            self.dismissModal()
                         }
-                        
-                        self.delegate = dest
-                        
-                        FirebaseUtility.logEvent(.forgotUsername(parameters: [.answer_question_complete]))
-                        
-                        self.delegate?.forgotUsernameResultViewController(self, didUnmaskUsername: self.viewModel.maskedUsernames[self.viewModel.selectedUsernameIndex].email ?? "")
-                        
-                        FirebaseUtility.logEvent(.forgotUsername(parameters: [.verification_complete]))
-                        
-                        GoogleAnalytics.log(event: .forgotUsernameCompleteAccountValidation)
-                        
-                        self.dismissModal()
+                    } else {
+                        guard let rootNavVc = self.navigationController?.presentingViewController as? LargeTitleNavigationController else { return }
+                        for vc in rootNavVc.viewControllers {
+                            guard let dest = vc as? LoginViewController else {
+                                continue
+                            }
+                            
+                            self.delegate = dest
+                            
+                            FirebaseUtility.logEvent(.forgotUsername(parameters: [.answer_question_complete]))
+                            
+                            self.delegate?.forgotUsernameResultViewController(self, didUnmaskUsername: self.viewModel.maskedUsernames[self.viewModel.selectedUsernameIndex].email ?? "")
+                            
+                            FirebaseUtility.logEvent(.forgotUsername(parameters: [.verification_complete]))
+                            
+                            GoogleAnalytics.log(event: .forgotUsernameCompleteAccountValidation)
+                            
+                            self.dismissModal()
+                        }
                     }
                 }
             } else {
