@@ -189,13 +189,13 @@ class StormModeHomeViewModel {
     }
     var neighborCount: String {
         guard let count = outageTracker.value?.customersOutOnOutage else {
-            return "No Data"
+            return "Unavailable"
         }
         return NSLocalizedString(count, comment: "")
     }
     var outageCount: String {
         guard let count = outageTracker.value?.outageSummary else {
-            return "No Data"
+            return "Unavailable"
         }
         return NSLocalizedString(count, comment: "")
     }
