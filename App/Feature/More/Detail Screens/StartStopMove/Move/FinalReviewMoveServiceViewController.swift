@@ -176,31 +176,31 @@ class FinalReviewMoveServiceViewController: UIViewController {
     func refreshData() {
         if moveFlowData.isOwner {
             self.renterOwnerLabel.text = "Owner"
-        }else {
+        } else {
             self.renterOwnerLabel.text = "Renter"
         }
 
         if let ssn = moveFlowData.idVerification?.ssn, !ssn.isEmpty {
             self.ssnTaxIDLabel.text =  "Ending in " + ssn.suffix(4)
-        }else {
+        } else {
             self.ssnTaxIDLabel.text = "None Provided"
         }
 
         if let driverLicenseNumber = moveFlowData.idVerification?.driverLicenseNumber, !driverLicenseNumber.isEmpty {
             self.dlStateIDLabel.text = driverLicenseNumber
-        }else {
+        } else {
             self.dlStateIDLabel.text = "None Provided"
         }
 
         if let employmentStatus = moveFlowData.idVerification?.employmentStatus {
             self.employementStatusLabel.text = employmentStatus.0
-        }else {
+        } else {
             self.employementStatusLabel.text = "None Provided"
         }
 
         if let dob = moveFlowData.idVerification?.dateOfBirth {
             self.dobLabel.text = DateFormatter.fullMonthDayAndYearFormatter.string(from:dob)
-        }else {
+        } else {
             self.dobLabel.text = "None Provided"
         }
 
@@ -218,7 +218,7 @@ class FinalReviewMoveServiceViewController: UIViewController {
             self.submitBtn.isUserInteractionEnabled = self.supplierAgreementButton.isSelected
             self.submitBtn.backgroundColor = self.supplierAgreementButton.isSelected ? UIColor(red: 0, green: 89.0/255.0, blue: 164.0/255.0, alpha: 1.0) : UIColor(red: 216.0/255.0, green: 216.0/255.0, blue: 216.0/255.0, alpha: 1.0)
             self.submitBtn.setTitleColor(self.supplierAgreementButton.isSelected ? UIColor.white : UIColor(red: 74.0/255.0, green: 74.0/255.0, blue: 74.0/255.0, alpha: 0.5), for: .normal)
-        }else {
+        } else {
             self.submitBtn.isUserInteractionEnabled = true
             self.submitBtn.backgroundColor = UIColor(red: 0, green: 89.0/255.0, blue: 164.0/255.0, alpha: 1.0)
             self.submitBtn.setTitleColor( UIColor.white, for: .normal)
@@ -269,7 +269,7 @@ class FinalReviewMoveServiceViewController: UIViewController {
             if segmentedControl.selectedIndex.value == 0 {
                 self.renterOwnerLabel.text = "Owner"
                 self.moveFlowData?.isOwner =  true
-            }else {
+            } else {
                 self.renterOwnerLabel.text = "Renter"
                 self.moveFlowData?.isOwner = false
             }

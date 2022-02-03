@@ -34,6 +34,15 @@ class B2CUsageWebViewController: UIViewController {
                 return "Peak Energy Savings History"
             }
         }
+        
+        var identifier: String {
+            switch self {
+            case .usage:
+                return "data-browser"
+            case .ser, .pesc:
+                return "peak-time-rebate"
+            }
+        }
     }
     var widget: WidgetName = .usage
     
@@ -86,8 +95,9 @@ class B2CUsageWebViewController: UIViewController {
         let oPowerWidgetURL = Configuration.shared.getSecureOpCoOpowerURLString(accountDetail?.opcoType ?? Configuration.shared.opco)
         if let url = URL(string: oPowerWidgetURL) {
             var request = NSURLRequest(url: url) as URLRequest
+            request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
             request.addValue(token, forHTTPHeaderField: "accessToken")
-            request.addValue(widget.rawValue, forHTTPHeaderField: "opowerWidgetId")
+            request.addValue(widget.identifier, forHTTPHeaderField: "opowerWidgetId")
             request.addValue(accountDetail?.utilityCode ?? Configuration.shared.opco.rawValue, forHTTPHeaderField: "opco")
             request.addValue(accountDetail?.state ?? "MD", forHTTPHeaderField: "state")
             webView.load(request)

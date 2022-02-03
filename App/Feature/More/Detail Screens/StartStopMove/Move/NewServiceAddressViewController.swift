@@ -246,7 +246,7 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
             streetAddressPlaceHolderLabel.textColor = .middleGray
             streetAddressPlaceHolderLabel.alpha = 1
             streetDisclosureImageView.alpha = 1.0
-        }else {
+        } else {
             streetAddressSelectionView.roundCorners(.allCorners, radius: 10.0, borderColor:.accentGray, borderWidth: 1.0)
             streetAddressSelectionView.backgroundColor = .softGray
             streetAddressPlaceHolderLabel.textColor = .middleGray
@@ -261,7 +261,7 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
             appartmentPlaceHolderLabel.textColor = .middleGray
             appartmentPlaceHolderLabel.alpha = 1
             appartmentDisclosureImageView.alpha = 1.0
-        }else {
+        } else {
             appartmentSelectionView.roundCorners(.allCorners, radius: 10.0, borderColor:.accentGray, borderWidth: 1.0)
             appartmentSelectionView.backgroundColor = .softGray
             appartmentPlaceHolderLabel.textColor = .middleGray
@@ -434,7 +434,7 @@ extension NewServiceAddressViewController: UITextFieldDelegate {
             } else {
                 if length >= 5 {
                     return false
-                }else {
+                } else {
                     let  char = string.cString(using: String.Encoding.utf8)!
                     let isBackSpace = strcmp(char, "\\b")
                     if isBackSpace == -92 {
@@ -442,7 +442,7 @@ extension NewServiceAddressViewController: UITextFieldDelegate {
                         if length > 0 {
                             clearPreviousSession()
                         }
-                    }else {
+                    } else {
                         zipTextField.setError(NSLocalizedString("Only numbers allowed", comment: ""))
                         return false
                     }

@@ -289,7 +289,7 @@ class HomeBillCardViewModel {
     }
     
     private lazy var billState: Driver<BillState> = Observable
-        .combineLatest(accountDetailEvents.elements(), scheduledPaymentEvents.elements(), walletItem)
+        .combineLatest(accountDetailEvents.elements(), scheduledPaymentEvents.elements(), walletItemDriver.asObservable())
         .map { accountDetail, scheduledPayment, walletItem -> BillState in
             let billingInfo = accountDetail.billingInfo
             let opco = Configuration.shared.opco

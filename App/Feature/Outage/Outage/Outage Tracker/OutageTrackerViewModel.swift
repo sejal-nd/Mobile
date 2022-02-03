@@ -128,8 +128,11 @@ class OutageTrackerViewModel {
     }
     
     func fetchOutageTracker() {
-        AccountService.rx.fetchAccountSummary(includeDevice: true, includeMDM: true).flatMap {
-            OutageService.rx.fetchOutageTracker(accountNumber: $0.accountNumber, deviceId: $0.deviceId ?? "", servicePointId: $0.servicePointId ?? "")
+        AccountService.rx.fetchAccountDetails(payments: false, programs: false).flatMap {
+            return OutageService.rx.fetchOutageTracker(
+                accountNumber: $0.accountNumber,
+                deviceId: $0.premiseInfo.first?.servicePoints.first?.usagePointLocation?.mRID ?? "",
+                servicePointId: $0.premiseInfo.first?.servicePoints.first?.serviceLocation?.mRID ?? "")
         }.subscribe(onNext: { tracker in
             self.outageTracker.accept(tracker)
         }, onError: { error in

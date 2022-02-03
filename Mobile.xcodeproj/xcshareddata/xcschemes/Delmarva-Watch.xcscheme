@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1320"
+   LastUpgradeVersion = "1200"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -74,10 +74,8 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <RemoteRunnable
-         runnableDebuggingMode = "2"
-         BundleIdentifier = "com.apple.Carousel"
-         RemotePath = "/$(BUILD_DISPLAY_NAME)">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "35F9DD222333C33F00AAA2B2"
@@ -85,7 +83,7 @@
             BlueprintName = "EUMobile-Watch"
             ReferencedContainer = "container:Mobile.xcodeproj">
          </BuildableReference>
-      </RemoteRunnable>
+      </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
             argument = "-shouldLogAPI"
@@ -99,10 +97,8 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <RemoteRunnable
-         runnableDebuggingMode = "2"
-         BundleIdentifier = "com.apple.Carousel"
-         RemotePath = "/$(BUILD_DISPLAY_NAME)">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "35F9DD222333C33F00AAA2B2"
@@ -110,16 +106,7 @@
             BlueprintName = "EUMobile-Watch"
             ReferencedContainer = "container:Mobile.xcodeproj">
          </BuildableReference>
-      </RemoteRunnable>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "35F9DD222333C33F00AAA2B2"
-            BuildableName = "EUMobile-Watch.app"
-            BlueprintName = "EUMobile-Watch"
-            ReferencedContainer = "container:Mobile.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Delmarva-Beta">

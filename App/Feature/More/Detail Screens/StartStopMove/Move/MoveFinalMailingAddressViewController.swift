@@ -217,12 +217,12 @@ extension MoveFinalMailingAddressViewController: UITextFieldDelegate {
             } else {
                 if length >= 5 {
                     return false
-                }else {
+                } else {
                     let  char = string.cString(using: String.Encoding.utf8)!
                     let isBackSpace = strcmp(char, "\\b")
                     if isBackSpace == -92 {
                         viewModel.zipCode = decimalString
-                    }else {
+                    } else {
                         zipTextField.setError(NSLocalizedString("Only numbers allowed", comment: ""))
                         return false
                     }

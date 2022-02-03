@@ -25,7 +25,7 @@ class MoreViewModel {
     }
     
     func isDeviceBiometricCompatible() -> Bool {
-        return BiometricService.deviceBiometryType() != nil
+        return FeatureFlagUtility.shared.bool(forKey: .isPkceAuthentication) ? false : BiometricService.deviceBiometryType() != nil
     }
     
     func biometricsString() -> String? {
@@ -70,7 +70,7 @@ class MoreViewModel {
     let moveServiceWebURL: URL? = {
         switch Configuration.shared.opco {
         case .ace, .comEd, .delmarva, .peco, .pepco:
-            return URL(string: "https://\(Configuration.shared.associatedDomain)/CustomerServices/service/move?utm_source=MoveLink&utm_medium=MobileApp&utm_id=SSMRedirect")
+            return URL(string: "https://\(Configuration.shared.associatedDomain)/CustomerServices/service/landing?flowtype=moveservice&utm_source=movelink&utm_medium=mobileapp&utm_campaign=ssmredirect")
         default:
             return nil
         }
@@ -79,7 +79,7 @@ class MoreViewModel {
     let stopServiceWebURL: URL? = {
         switch Configuration.shared.opco {
         case .ace, .comEd, .delmarva, .peco, .pepco:
-            return URL(string: "https://\(Configuration.shared.associatedDomain)/accounts/login?TARGET=%2FCustomerServices%2Fservice%2Fstop&utm_source=StopLink&utm_medium=MobileApp&utm_campaign=SSMRedirect")
+            return URL(string: "https://\(Configuration.shared.associatedDomain)/CustomerServices/service/landing?flowtype=stopservice&utm_source=stoplink&utm_medium=mobileapp&utm_campaign=ssmredirect")
         default:
             return nil
         }
@@ -90,7 +90,7 @@ class MoreViewModel {
         case .bge:
             return URL(string: "https://\(Configuration.shared.associatedDomain)/CustomerServices/service/start?referrer=mobileapp")
         case .ace, .comEd, .delmarva, .peco, .pepco:
-            return URL(string: "https://\(Configuration.shared.associatedDomain)/CustomerServices/service/start?utm_source=StartLink&utm_medium=MobileApp&utm_id=SSMRedirect")
+            return URL(string: "https://\(Configuration.shared.associatedDomain)/CustomerServices/service/landing?flowtype=startservice&utm_source=startlink&utm_medium=mobileapp&utm_campaign=ssmredirect")
         default:
             return nil
         }

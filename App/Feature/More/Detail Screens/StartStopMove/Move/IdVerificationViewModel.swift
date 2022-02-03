@@ -32,7 +32,7 @@ class IdVerificationViewModel {
         let minAge = Calendar.current.date(byAdding: .year, value: -18, to: Date())!
         if (selectedDate < minAge){
             return true
-        } else{
+        } else {
             return false
         }
     }
