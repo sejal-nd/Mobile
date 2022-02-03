@@ -59,7 +59,6 @@ class OutageTrackerViewController: UIViewController {
         scrollView.isHidden = true
         loadingIndicator.isHidden = false
         self.viewModel.getOutageStatus()
-        self.viewModel.fetchOutageTracker()
     }
     
     private func configureTableView() {

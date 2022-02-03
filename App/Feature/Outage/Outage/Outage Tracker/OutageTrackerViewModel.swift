@@ -143,6 +143,7 @@ class OutageTrackerViewModel {
             switch result {
                 case .success(let outageStatus):
                     self?.outageStatus.accept(outageStatus)
+                    self?.fetchOutageTracker()
                 case .failure(let error):
                     Log.info("Outage Status error: \(error.localizedDescription)")
                     self?.outageStatus.accept(nil)
