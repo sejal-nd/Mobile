@@ -29,26 +29,21 @@ class OutageTrackerViewModel {
     }
     var neighborCount: String {
         guard let count = outageTracker.value?.customersOutOnOutage else {
-            return "No Data"
+            return "Unavailable"
         }
         return NSLocalizedString(count, comment: "")
     }
     var outageCount: String {
         guard let count = outageTracker.value?.outageSummary else {
-            return "No Data"
+            return "Unavailable"
         }
         return NSLocalizedString(count, comment: "")
     }
     var isActiveOutage: Bool {
-        // restored state shows as no longer active but may have tracker data
-        if outageStatus.value?.isActiveOutage == true {
+        guard let tracker = outageTracker.value else {
             return true
-        } else {
-            guard let tracker = outageTracker.value else {
-                return true
-            }
-            return tracker.isOutageValid
         }
+        return tracker.isOutageValid
     }
     var isGasOnly: Bool {
         return outageStatus.value?.isGasOnly ?? false
@@ -128,8 +123,11 @@ class OutageTrackerViewModel {
     }
     
     func fetchOutageTracker() {
-        AccountService.rx.fetchAccountSummary(includeDevice: true, includeMDM: true).flatMap {
-            OutageService.rx.fetchOutageTracker(accountNumber: $0.accountNumber, deviceId: $0.deviceId ?? "", servicePointId: $0.servicePointId ?? "")
+        AccountService.rx.fetchAccountDetails(payments: false, programs: false).flatMap {
+            return OutageService.rx.fetchOutageTracker(
+                accountNumber: $0.accountNumber,
+                deviceId: $0.premiseInfo.first?.servicePoints.first?.usagePointLocation?.mRID ?? "",
+                servicePointId: $0.premiseInfo.first?.servicePoints.first?.serviceLocation?.mRID ?? "")
         }.subscribe(onNext: { tracker in
             self.outageTracker.accept(tracker)
         }, onError: { error in
@@ -143,6 +141,7 @@ class OutageTrackerViewModel {
             switch result {
                 case .success(let outageStatus):
                     self?.outageStatus.accept(outageStatus)
+                    self?.fetchOutageTracker()
                 case .failure(let error):
                     Log.info("Outage Status error: \(error.localizedDescription)")
                     self?.outageStatus.accept(nil)

@@ -65,14 +65,7 @@ class StatusTextView: UIView {
         if status == .onSite {
             if tracker.isCrewExtDamage == true {
                 return StatusTitleString.onSiteExtDamage
-            }
-            else if tracker.isCrewDiverted == true {
-                return StatusTitleString.onSiteTempStop
-            }
-            else if tracker.isCrewLeftSite == true {
-                return StatusTitleString.onSiteTempStop
-            }
-            else if tracker.isSafetyHazard == true {
+            } else if tracker.isCrewLeftSite == true {
                 return StatusTitleString.onSiteTempStop
             }
         }

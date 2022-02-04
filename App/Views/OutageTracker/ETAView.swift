@@ -135,7 +135,7 @@ class ETAView: UIView {
     }
     
     func hideETAUpdatedIndicator(detailText: String) -> Bool {
-        if status == OutageTracker.Status.none || status == OutageTracker.Status.restored {
+        if status == OutageTracker.Status.none {
             clearETA()
             return true
         }

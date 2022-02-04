@@ -59,7 +59,6 @@ class OutageTrackerViewController: UIViewController {
         scrollView.isHidden = true
         loadingIndicator.isHidden = false
         self.viewModel.getOutageStatus()
-        self.viewModel.fetchOutageTracker()
     }
     
     private func configureTableView() {
@@ -120,7 +119,11 @@ class OutageTrackerViewController: UIViewController {
             
             surveyView.configure(status: viewModel.status)
 
-            if let tracker = viewModel.outageTracker.value, let show = tracker.isSafetyHazard {
+            if let tracker = viewModel.outageTracker.value {
+                var show = tracker.isSafetyHazard ?? false
+                if viewModel.status == .restored {
+                    show = false
+                }
                 hazardContainerView.isHidden = !show
             }
             
