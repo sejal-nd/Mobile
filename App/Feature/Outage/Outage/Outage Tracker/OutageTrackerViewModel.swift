@@ -40,15 +40,10 @@ class OutageTrackerViewModel {
         return NSLocalizedString(count, comment: "")
     }
     var isActiveOutage: Bool {
-        // restored state shows as no longer active but may have tracker data
-        if outageStatus.value?.isActiveOutage == true {
+        guard let tracker = outageTracker.value else {
             return true
-        } else {
-            guard let tracker = outageTracker.value else {
-                return true
-            }
-            return tracker.isOutageValid
         }
+        return tracker.isOutageValid
     }
     var isGasOnly: Bool {
         return outageStatus.value?.isGasOnly ?? false

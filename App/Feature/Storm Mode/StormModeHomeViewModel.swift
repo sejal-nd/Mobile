@@ -203,18 +203,10 @@ class StormModeHomeViewModel {
         return NSLocalizedString(count, comment: "")
     }
     var isActiveOutage: Bool {
-        // restored state shows as no longer active but may have tracker data
-        guard let outageStatus = currentOutageStatus else {
-            return false
-        }
-        if outageStatus.isActiveOutage == true {
+        guard let tracker = outageTracker.value else {
             return true
-        } else {
-            guard let tracker = outageTracker.value else {
-                return true
-            }
-            return tracker.isOutageValid
         }
+        return tracker.isOutageValid
     }
     var isPaused: Bool {
         guard let tracker = outageTracker.value else {
