@@ -411,7 +411,11 @@ class StormModeHomeViewController: AccountPickerViewController {
         etaWidthConstraint.constant = headerContentView.frame.width
         countWidthConstraint.constant = headerContentView.frame.width
 
-        if let tracker = viewModel.outageTracker.value, let show = tracker.isSafetyHazard {
+        if let tracker = viewModel.outageTracker.value {
+            var show = tracker.isSafetyHazard ?? false
+            if viewModel.status == .restored {
+                show = false
+            }
             hazardContainerView.isHidden = !show
         }
         

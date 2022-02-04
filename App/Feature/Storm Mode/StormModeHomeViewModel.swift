@@ -79,8 +79,11 @@ class StormModeHomeViewModel {
     }
     
     func fetchOutageTracker() {
-        AccountService.rx.fetchAccountSummary(includeDevice: true, includeMDM: true).flatMap {
-            OutageService.rx.fetchOutageTracker(accountNumber: $0.accountNumber, deviceId: $0.deviceId ?? "", servicePointId: $0.servicePointId ?? "")
+        AccountService.rx.fetchAccountDetails(payments: false, programs: false).flatMap {
+            return OutageService.rx.fetchOutageTracker(
+                accountNumber: $0.accountNumber,
+                deviceId: $0.premiseInfo.first?.servicePoints.first?.usagePointLocation?.mRID ?? "",
+                servicePointId: $0.premiseInfo.first?.servicePoints.first?.serviceLocation?.mRID ?? "")
         }.subscribe(onNext: { tracker in
             self.outageTracker.accept(tracker)
         }, onError: { error in
@@ -189,29 +192,21 @@ class StormModeHomeViewModel {
     }
     var neighborCount: String {
         guard let count = outageTracker.value?.customersOutOnOutage else {
-            return "No Data"
+            return "Unavailable"
         }
         return NSLocalizedString(count, comment: "")
     }
     var outageCount: String {
         guard let count = outageTracker.value?.outageSummary else {
-            return "No Data"
+            return "Unavailable"
         }
         return NSLocalizedString(count, comment: "")
     }
     var isActiveOutage: Bool {
-        // restored state shows as no longer active but may have tracker data
-        guard let outageStatus = currentOutageStatus else {
-            return false
-        }
-        if outageStatus.isActiveOutage == true {
+        guard let tracker = outageTracker.value else {
             return true
-        } else {
-            guard let tracker = outageTracker.value else {
-                return true
-            }
-            return tracker.isOutageValid
         }
+        return tracker.isOutageValid
     }
     var isPaused: Bool {
         guard let tracker = outageTracker.value else {
