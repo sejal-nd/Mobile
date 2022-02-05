@@ -350,20 +350,35 @@ struct Configuration {
     var b2cRedirectURI: String {
         var redirecturi: String
         switch Configuration.shared.environmentName {
-        case .rc, .release:
+        case .rc:
+            switch opco {
+            case .ace:
+                redirecturi = "msauth.com.ifactorconsulting.ace.prodbeta"
+            case .delmarva:
+                redirecturi = "msauth.com.ifactorconsulting.delmarva.prodbeta"
+            case .pepco:
+                redirecturi = "msauth.com.ifactorconsulting.pepco.prodbeta"
+            case .bge:
+                redirecturi = "msauth.com.exelon.mobile.bge.prodbeta"
+            case .comEd:
+                redirecturi = "msauth.com.iphoneproduction.exelon.prodbeta"
+            case .peco:
+                redirecturi = "msauth.com.exelon.mobile.peco.prodbeta"
+            }
+        case .release:
             switch opco {
             case .ace:
                 redirecturi = "msauth.com.ifactorconsulting.ace"
             case .delmarva:
                 redirecturi = "msauth.com.ifactorconsulting.delmarva"
             case .pepco:
-                redirecturi = "msauth.com.exelon.mobile.pepco"
+                redirecturi = "msauth.com.ifactorconsulting.pepco"
             case .bge:
                 redirecturi = "msauth.com.exelon.mobile.bge"
             case .comEd:
                 redirecturi = "msauth.com.iphoneproduction.exelon"
             case .peco:
-                redirecturi = "msauth.com.exelon.mobile.pepco"
+                redirecturi = "msauth.com.exelon.mobile.peco"
             }
         default:
             let projectTierRawValue = UserDefaults.standard.string(forKey: "selectedProjectTier") ?? "Stage"
