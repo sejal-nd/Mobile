@@ -10,6 +10,7 @@ import UIKit
 import AVFoundation
 import RxSwift
 import RxCocoa
+import AuthenticationServices
 
 #if canImport(SwiftUI)
 import SwiftUI
@@ -165,7 +166,15 @@ class LandingViewController: UIViewController {
                         self.signInButton.accessibilityViewIsModal = false
                     }
                 case .failure(let error):
-                    self.showErrorAlertWith(title: nil, message: error.localizedDescription)
+                    self.signInButton.reset()
+                    self.signInButton.setTitle("Sign In", for: .normal)
+                    self.signInButton.accessibilityLabel = "Sign In"
+                    self.signInButton.accessibilityViewIsModal = false
+                    
+                    let sessionError = ASWebAuthenticationSessionError.Code(rawValue: (error as NSError).code)
+                    if sessionError != ASWebAuthenticationSessionError.canceledLogin {
+                        self.showErrorAlertWith(title: nil, message: error.localizedDescription)
+                    }
                 }
             }
         } else {
@@ -216,10 +225,6 @@ class LandingViewController: UIViewController {
     
     func showErrorAlertWith(title: String?, message: String) {
         Log.info("login failed")
-        self.signInButton.tintWhite = true
-        signInButton.reset()
-        signInButton.accessibilityLabel = "Sign In"
-        signInButton.accessibilityViewIsModal = false
 
         let errorAlert = UIAlertController(title: title != nil ? title : NSLocalizedString("Sign In Error", comment: ""), message: message, preferredStyle: .alert)
         errorAlert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))

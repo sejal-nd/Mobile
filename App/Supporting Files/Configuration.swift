@@ -250,7 +250,7 @@ struct Configuration {
             switch (opco) {
             case .bge:
                 host = "secure2"
-                    case .comEd, .peco:
+            case .comEd, .peco:
                 host = "secure1"
             default:
                 host = "secure"
