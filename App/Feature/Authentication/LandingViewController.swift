@@ -45,6 +45,7 @@ class LandingViewController: UIViewController {
         super.viewDidLoad()
         
         signInButton.setTitle(NSLocalizedString("Sign In", comment: ""), for: .normal)
+        signInButton.hasBlueAnimations = true
         if Configuration.shared.opco == .peco {
             registerButton.setTitle(NSLocalizedString("Register for Online Access", comment: ""), for: .normal)
         } else {
@@ -135,8 +136,8 @@ class LandingViewController: UIViewController {
     @IBAction func onSignInPress() {
         
         if FeatureFlagUtility.shared.bool(forKey: .isPkceAuthentication) {
-            //Present ASWebAuthentication
-            signInButton.tintWhite = false
+            // Present ASWebAuthentication
+            signInButton.tintWhite = true
             signInButton.setLoading()
             signInButton.accessibilityLabel = NSLocalizedString("Loading", comment: "")
             signInButton.accessibilityViewIsModal = true
