@@ -12,10 +12,11 @@ import RxSwift
 public enum AuthenticationService {
     
     static func loginWithCode(code: String,
-                      completion: @escaping (Result<TokenResponse, NetworkingError>) -> ()) {
+                              codeVerifier: String,
+                              completion: @escaping (Result<TokenResponse, NetworkingError>) -> ()) {
         
         if Configuration.shared.environmentName != .aut {
-            performLoginWithCode(code: code, completion: completion)
+            performLoginWithCode(code: code, codeVerifier: codeVerifier, completion: completion)
         } else {
             #warning("need to create performLoginWithCodeMock")
 //            performLoginMock(username: "pkceuser",
@@ -103,8 +104,9 @@ public enum AuthenticationService {
 extension AuthenticationService {
     
     private static func fetchLoginTokenWithCode(code: String,
-                             completion: @escaping (Result<TokenResponse, NetworkingError>) -> ()) {
-        let tokenRequest = B2CTokenRequest(grantType: "authorization_code", code: code, redirectURI: Configuration.shared.b2cRedirectURI)
+                                                codeVerifier: String,
+                                                completion: @escaping (Result<TokenResponse, NetworkingError>) -> ()) {
+        let tokenRequest = B2CTokenRequest(grantType: "authorization_code", code: code, codeVerifier: codeVerifier, redirectURI: Configuration.shared.b2cRedirectURI)
         NetworkingLayer.request(router: .getAzureToken(request: tokenRequest)) { (result: Result<TokenResponse, NetworkingError>) in
             switch result {
             case .success(let tokenResponse):
@@ -148,8 +150,9 @@ extension AuthenticationService {
     }
     
     private static func performLoginWithCode(code: String,
-                                     completion: @escaping (Result<TokenResponse, NetworkingError>) -> ()) {
-        fetchLoginTokenWithCode(code: code) { (result: (Result<TokenResponse, NetworkingError>)) in
+                                             codeVerifier: String,
+                                             completion: @escaping (Result<TokenResponse, NetworkingError>) -> ()) {
+        fetchLoginTokenWithCode(code: code, codeVerifier: codeVerifier) { (result: (Result<TokenResponse, NetworkingError>)) in
             switch result {
             case .success(let tokenResponse):
                 #if os(iOS)
