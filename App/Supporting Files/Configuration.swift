@@ -247,7 +247,14 @@ struct Configuration {
         let host: String
         switch Configuration.shared.environmentName {
         case .rc, .release:
-            host = "secure"
+            switch (opco) {
+            case .bge:
+                host = "secure2"
+            case .comEd, .peco:
+                host = "secure1"
+            default:
+                host = "secure"
+            }
         default:
             let projectTierRawValue = UserDefaults.standard.string(forKey: "selectedProjectTier") ?? "Stage"
             let projectTier = ProjectTier(rawValue: projectTierRawValue) ?? .stage
@@ -262,32 +269,19 @@ struct Configuration {
     }
     
     var b2cAuthEndpoint: String {
-        if FeatureFlagUtility.shared.bool(forKey: .isPkceAuthentication) {
-            return "\(b2cTenant).b2clogin.com"
-        } else {
-            return "\(b2cHost).exeloncorp.com"
-        }
-    }
-    
-    var b2cOpowerAuthEndpoint: String {
         var endpoint: String
         
-        switch opco {
-        case .ace:
+        if opco.isPHI {
             endpoint = "\(b2cHost).exeloncorp.com"
-        case .delmarva:
-            endpoint = "\(b2cHost).exeloncorp.com"
-        case .pepco:
-            endpoint = "\(b2cHost).exeloncorp.com"
-        case .bge:
-            endpoint = "\(b2cHost).bge.com"
-        case .comEd:
-            endpoint = "\(b2cHost).comed.com"
-        case .peco:
-            endpoint = "\(b2cHost).peco.com"
+        } else {
+            endpoint = "\(b2cHost).\(opco.urlDisplayString).com"
         }
         
         return endpoint
+    }
+    
+    var b2cOpowerAuthEndpoint: String {
+        return b2cAuthEndpoint
     }
     
     var b2cClientID: String {
@@ -357,13 +351,13 @@ struct Configuration {
             case .delmarva:
                 redirecturi = "msauth.com.ifactorconsulting.delmarva"
             case .pepco:
-                redirecturi = "msauth.com.exelon.mobile.pepco"
+                redirecturi = "msauth.com.ifactorconsulting.pepco"
             case .bge:
                 redirecturi = "msauth.com.exelon.mobile.bge"
             case .comEd:
                 redirecturi = "msauth.com.iphoneproduction.exelon"
             case .peco:
-                redirecturi = "msauth.com.exelon.mobile.pepco"
+                redirecturi = "msauth.com.exelon.mobile.peco"
             }
         default:
             let projectTierRawValue = UserDefaults.standard.string(forKey: "selectedProjectTier") ?? "Stage"

@@ -29,6 +29,13 @@ class PrimaryButton: UIButton {
         }
     }
     
+    var hasBlueAnimations: Bool = false {
+        didSet {
+            loadingAnimationView = AnimationView(name: "smallcircleload_blue")
+            checkmarkAnimationView = AnimationView(name: "checkmark_blue")
+        }
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         

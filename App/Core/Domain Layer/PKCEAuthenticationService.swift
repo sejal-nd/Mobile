@@ -8,6 +8,7 @@
 
 import Foundation
 import AuthenticationServices
+import CommonCrypto
 
 class PKCEAuthenticationService: UIViewController {
     static let `default` = PKCEAuthenticationService()
@@ -15,7 +16,10 @@ class PKCEAuthenticationService: UIViewController {
     var authSession: ASWebAuthenticationSession!
     
     func presentLoginForm(completion: @escaping (Result<PKCEResult, Error>) -> ()) {
-        let urlString = "https://\(Configuration.shared.b2cTenant).b2clogin.com/\(Configuration.shared.b2cTenant).onmicrosoft.com/oauth2/v2.0/authorize?p=\(Configuration.shared.b2cPolicy)&client_id=\(Configuration.shared.b2cClientID)&nonce=defaultNonce&redirect_uri=\(Configuration.shared.b2cRedirectURI)://auth&scope=openid%20offline_access&response_type=code&prompt=login#"
+        let codeVerifier = createCodeVerifier()
+        let codeChallenge = createCodeChallenge(for: codeVerifier)
+        let codeChallengeMethod = "S256"
+        let urlString = "https://\(Configuration.shared.b2cAuthEndpoint)/\(Configuration.shared.b2cTenant).onmicrosoft.com/oauth2/v2.0/authorize?p=\(Configuration.shared.b2cPolicy)&client_id=\(Configuration.shared.b2cClientID)&nonce=defaultNonce&redirect_uri=\(Configuration.shared.b2cRedirectURI)://auth&scope=openid%20offline_access&response_type=code&code_challenge=\(codeChallenge)&code_challenge_method=\(codeChallengeMethod)&prompt=login#"
         
         guard let url = URL(string: urlString) else { return }
         
@@ -31,7 +35,8 @@ class PKCEAuthenticationService: UIViewController {
             Log.info("ASWebAuthentication Success Callback URL: \(successURL.absoluteString)")
             
             if let authorizationCode = NSURLComponents(string: (successURL.absoluteString))?.queryItems?.filter({$0.name == "code"}).first {
-                AuthenticationService.loginWithCode(code: authorizationCode.value ?? "nil") { result in
+                AuthenticationService.loginWithCode(code: authorizationCode.value ?? "nil",
+                                                    codeVerifier: codeVerifier) { result in
                                             switch result {
                                             case .success(let tokenResponse):
                                                 Log.info("user has logged in succesfully")
@@ -53,7 +58,7 @@ class PKCEAuthenticationService: UIViewController {
     }
     
     func presentMySecurityForm(completion: @escaping (Result<String, Error>) -> ()) {
-        let urlString = "https://\(Configuration.shared.b2cTenant).b2clogin.com/\(Configuration.shared.b2cTenant).onmicrosoft.com/oauth2/v2.0/authorize?p=B2C_1A_PROFILEEDIT_MOBILE&client_id=\(Configuration.shared.b2cClientID)&nonce=defaultNonce&redirect_uri=\(Configuration.shared.b2cRedirectURI)://auth&scope=openid%20offline_access&response_type=id_token"
+        let urlString = "https://\(Configuration.shared.b2cAuthEndpoint)/\(Configuration.shared.b2cTenant).onmicrosoft.com/oauth2/v2.0/authorize?p=B2C_1A_PROFILEEDIT_MOBILE&client_id=\(Configuration.shared.b2cClientID)&nonce=defaultNonce&redirect_uri=\(Configuration.shared.b2cRedirectURI)://auth&scope=openid%20offline_access&response_type=id_token"
         
         guard let url = URL(string: urlString) else { return }
         
@@ -73,6 +78,32 @@ class PKCEAuthenticationService: UIViewController {
         
         authSession.presentationContextProvider = self
         authSession.start()
+    }
+    
+    // https://docs.microsoft.com/en-us/azure/active-directory-b2c/authorization-code-flow
+    // https://auth0.com/docs/get-started/authentication-and-authorization-flow/call-your-api-using-the-authorization-code-flow-with-pkce#authorize-user
+    private func createCodeVerifier() -> String {
+        var buffer = [UInt8](repeating: 0, count: 32)
+        _ = SecRandomCopyBytes(kSecRandomDefault, buffer.count, &buffer)
+        return Data(buffer).base64EncodedString()
+            .replacingOccurrences(of: "+", with: "-")
+            .replacingOccurrences(of: "/", with: "_")
+            .replacingOccurrences(of: "=", with: "")
+            .trimmingCharacters(in: .whitespaces)
+    }
+    
+    private func createCodeChallenge(for verifier: String) -> String {
+        guard let data = verifier.data(using: .utf8) else { return "" }
+        var buffer = [UInt8](repeating: 0,  count: Int(CC_SHA256_DIGEST_LENGTH))
+        data.withUnsafeBytes {
+            _ = CC_SHA256($0, CC_LONG(data.count), &buffer)
+        }
+        let hash = Data(buffer)
+        return hash.base64EncodedString()
+            .replacingOccurrences(of: "+", with: "-")
+            .replacingOccurrences(of: "/", with: "_")
+            .replacingOccurrences(of: "=", with: "")
+            .trimmingCharacters(in: .whitespaces)
     }
 }
 
