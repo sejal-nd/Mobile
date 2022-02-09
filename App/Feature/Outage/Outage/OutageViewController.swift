@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import RxRelay
 
 class OutageViewController: AccountPickerViewController {
     
@@ -41,6 +42,7 @@ class OutageViewController: AccountPickerViewController {
         let storyboard = UIStoryboard(name: "OutageTracker", bundle: Bundle.main)
         
         if let vc = storyboard.instantiateViewController(withIdentifier: "OutageTrackerViewController") as? OutageTrackerViewController {
+            vc.viewModel = OutageTrackerViewModel(outageStatus: viewModel.outageStatus)
             self.add(asChildViewController: vc)
             return vc
         }
@@ -117,7 +119,7 @@ class OutageViewController: AccountPickerViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? ReportOutageViewController {
-            if let outageStatus = viewModel.outageStatus {
+            if let outageStatus = viewModel.outageStatus.value {
                 vc.viewModel.outageStatus = outageStatus
                 vc.viewModel.phoneNumber.accept(outageStatus.contactHomeNumber ?? "")
                 vc.viewModel.accountNumber = viewModel.accountNumber
@@ -307,7 +309,7 @@ class OutageViewController: AccountPickerViewController {
             shouldLoadAccounts = false
             accountInfoBar.isHidden = false
             
-            guard let outageStatus = viewModel.outageStatus else { return }
+            guard let outageStatus = viewModel.outageStatus.value else { return }
             
             // Account Info Bar
             if let accountNumberText = outageStatus.maskedAccountNumber,
@@ -496,7 +498,7 @@ extension OutageViewController: OutageStatusDelegate {
         
         switch outageState {
         case .powerStatus(_), .reported, .unavailable, .inactive:
-            guard let message = viewModel.outageStatus?.outageDescription else { return }
+            guard let message = viewModel.outageStatus.value?.outageDescription else { return }
             let alertViewController = InfoAlertController(title: NSLocalizedString("Outage Status Details", comment: ""),
                                                           message: message)
             
@@ -543,7 +545,7 @@ extension OutageViewController: ReportOutageDelegate {
         
         // Enable Reported Outage State
         viewModel.hasJustReportedOutage = true
-        guard let outageStatus = viewModel.outageStatus else { return }
+        guard let outageStatus = viewModel.outageStatus.value else { return }
         outageStatusView.setOutageStatus(outageStatus,
                                          reportedResults: viewModel.reportedOutage,
                                          hasJustReported: viewModel.hasJustReportedOutage)

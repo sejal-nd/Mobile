@@ -163,7 +163,7 @@ class UnauthenticatedOutageValidateAccountResultViewController: UIViewController
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? OutageViewController {
             vc.userState = .unauthenticated
-            vc.viewModel.outageStatus = viewModel.selectedOutageStatus.value
+            vc.viewModel.outageStatus.accept(viewModel.selectedOutageStatus.value)
             vc.viewModel.accountNumber = viewModel.selectedOutageStatus.value?.accountNumber
 
             switch analyticsSource {

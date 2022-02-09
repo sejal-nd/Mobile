@@ -13,7 +13,11 @@ import RxSwiftExt
 class OutageTrackerViewModel {
     let disposeBag = DisposeBag()
     var outageTracker = BehaviorRelay<OutageTracker?>(value: nil)
-    var outageStatus = BehaviorRelay<OutageStatus?>(value: nil)
+    var outageStatus: BehaviorRelay<OutageStatus?>
+    
+    public init(outageStatus: BehaviorRelay<OutageStatus?>) {
+        self.outageStatus = outageStatus
+    }
     
     var status: OutageTracker.Status {
         guard let trackerStatus = outageTracker.value?.trackerStatus else {
@@ -135,19 +139,4 @@ class OutageTrackerViewModel {
             Log.info("error fetching tracker: \(error.localizedDescription)")
         }).disposed(by: disposeBag)
     }
-    
-    func getOutageStatus() {
-        OutageService.fetchOutageStatus(accountNumber: AccountsStore.shared.currentAccount.accountNumber, premiseNumberString: AccountsStore.shared.currentAccount.currentPremise?.premiseNumber ?? "") { [weak self] result in
-            switch result {
-                case .success(let outageStatus):
-                    self?.outageStatus.accept(outageStatus)
-                    self?.fetchOutageTracker()
-                case .failure(let error):
-                    Log.info("Outage Status error: \(error.localizedDescription)")
-                    self?.outageStatus.accept(nil)
-            }
-        }
-    }
 }
-
-

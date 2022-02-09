@@ -35,7 +35,7 @@ class OutageTrackerViewController: UIViewController {
     @IBOutlet weak var powerOnContainer: UIView!
     
     let disposeBag = DisposeBag()
-    let viewModel = OutageTrackerViewModel()
+    var viewModel: OutageTrackerViewModel!
     let infoView = StatusInfoView()
     var refreshControl: UIRefreshControl?
     
@@ -58,7 +58,7 @@ class OutageTrackerViewController: UIViewController {
     private func loadOutageTracker() {
         scrollView.isHidden = true
         loadingIndicator.isHidden = false
-        self.viewModel.getOutageStatus()
+        self.viewModel.fetchOutageTracker()
     }
     
     private func configureTableView() {
