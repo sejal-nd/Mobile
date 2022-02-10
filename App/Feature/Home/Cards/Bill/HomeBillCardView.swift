@@ -279,7 +279,7 @@ class HomeBillCardView: UIView {
         })
             .disposed(by: bag)
         
-        viewModel.fetchBGEDdeDpaEligibility.asDriver().drive().disposed(by: bag)
+        viewModel.fetchCoreSerivicesDdeDpaDetails.asDriver().drive().disposed(by: bag)
         
         viewModel.showLoadingState
             .drive(onNext: { _ in UIAccessibility.post(notification: .screenChanged, argument: nil) })

@@ -36,6 +36,7 @@ public struct FeatureFlags: Decodable {
     public var hasAssistanceEnrollment: Bool = false
     public var agentisWidgets: Bool = false
     public var isAzureAuthentication: Bool = false
+    public var isPkceAuthentication: Bool = false
     public var hasAuthenticatedISUM: Bool = false
     public var hasUnauthenticatedISUM: Bool = false
     
@@ -49,6 +50,7 @@ public struct FeatureFlags: Decodable {
         case hasAssistanceEnrollment
         case agentisWidgets
         case isAzureAuthentication
+        case isPkceAuthentication
         case hasAuthenticatedISUM
         case hasUnauthenticatedISUM
     }
@@ -69,6 +71,7 @@ public struct FeatureFlags: Decodable {
         hasAssistanceEnrollment = try container.decodeIfPresent(Bool.self, forKey: .hasAssistanceEnrollment) ?? false
         agentisWidgets = try container.decodeIfPresent(Bool.self, forKey: .agentisWidgets) ?? false
         isAzureAuthentication = try container.decodeIfPresent(Bool.self, forKey: .isAzureAuthentication) ?? false
+        isPkceAuthentication = try container.decodeIfPresent(Bool.self, forKey: .isPkceAuthentication) ?? false
         hasAuthenticatedISUM = try container.decodeIfPresent(Bool.self, forKey: .hasAuthenticatedISUM) ?? false
         hasUnauthenticatedISUM = try container.decodeIfPresent(Bool.self, forKey: .hasUnauthenticatedISUM) ?? false
     }

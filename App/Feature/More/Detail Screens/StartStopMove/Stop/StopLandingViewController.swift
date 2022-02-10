@@ -50,10 +50,10 @@ class StopLandingViewController: UIViewController {
             DispatchQueue.main.async {
                 LoadingView.show()
             }
-        }else {
+        } else {
             if isAccountResidential {
                 navigateToStopServiceVC()
-            }else {
+            } else {
                 FirebaseUtility.logEvent(.stopService(parameters: [.commercial]))
                 UIApplication.shared.openUrlIfCan(viewModel.stopCommercialServiceWebURL)
             }

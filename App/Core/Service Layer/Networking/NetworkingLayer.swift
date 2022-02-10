@@ -73,7 +73,7 @@ public enum NetworkingLayer {
         var retryCount = 3
         
         // Check refresh token
-        if router.apiAccess == .auth && UserSession.isRefreshTokenExpired && Configuration.shared.environmentName != .aut {
+        if router.apiAccess == .auth && UserSession.isTokenExpired && UserSession.isRefreshTokenExpired && Configuration.shared.environmentName != .aut {
             // Refresh expired
             Log.error("Refresh Token Expired... Logging user out...")
             
@@ -133,7 +133,7 @@ public enum NetworkingLayer {
             refreshTokenDispatchGroup.enter()
             
             // Refresh Token
-            if FeatureFlagUtility.shared.bool(forKey: .isAzureAuthentication) {
+            if FeatureFlagUtility.shared.bool(forKey: .isB2CAuthentication) {
                 let refreshTokenRequest = B2CTokenRequest(grantType: "refresh_token",
                                                           responseType: "id_token",
                                                           refreshToken: UserSession.refreshToken)

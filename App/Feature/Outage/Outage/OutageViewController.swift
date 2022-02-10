@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import RxRelay
 
 class OutageViewController: AccountPickerViewController {
     
@@ -26,6 +27,7 @@ class OutageViewController: AccountPickerViewController {
     }
     
     @IBOutlet weak var accountInfoBar: AccountInfoBar!
+    @IBOutlet weak var mainContainerView: UIView!
     @IBOutlet weak var maintenanceModeContainerView: UIView!
     @IBOutlet weak var noNetworkConnectionContainerView: UIView!
     @IBOutlet weak var loadingContainerView: UIView!
@@ -35,6 +37,17 @@ class OutageViewController: AccountPickerViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var outageStatusView: OutageStatusView!
     @IBOutlet weak var footerTextView: ZeroInsetDataDetectorTextView!
+    
+    private lazy var outageTrackerViewController: OutageTrackerViewController? = {
+        let storyboard = UIStoryboard(name: "OutageTracker", bundle: Bundle.main)
+        
+        if let vc = storyboard.instantiateViewController(withIdentifier: "OutageTrackerViewController") as? OutageTrackerViewController {
+            vc.viewModel = OutageTrackerViewModel(outageStatus: viewModel.outageStatus)
+            self.add(asChildViewController: vc)
+            return vc
+        }
+        return nil
+    }()
     
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -69,6 +82,8 @@ class OutageViewController: AccountPickerViewController {
         viewModel.isUserAuthenticated = userState == .authenticated
         
         configureUserState(userState)
+        
+        updateView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -104,7 +119,7 @@ class OutageViewController: AccountPickerViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? ReportOutageViewController {
-            if let outageStatus = viewModel.outageStatus {
+            if let outageStatus = viewModel.outageStatus.value {
                 vc.viewModel.outageStatus = outageStatus
                 vc.viewModel.phoneNumber.accept(outageStatus.contactHomeNumber ?? "")
                 vc.viewModel.accountNumber = viewModel.accountNumber
@@ -141,6 +156,32 @@ class OutageViewController: AccountPickerViewController {
     
     
     // MARK: - Helper
+    
+    private func add(asChildViewController vc: UIViewController) {
+        addChild(vc)
+        vc.view.frame = mainContainerView.bounds
+        vc.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        mainContainerView.addSubview(vc.view)
+        vc.didMove(toParent: self)
+    }
+    
+    private func remove(asChildViewController vc: UIViewController) {
+        vc.willMove(toParent: nil)
+        vc.view.removeFromSuperview()
+        vc.removeFromParent()
+    }
+    
+    private func updateView() {
+        if Configuration.shared.opco == .bge && viewModel.isUserAuthenticated {
+            guard let outageTrackerVC = outageTrackerViewController else {
+                return
+            }
+            add(asChildViewController: outageTrackerVC)
+            mainContainerView.isHidden = false
+        } else {
+            mainContainerView.isHidden = true
+        }
+    }
     
     private func configureAccountPicker() {
         accountPicker.delegate = self
@@ -268,7 +309,7 @@ class OutageViewController: AccountPickerViewController {
             shouldLoadAccounts = false
             accountInfoBar.isHidden = false
             
-            guard let outageStatus = viewModel.outageStatus else { return }
+            guard let outageStatus = viewModel.outageStatus.value else { return }
             
             // Account Info Bar
             if let accountNumberText = outageStatus.maskedAccountNumber,
@@ -352,6 +393,7 @@ extension OutageViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: TitleSubTitleRow.className, for: indexPath) as? TitleSubTitleRow else { fatalError("Invalid cell type.") }
         cell.backgroundColor = .softGray
+        cell.hideSeparator = true
         
         switch indexPath {
         case IndexPath(row: 0, section: 0):
@@ -439,6 +481,7 @@ extension OutageViewController: AccountPickerDelegate {
         configureState(.loading)
         loadOutageStatus()
         clearTimestampForReportedOutage()
+        viewModel.clearETR()
     }
 }
 
@@ -455,7 +498,7 @@ extension OutageViewController: OutageStatusDelegate {
         
         switch outageState {
         case .powerStatus(_), .reported, .unavailable, .inactive:
-            guard let message = viewModel.outageStatus?.outageDescription else { return }
+            guard let message = viewModel.outageStatus.value?.outageDescription else { return }
             let alertViewController = InfoAlertController(title: NSLocalizedString("Outage Status Details", comment: ""),
                                                           message: message)
             
@@ -502,7 +545,7 @@ extension OutageViewController: ReportOutageDelegate {
         
         // Enable Reported Outage State
         viewModel.hasJustReportedOutage = true
-        guard let outageStatus = viewModel.outageStatus else { return }
+        guard let outageStatus = viewModel.outageStatus.value else { return }
         outageStatusView.setOutageStatus(outageStatus,
                                          reportedResults: viewModel.reportedOutage,
                                          hasJustReported: viewModel.hasJustReportedOutage)

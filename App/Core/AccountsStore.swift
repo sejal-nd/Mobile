@@ -37,7 +37,7 @@ final class AccountsStore {
                 billerId = "ACERegistered"
             } else if subOpco == .delmarva {
                 billerId = "DPLRegistered"
-            }else if subOpco == .pepco {
+            } else if subOpco == .pepco {
                 billerId = "PEPCORegistered"
             }
         } else {

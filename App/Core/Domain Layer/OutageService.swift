@@ -81,4 +81,16 @@ enum OutageService {
         NetworkingLayer.request(router: .meterPingAnon(request: AnonMeterPingRequest(accountNumber: accountNumber)),
                                 completion: completion)
     }
+    
+    static func fetchOutageTracker(accountNumber: String, deviceId: String, servicePointId: String, completion: @escaping (Result<OutageTracker, NetworkingError>) -> ()) {
+        let request = OutageTrackerRequest(accountID: accountNumber, deviceID: deviceId, servicePointID: servicePointId)
+        NetworkingLayer.request(router: .outageTracker(accountNumber: accountNumber, request: request)) { (result: Result<OutageTracker, NetworkingError>) in
+            switch result {
+                case .success(let outageTracker):
+                    completion(.success(outageTracker))
+                case .failure(let error):
+                    completion(.failure(error))
+            }
+        }
+    }
 }

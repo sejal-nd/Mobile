@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TrackerStatusView" customModule="EUMobile" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="iN0-l3-epB" id="aVv-XS-SoS"/>
+                <outlet property="dateLabel" destination="s7q-qK-lAl" id="bZk-nR-0q7"/>
+                <outlet property="stackView" destination="Ncn-Fz-Bir" id="UVS-jM-LoP"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Ncn-Fz-Bir">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="542.5"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WRd-KL-LGd" userLabel="Reported" customClass="StatusView" customModule="EUMobile" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="108.5"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
+                        <view contentMode="scaleToFill" id="bqk-Ov-3Ap" userLabel="Assigned" customClass="StatusView" customModule="EUMobile" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="108.5" width="414" height="108.5"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KKb-av-fxc" userLabel="EnRoute" customClass="StatusView" customModule="EUMobile" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="217" width="414" height="108.5"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KYY-O0-jf4" userLabel="OnSite" customClass="StatusView" customModule="EUMobile" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="325.5" width="414" height="108.5"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aSG-9A-FB3" userLabel="Restored" customClass="StatusView" customModule="EUMobile" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="434" width="414" height="108.5"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </stackView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Updated: 12:55 PM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s7q-qK-lAl">
+                    <rect key="frame" x="134" y="550.5" width="146" height="49.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="Ncn-Fz-Bir" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Jna-yX-hXp"/>
+                <constraint firstItem="s7q-qK-lAl" firstAttribute="top" secondItem="Ncn-Fz-Bir" secondAttribute="bottom" constant="8" symbolic="YES" id="RhU-aS-Qe9"/>
+                <constraint firstAttribute="trailing" secondItem="Ncn-Fz-Bir" secondAttribute="trailing" id="XV2-aO-QA6"/>
+                <constraint firstAttribute="bottom" secondItem="s7q-qK-lAl" secondAttribute="bottom" id="csL-SB-GDv"/>
+                <constraint firstItem="Ncn-Fz-Bir" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="jdK-JZ-gC3"/>
+                <constraint firstItem="s7q-qK-lAl" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="wDz-a4-h0a"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="132" y="113"/>
+        </view>
+    </objects>
+</document>

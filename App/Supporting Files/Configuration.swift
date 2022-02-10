@@ -191,28 +191,70 @@ struct Configuration {
     }
     
     var b2cTenant: String {
-        let tenant: String
+        var tenant: String
         switch Configuration.shared.environmentName {
         case .rc, .release:
-            tenant = "euazurephi"
+            switch opco {
+            case .ace, .delmarva, .pepco:
+                tenant = "euazurephi"
+            case .bge:
+                tenant = "euazurebge"
+            case .comEd:
+                tenant = "euazurecomed"
+            case .peco:
+                tenant = "euazurepeco"
+            }
         default:
             let projectTierRawValue = UserDefaults.standard.string(forKey: "selectedProjectTier") ?? "Stage"
             let projectTier = ProjectTier(rawValue: projectTierRawValue) ?? .stage
             switch projectTier {
             case .dev, .test:
-                tenant = "euazurephitest"
+                switch opco {
+                case .ace, .delmarva, .pepco:
+                    tenant = "euazurephitest"
+                case .bge:
+                    tenant = "euazurebgetest"
+                case .comEd:
+                    tenant = "euazurecomedtest"
+                case .peco:
+                    tenant = "euazurepecotest"
+                }
             case .stage:
-                tenant = "euazurephistage"
+                switch opco {
+                case .ace, .delmarva, .pepco:
+                    tenant = "euazurephistage"
+                case .bge:
+                    tenant = "euazurebgestage"
+                case .comEd:
+                    tenant = "euazurecomedstage"
+                case .peco:
+                    tenant = "euazurepecostage"
+                }
             }
         }
         return tenant
+    }
+    
+    var b2cPolicy: String {
+        if FeatureFlagUtility.shared.bool(forKey: .isPkceAuthentication) {
+            return "B2C_1A_SIGNIN_MOBILE"
+        } else {
+            return "B2C_1A_Signin_ROPC"
+        }
     }
     
     var b2cHost: String {
         let host: String
         switch Configuration.shared.environmentName {
         case .rc, .release:
-            host = "secure"
+            switch (opco) {
+            case .bge:
+                host = "secure2"
+            case .comEd, .peco:
+                host = "secure1"
+            default:
+                host = "secure"
+            }
         default:
             let projectTierRawValue = UserDefaults.standard.string(forKey: "selectedProjectTier") ?? "Stage"
             let projectTier = ProjectTier(rawValue: projectTierRawValue) ?? .stage
@@ -227,7 +269,19 @@ struct Configuration {
     }
     
     var b2cAuthEndpoint: String {
-        "\(b2cHost).exeloncorp.com"
+        var endpoint: String
+        
+        if opco.isPHI {
+            endpoint = "\(b2cHost).exeloncorp.com"
+        } else {
+            endpoint = "\(b2cHost).\(opco.urlDisplayString).com"
+        }
+        
+        return endpoint
+    }
+    
+    var b2cOpowerAuthEndpoint: String {
+        return b2cAuthEndpoint
     }
     
     var b2cClientID: String {
@@ -241,8 +295,12 @@ struct Configuration {
                 clientId = "571ee0e4-c2cc-4d39-b784-6395571cb077"
             case .pepco:
                 clientId = "bb13a5b0-c61c-4194-960b-c44cebe992c2"
-            case .bge, .comEd, .peco:
-                clientId = "" //TODO("Waiting for other environments to be set up")
+            case .bge:
+                clientId = "202e1b60-9ba3-4e49-ab43-a1ebd438aa97"
+            case .comEd:
+                clientId = "b587ed2d-28a5-462c-8c1f-835f9d73f7c3"
+            case .peco:
+                clientId = "e555f5eb-b9ec-48b8-9452-fa0ed2ddeeda"
             }
         default:
             let projectTierRawValue = UserDefaults.standard.string(forKey: "selectedProjectTier") ?? "Stage"
@@ -256,8 +314,12 @@ struct Configuration {
                     clientId = "f900262f-eeb9-4ada-82a2-ade9e10e2c1b"
                 case .pepco:
                     clientId = "733a9d3b-9769-4ef3-8444-34128c5d0d63"
-                case .bge, .comEd, .peco:
-                    clientId = "" //TODO("Waiting for other environments to be set up")
+                case .bge:
+                    clientId = "831eeb00-a9c5-4752-be90-13a0d506ef92"
+                case .comEd:
+                    clientId = "83028f96-b357-4920-a1d9-dd749627b6f4"
+                case .peco:
+                    clientId = "8d6822d5-a419-41d9-8b8f-4edada5e6901"
                 }
             case .stage:
                 switch opco {
@@ -267,12 +329,73 @@ struct Configuration {
                     clientId = "548fe95f-b6c8-4791-b02b-b95ca3b3e31c"
                 case .pepco:
                     clientId = "37abcf6f-b74d-4756-8ff7-05a6817575c5"
-                case .bge, .comEd, .peco:
-                    clientId = "" //TODO("Waiting for other environments to be set up")
+                case .bge:
+                    clientId = "483c8402-2721-43f0-bbe6-ce7d223c4207"
+                case .comEd:
+                    clientId = "749d55e6-8b0f-4e15-9f26-f4401a96ec24"
+                case .peco:
+                    clientId = "908a6388-59f5-4074-84fa-5d61308f85df"
                 }
             }
         }
         return clientId
+    }
+    
+    var b2cRedirectURI: String {
+        var redirecturi: String
+        switch Configuration.shared.environmentName {
+        case .rc, .release:
+            switch opco {
+            case .ace:
+                redirecturi = "msauth.com.ifactorconsulting.ace"
+            case .delmarva:
+                redirecturi = "msauth.com.ifactorconsulting.delmarva"
+            case .pepco:
+                redirecturi = "msauth.com.ifactorconsulting.pepco"
+            case .bge:
+                redirecturi = "msauth.com.exelon.mobile.bge"
+            case .comEd:
+                redirecturi = "msauth.com.iphoneproduction.exelon"
+            case .peco:
+                redirecturi = "msauth.com.exelon.mobile.peco"
+            }
+        default:
+            let projectTierRawValue = UserDefaults.standard.string(forKey: "selectedProjectTier") ?? "Stage"
+            let projectTier = ProjectTier(rawValue: projectTierRawValue) ?? .stage
+            switch projectTier {
+            case .dev, .test:
+                switch opco {
+                case .ace:
+                    redirecturi = "msauth.com.exelon.mobile.ace.testing"
+                case .delmarva:
+                    redirecturi = "msauth.com.exelon.mobile.delmarva.testing"
+                case .pepco:
+                    redirecturi = "msauth.com.exelon.mobile.pepco.testing"
+                case .bge:
+                    redirecturi = "msauth.com.exelon.mobile.bge.testing"
+                case .comEd:
+                    redirecturi = "msauth.com.exelon.mobile.comed.testing"
+                case .peco:
+                    redirecturi = "msauth.com.exelon.mobile.peco.testing"
+                }
+            case .stage:
+                switch opco {
+                case .ace:
+                    redirecturi = "msauth.com.exelon.mobile.ace.staging"
+                case .delmarva:
+                    redirecturi = "msauth.com.exelon.mobile.delmarva.staging"
+                case .pepco:
+                    redirecturi = "msauth.com.exelon.mobile.pepco.staging"
+                case .bge:
+                    redirecturi = "msauth.com.exelon.mobile.bge.staging"
+                case .comEd:
+                    redirecturi = "msauth.com.exelon.mobile.comed.staging"
+                case .peco:
+                    redirecturi = "msauth.com.exelon.mobile.peco.staging"
+                }
+            }
+        }
+        return redirecturi
     }
     
     var b2cScope: String {
@@ -299,7 +422,7 @@ struct Configuration {
                     oPowerURLString = "https://d-c-\(projectURLSuffix.projectURLString)-\(accountOpCo.urlString)-ui-01.azurewebsites.net/pages/mobileopower.aspx"
                 }
             case .test:
-                oPowerURLString = "https://azst1-secure.\(accountOpCo.urlDisplayString).com/pages/mobileopower.aspx"
+                oPowerURLString = "https://aztst1-secure.\(accountOpCo.urlDisplayString).com/pages/mobileopower.aspx"
             case .stage:
                 oPowerURLString = "https://azstg-secure.\(accountOpCo.urlDisplayString).com/pages/mobileopower.aspx"
             }

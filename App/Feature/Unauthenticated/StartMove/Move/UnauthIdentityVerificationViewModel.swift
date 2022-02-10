@@ -25,7 +25,7 @@ class UnauthIdentityVerificationViewModel {
     let moveServiceWebURL: URL? = {
         switch Configuration.shared.opco {
         case .bge:
-            return URL(string: "https://\(Configuration.shared.associatedDomain)/CustomerServices/service/move?referrer=mobileapp")
+            return URL(string: "https://\(Configuration.shared.associatedDomain)/CustomerServices/service/landing?flowtype=moveservice&utm_source=movelink&utm_medium=mobileapp&utm_campaign=ssmredirect")
         default:
             return nil
         }

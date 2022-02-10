@@ -86,10 +86,10 @@ class MoveLandingViewController: UIViewController {
             DispatchQueue.main.async {
                 LoadingView.show()
             }
-        }else {
+        } else {
             if isAccountResidential {
                 navigateToStopServiceVC()
-            }else {
+            } else {
                 if viewModel.isUnauth {
                     FirebaseUtility.logEvent(.unauthMoveService(parameters: [.commercial]))
                 } else {
@@ -115,7 +115,7 @@ class MoveLandingViewController: UIViewController {
         super.viewDidLoad()
         if viewModel.isUnauth {
             addBackButton()
-        }else {
+        } else {
             addCloseButton()
         }
         if viewModel.isUnauth {

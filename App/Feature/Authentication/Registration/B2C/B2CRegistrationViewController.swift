@@ -48,7 +48,7 @@ class B2CRegistrationViewController: UIViewController {
             index = validatedAccount?.accounts.firstIndex { $0.accountNumber == selectedAccount.accountNumber } ?? 0
         }
         
-        let request = B2CJWTRequest(customerID: validatedAccount?.accounts[index].customerID ?? "")
+        let request = B2CJWTRequest(customerID: validatedAccount?.accounts[index].customerID ?? "", type: validatedAccount?.type?[index] ?? "residential")
         RegistrationService.fetchB2CJWT(request: request) { [weak self] result in
             switch result {
             case .success(let token):
@@ -73,7 +73,7 @@ class B2CRegistrationViewController: UIViewController {
     
     private func success() {
         FirebaseUtility.logEvent(.register(parameters: [.complete]))
-
+        
         GoogleAnalytics.log(event: .registerAccountComplete)
         
         delegate?.registrationViewControllerDidRegister(self)
@@ -83,14 +83,32 @@ class B2CRegistrationViewController: UIViewController {
 
 extension B2CRegistrationViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+        
+        Log.info("URL ---> \(webView.url?.absoluteString) \n\n")
+        
         if let urlString = webView.url?.absoluteString,
            urlString.contains("selfAsserted-registration-main-ebill-mobile") {
             success()
         } else if let urlString = webView.url?.absoluteString,
-                  urlString.contains("SelfAsserted/error") {
+                urlString.contains("SelfAsserted/error") {
             self.errorView.isHidden = false
             self.loadingIndicator.isHidden = true
             self.webView.isHidden = true
+        }
+    }
+    
+    func webView(_ webView: WKWebView, didReceiveServerRedirectForProvisionalNavigation navigation: WKNavigation!) {
+        guard let urlString = webView.url?.absoluteString else {
+            return
+        }
+        
+        if urlString.contains("id_token=") {
+            let token = NSURLComponents(string: urlString)?.fragment?.components(separatedBy: "id_token=").get(at: 1) ?? ""
+            if let json = TokenResponse.decodeToJson(token: token) {
+                let mfaSignupSelection = json["mfaSignupSelection"] as? String
+                RxNotifications.shared.mfaBypass.accept(mfaSignupSelection == "Bypass")
+            }
+            success()
         }
     }
     

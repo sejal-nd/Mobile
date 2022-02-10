@@ -20,6 +20,16 @@ extension Reactive where Base == AccountService {
         }
     }
     
+    static func fetchAccountSummary(accountNumber: String = AccountsStore.shared.currentAccount.accountNumber,
+                                    includeDevice: Bool = false,
+                                    includeMDM: Bool = false) -> Observable<AccountSummary> {
+        return Observable.create { observer -> Disposable in
+            AccountService.fetchAccountSummary(accountNumber: accountNumber, includeDevice: includeDevice, includeMDM: includeMDM) { observer.handle(result: $0) }
+            
+            return Disposables.create()
+        }
+    }
+    
     static func fetchAccountDetails(accountNumber: String = AccountsStore.shared.currentAccount.accountNumber,
                                     payments: Bool = true,
                                     programs: Bool = true,

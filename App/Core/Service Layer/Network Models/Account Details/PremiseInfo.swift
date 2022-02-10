@@ -20,6 +20,8 @@ public struct PremiseInfo: Decodable, Equatable, Hashable {
     public var streetDetail: StreetDetail
     public var townDetail: TownDetail
     
+    let servicePoints: [ServicePoint]
+    
     enum CodingKeys: String, CodingKey {        
         case premiseNumber
         case peakRewards
@@ -30,6 +32,8 @@ public struct PremiseInfo: Decodable, Equatable, Hashable {
         case addressLine
         case streetDetail
         case townDetail
+        
+        case servicePoints
     }
     
     public init(from decoder: Decoder) throws {
@@ -51,6 +55,8 @@ public struct PremiseInfo: Decodable, Equatable, Hashable {
         self.streetDetail = try mainAddressContainer.decode(StreetDetail.self, forKey: .streetDetail)
         
         self.townDetail = try mainAddressContainer.decode(TownDetail.self, forKey: .townDetail)
+        
+        self.servicePoints = try container.decodeIfPresent([ServicePoint].self, forKey: .servicePoints) ?? []
     }
     
     var addressLineString: String {
@@ -81,6 +87,19 @@ public struct TownDetail: Decodable {
     public var stateOrProvince: String?
 }
 
+public struct ServicePoint: Decodable {
+    public var serviceLocation: ServicePointValue?
+    public var usagePointLocation: ServicePointValue?
+    
+    enum CodingKeys: String, CodingKey {
+        case serviceLocation = "ServiceLocation"
+        case usagePointLocation = "UsagePointLocation"
+    }
+}
+
+public struct ServicePointValue: Decodable {
+    public var mRID: String?
+}
 
 //{
 //    "premiseNumber": "9385710000",

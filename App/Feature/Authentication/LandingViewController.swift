@@ -10,6 +10,7 @@ import UIKit
 import AVFoundation
 import RxSwift
 import RxCocoa
+import AuthenticationServices
 
 #if canImport(SwiftUI)
 import SwiftUI
@@ -45,6 +46,7 @@ class LandingViewController: UIViewController {
         super.viewDidLoad()
         
         signInButton.setTitle(NSLocalizedString("Sign In", comment: ""), for: .normal)
+        signInButton.hasBlueAnimations = true
         if Configuration.shared.opco == .peco {
             registerButton.setTitle(NSLocalizedString("Register for Online Access", comment: ""), for: .normal)
         } else {
@@ -133,7 +135,131 @@ class LandingViewController: UIViewController {
     }
     
     @IBAction func onSignInPress() {
-        performSegue(withIdentifier: "loginSegue", sender: self)
+        
+        if FeatureFlagUtility.shared.bool(forKey: .isPkceAuthentication) {
+            // Present ASWebAuthentication
+            signInButton.tintWhite = true
+            signInButton.setLoading()
+            signInButton.accessibilityLabel = NSLocalizedString("Loading", comment: "")
+            signInButton.accessibilityViewIsModal = true
+            
+            PKCEAuthenticationService.default.presentLoginForm { [weak self] result in
+                guard let self = self else { return }
+                switch (result) {
+                case .success(let pkceResult):
+                    if pkceResult.tokenResponse != nil {
+                        self.handleLoginSuccess()
+                    } else if pkceResult.redirect == "find_email" {
+                        Log.info("redirect to find email flow")
+                        self.signInButton.reset()
+                        self.signInButton.setTitle("Sign In", for: .normal)
+                        self.signInButton.accessibilityLabel = "Sign In"
+                        self.signInButton.accessibilityViewIsModal = false
+                        
+                        FirebaseUtility.logEvent(.login(parameters: [.forgot_username_press]))
+                        GoogleAnalytics.log(event: .forgotUsernameOffer)
+                        
+                        self.performSegue(withIdentifier: "forgotUsernameSegue", sender: self)
+                    } else {
+                        self.signInButton.reset()
+                        self.signInButton.setTitle("Sign In", for: .normal)
+                        self.signInButton.accessibilityLabel = "Sign In"
+                        self.signInButton.accessibilityViewIsModal = false
+                    }
+                case .failure(let error):
+                    self.signInButton.reset()
+                    self.signInButton.setTitle("Sign In", for: .normal)
+                    self.signInButton.accessibilityLabel = "Sign In"
+                    self.signInButton.accessibilityViewIsModal = false
+                    
+                    let sessionError = ASWebAuthenticationSessionError.Code(rawValue: (error as NSError).code)
+                    if sessionError != ASWebAuthenticationSessionError.canceledLogin {
+                        self.showErrorAlertWith(title: nil, message: error.localizedDescription)
+                    }
+                }
+            }
+        } else {
+            performSegue(withIdentifier: "loginSegue", sender: self)
+        }
+    }
+    
+    func handleLoginSuccess() {
+        self.getMaintenanceMode { maintenanceMode in
+            if maintenanceMode?.all ?? false {
+                (UIApplication.shared.delegate as? AppDelegate)?.showMaintenanceMode(maintenanceMode)
+            } else if maintenanceMode?.storm ?? false {
+                (UIApplication.shared.delegate as? AppDelegate)?.showStormMode()
+            } else {
+                self.signInButton.reset()
+                self.signInButton.accessibilityLabel = "Sign In"
+                self.signInButton.accessibilityViewIsModal = false
+                
+                self.signInButton.setSuccess {
+                    FirebaseUtility.logEvent(.initialAuthenticatedScreenStart)
+                    GoogleAnalytics.log(event: .loginComplete)
+
+                    guard let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as? MainTabBarController,
+                        let navController = self.navigationController else {
+                            return
+                    }
+                    navController.navigationBar.prefersLargeTitles = false
+                    navController.navigationItem.largeTitleDisplayMode = .never
+                    navController.setNavigationBarHidden(true, animated: false)
+                    navController.setViewControllers([viewController], animated: false)
+                }
+            }
+        }
+    }
+    
+    func getMaintenanceMode(completion: @escaping (MaintenanceMode?) -> ()) {
+        AnonymousService.maintenanceMode { (result: Result<MaintenanceMode, Error>) in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let maintenanceMode):
+                    completion(maintenanceMode)
+                case .failure(_):
+                    completion(nil)
+                }
+            }
+        }
+    }
+    
+    func showErrorAlertWith(title: String?, message: String) {
+        Log.info("login failed")
+
+        let errorAlert = UIAlertController(title: title != nil ? title : NSLocalizedString("Sign In Error", comment: ""), message: message, preferredStyle: .alert)
+        errorAlert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+        present(errorAlert, animated: true, completion: nil)
+    }
+    
+    func show2SVJustEnabled() {
+        let twoSVEnabledAlert = InfoAlertController(title: NSLocalizedString("You are set up to use Two-Step Verification.", comment: ""),
+                                                    message: NSLocalizedString("Two-Step Verification is now enabled. In the future, we'll notify you whenever someone attempts to log in to your account.", comment: ""),
+                                                    icon: #imageLiteral(resourceName: "ic_confirmation_mini"))
+        
+        self.present(twoSVEnabledAlert, animated: true, completion: nil)
+    }
+    
+    func show2SVReminder() {
+        let action = InfoAlertAction(ctaText: NSLocalizedString("Enable Two-Step Verification", comment: ""))
+        
+        let alert = InfoAlertController(title: NSLocalizedString("Two-Step Verification is not enabled.", comment: ""),
+                                        message: NSLocalizedString("To enable this feature or make changes, go to the more tab.", comment: ""),
+                                        action: action)
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func showFindEmailAlert(foundEmail: String) {
+        let action = InfoAlertAction(ctaText: NSLocalizedString("Copy email to clipboard", comment: "")) {
+            UIPasteboard.general.string = foundEmail
+            self.view.showToast(NSLocalizedString("Email copied to clipboard", comment: ""))
+        }
+        
+        let alert = InfoAlertController(title: NSLocalizedString("Email Found", comment: ""),
+                                        message: NSLocalizedString("You may now use \(foundEmail) to login to your account", comment: ""),
+                                        action: action)
+        self.present(alert, animated: true, completion: nil)
     }
     
     @IBAction func onRegistrationInPress() {
@@ -231,9 +357,37 @@ class LandingViewController: UIViewController {
 
 extension LandingViewController: RegistrationViewControllerDelegate {
     func registrationViewControllerDidRegister(_ registrationViewController: UIViewController) {
-        performSegue(withIdentifier: "loginSegue", sender: self)
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
-            UIApplication.shared.keyWindow?.rootViewController?.view.showToast(NSLocalizedString("Account registered", comment: ""))
-        })
+        if FeatureFlagUtility.shared.bool(forKey: .isB2CAuthentication) {
+            if RxNotifications.shared.mfaBypass.value {
+                RxNotifications.shared.mfaBypass.accept(false)
+                DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+                    UIApplication.shared.keyWindow?.rootViewController?.view.showToast(NSLocalizedString("Two-Step Verification is not enabled.", comment: ""))
+                })
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(5500), execute: {
+                    UIApplication.shared.keyWindow?.rootViewController?.view.showToast(NSLocalizedString("Account registered", comment: ""))
+                })
+            } else {
+                DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+                    UIApplication.shared.keyWindow?.rootViewController?.view.showToast(NSLocalizedString("Account registered", comment: ""))
+                })
+            }
+        } else {
+            performSegue(withIdentifier: "loginSegue", sender: self)
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+                UIApplication.shared.keyWindow?.rootViewController?.view.showToast(NSLocalizedString("Account registered", comment: ""))
+            })
+        }
+    }
+}
+
+extension LandingViewController: ForgotUsernameResultViewControllerDelegate {
+    func forgotUsernameResultViewController(_ forgotUsernameResultViewController: UIViewController, didUnmaskUsername username: String) {
+        Log.info("unmasked email is \(username)")
+        GoogleAnalytics.log(event: .forgotUsernameCompleteAutoPopup)
+        
+        DispatchQueue.main.async {
+            self.showFindEmailAlert(foundEmail: username)
+        }
     }
 }
