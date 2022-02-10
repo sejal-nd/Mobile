@@ -13,7 +13,7 @@ import RxSwiftExt
 class OutageViewModel {
     let disposeBag = DisposeBag()
     
-    var outageStatus: OutageStatus?
+    var outageStatus = BehaviorRelay<OutageStatus?>(value: nil)
     var isOutageStatusInactive = false
     var hasJustReportedOutage = false
     var isUserAuthenticated = false
@@ -50,7 +50,7 @@ class OutageViewModel {
         OutageService.fetchOutageStatus(accountNumber: AccountsStore.shared.currentAccount.accountNumber, premiseNumberString: AccountsStore.shared.currentAccount.currentPremise?.premiseNumber ?? "") { result in
             switch result {
             case .success(let outageStatus):
-                self.outageStatus = outageStatus
+                self.outageStatus.accept(outageStatus)
                 
                 // todo i think i can refactor this out.
                 if outageStatus.isInactive {
