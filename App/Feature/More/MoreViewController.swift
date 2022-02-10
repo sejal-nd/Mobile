@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import Toast_Swift
+import AuthenticationServices
 
 class MoreViewController: UIViewController {
     
@@ -399,8 +400,11 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
                                     self.view.showToast("Two-Step Verification settings updated")
                                 }
                             }
-                        case .failure(_):
-                            self.view.showToast("Error updating security credentials.")
+                        case .failure(let error):
+                            let sessionError = ASWebAuthenticationSessionError.Code(rawValue: (error as NSError).code)
+                            if sessionError != ASWebAuthenticationSessionError.canceledLogin {
+                                self.view.showToast("Error updating security credentials.")
+                            }
                         }
                     }
                 } else {

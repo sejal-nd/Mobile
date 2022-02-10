@@ -257,7 +257,7 @@ class UnauthenticatedOutageValidateAccountViewController: KeyboardAvoidingSticky
             vc.analyticsSource = analyticsSource
         } else if let vc = segue.destination as? OutageViewController {
             vc.userState = .unauthenticated
-            vc.viewModel.outageStatus = viewModel.selectedOutageStatus.value
+            vc.viewModel.outageStatus.accept(viewModel.selectedOutageStatus.value)
             vc.viewModel.accountNumber = viewModel.selectedOutageStatus.value?.accountNumber
         }
     }
