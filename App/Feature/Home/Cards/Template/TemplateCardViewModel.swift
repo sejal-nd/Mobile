@@ -43,7 +43,7 @@ class TemplateCardViewModel {
             switch Configuration.shared.opco {
             case .peco:
                 if accountDetail.isResidential {
-                    return #imageLiteral(resourceName: "marketplace")
+                    return #imageLiteral(resourceName: "marketplace-peco")
                 } else {
                     return #imageLiteral(resourceName: "Commercial")
                 }
