@@ -47,11 +47,7 @@ class LandingViewController: UIViewController {
         
         signInButton.setTitle(NSLocalizedString("Sign In", comment: ""), for: .normal)
         signInButton.hasBlueAnimations = true
-        if Configuration.shared.opco == .peco {
-            registerButton.setTitle(NSLocalizedString("Register for Online Access", comment: ""), for: .normal)
-        } else {
-            registerButton.setTitle(NSLocalizedString("Register", comment: ""), for: .normal)
-        }
+        registerButton.setTitle(NSLocalizedString("Register for Online Access", comment: ""), for: .normal)
         continueAsGuestButon.setTitle(NSLocalizedString("Continue as Guest", comment: ""), for: .normal)
         continueAsGuestButon.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
         
