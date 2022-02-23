@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import PDTSimpleCalendar
+import HorizonCalendar
 
 class StopServiceViewController: UIViewController {
 
@@ -108,14 +109,14 @@ class StopServiceViewController: UIViewController {
                 guard let self = self else { return }
                 self.view.endEditing(true)
                 
-                let calendarVC = PDTSimpleCalendarViewController()
+                let calendarVC = CalendarViewController()
                 calendarVC.calendar = .opCo
                 calendarVC.delegate = self
                 calendarVC.firstDate = Calendar.current.date(byAdding: .month, value: 0, to: Calendar.current.startOfDay(for: .now))
                 calendarVC.lastDate = Calendar.current.date(byAdding: .month, value: 1, to: Calendar.current.startOfDay(for: .now))
-                calendarVC.scroll(toSelectedDate: true)
-                calendarVC.weekdayHeaderEnabled = true
-                calendarVC.weekdayTextType = PDTSimpleCalendarViewWeekdayTextType.veryShort
+//                calendarVC.scroll(toSelectedDate: true)
+//                calendarVC.weekdayHeaderEnabled = true
+//                calendarVC.weekdayTextType = PDTSimpleCalendarViewWeekdayTextType.veryShort
 
                 if let selectedDate = self.viewModel.selectedDate.value {
                     calendarVC.selectedDate = Calendar.opCo.startOfDay(for: selectedDate)
@@ -291,6 +292,18 @@ extension StopServiceViewController: PDTSimpleCalendarViewDelegate {
     }
     
     func simpleCalendarViewController(_ controller: PDTSimpleCalendarViewController!, didSelect date: Date!) {
+        hasChangedData = true
+        self.viewModel.selectedDate.accept(date)
+        controller.dismiss(animated: true, completion: nil)
+    }
+}
+
+extension StopServiceViewController: CalendarViewDelegate {
+    func calendarViewController(_ controller: CalendarViewController, isDateEnabled date: Date) -> Bool {
+        return self.viewModel.isValidDate(date)
+    }
+    
+    func calendarViewController(_ controller: CalendarViewController, didSelectDate date: Date) {
         hasChangedData = true
         self.viewModel.selectedDate.accept(date)
         controller.dismiss(animated: true, completion: nil)
