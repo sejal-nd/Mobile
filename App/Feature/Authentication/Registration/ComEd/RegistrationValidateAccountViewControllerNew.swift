@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
-import PDTSimpleCalendar
+import HorizonCalendar
 
 protocol RegistrationViewControllerDelegate: class {
     func registrationViewControllerDidRegister(_ registrationViewController: UIViewController)
@@ -152,7 +152,7 @@ class RegistrationValidateAccountViewControllerNew: KeyboardAvoidingStickyFooter
             guard let self = self else { return }
             self.view.endEditing(true)
             
-            let calendarVC = PDTSimpleCalendarViewController()
+            let calendarVC = CalendarViewController()
             calendarVC.extendedLayoutIncludesOpaqueBars = true
             calendarVC.calendar = .opCo
             calendarVC.delegate = self
@@ -160,7 +160,6 @@ class RegistrationValidateAccountViewControllerNew: KeyboardAvoidingStickyFooter
             calendarVC.firstDate = Calendar.current.date(byAdding: .year, value: -10, to: Calendar.current.startOfDay(for: .now))
             calendarVC.lastDate = Calendar.current.date(byAdding: .year, value: 10, to: Calendar.current.startOfDay(for: .now))
             calendarVC.selectedDate = Calendar.opCo.startOfDay(for: .now)
-            calendarVC.scroll(toSelectedDate: true)
             
             self.navigationController?.pushViewController(calendarVC, animated: true)
         }).disposed(by: disposeBag)
@@ -386,14 +385,14 @@ extension RegistrationValidateAccountViewControllerNew: UITextFieldDelegate {
     }
 }
 
-// MARK: - PDTSimpleCalendarViewDelegate
+// MARK: - CalendarViewDelegate
 
-extension RegistrationValidateAccountViewControllerNew: PDTSimpleCalendarViewDelegate {
-    func simpleCalendarViewController(_ controller: PDTSimpleCalendarViewController!, isEnabledDate date: Date!) -> Bool {
+extension RegistrationValidateAccountViewControllerNew: CalendarViewDelegate {
+    func calendarViewController(_ controller: CalendarViewController, isDateEnabled date: Date) -> Bool {
         return true
     }
     
-    func simpleCalendarViewController(_ controller: PDTSimpleCalendarViewController!, didSelect date: Date!) {
+    func calendarViewController(_ controller: CalendarViewController, didSelect date: Date) {
         let components = Calendar.opCo.dateComponents([.year, .month, .day], from: date)
         guard let opCoTimeDate = Calendar.opCo.date(from: components) else { return }
         dueDateButton.valueLabel.textColor = .deepGray

@@ -11,7 +11,6 @@ def iOS_pods
   pod 'zxcvbn-ios', '1.0.4'
   pod 'ReachabilitySwift', '4.3.1'
   pod 'RxSwiftExt/RxCocoa', '5.2.0'
-  pod 'PDTSimpleCalendar', '0.9.1'
   pod 'HorizonCalendar'
   pod 'Charts', '3.3'
   pod 'XLPagerTabStrip', '9.0.0'

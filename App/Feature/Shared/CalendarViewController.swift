@@ -11,17 +11,18 @@ import HorizonCalendar
 
 protocol CalendarViewDelegate {
     func calendarViewController(_ controller: CalendarViewController, isDateEnabled date: Date) -> Bool
-    func calendarViewController(_ controller: CalendarViewController, didSelectDate date: Date)
+    func calendarViewController(_ controller: CalendarViewController, didSelect date: Date)
 }
 
 class CalendarViewController: UIViewController {
     
-    var calendar = Calendar.current
+    var calendar = Calendar.opCo
     var calendarView: CalendarView!
     var selectedDate: Date?
     var firstDate: Date?
     var lastDate: Date?
     var delegate: CalendarViewDelegate?
+    var scrollToSelectedDate = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +36,7 @@ class CalendarViewController: UIViewController {
             if self.delegate?.calendarViewController(self, isDateEnabled: date) ?? true {
                 self.selectedDate = date
                 self.calendarView.setContent(self.makeContent())
-                self.delegate?.calendarViewController(self, didSelectDate: date)
+                self.delegate?.calendarViewController(self, didSelect: date)
             }
         }
         
@@ -50,14 +51,11 @@ class CalendarViewController: UIViewController {
           calendarView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor),
         ])
         
-        if let selectedDate = self.selectedDate {
+        if scrollToSelectedDate,
+           let selectedDate = self.selectedDate {
             calendarView.scroll(toDayContaining: selectedDate, scrollPosition: .centered, animated: false)
         }
     }
-    
-//    public func scroll(toSelectedDate: Bool) {
-//
-//    }
     
     private func makeContent() -> CalendarViewContent {
         let startDateComponents = calendar.dateComponents([.month, .year], from: .now)
