@@ -123,7 +123,7 @@ DEPENDENCIES:
   - ForeSee/Core (= 6.0.4)
   - ForeSee/ForeSeeFeedback (= 6.0.4)
   - GoogleAnalytics (= 3.17.0)
-  - HorizonCalendar
+  - HorizonCalendar (= 1.13.3)
   - lottie-ios (= 3.1.5)
   - ReachabilitySwift (= 4.3.1)
   - RxSwift (= 5.1.0)
@@ -186,6 +186,6 @@ SPEC CHECKSUMS:
   XLPagerTabStrip: 61c57fd61f611ee5f01ff1495ad6fbee8bf496c5
   zxcvbn-ios: fef98b7c80f1512ff0eec47ac1fa399fc00f7e3c
 
-PODFILE CHECKSUM: 58c7cf0938999eaa392b150e5d004c05fd4d62b3
+PODFILE CHECKSUM: b62e0eb189c7261dc0a8eea181c3c769b09df445
 
 COCOAPODS: 1.11.2

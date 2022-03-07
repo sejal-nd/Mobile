@@ -9,7 +9,6 @@
 import UIKit
 import RxSwift
 import RxCocoa
-import HorizonCalendar
 
 protocol RegistrationViewControllerDelegate: class {
     func registrationViewControllerDidRegister(_ registrationViewController: UIViewController)
