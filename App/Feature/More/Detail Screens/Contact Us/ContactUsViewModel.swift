@@ -37,18 +37,23 @@ class ContactUsViewModel {
             let localizedString = String(format: NSLocalizedString("If you see downed power lines, %@ and then call ComEd. Representatives are available 24 hours a day, 7 days a week.", comment: ""), leaveAreaString)
             emergencyAttrString = NSMutableAttributedString(string: localizedString)
             emergencyAttrString.addAttribute(.font, value: OpenSans.boldItalic.of(textStyle: .footnote), range: (localizedString as NSString).range(of: leaveAreaString))
-        case .pepco, .ace:
+        case .pepco:
             let leaveAreaString = NSLocalizedString("leave the area immediately", comment: "")
             let opcoTitle = opco.displayString
-            let localizedString = String(format: NSLocalizedString("If you see a downed power line, %@ and then call %@. Representatives are available 24 hours a day, 7 days a week.", comment: ""), leaveAreaString, opcoTitle)
+            let localizedString = String(format: NSLocalizedString("If you see downed power lines, %@ and call %@ at 1-877-737-2662", comment: ""), leaveAreaString, opcoTitle)
             emergencyAttrString = NSMutableAttributedString(string: localizedString)
             emergencyAttrString.addAttribute(.font, value: OpenSans.bold.of(textStyle: .footnote), range: (localizedString as NSString).range(of: leaveAreaString))
         case .delmarva:
             let leaveAreaString = NSLocalizedString("leave the area immediately", comment: "")
-            let localizedString = String(format: NSLocalizedString("If you see a downed power line or smell natural gas, %@ and then call Delmarva. Representatives are available 24 hours a day, 7 days a week.", comment: ""), leaveAreaString)
+            let localizedString = String(format: NSLocalizedString("If you see downed power lines or smell natural gas, %@ and and call Delmarva at 1-800-898-8042", comment: ""), leaveAreaString)
             emergencyAttrString = NSMutableAttributedString(string: localizedString)
             emergencyAttrString.addAttribute(.font, value: OpenSans.bold.of(textStyle: .footnote), range: (localizedString as NSString).range(of: leaveAreaString))
-        }
+        case .ace:
+            let leaveAreaString = NSLocalizedString("leave the area immediately", comment: "")
+            let opcoTitle = opco.displayString
+            let localizedString = String(format: NSLocalizedString("If you see downed power lines, %@ and call %@ at 1-800-833-7476", comment: ""), leaveAreaString, opcoTitle)
+            emergencyAttrString = NSMutableAttributedString(string: localizedString)
+            emergencyAttrString.addAttribute(.font, value: OpenSans.bold.of(textStyle: .footnote), range: (localizedString as NSString).range(of: leaveAreaString))        }
         return emergencyAttrString
     }
     
