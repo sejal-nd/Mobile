@@ -360,7 +360,31 @@ class HomeBillCardView: UIView {
         viewModel.showCatchUpDisclaimer.not().drive(enrolmentStatusViewBillNotReady.rx.isHidden).disposed(by: bag)
         viewModel.enrollmentStatus.drive(enrolmentStatusLabelBillNotReady.rx.text).disposed(by: bag)
         viewModel.showDDEExtendedView.not().drive(ddeExtendedDateViewBillNotReady.rx.isHidden).disposed(by: bag)
+        viewModel.setComedPedoCTAAndEnrollment.drive().disposed(by: bag)
+        viewModel.comedPecoCTADetails.asDriver().drive(onNext: { [weak self] description in
+            guard let self = self else { return }
+            if description == nil {
+                DispatchQueue.main.async {
+                    self.assistanceView.isHidden = true
+                }
+            }
+            if (description?.title == "") &&
+                (description?.description == "") {
+                self.assistanceView.isHidden = true
+            }
+            
+            DispatchQueue.main.async {
+                if description?.ctaType == "Reinstate Payment Arrangement" {
+                    self.titleAssistanceProgram.font = SystemFont.regular.of(textStyle: .caption1)
+                }
+
+            }
+            self.titleAssistanceProgram.text = description?.title
+            self.descriptionAssistanceProgram.text = description?.description
+            self.assistanceCTA.setTitle(description?.ctaType, for: .normal)
+        }).disposed(by: bag)
         
+
         viewModel.paymentAssistanceValues.drive(onNext: { [weak self] description in
             guard let self = self else { return }
             if description == nil {
