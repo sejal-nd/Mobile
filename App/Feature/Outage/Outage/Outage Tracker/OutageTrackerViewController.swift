@@ -105,6 +105,7 @@ class OutageTrackerViewController: UIViewController {
     }
     
     private func update() {
+        logOutageTrackerEvents()
         if viewModel.isGasOnly {
             let gasOnlyView = GasOnlyView()
             gasOnlyView.frame = self.view.bounds
@@ -159,8 +160,6 @@ class OutageTrackerViewController: UIViewController {
                         trackerStatusContainer.isHidden = false
                         trackerStatusView.configure(withEvents: viewModel.events, lastUpdated: viewModel.lastUpdated, isPaused: viewModel.isPaused)
                     }
-                    
-                    logFirebaseEvents()
                 }
             }
             
@@ -169,9 +168,16 @@ class OutageTrackerViewController: UIViewController {
         }
     }
     
-    private func logFirebaseEvents() {
-        if viewModel.isGasOnly {
+    /**
+     Function for logging Outage Tracker Firebase events
+     */
+    private func logOutageTrackerEvents() {
+        if viewModel.status == .none {
+            FirebaseUtility.logEvent(.outageTracker(parameters: [.technical_error]))
+        } else if viewModel.isGasOnly {
             FirebaseUtility.logEvent(.outageTracker(parameters: [.account_gas_only]))
+        } else if viewModel.isInactive {
+            FirebaseUtility.logEvent(.outageTracker(parameters: [.account_inactive]))
         } else {
             guard let tracker = viewModel.outageTracker.value else { return }
             if viewModel.isActiveOutage == true {
@@ -184,7 +190,7 @@ class OutageTrackerViewController: UIViewController {
                 if viewModel.isDefinitive {
                     FirebaseUtility.logEvent(.outageTracker(parameters: [.power_restored_definitive]))
                 } else {
-                    FirebaseUtility.logEvent(.outageTracker(parameters: [.power_restored_definitive]))
+                    FirebaseUtility.logEvent(.outageTracker(parameters: [.power_restored_non_definitive]))
                 }
             } else if viewModel.status == .enRoute && tracker.isCrewDiverted == true {
                 FirebaseUtility.logEvent(.outageTracker(parameters: [.crew_en_route_diverted]))
