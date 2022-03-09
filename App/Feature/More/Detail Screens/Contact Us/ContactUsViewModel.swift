@@ -45,7 +45,7 @@ class ContactUsViewModel {
             emergencyAttrString.addAttribute(.font, value: OpenSans.bold.of(textStyle: .footnote), range: (localizedString as NSString).range(of: leaveAreaString))
         case .delmarva:
             let leaveAreaString = NSLocalizedString("leave the area immediately", comment: "")
-            let localizedString = String(format: NSLocalizedString("If you see downed power lines or smell natural gas, %@ and and call Delmarva at 1-800-898-8042", comment: ""), leaveAreaString)
+            let localizedString = String(format: NSLocalizedString("If you see downed power lines or smell natural gas, %@ and call Delmarva at 1-800-898-8042", comment: ""), leaveAreaString)
             emergencyAttrString = NSMutableAttributedString(string: localizedString)
             emergencyAttrString.addAttribute(.font, value: OpenSans.bold.of(textStyle: .footnote), range: (localizedString as NSString).range(of: leaveAreaString))
         case .ace:
