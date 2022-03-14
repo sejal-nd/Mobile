@@ -105,6 +105,7 @@ class OutageTrackerViewController: UIViewController {
     }
     
     private func update() {
+        logOutageTrackerEvents()
         if viewModel.isGasOnly {
             let gasOnlyView = GasOnlyView()
             gasOnlyView.frame = self.view.bounds
@@ -145,7 +146,7 @@ class OutageTrackerViewController: UIViewController {
                     
                     if viewModel.status == .restored {
                         countContainerView.isHidden = true
-                    } 
+                    }
                     
                     whyButtonContainer.isHidden = viewModel.hideWhyButton
                     whyButton.setTitle(viewModel.whyButtonText, for: .normal)
@@ -164,6 +165,54 @@ class OutageTrackerViewController: UIViewController {
             
             refreshControl?.endRefreshing()
             setRefreshControlEnabled(enabled: true)
+        }
+    }
+    
+    /**
+     Function for logging Outage Tracker Firebase events
+     */
+    private func logOutageTrackerEvents() {
+        if viewModel.status == .none {
+            FirebaseUtility.logEvent(.outageTracker(parameters: [.technical_error]))
+        } else if viewModel.isGasOnly {
+            FirebaseUtility.logEvent(.outageTracker(parameters: [.account_gas_only]))
+        } else if viewModel.isInactive {
+            FirebaseUtility.logEvent(.outageTracker(parameters: [.account_inactive]))
+        } else {
+            guard let tracker = viewModel.outageTracker.value else { return }
+            if viewModel.isActiveOutage == true {
+                FirebaseUtility.logEvent(.outageTracker(parameters: [.active_outage]))
+            } else {
+                FirebaseUtility.logEvent(.outageTracker(parameters: [.power_on]))
+            }
+            
+            if viewModel.status == .restored {
+                if viewModel.isDefinitive {
+                    FirebaseUtility.logEvent(.outageTracker(parameters: [.power_restored_definitive]))
+                } else {
+                    FirebaseUtility.logEvent(.outageTracker(parameters: [.power_restored_non_definitive]))
+                }
+            } else if viewModel.status == .enRoute && tracker.isCrewDiverted == true {
+                FirebaseUtility.logEvent(.outageTracker(parameters: [.crew_en_route_diverted]))
+            } else if viewModel.status == .onSite && tracker.isCrewDiverted == true {
+                FirebaseUtility.logEvent(.outageTracker(parameters: [.crew_on_site_diverted]))
+            }
+            
+            if tracker.isPartialRestoration == true {
+                FirebaseUtility.logEvent(.outageTracker(parameters: [.partial_restoration]))
+            }
+            
+            if tracker.isCrewExtDamage == true {
+                FirebaseUtility.logEvent(.outageTracker(parameters: [.extensive_damage]))
+            }
+            
+            if tracker.isSafetyHazard == true {
+                FirebaseUtility.logEvent(.outageTracker(parameters: [.safety_hazard]))
+            }
+            
+            if tracker.isMultipleOutage == true {
+                FirebaseUtility.logEvent(.outageTracker(parameters: [.nested_outage]))
+            }
         }
     }
     
