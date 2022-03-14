@@ -8,7 +8,6 @@
 
 import UIKit
 import RxSwift
-import PDTSimpleCalendar
 
 class ReviewStopServiceViewController: UIViewController {
     
@@ -94,14 +93,11 @@ class ReviewStopServiceViewController: UIViewController {
             .subscribe(onNext: { [weak self] _ in
                 guard let `self` = self else { return }
                 FirebaseUtility.logEvent(.stopService(parameters: [.calendar]))
-                let calendarVC = PDTSimpleCalendarViewController()
+                let calendarVC = CalendarViewController()
                 calendarVC.calendar = .opCo
                 calendarVC.delegate = self
                 calendarVC.firstDate = Calendar.current.date(byAdding: .month, value: 0, to: Calendar.current.startOfDay(for: .now))
                 calendarVC.lastDate = Calendar.current.date(byAdding: .month, value: 1, to: Calendar.current.startOfDay(for: .now))
-                calendarVC.scroll(toSelectedDate: true)
-                calendarVC.weekdayHeaderEnabled = true
-                calendarVC.weekdayTextType = PDTSimpleCalendarViewWeekdayTextType.veryShort
                 calendarVC.selectedDate = Calendar.opCo.startOfDay(for: self.stopFlowData.selectedDate)
                 let navigationController = LargeTitleNavigationController(rootViewController: calendarVC)
                 navigationController.setNavigationBarHidden(false, animated: false)
@@ -186,12 +182,12 @@ class ReviewStopServiceViewController: UIViewController {
 }
 
 // MARK: - PDTSimpleCalendarViewDelegate
-extension ReviewStopServiceViewController: PDTSimpleCalendarViewDelegate {
-    func simpleCalendarViewController(_ controller: PDTSimpleCalendarViewController!, isEnabledDate date: Date!) -> Bool {
+extension ReviewStopServiceViewController: CalendarViewDelegate {
+    func calendarViewController(_ controller: CalendarViewController, isDateEnabled date: Date) -> Bool {
         return viewModel.isValidDate(date, workDays: stopFlowData.workDays)
     }
     
-    func simpleCalendarViewController(_ controller: PDTSimpleCalendarViewController!, didSelect date: Date!) {
+    func calendarViewController(_ controller: CalendarViewController, didSelect date: Date) {
         self.stopFlowData.selectedDate = date
         self.stopServiceDateLabel.text = DateFormatter.fullMonthDayAndYearFormatter.string(from: date)
         controller.dismiss(animated: true, completion: nil)
