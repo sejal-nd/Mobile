@@ -574,7 +574,8 @@ class StormModeHomeViewController: AccountPickerViewController {
 
             } else if AccountsStore.shared.accountOpco == .delmarva {
                 group1Label.text = NSLocalizedString("If you smell natural gas, leave the area immediately and then call ", comment: "")
-                group2Label.text = NSLocalizedString("If you see downed power lines or smell natural gas, leave the area immediately and call Delmarva at ", comment: "")
+                
+                group2Label.text = NSLocalizedString("If you see downed power lines, leave the area immediately and call Delmarva at ", comment: "")
                 phone1Label.text = "302-454-0317"
                 phone3Label.text = "1-800-898-8042"
                 
