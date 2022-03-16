@@ -71,7 +71,11 @@ class OutageStatusView: UIView {
             case .unavailable, .inactive:
                 text = NSLocalizedString("Outage Status and Outage Reporting are not available for this account.", comment: "")
             case .nonPayment:
-                text = NSLocalizedString("Our records indicate that you have been cut for non-payment. If you wish to restore your power, please call PECO at 1-888-480-1533.", comment: "")
+                if Configuration.shared.opco == .peco {
+                    text = NSLocalizedString("Our records indicate that you have been cut for non-payment. If you wish to restore your power, please call PECO at 1-888-480-1533", comment: "")
+                } else {
+                text = NSLocalizedString("Our records indicate that you have been cut for non-payment. If you wish to restore your power, please make a payment.", comment: "")
+                }
             default:
                 break
             }

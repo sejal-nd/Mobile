@@ -201,7 +201,11 @@ extension NetworkingError: LocalizedError {
         case .finaled:
             return NSLocalizedString("Finaled Account", comment: "Error title")
         case .noPay:
-            return NSLocalizedString("Cut for non pay", comment: "Error title")
+            if Configuration.shared.opco == .peco {
+                return NSLocalizedString("Cut for non pay", comment: "Error title")
+            } else {
+            return NSLocalizedString("Finaled for Non-Pay", comment: "Error title")
+            }
         case .noService:
             return NSLocalizedString("Non-Service Agreement", comment: "Error title")
         case .invalidToken:
@@ -301,7 +305,11 @@ extension NetworkingError: LocalizedError {
         case .finaled:
             return NSLocalizedString("We can’t load the outage status for this account because it’s been closed.", comment: "Error description")
         case .noPay:
-            return NSLocalizedString("Our records indicate that you have been cut for non-payment. If you wish to restore your power, please call PECO at 1-888-480-1533.", comment: "Error description")
+            if Configuration.shared.opco == .peco {
+                return NSLocalizedString("Our records indicate that you have been cut for non-payment. If you wish to restore your power, please call PECO at 1-888-480-1533.", comment: "Error description")
+            } else {
+             return NSLocalizedString("We can’t load the outage status for this account because it’s been closed for non-payment and is no longer connected to your premise address.", comment: "Error description")
+            }
         case .noService:
             return NSLocalizedString("We can’t load the outage status for this account due to a non-service agreement.", comment: "Error description")
         case .invalidToken:
