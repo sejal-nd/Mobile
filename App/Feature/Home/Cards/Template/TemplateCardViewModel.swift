@@ -43,7 +43,7 @@ class TemplateCardViewModel {
             switch Configuration.shared.opco {
             case .peco:
                 if accountDetail.isResidential {
-                    return #imageLiteral(resourceName: "marketplace")
+                    return #imageLiteral(resourceName: "marketplace-peco")
                 } else {
                     return #imageLiteral(resourceName: "Commercial")
                 }
@@ -84,7 +84,7 @@ class TemplateCardViewModel {
             switch Configuration.shared.opco {
             case .peco:
                 if accountDetail.isResidential {
-                    return NSLocalizedString("Explore Energy-Saving Solutions for Your Home", comment: "")
+                    return NSLocalizedString("PECO is Helping Customers Pay Their Bills  ", comment: "")
                 } else {
                     return NSLocalizedString("Reduce Your Business’s Energy Costs", comment: "")
                 }
@@ -154,7 +154,7 @@ class TemplateCardViewModel {
             switch Configuration.shared.opco {
             case .peco:
                 if accountDetail.isResidential {
-                    return NSLocalizedString("Find valuable information and solutions to help you manage and control your energy usage.", comment: "")
+                    return NSLocalizedString("Learn abount PECO's financial assistance programs. ", comment: "")
                 } else {
                     return NSLocalizedString("PECO can help you get on the fast track to substantial energy & cost savings.", comment: "")
                 }
@@ -231,7 +231,7 @@ class TemplateCardViewModel {
             switch Configuration.shared.opco {
             case .peco:
                 if accountDetail.isResidential {
-                    return NSLocalizedString("Save Now", comment: "")
+                    return NSLocalizedString("Learn More", comment: "")
                 } else {
                     return NSLocalizedString("Get started today", comment: "")
                 }
@@ -273,7 +273,7 @@ class TemplateCardViewModel {
             switch Configuration.shared.opco {
             case .peco:
                 if accountDetail.isResidential {
-                    return "https://www.peco.com/WaysToSave/ForYourHome/Pages/PECOMarketplace.aspx"
+                    return "https://www.peco.com/Help"
                 } else {
                     return "https://www.peco.com/smartideas"
                 }
