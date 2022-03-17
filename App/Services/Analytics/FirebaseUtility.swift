@@ -712,6 +712,8 @@ enum Screen {
     case paymentView(className: String)
     case alertPreferencesView(className: String)
     
+    case stormModeHomeLandingView(className: String)
+    
     // ISUM Auth Stop
     case stopLandingView(className: String)
     case stopSelectStopDateView(className: String)
@@ -799,6 +801,11 @@ enum Screen {
             return "StopReviewSubmitView"
         case .stopConfirmationView:
             return "StopConfirmationView"
+
+        //Storm Mode
+        case .stormModeHomeLandingView:
+            return "StormModeHomeLandingView"
+
             
         // ISUM Move
         case .moveLandingView:
@@ -889,6 +896,8 @@ enum Screen {
              .stopReviewSubmitView(let className),
              .stopConfirmationView(let className),
             
+             .stormModeHomeLandingView(let className),
+
              .moveLandingView(let className),
              .moveSelectStopDateView(let className),
              .moveNewAddressView(let className),
