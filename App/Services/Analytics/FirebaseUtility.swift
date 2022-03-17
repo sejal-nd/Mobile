@@ -62,6 +62,8 @@ enum FirebaseEvent: Event {
     case authOutage(parameters: [OutageParameter]?)
     case unauthOutage(parameters: [OutageParameter]?)
     
+    case outageTracker(parameters: [OutageTrackerParameter]?)
+    
     case home(parameters: [HomeParameter]?)
     case accountPicker(parameters: [AccountPickerParameter]?)
     case biometricsToggle(parameters: [BiometricsParameter]?)
@@ -141,6 +143,8 @@ enum FirebaseEvent: Event {
             return "authOutage"
         case .unauthOutage:
             return "unauthOutage"
+        case .outageTracker:
+            return "outageTracker"
         case .register:
             return "register"
         case .home:
@@ -195,6 +199,7 @@ enum FirebaseEvent: Event {
              .payment(let parameters as [EventParameter]?),
              .authOutage(let parameters as [EventParameter]?),
              .unauthOutage(let parameters as [EventParameter]?),
+             .outageTracker(let parameters as [EventParameter]?),
              .home(let parameters as [EventParameter]?),
              .register(let parameters as [EventParameter]?),
              .forgotPassword(let parameters as [EventParameter]?),
@@ -389,6 +394,32 @@ enum OutageParameter: String, EventParameter {
     case map
     case streetlight_map
     case account_number_help
+}
+
+enum OutageTrackerParameter: String, EventParameter {
+    case active_outage
+    case power_restored_definitive
+    case power_restored_non_definitive
+    case power_on
+    case account_gas_only
+    case account_inactive
+    case partial_restoration
+    case crew_on_site_diverted
+    case crew_en_route_diverted
+    case extensive_damage
+    case safety_hazard
+    case nested_outage
+    
+    case technical_error
+    
+    var type: ParameterType {
+        switch self {
+        case .technical_error:
+            return .error
+        default:
+            return .action
+        }
+    }
 }
 
 enum HomeParameter: String, EventParameter {
@@ -681,6 +712,8 @@ enum Screen {
     case paymentView(className: String)
     case alertPreferencesView(className: String)
     
+    case stormModeHomeLandingView(className: String)
+    
     // ISUM Auth Stop
     case stopLandingView(className: String)
     case stopSelectStopDateView(className: String)
@@ -768,6 +801,11 @@ enum Screen {
             return "StopReviewSubmitView"
         case .stopConfirmationView:
             return "StopConfirmationView"
+
+        //Storm Mode
+        case .stormModeHomeLandingView:
+            return "StormModeHomeLandingView"
+
             
         // ISUM Move
         case .moveLandingView:
@@ -858,6 +896,8 @@ enum Screen {
              .stopReviewSubmitView(let className),
              .stopConfirmationView(let className),
             
+             .stormModeHomeLandingView(let className),
+
              .moveLandingView(let className),
              .moveSelectStopDateView(let className),
              .moveNewAddressView(let className),

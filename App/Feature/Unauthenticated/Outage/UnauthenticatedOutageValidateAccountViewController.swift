@@ -195,6 +195,9 @@ class UnauthenticatedOutageValidateAccountViewController: KeyboardAvoidingSticky
             let alertVc = UIAlertController(title: errTitle, message: errMessage, preferredStyle: .alert)
             
             if errTitle == NSLocalizedString("Cut for non pay", comment: "") {
+                if Configuration.shared.opco == .peco {
+                    alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                } else {
                 alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: nil))
                 alertVc.addAction(UIAlertAction(title: NSLocalizedString("Pay Bill", comment: ""), style: .default, handler: { [weak self] _ in
                     let storyboard = UIStoryboard(name: "Login", bundle: nil)
@@ -202,6 +205,7 @@ class UnauthenticatedOutageValidateAccountViewController: KeyboardAvoidingSticky
                     let loginVC = storyboard.instantiateViewController(withIdentifier: "loginViewController")
                     self?.navigationController?.setViewControllers([landingVC, loginVC], animated: false)
                 }))
+                }
             } else if let phoneRange = errMessage.range(of:"1-\\d{3}-\\d{3}-\\d{4}", options: .regularExpression) {
                 // use regular expression to check the US phone number format: start with 1, then -, then 3 3 4 digits grouped together that separated by dash
                 // e.g: 1-111-111-1111 is valid while 1-1111111111 and 111-111-1111 are not
