@@ -61,6 +61,8 @@ enum FirebaseEvent: Event {
     
     case authOutage(parameters: [OutageParameter]?)
     case unauthOutage(parameters: [OutageParameter]?)
+    case stormOutage(parameters: [OutageParameter]?)
+
     
     case outageTracker(parameters: [OutageTrackerParameter]?)
     
@@ -712,7 +714,6 @@ enum Screen {
     case paymentView(className: String)
     case alertPreferencesView(className: String)
     
-    case stormModeHomeLandingView(className: String)
     
     // ISUM Auth Stop
     case stopLandingView(className: String)
@@ -802,10 +803,7 @@ enum Screen {
         case .stopConfirmationView:
             return "StopConfirmationView"
 
-        //Storm Mode
-        case .stormModeHomeLandingView:
-            return "StormModeHomeLandingView"
-
+      
             
         // ISUM Move
         case .moveLandingView:
@@ -895,8 +893,7 @@ enum Screen {
              .stopFinalBillAddressView(let className),
              .stopReviewSubmitView(let className),
              .stopConfirmationView(let className),
-            
-             .stormModeHomeLandingView(let className),
+           
 
              .moveLandingView(let className),
              .moveSelectStopDateView(let className),

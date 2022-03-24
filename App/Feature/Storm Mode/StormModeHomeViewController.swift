@@ -346,8 +346,6 @@ class StormModeHomeViewController: AccountPickerViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        FirebaseUtility.logScreenView(.stormModeHomeLandingView(className: self.className))
-        
         navigationController?.setNavigationBarHidden(true, animated: true)
         
     }
@@ -506,6 +504,8 @@ class StormModeHomeViewController: AccountPickerViewController {
     @IBAction func showStormModeDetails(_ sender: Any) {
         if viewModel.stormModeUpdate.value != nil {
             performSegue(withIdentifier: "UpdatesDetailSegue", sender: nil)
+            FirebaseUtility.logEvent(.stormOutage(parameters: [.view_details]))
+
         }
     }
 
@@ -644,7 +644,8 @@ class StormModeHomeViewController: AccountPickerViewController {
     private func configureFeatureFlags() {
         FeatureFlagUtility.shared.loadingDoneCallback = { [weak self] in
             self?.viewModel.outageMapURLString = FeatureFlagUtility.shared.string(forKey: .outageMapURL)
-            
+            FirebaseUtility.logEvent(.stormOutage(parameters: [.map]))
+
             if self?.viewModel.outageMapURLString.isEmpty ?? true {
                 self?.outageMapButton.isHidden = true
             } else {
@@ -815,6 +816,7 @@ class StormModeHomeViewController: AccountPickerViewController {
         
         if outageJustReported && viewModel.reportedOutage != nil {
             outageStatusButton.setReportedState(estimatedRestorationDateString: viewModel.estimatedRestorationDateString)
+            FirebaseUtility.logEvent(.stormOutage(parameters: [.report_complete]))
         } else if currentOutageStatus.isFinaled || currentOutageStatus.isNoPay || currentOutageStatus.isNonService {
             loadingContentView.isHidden = true
             outageStatusButton.isHidden = true
@@ -857,6 +859,10 @@ class StormModeHomeViewController: AccountPickerViewController {
             vc.viewModel.phoneNumber.accept(outageStatus.contactHomeNumber ?? "")
         } else if let vc = segue.destination as? OutageMapViewController {
             vc.hasPressedStreetlightOutageMapButton = segue.identifier == "ReportStreetlightProblemSegue" ? true : false
+                if segue.identifier == "ReportStreetlightProblemSegue" {
+                    FirebaseUtility.logEvent(.stormOutage(parameters: [.streetlight_map]))
+             }
+
         }
     }
     
@@ -920,6 +926,8 @@ extension StormModeHomeViewController: StatusInfoViewDelegate {
     }
     func reportOutagePressed() {
         self.performSegue(withIdentifier: "ReportOutageSegue", sender: nil)
+        FirebaseUtility.logEvent(.stormOutage(parameters: [.report_outage]))
+
     }
 }
 
