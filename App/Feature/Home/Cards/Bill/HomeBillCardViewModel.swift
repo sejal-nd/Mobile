@@ -504,7 +504,7 @@ class HomeBillCardViewModel {
                              showBgeDdeDpaEligibility.asDriver(),
                              setComedPedoCTAAndEnrollment.asDriver())
         {
-            $1 && ($0 == "") && $2 != false 
+            $1 && ($0 == "") && $2 != false
         }
     
     private(set) lazy var showCatchUpDisclaimer: Driver<Bool> = Driver.combineLatest(showBgeDdeDpaEligibility.asDriver(), enrollmentStatus.asDriver()) {(showBgeDdeDpaEligibility, enrollmentStatus) in
@@ -672,7 +672,7 @@ class HomeBillCardViewModel {
                     self.mobileAssistanceURL.accept(MobileAssistanceURL.getMobileAssistnceURL(assistanceType: .dde))
                     self.mobileAssistanceType = MobileAssistanceURL.dde
                     NotificationCenter.default.post(name: .didHommeBillCardCTAStatusReady, object: nil)
-                    self.comedPecoCTADetails.accept((title: "You’re eligible for a Due Date Extension",
+                    self.comedPecoCTADetails.accept((title: "You may qualify for a Due Date Extension.",
                                                      description: "Having trouble keeping up with your \(Configuration.shared.opco.displayString) bill? We’re here to help. Extend your upcoming bill due date by up to 21 calendar days with a Due Date Extension.",
                                                      ctaType: "Request Due Date Extension"))
                     return true

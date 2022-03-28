@@ -1065,7 +1065,7 @@ class BillViewModel {
                 
                 self.mobileAssistanceURL.accept(MobileAssistanceURL.getMobileAssistnceURL(assistanceType: .dde))
                 self.mobileAssistanceType = MobileAssistanceURL.dde
-                self.comedPecoCTADetails.accept((title: "You’re eligible for a Due Date Extension",
+                self.comedPecoCTADetails.accept((title: "You may qualify for a Due Date Extension.",
                                                  description: "Having trouble keeping up with your \(Configuration.shared.opco.displayString) bill? We’re here to help. Extend your upcoming bill due date by up to 21 calendar days with a Due Date Extension.",
                                                  ctaType: "Request Due Date Extension"))
                 return true
