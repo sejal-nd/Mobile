@@ -197,6 +197,12 @@ class BillViewController: AccountPickerViewController {
             self.viewModel.ddeDpaEligiblityCheck()
         }).disposed(by: bag)
         
+        NotificationCenter.default.rx.notification(.didHommeBillCardCTAStatusReady, object: nil)
+        .subscribe(onNext: { [weak self] notification in
+            guard let self = self else { return }
+            self.viewModel.ddeDpaEligiblityCheckComedPeco()
+        }).disposed(by: bag)
+        
         usageBillImpactContentView.configure(withViewModel: viewModel)
         
         if Configuration.shared.opco == .bge {
@@ -663,11 +669,20 @@ class BillViewController: AccountPickerViewController {
         viewModel.showAutoPayEnrolledView.not().drive(autoPayEnrolledView.rx.isHidden).disposed(by: bag)
         viewModel.autoPayDetailLabelText.drive(autoPayDetailLabel.rx.attributedText).disposed(by: bag)
         viewModel.showBudgetEnrolledView.not().drive(budgetEnrolledView.rx.isHidden).disposed(by: bag)
-        viewModel.showAssistanceCTA.not().drive(onNext: { [weak self] showHideCTA in
-            DispatchQueue.main.async {
-                self?.assistanceView.isHidden = showHideCTA
-            }
-        }).disposed(by: bag)
+        if Configuration.shared.opco == .comEd || Configuration.shared.opco == .peco {
+            viewModel.showAssistanceCTAComedPeco.not().drive(onNext: { [weak self] showHideCTA in
+                DispatchQueue.main.async {
+                    self?.assistanceView.isHidden = showHideCTA
+                }
+            }).disposed(by: bag)
+
+        } else {
+            viewModel.showAssistanceCTA.not().drive(onNext: { [weak self] showHideCTA in
+                DispatchQueue.main.async {
+                    self?.assistanceView.isHidden = showHideCTA
+                }
+            }).disposed(by: bag)
+        }
         viewModel.showDDEExtendedView.not().drive(ddeExtendedDateView.rx.isHidden).disposed(by: bag)
         
         
@@ -689,10 +704,37 @@ class BillViewController: AccountPickerViewController {
                 }
 
             }
+            
             self.titleAssistanceProgram.text = description?.title
             self.descriptionAssistanceProgram.text = description?.description
             self.assistanceCTA.setTitle(description?.ctaType, for: .normal)
         }).disposed(by: bag)
+        
+        viewModel.comedPecoCTADetails.asDriver().drive(onNext: { [weak self] description in
+            guard let self = self else { return }
+            if description == nil {
+                DispatchQueue.main.async {
+                    self.assistanceView.isHidden = true
+                }
+            }
+            if (description?.title == "") &&
+                (description?.description == "") {
+                self.assistanceView.isHidden = true
+            }
+            
+            DispatchQueue.main.async {
+                if description?.ctaType == "Reinstate Payment Arrangement" {
+                    self.titleAssistanceProgram.font = SystemFont.regular.of(textStyle: .caption1)
+                }
+
+            }
+            DispatchQueue.main.async {
+            self.titleAssistanceProgram.text = description?.title
+            self.descriptionAssistanceProgram.text = description?.description
+            self.assistanceCTA.setTitle(description?.ctaType, for: .normal)
+            }
+        }).disposed(by: bag)
+        
         
 
         viewModel.fetchCoreSerivicesDdeDpaDetails.asDriver().drive().disposed(by: bag)

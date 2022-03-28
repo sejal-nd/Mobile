@@ -30,4 +30,5 @@ extension NSNotification.Name {
     static let didRecievePaymentCancelConfirmation = NSNotification.Name("kdidRecievePaymentCancelConfirmation")
     
     static let didRecieveDdeDpa = NSNotification.Name("kdidRecieveDdeDpa")
+    static let didHommeBillCardCTAStatusReady = NSNotification.Name("kdidhomeBillCTAReady")
 }
