@@ -671,9 +671,10 @@ class BillViewController: AccountPickerViewController {
         viewModel.showBudgetEnrolledView.not().drive(budgetEnrolledView.rx.isHidden).disposed(by: bag)
         if Configuration.shared.opco == .comEd || Configuration.shared.opco == .peco {
             viewModel.showAssistanceCTAComedPeco.not().drive(onNext: { [weak self] showHideCTA in
-                DispatchQueue.main.async {
+                DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
                     self?.assistanceView.isHidden = showHideCTA
-                }
+                    print("showCTA: \(showHideCTA)")
+                })
             }).disposed(by: bag)
 
         } else {
@@ -946,8 +947,18 @@ class BillViewController: AccountPickerViewController {
                 case .none:
                     FirebaseUtility.logEvent(.bill(parameters: [.assistance_cta]))
                 }
-                let safariVc = SFSafariViewController.createWithCustomStyle(url: URL(string: self?.viewModel.mobileAssistanceURL.value ?? "")!)
-                self?.present(safariVc, animated: true, completion: nil)
+                
+                PKCEAuthenticationService.default.presentAssistanceCTA(ctaURL: self?.viewModel.mobileAssistanceURL.value ?? "") { result in
+                    switch (result) {
+                    case .success(let token):
+                        if let json = TokenResponse.decodeToJson(token: token),
+                           let editAction = json["profileEditActionTaken"] as? String {
+                            print(editAction)
+                        }
+                    case .failure(let error):
+                        print(error)
+                    }
+                }
                 
             }).disposed(by: bag)
     }
