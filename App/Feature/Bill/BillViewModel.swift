@@ -39,6 +39,7 @@ class BillViewModel {
     
     let dueDateExtensionDetails = BehaviorRelay<DueDateElibility?>(value: nil)
     var paymentArrangementDetails = BehaviorRelay<PaymentArrangement?>(value: nil)
+    var comedPecoCTADetails = BehaviorRelay<(title: String, description: String, ctaType: String)?>(value: ("","",""))
     
     private func tracker(forState state: FetchingAccountState) -> ActivityTracker {
         switch state {
@@ -92,8 +93,10 @@ class BillViewModel {
         }
     
     private(set) lazy var fetchCoreSerivicesDdeDpaDetails: Driver<Bool> = self.currentAccountDetail.map {_ in
-        if Configuration.shared.opco == .bge || Configuration.shared.opco == .peco || Configuration.shared.opco == .comEd {
+        if Configuration.shared.opco == .bge {
             self.ddeDpaEligiblityCheck()
+        } else if Configuration.shared.opco == .peco || Configuration.shared.opco == .comEd {
+            self.ddeDpaEligiblityCheckComedPeco()
         } else {
             self.isBgeDpaEligible.accept(false)
             self.isBgeDdeEligible.accept(false)
@@ -121,6 +124,13 @@ class BillViewModel {
             self.paymentArrangementDetails.accept(paymentEnhancement)
         case .failure:
             self.isBgeDpaEligible.accept(false)
+        }
+    }
+    
+    func ddeDpaEligiblityCheckComedPeco() {
+        if  Configuration.shared.opco == .peco || Configuration.shared.opco == .comEd  {
+            self.isBgeDpaEligible.accept(false)
+            self.isBgeDdeEligible.accept(false)
         }
     }
     
@@ -890,6 +900,14 @@ class BillViewModel {
             $1 && ($0 == "") && $2?.description != ""
         }
     
+    private(set) lazy var showAssistanceCTAComedPeco: Driver<Bool> =
+        Driver.combineLatest(self.enrollmentStatus.asDriver(),
+                             showBgeDdeDpaEligibility.asDriver(),
+                             setComedPedoCTAAndEnrollment.asDriver())
+        {
+            $1 && ($0 == "") && $2 != false
+        }
+    
     private(set) lazy var showDDEExtendedView: Driver<Bool> =
         Driver.combineLatest(self.enrollmentStatus.asDriver(),
                              showBgeDdeDpaEligibility.asDriver(), currentAccountDetail)
@@ -960,6 +978,10 @@ class BillViewModel {
                     }
                 }
                 
+                if Configuration.shared.opco == .comEd || Configuration.shared.opco == .peco {
+                    return nil
+                }
+                
                 
                 let dueDateExtentionEligible = ((Configuration.shared.opco == .comEd || Configuration.shared.opco == .peco) ?   dueDateDetails?.isPaymentExtensionEligible : accountDetail.isDueDateExtensionEligible) ?? false
                 
@@ -1024,6 +1046,113 @@ class BillViewModel {
             }
             return nil
     }
+    
+    // MARK: - Assistance View States
+    private(set) lazy var setComedPedoCTAAndEnrollment: Driver<Bool> =
+    Driver.combineLatest(currentAccountDetail, showBgeDdeDpaEligibility.asDriver())
+    { (accountDetail, recievedDDEDPAValues) in
+        
+        if Configuration.shared.opco == .comEd || Configuration.shared.opco == .peco {
+        
+        let isAccountTypeEligible = accountDetail.isResidential || accountDetail.isSmallCommercialCustomer
+        if isAccountTypeEligible &&
+            FeatureFlagUtility.shared.bool(forKey: .paymentProgramAds)  {
+            
+            let dueDateExtentionEligible = accountDetail.isDueDateExtensionEligible
+            
+            if dueDateExtentionEligible &&
+                accountDetail.billingInfo.pastDueAmount > 0 {
+                
+                self.mobileAssistanceURL.accept(MobileAssistanceURL.getMobileAssistnceURL(assistanceType: .dde))
+                self.mobileAssistanceType = MobileAssistanceURL.dde
+                self.comedPecoCTADetails.accept((title: "You may qualify for a Due Date Extension.",
+                                                 description: "Having trouble keeping up with your \(Configuration.shared.opco.displayString) bill? We’re here to help. Extend your upcoming bill due date by up to 21 calendar days with a Due Date Extension.",
+                                                 ctaType: "Request Due Date Extension"))
+                return true
+            }  else {
+                // Fetch  DDE core service
+                if let ddeResult = AssistanceProgramStore.shared.dueDateExtensionData {
+                    var isDDEEnrolled = false
+                    switch ddeResult {
+                    case .success(let resultObject):
+                
+                        isDDEEnrolled = !(resultObject.isPaymentExtensionEligible ?? false)
+                        
+                        if isDDEEnrolled {
+                            self.dueDateExtensionDetails.accept(resultObject)
+                        }
+                    case .failure:
+                        isDDEEnrolled = false
+                    }
+                } else {
+                    
+                    if !dueDateExtentionEligible &&
+                        accountDetail.billingInfo.amtDpaReinst > 0 &&
+                        accountDetail.is_dpa_reinstate_eligible {
+                        self.mobileAssistanceURL.accept(MobileAssistanceURL.getMobileAssistnceURL(assistanceType: .dpaReintate))
+                        self.mobileAssistanceType = MobileAssistanceURL.dpaReintate
+                        
+                        let lowIncomeTitle = "You can reinstate your Payment Arrangement at no additional cost."
+                        let reinstateFee = accountDetail.billingInfo.atReinstateFee > 0 ? accountDetail.billingInfo.atReinstateFee : 14.24
+                        let nonLowIncomeTitle = "You are entitled to one free reinstatement per plan. Any additional reinstatement will incur a $14.24 fee on your next bill."
+                        let title =  Configuration.shared.opco == .comEd && accountDetail.isLowIncome ? lowIncomeTitle : nonLowIncomeTitle
+                        self.comedPecoCTADetails.accept((title: title,
+                                                         description: "",
+                                                         ctaType: "Reinstate Payment Arrangement"))
+                        
+                    } else if !dueDateExtentionEligible &&
+                                accountDetail.billingInfo.pastDueAmount > 0 &&
+                                accountDetail.is_dpa_eligible {
+                        self.mobileAssistanceURL.accept(MobileAssistanceURL.getMobileAssistnceURL(assistanceType: .dpa))
+                        self.mobileAssistanceType = MobileAssistanceURL.dpa
+                        
+                        self.comedPecoCTADetails.accept((title: "You’re eligible for a Deferred Payment Arrangement.",
+                                                         description: "Having trouble keeping up with your \(Configuration.shared.opco.displayString) bill? We’re here to help. You can make monthly installments to bring your account up to date.",
+                                                         ctaType: "Learn More"))
+                        
+                    } else {
+                        // Fetch  DPA core service
+                        if let dPADataResult = AssistanceProgramStore.shared.paymentArrangementData {
+                        let customerNumber = accountDetail.customerNumber
+                        let premiseNumber = accountDetail.premiseNumber ?? ""
+                        let paymentAmount = (String(describing: accountDetail.billingInfo.netDueAmount ?? 0.0))
+                        var isDPAEnrolled = false
+ 
+                           
+                            switch dPADataResult {
+                            case .success(let paymentEnhancement):
+                                if accountDetail.billingInfo.isDpaEnrolled == "true" {
+                                    self.paymentArrangementDetails.accept(paymentEnhancement)
+                                    isDPAEnrolled = true
+                                } else {
+                                    isDPAEnrolled = false
+                                }
+                            case .failure:
+                                isDPAEnrolled = false
+                               // self.isBgeDpaEligible.accept(false)
+                            }
+                        } else {
+                            if !dueDateExtentionEligible &&
+                                accountDetail.billingInfo.pastDueAmount > 0 &&
+                                !accountDetail.is_dpa_eligible  &&
+                                !accountDetail.is_dpa_reinstate_eligible {
+                                self.mobileAssistanceURL.accept(MobileAssistanceURL.getMobileAssistnceURL(assistanceType: .none, stateJurisdiction: accountDetail.state))
+                                self.mobileAssistanceType = MobileAssistanceURL.none
+                                self.comedPecoCTADetails.accept((title: "Having trouble keeping up with your \(Configuration.shared.opco.displayString) bill?",
+                                                                 description: "Check out the many Assistance Programs \(Configuration.shared.opco.displayString) offers to find one that’s right for you.",
+                                                                 ctaType: "Learn More"))
+                            }
+                        }
+                        
+                    }
+                }
+                    
+            }
+        }
+        }
+        return false
+    }
+  
     
     
     private func showBGEAssitanceCTA(accountDetail: AccountDetail) -> (title: String, description: String, ctaType: String, ctaURL: String) {

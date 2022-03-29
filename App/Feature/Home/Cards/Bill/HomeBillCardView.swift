@@ -355,7 +355,11 @@ class HomeBillCardView: UIView {
         viewModel.showCatchUpDisclaimer.not().drive(enrolmentStatusView.rx.isHidden).disposed(by: bag)
         viewModel.enrollmentStatus.drive(enrolmentStatusLabel.rx.text).disposed(by: bag)
         viewModel.showDDEExtendedView.not().drive(ddeExtendedDateView.rx.isHidden).disposed(by: bag)
+        if Configuration.shared.opco == .comEd || Configuration.shared.opco == .peco {
+            viewModel.showAssistanceCTAComedPeco.not().drive(assistanceView.rx.isHidden).disposed(by: bag)
+        } else {
         viewModel.showAssistanceCTA.not().drive(assistanceView.rx.isHidden).disposed(by: bag)
+        }
         
         viewModel.showCatchUpDisclaimer.not().drive(enrolmentStatusViewBillNotReady.rx.isHidden).disposed(by: bag)
         viewModel.enrollmentStatus.drive(enrolmentStatusLabelBillNotReady.rx.text).disposed(by: bag)
@@ -387,6 +391,9 @@ class HomeBillCardView: UIView {
 
         viewModel.paymentAssistanceValues.drive(onNext: { [weak self] description in
             guard let self = self else { return }
+            if Configuration.shared.opco == .comEd || Configuration.shared.opco == .peco {
+                return
+            }
             if description == nil {
                 DispatchQueue.main.async {
                     self.assistanceView.isHidden = true
@@ -568,6 +575,19 @@ class HomeBillCardView: UIView {
             case .none:
                 FirebaseUtility.logEvent(.home(parameters: [.assistance_cta]))
             }
+            
+            PKCEAuthenticationService.default.presentAssistanceCTA(ctaURL: self?.viewModel.mobileAssistanceURL.value ?? "") { result in
+                switch (result) {
+                case .success(let token):
+                    if let json = TokenResponse.decodeToJson(token: token),
+                       let editAction = json["profileEditActionTaken"] as? String {
+                        
+                    }
+                case .failure(let error):
+                    print("")
+                }
+            }
+            
             let safariVc = SFSafariViewController.createWithCustomStyle(url: URL(string: self?.viewModel.mobileAssistanceURL.value ?? "")!)
             return safariVc
         }.asDriver(onErrorDriveWith: .empty())
