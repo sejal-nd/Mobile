@@ -62,7 +62,6 @@ enum FirebaseEvent: Event {
     case authOutage(parameters: [OutageParameter]?)
     case unauthOutage(parameters: [OutageParameter]?)
     case stormOutage(parameters: [OutageParameter]?)
-
     
     case outageTracker(parameters: [OutageTrackerParameter]?)
     
@@ -145,6 +144,8 @@ enum FirebaseEvent: Event {
             return "authOutage"
         case .unauthOutage:
             return "unauthOutage"
+        case .stormOutage:
+            return "storm"
         case .outageTracker:
             return "outageTracker"
         case .register:
@@ -201,6 +202,7 @@ enum FirebaseEvent: Event {
              .payment(let parameters as [EventParameter]?),
              .authOutage(let parameters as [EventParameter]?),
              .unauthOutage(let parameters as [EventParameter]?),
+             .stormOutage(let parameters as [EventParameter]?),
              .outageTracker(let parameters as [EventParameter]?),
              .home(let parameters as [EventParameter]?),
              .register(let parameters as [EventParameter]?),
