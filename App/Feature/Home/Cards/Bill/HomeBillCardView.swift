@@ -357,7 +357,11 @@ class HomeBillCardView: UIView {
         viewModel.showDDEExtendedView.not().drive(ddeExtendedDateView.rx.isHidden).disposed(by: bag)
         if Configuration.shared.opco == .comEd || Configuration.shared.opco == .peco {
             viewModel.showAssistanceCTAComedPeco.not().drive(onNext: { [weak self] showHideCTA in
-                self?.assistanceView.isHidden = !showHideCTA
+                if self?.viewModel.comedPecoCTADetails.value?.title == "" {
+                    self?.assistanceView.isHidden = true
+                } else {
+                    self?.assistanceView.isHidden = false
+                }
         }).disposed(by: bag)
         } else {
         viewModel.showAssistanceCTA.not().drive(assistanceView.rx.isHidden).disposed(by: bag)
@@ -385,9 +389,11 @@ class HomeBillCardView: UIView {
                 }
 
             }
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
             self.titleAssistanceProgram.text = description?.title
             self.descriptionAssistanceProgram.text = description?.description
             self.assistanceCTA.setTitle(description?.ctaType, for: .normal)
+            })
         }).disposed(by: bag)
         
 
@@ -586,7 +592,7 @@ class HomeBillCardView: UIView {
                         
                     }
                 case .failure(let error):
-                    print("")
+                    print(error)
                 }
             }
             
