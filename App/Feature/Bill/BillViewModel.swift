@@ -1076,7 +1076,7 @@ class BillViewModel {
                     switch ddeResult {
                     case .success(let resultObject):
                 
-                        isDDEEnrolled = !(resultObject.isPaymentExtensionEligible ?? false)
+                        isDDEEnrolled = (!(resultObject.isPaymentExtensionEligible ?? false) && resultObject.collectionArrangementStatus == "ACTV")
                         
                         if isDDEEnrolled {
                             self.dueDateExtensionDetails.accept(resultObject)
@@ -1084,9 +1084,9 @@ class BillViewModel {
                     case .failure:
                         isDDEEnrolled = false
                     }
-                } else {
                     
-                    if !dueDateExtentionEligible &&
+                    if isDDEEnrolled == false &&
+                        !dueDateExtentionEligible &&
                         accountDetail.billingInfo.amtDpaReinst > 0 &&
                         accountDetail.is_dpa_reinstate_eligible {
                         self.mobileAssistanceURL.accept(MobileAssistanceURL.getMobileAssistnceURL(assistanceType: .dpaReintate))
@@ -1100,7 +1100,8 @@ class BillViewModel {
                                                          description: "",
                                                          ctaType: "Reinstate Payment Arrangement"))
                         
-                    } else if !dueDateExtentionEligible &&
+                    } else if  isDDEEnrolled == false &&
+                        !dueDateExtentionEligible &&
                                 accountDetail.billingInfo.pastDueAmount > 0 &&
                                 accountDetail.is_dpa_eligible {
                         self.mobileAssistanceURL.accept(MobileAssistanceURL.getMobileAssistnceURL(assistanceType: .dpa))
@@ -1131,8 +1132,8 @@ class BillViewModel {
                                 isDPAEnrolled = false
                                // self.isBgeDpaEligible.accept(false)
                             }
-                        } else {
-                            if !dueDateExtentionEligible &&
+                            if isDPAEnrolled == false &&
+                                !dueDateExtentionEligible &&
                                 accountDetail.billingInfo.pastDueAmount > 0 &&
                                 !accountDetail.is_dpa_eligible  &&
                                 !accountDetail.is_dpa_reinstate_eligible {

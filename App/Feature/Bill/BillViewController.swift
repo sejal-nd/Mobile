@@ -672,7 +672,7 @@ class BillViewController: AccountPickerViewController {
         if Configuration.shared.opco == .comEd || Configuration.shared.opco == .peco {
             viewModel.showAssistanceCTAComedPeco.not().drive(onNext: { [weak self] showHideCTA in
                 DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
-                    self?.assistanceView.isHidden = showHideCTA
+                    self?.assistanceView.isHidden = !showHideCTA
                 })
             }).disposed(by: bag)
 

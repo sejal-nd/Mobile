@@ -356,7 +356,9 @@ class HomeBillCardView: UIView {
         viewModel.enrollmentStatus.drive(enrolmentStatusLabel.rx.text).disposed(by: bag)
         viewModel.showDDEExtendedView.not().drive(ddeExtendedDateView.rx.isHidden).disposed(by: bag)
         if Configuration.shared.opco == .comEd || Configuration.shared.opco == .peco {
-            viewModel.showAssistanceCTAComedPeco.not().drive(assistanceView.rx.isHidden).disposed(by: bag)
+            viewModel.showAssistanceCTAComedPeco.not().drive(onNext: { [weak self] showHideCTA in
+                self?.assistanceView.isHidden = !showHideCTA
+        }).disposed(by: bag)
         } else {
         viewModel.showAssistanceCTA.not().drive(assistanceView.rx.isHidden).disposed(by: bag)
         }
