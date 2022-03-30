@@ -588,11 +588,6 @@ class HomeBillCardViewModel {
                 return nil
             }
             
-//            if Configuration.shared.opco == .comEd || Configuration.shared.opco == .peco {
-//                let bgeCTADetails =  self.showComedPecoCTAEnrollment(accountDetail: accountDetail)
-//                NotificationCenter.default.post(name: .didRecieveDdeDpa, object: nil)
-//                return bgeCTADetails
-//            }
             
             let dueDateExtentionEligible = ((Configuration.shared.opco == .comEd || Configuration.shared.opco == .peco) ?   dueDateDetails?.isPaymentExtensionEligible : accountDetail.isDueDateExtensionEligible) ?? false
             
@@ -683,7 +678,7 @@ class HomeBillCardViewModel {
                         var isDDEEnrolled = false
                         switch result {
                         case .success(let resultObject):
-                            isDDEEnrolled = !(resultObject.isPaymentExtensionEligible ?? false)
+                            isDDEEnrolled = (!(resultObject.isPaymentExtensionEligible ?? false) && resultObject.collectionArrangementStatus == "ACTV")
                             
                             if isDDEEnrolled {
                                 NotificationCenter.default.post(name: .didHommeBillCardCTAStatusReady, object: nil)
@@ -710,7 +705,8 @@ class HomeBillCardViewModel {
                                                              description: "",
                                                              ctaType: "Reinstate Payment Arrangement"))
                             
-                        } else if !dueDateExtentionEligible &&
+                        } else if isDDEEnrolled == false &&
+                            !dueDateExtentionEligible &&
                                     accountDetail.billingInfo.pastDueAmount > 0 &&
                                     accountDetail.is_dpa_eligible {
                             self.mobileAssistanceURL.accept(MobileAssistanceURL.getMobileAssistnceURL(assistanceType: .dpa))

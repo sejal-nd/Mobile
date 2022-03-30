@@ -680,7 +680,9 @@ class HomeViewController: AccountPickerViewController {
                             }
                         }).disposed(by: billCardView.bag)
                     
-                }  else {
+                } else if viewController is SFSafariViewController {
+                    
+                } else {
                     self?.present(viewController, animated: true, completion: nil)
                 }
             })
