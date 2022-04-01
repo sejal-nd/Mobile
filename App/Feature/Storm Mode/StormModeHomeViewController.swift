@@ -345,18 +345,21 @@ class StormModeHomeViewController: AccountPickerViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         navigationController?.setNavigationBarHidden(true, animated: true)
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+         
         // Start polling when the home screen appears, only if storm mode hasn't ended yet
         stormModePollingDisposable?.dispose()
         if !viewModel.stormModeEnded {
             stormModePollingDisposable = viewModel.startStormModePolling()
                 .drive(onNext: { [weak self] in self?.stormModeDidEnd() })
         }
+       
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -501,6 +504,8 @@ class StormModeHomeViewController: AccountPickerViewController {
     @IBAction func showStormModeDetails(_ sender: Any) {
         if viewModel.stormModeUpdate.value != nil {
             performSegue(withIdentifier: "UpdatesDetailSegue", sender: nil)
+            FirebaseUtility.logEvent(.stormOutage(parameters: [.view_details]))
+
         }
     }
 
@@ -639,7 +644,7 @@ class StormModeHomeViewController: AccountPickerViewController {
     private func configureFeatureFlags() {
         FeatureFlagUtility.shared.loadingDoneCallback = { [weak self] in
             self?.viewModel.outageMapURLString = FeatureFlagUtility.shared.string(forKey: .outageMapURL)
-            
+
             if self?.viewModel.outageMapURLString.isEmpty ?? true {
                 self?.outageMapButton.isHidden = true
             } else {
@@ -762,6 +767,10 @@ class StormModeHomeViewController: AccountPickerViewController {
     private func updateContent(outageJustReported: Bool) {
         guard let currentOutageStatus = viewModel.currentOutageStatus  else { return }
         
+        if outageJustReported {
+            FirebaseUtility.logEvent(.stormOutage(parameters: [.report_complete]))
+        }
+        
         // Show/hide the top level container views
         if currentOutageStatus.isGasOnly {
             gasOnlyView.isHidden = false
@@ -850,8 +859,15 @@ class StormModeHomeViewController: AccountPickerViewController {
             let outageStatus = viewModel.currentOutageStatus {
             vc.viewModel.outageStatus = outageStatus
             vc.viewModel.phoneNumber.accept(outageStatus.contactHomeNumber ?? "")
+            
+            FirebaseUtility.logEvent(.stormOutage(parameters: [.report_outage]))
         } else if let vc = segue.destination as? OutageMapViewController {
             vc.hasPressedStreetlightOutageMapButton = segue.identifier == "ReportStreetlightProblemSegue" ? true : false
+            if segue.identifier == "ReportStreetlightProblemSegue" {
+                FirebaseUtility.logEvent(.stormOutage(parameters: [.streetlight_map]))
+            } else if segue.identifier == "OutageMapSegue" {
+                FirebaseUtility.logEvent(.stormOutage(parameters: [.map]))
+            }
         }
     }
     

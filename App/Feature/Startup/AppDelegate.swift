@@ -12,7 +12,6 @@ import AppCenter
 import AppCenterCrashes
 import RxSwift
 import UserNotifications
-import PDTSimpleCalendar
 import CoreData
 import ForeSee
 
@@ -60,7 +59,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setupWatchConnectivity()
         setupUserDefaults()
         setupToastStyles()
-        setupAppearance()
         setupAnalytics()
         
         // Fetch Feature Flag Values
@@ -315,15 +313,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         globalStyle.messageAlignment = .center
         ToastManager.shared.style = globalStyle
         ToastManager.shared.duration = 5.0
-    }
-    
-    func setupAppearance() {
-        PDTSimpleCalendarViewCell.appearance().textDefaultFont = SystemFont.regular.of(size: 19)
-        PDTSimpleCalendarViewCell.appearance().textDefaultColor = .blackText
-        PDTSimpleCalendarViewCell.appearance().textTodayColor = .blackText
-        PDTSimpleCalendarViewCell.appearance().textDisabledColor = UIColor.blackText.withAlphaComponent(0.3)
-        PDTSimpleCalendarViewCell.appearance().circleTodayColor = .clear
-        PDTSimpleCalendarViewCell.appearance().circleSelectedColor = .actionBlue
     }
     
     func setupAnalytics() {

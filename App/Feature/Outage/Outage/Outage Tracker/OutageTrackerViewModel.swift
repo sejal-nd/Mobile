@@ -52,6 +52,9 @@ class OutageTrackerViewModel {
     var isGasOnly: Bool {
         return outageStatus.value?.isGasOnly ?? false
     }
+    var isInactive: Bool {
+        return isGasOnly || outageStatus.value?.isNonService == true || outageStatus.value?.isNoPay == true
+    }
     var isPaused: Bool {
         guard let tracker = outageTracker.value else {
             return false

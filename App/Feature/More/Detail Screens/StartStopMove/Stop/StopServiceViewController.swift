@@ -8,7 +8,6 @@
 
 import UIKit
 import RxSwift
-import PDTSimpleCalendar
 
 class StopServiceViewController: UIViewController {
 
@@ -108,14 +107,11 @@ class StopServiceViewController: UIViewController {
                 guard let self = self else { return }
                 self.view.endEditing(true)
                 
-                let calendarVC = PDTSimpleCalendarViewController()
+                let calendarVC = CalendarViewController()
                 calendarVC.calendar = .opCo
                 calendarVC.delegate = self
                 calendarVC.firstDate = Calendar.current.date(byAdding: .month, value: 0, to: Calendar.current.startOfDay(for: .now))
                 calendarVC.lastDate = Calendar.current.date(byAdding: .month, value: 1, to: Calendar.current.startOfDay(for: .now))
-                calendarVC.scroll(toSelectedDate: true)
-                calendarVC.weekdayHeaderEnabled = true
-                calendarVC.weekdayTextType = PDTSimpleCalendarViewWeekdayTextType.veryShort
 
                 if let selectedDate = self.viewModel.selectedDate.value {
                     calendarVC.selectedDate = Calendar.opCo.startOfDay(for: selectedDate)
@@ -283,14 +279,14 @@ extension StopServiceViewController: AccountSelectDelegate {
     }
 }
 
-// MARK: - PDTSimpleCalendarViewDelegate
+// MARK: - CalendarViewDelegate
 
-extension StopServiceViewController: PDTSimpleCalendarViewDelegate {
-    func simpleCalendarViewController(_ controller: PDTSimpleCalendarViewController!, isEnabledDate date: Date!) -> Bool {
+extension StopServiceViewController: CalendarViewDelegate {
+    func calendarViewController(_ controller: CalendarViewController, isDateEnabled date: Date) -> Bool {
         return self.viewModel.isValidDate(date)
     }
     
-    func simpleCalendarViewController(_ controller: PDTSimpleCalendarViewController!, didSelect date: Date!) {
+    func calendarViewController(_ controller: CalendarViewController, didSelect date: Date) {
         hasChangedData = true
         self.viewModel.selectedDate.accept(date)
         controller.dismiss(animated: true, completion: nil)

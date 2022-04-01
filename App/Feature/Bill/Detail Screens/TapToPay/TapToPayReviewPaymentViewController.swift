@@ -9,7 +9,6 @@
 import UIKit
 import RxSwift
 import RxCocoa
-import PDTSimpleCalendar
 
 class TapToPayReviewPaymentViewController: UIViewController {
     
@@ -479,14 +478,14 @@ class TapToPayReviewPaymentViewController: UIViewController {
             guard let self = self else { return }
             self.view.endEditing(true)
             
-            let calendarVC = PDTSimpleCalendarViewController()
-            calendarVC.extendedLayoutIncludesOpaqueBars = true
-            calendarVC.calendar = .opCo
-            calendarVC.delegate = self
-            calendarVC.title = NSLocalizedString("Select Payment Date", comment: "")
-            calendarVC.selectedDate = self.viewModel.paymentDate.value
+            let calendarViewController = CalendarViewController()
+            calendarViewController.extendedLayoutIncludesOpaqueBars = true
+            calendarViewController.calendar = .opCo
+            calendarViewController.delegate = self
+            calendarViewController.title = NSLocalizedString("Select Payment Date", comment: "")
+            calendarViewController.selectedDate = self.viewModel.paymentDate.value
             
-            self.navigationController?.pushViewController(calendarVC, animated: true)
+            self.navigationController?.pushViewController(calendarViewController, animated: true)
         }).disposed(by: bag)
     }
     
@@ -891,14 +890,14 @@ extension TapToPayReviewPaymentViewController: PaymentusFormViewControllerDelega
     }
 }
 
-// MARK: - PDTSimpleCalendarViewDelegate
+// MARK: - CalendarViewDelegate
 
-extension TapToPayReviewPaymentViewController: PDTSimpleCalendarViewDelegate {
-    func simpleCalendarViewController(_ controller: PDTSimpleCalendarViewController!, isEnabledDate date: Date!) -> Bool {
+extension TapToPayReviewPaymentViewController: CalendarViewDelegate {
+    func calendarViewController(_ controller: CalendarViewController, isDateEnabled date: Date) -> Bool {
         return viewModel.shouldCalendarDateBeEnabled(date)
     }
     
-    func simpleCalendarViewController(_ controller: PDTSimpleCalendarViewController!, didSelect date: Date!) {
+    func calendarViewController(_ controller: CalendarViewController, didSelect date: Date) {
         let components = Calendar.opCo.dateComponents([.year, .month, .day], from: date)
         guard let opCoTimeDate = Calendar.opCo.date(from: components) else { return }
         viewModel.paymentDate.accept(opCoTimeDate.isInToday(calendar: .opCo) ? .now : opCoTimeDate)
