@@ -470,6 +470,7 @@ enum RegisterParameter: String, EventParameter {
     case ebill_enroll
     case account_verify
     case complete
+    case account_invalid
 }
 
 enum AccountPickerParameter: String, EventParameter {
