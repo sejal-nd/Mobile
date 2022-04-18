@@ -62,7 +62,7 @@ struct PaDataModel: Decodable {
         if Configuration.shared.opco == .bge {
             monthlyInstallment = (try container.decodeIfPresent(Double.self, forKey: .monthlyInstallment))?.twoDecimalString
         } else {
-        monthlyInstallment = (try container.decodeIfPresent(String.self, forKey: .monthlyInstallment))
+            monthlyInstallment = Double((try container.decodeIfPresent(String.self, forKey: .monthlyInstallment)) ?? "0.00")?.twoDecimalString
         }
         remainingPaymentAmount = (try container.decodeIfPresent(String.self, forKey: .remainingPaymentAmount))
         numberOfInstallments = (try container.decodeIfPresent(String.self, forKey: .numberOfInstallments))
