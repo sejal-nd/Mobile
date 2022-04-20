@@ -39,6 +39,7 @@ public struct FeatureFlags: Decodable {
     public var isPkceAuthentication: Bool = false
     public var hasAuthenticatedISUM: Bool = false
     public var hasUnauthenticatedISUM: Bool = false
+    public var showAgentisWidgets: Bool = false
     
     enum CodingKeys: String, CodingKey {
         case outageMapUrl = "outageMapURL"

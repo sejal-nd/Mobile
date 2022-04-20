@@ -23,6 +23,10 @@ class CommercialUsageViewModel {
     var nonResJSPath = BehaviorRelay(value: "")
     private let readyToLoadWidget = PublishSubject<Void>()
     
+    func selectedWidget() -> B2CUsageWebViewController.WidgetName {
+        return B2CUsageWebViewController.WidgetName.commercialWidgets[selectedIndex.value]
+    }
+    
     var jsTimeout: Timer?
     
     let disposeBag = DisposeBag()

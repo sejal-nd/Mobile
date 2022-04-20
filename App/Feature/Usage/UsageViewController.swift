@@ -172,7 +172,7 @@ class UsageViewController: AccountPickerViewController {
     
     // MARK: - Other Properties
     
-    private var commercialViewController: CommercialUsageViewController?
+    private var commercialViewController: UIViewController?
     
     var refreshControl: UIRefreshControl?
     
@@ -664,7 +664,7 @@ class UsageViewController: AccountPickerViewController {
     }
     
     private func showCommercialState() {
-        scrollView?.isHidden = false
+        scrollView?.isHidden = FeatureFlagUtility.shared.bool(forKey: .showAgentisWidgets)
         switchAccountsLoadingIndicator.isHidden = true
         unavailableView.isHidden = true
         accountPickerSpacerView.isHidden = true
@@ -676,7 +676,10 @@ class UsageViewController: AccountPickerViewController {
         maintenanceModeView.isHidden = true
         
         guard let _ = commercialViewController else {
-            addCommercialView()
+            viewModel.accountDetail.drive(onNext: {
+                self.addCommercialView($0)
+            }).dispose() // dispose() is used without dispose bag so we only subscribe and add the commercial view once
+            
             return
         }
     }
@@ -794,16 +797,38 @@ class UsageViewController: AccountPickerViewController {
         view.backgroundColor = .softGray
     }
     
-    private func addCommercialView() {
-        let commercialVC = CommercialUsageViewController(with: viewModel.commercialViewModel)
-        addChild(commercialVC)
-        mainStack.addArrangedSubview(commercialVC.view)
+    private func addCommercialView(_ accountDetail: AccountDetail) {
+        if FeatureFlagUtility.shared.bool(forKey: .showAgentisWidgets) {
+            let usageStoryboard = UIStoryboard(name: "Usage", bundle: nil)
+            let commercialVC = usageStoryboard.instantiateViewController(withIdentifier: "B2CUsageWebViewController") as! B2CUsageWebViewController
+            commercialVC.accountDetail = accountDetail
+            
+            addChild(commercialVC)
+            view.addSubview(commercialVC.view)
+            
+            commercialViewController = commercialVC
+        } else {
+            let commercialVC = CommercialUsageViewController(with: viewModel.commercialViewModel)
+            
+            addChild(commercialVC)
+            mainStack.addArrangedSubview(commercialVC.view)
+            
+            commercialViewController = commercialVC
+        }
+        
+        guard let commercialVC = commercialViewController else { return }
+        
+        commercialVC.view.translatesAutoresizingMaskIntoConstraints = false
+        
         commercialVC.didMove(toParent: self)
+        
         NSLayoutConstraint.activate([
+            commercialVC.view.topAnchor.constraint(equalTo: scrollView!.topAnchor),
+            commercialVC.view.bottomAnchor.constraint(equalTo: scrollView!.bottomAnchor),
             commercialVC.view.leadingAnchor.constraint(equalTo: mainStack.leadingAnchor),
             commercialVC.view.trailingAnchor.constraint(equalTo: mainStack.trailingAnchor)
         ])
-        commercialViewController = commercialVC
+        
         view.backgroundColor = .white
     }
     
