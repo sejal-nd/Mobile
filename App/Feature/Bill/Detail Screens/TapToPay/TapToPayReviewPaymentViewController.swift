@@ -371,6 +371,16 @@ class TapToPayReviewPaymentViewController: UIViewController {
             self.paymentDateEditIcon.accessibilityLabel = enableDate ? NSLocalizedString("Edit Payment date", comment: "") :  NSLocalizedString("Edit Payment date, disabled", comment: "")
             self.paymentDateEditIcon.accessibilityTraits = UIAccessibilityTraits.button
         }).disposed(by: bag)
+
+                
+        //Paymentus < $5
+        viewModel.enableReviewEditPayment.drive(onNext: { [weak self]  enableEditPayment in
+            guard let self = self else { return }
+            self.paymentAmountContainer.isUserInteractionEnabled = enableEditPayment ? true : false
+            self.editPaymentAmountButton.isEnabled = enableEditPayment ? true : false
+           
+        }).disposed(by: bag)
+
         
         // OverPaying
         viewModel.isOverpaying.map(!).drive( onNext: { [weak self] isNotOverPaying in
