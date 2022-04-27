@@ -313,7 +313,11 @@ class TapToPayReviewPaymentViewController: UIViewController {
             .disposed(by: bag)
         
         viewModel.paymentAmountReviewPageErrorMessage.asDriver().drive(onNext: { [weak self] errorMessage in
-            self?.paymentErrorLabel.text = errorMessage
+            if (FeatureFlagUtility.shared.bool(forKey: .isLowPaymentAllowed)) {
+                self?.paymentErrorLabel.text = ""
+            } else {
+                self?.paymentErrorLabel.text = errorMessage
+            }
         }).disposed(by: bag)
         viewModel.paymentFieldReviewPaymentValid.asDriver().drive(paymentErrorLabel.rx.isHidden).disposed(by: bag)
         
