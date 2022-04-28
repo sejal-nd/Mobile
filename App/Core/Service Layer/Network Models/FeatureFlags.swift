@@ -39,6 +39,7 @@ public struct FeatureFlags: Decodable {
     public var isPkceAuthentication: Bool = false
     public var hasAuthenticatedISUM: Bool = false
     public var hasUnauthenticatedISUM: Bool = false
+    public var isGamificationEnabled: Bool = false
     
     enum CodingKeys: String, CodingKey {
         case outageMapUrl = "outageMapURL"
@@ -53,6 +54,7 @@ public struct FeatureFlags: Decodable {
         case isPkceAuthentication
         case hasAuthenticatedISUM
         case hasUnauthenticatedISUM
+        case isGamificationEnabled
     }
     
     public init() {
@@ -74,5 +76,6 @@ public struct FeatureFlags: Decodable {
         isPkceAuthentication = try container.decodeIfPresent(Bool.self, forKey: .isPkceAuthentication) ?? false
         hasAuthenticatedISUM = try container.decodeIfPresent(Bool.self, forKey: .hasAuthenticatedISUM) ?? false
         hasUnauthenticatedISUM = try container.decodeIfPresent(Bool.self, forKey: .hasUnauthenticatedISUM) ?? false
+        isGamificationEnabled = try container.decodeIfPresent(Bool.self, forKey: .isGamificationEnabled) ?? false
     }
 }
