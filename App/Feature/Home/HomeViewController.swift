@@ -973,7 +973,6 @@ extension HomeViewController: AccountPickerDelegate {
             }
         }
         
-        // add gamification flag check here too
         if FeatureFlagUtility.shared.bool(forKey: .isGamificationEnabled) {
             let gameAccountNumber = UserDefaults.standard.string(forKey: UserDefaultKeys.gameAccountNumber)
             let prefersGameHome = UserDefaults.standard.bool(forKey: UserDefaultKeys.prefersGameHome)
@@ -981,13 +980,10 @@ extension HomeViewController: AccountPickerDelegate {
             let optedOutLocal = UserDefaults.standard.bool(forKey: UserDefaultKeys.gameOptedOutLocal)
             
             if AccountsStore.shared.currentAccount.accountNumber == gameAccountNumber &&
-                !optedOutLocal && onboardingCompleteLocal && UI_USER_INTERFACE_IDIOM() != .pad {
-                //            NotificationCenter.default.post(name: .gameSetFabHidden, object: NSNumber(value: false))
+                !optedOutLocal && onboardingCompleteLocal && UIDevice.current.userInterfaceIdiom != .pad {
                 if prefersGameHome {
                     NotificationCenter.default.post(name: .gameSwitchToGameView, object: nil)
                 }
-            } else {
-                //            NotificationCenter.default.post(name: .gameSetFabHidden, object: NSNumber(value: true))
             }
         }
     }
