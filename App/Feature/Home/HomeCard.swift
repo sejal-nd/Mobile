@@ -129,7 +129,7 @@ final class HomeCardPrefsStore {
     static let defaultList: [HomeCard] = {
         var cards: [HomeCard] = [.bill, .usage, .template]
         
-        if Configuration.shared.opco == .bge {
+        if Configuration.shared.opco == .bge && FeatureFlagUtility.shared.bool(forKey: .isGamificationEnabled) {
             cards[1] = .game
         }
         

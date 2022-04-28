@@ -237,56 +237,58 @@ class HomeViewController: AccountPickerViewController {
             })
             .disposed(by: bag)
         
-        viewModel.gameUser.asDriver().drive(onNext: {
-            if let gameUser = $0 {
-                self.gameCardView?.isHidden = !gameUser.onboardingComplete
-            } else {
-                self.gameCardView?.removeFromSuperview()
-                self.gameCardView = nil
-            }
-        }).disposed(by: bag)
-        
-        viewModel.accountDetailEvents.elements().asObservable()
-            .subscribe(onNext: {
-                self.viewModel.gameCardViewModel.accountDetail.accept($0)
-                self.viewModel.gameCardViewModel.fetchData()
-            })
-            .disposed(by: bag)
-        
-        viewModel.showGameOnboardingCard
-            .distinctUntilChanged()
-            .drive(onNext: { [weak self] showCard in
-                guard let self = self else { return }
-                
-                guard showCard else {
-                    self.gameOnboardingCardView?.removeFromSuperview()
-                    self.gameOnboardingCardView = nil
-                    return
+        if Configuration.shared.opco == .bge && FeatureFlagUtility.shared.bool(forKey: .isGamificationEnabled) {
+            viewModel.gameUser.asDriver().drive(onNext: {
+                if let gameUser = $0 {
+                    self.gameCardView?.isHidden = !gameUser.onboardingComplete
+                } else {
+                    self.gameCardView?.removeFromSuperview()
+                    self.gameCardView = nil
                 }
-
-                let gameOnboardingCardView = HomeGameOnboardingCardView.create()
-                
-                gameOnboardingCardView.letsGoButton.rx.touchUpInside.asDriver()
-                    .withLatestFrom(self.viewModel.accountDetailEvents.elements().asDriver(onErrorDriveWith: .empty()))
-                    .drive(onNext: { [weak self] in
-                        guard let self = self else { return }
-                        self.navigateToGameOnboarding(accountDetail: $0)
-                        FirebaseUtility.logEvent(.gamification(parameters: [.onboard_start, .onboarding_card_version(gameOnboardingCardView.version.rawValue)]))
-                    }).disposed(by: self.bag)
-                
-                gameOnboardingCardView.imageButton.rx.touchUpInside.asDriver()
-                    .withLatestFrom(self.viewModel.accountDetailEvents.elements().asDriver(onErrorDriveWith: .empty()))
-                    .drive(onNext: { [weak self] in
-                        guard let self = self else { return }
-                        self.navigateToGameOnboarding(accountDetail: $0)
-                        FirebaseUtility.logEvent(.gamification(parameters: [.onboard_start, .onboarding_card_version(gameOnboardingCardView.version.rawValue)]))
-                    }).disposed(by: self.bag)
-                
-                let index = self.topPersonalizeButton != nil ? 1 : 0
-                self.contentStackView.insertArrangedSubview(gameOnboardingCardView, at: index)
-                self.gameOnboardingCardView = gameOnboardingCardView
-            })
-            .disposed(by: bag)
+            }).disposed(by: bag)
+            
+            viewModel.accountDetailEvents.elements().asObservable()
+                .subscribe(onNext: {
+                    self.viewModel.gameCardViewModel.accountDetail.accept($0)
+                    self.viewModel.gameCardViewModel.fetchData()
+                })
+                .disposed(by: bag)
+            
+            viewModel.showGameOnboardingCard
+                .distinctUntilChanged()
+                .drive(onNext: { [weak self] showCard in
+                    guard let self = self else { return }
+                    
+                    guard showCard else {
+                        self.gameOnboardingCardView?.removeFromSuperview()
+                        self.gameOnboardingCardView = nil
+                        return
+                    }
+                    
+                    let gameOnboardingCardView = HomeGameOnboardingCardView.create()
+                    
+                    gameOnboardingCardView.letsGoButton.rx.touchUpInside.asDriver()
+                        .withLatestFrom(self.viewModel.accountDetailEvents.elements().asDriver(onErrorDriveWith: .empty()))
+                        .drive(onNext: { [weak self] in
+                            guard let self = self else { return }
+                            self.navigateToGameOnboarding(accountDetail: $0)
+                            FirebaseUtility.logEvent(.gamification(parameters: [.onboard_start, .onboarding_card_version(gameOnboardingCardView.version.rawValue)]))
+                        }).disposed(by: self.bag)
+                    
+                    gameOnboardingCardView.imageButton.rx.touchUpInside.asDriver()
+                        .withLatestFrom(self.viewModel.accountDetailEvents.elements().asDriver(onErrorDriveWith: .empty()))
+                        .drive(onNext: { [weak self] in
+                            guard let self = self else { return }
+                            self.navigateToGameOnboarding(accountDetail: $0)
+                            FirebaseUtility.logEvent(.gamification(parameters: [.onboard_start, .onboarding_card_version(gameOnboardingCardView.version.rawValue)]))
+                        }).disposed(by: self.bag)
+                    
+                    let index = self.topPersonalizeButton != nil ? 1 : 0
+                    self.contentStackView.insertArrangedSubview(gameOnboardingCardView, at: index)
+                    self.gameOnboardingCardView = gameOnboardingCardView
+                })
+                .disposed(by: bag)
+        }
         
         // If no update, show weather and personalize button at the top.
         // Hide the update view.
@@ -970,19 +972,23 @@ extension HomeViewController: AccountPickerDelegate {
                 }
             }
         }
-        let gameAccountNumber = UserDefaults.standard.string(forKey: UserDefaultKeys.gameAccountNumber)
-        let prefersGameHome = UserDefaults.standard.bool(forKey: UserDefaultKeys.prefersGameHome)
-        let onboardingCompleteLocal = UserDefaults.standard.bool(forKey: UserDefaultKeys.gameOnboardingCompleteLocal)
-        let optedOutLocal = UserDefaults.standard.bool(forKey: UserDefaultKeys.gameOptedOutLocal)
         
-        if AccountsStore.shared.currentAccount.accountNumber == gameAccountNumber &&
-            !optedOutLocal && onboardingCompleteLocal && UI_USER_INTERFACE_IDIOM() != .pad {
-//            NotificationCenter.default.post(name: .gameSetFabHidden, object: NSNumber(value: false))
-            if prefersGameHome {
-                NotificationCenter.default.post(name: .gameSwitchToGameView, object: nil)
+        // add gamification flag check here too
+        if FeatureFlagUtility.shared.bool(forKey: .isGamificationEnabled) {
+            let gameAccountNumber = UserDefaults.standard.string(forKey: UserDefaultKeys.gameAccountNumber)
+            let prefersGameHome = UserDefaults.standard.bool(forKey: UserDefaultKeys.prefersGameHome)
+            let onboardingCompleteLocal = UserDefaults.standard.bool(forKey: UserDefaultKeys.gameOnboardingCompleteLocal)
+            let optedOutLocal = UserDefaults.standard.bool(forKey: UserDefaultKeys.gameOptedOutLocal)
+            
+            if AccountsStore.shared.currentAccount.accountNumber == gameAccountNumber &&
+                !optedOutLocal && onboardingCompleteLocal && UI_USER_INTERFACE_IDIOM() != .pad {
+                //            NotificationCenter.default.post(name: .gameSetFabHidden, object: NSNumber(value: false))
+                if prefersGameHome {
+                    NotificationCenter.default.post(name: .gameSwitchToGameView, object: nil)
+                }
+            } else {
+                //            NotificationCenter.default.post(name: .gameSetFabHidden, object: NSNumber(value: true))
             }
-        } else {
-//            NotificationCenter.default.post(name: .gameSetFabHidden, object: NSNumber(value: true))
         }
     }
 }
