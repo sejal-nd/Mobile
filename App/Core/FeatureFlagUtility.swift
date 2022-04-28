@@ -22,11 +22,11 @@ final class FeatureFlagUtility {
         case isPkceAuthentication // B2C login with PKCE
         case hasAuthenticatedISUM
         case hasUnauthenticatedISUM
-        
         case isB2CAuthentication // calculated value = isAzureAuthentication || isPkceAuthentication
         
         // Commercial Agentis Widgets
         case showAgentisWidgets // calculated value
+        case isGamificationEnabled
     }
     
     static let shared = FeatureFlagUtility()
@@ -53,7 +53,8 @@ final class FeatureFlagUtility {
             FeatureFlagKey.hasAuthenticatedISUM.rawValue : false,
             FeatureFlagKey.hasUnauthenticatedISUM.rawValue : false,
             FeatureFlagKey.isB2CAuthentication.rawValue : false,
-            FeatureFlagKey.showAgentisWidgets.rawValue: true
+            FeatureFlagKey.showAgentisWidgets.rawValue: true,
+            FeatureFlagKey.isGamificationEnabled.rawValue: false
         ]
         
         UserDefaults.standard.setValuesForKeys(appDefaults)
@@ -85,6 +86,7 @@ final class FeatureFlagUtility {
                     FeatureFlagKey.hasUnauthenticatedISUM.rawValue : featureFlags.hasUnauthenticatedISUM,
                     FeatureFlagKey.isB2CAuthentication.rawValue : featureFlags.isAzureAuthentication || featureFlags.isPkceAuthentication,
                     FeatureFlagKey.showAgentisWidgets.rawValue : true // TODO replace with actual feature flags featureFlags.showAgentisWidgets
+                    FeatureFlagKey.isGamificationEnabled.rawValue : featureFlags.isGamificationEnabled
                 ]
                 
                 UserDefaults.standard.setValuesForKeys(keyedValues)
