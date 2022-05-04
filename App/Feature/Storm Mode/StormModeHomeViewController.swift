@@ -251,6 +251,8 @@ class StormModeHomeViewController: AccountPickerViewController {
     let disposeBag = DisposeBag()
     var stormModePollingDisposable: Disposable?
     
+    let opco = Configuration.shared.opco
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -560,7 +562,8 @@ class StormModeHomeViewController: AccountPickerViewController {
             phone1Label.text = "1-800-841-4141"
         case .ace, .delmarva, .pepco:
             if AccountsStore.shared.accountOpco == .ace {
-                group1Label.text = NSLocalizedString("If you see downed power lines, leave the area immediately and call Atlantic City Electric at ", comment: "")
+                let opcoTitle = opco.displayString
+                group1Label.text = NSLocalizedString("If you see downed power lines, leave the area immediately and call %@ at ", comment: ""), opcoTitle)
                 phone1Label.text = "1-800-833-7476"
                 
                 group2Label.isHidden = true
@@ -573,9 +576,10 @@ class StormModeHomeViewController: AccountPickerViewController {
                 phone4Button.isHidden = true
 
             } else if AccountsStore.shared.accountOpco == .delmarva {
+                let opcoTitle = opco.displayString
                 group1Label.text = NSLocalizedString("If you smell natural gas, leave the area immediately and then call ", comment: "")
                 
-                group2Label.text = NSLocalizedString("If you see downed power lines, leave the area immediately and call Delmarva at ", comment: "")
+                group2Label.text = NSLocalizedString("If you see downed power lines, leave the area immediately and call %@ at ", comment: ""), opcoTitle)
                 phone1Label.text = "302-454-0317"
                 phone3Label.text = "1-800-898-8042"
                 
@@ -588,7 +592,8 @@ class StormModeHomeViewController: AccountPickerViewController {
                 phone4Button.isHidden = true
 
             } else if AccountsStore.shared.accountOpco == .pepco {
-                group1Label.text = NSLocalizedString("If you see downed power lines, leave the area immediately and call Pepco at ", comment: "")
+                let opcoTitle = opco.displayString
+                group1Label.text = NSLocalizedString("If you see downed power lines, leave the area immediately and call %@ at ", comment: ""), opcoTitle)
                 phone1Label.text = "1-877-737-2662"
                
                 group2Label.isHidden = true
