@@ -560,7 +560,7 @@ class StormModeHomeViewController: AccountPickerViewController {
             phone1Label.text = "1-800-841-4141"
         case .ace, .delmarva, .pepco:
             if AccountsStore.shared.accountOpco == .ace {
-                group1Label.attributedText = viewModel.stormAttrString
+                group1Label.text = NSLocalizedString("If you see downed power lines, leave the area immediately and call \(Configuration.shared.opco.displayString) at ", comment: "")
                 phone1Label.text = "1-800-833-7476"
                 
                 group2Label.isHidden = true
@@ -575,7 +575,7 @@ class StormModeHomeViewController: AccountPickerViewController {
             } else if AccountsStore.shared.accountOpco == .delmarva {
                 group1Label.text = NSLocalizedString("If you smell natural gas, leave the area immediately and then call ", comment: "")
                 
-                group2Label.attributedText = viewModel.stormAttrString
+                group2Label.text = NSLocalizedString("If you see downed power lines, leave the area immediately and call \(Configuration.shared.opco.displayString) at ", comment: "")
                 phone1Label.text = "302-454-0317"
                 phone3Label.text = "1-800-898-8042"
                 
@@ -588,7 +588,7 @@ class StormModeHomeViewController: AccountPickerViewController {
                 phone4Button.isHidden = true
 
             } else if AccountsStore.shared.accountOpco == .pepco {
-                group1Label.attributedText = viewModel.stormAttrString
+                group1Label.text = NSLocalizedString("If you see downed power lines, leave the area immediately and call \(Configuration.shared.opco.displayString) at ", comment: "")
                 phone1Label.text = "1-877-737-2662"
                
                 group2Label.isHidden = true
