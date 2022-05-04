@@ -251,8 +251,6 @@ class StormModeHomeViewController: AccountPickerViewController {
     let disposeBag = DisposeBag()
     var stormModePollingDisposable: Disposable?
     
-    let opco = Configuration.shared.opco
-    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -563,7 +561,7 @@ class StormModeHomeViewController: AccountPickerViewController {
         case .ace, .delmarva, .pepco:
             if AccountsStore.shared.accountOpco == .ace {
                 let opcoTitle = opco.displayString
-                group1Label.text = NSLocalizedString("If you see downed power lines, leave the area immediately and call %@ at ", comment: ""), opcoTitle)
+                group1Label.text = viewModel.stormAttrString
                 phone1Label.text = "1-800-833-7476"
                 
                 group2Label.isHidden = true
@@ -579,7 +577,7 @@ class StormModeHomeViewController: AccountPickerViewController {
                 let opcoTitle = opco.displayString
                 group1Label.text = NSLocalizedString("If you smell natural gas, leave the area immediately and then call ", comment: "")
                 
-                group2Label.text = NSLocalizedString("If you see downed power lines, leave the area immediately and call %@ at ", comment: ""), opcoTitle)
+                group2Label.text = viewModel.stormAttrString
                 phone1Label.text = "302-454-0317"
                 phone3Label.text = "1-800-898-8042"
                 
@@ -593,7 +591,7 @@ class StormModeHomeViewController: AccountPickerViewController {
 
             } else if AccountsStore.shared.accountOpco == .pepco {
                 let opcoTitle = opco.displayString
-                group1Label.text = NSLocalizedString("If you see downed power lines, leave the area immediately and call %@ at ", comment: ""), opcoTitle)
+                group1Label.text = viewModel.stormAttrString
                 phone1Label.text = "1-877-737-2662"
                
                 group2Label.isHidden = true

@@ -10,6 +10,8 @@ import RxSwift
 import RxCocoa
 
 class StormModeHomeViewModel {
+
+    let opco = Configuration.shared.opco
     
     let stormModePollInterval = 30
         
@@ -105,6 +107,25 @@ class StormModeHomeViewModel {
         }
     }
     
+    // PHI Storm Downed Lines Script Update
+    var stormAttrString: NSAttributedString {
+        let stormAttrString: NSMutableAttributedString
+        switch opco {
+            case .ace:
+            let opcoTitle = opco.displayString
+            let localizedString = String(format: NSLocalizedString("If you see downed power lines, leave the area immediately and call %@ at ", comment: ""), opcoTitle)
+            stormAttrString = NSMutableAttributedString(string: localizedString) 
+            case .delmarva:
+            let opcoTitle = opco.displayString
+            let localizedString = String(format: NSLocalizedString("If you see downed power lines, leave the area immediately and call %@ at ", comment: ""), opcoTitle)
+            stormAttrString = NSMutableAttributedString(string: localizedString)
+            case .pepco:
+            let opcoTitle = opco.displayString
+            let localizedString = String(format: NSLocalizedString("If you see downed power lines, leave the area immediately and call %@ at ", comment: ""), opcoTitle)
+            stormAttrString = NSMutableAttributedString(string: localizedString)
+        }
+    }
+
     var reportedOutage: ReportedOutageResult? {
         guard AccountsStore.shared.currentIndex != nil else { return nil }
         return OutageService.getReportedOutageResult(accountNumber: AccountsStore.shared.currentAccount.accountNumber)
