@@ -23,10 +23,12 @@ final class FeatureFlagUtility {
         case hasAuthenticatedISUM
         case hasUnauthenticatedISUM
         case isB2CAuthentication // calculated value = isAzureAuthentication || isPkceAuthentication
-        
-        // Commercial Agentis Widgets
-        case showAgentisWidgets // calculated value
         case isGamificationEnabled
+        // Commercial Agentis Widgets
+        case usageAgentisWidget
+        case compareAgentisWidget
+        case tipsAgentisWidget
+        case projectedUsageAgentisWidget
     }
     
     static let shared = FeatureFlagUtility()
@@ -53,8 +55,11 @@ final class FeatureFlagUtility {
             FeatureFlagKey.hasAuthenticatedISUM.rawValue : false,
             FeatureFlagKey.hasUnauthenticatedISUM.rawValue : false,
             FeatureFlagKey.isB2CAuthentication.rawValue : false,
-            FeatureFlagKey.showAgentisWidgets.rawValue: true,
-            FeatureFlagKey.isGamificationEnabled.rawValue: false
+            FeatureFlagKey.isGamificationEnabled.rawValue: false,
+            FeatureFlagKey.usageAgentisWidget.rawValue: true,
+            FeatureFlagKey.compareAgentisWidget.rawValue: true,
+            FeatureFlagKey.tipsAgentisWidget.rawValue: true,
+            FeatureFlagKey.projectedUsageAgentisWidget.rawValue: true
         ]
         
         UserDefaults.standard.setValuesForKeys(appDefaults)
@@ -85,8 +90,11 @@ final class FeatureFlagUtility {
                     FeatureFlagKey.hasAuthenticatedISUM.rawValue : featureFlags.hasAuthenticatedISUM,
                     FeatureFlagKey.hasUnauthenticatedISUM.rawValue : featureFlags.hasUnauthenticatedISUM,
                     FeatureFlagKey.isB2CAuthentication.rawValue : featureFlags.isAzureAuthentication || featureFlags.isPkceAuthentication,
-                    FeatureFlagKey.showAgentisWidgets.rawValue : true // TODO replace with actual feature flags featureFlags.showAgentisWidgets
-                    FeatureFlagKey.isGamificationEnabled.rawValue : featureFlags.isGamificationEnabled
+                    FeatureFlagKey.isGamificationEnabled.rawValue : featureFlags.isGamificationEnabled,
+                    FeatureFlagKey.usageAgentisWidget.rawValue : featureFlags.usageAgentisWidget,
+                    FeatureFlagKey.compareAgentisWidget.rawValue : featureFlags.compareAgentisWidget,
+                    FeatureFlagKey.tipsAgentisWidget.rawValue : featureFlags.tipsAgentisWidget,
+                    FeatureFlagKey.projectedUsageAgentisWidget.rawValue : featureFlags.projectedUsageAgentisWidget
                 ]
                 
                 UserDefaults.standard.setValuesForKeys(keyedValues)

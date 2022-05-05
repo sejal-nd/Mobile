@@ -664,7 +664,7 @@ class UsageViewController: AccountPickerViewController {
     }
     
     private func showCommercialState() {
-        scrollView?.isHidden = FeatureFlagUtility.shared.bool(forKey: .showAgentisWidgets)
+        scrollView?.isHidden = viewModel.shouldShowAgentisWidgets()
         switchAccountsLoadingIndicator.isHidden = true
         unavailableView.isHidden = true
         accountPickerSpacerView.isHidden = true
@@ -676,9 +676,9 @@ class UsageViewController: AccountPickerViewController {
         maintenanceModeView.isHidden = true
         
         guard let _ = commercialViewController else {
-            viewModel.accountDetail.drive(onNext: {
+            viewModel.accountDetail.asObservable().take(1).subscribe(onNext: {
                 self.addCommercialView($0)
-            }).dispose() // dispose() is used without dispose bag so we only subscribe and add the commercial view once
+            }).disposed(by: disposeBag) // dispose() is used without dispose bag so we only subscribe and add the commercial view once
             
             return
         }
@@ -798,7 +798,7 @@ class UsageViewController: AccountPickerViewController {
     }
     
     private func addCommercialView(_ accountDetail: AccountDetail) {
-        if FeatureFlagUtility.shared.bool(forKey: .showAgentisWidgets) {
+        if viewModel.shouldShowAgentisWidgets() {
             let usageStoryboard = UIStoryboard(name: "Usage", bundle: nil)
             let commercialVC = usageStoryboard.instantiateViewController(withIdentifier: "B2CUsageWebViewController") as! B2CUsageWebViewController
             commercialVC.accountDetail = accountDetail

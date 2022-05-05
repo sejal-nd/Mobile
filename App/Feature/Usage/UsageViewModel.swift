@@ -146,8 +146,7 @@ class UsageViewModel {
                showNoUsageDataState,
                showCommercialState)
     
-    private(set) lazy var showMainErrorState: Driver<Void> = Observable
-        .merge(accountDetailEvents.errors(), commercialDataEvents.errors(), commercialErrorTrigger.asObservable())
+    private(set) lazy var showMainErrorState: Driver<Void> = accountDetailEvents.errors()
         .filter {
             ($0 as? NetworkingError) != .noNetwork &&
             ($0 as? NetworkingError) != .blockAccount
@@ -182,9 +181,15 @@ class UsageViewModel {
         .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var showCommercialState: Driver<Void> = commercialDataEvents
-        .elements()
-        .mapTo(())
+    private(set) lazy var showCommercialState: Driver<Void> = accountDetailEvents.elements()
+        .filter { !$0.isResidential }
+        .flatMap { accountDetails -> Observable<Void> in
+            if self.shouldShowAgentisWidgets() {
+                return Observable.just(accountDetails).mapTo(())
+            } else {
+                return self.commercialDataEvents.mapTo(())
+            }
+        }
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var showPrepaidState: Driver<Void> = accountDetailEvents
@@ -932,6 +937,13 @@ class UsageViewModel {
         }
         // Default to electric
         return false
+    }
+    
+    func shouldShowAgentisWidgets() -> Bool {
+        return FeatureFlagUtility.shared.bool(forKey: .usageAgentisWidget) ||
+        FeatureFlagUtility.shared.bool(forKey: .compareAgentisWidget) ||
+        FeatureFlagUtility.shared.bool(forKey: .tipsAgentisWidget) ||
+        FeatureFlagUtility.shared.bool(forKey: .projectedUsageAgentisWidget)
     }
 }
 
