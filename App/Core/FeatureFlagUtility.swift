@@ -22,8 +22,8 @@ final class FeatureFlagUtility {
         case isPkceAuthentication // B2C login with PKCE
         case hasAuthenticatedISUM
         case hasUnauthenticatedISUM
-        
         case isB2CAuthentication // calculated value = isAzureAuthentication || isPkceAuthentication
+        case isGamificationEnabled
     }
     
     static let shared = FeatureFlagUtility()
@@ -49,7 +49,8 @@ final class FeatureFlagUtility {
             FeatureFlagKey.isPkceAuthentication.rawValue : false,
             FeatureFlagKey.hasAuthenticatedISUM.rawValue : false,
             FeatureFlagKey.hasUnauthenticatedISUM.rawValue : false,
-            FeatureFlagKey.isB2CAuthentication.rawValue : false
+            FeatureFlagKey.isB2CAuthentication.rawValue : false,
+            FeatureFlagKey.isGamificationEnabled.rawValue: false
         ]
         
         UserDefaults.standard.setValuesForKeys(appDefaults)
@@ -79,7 +80,8 @@ final class FeatureFlagUtility {
                     FeatureFlagKey.isPkceAuthentication.rawValue : featureFlags.isPkceAuthentication,
                     FeatureFlagKey.hasAuthenticatedISUM.rawValue : featureFlags.hasAuthenticatedISUM,
                     FeatureFlagKey.hasUnauthenticatedISUM.rawValue : featureFlags.hasUnauthenticatedISUM,
-                    FeatureFlagKey.isB2CAuthentication.rawValue : featureFlags.isAzureAuthentication || featureFlags.isPkceAuthentication
+                    FeatureFlagKey.isB2CAuthentication.rawValue : featureFlags.isAzureAuthentication || featureFlags.isPkceAuthentication,
+                    FeatureFlagKey.isGamificationEnabled.rawValue : featureFlags.isGamificationEnabled
                 ]
                 
                 UserDefaults.standard.setValuesForKeys(keyedValues)

@@ -283,7 +283,7 @@ class HomeViewModel {
                 }
             }
             
-            if Configuration.shared.opco != .bge || gameUser == nil || gameUser?.optedOut == true {
+            if FeatureFlagUtility.shared.bool(forKey: .isGamificationEnabled) == false || Configuration.shared.opco != .bge || gameUser == nil || gameUser?.optedOut == true {
                 for (index, card) in newCards.enumerated() {
                     switch card {
                     case .game:
