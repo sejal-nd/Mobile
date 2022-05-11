@@ -65,11 +65,11 @@ class ReportOutageViewModel {
         case .pepco:
             let phone1 = "1-877-737-2662"
             phoneNumbers = [phone1]
-            localizedString = String.localizedStringWithFormat("To report a downed or sparking power line, please call %@.", phone1)
+            localizedString = String.localizedStringWithFormat("If you see downed power lines, leave the area immediately and call Pepco at %@.", phone1)
         case .ace:
             let phone1 = "1-800-833-7476"
             phoneNumbers = [phone1]
-            localizedString = String.localizedStringWithFormat("To report a downed or sparking power line, please call %@.", phone1)
+            localizedString = String.localizedStringWithFormat("If you see downed power lines, leave the area immediately and call Atlantic City Electric at %@.", phone1)
         case .delmarva:
             let phone1 = "302-454-0317"
             let phone2 = "1-800-898-8042"
@@ -77,7 +77,7 @@ class ReportOutageViewModel {
             localizedString = String.localizedStringWithFormat(
                 """
                 If you smell natural gas, leave the area immediately and then call %@.\n
-                To report a downed or sparking power line, please call %@.
+                If you see downed power lines, leave the area immediately and call Delmarva at %@.
                 """
                 , phone1, phone2)
         }

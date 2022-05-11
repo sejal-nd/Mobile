@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B58B5AC01E4E28740051FD5F"
-               BuildableName = "EUMobile.app"
+               BuildableName = "Atlantic City Electric.app"
                BlueprintName = "EUMobile"
                ReferencedContainer = "container:Mobile.xcodeproj">
             </BuildableReference>
@@ -46,7 +46,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B58B5AC01E4E28740051FD5F"
-            BuildableName = "EUMobile.app"
+            BuildableName = "Atlantic City Electric.app"
             BlueprintName = "EUMobile"
             ReferencedContainer = "container:Mobile.xcodeproj">
          </BuildableReference>
@@ -89,7 +89,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B58B5AC01E4E28740051FD5F"
-            BuildableName = "EUMobile.app"
+            BuildableName = "Atlantic City Electric.app"
             BlueprintName = "EUMobile"
             ReferencedContainer = "container:Mobile.xcodeproj">
          </BuildableReference>
@@ -120,7 +120,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B58B5AC01E4E28740051FD5F"
-            BuildableName = "EUMobile.app"
+            BuildableName = "Atlantic City Electric.app"
             BlueprintName = "EUMobile"
             ReferencedContainer = "container:Mobile.xcodeproj">
          </BuildableReference>

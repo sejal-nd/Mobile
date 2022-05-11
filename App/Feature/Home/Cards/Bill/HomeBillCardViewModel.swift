@@ -545,7 +545,7 @@ class HomeBillCardViewModel {
                 if paymentArrangementDetails?.customerInfo?.hasPABilled == false {
                     return "Your request to enroll in a payment arrangement has been accepted. For further details log into your My Account."
                 } else if paymentArrangementDetails?.customerInfo?.hasPABilled == true {
-                    guard  let remainingPaymentAmount = paymentArrangementDetails?.pAData?.first?.remainingPaymentAmount,
+                    guard  let remainingPaymentAmount = Double(paymentArrangementDetails?.pAData?.first?.remainingPaymentAmount ?? "0")?.twoDecimalString,
                            let monthlyInstallment = paymentArrangementDetails?.pAData?.first?.monthlyInstallment,
                            let noOfInstallmentsLeft = paymentArrangementDetails?.pAData?.first?.noOfInstallmentsLeft else {
                         return ""
@@ -556,7 +556,7 @@ class HomeBillCardViewModel {
                         dueDateExtensionDetails?.extendedDueDate != nil &&
                         dueDateExtensionDetails?.extensionDueAmt != nil {
                 guard let extendedDueDate = dueDateExtensionDetails?.extendedDueDate,
-                      let extensionDueAmt = dueDateExtensionDetails?.extensionDueAmt else {return nil}
+                      let extensionDueAmt = dueDateExtensionDetails?.extensionDueAmt?.twoDecimalString else {return nil}
                 return "You're enrolled in a Due Date Extension. You have until \(String(describing: extendedDueDate.mmDdYyyyString)) to pay your extended bill of $\(extensionDueAmt)."
             }
         }

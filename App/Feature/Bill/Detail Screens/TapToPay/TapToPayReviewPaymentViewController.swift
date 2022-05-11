@@ -103,6 +103,9 @@ class TapToPayReviewPaymentViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
         viewModel = TapToPayViewModel(accountDetail: accountDetail,
                                       billingHistoryItem: billingHistoryItem)
         
@@ -583,6 +586,24 @@ class TapToPayReviewPaymentViewController: UIViewController {
             self?.alternateNumberTextField.setError(nil)
         }).disposed(by: bag)
         
+    }
+    
+    
+    // MARK: - Keyboard
+    @objc func keyboardWillShow(notification: Notification) {
+        let userInfo = notification.userInfo!
+        let endFrameRect = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+
+        let safeAreaBottomInset = view.safeAreaInsets.bottom
+        let insets = UIEdgeInsets(top: 0, left: 0, bottom: endFrameRect.size.height - safeAreaBottomInset, right: 0)
+        scrollView.contentInset = insets
+        scrollView.scrollIndicatorInsets = insets
+
+    }
+
+    @objc func keyboardWillHide(notification: Notification) {
+        scrollView.contentInset = .zero
+        scrollView.scrollIndicatorInsets = .zero
     }
     
     @IBAction func termsConditionPress(_ sender: Any) {
