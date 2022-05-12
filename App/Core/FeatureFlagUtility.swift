@@ -22,6 +22,7 @@ final class FeatureFlagUtility {
         case isPkceAuthentication // B2C login with PKCE
         case hasAuthenticatedISUM
         case hasUnauthenticatedISUM
+        case isLowPaymentAllowed // Paymentus <$5
         case isB2CAuthentication // calculated value = isAzureAuthentication || isPkceAuthentication
         case isGamificationEnabled
     }
@@ -50,7 +51,8 @@ final class FeatureFlagUtility {
             FeatureFlagKey.hasAuthenticatedISUM.rawValue : false,
             FeatureFlagKey.hasUnauthenticatedISUM.rawValue : false,
             FeatureFlagKey.isB2CAuthentication.rawValue : false,
-            FeatureFlagKey.isGamificationEnabled.rawValue: false
+            FeatureFlagKey.isGamificationEnabled.rawValue: false,
+            FeatureFlagKey.isLowPaymentAllowed.rawValue : false
         ]
         
         UserDefaults.standard.setValuesForKeys(appDefaults)
@@ -81,7 +83,8 @@ final class FeatureFlagUtility {
                     FeatureFlagKey.hasAuthenticatedISUM.rawValue : featureFlags.hasAuthenticatedISUM,
                     FeatureFlagKey.hasUnauthenticatedISUM.rawValue : featureFlags.hasUnauthenticatedISUM,
                     FeatureFlagKey.isB2CAuthentication.rawValue : featureFlags.isAzureAuthentication || featureFlags.isPkceAuthentication,
-                    FeatureFlagKey.isGamificationEnabled.rawValue : featureFlags.isGamificationEnabled
+                    FeatureFlagKey.isGamificationEnabled.rawValue : featureFlags.isGamificationEnabled,
+                    FeatureFlagKey.isLowPaymentAllowed.rawValue : featureFlags.isLowPaymentAllowed   
                 ]
                 
                 UserDefaults.standard.setValuesForKeys(keyedValues)

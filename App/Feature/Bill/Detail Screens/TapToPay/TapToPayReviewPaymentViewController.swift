@@ -316,7 +316,11 @@ class TapToPayReviewPaymentViewController: UIViewController {
             .disposed(by: bag)
         
         viewModel.paymentAmountReviewPageErrorMessage.asDriver().drive(onNext: { [weak self] errorMessage in
-            self?.paymentErrorLabel.text = errorMessage
+            if (FeatureFlagUtility.shared.bool(forKey: .isLowPaymentAllowed)) {
+                self?.paymentErrorLabel.text = ""
+            } else {
+                self?.paymentErrorLabel.text = errorMessage
+            }
         }).disposed(by: bag)
         viewModel.paymentFieldReviewPaymentValid.asDriver().drive(paymentErrorLabel.rx.isHidden).disposed(by: bag)
         
@@ -374,6 +378,16 @@ class TapToPayReviewPaymentViewController: UIViewController {
             self.paymentDateEditIcon.accessibilityLabel = enableDate ? NSLocalizedString("Edit Payment date", comment: "") :  NSLocalizedString("Edit Payment date, disabled", comment: "")
             self.paymentDateEditIcon.accessibilityTraits = UIAccessibilityTraits.button
         }).disposed(by: bag)
+
+                
+        //Paymentus < $5
+        viewModel.enableReviewEditPayment.drive(onNext: { [weak self]  enableEditPayment in
+            guard let self = self else { return }
+            self.paymentAmountContainer.isUserInteractionEnabled = enableEditPayment ? true : false
+            self.editPaymentAmountButton.isEnabled = enableEditPayment ? true : false
+           
+        }).disposed(by: bag)
+
         
         // OverPaying
         viewModel.isOverpaying.map(!).drive( onNext: { [weak self] isNotOverPaying in

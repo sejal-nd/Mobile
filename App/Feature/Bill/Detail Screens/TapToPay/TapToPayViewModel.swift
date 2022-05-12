@@ -21,6 +21,8 @@ class TapToPayViewModel {
     let isFetching = BehaviorRelay(value: false)
     let isError = BehaviorRelay(value: false)
     let enablePaymentDateButton = BehaviorRelay(value: false)
+    let enableReviewEditPaymentButton = BehaviorRelay(value: false)
+
     
     let walletItems = BehaviorRelay<[WalletItem]?>(value: nil)
     let selectedWalletItem = BehaviorRelay<WalletItem?>(value: nil)
@@ -286,6 +288,18 @@ class TapToPayViewModel {
         self.enablePaymentDateButton.asDriver().map {_ in
             return self.canEditPaymentDate
     }
+
+        // Paymentus < $5
+    var canEditReviewPayment: Bool {
+        return !(FeatureFlagUtility.shared.bool(forKey: .isLowPaymentAllowed) && self.paymentAmount.value < 5.0)
+    }
+    
+    
+    private (set) lazy var enableReviewEditPayment: Driver<Bool> =
+    self.enableReviewEditPaymentButton.asDriver().map {_ in
+        return self.canEditReviewPayment
+    }
+
     
     private(set) lazy var walletItem: Observable<WalletItem?> = self.walletItems.map { $0?.first(where: { $0.isDefault }) }
     
@@ -723,13 +737,21 @@ class TapToPayViewModel {
                 let maxPayment = accountDetail.billingInfo.maxPaymentAmount(bankOrCard: .bank)
                 if Configuration.shared.opco == .bge || Configuration.shared.opco.isPHI {
                     if paymentAmount < minPayment {
-                        return NSLocalizedString("Minimum payment allowed is \(minPayment.currencyString)", comment: "")
+                         if (FeatureFlagUtility.shared.bool(forKey: .isLowPaymentAllowed)){
+                            return nil
+                        } else {
+                            return NSLocalizedString("Minimum payment allowed is \(minPayment.currencyString)", comment: "")
+                        }
                     } else if paymentAmount > maxPayment {
                         return NSLocalizedString("Maximum payment allowed is \(maxPayment.currencyString)", comment: "")
                     }
                 } else {
                     if paymentAmount < minPayment {
-                        return NSLocalizedString("Minimum payment allowed is \(minPayment.currencyString)", comment: "")
+                        if (FeatureFlagUtility.shared.bool(forKey: .isLowPaymentAllowed)){
+                            return nil
+                        } else {
+                            return NSLocalizedString("Minimum payment allowed is \(minPayment.currencyString)", comment: "")
+                        }
                     } else if paymentAmount > amountDue {
                         return NSLocalizedString("Payment must be less than or equal to total amount due", comment: "")
                     } else if paymentAmount > maxPayment {
@@ -741,13 +763,21 @@ class TapToPayViewModel {
                 let maxPayment = accountDetail.billingInfo.maxPaymentAmount(bankOrCard: .card)
                 if Configuration.shared.opco == .bge || Configuration.shared.opco.isPHI {
                     if paymentAmount < minPayment {
-                        return NSLocalizedString("Minimum payment allowed is \(minPayment.currencyString)", comment: "")
+                        if (FeatureFlagUtility.shared.bool(forKey: .isLowPaymentAllowed)){
+                            return nil
+                        } else {
+                            return NSLocalizedString("Minimum payment allowed is \(minPayment.currencyString)", comment: "")
+                        }
                     } else if paymentAmount > maxPayment {
                         return NSLocalizedString("Maximum payment allowed is \(maxPayment.currencyString)", comment: "")
                     }
                 } else {
                     if paymentAmount < minPayment {
-                        return NSLocalizedString("Minimum payment allowed is \(minPayment.currencyString)", comment: "")
+                        if (FeatureFlagUtility.shared.bool(forKey: .isLowPaymentAllowed)){
+                            return nil
+                        } else {
+                            return NSLocalizedString("Minimum payment allowed is \(minPayment.currencyString)", comment: "")
+                        }
                     } else if paymentAmount > amountDue {
                         return NSLocalizedString("Payment must be less than or equal to total amount due", comment: "")
                     } else if paymentAmount > maxPayment {
