@@ -248,7 +248,7 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
             case 4:
                 return Configuration.shared.opco == .bge ? 60 : 0
             case 5:
-                let isGameUser = UserDefaults.standard.string(forKey: UserDefaultKeys.gameAccountNumber) != nil
+                let isGameUser = UserDefaults.standard.string(forKey: UserDefaultKeys.gameAccountNumber) != nil && FeatureFlagUtility.shared.bool(forKey: .isGamificationEnabled)
                 return isGameUser ? 60 : 0
             case 6:
                 return Configuration.shared.opco.isPHI ? 60 : .zero
