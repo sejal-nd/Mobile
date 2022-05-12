@@ -183,13 +183,7 @@ class UsageViewModel {
     
     private(set) lazy var showCommercialState: Driver<Void> = accountDetailEvents.elements()
         .filter { !$0.isResidential }
-        .flatMap { accountDetails -> Observable<Void> in
-            if self.shouldShowAgentisWidgets() {
-                return Observable.just(accountDetails).mapTo(())
-            } else {
-                return self.commercialDataEvents.mapTo(())
-            }
-        }
+        .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var showPrepaidState: Driver<Void> = accountDetailEvents
@@ -937,13 +931,6 @@ class UsageViewModel {
         }
         // Default to electric
         return false
-    }
-    
-    func shouldShowAgentisWidgets() -> Bool {
-        return FeatureFlagUtility.shared.bool(forKey: .usageAgentisWidget) ||
-        FeatureFlagUtility.shared.bool(forKey: .compareAgentisWidget) ||
-        FeatureFlagUtility.shared.bool(forKey: .tipsAgentisWidget) ||
-        FeatureFlagUtility.shared.bool(forKey: .projectedUsageAgentisWidget)
     }
 }
 

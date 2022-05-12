@@ -664,7 +664,7 @@ class UsageViewController: AccountPickerViewController {
     }
     
     private func showCommercialState() {
-        scrollView?.isHidden = viewModel.shouldShowAgentisWidgets()
+        scrollView?.isHidden = true
         switchAccountsLoadingIndicator.isHidden = true
         unavailableView.isHidden = true
         accountPickerSpacerView.isHidden = true
@@ -798,26 +798,13 @@ class UsageViewController: AccountPickerViewController {
     }
     
     private func addCommercialView(_ accountDetail: AccountDetail) {
-        if viewModel.shouldShowAgentisWidgets() {
-            let usageStoryboard = UIStoryboard(name: "Usage", bundle: nil)
-            let commercialVC = usageStoryboard.instantiateViewController(withIdentifier: "B2CUsageWebViewController") as! B2CUsageWebViewController
-            commercialVC.accountDetail = accountDetail
-            
-            addChild(commercialVC)
-            view.addSubview(commercialVC.view)
-            
-            commercialViewController = commercialVC
-        } else {
-            let commercialVC = CommercialUsageViewController(with: viewModel.commercialViewModel)
-            
-            addChild(commercialVC)
-            mainStack.addArrangedSubview(commercialVC.view)
-            
-            commercialViewController = commercialVC
-        }
+        let usageStoryboard = UIStoryboard(name: "Usage", bundle: nil)
+        let commercialVC = usageStoryboard.instantiateViewController(withIdentifier: "B2CUsageWebViewController") as! B2CUsageWebViewController
+        commercialVC.accountDetail = accountDetail
         
-        guard let commercialVC = commercialViewController else { return }
-        
+        addChild(commercialVC)
+        view.addSubview(commercialVC.view)
+                
         commercialVC.view.translatesAutoresizingMaskIntoConstraints = false
         
         commercialVC.didMove(toParent: self)
@@ -830,6 +817,8 @@ class UsageViewController: AccountPickerViewController {
         ])
         
         view.backgroundColor = .white
+        
+        commercialViewController = commercialVC
     }
     
     // MARK: - Usage Tool Cards

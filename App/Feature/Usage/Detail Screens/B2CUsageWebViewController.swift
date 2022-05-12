@@ -223,6 +223,7 @@ class B2CUsageWebViewController: UIViewController {
             var request = NSURLRequest(url: url) as URLRequest
             request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
             request.addValue(token, forHTTPHeaderField: "accessToken")
+            request.addValue(accountDetail?.accountNumber ?? "", forHTTPHeaderField: "accountNumber")
             request.addValue(widget.identifier, forHTTPHeaderField: "opowerWidgetId")
             request.addValue(accountDetail?.utilityCode ?? Configuration.shared.opco.rawValue, forHTTPHeaderField: "opco")
             request.addValue(accountDetail?.state ?? "MD", forHTTPHeaderField: "state")
