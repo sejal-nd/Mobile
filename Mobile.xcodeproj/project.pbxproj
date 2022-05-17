@@ -500,6 +500,9 @@
 		678B621B24CF6AD3009F8A6B /* ValidateRegistrationMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 678B621424CF6AC8009F8A6B /* ValidateRegistrationMock.json */; };
 		678B622D24D09A1B009F8A6B /* RegistrationQuestionsMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 678B622C24D09A0D009F8A6B /* RegistrationQuestionsMock.json */; };
 		678B622E24D09A1C009F8A6B /* RegistrationQuestionsMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 678B622C24D09A0D009F8A6B /* RegistrationQuestionsMock.json */; };
+		678C7F242833F5EB006C0FDC /* SeamlessMove.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 678C7F232833F5EB006C0FDC /* SeamlessMove.storyboard */; };
+		678C7F262833F628006C0FDC /* SeamlessMoveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678C7F252833F628006C0FDC /* SeamlessMoveViewController.swift */; };
+		678C7F292833F8C9006C0FDC /* SeamlessMoveWarningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678C7F282833F8C9006C0FDC /* SeamlessMoveWarningView.swift */; };
 		6797115425DD87E3008A0080 /* OutageAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6797115325DD87E3008A0080 /* OutageAnimation.swift */; };
 		6797115B25DD901F008A0080 /* Arc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6797115A25DD901F008A0080 /* Arc.swift */; };
 		679C6EB124D1E84E00535DE7 /* AppointmentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679C6EB024D1E84E00535DE7 /* AppointmentService.swift */; };
@@ -1848,6 +1851,9 @@
 		67893BC624E318D1000143D6 /* String+DateParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+DateParser.swift"; sourceTree = "<group>"; };
 		678B621424CF6AC8009F8A6B /* ValidateRegistrationMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ValidateRegistrationMock.json; sourceTree = "<group>"; };
 		678B622C24D09A0D009F8A6B /* RegistrationQuestionsMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RegistrationQuestionsMock.json; sourceTree = "<group>"; };
+		678C7F232833F5EB006C0FDC /* SeamlessMove.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SeamlessMove.storyboard; sourceTree = "<group>"; };
+		678C7F252833F628006C0FDC /* SeamlessMoveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeamlessMoveViewController.swift; sourceTree = "<group>"; };
+		678C7F282833F8C9006C0FDC /* SeamlessMoveWarningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeamlessMoveWarningView.swift; sourceTree = "<group>"; };
 		6797115325DD87E3008A0080 /* OutageAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutageAnimation.swift; sourceTree = "<group>"; };
 		6797115A25DD901F008A0080 /* Arc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arc.swift; sourceTree = "<group>"; };
 		679C6EB024D1E84E00535DE7 /* AppointmentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentService.swift; sourceTree = "<group>"; };
@@ -3191,6 +3197,7 @@
 		282B4F7826E7489D00ACD33C /* Move */ = {
 			isa = PBXGroup;
 			children = (
+				678C7F272833F8B3006C0FDC /* Seamless Move */,
 				21D1C50E270ADF6100EFAFAC /* AddressSearchModel.swift */,
 				21D1C50F270ADF6100EFAFAC /* AddressSearchViewController.swift */,
 				21D1C511270ADF6300EFAFAC /* AddressSearchCell.swift */,
@@ -4780,6 +4787,16 @@
 			path = "Safari Modal";
 			sourceTree = "<group>";
 		};
+		678C7F272833F8B3006C0FDC /* Seamless Move */ = {
+			isa = PBXGroup;
+			children = (
+				678C7F232833F5EB006C0FDC /* SeamlessMove.storyboard */,
+				678C7F252833F628006C0FDC /* SeamlessMoveViewController.swift */,
+				678C7F282833F8C9006C0FDC /* SeamlessMoveWarningView.swift */,
+			);
+			path = "Seamless Move";
+			sourceTree = "<group>";
+		};
 		6797115925DD9008008A0080 /* Outage Animation */ = {
 			isa = PBXGroup;
 			children = (
@@ -6072,6 +6089,7 @@
 				676279EF247DB11100A57FBC /* TermPolicies.html in Resources */,
 				359BDB7822D8F9B2007002B0 /* outage_reported.json in Resources */,
 				67A986D524FD419700BD46E7 /* GoogleService-Info-BETA-FlavorACE.plist in Resources */,
+				678C7F242833F5EB006C0FDC /* SeamlessMove.storyboard in Resources */,
 				B0728E49215C149A0007C608 /* AlertPreferencesTableViewCell.xib in Resources */,
 				675F4DBC24AB828200A828F9 /* AlertPreferencesLoadMock.json in Resources */,
 				676DF27E27A2F54000185DB5 /* splash.json in Resources */,
@@ -7317,6 +7335,7 @@
 				4AA4EAD2271442D400B35F4D /* PendingDisconnectView.swift in Sources */,
 				C36C398E24ED95A800BA83B6 /* PushNotification.swift in Sources */,
 				679C6EE524D1FE7B00535DE7 /* WeatherService+Rx.swift in Sources */,
+				678C7F292833F8C9006C0FDC /* SeamlessMoveWarningView.swift in Sources */,
 				C372B65F275850E600E38F64 /* OutageTracker.swift in Sources */,
 				B0D7860D2285C3F4007C551F /* CommercialUsageAlertStore.swift in Sources */,
 				C320FDCA24DC81410012E4ED /* WalletService+Rx.swift in Sources */,
@@ -7521,6 +7540,7 @@
 				22EBDCCD1ED3FDA50038D696 /* ContactUsViewController.swift in Sources */,
 				350F669B274387CC00E92765 /* AssistanceProgramStore.swift in Sources */,
 				C33B5A4827C53D42005500C5 /* CalendarViewController.swift in Sources */,
+				678C7F262833F628006C0FDC /* SeamlessMoveViewController.swift in Sources */,
 				E8C453271EF435E500F5C781 /* BGEAutoPaySettingsViewController.swift in Sources */,
 				676434DD25AF702800DA6448 /* ProjectURLSuffix.swift in Sources */,
 				825171A31F1D1D4F0020A6CA /* RadioSelectControl.swift in Sources */,
