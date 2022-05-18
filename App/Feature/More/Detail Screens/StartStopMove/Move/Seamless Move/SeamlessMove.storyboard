@@ -16,9 +16,54 @@
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7FR-JK-bsS" customClass="StickyFooterView" customModule="Atlantic_City_Electric" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="777" width="414" height="119"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LTs-IP-1KR" customClass="PrimaryButton" customModule="Atlantic_City_Electric" customModuleProvider="target">
+                                        <rect key="frame" x="28" y="15" width="358" height="55"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="YTj-Y1-d84"/>
+                                            <constraint firstAttribute="height" constant="55" id="yrR-UN-ImG"/>
+                                        </constraints>
+                                        <state key="normal" title="Continue"/>
+                                        <connections>
+                                            <action selector="ctaButtonPress:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="WYL-mh-ahM"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <viewLayoutGuide key="safeArea" id="PHN-td-lCS"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailingMargin" secondItem="LTs-IP-1KR" secondAttribute="trailing" priority="999" constant="20" id="EQa-Ac-fGL"/>
+                                    <constraint firstItem="LTs-IP-1KR" firstAttribute="top" secondItem="PHN-td-lCS" secondAttribute="top" constant="15" id="KXX-2W-1TR"/>
+                                    <constraint firstItem="PHN-td-lCS" firstAttribute="bottom" secondItem="LTs-IP-1KR" secondAttribute="bottom" constant="15" id="cVD-33-6HP"/>
+                                    <constraint firstItem="LTs-IP-1KR" firstAttribute="centerX" secondItem="7FR-JK-bsS" secondAttribute="centerX" id="gWZ-p8-yqC"/>
+                                    <constraint firstItem="LTs-IP-1KR" firstAttribute="leading" secondItem="7FR-JK-bsS" secondAttribute="leadingMargin" priority="999" constant="20" id="kzT-ec-w6Z"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FJV-Ol-DMh">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="769"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="FJV-Ol-DMh" secondAttribute="trailing" id="58L-T8-2xq"/>
+                            <constraint firstItem="FJV-Ol-DMh" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="D0n-9L-nem"/>
+                            <constraint firstAttribute="trailing" secondItem="7FR-JK-bsS" secondAttribute="trailing" id="HrG-Ws-JXm"/>
+                            <constraint firstAttribute="bottom" secondItem="7FR-JK-bsS" secondAttribute="bottom" id="VIa-6f-06C"/>
+                            <constraint firstItem="FJV-Ol-DMh" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" id="i8F-8I-INa"/>
+                            <constraint firstItem="7FR-JK-bsS" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" id="pdG-IT-JCh"/>
+                            <constraint firstItem="7FR-JK-bsS" firstAttribute="top" secondItem="FJV-Ol-DMh" secondAttribute="bottom" constant="8" symbolic="YES" id="ylR-dE-cfF"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="containerView" destination="FJV-Ol-DMh" id="u04-fo-hdV"/>
+                        <outlet property="ctaButton" destination="LTs-IP-1KR" id="dEV-01-cPm"/>
+                        <outlet property="stickyFooterView" destination="7FR-JK-bsS" id="L5q-gg-efE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
