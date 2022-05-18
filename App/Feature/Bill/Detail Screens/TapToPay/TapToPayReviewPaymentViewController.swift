@@ -103,6 +103,9 @@ class TapToPayReviewPaymentViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
         viewModel = TapToPayViewModel(accountDetail: accountDetail,
                                       billingHistoryItem: billingHistoryItem)
         
@@ -313,7 +316,11 @@ class TapToPayReviewPaymentViewController: UIViewController {
             .disposed(by: bag)
         
         viewModel.paymentAmountReviewPageErrorMessage.asDriver().drive(onNext: { [weak self] errorMessage in
-            self?.paymentErrorLabel.text = errorMessage
+            if (FeatureFlagUtility.shared.bool(forKey: .isLowPaymentAllowed)) {
+                self?.paymentErrorLabel.text = ""
+            } else {
+                self?.paymentErrorLabel.text = errorMessage
+            }
         }).disposed(by: bag)
         viewModel.paymentFieldReviewPaymentValid.asDriver().drive(paymentErrorLabel.rx.isHidden).disposed(by: bag)
         
@@ -371,6 +378,16 @@ class TapToPayReviewPaymentViewController: UIViewController {
             self.paymentDateEditIcon.accessibilityLabel = enableDate ? NSLocalizedString("Edit Payment date", comment: "") :  NSLocalizedString("Edit Payment date, disabled", comment: "")
             self.paymentDateEditIcon.accessibilityTraits = UIAccessibilityTraits.button
         }).disposed(by: bag)
+
+                
+        //Paymentus < $5
+        viewModel.enableReviewEditPayment.drive(onNext: { [weak self]  enableEditPayment in
+            guard let self = self else { return }
+            self.paymentAmountContainer.isUserInteractionEnabled = enableEditPayment ? true : false
+            self.editPaymentAmountButton.isEnabled = enableEditPayment ? true : false
+           
+        }).disposed(by: bag)
+
         
         // OverPaying
         viewModel.isOverpaying.map(!).drive( onNext: { [weak self] isNotOverPaying in
@@ -569,6 +586,24 @@ class TapToPayReviewPaymentViewController: UIViewController {
             self?.alternateNumberTextField.setError(nil)
         }).disposed(by: bag)
         
+    }
+    
+    
+    // MARK: - Keyboard
+    @objc func keyboardWillShow(notification: Notification) {
+        let userInfo = notification.userInfo!
+        let endFrameRect = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+
+        let safeAreaBottomInset = view.safeAreaInsets.bottom
+        let insets = UIEdgeInsets(top: 0, left: 0, bottom: endFrameRect.size.height - safeAreaBottomInset, right: 0)
+        scrollView.contentInset = insets
+        scrollView.scrollIndicatorInsets = insets
+
+    }
+
+    @objc func keyboardWillHide(notification: Notification) {
+        scrollView.contentInset = .zero
+        scrollView.scrollIndicatorInsets = .zero
     }
     
     @IBAction func termsConditionPress(_ sender: Any) {
