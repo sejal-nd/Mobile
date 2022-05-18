@@ -11,7 +11,7 @@ import SwiftUI
 
 class SeamlessMoveViewController: UIViewController {
 
-    let childView = UIHostingController(rootView: SeamlessMoveWarningView())
+    var childView: UIHostingController<SeamlessMoveWarningView>? = nil// = UIHostingController(rootView: SeamlessMoveWarningView())
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,17 +20,31 @@ class SeamlessMoveViewController: UIViewController {
     }
     
     private func addHostingController() {
-        addChild(childView)
-        view.addSubview(childView.view)
+        let seamlessMoveView = SeamlessMoveWarningView(stopServiceAddress: "123 123123 123 TEST",
+                                                       startServiceAddress: "New new new 321 312 312",
+                                                       didPressButton: didPressButton)
+        childView = UIHostingController(rootView: (seamlessMoveView))
+        
+        
+        guard let unwrappedChildView = childView else {
+            return
+        }
+        
+        addChild(unwrappedChildView)
+        view.addSubview(unwrappedChildView.view)
         
         // Set constraints        
-        childView.view.translatesAutoresizingMaskIntoConstraints = false
+        unwrappedChildView.view.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            childView.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            childView.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            childView.view.topAnchor.constraint(equalTo: view.topAnchor),
-            childView.view.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            unwrappedChildView.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            unwrappedChildView.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            unwrappedChildView.view.topAnchor.constraint(equalTo: view.topAnchor),
+            unwrappedChildView.view.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
+    }
+    
+    private func didPressButton() {
+        print("PRESSED")
     }
     
 }
