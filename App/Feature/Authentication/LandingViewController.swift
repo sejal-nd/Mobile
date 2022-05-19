@@ -259,16 +259,7 @@ class LandingViewController: UIViewController {
     }
     
     @IBAction func onRegistrationInPress() {
-        guard let vc = UIStoryboard(name: "SeamlessMove", bundle: nil).instantiateInitialViewController() else {
-            print("error")
-            return
-        }
-        
-        let navVC = LargeTitleNavigationController(rootViewController: vc)
-        vc.title = "Hello World"
-        
-        self.present(navVC, animated: true)
-        //performSegue(withIdentifier: "registrationSegueNew", sender: self)
+        performSegue(withIdentifier: "registrationSegueNew", sender: self)
     }
     
     @IBAction func onDebugMenuPress(_ sender: Any) {
