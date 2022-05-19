@@ -137,6 +137,7 @@
                         <outlet property="containerView" destination="6hZ-E2-4Kj" id="sXN-Tx-as4"/>
                         <outlet property="ctaButton" destination="Xia-fz-xfv" id="dn7-Yq-bH5"/>
                         <outlet property="stickyFooterView" destination="jNU-8x-1vR" id="gdm-KS-tkT"/>
+                        <segue destination="hUp-a5-WdN" kind="show" identifier="showComplete" id="dWh-gr-NwG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vty-LE-A2e" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -144,6 +145,9 @@
             <point key="canvasLocation" x="1907" y="338"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="dWh-gr-NwG"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
