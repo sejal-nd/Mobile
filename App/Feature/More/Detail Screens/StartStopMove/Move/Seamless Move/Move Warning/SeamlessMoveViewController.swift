@@ -16,9 +16,13 @@ class SeamlessMoveViewController: UIViewController {
     @IBOutlet weak var ctaButton: PrimaryButton!
     
     var childView: UIHostingController<SeamlessMoveWarningView>? = nil// = UIHostingController(rootView: SeamlessMoveWarningView())
+        
+    private var transferOption: TransferServiceOption = .transfer
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        title = NSLocalizedString("Third Party Supplier Update", comment: "")
         
         addHostingController()
     }
@@ -26,7 +30,7 @@ class SeamlessMoveViewController: UIViewController {
     private func addHostingController() {
         let seamlessMoveView = SeamlessMoveWarningView(stopServiceAddress: "123 123123 123 TEST",
                                                        startServiceAddress: "New new new 321 312 312",
-                                                       didPressButton: didPressButton)
+                                                       didSelectRadioButton: didSelectRadioButton)
         childView = UIHostingController(rootView: (seamlessMoveView))
                 
         guard let unwrappedChildView = childView else {
@@ -53,18 +57,25 @@ class SeamlessMoveViewController: UIViewController {
         
     }
     
-    private func didPressButton() {
-        print("PRESSED")
-        ctaButton.setTitle("Hello World", for: .normal)
+    private func didSelectRadioButton(transferOption: TransferServiceOption) {
+        self.transferOption = transferOption
+        switch transferOption {
+        case .transfer:
+            ctaButton.setTitle("Complete", for: .normal)
+        case .doNotTransfer:
+            ctaButton.setTitle("Continue", for: .normal)
+        }
     }
     
     // MARK: Action
     
     @IBAction func ctaButtonPress(_ sender: Any) {
-        print("TEST TEST TEST")
-        
-        ctaButton.setTitle("Hello World 123", for: .normal)
-
+        switch transferOption {
+        case .transfer:
+            performSegue(withIdentifier: "showComplete", sender: nil)
+        case .doNotTransfer:
+            performSegue(withIdentifier: "showTerminationAgreement", sender: nil)
+        }
     }
     
 }

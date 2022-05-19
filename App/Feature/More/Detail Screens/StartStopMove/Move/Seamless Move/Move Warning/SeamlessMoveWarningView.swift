@@ -9,13 +9,16 @@
 import SwiftUI
 
 struct SeamlessMoveWarningView: View {
-    
+        
     let stopServiceAddress: String
     let startServiceAddress: String
-    var didPressButton: () -> ()
+    var didSelectRadioButton: (TransferServiceOption) -> ()
+    
+    @State private var transferOption: TransferServiceOption = .transfer
     
     var body: some View {
         VStack(alignment: .leading) {
+            // Stop Service
             Text("Our records indicate that you have an active Third Party Electric Supplier on your electric account at:")
                 .multilineTextAlignment(.leading)
                 .padding(.bottom, 12)
@@ -32,6 +35,8 @@ struct SeamlessMoveWarningView: View {
             Divider()
                 .padding(.vertical, 12)
             
+            
+            // Start Service
             Text("For your convenience, we will transfer your Third Party Electric Supplier for you, to your new address at:")
                 .multilineTextAlignment(.leading)
                 .padding(.bottom, 12)
@@ -47,18 +52,26 @@ struct SeamlessMoveWarningView: View {
             
             Spacer()
             
-            Button("Press me", action: didPressButton)
+            // User Options
+            ForEach(TransferServiceOption.allCases) { option in
+                RadioButton(transferServiceOption: option,
+                            selectedTransferServiceOption: $transferOption,
+                            text: option.text) {
+                    didSelectRadioButton(transferOption)
+                }
+                    .padding(.vertical)
+                Divider()
+                    .padding(.leading, 24)
+            }
         }
         .padding()
-        
-        //Text("SEAMLESS MOVE")
     }
 }
 
 struct SeamlessMoveWarningView_Previews: PreviewProvider {
     static var previews: some View {
         SeamlessMoveWarningView(stopServiceAddress: "test 123 123 132",
-                                startServiceAddress: "New 321 321 321") {
+                                startServiceAddress: "New 321 321 321") { _ in
             
         }
     }
