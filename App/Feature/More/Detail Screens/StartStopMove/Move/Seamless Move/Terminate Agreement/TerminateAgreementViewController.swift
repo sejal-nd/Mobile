@@ -59,11 +59,8 @@ class TerminateAgreementViewController: UIViewController {
     // MARK: Action
     
     @IBAction func ctaButtonPress(_ sender: Any) {
-        switch hasAgreed {
-        case true:
+        if hasAgreed {
             performSegue(withIdentifier: "showComplete", sender: nil)
-        case false:
-            return
         }
     }
     
