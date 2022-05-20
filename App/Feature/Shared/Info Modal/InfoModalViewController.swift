@@ -12,15 +12,20 @@ class InfoModalViewController: DismissableFormSheetViewController {
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var infoModalButton: SecondaryButton!
+    
     
     private var image: UIImage
     private var infoDescription: String
+    private let infoModalBtnLabel: String?
     private let onClose: (() -> ())?
     
-    init(title: String, image: UIImage, description: String, onClose: (() -> ())? = nil) {
+    init(title: String, image: UIImage, description: String, modalBtnLabel: String? = nil, onClose: (() -> ())? = nil) {
         self.image = image
         self.infoDescription = description
+        self.infoModalBtnLabel = modalBtnLabel
         self.onClose = onClose
+        
         
         super.init(nibName: "InfoModal", bundle: nil)
         
@@ -44,6 +49,19 @@ class InfoModalViewController: DismissableFormSheetViewController {
         descriptionLabel.font = SystemFont.regular.of(textStyle: .body)
         descriptionLabel.text = infoDescription
         descriptionLabel.setLineHeight(lineHeight: 25)
+        
+        self.infoModalButton.isHidden = infoModalBtnLabel == nil
+        infoModalButton.titleLabel?.text = infoModalBtnLabel ?? ""
+    
+    }
+    
+    
+    @IBAction func infoModalViewBillButton(_ sender: Any) {
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Bill", bundle:nil)
+
+        let billingHistoryVC = storyBoard.instantiateViewController(withIdentifier: "billingHistory") as! BillingHistoryViewController
+        billingHistoryVC.getBillingHistory()
+        self.present(billingHistoryVC, animated:true, completion:nil)
     }
     
     override func dismissModal() {

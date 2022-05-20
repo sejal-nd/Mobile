@@ -19,6 +19,7 @@ class AutoPayReasonsForStoppingViewController: UIViewController {
     
     weak var delegate: AutoPayViewControllerDelegate?
     weak var parentVc: AutoPayViewController?
+    weak var billHomeVC: BillViewController?
     
     let bag = DisposeBag()
     
@@ -84,9 +85,22 @@ class AutoPayReasonsForStoppingViewController: UIViewController {
                 
                 FirebaseUtility.logEvent(.autoPayNetworkComplete)
                 
-                self.delegate?.autoPayViewController(self, enrolled: false)
-                self.parentVc?.navigationController?.popViewController(animated: false)
-                self.dismissModal()
+               // sete?.autoPayViewController(self, enrolled: false)// Toast Message
+                //self.parentVc?.navigationController?.popViewController(animated: false)
+                //self.dismissModal()
+                
+                let title = NSLocalizedString("Unenrolled from AutoPay", comment: "")
+                let description = NSLocalizedString("You have successfully unenrolled from Autopay. If your current bill due date is less than 3 business days out, your current bill will still be paid with your Autopay bank account. If your current bill due date is more than 4 business days out, you will need to pay your current bill manually.", comment: "")
+                let infoModal = InfoModalViewController(title: title,
+                                                        image: #imageLiteral(resourceName: "img_confirmation"),
+                                                        description: description)
+                
+                { [weak self] in
+                    self?.navigationController?.popViewController(animated: true)
+                }
+                
+                self.navigationController?.present(infoModal, animated: true, completion: nil)
+                
             }, onError: { [weak self] error in
                 LoadingView.hide()
                 guard let self = self,

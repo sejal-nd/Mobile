@@ -9,6 +9,7 @@
 import RxSwift
 import RxCocoa
 import RxSwiftExt
+import UIKit
 
 protocol BGEAutoPayViewControllerDelegate: class {
     func BGEAutoPayViewController(_ BGEAutoPayViewController: BGEAutoPayViewController, didUpdateWithToastMessage message: String)
@@ -276,9 +277,11 @@ class BGEAutoPayViewController: UIViewController {
                 guard let self = self else { return }
                 let title = NSLocalizedString("Unenrolled from AutoPay", comment: "")
                 let description = NSLocalizedString("You have successfully unenrolled from AutoPay. If you have an upcoming automatic payment for your current balance, it may be viewed or canceled in Bill & Payment Activity.", comment: "")
+                let modalBtnLabel = "View Bill & Payment Activity"
                 let infoModal = InfoModalViewController(title: title,
                                                         image: #imageLiteral(resourceName: "img_confirmation"),
-                                                        description: description)
+                                                        description: description,
+                                                        modalBtnLabel: modalBtnLabel)
                 { [weak self] in
                     self?.navigationController?.popViewController(animated: true)
                 }
