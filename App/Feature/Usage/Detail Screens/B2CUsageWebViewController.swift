@@ -12,71 +12,6 @@ import RxSwift
 
 class B2CUsageWebViewController: UIViewController {
     
-    enum WidgetName: String, CaseIterable {
-        // residential
-        case usage = "data-browser"
-        case ser, pesc = "peak-time-rebate"
-        
-        // commercial
-        case electricUsage = "electric-usage-chart-interval"
-        case gasUsage = "gas-usage-chart-bill"
-        case compareElectric = "electric-monthly-cost-chart-bill-type"
-        case compareGas = "gas-monthly-cost-chart-bill-type"
-        case electricTips = "electric-solutions"
-        case gasTips = "gas-solutions"
-        case projectedUsage = "projected_usage"
-        
-        var navigationTitle: String {
-            switch self {
-            case .usage:
-                return "Usage Data"
-            case .ser:
-                return "Smart Energy Rewards"
-            case .pesc:
-                return "Peak Energy Savings History"
-            case .electricUsage:
-                return "My Electric Usage"
-            case.gasUsage:
-                return "My Gas Usage"
-            case .compareElectric:
-                return "Compare Electric Bills"
-            case .compareGas:
-                return "Compare Gas Bills"
-            case .electricTips:
-                return "View My Tips (Electric Only)"
-            case .gasTips:
-                return "View My Tips (Gas Only)"
-            case.projectedUsage:
-                return "Projected Usage"
-            }
-        }
-        
-        var identifier: String {
-            switch self {
-            case .usage:
-                return "data-browser"
-            case .ser, .pesc:
-                return "peak-time-rebate"
-            case .electricUsage:
-                return Configuration.shared.opco == .ace ? "electric-usage-chart-bill" : "electric-usage-chart-interval"
-            case .gasUsage:
-                return "gas-usage-chart-bill"
-            case .compareElectric:
-                return "electric-monthly-cost-chart-bill-type"
-            case .compareGas:
-                return "gas-monthly-cost-chart-bill-type"
-            case .electricTips:
-                return "electric-solutions"
-            case.gasTips:
-                return "gas_solutions"
-            case .projectedUsage:
-                return "projected_usage"
-            }
-        }
-        
-        static var commercialWidgets: [WidgetName] = [.usage, .electricUsage, .gasUsage, .compareElectric, .compareGas, .electricTips, .gasTips, .projectedUsage]
-    }
-    
     @IBOutlet weak var webView: WKWebView!
     @IBOutlet weak var loadingIndicator: LoadingIndicator!
     @IBOutlet weak var errorView: UIView!
@@ -87,17 +22,22 @@ class B2CUsageWebViewController: UIViewController {
     @IBOutlet weak var tabCollectionView: UICollectionView!
     @IBOutlet weak var separatorView: UIView!
     
-    var accountDetail: AccountDetail?
-    var accessToken: String?
-    var widget: WidgetName = .usage
-    
-    let viewModel = B2CCommercialUsageViewModel()
+    let viewModel = B2CUsageViewModel()
     let disposeBag = DisposeBag()
+     
+    var accountDetail: AccountDetail? {
+        get {
+            return viewModel.accountDetail
+        }
+        set {
+            viewModel.accountDetail = newValue
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = NSLocalizedString(widget.navigationTitle, comment: "")
+        title = NSLocalizedString(viewModel.widget.navigationTitle, comment: "")
                 
         webView.navigationDelegate = self
         webView.isHidden = true
@@ -109,7 +49,7 @@ class B2CUsageWebViewController: UIViewController {
         errorDescription.textColor = .deepGray
         errorView.isHidden = true
 
-        if accountDetail?.isResidential == false {
+        if viewModel.accountDetail?.isResidential == false {
             showCommercialView()
         }
         
@@ -142,12 +82,12 @@ class B2CUsageWebViewController: UIViewController {
         tabCollectionView.isHidden = false
         separatorView.isHidden = false
         
-        self.widget = .usage
-        viewModel.selectedIndex.asDriver()
+        self.viewModel.widget = .usage
+        viewModel.selectedCommercialIndex.asDriver()
             .drive(onNext: { [weak self] selectedIndex in
                 guard let self = self else { return }
                 
-                self.widget = self.viewModel.selectedWidget()
+                self.viewModel.widget = self.viewModel.selectedCommercialWidget()
                 self.loadWebView()
             })
             .disposed(by: disposeBag)
@@ -158,15 +98,15 @@ class B2CUsageWebViewController: UIViewController {
     private func bindTabs() {
         tabCollectionView.rx.itemSelected
             .map(\.item)
-            .bind(to: viewModel.selectedIndex)
+            .bind(to: viewModel.selectedCommercialIndex)
             .disposed(by: disposeBag)
         
-        viewModel.tabs
+        Observable.just(viewModel.commercialWidgets)
             .bind(to: tabCollectionView.rx.items(cellIdentifier: TabCollectionViewCell.className,
                                                  cellType: TabCollectionViewCell.self))
             { [weak self] (row, tab, cell) in
                 guard let self = self else { return }
-                let isSelected = self.viewModel.selectedIndex.asDriver()
+                let isSelected = self.viewModel.selectedCommercialIndex.asDriver()
                     .distinctUntilChanged()
                     .map { $0 == row }
                 
@@ -174,7 +114,7 @@ class B2CUsageWebViewController: UIViewController {
             }
             .disposed(by: disposeBag)
         
-        viewModel.selectedIndex.asDriver()
+        viewModel.selectedCommercialIndex.asDriver()
             .drive(onNext: { [weak self] selectedIndex in
                 self?.tabCollectionView.scrollToItem(at: IndexPath(item: selectedIndex, section: 0),
                                                      at: .centeredHorizontally,
@@ -184,10 +124,10 @@ class B2CUsageWebViewController: UIViewController {
     }
     
     private func fetchJWT() {
-        let accountNumber = accountDetail?.accountNumber ?? ""
+        let accountNumber = viewModel.accountDetail?.accountNumber ?? ""
         var nonce = accountNumber
         
-        if accountDetail?.isResidential == false {
+        if viewModel.accountDetail?.isResidential == false {
             nonce = "NR-\(accountNumber)"
         }
         let request = B2CTokenRequest(scope: "https://\(Configuration.shared.b2cTenant).onmicrosoft.com/opower/opower_connect",
@@ -200,7 +140,7 @@ class B2CUsageWebViewController: UIViewController {
             case .success(let tokenResponse):
                 guard let self = self else { return }
                 self.errorView.isHidden = true
-                self.accessToken = tokenResponse.token ?? ""
+                self.viewModel.accessToken = tokenResponse.token ?? ""
 
                 self.loadWebView()
             case .failure:
@@ -212,22 +152,22 @@ class B2CUsageWebViewController: UIViewController {
     }
     
     func loadWebView() {
-        guard let token = accessToken,
+        guard let token = viewModel.accessToken,
         !token.isEmpty else {
             self.fetchJWT()
             return
         }
         
-        let oPowerWidgetURL = Configuration.shared.getSecureOpCoOpowerURLString(accountDetail?.opcoType ?? Configuration.shared.opco)
+        let oPowerWidgetURL = Configuration.shared.getSecureOpCoOpowerURLString(viewModel.accountDetail?.opcoType ?? Configuration.shared.opco)
         if let url = URL(string: oPowerWidgetURL) {
             var request = NSURLRequest(url: url) as URLRequest
             request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
             request.addValue(token, forHTTPHeaderField: "accessToken")
-            request.addValue(accountDetail?.accountNumber ?? "", forHTTPHeaderField: "accountNumber")
-            request.addValue(widget.identifier, forHTTPHeaderField: "opowerWidgetId")
-            request.addValue(accountDetail?.utilityCode ?? Configuration.shared.opco.rawValue, forHTTPHeaderField: "opco")
-            request.addValue(accountDetail?.state ?? "MD", forHTTPHeaderField: "state")
-            request.addValue("\(accountDetail?.isResidential == false)", forHTTPHeaderField: "isCommercial")
+            request.addValue(viewModel.accountDetail?.accountNumber ?? "", forHTTPHeaderField: "accountNumber")
+            request.addValue(viewModel.widget.identifier, forHTTPHeaderField: "opowerWidgetId")
+            request.addValue(viewModel.accountDetail?.utilityCode ?? Configuration.shared.opco.rawValue, forHTTPHeaderField: "opco")
+            request.addValue(viewModel.accountDetail?.state ?? "MD", forHTTPHeaderField: "state")
+            request.addValue("\(viewModel.accountDetail?.isResidential == false)", forHTTPHeaderField: "isCommercial")
             webView.load(request)
         }
     }

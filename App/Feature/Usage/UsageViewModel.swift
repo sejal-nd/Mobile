@@ -64,10 +64,6 @@ class UsageViewModel {
     
     private let commercialErrorTrigger = PublishSubject<Error>()
     
-    private(set) lazy var commercialViewModel = CommercialUsageViewModel(accountDetail: accountDetailEvents.elements(),
-                                                                         ssoData: commercialDataEvents.elements(),
-                                                                         errorTrigger: commercialErrorTrigger)
-    
     private lazy var billAnalysisEvents: Observable<Event<(CompareBillResult, BillForecastResult?)>> = Observable
         .combineLatest(accountDetailEvents.elements().filter { $0.isEligibleForUsageData },
                        lastYearPreviousBillSelectedSegmentIndex.asObservable(),

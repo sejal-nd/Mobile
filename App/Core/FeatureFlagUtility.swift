@@ -22,6 +22,7 @@ final class FeatureFlagUtility {
         case isPkceAuthentication // B2C login with PKCE
         case hasAuthenticatedISUM
         case hasUnauthenticatedISUM
+        case isLowPaymentAllowed // Paymentus <$5
         case isB2CAuthentication // calculated value = isAzureAuthentication || isPkceAuthentication
         case isGamificationEnabled
         // Commercial Agentis Widgets
@@ -59,7 +60,8 @@ final class FeatureFlagUtility {
             FeatureFlagKey.usageAgentisWidget.rawValue: true,
             FeatureFlagKey.compareAgentisWidget.rawValue: true,
             FeatureFlagKey.tipsAgentisWidget.rawValue: true,
-            FeatureFlagKey.projectedUsageAgentisWidget.rawValue: true
+            FeatureFlagKey.projectedUsageAgentisWidget.rawValue: true,
+            FeatureFlagKey.isLowPaymentAllowed.rawValue : false
         ]
         
         UserDefaults.standard.setValuesForKeys(appDefaults)
@@ -94,7 +96,8 @@ final class FeatureFlagUtility {
                     FeatureFlagKey.usageAgentisWidget.rawValue : featureFlags.usageAgentisWidget,
                     FeatureFlagKey.compareAgentisWidget.rawValue : featureFlags.compareAgentisWidget,
                     FeatureFlagKey.tipsAgentisWidget.rawValue : featureFlags.tipsAgentisWidget,
-                    FeatureFlagKey.projectedUsageAgentisWidget.rawValue : featureFlags.projectedUsageAgentisWidget
+                    FeatureFlagKey.projectedUsageAgentisWidget.rawValue : featureFlags.projectedUsageAgentisWidget,
+                    FeatureFlagKey.isLowPaymentAllowed.rawValue : featureFlags.isLowPaymentAllowed
                 ]
                 
                 UserDefaults.standard.setValuesForKeys(keyedValues)

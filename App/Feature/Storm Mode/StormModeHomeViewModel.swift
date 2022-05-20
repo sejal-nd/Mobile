@@ -10,6 +10,7 @@ import RxSwift
 import RxCocoa
 
 class StormModeHomeViewModel {
+
     
     let stormModePollInterval = 30
         

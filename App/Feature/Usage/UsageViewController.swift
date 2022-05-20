@@ -939,11 +939,11 @@ class UsageViewController: AccountPickerViewController {
         case let vc as UsageWebViewController:
             vc.accountDetail = accountDetail
         case let vc as B2CUsageWebViewController:
-            vc.accountDetail = accountDetail
+            vc.viewModel.accountDetail = accountDetail
             if segue.identifier == "serWebViewB2cSegue" {
-                vc.widget = .ser
+                vc.viewModel.widget = .ser
             } else {
-                vc.widget = .usage
+                vc.viewModel.widget = .usage
             }
         case let vc as Top5EnergyTipsViewController:
             vc.accountDetail = accountDetail
@@ -974,7 +974,6 @@ extension UsageViewController: AccountPickerDelegate {
     func accountPickerDidChangeAccount(_ accountPicker: AccountPicker) {
         showSwitchAccountsLoadingState()
         viewModel.fetchAllData()
-        viewModel.commercialViewModel.selectedIndex.accept(0) // reset commercial tab selection
         setRefreshControlEnabled(enabled: false)
     }
     

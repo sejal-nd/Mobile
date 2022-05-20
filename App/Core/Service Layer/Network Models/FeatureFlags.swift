@@ -44,7 +44,8 @@ public struct FeatureFlags: Decodable {
     public var compareAgentisWidget: Bool = true
     public var tipsAgentisWidget: Bool = true
     public var projectedUsageAgentisWidget: Bool = true
-    
+    public var isLowPaymentAllowed: Bool = false
+
     enum CodingKeys: String, CodingKey {
         case outageMapUrl = "outageMapURL"
         case streetlightMapUrl = "streetlightMapURL"
@@ -63,6 +64,7 @@ public struct FeatureFlags: Decodable {
         case compareAgentisWidget
         case tipsAgentisWidget
         case projectedUsageAgentisWidget
+        case isLowPaymentAllowed
     }
     
     public init() {
@@ -85,10 +87,10 @@ public struct FeatureFlags: Decodable {
         hasAuthenticatedISUM = try container.decodeIfPresent(Bool.self, forKey: .hasAuthenticatedISUM) ?? false
         hasUnauthenticatedISUM = try container.decodeIfPresent(Bool.self, forKey: .hasUnauthenticatedISUM) ?? false
         isGamificationEnabled = try container.decodeIfPresent(Bool.self, forKey: .isGamificationEnabled) ?? false
-        
         usageAgentisWidget = try container.decodeIfPresent(Bool.self, forKey: .usageAgentisWidget) ?? true
         compareAgentisWidget = try container.decodeIfPresent(Bool.self, forKey: .compareAgentisWidget) ?? true
         tipsAgentisWidget = try container.decodeIfPresent(Bool.self, forKey: .tipsAgentisWidget) ?? true
         projectedUsageAgentisWidget = try container.decodeIfPresent(Bool.self, forKey: .projectedUsageAgentisWidget) ?? true
+        isLowPaymentAllowed = try container.decodeIfPresent(Bool.self, forKey: .isLowPaymentAllowed) ?? false
     }
 }
