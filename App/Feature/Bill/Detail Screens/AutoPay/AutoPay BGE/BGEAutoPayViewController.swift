@@ -58,6 +58,7 @@ class BGEAutoPayViewController: UIViewController {
     var accountDetail: AccountDetail! // Passed from BillViewController
     
     lazy var viewModel: BGEAutoPayViewModel = BGEAutoPayViewModel( accountDetail: accountDetail)
+    let billingHistoryVC = BillingHistoryViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -281,10 +282,17 @@ class BGEAutoPayViewController: UIViewController {
                 let infoModal = InfoModalViewController(title: title,
                                                         image: #imageLiteral(resourceName: "img_confirmation"),
                                                         description: description,
-                                                        modalBtnLabel: modalBtnLabel)
-                { [weak self] in
+                                                        modalBtnLabel: modalBtnLabel,
+                                                        onClose: { [weak self] in
                     self?.navigationController?.popViewController(animated: true)
-                }
+                }, onBtnClick: { [weak self] in
+                    let storyboard = UIStoryboard(name: "Bill", bundle: nil)
+                    let billingHistoryVC = storyboard.instantiateViewController(withIdentifier: "billingHistory") as! BillingHistoryViewController
+                    billingHistoryVC.viewModel.accountDetail = self?.viewModel.accountDetail
+                    billingHistoryVC.viewModel.viewingMoreActivity = false
+                    self?.navigationController?.pushViewController(billingHistoryVC, animated: true)
+                    
+                })
                 
                 self.navigationController?.present(infoModal, animated: true)
                 }, onError: { [weak self] errMessage in

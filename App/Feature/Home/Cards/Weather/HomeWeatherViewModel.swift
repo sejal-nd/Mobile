@@ -130,13 +130,13 @@ class HomeWeatherViewModel {
                 .map { ($0.body ?? "") }
     }
     
-    private(set) lazy var temperatureTipModalData: Driver<(title: String, image: UIImage, body: String, modalBtnLabel: String? , onClose: (() -> ())?)> = Observable
+    private(set) lazy var temperatureTipModalData: Driver<(title: String, image: UIImage, body: String, modalBtnLabel: String? , onClose: (() -> ())?, onBtnClick: (() -> ())?)> = Observable
         .combineLatest(temperatureTipEvents.elements(),
                        temperatureTipText.asObservable().unwrap(),
                        weatherEvents.elements())
         { temperatureTip, title, weatherItem in
             let image = weatherItem.isHighTemperature ? #imageLiteral(resourceName: "img_hightemp") : #imageLiteral(resourceName: "img_lowtemp")
-            return (title, image, temperatureTip, nil, nil)
+            return (title, image, temperatureTip, nil, nil, nil)
         }
         .asDriver(onErrorDriveWith: .empty())
 }
