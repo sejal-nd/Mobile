@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -54,25 +55,37 @@
                                 <constraint firstItem="Ks8-qC-Oj8" firstAttribute="leading" secondItem="JYJ-e8-JsC" secondAttribute="leading" constant="23" id="u6g-iX-NtU"/>
                             </constraints>
                         </view>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="o6M-rm-Gml" customClass="SecondaryButton" customModule="Atlantic_City_Electric" customModuleProvider="target">
-                            <rect key="frame" x="52" y="422" width="259" height="37"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                            <state key="normal" title="View Bill &amp; Payment Activity"/>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="number" keyPath="condensationValue">
-                                    <integer key="value" value="2"/>
-                                </userDefinedRuntimeAttribute>
-                            </userDefinedRuntimeAttributes>
-                            <connections>
-                                <action selector="infoModalViewBillButton:" destination="-1" eventType="touchUpInside" id="P3I-t2-nDa"/>
-                            </connections>
-                        </button>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Nm-Ki-aUf">
+                            <rect key="frame" x="13" y="273" width="349" height="61"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="o6M-rm-Gml" customClass="SecondaryButton" customModule="Atlantic_City_Electric" customModuleProvider="target">
+                                    <rect key="frame" x="45" y="12" width="259" height="37"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" title="View Bill &amp; Payment Activity"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="condensationValue">
+                                            <integer key="value" value="2"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="infoModalButtonPress" destination="-1" eventType="touchUpInside" id="6p5-3t-xLd"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="61" id="MCY-eo-bqp"/>
+                            </constraints>
+                        </view>
                     </subviews>
                     <constraints>
+                        <constraint firstItem="4Nm-Ki-aUf" firstAttribute="centerX" secondItem="JYJ-e8-JsC" secondAttribute="centerX" id="DDr-f0-CnY"/>
+                        <constraint firstItem="4Nm-Ki-aUf" firstAttribute="leading" secondItem="oQm-kE-KfI" secondAttribute="leading" constant="13" id="SP3-9I-GuT"/>
                         <constraint firstItem="JYJ-e8-JsC" firstAttribute="top" secondItem="oQm-kE-KfI" secondAttribute="top" id="UbA-qF-YIe"/>
                         <constraint firstItem="JYJ-e8-JsC" firstAttribute="centerX" secondItem="oQm-kE-KfI" secondAttribute="centerX" id="aOL-7C-sJa"/>
                         <constraint firstAttribute="trailing" secondItem="JYJ-e8-JsC" secondAttribute="trailing" priority="999" id="cBo-Mi-wWq"/>
+                        <constraint firstItem="4Nm-Ki-aUf" firstAttribute="top" secondItem="JYJ-e8-JsC" secondAttribute="bottom" constant="63" id="efh-Am-hrj"/>
                         <constraint firstItem="JYJ-e8-JsC" firstAttribute="leading" secondItem="oQm-kE-KfI" secondAttribute="leading" priority="999" id="rwv-zu-yRm"/>
                         <constraint firstAttribute="bottom" secondItem="JYJ-e8-JsC" secondAttribute="bottom" id="wBa-86-sut"/>
                     </constraints>
@@ -92,5 +105,8 @@
     </objects>
     <resources>
         <image name="paperless_modal" width="96" height="96"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>
