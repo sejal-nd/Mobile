@@ -22,6 +22,15 @@ enum TransferServiceOption: Identifiable, CaseIterable {
             return "Discontinue my Third Party Agreement"
         }
     }
+    
+    var warningText: String {
+        switch self {
+        case .transfer:
+            return "You have indicated that we should carry forward your Third Party Electric Supplier Agreement. For any questions or concerns, please contact your Third Party Supplier. Your retail electric supplier’s phone number is provided in the Electric Supply Charges portion of your BGE bill."
+        case .doNotTransfer:
+            return "You have chosen to discontinue your Third Party Electric Supplier Agreement. This will be reflected in your account after your new service start date. For any questions or concerns, please contact your Third Party Supplier. Your retail electric supplier’s phone number is provided in the Electric Supply Charges portion of your BGE bill."
+        }
+    }
 }
 
 struct RadioButton: View {

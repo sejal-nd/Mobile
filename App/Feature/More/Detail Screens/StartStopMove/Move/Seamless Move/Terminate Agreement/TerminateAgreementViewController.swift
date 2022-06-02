@@ -17,18 +17,22 @@ class TerminateAgreementViewController: UIViewController {
     
     var childView: UIHostingController<TerminateAgreementView>? = nil// = UIHostingController(rootView: SeamlessMoveWarningView())
         
+    var transferEligibility: TransferEligibility!
+    
     private var hasAgreed = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         title = NSLocalizedString("Third Party Agreement", comment: "")
+        ctaButton.isEnabled = false
+        ctaButton.setTitle(transferEligibility.buttonText, for: .normal)
         
         addHostingController()
     }
     
     private func addHostingController() {
-        let terminateAgreementView = TerminateAgreementView(didSelectCheckbox: didSelectCheckbox)
+        let terminateAgreementView = TerminateAgreementView(didSelectCheckbox: didSelectCheckbox, transferEligibility: transferEligibility)
         childView = UIHostingController(rootView: (terminateAgreementView))
                 
         guard let unwrappedChildView = childView else {
@@ -53,7 +57,9 @@ class TerminateAgreementViewController: UIViewController {
     private func didSelectCheckbox(hasAgreed: Bool) {
         self.hasAgreed = hasAgreed
         
-        ctaButton.isEnabled = hasAgreed
+        UIView.animate(withDuration: 0.3) { [weak self] in
+            self?.ctaButton.isEnabled = hasAgreed
+        }        
     }
     
     // MARK: Action
