@@ -20,6 +20,8 @@ class AutoPayReasonsForStoppingViewController: UIViewController {
     weak var delegate: AutoPayViewControllerDelegate?
     weak var parentVc: AutoPayViewController?
     
+    var presentingNavController: UINavigationController?
+    
     let bag = DisposeBag()
     
     
@@ -91,11 +93,29 @@ class AutoPayReasonsForStoppingViewController: UIViewController {
                                                         image: #imageLiteral(resourceName: "img_confirmation"),
                                                         description: description,
                                                         onClose: { [weak self] in
-                    self?.dismiss(animated: true)
-                    let storyboard = UIStoryboard(name: "Bill", bundle: nil)
-                    let billHomeVC = storyboard.instantiateViewController(withIdentifier: "billView") as! BillViewController
-                    billHomeVC.hidesBottomBarWhenPushed = false
-                    self?.navigationController?.pushViewController(billHomeVC, animated: true)
+                    
+                    self?.dismiss(animated: true, completion: nil)
+                    self?.navigationController?.popViewController(animated: true)
+                    //let tabController = self?.presentingNavController?.tabBarController as! MainTabBarController
+                      //      tabController.selectedIndex = 1
+                    //self?.presentingNavController?.setNavigationBarHidden(true, animated: true)
+                    //self?.presentingNavController?.dismiss(animated: true, completion: nil)
+                 /*   for vc in self?.presentingNavController?.viewControllers {
+                        if let dest = vc as? BillViewController {
+                            dest.viewModel.fetchAccountDetail(isRefresh: false)
+                            presentingNavController.popToViewController(dest, animated: false)
+                            presentingNavController.setNavigationBarHidden(true, animated: true) // Fixes bad dismiss animation
+                            break
+                        } else if let dest = vc as? AutoPayReasonsForStoppingViewController {
+                            dest.viewModel.fetchData.onNext(())
+                            presentingNavController.popToViewController(dest, animated: false)
+                            break
+                        }
+                    }
+
+                    self?.presentingNavController?.dismiss(animated: true, completion: nil)
+*/
+                
                 })
                
                 self.navigationController?.present(infoModal, animated: true)

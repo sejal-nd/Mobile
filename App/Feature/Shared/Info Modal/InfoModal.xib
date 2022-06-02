@@ -56,11 +56,11 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Nm-Ki-aUf">
-                            <rect key="frame" x="13" y="273" width="349" height="61"/>
+                            <rect key="frame" x="13" y="243" width="349" height="92"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="o6M-rm-Gml" customClass="SecondaryButton" customModule="Atlantic_City_Electric" customModuleProvider="target">
-                                    <rect key="frame" x="45" y="12" width="259" height="37"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <rect key="frame" x="7" y="18" width="335" height="55"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                     <state key="normal" title="View Bill &amp; Payment Activity"/>
                                     <userDefinedRuntimeAttributes>
@@ -75,18 +75,18 @@
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="61" id="MCY-eo-bqp"/>
+                                <constraint firstAttribute="height" constant="92" id="saf-0n-GsT"/>
                             </constraints>
                         </view>
                     </subviews>
                     <constraints>
-                        <constraint firstItem="4Nm-Ki-aUf" firstAttribute="centerX" secondItem="JYJ-e8-JsC" secondAttribute="centerX" id="DDr-f0-CnY"/>
-                        <constraint firstItem="4Nm-Ki-aUf" firstAttribute="leading" secondItem="oQm-kE-KfI" secondAttribute="leading" constant="13" id="SP3-9I-GuT"/>
+                        <constraint firstItem="4Nm-Ki-aUf" firstAttribute="top" secondItem="JYJ-e8-JsC" secondAttribute="bottom" constant="33" id="1Ze-49-Trf"/>
                         <constraint firstItem="JYJ-e8-JsC" firstAttribute="top" secondItem="oQm-kE-KfI" secondAttribute="top" id="UbA-qF-YIe"/>
                         <constraint firstItem="JYJ-e8-JsC" firstAttribute="centerX" secondItem="oQm-kE-KfI" secondAttribute="centerX" id="aOL-7C-sJa"/>
                         <constraint firstAttribute="trailing" secondItem="JYJ-e8-JsC" secondAttribute="trailing" priority="999" id="cBo-Mi-wWq"/>
-                        <constraint firstItem="4Nm-Ki-aUf" firstAttribute="top" secondItem="JYJ-e8-JsC" secondAttribute="bottom" constant="63" id="efh-Am-hrj"/>
+                        <constraint firstItem="4Nm-Ki-aUf" firstAttribute="leading" secondItem="oQm-kE-KfI" secondAttribute="leading" constant="13" id="oeb-Lj-oFg"/>
                         <constraint firstItem="JYJ-e8-JsC" firstAttribute="leading" secondItem="oQm-kE-KfI" secondAttribute="leading" priority="999" id="rwv-zu-yRm"/>
+                        <constraint firstAttribute="trailing" secondItem="4Nm-Ki-aUf" secondAttribute="trailing" constant="13" id="vRW-6U-WPQ"/>
                         <constraint firstAttribute="bottom" secondItem="JYJ-e8-JsC" secondAttribute="bottom" id="wBa-86-sut"/>
                     </constraints>
                 </scrollView>
