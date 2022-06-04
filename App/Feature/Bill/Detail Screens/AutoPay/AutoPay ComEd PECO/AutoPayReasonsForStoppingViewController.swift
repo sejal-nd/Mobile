@@ -93,29 +93,8 @@ class AutoPayReasonsForStoppingViewController: UIViewController {
                                                         image: #imageLiteral(resourceName: "img_confirmation"),
                                                         description: description,
                                                         onClose: { [weak self] in
-                    
-                    self?.dismiss(animated: true, completion: nil)
-                    self?.navigationController?.popViewController(animated: true)
-                    //let tabController = self?.presentingNavController?.tabBarController as! MainTabBarController
-                      //      tabController.selectedIndex = 1
-                    //self?.presentingNavController?.setNavigationBarHidden(true, animated: true)
-                    //self?.presentingNavController?.dismiss(animated: true, completion: nil)
-                 /*   for vc in self?.presentingNavController?.viewControllers {
-                        if let dest = vc as? BillViewController {
-                            dest.viewModel.fetchAccountDetail(isRefresh: false)
-                            presentingNavController.popToViewController(dest, animated: false)
-                            presentingNavController.setNavigationBarHidden(true, animated: true) // Fixes bad dismiss animation
-                            break
-                        } else if let dest = vc as? AutoPayReasonsForStoppingViewController {
-                            dest.viewModel.fetchData.onNext(())
-                            presentingNavController.popToViewController(dest, animated: false)
-                            break
-                        }
-                    }
-
-                    self?.presentingNavController?.dismiss(animated: true, completion: nil)
-*/
-                
+                    self?.parentVc?.navigationController?.popViewController(animated: true)
+                    self?.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
                 })
                
                 self.navigationController?.present(infoModal, animated: true)
