@@ -12,4 +12,5 @@ public struct B2CJWTRequest: Encodable {
     let customerID: String
     var ebillEligible: Bool = true
     var type: String = "residential"
+    var lastname: String?
 }

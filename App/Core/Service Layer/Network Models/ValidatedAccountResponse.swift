@@ -14,12 +14,14 @@ struct ValidatedAccountResponse: Decodable {
     var multipleCustomers: Bool? = false
     var accounts: [AccountResult]
     var accountNumbers: [String]
+    var customerName: String?
     
     enum CodingKeys: String, CodingKey {
         case type
         case isEbill = "ebill"
         case multipleCustomers
         case accounts
+        case customerName
     }
     
     init(from decoder: Decoder) throws {
@@ -30,5 +32,6 @@ struct ValidatedAccountResponse: Decodable {
         multipleCustomers = try container.decodeIfPresent(Bool.self, forKey: .multipleCustomers)
         accounts = (try? container.decodeIfPresent([AccountResult].self, forKey: .accounts)) ?? []
         accountNumbers = (try? container.decodeIfPresent([String].self, forKey: .accounts)) ?? []
+        customerName = try container.decodeIfPresent(String.self, forKey: .customerName)
     }
 }
