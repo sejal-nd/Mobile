@@ -387,10 +387,14 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
         case 1:
             switch indexPath.row {
             case 0:
+                GoogleAnalytics.log(event: .changePasswordOffer)
+                FirebaseUtility.logScreenView(.mySecurityView(className: self.className))
+                
                 if FeatureFlagUtility.shared.bool(forKey: .isPkceAuthentication) {
                     PKCEAuthenticationService.default.presentMySecurityForm { result in
                         switch (result) {
                         case .success(let token):
+                            FirebaseUtility.logEvent(.more(parameters: [.change_my_security_complete]))
                             if let json = TokenResponse.decodeToJson(token: token),
                                let editAction = json["profileEditActionTaken"] as? String {
                                 
@@ -522,6 +526,8 @@ extension MoreViewController: ChangePasswordViewControllerDelegate {
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
             self.view.showToast(NSLocalizedString("Password changed", comment: ""))
             GoogleAnalytics.log(event: .changePasswordComplete)
+            FirebaseUtility.logEvent(.more(parameters: [.change_password_complete]))
+            
         })
     }
     
