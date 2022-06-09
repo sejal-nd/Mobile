@@ -400,6 +400,8 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
                                 
                                 if editAction == "PasswordUpdate" {
                                     self.view.showToast("Password changed")
+                                    GoogleAnalytics.log(event: .changePasswordComplete)
+                                    FirebaseUtility.logEvent(.more(parameters: [.change_password_complete]))
                                 } else {
                                     self.view.showToast("Two-Step Verification settings updated")
                                 }
@@ -525,8 +527,9 @@ extension MoreViewController: ChangePasswordViewControllerDelegate {
     func changePasswordViewControllerDidChangePassword(_ changePasswordViewController: UIViewController) {
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
             self.view.showToast(NSLocalizedString("Password changed", comment: ""))
-            GoogleAnalytics.log(event: .changePasswordComplete)
-            FirebaseUtility.logEvent(.more(parameters: [.change_password_complete]))
+            //GoogleAnalytics.log(event: .changePasswordComplete)
+           // FirebaseUtility.logEvent(.more(parameters: [.change_password_complete]))
+           // print("======password changed===============")
             
         })
     }
