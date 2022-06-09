@@ -960,8 +960,13 @@ class HomeBillCardViewModel {
             case .paymentPending:
                 return accountDetail.billingInfo.pendingPaymentsTotal.currencyString
             default:
-                guard let netDue = accountDetail.billingInfo.netDueAmount else { return nil }
-                return abs(netDue).currencyString
+                if Configuration.shared.opco.isPHI {
+                    guard let netDue = accountDetail.billingInfo.netDueAmount else { return nil }
+                    return netDue.currencyString
+                } else {
+                    guard let netDue = accountDetail.billingInfo.netDueAmount else { return nil }
+                    return abs(netDue).currencyString
+                }
             }
         }
     

@@ -415,7 +415,9 @@ class BillViewModel {
         guard let netDueAmount = $0.billingInfo.netDueAmount else { return "--" }
         
         switch Configuration.shared.opco {
-        case .ace, .bge, .delmarva, .pepco: // For credit scenario we want to show the positive number
+        case .ace, .delmarva, .pepco:
+            return netDueAmount.currencyString
+        case .bge: // For credit scenario we want to show the positive number
             return abs(netDueAmount).currencyString
         case .comEd, .peco:
             return max(netDueAmount, 0).currencyString
