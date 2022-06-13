@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct SeamlessMoveWarningView: View {
-        
+    
     let stopServiceAddress: String
     let startServiceAddress: String
     var didSelectRadioButton: (TransferServiceOption) -> ()
@@ -29,7 +29,6 @@ struct SeamlessMoveWarningView: View {
                     .font(.subheadline)
                     .multilineTextAlignment(.leading)
                     .foregroundColor(.deepGray)
-                #warning("TODO, pass in stop service address")
                 Text(stopServiceAddress)
                     .fontWeight(.medium)
                     .multilineTextAlignment(.leading)
@@ -51,7 +50,6 @@ struct SeamlessMoveWarningView: View {
                     .font(.subheadline)
                     .multilineTextAlignment(.leading)
                     .foregroundColor(.deepGray)
-                #warning("TODO, pass in start service address")
                 Text(startServiceAddress)
                     .fontWeight(.medium)
                     .multilineTextAlignment(.leading)
@@ -72,7 +70,7 @@ struct SeamlessMoveWarningView: View {
                             text: option.text) {
                     didSelectRadioButton(transferOption)
                 }
-                    .padding(.vertical)
+                            .padding(.vertical)
                 Divider()
                     .padding(.leading, 24)
             }

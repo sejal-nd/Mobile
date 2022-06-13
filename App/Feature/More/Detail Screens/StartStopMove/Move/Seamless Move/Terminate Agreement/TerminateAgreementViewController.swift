@@ -15,10 +15,12 @@ class TerminateAgreementViewController: UIViewController {
     @IBOutlet weak var stickyFooterView: StickyFooterView!
     @IBOutlet weak var ctaButton: PrimaryButton!
     
-    var childView: UIHostingController<TerminateAgreementView>? = nil// = UIHostingController(rootView: SeamlessMoveWarningView())
+    private var childView: UIHostingController<TerminateAgreementView>? = nil
         
+    var moveFlowData: MoveServiceFlowData!
     var transferEligibility: TransferEligibility!
-    
+    var moveResponse: MoveServiceResponse?
+
     private var hasAgreed = false
     
     override func viewDidLoad() {
@@ -68,12 +70,37 @@ class TerminateAgreementViewController: UIViewController {
         if hasAgreed {
             ctaButton.setLoading()
             
-            
-            #warning("todo")
-            ctaButton.reset()
-            #warning("todo, trigger API call")
-            performSegue(withIdentifier: "showComplete", sender: nil)
+            #warning("todo, implement seamless move eligability after the review screen, and add seamless move parameters into move service?")
+            MoveService.moveService(moveFlowData: moveFlowData) { [weak self] (result: Result<MoveServiceResponse, NetworkingError>) in
+                guard let `self` = self else { return }
+                switch result {
+                case .success(let moveResponse):
+                    self.moveResponse = moveResponse
+                    self.performSegue(withIdentifier: "showComplete", sender: nil)
+                case .failure(let error):
+                    FirebaseUtility.logEvent(.authMoveService(parameters: [.complete_unresolved]))
+                    
+                    let alertVc = UIAlertController(title: error.title, message: error.description, preferredStyle: .alert)
+                    alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                    self.present(alertVc, animated: true, completion: nil)
+                }
+                
+                self.ctaButton.reset()
+            }
         }
     }
-    
+}
+
+extension TerminateAgreementViewController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let vc = segue.destination as? MoveServiceConfirmationViewController,
+              let moveResponse = moveResponse else {
+                  return
+              }
+            vc.viewModel = MoveServiceConfirmationViewModel(moveServiceResponse: moveResponse,
+                                                            isUnauth: false,
+                                                            shouldShowSeamlessMove: true,
+                                                            transferEligibility: transferEligibility,
+                                                            transferOption: .doNotTransfer)
+    }
 }

@@ -2315,6 +2315,16 @@
             </objects>
             <point key="canvasLocation" x="5182.608695652174" y="79.6875"/>
         </scene>
+        <!--Storyboard Reference-->
+        <scene sceneID="DDH-RH-sQZ">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="SeamlessMoveViewController" id="bN8-dL-GOB" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="IV6-cw-kzb"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="llj-Fw-7dr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5909" y="-380"/>
+        </scene>
         <!--Review Move Service-->
         <scene sceneID="iwu-Ta-Ouw">
             <objects>
@@ -2816,6 +2826,7 @@
                         <outlet property="submitBtn" destination="grO-Lk-7Fz" id="Y8t-G8-Y6E"/>
                         <outlet property="supplierAgreementButton" destination="gd8-bD-qhD" id="1fs-Es-m2R"/>
                         <outlet property="supplierAgreementStackView" destination="YDp-Xu-NAT" id="1ug-qx-yPC"/>
+                        <segue destination="bN8-dL-GOB" kind="show" identifier="showSeamlessMove" id="xrG-GR-JBU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XQ6-Au-svV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

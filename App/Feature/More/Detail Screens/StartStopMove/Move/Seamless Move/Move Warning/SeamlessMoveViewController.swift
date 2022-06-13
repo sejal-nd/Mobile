@@ -19,6 +19,9 @@ class SeamlessMoveViewController: UIViewController {
         
     private var transferOption: TransferServiceOption = .transfer
     
+    var moveFlowData: MoveServiceFlowData!
+    var moveResponse: MoveServiceResponse?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -28,18 +31,14 @@ class SeamlessMoveViewController: UIViewController {
     }
     
     private func addHostingController() {
-        let seamlessMoveView = SeamlessMoveWarningView(stopServiceAddress: "123 123123 123 TEST",
-                                                       startServiceAddress: "New new new 321 312 312",
+        let seamlessMoveView = SeamlessMoveWarningView(stopServiceAddress: moveFlowData.currentPremise?.addressGeneral ?? "",
+                                                       startServiceAddress: generateStartServiceAddress(),
                                                        didSelectRadioButton: didSelectRadioButton)
         childView = UIHostingController(rootView: (seamlessMoveView))
                 
         guard let unwrappedChildView = childView else {
             return
         }
-        
-        
-//        addChild(unwrappedChildView)
-//        view.addSubview(unwrappedChildView.view)
 
         containerView.addSubview(unwrappedChildView.view)
         
@@ -53,8 +52,12 @@ class SeamlessMoveViewController: UIViewController {
             unwrappedChildView.view.topAnchor.constraint(equalTo: containerView.topAnchor),
             unwrappedChildView.view.bottomAnchor.constraint(equalTo: containerView.bottomAnchor)
         ])
-
         
+    }
+    
+    private func generateStartServiceAddress() -> String {
+        guard let startAddress = moveFlowData.addressLookupResponse?.first else { return "" }
+        return startAddress.compressedAddress
     }
     
     private func didSelectRadioButton(transferOption: TransferServiceOption) {
@@ -74,10 +77,23 @@ class SeamlessMoveViewController: UIViewController {
         case .transfer:
             ctaButton.setLoading()
             
-            #warning("todo")
-            ctaButton.reset()
-            #warning("todo, do API call here. and show confirmation screen after.  This needs to be CTA loading button")
-            performSegue(withIdentifier: "showComplete", sender: nil)
+            #warning("todo, implement seamless move eligability after the review screen, and add seamless move parameters into move service?")
+            MoveService.moveService(moveFlowData: moveFlowData) { [weak self] (result: Result<MoveServiceResponse, NetworkingError>) in
+                guard let `self` = self else { return }
+                switch result {
+                case .success(let moveResponse):
+                    self.moveResponse = moveResponse
+                    self.performSegue(withIdentifier: "showComplete", sender: nil)
+                case .failure(let error):
+                    FirebaseUtility.logEvent(.authMoveService(parameters: [.complete_unresolved]))
+
+                    let alertVc = UIAlertController(title: error.title, message: error.description, preferredStyle: .alert)
+                    alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                    self.present(alertVc, animated: true, completion: nil)
+                }
+                
+                self.ctaButton.reset()
+            }            
         case .doNotTransfer:
             performSegue(withIdentifier: "showTerminationAgreement", sender: nil)
         }
@@ -87,9 +103,16 @@ class SeamlessMoveViewController: UIViewController {
 
 extension SeamlessMoveViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let vc = segue.destination as? TerminateAgreementViewController else {
-            return
+        if let vc = segue.destination as? TerminateAgreementViewController {
+            vc.moveFlowData = moveFlowData
+            vc.transferEligibility = .eligible
+        } else if let vc = segue.destination as? MoveServiceConfirmationViewController,
+                  let moveResponse = moveResponse {
+            vc.viewModel = MoveServiceConfirmationViewModel(moveServiceResponse: moveResponse,
+                                                            isUnauth: false,
+                                                            shouldShowSeamlessMove: true,
+                                                            transferEligibility: .eligible,
+                                                            transferOption: transferOption)
         }
-        vc.transferEligibility = .eligible
     }
 }
