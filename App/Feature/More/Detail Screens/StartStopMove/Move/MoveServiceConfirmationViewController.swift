@@ -25,6 +25,11 @@ class MoveServiceConfirmationViewController: UIViewController {
     @IBOutlet weak var startServiceAddressStaticLabel: UILabel!
     @IBOutlet weak var startServiceAddressLabel: UILabel!
 
+    @IBOutlet weak var thirdPartySupplierStackView: UIStackView!
+    @IBOutlet weak var thirdPartySupplierView: UIView!
+    @IBOutlet weak var thirdPartySupplierStatusLabel: UILabel!
+    @IBOutlet weak var thirdPartyInfoButton: UIButton!
+    
     @IBOutlet weak var nextStepStackView: UIStackView!
     @IBOutlet weak var billingAddressView: UIView!
     @IBOutlet weak var billingDescriptionLabel: UILabel!
@@ -131,6 +136,24 @@ class MoveServiceConfirmationViewController: UIViewController {
         billingAddressLabel.text = viewModel.getBillingAddress()
         accountNumberLabel.text = viewModel.moveServiceResponse.accountNumber
         nextStepStackView.isHidden = viewModel.moveServiceResponse.isResolved ?? false
+        
+        if viewModel.shouldShowSeamlessMove {
+            let thirdPartySupplierStatusText: String
+            if viewModel.transferEligibility == .eligible {
+                if viewModel.transferOption == .transfer {
+                    thirdPartySupplierStatusText = "Transfer to Start Service Address"
+                } else {
+                    thirdPartySupplierStatusText = "Discontinued"
+                }
+            } else {
+                thirdPartySupplierStatusText = "Discontinued"
+            }
+            
+            thirdPartySupplierStatusLabel.text = thirdPartySupplierStatusText
+            
+        } else {
+            thirdPartySupplierStackView.isHidden = true
+        }
     }
     
     func openMFMail() {
@@ -141,6 +164,25 @@ class MoveServiceConfirmationViewController: UIViewController {
             mailComposer.setMessageBody("", isHTML: false)
             present(mailComposer, animated: true, completion: nil)
         }
+    }
+    
+    @IBAction func thirdPartyToolTipPress(_ sender: Any) {
+        let modalText: String
+        
+        if viewModel.transferEligibility == .eligible {
+            if viewModel.transferOption == .transfer {
+                modalText = "You have indicated that we should carry forward your Third Party Electric Supplier Agreement.\n\nFor any questions or concerns, please contact your Third Party Supplier.\n\nYour retail electric supplier’s phone number is provided in the Electric Supply Charges portion of your BGE bill."
+            } else {
+                modalText = "You have chosen to discontinue your Third Party Electric Supplier Agreement. This will be reflected in your account after your new service start date.\n\nFor any questions or concerns, please contact your Third Party Supplier.\n\nYour retail electric supplier’s phone number is provided in the Electric Supply Charges portion of your BGE bill."
+            }
+        } else {
+            modalText = "Your Third Party Supplier electric agreement will be discontinued. This will be reflected in your account after your new start service date.\n\nFor any questions or concerns, please contact your Third Party Supplier.\n\nYour retail electric supplier’s phone number is provided in the Electric Supply Charges portion of your BGE bill."
+        }
+        
+        let infoModal = InfoModalViewController(title: NSLocalizedString("Third Party Supplier Update", comment: ""),
+                                                image: #imageLiteral(resourceName: "bill_infographic"),
+                                                description: modalText)
+        self.navigationController?.present(infoModal, animated: true, completion: nil)
     }
 }
 

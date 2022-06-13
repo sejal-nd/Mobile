@@ -66,6 +66,12 @@ class TerminateAgreementViewController: UIViewController {
     
     @IBAction func ctaButtonPress(_ sender: Any) {
         if hasAgreed {
+            ctaButton.setLoading()
+            
+            
+            #warning("todo")
+            ctaButton.reset()
+            #warning("todo, trigger API call")
             performSegue(withIdentifier: "showComplete", sender: nil)
         }
     }

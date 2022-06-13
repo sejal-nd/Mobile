@@ -13,9 +13,20 @@ class MoveServiceConfirmationViewModel {
     var moveServiceResponse: MoveServiceResponse!
     var isUnauth: Bool = false
     
-    init(moveServiceResponse: MoveServiceResponse, isUnauth: Bool = false) {
+    // Seamless Move
+    var shouldShowSeamlessMove = false
+    var transferEligibility: TransferEligibility = .ineligible
+    var transferOption: TransferServiceOption = .transfer
+    
+    init(moveServiceResponse: MoveServiceResponse,
+         isUnauth: Bool = false,
+         shouldShowSeamlessMove: Bool = false,
+         transferEligibility: TransferEligibility = .ineligible,
+         transferOption: TransferServiceOption = .transfer) {
         self.moveServiceResponse = moveServiceResponse
         self.isUnauth = isUnauth
+        self.transferEligibility = transferEligibility
+        self.transferOption = transferOption
     }
 
     func getBillingDescription()-> String {

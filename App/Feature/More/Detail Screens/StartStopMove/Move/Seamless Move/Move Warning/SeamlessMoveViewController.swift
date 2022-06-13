@@ -61,7 +61,7 @@ class SeamlessMoveViewController: UIViewController {
         self.transferOption = transferOption
         switch transferOption {
         case .transfer:
-            ctaButton.setTitle("Complete", for: .normal)
+            ctaButton.setTitle("Submit", for: .normal)
         case .doNotTransfer:
             ctaButton.setTitle("Continue", for: .normal)
         }
@@ -72,6 +72,11 @@ class SeamlessMoveViewController: UIViewController {
     @IBAction func ctaButtonPress(_ sender: Any) {
         switch transferOption {
         case .transfer:
+            ctaButton.setLoading()
+            
+            #warning("todo")
+            ctaButton.reset()
+            #warning("todo, do API call here. and show confirmation screen after.  This needs to be CTA loading button")
             performSegue(withIdentifier: "showComplete", sender: nil)
         case .doNotTransfer:
             performSegue(withIdentifier: "showTerminationAgreement", sender: nil)

@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+/// Whether the user selects to transfer third party supplier or not
 enum TransferServiceOption: Identifiable, CaseIterable {
     case transfer
     case doNotTransfer
@@ -47,7 +48,7 @@ struct RadioButton: View {
                 HStack {
                     Image(transferServiceOption == selectedTransferServiceOption ? "ic_radiobutton_selected" : "ic_radiobutton_deselected")
                     Text(text)
-                        .foregroundColor(.black)
+                        .foregroundColor(.deepGray)
                 }
             }
         }

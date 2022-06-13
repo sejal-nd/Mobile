@@ -10,6 +10,7 @@ import SwiftUI
 
 extension Color {
     @nonobjc static var actionBlue = Color(red: 0/255, green: 89/255, blue: 164/255)
+    @nonobjc static var deepGray = Color(red: 74/255, green: 74/255, blue: 74/255)
 }
 
 struct CheckBoxView: View {
@@ -27,7 +28,7 @@ struct CheckBoxView: View {
                         .foregroundColor(.actionBlue)
                         .font(Font.headline.weight(.semibold))
                     Text(text)
-                        .foregroundColor(.black)
+                        .foregroundColor(.deepGray)
                         .multilineTextAlignment(.leading)
                 }
             }
