@@ -449,6 +449,11 @@ extension OutageViewController: UITableViewDelegate {
         switch indexPath.row {
         case 0:
             performSegue(withIdentifier: "reportOutageSegue", sender: self)
+            if userState == .authenticated {
+                FirebaseUtility.logEvent(.authOutage(parameters: [.report_outage]))
+            } else {
+                FirebaseUtility.logEvent(.unauthOutage(parameters: [.report_outage]))
+            }
         case 1:
             GoogleAnalytics.log(event: .viewStreetlightMapOfferComplete)
             if userState == .authenticated {

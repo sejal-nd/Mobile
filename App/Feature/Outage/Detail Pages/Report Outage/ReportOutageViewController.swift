@@ -398,13 +398,6 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
     
     @IBAction func submitButtonPress(_ sender: Any? = nil) {
         FirebaseUtility.logEvent(.reportOutageSubmit)
-        
-        if unauthenticatedExperience {
-            FirebaseUtility.logEvent(.unauthOutage(parameters: [.report_outage]))
-        } else {
-            FirebaseUtility.logEvent(.authOutage(parameters: [.report_outage]))
-        }
-        
         view.endEditing(true)
         
         let errorBlock = { [weak self] (errorMessage: String) in
