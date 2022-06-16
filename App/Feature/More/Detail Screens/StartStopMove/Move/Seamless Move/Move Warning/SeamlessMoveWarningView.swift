@@ -11,7 +11,10 @@ import SwiftUI
 struct SeamlessMoveWarningView: View {
     
     let stopServiceAddress: String
+    let stopServiceCountyStateZip: String
     let startServiceAddress: String
+    let startServiceCountyStateZip: String
+
     var didSelectRadioButton: (TransferServiceOption) -> ()
     
     @State private var transferOption: TransferServiceOption = .transfer
@@ -33,6 +36,10 @@ struct SeamlessMoveWarningView: View {
                     .fontWeight(.medium)
                     .multilineTextAlignment(.leading)
                     .foregroundColor(.deepGray)
+                Text(stopServiceCountyStateZip)
+                    .fontWeight(.medium)
+                    .multilineTextAlignment(.leading)
+                    .foregroundColor(.deepGray)
             }
             
             Divider()
@@ -51,6 +58,10 @@ struct SeamlessMoveWarningView: View {
                     .multilineTextAlignment(.leading)
                     .foregroundColor(.deepGray)
                 Text(startServiceAddress)
+                    .fontWeight(.medium)
+                    .multilineTextAlignment(.leading)
+                    .foregroundColor(.deepGray)
+                Text(startServiceCountyStateZip)
                     .fontWeight(.medium)
                     .multilineTextAlignment(.leading)
                     .foregroundColor(.deepGray)
@@ -81,8 +92,10 @@ struct SeamlessMoveWarningView: View {
 
 struct SeamlessMoveWarningView_Previews: PreviewProvider {
     static var previews: some View {
-        SeamlessMoveWarningView(stopServiceAddress: "test 123 123 132",
-                                startServiceAddress: "New 321 321 321") { _ in
+        SeamlessMoveWarningView(stopServiceAddress: "1310 Point St",
+                                stopServiceCountyStateZip: "Baltimore, MD 21231",
+                                startServiceAddress: "1310 Point St",
+                                startServiceCountyStateZip: "Baltimore, MD 21231") { _ in
             
         }
     }

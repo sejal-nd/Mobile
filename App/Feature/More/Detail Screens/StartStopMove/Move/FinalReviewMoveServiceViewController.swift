@@ -20,9 +20,6 @@ class FinalReviewMoveServiceViewController: UIViewController {
 
     @IBOutlet weak var ebillStackView: UIStackView!
 
-    @IBOutlet weak var supplierAgreementStackView: UIStackView!
-
-
     @IBOutlet weak var renterOwnerStaticLabel: UILabel!
 
     @IBOutlet weak var renterOwnerLabel: UILabel!
@@ -51,7 +48,6 @@ class FinalReviewMoveServiceViewController: UIViewController {
     @IBOutlet weak var changeMailingAddressButton: UIButton!
     
     @IBOutlet weak var changeIDVerificationButton: UIButton!
-    @IBOutlet weak var supplierAgreementButton: UIButton!
     @IBOutlet weak var ebillUserInfoLabel: UILabel!
 
     var viewModel = ReviewMoveServiceViewModel()
@@ -100,17 +96,6 @@ class FinalReviewMoveServiceViewController: UIViewController {
                 self?.showAlertRenterOwner()
             }).disposed(by: disposeBag)
 
-
-        supplierAgreementButton.rx.tap
-            .subscribe(onNext: { [weak self] _ in
-                guard let `self` = self else { return }
-                self.supplierAgreementButton.isSelected = !self.supplierAgreementButton.isSelected
-                self.submitBtn.isUserInteractionEnabled = self.supplierAgreementButton.isSelected
-                self.submitBtn.backgroundColor = self.supplierAgreementButton.isSelected ? UIColor(red: 0, green: 89.0/255.0, blue: 164.0/255.0, alpha: 1.0) : UIColor(red: 216.0/255.0, green: 216.0/255.0, blue: 216.0/255.0, alpha: 1.0)
-                self.submitBtn.setTitleColor(self.supplierAgreementButton.isSelected ? UIColor.white : UIColor(red: 74.0/255.0, green: 74.0/255.0, blue: 74.0/255.0, alpha: 0.5), for: .normal)
-
-            }).disposed(by: disposeBag)
-
         changeMailingAddressButton.rx.tap
             .subscribe(onNext: { [weak self] _ in
                 guard let `self` = self else { return }
@@ -138,6 +123,16 @@ class FinalReviewMoveServiceViewController: UIViewController {
 
             }).disposed(by: disposeBag)
 
+        self.submitBtn.isUserInteractionEnabled = true
+        self.submitBtn.backgroundColor = UIColor(red: 0, green: 89.0/255.0, blue: 164.0/255.0, alpha: 1.0)
+        self.submitBtn.setTitleColor(UIColor.white, for: .normal)
+        
+        if self.viewModel.moveFlowData.currentAccountDetail?.hasThirdPartySupplier ?? false {
+            submitBtn.setTitle("Continue", for: .normal)
+        } else {
+            submitBtn.setTitle("Submit", for: .normal)
+        }
+        
         submitBtn.rx.tap
             .subscribe(onNext: { [weak self] _ in
                 guard let `self` = self else { return }
@@ -145,28 +140,49 @@ class FinalReviewMoveServiceViewController: UIViewController {
                 self.navigationController?.view.isUserInteractionEnabled = false
                 LoadingView.show()
                 
-                self.viewModel.moveServiceRequest(moveFlowData: self.moveFlowData) { [weak self] response in
-                    guard let `self` = self else { return }
-                    self.logMoveServiceEvent(isUnauth: self.viewModel.isUnauth, parameters: [response.isResolved == true ? .complete_resolved : .complete_unresolved])
-                    LoadingView.hide()
-                    self.navigationController?.view.isUserInteractionEnabled = true
+                if self.viewModel.moveFlowData.currentAccountDetail?.hasThirdPartySupplier ?? false {
+                    MoveService.thirdPartyTransferEligibilityCheck(moveFlowData: self.viewModel.moveFlowData, completion: { [weak self] response in
+                        guard let `self` = self else { return }
+                        LoadingView.hide()
+                        self.navigationController?.view.isUserInteractionEnabled = true
 
-                    let storyboard = UIStoryboard(name: "ISUMMove", bundle: nil)
-                    let moveServiceConfirmationViewController = storyboard.instantiateViewController(withIdentifier: "MoveServiceConfirmationViewController") as! MoveServiceConfirmationViewController
-                    
-                    let isUnauth = self.moveFlowData.unauthMoveData?.isUnauthMove ?? false
-                    moveServiceConfirmationViewController.viewModel = MoveServiceConfirmationViewModel(moveServiceResponse: response, isUnauth: isUnauth)
-                    moveServiceConfirmationViewController.viewModel.moveServiceResponse.isEBillEnrollment = (self.moveFlowData.unauthMoveData?.isUnauthMove ?? false) ? (self.moveFlowData.unauthMoveData?.accountDetails?.isEBillEnrollment ?? false) : (self.moveFlowData.currentAccountDetail?.isEBillEnrollment ?? true)
-                    self.navigationController?.pushViewController(moveServiceConfirmationViewController, animated: true)
-                } onFailure: { [weak self] _ in
-                    guard let `self` = self else { return }
-                    self.logMoveServiceEvent(isUnauth: self.viewModel.isUnauth, parameters: [.submit_error])
-                    LoadingView.hide()
-                    self.navigationController?.view.isUserInteractionEnabled = true
+                        switch response {
+                        case .success(let eligibilityResponse):
+                            if eligibilityResponse.isEligible {
+                                self.performSegue(withIdentifier: "showSeamlessMove", sender: nil)
+                            } else {
+                                self.performSegue(withIdentifier: "showTerminateSupplier", sender: nil)
+                            }
+                        case .failure(let error):
+                            let alertVc = UIAlertController(title: error.title, message: error.description, preferredStyle: .alert)
+                            alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                            self.present(alertVc, animated: true, completion: nil)
+                        }
+                    })
+                } else {
+                    self.viewModel.moveServiceRequest(moveFlowData: self.moveFlowData) { [weak self] response in
+                        guard let `self` = self else { return }
+                        self.logMoveServiceEvent(isUnauth: self.viewModel.isUnauth, parameters: [response.isResolved == true ? .complete_resolved : .complete_unresolved])
+                        LoadingView.hide()
+                        self.navigationController?.view.isUserInteractionEnabled = true
 
-                    let storyboard = UIStoryboard(name: "ISUMMove", bundle: nil)
-                    let generalSubmitErrorViewController = storyboard.instantiateViewController(withIdentifier: "MoveGeneralSubmitErrorViewController") as! MoveGeneralSubmitErrorViewController
-                    self.navigationController?.pushViewController(generalSubmitErrorViewController, animated: true)
+                        let storyboard = UIStoryboard(name: "ISUMMove", bundle: nil)
+                        let moveServiceConfirmationViewController = storyboard.instantiateViewController(withIdentifier: "MoveServiceConfirmationViewController") as! MoveServiceConfirmationViewController
+                        
+                        let isUnauth = self.moveFlowData.unauthMoveData?.isUnauthMove ?? false
+                        moveServiceConfirmationViewController.viewModel = MoveServiceConfirmationViewModel(moveServiceResponse: response, isUnauth: isUnauth)
+                        moveServiceConfirmationViewController.viewModel.moveServiceResponse.isEBillEnrollment = (self.moveFlowData.unauthMoveData?.isUnauthMove ?? false) ? (self.moveFlowData.unauthMoveData?.accountDetails?.isEBillEnrollment ?? false) : (self.moveFlowData.currentAccountDetail?.isEBillEnrollment ?? true)
+                        self.navigationController?.pushViewController(moveServiceConfirmationViewController, animated: true)
+                    } onFailure: { [weak self] _ in
+                        guard let `self` = self else { return }
+                        self.logMoveServiceEvent(isUnauth: self.viewModel.isUnauth, parameters: [.submit_error])
+                        LoadingView.hide()
+                        self.navigationController?.view.isUserInteractionEnabled = true
+
+                        let storyboard = UIStoryboard(name: "ISUMMove", bundle: nil)
+                        let generalSubmitErrorViewController = storyboard.instantiateViewController(withIdentifier: "MoveGeneralSubmitErrorViewController") as! MoveGeneralSubmitErrorViewController
+                        self.navigationController?.pushViewController(generalSubmitErrorViewController, animated: true)
+                    }
                 }
             }).disposed(by: disposeBag)
 
@@ -204,26 +220,11 @@ class FinalReviewMoveServiceViewController: UIViewController {
             self.dobLabel.text = "None Provided"
         }
 
-
-
         changeMailingAddressButton.isHidden = moveFlowData.currentAccountDetail?.isEBillEnrollment ?? false
-
 
         self.finalBillAddressStackView.isHidden = moveFlowData.currentAccountDetail?.isEBillEnrollment ?? false
         self.ebillStackView.isHidden = !(moveFlowData.currentAccountDetail?.isEBillEnrollment ?? false)
         self.ebillUserInfoLabel.text = "The bill for service at your previous address will be delivered to \(moveFlowData.currentAccountDetail?.customerInfo.emailAddress ?? "")."
-        self.supplierAgreementStackView.isHidden = !(moveFlowData.currentAccountDetail?.hasThirdPartySupplier ?? false)
-
-        if moveFlowData.currentAccountDetail?.hasThirdPartySupplier ?? false {
-            self.submitBtn.isUserInteractionEnabled = self.supplierAgreementButton.isSelected
-            self.submitBtn.backgroundColor = self.supplierAgreementButton.isSelected ? UIColor(red: 0, green: 89.0/255.0, blue: 164.0/255.0, alpha: 1.0) : UIColor(red: 216.0/255.0, green: 216.0/255.0, blue: 216.0/255.0, alpha: 1.0)
-            self.submitBtn.setTitleColor(self.supplierAgreementButton.isSelected ? UIColor.white : UIColor(red: 74.0/255.0, green: 74.0/255.0, blue: 74.0/255.0, alpha: 0.5), for: .normal)
-        } else {
-            self.submitBtn.isUserInteractionEnabled = true
-            self.submitBtn.backgroundColor = UIColor(red: 0, green: 89.0/255.0, blue: 164.0/255.0, alpha: 1.0)
-            self.submitBtn.setTitleColor( UIColor.white, for: .normal)
-        }
-
 
         if moveFlowData.hasCurrentServiceAddressForBill {
             self.finalBillAddressLabel.text = "Same as new service address"
@@ -305,5 +306,16 @@ extension FinalReviewMoveServiceViewController: IdVerificationDelegate {
         
         self.moveFlowData.idVerification = id
         self.refreshData()
+    }
+}
+
+extension FinalReviewMoveServiceViewController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? SeamlessMoveViewController {
+            vc.moveFlowData = viewModel.moveFlowData
+        } else if let vc = segue.destination as? TerminateAgreementViewController {
+            vc.moveFlowData = viewModel.moveFlowData
+            vc.transferEligibility = .ineligible
+        }
     }
 }

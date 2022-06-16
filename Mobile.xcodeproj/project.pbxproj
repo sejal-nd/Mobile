@@ -507,6 +507,10 @@
 		678C7F2D2836B68E006C0FDC /* TerminateAgreementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678C7F2C2836B68E006C0FDC /* TerminateAgreementViewController.swift */; };
 		678C7F2F2836B699006C0FDC /* TerminateAgreementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678C7F2E2836B699006C0FDC /* TerminateAgreementView.swift */; };
 		678C7F332836B8DD006C0FDC /* CheckBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678C7F322836B8DD006C0FDC /* CheckBoxView.swift */; };
+		678C7F352858DA55006C0FDC /* ThirdPartyTransferEligibilityRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678C7F342858DA53006C0FDC /* ThirdPartyTransferEligibilityRequest.swift */; };
+		678C7F372858DB85006C0FDC /* ThirdPartyTransferEligibilityResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678C7F362858DB85006C0FDC /* ThirdPartyTransferEligibilityResponse.swift */; };
+		678C7F382858E210006C0FDC /* ThirdPartyTransferEligibilityRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678C7F342858DA53006C0FDC /* ThirdPartyTransferEligibilityRequest.swift */; };
+		678C7F392858E2FC006C0FDC /* ThirdPartyTransferEligibilityResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678C7F362858DB85006C0FDC /* ThirdPartyTransferEligibilityResponse.swift */; };
 		6797115425DD87E3008A0080 /* OutageAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6797115325DD87E3008A0080 /* OutageAnimation.swift */; };
 		6797115B25DD901F008A0080 /* Arc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6797115A25DD901F008A0080 /* Arc.swift */; };
 		679C6EB124D1E84E00535DE7 /* AppointmentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679C6EB024D1E84E00535DE7 /* AppointmentService.swift */; };
@@ -1862,6 +1866,8 @@
 		678C7F2C2836B68E006C0FDC /* TerminateAgreementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminateAgreementViewController.swift; sourceTree = "<group>"; };
 		678C7F2E2836B699006C0FDC /* TerminateAgreementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminateAgreementView.swift; sourceTree = "<group>"; };
 		678C7F322836B8DD006C0FDC /* CheckBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxView.swift; sourceTree = "<group>"; };
+		678C7F342858DA53006C0FDC /* ThirdPartyTransferEligibilityRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdPartyTransferEligibilityRequest.swift; sourceTree = "<group>"; };
+		678C7F362858DB85006C0FDC /* ThirdPartyTransferEligibilityResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdPartyTransferEligibilityResponse.swift; sourceTree = "<group>"; };
 		6797115325DD87E3008A0080 /* OutageAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutageAnimation.swift; sourceTree = "<group>"; };
 		6797115A25DD901F008A0080 /* Arc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arc.swift; sourceTree = "<group>"; };
 		679C6EB024D1E84E00535DE7 /* AppointmentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentService.swift; sourceTree = "<group>"; };
@@ -4560,6 +4566,7 @@
 				215A1B7E270B172B003A4EE9 /* AddressLookupRequest.swift */,
 				4A6FB1ED271D8B000048E9F5 /* MoveISUMServiceRequest.swift */,
 				4A74A0C227310AB400F87986 /* AccountDetailsAnonRequest.swift */,
+				678C7F342858DA53006C0FDC /* ThirdPartyTransferEligibilityRequest.swift */,
 			);
 			path = "Request Models";
 			sourceTree = "<group>";
@@ -4645,6 +4652,7 @@
 				215A1B7B270B1713003A4EE9 /* AddressLookupResponse.swift */,
 				4AA4EAD72714A9B800B35F4D /* MoveServiceFlowData.swift */,
 				4A73F8BC274935A60051F315 /* EmployeeStatus.swift */,
+				678C7F362858DB85006C0FDC /* ThirdPartyTransferEligibilityResponse.swift */,
 			);
 			path = "Network Models";
 			sourceTree = "<group>";
@@ -6807,10 +6815,12 @@
 				6724800325D441810024467D /* WatchAccount.swift in Sources */,
 				C3055C182538FBEF000DB89C /* WalletService.swift in Sources */,
 				C3055C4B2538FD6E000DB89C /* NewMockDataKey.swift in Sources */,
+				678C7F392858E2FC006C0FDC /* ThirdPartyTransferEligibilityResponse.swift in Sources */,
 				355B10372369DB190038EAD3 /* WatchSessionController.swift in Sources */,
 				C3055BF92538FB11000DB89C /* WalletRequest.swift in Sources */,
 				C3055B5D2538F81B000DB89C /* ScheduledPayment.swift in Sources */,
 				35F9DDBD2333D91300AAA2B2 /* Optional+Comparable.swift in Sources */,
+				678C7F382858E210006C0FDC /* ThirdPartyTransferEligibilityRequest.swift in Sources */,
 				C3055B4D2538F812000DB89C /* PremiseInfo.swift in Sources */,
 				670DE2A426CC15FC00D4C863 /* KeychainSwift.swift in Sources */,
 				35F9DD932333D83F00AAA2B2 /* (null) in Sources */,
@@ -7246,6 +7256,7 @@
 				C3BCD53E2567238C006F405E /* HomeGameCardView.swift in Sources */,
 				54DF4BDA1EE9CBAB008CF7AD /* AccountDetailsView.swift in Sources */,
 				9CE549712399941300025BD5 /* GameRewardViewController.swift in Sources */,
+				678C7F372858DB85006C0FDC /* ThirdPartyTransferEligibilityResponse.swift in Sources */,
 				670DE2A326CC15FC00D4C863 /* KeychainSwift.swift in Sources */,
 				82D5994B1EC36B5500DDB380 /* NumberFormatter.swift in Sources */,
 				675F4B5E24AB828100A828F9 /* OutageService.swift in Sources */,
@@ -7508,6 +7519,7 @@
 				675F4C1224AB828100A828F9 /* AuthenticationService.swift in Sources */,
 				675F4C6024AB828100A828F9 /* BillForecast.swift in Sources */,
 				9C0E1C942333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.swift in Sources */,
+				678C7F352858DA55006C0FDC /* ThirdPartyTransferEligibilityRequest.swift in Sources */,
 				673FA0F124C8A52700210BCD /* AnonymousService+Rx.swift in Sources */,
 				21D1C515270ADF6400EFAFAC /* AddressSearchCell.swift in Sources */,
 				675F4C5A24AB828100A828F9 /* AutoPayResult.swift in Sources */,

@@ -75,11 +75,13 @@ class TerminateAgreementViewController: UIViewController {
                 guard let `self` = self else { return }
                 switch result {
                 case .success(let moveResponse):
+                    FirebaseUtility.logEvent(.authMoveService(parameters: [moveResponse.isResolved == true ? .complete_resolved : .complete_unresolved]))
+
                     self.moveResponse = moveResponse
                     self.performSegue(withIdentifier: "showComplete", sender: nil)
                 case .failure(let error):
                     FirebaseUtility.logEvent(.authMoveService(parameters: [.complete_unresolved]))
-                    
+
                     let alertVc = UIAlertController(title: error.title, message: error.description, preferredStyle: .alert)
                     alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
                     self.present(alertVc, animated: true, completion: nil)

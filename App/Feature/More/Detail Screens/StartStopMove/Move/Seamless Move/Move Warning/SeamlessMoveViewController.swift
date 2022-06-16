@@ -31,15 +31,18 @@ class SeamlessMoveViewController: UIViewController {
     }
     
     private func addHostingController() {
-        let seamlessMoveView = SeamlessMoveWarningView(stopServiceAddress: moveFlowData.currentPremise?.addressGeneral ?? "",
-                                                       startServiceAddress: generateStartServiceAddress(),
+        let seamlessMoveView = SeamlessMoveWarningView(stopServiceAddress: moveFlowData.currentPremise?.addressLineString ?? "",
+                                                       stopServiceCountyStateZip: "\(moveFlowData.currentPremise?.townDetail.name ?? ""), \(moveFlowData.currentPremise?.townDetail.stateOrProvince ?? "") \(moveFlowData.currentPremise?.townDetail.code ?? "")",
+                                                       startServiceAddress: moveFlowData.addressLookupResponse?.first?.address ?? "",
+                                                       startServiceCountyStateZip: "\(moveFlowData.addressLookupResponse?.first?.city ?? ""), \(moveFlowData.addressLookupResponse?.first?.state ?? "") \(moveFlowData.addressLookupResponse?.first?.zipCode ?? "")",
                                                        didSelectRadioButton: didSelectRadioButton)
+
         childView = UIHostingController(rootView: (seamlessMoveView))
-                
+        
         guard let unwrappedChildView = childView else {
             return
         }
-
+        
         containerView.addSubview(unwrappedChildView.view)
         
         // Set constraints
@@ -54,12 +57,7 @@ class SeamlessMoveViewController: UIViewController {
         ])
         
     }
-    
-    private func generateStartServiceAddress() -> String {
-        guard let startAddress = moveFlowData.addressLookupResponse?.first else { return "" }
-        return startAddress.compressedAddress
-    }
-    
+
     private func didSelectRadioButton(transferOption: TransferServiceOption) {
         self.transferOption = transferOption
         switch transferOption {
@@ -76,12 +74,13 @@ class SeamlessMoveViewController: UIViewController {
         switch transferOption {
         case .transfer:
             ctaButton.setLoading()
-            
-            #warning("todo, implement seamless move eligability after the review screen, and add seamless move parameters into move service?")
+
             MoveService.moveService(moveFlowData: moveFlowData) { [weak self] (result: Result<MoveServiceResponse, NetworkingError>) in
                 guard let `self` = self else { return }
                 switch result {
                 case .success(let moveResponse):
+                    FirebaseUtility.logEvent(.authMoveService(parameters: [moveResponse.isResolved == true ? .complete_resolved : .complete_unresolved]))
+                    
                     self.moveResponse = moveResponse
                     self.performSegue(withIdentifier: "showComplete", sender: nil)
                 case .failure(let error):

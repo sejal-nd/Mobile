@@ -26,7 +26,7 @@
                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="YTj-Y1-d84"/>
                                             <constraint firstAttribute="height" constant="55" id="yrR-UN-ImG"/>
                                         </constraints>
-                                        <state key="normal" title="Complete"/>
+                                        <state key="normal" title="Submit"/>
                                         <connections>
                                             <action selector="ctaButtonPress:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="WYL-mh-ahM"/>
                                         </connections>
@@ -64,7 +64,7 @@
                         <outlet property="containerView" destination="FJV-Ol-DMh" id="u04-fo-hdV"/>
                         <outlet property="ctaButton" destination="LTs-IP-1KR" id="dEV-01-cPm"/>
                         <outlet property="stickyFooterView" destination="7FR-JK-bsS" id="L5q-gg-efE"/>
-                        <segue destination="hUp-a5-WdN" kind="show" identifier="showComplete" id="6Gs-Nq-qAT"/>
+                        <segue destination="hUp-a5-WdN" kind="presentation" identifier="showComplete" id="6Gs-Nq-qAT"/>
                         <segue destination="jjh-4I-Nyi" kind="show" identifier="showTerminationAgreement" id="WUf-0P-5Pp"/>
                     </connections>
                 </viewController>
@@ -85,7 +85,7 @@
         <!--Terminate Agreement View Controller-->
         <scene sceneID="fUc-qK-Ije">
             <objects>
-                <viewController id="jjh-4I-Nyi" customClass="TerminateAgreementViewController" customModule="Atlantic_City_Electric" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TerminateAgreementViewController" id="jjh-4I-Nyi" customClass="TerminateAgreementViewController" customModule="Atlantic_City_Electric" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MDQ-k4-gWx">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -99,7 +99,7 @@
                                             <constraint firstAttribute="height" constant="55" id="6Xl-x8-uw1"/>
                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="ZiL-rr-mcv"/>
                                         </constraints>
-                                        <state key="normal" title="Complete"/>
+                                        <state key="normal" title="Submit"/>
                                         <connections>
                                             <action selector="ctaButtonPress:" destination="jjh-4I-Nyi" eventType="touchUpInside" id="Qft-VR-iVb"/>
                                         </connections>
@@ -137,7 +137,7 @@
                         <outlet property="containerView" destination="6hZ-E2-4Kj" id="sXN-Tx-as4"/>
                         <outlet property="ctaButton" destination="Xia-fz-xfv" id="dn7-Yq-bH5"/>
                         <outlet property="stickyFooterView" destination="jNU-8x-1vR" id="gdm-KS-tkT"/>
-                        <segue destination="hUp-a5-WdN" kind="show" identifier="showComplete" id="dWh-gr-NwG"/>
+                        <segue destination="hUp-a5-WdN" kind="presentation" identifier="showComplete" id="dWh-gr-NwG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vty-LE-A2e" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -146,7 +146,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="6Gs-Nq-qAT"/>
+        <segue reference="dWh-gr-NwG"/>
     </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="systemBackgroundColor">

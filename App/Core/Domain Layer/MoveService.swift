@@ -31,6 +31,66 @@ enum MoveService {
         NetworkingLayer.request(router: .addressLookup(request: addressLookupRequest), completion: completion)
     }
     
+    static func thirdPartyTransferEligibilityCheck(moveFlowData: MoveServiceFlowData, completion: @escaping (Result<ThirdPartyTransferEligibilityResponse, NetworkingError>) -> ()) {
+        completion(.success(ThirdPartyTransferEligibilityResponse(isEligible: true)))
+//        guard let unwrappedStartDate = moveFlowData.startServiceDate,
+//              let startServiceDate = DateFormatter.mmDdYyyyFormatter.string(from: unwrappedStartDate),
+//              let stopServiceDate = DateFormatter.mmDdYyyyFormatter.string(from: moveFlowData.stopServiceDate),
+//        let ssn = moveFlowData.idVerification?.ssn else {
+//                  completion(.failure(.decoding))
+//              }
+//        let emailAddress = moveFlowData.unauthMoveData?.accountDetails != nil ? (moveFlowData.unauthMoveData?.accountDetails?.customerInfo.emailAddress) : moveFlowData.currentAccountDetail?.customerInfo.emailAddress
+//
+//
+//
+//        let startServiceAddress = StartServiceAddress(streetName: moveFlowData.addressLookupResponse?.first?.streetName ?? moveFlowData.addressLookupResponse?.first?.address,
+//                                                      houseNo: moveFlowData.addressLookupResponse?.first?.streetNumber,
+//                                                      apartmentUnitNo: moveFlowData.addressLookupResponse?.first?.apartmentUnitNo,
+//                                                      city: moveFlowData.addressLookupResponse?.first?.city,
+//                                                      zipCode: moveFlowData.addressLookupResponse?.first?.zipCode,
+//                                                      customerID: moveFlowData.unauthMoveData?.accountDetails != nil ? moveFlowData.unauthMoveData?.accountDetails?.customerInfo.number : moveFlowData.currentAccountDetail?.customerNumber,
+//                                                      state: USState.getState(state: moveFlowData.verificationDetail?.startStopMoveServiceDetails.primaryCustInformation.billingAddress.state ?? ""),
+//                                                      country: moveFlowData.verificationDetail?.startStopMoveServiceDetails.primaryCustInformation.billingAddress.country,
+//                                                      premiseID: moveFlowData.addressLookupResponse?.first?.premiseID,
+//                                                      buildingMrID: <#T##String#>,
+//                                                      premiseOrganization: moveFlowData.addressLookupResponse?.first?.premiseID)
+//        let primaryCustInformation = PrimaryCustInformation(firstName: moveFlowData.unauthMoveData?.accountDetails != nil ? moveFlowData.unauthMoveData?.accountDetails?.customerInfo.firstName :moveFlowData.currentAccountDetail?.customerInfo.firstName,
+//                                                            lastName: moveFlowData.unauthMoveData?.accountDetails != nil ? moveFlowData.unauthMoveData?.accountDetails?.customerInfo.lastName : moveFlowData.currentAccountDetail?.customerInfo.lastName,
+//                                                            address: moveFlowData.unauthMoveData?.accountDetails != nil ? moveFlowData.unauthMoveData?.accountDetails?.addressLine : moveFlowData.currentAccountDetail?.address,
+//                                                            city: moveFlowData.unauthMoveData?.accountDetails != nil ? moveFlowData.unauthMoveData?.accountDetails?.city : moveFlowData.currentAccountDetail?.city,
+//                                                            state: moveFlowData.unauthMoveData?.accountDetails != nil ? USState.getState(state: moveFlowData.unauthMoveData?.accountDetails?.state ?? "") : USState.getState(state: moveFlowData.currentAccountDetail?.state ?? ""),
+//                                                            zipCode: moveFlowData.unauthMoveData?.accountDetails != nil ? moveFlowData.unauthMoveData?.accountDetails?.zipCode : moveFlowData.currentAccountDetail?.zipCode,
+//                                                            contactPhoneNo: moveFlowData.unauthMoveData?.accountDetails != nil ? moveFlowData.unauthMoveData?.accountDetails?.customerInfo.primaryPhoneNumber : moveFlowData.currentAccountDetail?.customerInfo.primaryPhoneNumber,
+//                                                            altContactPhoneNo: nil,
+//                                                            email: moveFlowData.unauthMoveData?.accountDetails != nil ? moveFlowData.unauthMoveData?.accountDetails?.customerInfo.emailAddress : moveFlowData.currentAccountDetail?.customerInfo.emailAddress,
+//                                                            useAltBillingAddress: !moveFlowData.hasCurrentServiceAddressForBill,
+//                                                            billingAddress: BillingAddressRequest(moveFlowData: moveFlowData))
+//        let primaryCustomerID = PrimaryCustPersIdentification(ssnNumber: ssn)
+//        let stopServiceAddress = StopServiceAddress(streetName: moveFlowData.unauthMoveData?.accountDetails != nil ? moveFlowData.unauthMoveData?.accountDetails?.addressLine : (moveFlowData.currentAccountDetail?.addressLine ?? moveFlowData.currentAccountDetail?.street),
+//                                                    city: moveFlowData.unauthMoveData?.accountDetails != nil ? moveFlowData.unauthMoveData?.accountDetails?.city : moveFlowData.currentAccountDetail?.city,
+//                                                    state: moveFlowData.unauthMoveData?.accountDetails != nil ? USState.getState(state: moveFlowData.unauthMoveData?.accountDetails?.state ?? "") : USState.getState(state: moveFlowData.currentAccountDetail?.state ?? ""),
+//                                                    country: "United States of America",
+//                                                    zipCode: moveFlowData.unauthMoveData?.accountDetails != nil ? moveFlowData.unauthMoveData?.accountDetails?.zipCode : moveFlowData.currentAccountDetail?.zipCode,
+//                                                    premiseID: moveFlowData.unauthMoveData?.accountDetails != nil ? moveFlowData.unauthMoveData?.accountDetails?.premiseNumber : moveFlowData.currentPremise?.premiseNumber,
+//                                                    customerID: moveFlowData.unauthMoveData?.accountDetails != nil ? moveFlowData.unauthMoveData?.accountDetails?.customerInfo.number : moveFlowData.currentAccountDetail?.customerNumber,
+//                                                    accountNumber: moveFlowData.unauthMoveData?.accountDetails != nil ? moveFlowData.unauthMoveData?.selectedAccountNumber : moveFlowData.currentAccountDetail?.accountNumber,
+//                                                    address: moveFlowData.unauthMoveData?.accountDetails != nil ? moveFlowData.unauthMoveData?.accountDetails?.addressLine : moveFlowData.currentAccountDetail?.address)
+//
+//        let startStopMoveDetails = StartStopMoveDetails(startServiceAddress: startServiceAddress,
+//                                                        startServiceDate: startServiceDate,
+//                                                        stopServiceDate: stopServiceDate,
+//                                                        primaryCustInformation: primaryCustInformation,
+//                                                        primaryCustPersIdentification: primaryCustomerID,
+//                                                        secondaryCustInformation: nil,
+//                                                        secondaryCustPersIdentification: nil,
+//                                                        emailAddress: emailAddress,
+//                                                        salesAndUseTax: SalesAndUseTax(),
+//                                                        covid: "NEGATIVE",
+//                                                        stopServiceAddress: stopServiceAddress)
+//        let thirdPartyTransferEligibilityRequest = ThirdPartyTransferEligibilityRequest(startStopMoveDetails: startStopMoveDetails, isVerificationReqd: true)
+        //        NetworkingLayer.request(router: .thirdPartyTransferEligibility(request: thirdPartyTransferEligibilityRequest), completion: completion)
+    }
+    
     static func moveService(moveFlowData: MoveServiceFlowData, completion: @escaping (Result<MoveServiceResponse, NetworkingError>) -> ()) {
 
         let moveISUMServiceRequest = MoveISUMServiceRequest(moveServiceFlowData: moveFlowData)
