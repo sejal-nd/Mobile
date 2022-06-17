@@ -424,7 +424,16 @@ struct Configuration {
             case .test:
                 oPowerURLString = "https://aztst1-secure.\(accountOpCo.urlDisplayString).com/pages/mobileopower.aspx"
             case .stage:
-                oPowerURLString = "https://azstg-secure.\(accountOpCo.urlDisplayString).com/pages/mobileopower.aspx"
+                if accountOpCo == .pepco {
+                    oPowerURLString = "https://s-c-agentis-\(accountOpCo.urlDisplayString)-ui-01.azurewebsites.net/pages/mobileopower.aspx"
+                } else {
+                    oPowerURLString = "https://s-c-agentis-\(accountOpCo.urlString)-ui-01.azurewebsites.net/pages/mobileopower.aspx"
+                }
+//                if let projectURLRawValue = UserDefaults.standard.string(forKey: "selectedProjectURL"), let projectURLSuffix = ProjectURLSuffix(rawValue: projectURLRawValue), projectURLSuffix != .none {
+//                    oPowerURLString = "https://s-c-\(projectURLSuffix.projectURLString)-\(accountOpCo.urlString)-ui-01.azurewebsites.net/pages/mobileopower.aspx"
+//                } else {
+//                    oPowerURLString = "https://azstg-secure.\(accountOpCo.urlDisplayString).com/pages/mobileopower.aspx"
+//                }
             }
         }
         return oPowerURLString

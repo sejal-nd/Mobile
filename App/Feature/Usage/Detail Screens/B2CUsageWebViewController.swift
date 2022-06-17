@@ -42,6 +42,10 @@ class B2CUsageWebViewController: UIViewController {
         webView.navigationDelegate = self
         webView.isHidden = true
         
+        webView.configuration.defaultWebpagePreferences.allowsContentJavaScript = true
+        let controller = webView.configuration.userContentController
+        controller.add(self, name: "error")
+        
         errorImage.tintColor = .attentionOrange
         errorTitle.font = SystemFont.semibold.of(textStyle: .title3)
         errorTitle.textColor = .deepGray
@@ -88,7 +92,7 @@ class B2CUsageWebViewController: UIViewController {
                 guard let self = self else { return }
                 
                 self.viewModel.widget = self.viewModel.selectedCommercialWidget()
-                self.loadWebView()
+                self.fetchJWT()
             })
             .disposed(by: disposeBag)
         
@@ -124,6 +128,9 @@ class B2CUsageWebViewController: UIViewController {
     }
     
     private func fetchJWT() {
+        loadingIndicator.isHidden = false
+        webView.isHidden = true
+        
         let accountNumber = viewModel.accountDetail?.accountNumber ?? ""
         var nonce = accountNumber
         
@@ -146,6 +153,7 @@ class B2CUsageWebViewController: UIViewController {
             case .failure:
                 guard let self = self else { return }
                 self.errorView.isHidden = false
+                self.webView.isHidden = true
                 self.loadingIndicator.isHidden = true
             }
         }
@@ -184,5 +192,11 @@ extension B2CUsageWebViewController: WKNavigationDelegate {
         loadingIndicator.isHidden = true
         webView.isHidden = true
         Log.error("Error loading usage web view: \(error)\n\(error.localizedDescription)")
+    }
+}
+
+extension B2CUsageWebViewController: WKScriptMessageHandler {
+    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+        print(message)
     }
 }
