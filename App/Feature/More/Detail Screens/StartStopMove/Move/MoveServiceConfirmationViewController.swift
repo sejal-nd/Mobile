@@ -26,6 +26,7 @@ class MoveServiceConfirmationViewController: UIViewController {
     @IBOutlet weak var startServiceAddressLabel: UILabel!
 
     @IBOutlet weak var thirdPartySupplierStackView: UIStackView!
+    @IBOutlet weak var thirdPartySupplierInnerContentView: UIView!
     @IBOutlet weak var thirdPartySupplierView: UIView!
     @IBOutlet weak var thirdPartySupplierStatusLabel: UILabel!
     @IBOutlet weak var thirdPartyInfoButton: UIButton!
@@ -79,7 +80,7 @@ class MoveServiceConfirmationViewController: UIViewController {
         accountNumberStaticLabel.font = SystemFont.regular.of(textStyle: .footnote)
         accountNumberLabel.font = SystemFont.semibold.of(size: 15.0)
 
-        for view in [stopServiceView, startServiceView, billingAddressView, billChargeView, accountNumberView] {
+        for view in [stopServiceView, startServiceView, billingAddressView, billChargeView, accountNumberView, thirdPartySupplierInnerContentView] {
             view?.roundCorners(.allCorners, radius: 10.0, borderColor: UIColor(red: 216.0/255.0, green: 216.0/255.0, blue: 216.0/255.0, alpha: 1.0), borderWidth: 1.0)
         }
     }
@@ -138,6 +139,7 @@ class MoveServiceConfirmationViewController: UIViewController {
         nextStepStackView.isHidden = viewModel.moveServiceResponse.isResolved ?? false
         
         if viewModel.shouldShowSeamlessMove {
+            thirdPartyInfoButton.setTitle("", for: .normal)
             let thirdPartySupplierStatusText: String
             if viewModel.transferEligibility == .eligible {
                 if viewModel.transferOption == .transfer {
@@ -179,9 +181,8 @@ class MoveServiceConfirmationViewController: UIViewController {
             modalText = "Your Third Party Supplier electric agreement will be discontinued. This will be reflected in your account after your new start service date.\n\nFor any questions or concerns, please contact your Third Party Supplier.\n\nYour retail electric supplier’s phone number is provided in the Electric Supply Charges portion of your BGE bill."
         }
         
-        let infoModal = InfoModalViewController(title: NSLocalizedString("Third Party Supplier Update", comment: ""),
-                                                image: #imageLiteral(resourceName: "bill_infographic"),
-                                                description: modalText)
+        
+        let infoModal = InfoAlertController(title: "Third Party Supplier Update", message: modalText)
         self.navigationController?.present(infoModal, animated: true, completion: nil)
     }
 }

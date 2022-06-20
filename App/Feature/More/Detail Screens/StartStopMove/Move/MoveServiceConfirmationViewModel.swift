@@ -25,6 +25,7 @@ class MoveServiceConfirmationViewModel {
          transferOption: TransferServiceOption = .transfer) {
         self.moveServiceResponse = moveServiceResponse
         self.isUnauth = isUnauth
+        self.shouldShowSeamlessMove = shouldShowSeamlessMove
         self.transferEligibility = transferEligibility
         self.transferOption = transferOption
     }
