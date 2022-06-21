@@ -48,7 +48,7 @@ class B2CRegistrationViewController: UIViewController {
             index = validatedAccount?.accounts.firstIndex { $0.accountNumber == selectedAccount.accountNumber } ?? 0
         }
         
-        let request = B2CJWTRequest(customerID: validatedAccount?.accounts[index].customerID ?? "", type: validatedAccount?.type?[index] ?? "residential")
+        let request = B2CJWTRequest(customerID: validatedAccount?.accounts[index].customerID ?? "", type: validatedAccount?.type?[index] ?? "residential", lastname: validatedAccount?.customerName)
         RegistrationService.fetchB2CJWT(request: request) { [weak self] result in
             switch result {
             case .success(let token):
