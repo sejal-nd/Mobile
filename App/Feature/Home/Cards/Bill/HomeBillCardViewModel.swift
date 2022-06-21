@@ -960,12 +960,14 @@ class HomeBillCardViewModel {
             case .paymentPending:
                 return accountDetail.billingInfo.pendingPaymentsTotal.currencyString
             default:
-                if Configuration.shared.opco.isPHI {
+                switch Configuration.shared.opco {
+                    case .ace, .delmarva, .pepco:
+                        guard let netDue = accountDetail.billingInfo.netDueAmount else { return nil }
+                            return netDue.currencyString
+                    default: // For credit scenario we want to show the positive number
                     guard let netDue = accountDetail.billingInfo.netDueAmount else { return nil }
-                    return netDue.currencyString
-                } else {
-                    guard let netDue = accountDetail.billingInfo.netDueAmount else { return nil }
-                    return abs(netDue).currencyString
+                        return abs(netDue).currencyString
+                    
                 }
             }
         }
