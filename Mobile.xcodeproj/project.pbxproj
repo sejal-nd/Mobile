@@ -1034,6 +1034,8 @@
 		C39E1DD127682C4600569B89 /* OutageService+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39E1DD027682C4500569B89 /* OutageService+Rx.swift */; };
 		C39E1DD227682C4600569B89 /* OutageService+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39E1DD027682C4500569B89 /* OutageService+Rx.swift */; };
 		C39F2B4D253920C60095A8F1 /* PaymentAmountSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3595B25025328E6E006F7EBC /* PaymentAmountSheetViewController.swift */; };
+		C3AF0CE52862057000BA98C4 /* CommercialUsageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3AF0CE42862057000BA98C4 /* CommercialUsageViewModel.swift */; };
+		C3AF0CE72862059400BA98C4 /* CommercialUsageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3AF0CE62862059400BA98C4 /* CommercialUsageViewController.swift */; };
 		C3B5F38525E97EDA005D3740 /* FeatureFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B5F38425E97EDA005D3740 /* FeatureFlags.swift */; };
 		C3B5F38625E97EDA005D3740 /* FeatureFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B5F38425E97EDA005D3740 /* FeatureFlags.swift */; };
 		C3B5F38C25E98418005D3740 /* FeatureFlagUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B5F38B25E98418005D3740 /* FeatureFlagUtility.swift */; };
@@ -2385,6 +2387,8 @@
 		C3943F382799D1B8005E5327 /* PKCEResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKCEResult.swift; sourceTree = "<group>"; };
 		C39E1DCD2767F60100569B89 /* OutageTrackerRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutageTrackerRequest.swift; sourceTree = "<group>"; };
 		C39E1DD027682C4500569B89 /* OutageService+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OutageService+Rx.swift"; sourceTree = "<group>"; };
+		C3AF0CE42862057000BA98C4 /* CommercialUsageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommercialUsageViewModel.swift; sourceTree = "<group>"; };
+		C3AF0CE62862059400BA98C4 /* CommercialUsageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommercialUsageViewController.swift; sourceTree = "<group>"; };
 		C3B5F38425E97EDA005D3740 /* FeatureFlags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureFlags.swift; sourceTree = "<group>"; };
 		C3B5F38B25E98418005D3740 /* FeatureFlagUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureFlagUtility.swift; sourceTree = "<group>"; };
 		C3B5F39225E98441005D3740 /* FeatureFlagService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureFlagService.swift; sourceTree = "<group>"; };
@@ -3752,6 +3756,7 @@
 		3559C8AA22FB4BF500481A87 /* Usage */ = {
 			isa = PBXGroup;
 			children = (
+				C3AF0CE32862055000BA98C4 /* Commercial Usage */,
 				358BD20E20F7A8FD00DA2012 /* Usage.storyboard */,
 				B0472B282111011F0048C1A7 /* UsageViewController.swift */,
 				358DE0A421021471002C544E /* UsageViewModel.swift */,
@@ -5676,6 +5681,15 @@
 			path = "Outage Tracker";
 			sourceTree = "<group>";
 		};
+		C3AF0CE32862055000BA98C4 /* Commercial Usage */ = {
+			isa = PBXGroup;
+			children = (
+				C3AF0CE42862057000BA98C4 /* CommercialUsageViewModel.swift */,
+				C3AF0CE62862059400BA98C4 /* CommercialUsageViewController.swift */,
+			);
+			path = "Commercial Usage";
+			sourceTree = "<group>";
+		};
 		E800431B1E65FF4D005CF531 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -7238,6 +7252,7 @@
 				B094A63D210270830028F90F /* BillBreakdownViewModel.swift in Sources */,
 				30DFE8612492641900FEFDE4 /* EditNicknameViewModel.swift in Sources */,
 				B085C44720FFD49400CE0893 /* ReportedOutagesStore.swift in Sources */,
+				C3AF0CE72862059400BA98C4 /* CommercialUsageViewController.swift in Sources */,
 				B0030D082097BC8300327A3D /* MaintenanceModeView.swift in Sources */,
 				82A18E9E1EB919B300BE9F21 /* ForgotUsernameViewModel.swift in Sources */,
 				67893A9724DB1E26000143D6 /* GameService+Rx.swift in Sources */,
@@ -7376,6 +7391,7 @@
 				B068DB5620D2E99300930589 /* HomeEditCardCell.swift in Sources */,
 				C336047424D32D13002CF260 /* AutoPayUnenrollRequest.swift in Sources */,
 				C3172994282D64490093C2D6 /* AgentisWidget.swift in Sources */,
+				C3AF0CE52862057000BA98C4 /* CommercialUsageViewModel.swift in Sources */,
 				B094A34D20D9442400E81303 /* HomeCard.swift in Sources */,
 				82A18E5F1EB918C900BE9F21 /* BudgetBillingViewModel.swift in Sources */,
 				C3B6556024ABD9790048C64B /* SERResult.swift in Sources */,

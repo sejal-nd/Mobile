@@ -26,10 +26,10 @@ final class FeatureFlagUtility {
         case isB2CAuthentication // calculated value = isAzureAuthentication || isPkceAuthentication
         case isGamificationEnabled
         // Commercial Agentis Widgets
-        case usageAgentisWidget
-        case compareAgentisWidget
-        case tipsAgentisWidget
-        case projectedUsageAgentisWidget
+        case isAgentisUsageWidget
+        case isAgentisCompareWidget
+        case isAgentisTipsWidget
+        case isAgentisProjectedUsageWidget
     }
     
     static let shared = FeatureFlagUtility()
@@ -57,10 +57,10 @@ final class FeatureFlagUtility {
             FeatureFlagKey.hasUnauthenticatedISUM.rawValue : false,
             FeatureFlagKey.isB2CAuthentication.rawValue : false,
             FeatureFlagKey.isGamificationEnabled.rawValue: false,
-            FeatureFlagKey.usageAgentisWidget.rawValue: true,
-            FeatureFlagKey.compareAgentisWidget.rawValue: true,
-            FeatureFlagKey.tipsAgentisWidget.rawValue: true,
-            FeatureFlagKey.projectedUsageAgentisWidget.rawValue: true,
+            FeatureFlagKey.isAgentisUsageWidget.rawValue: false,
+            FeatureFlagKey.isAgentisCompareWidget.rawValue: false,
+            FeatureFlagKey.isAgentisTipsWidget.rawValue: false,
+            FeatureFlagKey.isAgentisProjectedUsageWidget.rawValue: false,
             FeatureFlagKey.isLowPaymentAllowed.rawValue : false
         ]
         
@@ -93,10 +93,10 @@ final class FeatureFlagUtility {
                     FeatureFlagKey.hasUnauthenticatedISUM.rawValue : featureFlags.hasUnauthenticatedISUM,
                     FeatureFlagKey.isB2CAuthentication.rawValue : featureFlags.isAzureAuthentication || featureFlags.isPkceAuthentication,
                     FeatureFlagKey.isGamificationEnabled.rawValue : featureFlags.isGamificationEnabled,
-                    FeatureFlagKey.usageAgentisWidget.rawValue : featureFlags.usageAgentisWidget,
-                    FeatureFlagKey.compareAgentisWidget.rawValue : featureFlags.compareAgentisWidget,
-                    FeatureFlagKey.tipsAgentisWidget.rawValue : featureFlags.tipsAgentisWidget,
-                    FeatureFlagKey.projectedUsageAgentisWidget.rawValue : featureFlags.projectedUsageAgentisWidget,
+                    FeatureFlagKey.isAgentisUsageWidget.rawValue : featureFlags.isAgentisUsageWidget,
+                    FeatureFlagKey.isAgentisCompareWidget.rawValue : featureFlags.isAgentisCompareWidget,
+                    FeatureFlagKey.isAgentisTipsWidget.rawValue : featureFlags.isAgentisTipsWidget,
+                    FeatureFlagKey.isAgentisProjectedUsageWidget.rawValue : featureFlags.isAgentisProjectedWidget,
                     FeatureFlagKey.isLowPaymentAllowed.rawValue : featureFlags.isLowPaymentAllowed
                 ]
                 

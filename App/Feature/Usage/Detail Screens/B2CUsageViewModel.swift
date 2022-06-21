@@ -23,7 +23,7 @@ class B2CUsageViewModel {
         
         var widgets: [AgentisWidget] = []
         
-        if FeatureFlagUtility.shared.bool(forKey: .usageAgentisWidget) {
+        if FeatureFlagUtility.shared.bool(forKey: .isAgentisUsageWidget) {
             if isElectricAccount {
                 widgets.append(.electricUsage)
             }
@@ -32,7 +32,7 @@ class B2CUsageViewModel {
             }
         }
         
-        if FeatureFlagUtility.shared.bool(forKey: .compareAgentisWidget) {
+        if FeatureFlagUtility.shared.bool(forKey: .isAgentisCompareWidget) {
             if isElectricAccount {
                 widgets.append(.compareElectric)
             }
@@ -41,7 +41,7 @@ class B2CUsageViewModel {
             }
         }
         
-        if FeatureFlagUtility.shared.bool(forKey: .tipsAgentisWidget) {
+        if FeatureFlagUtility.shared.bool(forKey: .isAgentisTipsWidget) {
             if isElectricAccount {
                 widgets.append(.electricTips)
             }
@@ -50,7 +50,7 @@ class B2CUsageViewModel {
             }
         }
         
-        if FeatureFlagUtility.shared.bool(forKey: .projectedUsageAgentisWidget) {
+        if FeatureFlagUtility.shared.bool(forKey: .isAgentisProjectedUsageWidget) {
             widgets.append(.projectedUsage)
         }
 //        return AgentisWidget.commercialWidgets.filter { widget in

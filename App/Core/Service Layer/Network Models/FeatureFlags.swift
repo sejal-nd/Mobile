@@ -40,10 +40,10 @@ public struct FeatureFlags: Decodable {
     public var hasAuthenticatedISUM: Bool = false
     public var hasUnauthenticatedISUM: Bool = false
     public var isGamificationEnabled: Bool = false
-    public var usageAgentisWidget: Bool = true
-    public var compareAgentisWidget: Bool = true
-    public var tipsAgentisWidget: Bool = true
-    public var projectedUsageAgentisWidget: Bool = true
+    public var isAgentisUsageWidget: Bool = true
+    public var isAgentisCompareWidget: Bool = true
+    public var isAgentisTipsWidget: Bool = true
+    public var isAgentisProjectedWidget: Bool = true
     public var isLowPaymentAllowed: Bool = false
 
     enum CodingKeys: String, CodingKey {
@@ -60,10 +60,10 @@ public struct FeatureFlags: Decodable {
         case hasAuthenticatedISUM
         case hasUnauthenticatedISUM
         case isGamificationEnabled
-        case usageAgentisWidget
-        case compareAgentisWidget
-        case tipsAgentisWidget
-        case projectedUsageAgentisWidget
+        case isAgentisUsageWidget
+        case isAgentisCompareWidget
+        case isAgentisTipsWidget
+        case isAgentisProjectedWidget
         case isLowPaymentAllowed
     }
     
@@ -87,10 +87,10 @@ public struct FeatureFlags: Decodable {
         hasAuthenticatedISUM = try container.decodeIfPresent(Bool.self, forKey: .hasAuthenticatedISUM) ?? false
         hasUnauthenticatedISUM = try container.decodeIfPresent(Bool.self, forKey: .hasUnauthenticatedISUM) ?? false
         isGamificationEnabled = try container.decodeIfPresent(Bool.self, forKey: .isGamificationEnabled) ?? false
-        usageAgentisWidget = try container.decodeIfPresent(Bool.self, forKey: .usageAgentisWidget) ?? true
-        compareAgentisWidget = try container.decodeIfPresent(Bool.self, forKey: .compareAgentisWidget) ?? true
-        tipsAgentisWidget = try container.decodeIfPresent(Bool.self, forKey: .tipsAgentisWidget) ?? true
-        projectedUsageAgentisWidget = try container.decodeIfPresent(Bool.self, forKey: .projectedUsageAgentisWidget) ?? true
+        isAgentisUsageWidget = try container.decodeIfPresent(Bool.self, forKey: .isAgentisUsageWidget) ?? false
+        isAgentisCompareWidget = try container.decodeIfPresent(Bool.self, forKey: .isAgentisCompareWidget) ?? false
+        isAgentisTipsWidget = try container.decodeIfPresent(Bool.self, forKey: .isAgentisTipsWidget) ?? false
+        isAgentisProjectedWidget = try container.decodeIfPresent(Bool.self, forKey: .isAgentisProjectedWidget) ?? false
         isLowPaymentAllowed = try container.decodeIfPresent(Bool.self, forKey: .isLowPaymentAllowed) ?? false
     }
 }

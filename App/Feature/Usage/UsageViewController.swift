@@ -664,7 +664,7 @@ class UsageViewController: AccountPickerViewController {
     }
     
     private func showCommercialState() {
-        scrollView?.isHidden = true
+        scrollView?.isHidden = viewModel.shouldShowAgentisWidgets()
         switchAccountsLoadingIndicator.isHidden = true
         unavailableView.isHidden = true
         accountPickerSpacerView.isHidden = true
@@ -798,13 +798,26 @@ class UsageViewController: AccountPickerViewController {
     }
     
     private func addCommercialView(_ accountDetail: AccountDetail) {
-        let usageStoryboard = UIStoryboard(name: "Usage", bundle: nil)
-        let commercialVC = usageStoryboard.instantiateViewController(withIdentifier: "B2CUsageWebViewController") as! B2CUsageWebViewController
-        commercialVC.accountDetail = accountDetail
+        if viewModel.shouldShowAgentisWidgets() {
+            let usageStoryboard = UIStoryboard(name: "Usage", bundle: nil)
+            let commercialVC = usageStoryboard.instantiateViewController(withIdentifier: "B2CUsageWebViewController") as! B2CUsageWebViewController
+            commercialVC.accountDetail = accountDetail
+            
+            addChild(commercialVC)
+            view.addSubview(commercialVC.view)
+            
+            commercialViewController = commercialVC
+        } else {
+            let commercialVC = CommercialUsageViewController(with: viewModel.commercialViewModel)
+            
+            addChild(commercialVC)
+            mainStack.addArrangedSubview(commercialVC.view)
+            
+            commercialViewController = commercialVC
+        }
         
-        addChild(commercialVC)
-        view.addSubview(commercialVC.view)
-                
+        guard let commercialVC = commercialViewController else { return }
+        
         commercialVC.view.translatesAutoresizingMaskIntoConstraints = false
         
         commercialVC.didMove(toParent: self)
@@ -817,8 +830,6 @@ class UsageViewController: AccountPickerViewController {
         ])
         
         view.backgroundColor = .white
-        
-        commercialViewController = commercialVC
     }
     
     // MARK: - Usage Tool Cards
@@ -974,6 +985,7 @@ extension UsageViewController: AccountPickerDelegate {
     func accountPickerDidChangeAccount(_ accountPicker: AccountPicker) {
         showSwitchAccountsLoadingState()
         viewModel.fetchAllData()
+        viewModel.commercialViewModel.selectedIndex.accept(0) // reset commercial tab selection
         setRefreshControlEnabled(enabled: false)
     }
     

@@ -64,6 +64,10 @@ class UsageViewModel {
     
     private let commercialErrorTrigger = PublishSubject<Error>()
     
+    private(set) lazy var commercialViewModel = CommercialUsageViewModel(accountDetail: accountDetailEvents.elements(),
+                                                                         ssoData: commercialDataEvents.elements(),
+                                                                         errorTrigger: commercialErrorTrigger)
+    
     private lazy var billAnalysisEvents: Observable<Event<(CompareBillResult, BillForecastResult?)>> = Observable
         .combineLatest(accountDetailEvents.elements().filter { $0.isEligibleForUsageData },
                        lastYearPreviousBillSelectedSegmentIndex.asObservable(),
@@ -179,7 +183,13 @@ class UsageViewModel {
     
     private(set) lazy var showCommercialState: Driver<Void> = accountDetailEvents.elements()
         .filter { !$0.isResidential }
-        .mapTo(())
+        .flatMap { accountDetails -> Observable<Void> in
+            if self.shouldShowAgentisWidgets() {
+                return Observable.just(accountDetails).mapTo(())
+            } else {
+                return self.commercialDataEvents.mapTo(())
+            }
+        }
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var showPrepaidState: Driver<Void> = accountDetailEvents
@@ -927,6 +937,13 @@ class UsageViewModel {
         }
         // Default to electric
         return false
+    }
+    
+    func shouldShowAgentisWidgets() -> Bool {
+        return FeatureFlagUtility.shared.bool(forKey: .isAgentisUsageWidget) ||
+        FeatureFlagUtility.shared.bool(forKey: .isAgentisCompareWidget) ||
+        FeatureFlagUtility.shared.bool(forKey: .isAgentisTipsWidget) ||
+        FeatureFlagUtility.shared.bool(forKey: .isAgentisProjectedUsageWidget)
     }
 }
 
