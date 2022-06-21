@@ -965,8 +965,8 @@ class HomeBillCardViewModel {
                         guard let netDue = accountDetail.billingInfo.netDueAmount else { return nil }
                             return netDue.currencyString
                     default: // For credit scenario we want to show the positive number
-                    guard let netDue = accountDetail.billingInfo.netDueAmount else { return nil }
-                        return abs(netDue).currencyString
+                        guard let netDue = accountDetail.billingInfo.netDueAmount else { return nil }
+                            return abs(netDue).currencyString
                     
                 }
             }
