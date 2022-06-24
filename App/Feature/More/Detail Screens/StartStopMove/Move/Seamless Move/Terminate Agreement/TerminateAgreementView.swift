@@ -20,7 +20,7 @@ enum TransferEligibility: Identifiable, CaseIterable {
         case .eligible:
             return "BGE recommends you contact your current retail electric supplier regarding any contractual issues that may result from closing your account, such as possible fees. Your retail electric supplier’s phone number is provided in the Electric Supply Charges portion of your BGE bill."
         case .ineligible:
-            return "Completing your Stop Service request will close your current BGE account and your supply agreement with your retail electric supplier will terminate as a result.\n\nBGE recommends you contact your current retail electric supplier regarding any contractual issues that may result from closing your account, such as possible fees. Your retail electric supplier’s phone number is provided in the Electric Supply Charges portion of your BGE bill."
+            return "Completing your Move Service request will close your current BGE account and your supply agreement with your retail electric supplier will terminate as a result.\n\nBGE recommends you contact your current retail electric supplier regarding any contractual issues that may result from closing your account, such as possible fees. Your retail electric supplier’s phone number is provided in the Electric Supply Charges portion of your BGE bill."
         }
     }
     
