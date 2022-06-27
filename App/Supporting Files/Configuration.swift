@@ -453,16 +453,15 @@ struct Configuration {
             if envName == .beta {
                 let projectTierRawValue = UserDefaults.standard.string(forKey: "selectedProjectTier") ?? "Stage"
                 let projectTier = ProjectTier(rawValue: projectTierRawValue) ?? .stage
+                baseUrl = "eudapi-\(projectTierRawValue.lowercased()).\(operatingCompany.urlDisplayString).com"
+                
                 switch projectTier {
                 case .dev:
-                    baseUrl = "xzc-e-n-eudapi-\(operatingCompany.rawValue.lowercased())-d-ams-01.azure-api.net"
                     // Unsure what oAuth would be here...
                     oAuthEndpoint = "api-development.exeloncorp.com"
                 case .test:
-                    baseUrl = "xze-e-n-eudapi-\(operatingCompany.rawValue.lowercased())-t-ams-01.azure-api.net"
                     oAuthEndpoint = "api-development.exeloncorp.com"
                 case .stage:
-                    baseUrl = "mcsstg.mobileenv.\(operatingCompany.urlDisplayString).com"
                     oAuthEndpoint = "api-stage.exeloncorp.com"
                 }
             } else {

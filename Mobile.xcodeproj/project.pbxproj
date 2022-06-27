@@ -7599,7 +7599,7 @@
 				ANON_ASSOCIATED_DOMAIN = bge.com;
 				APP_CENTER_ID = "8bfce822-abdf-4e5c-8425-0897f447692a";
 				ASSOCIATED_DOMAIN = secure.bge.com;
-				BASE_URL = mcs.mobileenv.bge.com;
+				BASE_URL = eudapi.bge.com;
 				BUILD_DISPLAY_NAME = BGE;
 				BUILD_FLAVOR = BGE;
 				BUNDLE_ID = com.exelon.mobile.bge;
@@ -11346,7 +11346,7 @@
 				ANON_ASSOCIATED_DOMAIN = azstage.peco.com;
 				APP_CENTER_ID = "5396a42c-0b16-4984-af32-ee9957764960";
 				ASSOCIATED_DOMAIN = "azstg-secure.peco.com";
-				BASE_URL = "xze-e-n-eudapi-peco-t-ams-01.azure-api.net";
+				BASE_URL = "eudapi-test.peco.com";
 				BUILD_DISPLAY_NAME = PECO;
 				BUILD_FLAVOR = PECO;
 				BUNDLE_ID = com.exelon.mobile.peco.testing;
@@ -11651,7 +11651,7 @@
 				ANON_ASSOCIATED_DOMAIN = azstage.peco.com;
 				APP_CENTER_ID = "432a1a21-ccbb-4ee9-b3e3-2480090618f5";
 				ASSOCIATED_DOMAIN = "azstg-secure.peco.com";
-				BASE_URL = mcsstg.mobileenv.peco.com;
+				BASE_URL = eudapi-stage.peco.com;
 				BUILD_DISPLAY_NAME = PECO;
 				BUILD_FLAVOR = PECO;
 				BUNDLE_ID = com.exelon.mobile.peco.staging;
@@ -11872,7 +11872,7 @@
 				ANON_ASSOCIATED_DOMAIN = peco.com;
 				APP_CENTER_ID = "fbc9f960-869c-47c4-a765-a650369ffca1";
 				ASSOCIATED_DOMAIN = secure.peco.com;
-				BASE_URL = mcs.mobileenv.peco.com;
+				BASE_URL = eudapi.peco.com;
 				BUILD_DISPLAY_NAME = PECO;
 				BUILD_FLAVOR = PECO;
 				BUNDLE_ID = com.exelon.mobile.peco.prodbeta;
@@ -12092,7 +12092,7 @@
 				ANON_ASSOCIATED_DOMAIN = peco.com;
 				APP_CENTER_ID = "0a416441-1ad6-4be2-b009-79f8b15f8b58";
 				ASSOCIATED_DOMAIN = secure.peco.com;
-				BASE_URL = mcs.mobileenv.peco.com;
+				BASE_URL = eudapi.peco.com;
 				BUILD_DISPLAY_NAME = PECO;
 				BUILD_FLAVOR = PECO;
 				BUNDLE_ID = com.exelon.mobile.peco;
@@ -12313,7 +12313,7 @@
 				ANON_ASSOCIATED_DOMAIN = azstage.atlanticcityelectric.com;
 				APP_CENTER_ID = "57d12f65-bf2b-40b5-b707-dd8ebe73edfb";
 				ASSOCIATED_DOMAIN = "azstg-secure.atlanticcityelectric.com";
-				BASE_URL = "xze-e-n-eudapi-ace-t-ams-01.azure-api.net";
+				BASE_URL = "eudapi-test.atlanticcityelectric.com";
 				BUILD_DISPLAY_NAME = "AC Electric";
 				BUILD_FLAVOR = ACE;
 				BUNDLE_ID = com.exelon.mobile.ace.testing;
@@ -12618,7 +12618,7 @@
 				ANON_ASSOCIATED_DOMAIN = azstage.atlanticcityelectric.com;
 				APP_CENTER_ID = "95dc785e-3617-4005-81f4-42ae3e25d65d";
 				ASSOCIATED_DOMAIN = "azstg-secure.atlanticcityelectric.com";
-				BASE_URL = mcsstg.mobileenv.atlanticcityelectric.com;
+				BASE_URL = eudapi-stage.atlanticcityelectric.com;
 				BUILD_DISPLAY_NAME = "AC Electric";
 				BUILD_FLAVOR = ACE;
 				BUNDLE_ID = com.exelon.mobile.ace.staging;
@@ -12840,7 +12840,7 @@
 				ANON_ASSOCIATED_DOMAIN = atlanticcityelectric.com;
 				APP_CENTER_ID = "e9a6ea32-b142-4414-9e6d-d686f7364d95";
 				ASSOCIATED_DOMAIN = secure.atlanticcityelectric.com;
-				BASE_URL = mcs.mobileenv.atlanticcityelectric.com;
+				BASE_URL = eudapi.atlanticcityelectric.com;
 				BUILD_DISPLAY_NAME = "AC Electric";
 				BUILD_FLAVOR = ACE;
 				BUNDLE_ID = com.exelon.mobile.ace.prodbeta;
@@ -13061,7 +13061,7 @@
 				ANON_ASSOCIATED_DOMAIN = atlanticcityelectric.com;
 				APP_CENTER_ID = "e717a9ba-bed1-443f-8311-9653b4bd058b";
 				ASSOCIATED_DOMAIN = secure.atlanticcityelectric.com;
-				BASE_URL = mcs.mobileenv.atlanticcityelectric.com;
+				BASE_URL = eudapi.atlanticcityelectric.com;
 				BUILD_DISPLAY_NAME = "AC Electric";
 				BUILD_FLAVOR = ACE;
 				BUNDLE_ID = com.ifactorconsulting.ace;
@@ -13283,7 +13283,7 @@
 				ANON_ASSOCIATED_DOMAIN = azstage.delmarva.com;
 				APP_CENTER_ID = "6180db89-0219-4878-98c5-51f0e334f8fe";
 				ASSOCIATED_DOMAIN = "azstg-secure.delmarva.com";
-				BASE_URL = "xze-e-n-eudapi-dpl-t-ams-01.azure-api.net";
+				BASE_URL = "eudapi-test.delmarva.com";
 				BUILD_DISPLAY_NAME = Delmarva;
 				BUILD_FLAVOR = DPL;
 				BUNDLE_ID = com.exelon.mobile.delmarva.testing;
@@ -13588,7 +13588,7 @@
 				ANON_ASSOCIATED_DOMAIN = azstage.delmarva.com;
 				APP_CENTER_ID = "8b361cdc-3267-42de-91d0-b1bae6342067";
 				ASSOCIATED_DOMAIN = "azstg-secure.delmarva.com";
-				BASE_URL = mcsstg.mobileenv.delmarva.com;
+				BASE_URL = eudapi-stage.delmarva.com;
 				BUILD_DISPLAY_NAME = Delmarva;
 				BUILD_FLAVOR = DPL;
 				BUNDLE_ID = com.exelon.mobile.delmarva.staging;
@@ -13810,7 +13810,7 @@
 				ANON_ASSOCIATED_DOMAIN = delmarva.com;
 				APP_CENTER_ID = "d3ecc389-d8ad-4806-a5d3-e067b7adb02d";
 				ASSOCIATED_DOMAIN = secure.delmarva.com;
-				BASE_URL = mcs.mobileenv.delmarva.com;
+				BASE_URL = eudapi.delmarva.com;
 				BUILD_DISPLAY_NAME = Delmarva;
 				BUILD_FLAVOR = DPL;
 				BUNDLE_ID = com.exelon.mobile.delmarva.prodbeta;
@@ -14031,7 +14031,7 @@
 				ANON_ASSOCIATED_DOMAIN = delmarva.com;
 				APP_CENTER_ID = "9f85e63c-c1a6-40de-811b-df4074860f14";
 				ASSOCIATED_DOMAIN = secure.delmarva.com;
-				BASE_URL = mcs.mobileenv.delmarva.com;
+				BASE_URL = eudapi.delmarva.com;
 				BUILD_DISPLAY_NAME = Delmarva;
 				BUILD_FLAVOR = DPL;
 				BUNDLE_ID = com.ifactorconsulting.delmarva;
@@ -14253,7 +14253,7 @@
 				ANON_ASSOCIATED_DOMAIN = azstage.pepco.com;
 				APP_CENTER_ID = "0962af30-9abf-4ac5-92fa-358fbbe101af";
 				ASSOCIATED_DOMAIN = "azstg-secure.pepco.com";
-				BASE_URL = "xze-e-n-eudapi-pepco-t-ams-01.azure-api.net";
+				BASE_URL = "eudapi-test.pepco.com";
 				BUILD_DISPLAY_NAME = Pepco;
 				BUILD_FLAVOR = PEPCO;
 				BUNDLE_ID = com.exelon.mobile.pepco.testing;
@@ -14558,7 +14558,7 @@
 				ANON_ASSOCIATED_DOMAIN = azstage.pepco.com;
 				APP_CENTER_ID = "48d86d61-5d68-4757-92db-9c3996f5bc18";
 				ASSOCIATED_DOMAIN = "azstg-secure.pepco.com";
-				BASE_URL = mcsstg.mobileenv.pepco.com;
+				BASE_URL = eudapi-stage.pepco.com;
 				BUILD_DISPLAY_NAME = Pepco;
 				BUILD_FLAVOR = PEPCO;
 				BUNDLE_ID = com.exelon.mobile.pepco.staging;
@@ -14780,7 +14780,7 @@
 				ANON_ASSOCIATED_DOMAIN = pepco.com;
 				APP_CENTER_ID = "689f516c-90e8-48e5-b8a4-a9b51b0f0298";
 				ASSOCIATED_DOMAIN = secure.pepco.com;
-				BASE_URL = mcs.mobileenv.pepco.com;
+				BASE_URL = eudapi.pepco.com;
 				BUILD_DISPLAY_NAME = Pepco;
 				BUILD_FLAVOR = PEPCO;
 				BUNDLE_ID = com.exelon.mobile.pepco.prodbeta;
@@ -15001,7 +15001,7 @@
 				ANON_ASSOCIATED_DOMAIN = pepco.com;
 				APP_CENTER_ID = "5e8d65a7-7ffb-46b9-99f1-34d4080f52dd";
 				ASSOCIATED_DOMAIN = secure.pepco.com;
-				BASE_URL = mcs.mobileenv.pepco.com;
+				BASE_URL = eudapi.pepco.com;
 				BUILD_DISPLAY_NAME = Pepco;
 				BUILD_FLAVOR = PEPCO;
 				BUNDLE_ID = com.ifactorconsulting.pepco;
@@ -15223,7 +15223,7 @@
 				ANON_ASSOCIATED_DOMAIN = azstage.comed.com;
 				APP_CENTER_ID = "10cbbd03-c59b-4a65-ad28-bd1f289cd329";
 				ASSOCIATED_DOMAIN = "azstg-secure.comed.com";
-				BASE_URL = "xze-e-n-eudapi-comed-t-ams-01.azure-api.net";
+				BASE_URL = "eudapi-test.comed.com";
 				BUILD_DISPLAY_NAME = ComEd;
 				BUILD_FLAVOR = COMED;
 				BUNDLE_ID = com.exelon.mobile.comed.testing;
@@ -15528,7 +15528,7 @@
 				ANON_ASSOCIATED_DOMAIN = azstage.comed.com;
 				APP_CENTER_ID = "bf4bfe55-3dfd-423b-acfa-32ef84b3776c";
 				ASSOCIATED_DOMAIN = "azstg-secure.comed.com";
-				BASE_URL = mcsstg.mobileenv.comed.com;
+				BASE_URL = eudapi-stage.comed.com;
 				BUILD_DISPLAY_NAME = ComEd;
 				BUILD_FLAVOR = COMED;
 				BUNDLE_ID = com.exelon.mobile.comed.staging;
@@ -15749,7 +15749,7 @@
 				ANON_ASSOCIATED_DOMAIN = comed.com;
 				APP_CENTER_ID = "c98a5583-5894-4b00-bf91-c0a7822376a9";
 				ASSOCIATED_DOMAIN = secure.comed.com;
-				BASE_URL = mcs.mobileenv.comed.com;
+				BASE_URL = eudapi.comed.com;
 				BUILD_DISPLAY_NAME = ComEd;
 				BUILD_FLAVOR = COMED;
 				BUNDLE_ID = com.exelon.mobile.comed.prodbeta;
@@ -15969,7 +15969,7 @@
 				ANON_ASSOCIATED_DOMAIN = comed.com;
 				APP_CENTER_ID = "9f56e08c-6fa5-4209-93a2-d773601a1e45";
 				ASSOCIATED_DOMAIN = secure.comed.com;
-				BASE_URL = mcs.mobileenv.comed.com;
+				BASE_URL = eudapi.comed.com;
 				BUILD_DISPLAY_NAME = ComEd;
 				BUILD_FLAVOR = COMED;
 				BUNDLE_ID = com.iphoneproduction.exelon;
@@ -16190,7 +16190,7 @@
 				ANON_ASSOCIATED_DOMAIN = azstage.bge.com;
 				APP_CENTER_ID = "5555b456-47b1-4288-b4d4-c6cf44b15fb9";
 				ASSOCIATED_DOMAIN = "azstg-secure.bge.com";
-				BASE_URL = "xze-e-n-eudapi-bge-t-ams-01.azure-api.net";
+				BASE_URL = "eudapi-test.bge.com";
 				BUILD_DISPLAY_NAME = BGE;
 				BUILD_FLAVOR = BGE;
 				BUNDLE_ID = com.exelon.mobile.bge.testing;
@@ -16323,7 +16323,7 @@
 				ANON_ASSOCIATED_DOMAIN = bge.com;
 				APP_CENTER_ID = "bddc73d9-4dfb-421f-a59f-71c08c3647e5";
 				ASSOCIATED_DOMAIN = secure.bge.com;
-				BASE_URL = mcs.mobileenv.bge.com;
+				BASE_URL = eudapi.bge.com;
 				BUILD_DISPLAY_NAME = BGE;
 				BUILD_FLAVOR = BGE;
 				BUNDLE_ID = com.exelon.mobile.bge.prodbeta;
@@ -16455,7 +16455,7 @@
 				ANON_ASSOCIATED_DOMAIN = azstage.bge.com;
 				APP_CENTER_ID = "3bf3242e-af11-4b1e-9242-99dce77bbbc8";
 				ASSOCIATED_DOMAIN = "azstg-secure.bge.com";
-				BASE_URL = mcsstg.mobileenv.bge.com;
+				BASE_URL = eudapi-stage.bge.com;
 				BUILD_DISPLAY_NAME = BGE;
 				BUILD_FLAVOR = BGE;
 				BUNDLE_ID = com.exelon.mobile.bge.staging;
