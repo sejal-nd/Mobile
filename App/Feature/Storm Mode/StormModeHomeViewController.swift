@@ -704,6 +704,7 @@ class StormModeHomeViewController: AccountPickerViewController {
             self.loadingView.isHidden = true
             self.finalPayTitleLabel.isHidden = false
             self.setRefreshControlEnabled(enabled: true)
+            self.update()
             self.updateContent(outageJustReported: false)
         }, onError: { [weak self] error in
             guard let self = self else { return }

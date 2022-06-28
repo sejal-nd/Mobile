@@ -9,6 +9,7 @@
 import RxSwift
 import RxCocoa
 import RxSwiftExt
+import UIKit
 
 protocol BGEAutoPayViewControllerDelegate: class {
     func BGEAutoPayViewController(_ BGEAutoPayViewController: BGEAutoPayViewController, didUpdateWithToastMessage message: String)
@@ -57,6 +58,7 @@ class BGEAutoPayViewController: UIViewController {
     var accountDetail: AccountDetail! // Passed from BillViewController
     
     lazy var viewModel: BGEAutoPayViewModel = BGEAutoPayViewModel( accountDetail: accountDetail)
+    let billingHistoryVC = BillingHistoryViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -276,12 +278,21 @@ class BGEAutoPayViewController: UIViewController {
                 guard let self = self else { return }
                 let title = NSLocalizedString("Unenrolled from AutoPay", comment: "")
                 let description = NSLocalizedString("You have successfully unenrolled from AutoPay. If you have an upcoming automatic payment for your current balance, it may be viewed or canceled in Bill & Payment Activity.", comment: "")
+                let modalBtnLabel = "View Bill & Payment Activity"
                 let infoModal = InfoModalViewController(title: title,
                                                         image: #imageLiteral(resourceName: "img_confirmation"),
-                                                        description: description)
-                { [weak self] in
+                                                        description: description,
+                                                        modalBtnLabel: modalBtnLabel,
+                                                        onClose: { [weak self] in
                     self?.navigationController?.popViewController(animated: true)
-                }
+                }, onBtnClick: { [weak self] in
+                    let storyboard = UIStoryboard(name: "Bill", bundle: nil)
+                    let billingHistoryVC = storyboard.instantiateViewController(withIdentifier: "billingHistory") as! BillingHistoryViewController
+                    billingHistoryVC.viewModel.accountDetail = self?.viewModel.accountDetail
+                    billingHistoryVC.viewModel.viewingMoreActivity = false
+                    self?.navigationController?.pushViewController(billingHistoryVC, animated: true)
+                    
+                })
                 
                 self.navigationController?.present(infoModal, animated: true)
                 }, onError: { [weak self] errMessage in
