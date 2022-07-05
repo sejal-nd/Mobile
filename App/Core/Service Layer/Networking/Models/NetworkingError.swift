@@ -201,7 +201,7 @@ extension NetworkingError: LocalizedError {
         case .finaled:
             return NSLocalizedString("Finaled Account", comment: "Error title")
         case .noPay:
-            if Configuration.shared.opco == .peco {
+            if Configuration.shared.opco == .peco || Configuration.shared.opco == .ace {
                 return NSLocalizedString("Cut for non pay", comment: "Error title")
             } else {
             return NSLocalizedString("Finaled for Non-Pay", comment: "Error title")
