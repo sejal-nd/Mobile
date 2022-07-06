@@ -313,6 +313,8 @@ extension NetworkingError: LocalizedError {
         case .noPay:
             if Configuration.shared.opco == .peco {
                 return NSLocalizedString("Our records indicate that you have been cut for non-payment. If you wish to restore your power, please call PECO at 1-888-480-1533.", comment: "Error description")
+            }else if Configuration.shared.opco == .ace{
+                return NSLocalizedString("Our records indicate that you have been cut for non-payment. If you wish to restore your power, please make a payment", comment: "Error description")
             } else {
              return NSLocalizedString("We can’t load the outage status for this account because it’s been closed for non-payment and is no longer connected to your premise address.", comment: "Error description")
             }
