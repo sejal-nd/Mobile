@@ -234,7 +234,13 @@ extension NetworkingError: LocalizedError {
             return NSLocalizedString("Password Protected Account", comment: "Error title")
         case .noProfileExists:
             return NSLocalizedString("We're sorry, we weren't able to process your request.", comment: "Error title")
-        case .peakRewardsOverrides, .unknown, .invalidURL, .invalidResponse, .invalidData, .decoding, .generic, .invalidProfile, .utilityAccountVelocity:
+        case .unknown:
+            if Configuration.shared.opco == .ace {
+                return NSLocalizedString("Error", comment: "Error title")
+            }else{
+                return NSLocalizedString("Sorry, That Didn't Quite Work.", comment: "Error title")
+            }
+        case .peakRewardsOverrides, .invalidURL, .invalidResponse, .invalidData, .decoding, .generic, .invalidProfile, .utilityAccountVelocity:
             return NSLocalizedString("Sorry, That Didn't Quite Work.", comment: "Error title")
         case .tooManyPerAccount:
             return NSLocalizedString("Unable to process electronic payments", comment: "Error title")
@@ -338,7 +344,13 @@ extension NetworkingError: LocalizedError {
             return NSLocalizedString("Your account is password protected and can’t be accessed through this app.", comment: "Error description")
         case .noProfileExists:
             return NSLocalizedString("An online profile already exists for this account. Please log in to view the profile.", comment: "Error description")
-        case .peakRewardsOverrides, .unknown, .invalidURL, .invalidResponse, .invalidData, .decoding, .generic, .invalidProfile, .utilityAccountVelocity:
+        case .unknown:
+            if Configuration.shared.opco == .ace {
+                return accountNotFoundMessage
+            }else{
+                return NSLocalizedString("Please try again later.", comment: "Error description")
+            }
+        case .peakRewardsOverrides, .invalidURL, .invalidResponse, .invalidData, .decoding, .generic, .invalidProfile, .utilityAccountVelocity:
             return NSLocalizedString("Please try again later.", comment: "Error description")
         case .tooManyPerAccount:
             return NSLocalizedString("Electronic payments for your utility account are not available at this time due to overuse. Please contact \(AccountsStore.shared.accountOpco.displayString) customer service for further assistance.", comment: "Error description")
