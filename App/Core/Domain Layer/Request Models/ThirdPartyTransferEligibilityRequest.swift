@@ -26,42 +26,41 @@ public struct ThirdPartyTransferEligibilityRequest: Codable {
 
 // MARK: - StartStopMoveDetails
 public struct StartStopMoveDetails: Codable {
-    public let startServiceAddress: StartServiceAddress
-    public let startServiceDate, stopServiceDate: String
-    public let primaryCustInformation: PrimaryCustInformation
-    public let primaryCustPersIdentification: PrimaryCustPersIdentification
-    public var secondaryCustInformation, secondaryCustPersIdentification: String?
     public let emailAddress: String
-    public let salesAndUseTax: SalesAndUseTax
-    public let covid: String
+    public let primaryCustPersIdentification: PrimaryCustPersIdentification
+    public let primaryCustInformation: PrimaryCustInformation
+    public let startServiceDate, stopServiceDate: String
+    public let startServiceAddress: StartServiceAddress
     public let stopServiceAddress: StopServiceAddress
+    public let rentOwn: String
+    public let premiseOccupied, rcdStopCapable, requestCourtesyCall: Bool
 
     enum CodingKeys: String, CodingKey {
-        case startServiceAddress = "StartServiceAddress"
+        case emailAddress = "EmailAddress"
+        case primaryCustPersIdentification = "PrimaryCustPersIdentification"
+        case primaryCustInformation = "PrimaryCustInformation"
         case startServiceDate = "StartServiceDate"
         case stopServiceDate = "StopServiceDate"
-        case primaryCustInformation = "PrimaryCustInformation"
-        case primaryCustPersIdentification = "PrimaryCustPersIdentification"
-        case secondaryCustInformation = "SecondaryCustInformation"
-        case secondaryCustPersIdentification = "SecondaryCustPersIdentification"
-        case emailAddress = "EmailAddress"
-        case salesAndUseTax = "SalesAndUseTax"
-        case covid = "Covid"
+        case startServiceAddress = "StartServiceAddress"
         case stopServiceAddress = "StopServiceAddress"
+        case rentOwn = "RentOwn"
+        case premiseOccupied = "PremiseOccupied"
+        case rcdStopCapable = "RCDStopCapable"
+        case requestCourtesyCall = "RequestCourtesyCall"
     }
 
-    public init(startServiceAddress: StartServiceAddress, startServiceDate: String, stopServiceDate: String, primaryCustInformation: PrimaryCustInformation, primaryCustPersIdentification: PrimaryCustPersIdentification, secondaryCustInformation: String?, secondaryCustPersIdentification: String?, emailAddress: String, salesAndUseTax: SalesAndUseTax, covid: String, stopServiceAddress: StopServiceAddress) {
-        self.startServiceAddress = startServiceAddress
+    public init(emailAddress: String, primaryCustPersIdentification: PrimaryCustPersIdentification, primaryCustInformation: PrimaryCustInformation, startServiceDate: String, stopServiceDate: String, startServiceAddress: StartServiceAddress, stopServiceAddress: StopServiceAddress, rentOwn: String, premiseOccupied: Bool, rcdStopCapable: Bool, requestCourtesyCall: Bool, selectedStopServicePoints: [Any?], serviceLists: [Any?]) {
+        self.emailAddress = emailAddress
+        self.primaryCustPersIdentification = primaryCustPersIdentification
+        self.primaryCustInformation = primaryCustInformation
         self.startServiceDate = startServiceDate
         self.stopServiceDate = stopServiceDate
-        self.primaryCustInformation = primaryCustInformation
-        self.primaryCustPersIdentification = primaryCustPersIdentification
-        self.secondaryCustInformation = secondaryCustInformation
-        self.secondaryCustPersIdentification = secondaryCustPersIdentification
-        self.emailAddress = emailAddress
-        self.salesAndUseTax = salesAndUseTax
-        self.covid = covid
+        self.startServiceAddress = startServiceAddress
         self.stopServiceAddress = stopServiceAddress
+        self.rentOwn = rentOwn
+        self.premiseOccupied = premiseOccupied
+        self.rcdStopCapable = rcdStopCapable
+        self.requestCourtesyCall = requestCourtesyCall
     }
 }
 
@@ -78,13 +77,13 @@ public struct PrimaryCustInformation: Codable {
         case lastName = "LastName"
         case address = "Address"
         case city = "City"
-        case state = "State"
+        case state = "State" // optional?
         case zipCode = "ZipCode"
         case contactPhoneNo = "ContactPhoneNo"
-        case altContactPhoneNo = "AltContactPhoneNo"
+        case altContactPhoneNo = "AltContactPhoneNo" // optional?
         case email = "Email"
         case useAltBillingAddress = "UseAltBillingAddress"
-        case billingAddress = "BillingAddress"
+        case billingAddress = "BillingAddress" // optional?
     }
 
     public init(firstName: String, lastName: String, address: String, city: String, state: String, zipCode: String, contactPhoneNo: String, altContactPhoneNo: String, email: String, useAltBillingAddress: Bool, billingAddress: String?) {
@@ -104,21 +103,20 @@ public struct PrimaryCustInformation: Codable {
 
 // MARK: - PrimaryCustPersIdentification
 public struct PrimaryCustPersIdentification: Codable {
-    public let ssnNumber: String
+    public let ssnNumber, dateOfBirth, employmentStatus, driverLicenseNumber: String
 
     enum CodingKeys: String, CodingKey {
         case ssnNumber = "SSNNumber"
+        case dateOfBirth = "DateOfBirth"
+        case employmentStatus = "EmploymentStatus"
+        case driverLicenseNumber = "DriverLicenseNumber"
     }
 
-    public init(ssnNumber: String) {
+    public init(ssnNumber: String, dateOfBirth: String, employmentStatus: String, driverLicenseNumber: String) {
         self.ssnNumber = ssnNumber
-    }
-}
-
-// MARK: - SalesAndUseTax
-public struct SalesAndUseTax: Codable {
-
-    public init() {
+        self.dateOfBirth = dateOfBirth
+        self.employmentStatus = employmentStatus
+        self.driverLicenseNumber = driverLicenseNumber
     }
 }
 
@@ -131,7 +129,7 @@ public struct StartServiceAddress: Codable {
 
     enum CodingKeys: String, CodingKey {
         case streetName = "StreetName"
-        case houseNo = "HouseNo"
+        case houseNo = "HouseNo" // optional?
         case apartmentUnitNo = "ApartmentUnitNo"
         case city = "City"
         case zipCode = "ZipCode"
@@ -171,9 +169,9 @@ public struct StopServiceAddress: Codable {
         case country = "Country"
         case zipCode = "ZipCode"
         case premiseID = "PremiseID"
-        case customerID = "CustomerID"
+        case customerID = "CustomerID" // optional?
         case accountNumber = "AccountNumber"
-        case address = "Address"
+        case address = "Address" // optional?
     }
 
     public init(streetName: String, city: String, state: String, country: String, zipCode: String, premiseID: String, customerID: String, accountNumber: String, address: String) {

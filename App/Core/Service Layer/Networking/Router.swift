@@ -212,7 +212,7 @@ public enum Router {
         switch self {
         case .weather, .getAzureToken, .getOPowerAzureToken, .fetchB2CJWT:
             return .none
-        case .minVersion, .maintenanceMode, .fetchToken, .refreshToken, .outageStatusAnon, .reportOutageAnon, .recoverUsername, .recoverMaskedUsername, .accountLookup, .validateRegistration, .checkDuplicateRegistration, .registrationQuestions, .registration, .sendConfirmationEmail, .recoverPassword, .bankName, .newsAndUpdates, .alertBanner, .meterPingAnon, .validateConfirmationEmail, .passwordChangeAnon, .getFeatureFlags, .accountDetailsAnon, .workDaysAnon, .stopServiceVerificationAnon, .validateZipCodeAnon, .streetAddressAnon, .appartmentAnon, .addressLookupAnon, .moveISUMServiceAnon:
+        case .minVersion, .maintenanceMode, .fetchToken, .refreshToken, .outageStatusAnon, .reportOutageAnon, .recoverUsername, .recoverMaskedUsername, .accountLookup, .validateRegistration, .checkDuplicateRegistration, .registrationQuestions, .registration, .sendConfirmationEmail, .recoverPassword, .bankName, .newsAndUpdates, .alertBanner, .meterPingAnon, .validateConfirmationEmail, .passwordChangeAnon, .getFeatureFlags, .accountDetailsAnon, .workDaysAnon, .stopServiceVerificationAnon, .validateZipCodeAnon, .streetAddressAnon, .appartmentAnon, .addressLookupAnon, .moveISUMServiceAnon, .thirdPartyTransferEligibility:
             return .anon
         default:
             return .auth
@@ -258,8 +258,7 @@ public enum Router {
         case .addressLookupAnon:
             return "\(basePath)/\(ApiAccess.anon.path)/address/lookup"
         case .thirdPartyTransferEligibility:
-            #warning("TODO")
-            return "\(basePath)/\(apiAccess.path)/service/residential/todododododo"
+            return "\(basePath)/\(ApiAccess.anon.path)/BGE/seamless/move_eligibility"
         case .moveISUMService:
             return "\(basePath)/\(ApiAccess.anon.path)/service/residential/move"
         case .moveISUMServiceAnon:
