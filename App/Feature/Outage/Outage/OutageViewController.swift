@@ -464,7 +464,6 @@ extension OutageViewController: UITableViewDelegate {
             }
             performSegue(withIdentifier: "outageMapSegue", sender: true)
         case 2:
-            
             if userState == .authenticated {
                 GoogleAnalytics.log(event: .viewMapOfferComplete)
                 FirebaseUtility.logEvent(.authOutage(parameters: [.map]))
@@ -530,7 +529,6 @@ extension OutageViewController: OutageStatusDelegate {
 extension OutageViewController: DataDetectorTextViewLinkTapDelegate {
     func dataDetectorTextView(_ textView: DataDetectorTextView, didInteractWith URL: URL) {
         // Analytics
-      //  GoogleAnalytics.log(event: .outageAuthEmergencyCall)
         if userState == .authenticated {
             GoogleAnalytics.log(event: .outageAuthEmergencyCall)
             FirebaseUtility.logEvent(.authOutage(parameters: [.emergency_number]))
