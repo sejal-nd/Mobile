@@ -150,6 +150,7 @@ class FinalReviewMoveServiceViewController: UIViewController {
                         switch response {
                         case .success(let eligibilityResponse):
                             self.viewModel.moveFlowData.seamlessFlag = eligibilityResponse.seamlessflag
+                            self.viewModel.moveFlowData.queryStartPayload = eligibilityResponse.queryStartPayload
                             
                             if eligibilityResponse.isEligible {
                                 self.performSegue(withIdentifier: "showSeamlessMove", sender: nil)
