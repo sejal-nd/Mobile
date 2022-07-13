@@ -9,13 +9,16 @@
 import Foundation
 
 public struct ThirdPartyTransferEligibilityResponse: Decodable {
-    let isEligible: Bool
+    public let isEligible: Bool
+    public let seamlessflag: String
     
-    public init(seamlessflag: String) {
-        self.isEligible = seamlessflag.lowercased() == "y"
+    enum CodingKeys: String, CodingKey {
+        case seamlessflag = "seamlessflag"
     }
     
-    public init(isEligible: Bool) {
-        self.isEligible = isEligible
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        seamlessflag = try container.decodeIfPresent(String.self, forKey: .seamlessflag) ?? "N"
+        isEligible = seamlessflag.lowercased() == "y"
     }
 }

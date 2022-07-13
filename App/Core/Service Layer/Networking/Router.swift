@@ -258,7 +258,7 @@ public enum Router {
         case .addressLookupAnon:
             return "\(basePath)/\(ApiAccess.anon.path)/address/lookup"
         case .thirdPartyTransferEligibility:
-            return "\(basePath)/\(ApiAccess.anon.path)/BGE/seamless/move_eligibility"
+            return "\(basePath)/\(ApiAccess.anon.path)/seamless/move_eligibility"
         case .moveISUMService:
             return "\(basePath)/\(ApiAccess.anon.path)/service/residential/move"
         case .moveISUMServiceAnon:

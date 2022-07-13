@@ -35,6 +35,7 @@ public struct MoveISUMServiceRequest: Encodable {
         let selectedStopServicePoints: [String]?
         let accountNumber: String
         let rentOwn: String
+        let seamlessFlag: String?
         let createOnlineProfile: Bool?
         let stopServiceAddress: StopServiceAddressRequest
         let stopRentOwn: String
@@ -57,6 +58,7 @@ public struct MoveISUMServiceRequest: Encodable {
             self.startRentOwn = moveServiceFlowData.isOwner ? "BUYING OR OWNS" : "RENTING"
             self.createOnlineProfile = false
             self.stopServiceAddress = StopServiceAddressRequest(moveServiceFlowData: moveServiceFlowData)
+            self.seamlessFlag = moveServiceFlowData.seamlessFlag ?? "N"
         }
 
         enum CodingKeys: String, CodingKey {
@@ -76,6 +78,7 @@ public struct MoveISUMServiceRequest: Encodable {
             case stopServiceAddress = "StopServiceAddress"
             case stopRentOwn = "StopRentOwn"
             case startRentOwn = "StartRentOwn"
+            case seamlessFlag = "SeamlessFlag"
         }
     }
     

@@ -143,11 +143,14 @@ class FinalReviewMoveServiceViewController: UIViewController {
                 if self.viewModel.moveFlowData.currentAccountDetail?.hasThirdPartySupplier ?? false {
                     MoveService.thirdPartyTransferEligibilityCheck(moveFlowData: self.viewModel.moveFlowData, completion: { [weak self] response in
                         guard let `self` = self else { return }
+                                                
                         LoadingView.hide()
                         self.navigationController?.view.isUserInteractionEnabled = true
 
                         switch response {
                         case .success(let eligibilityResponse):
+                            self.viewModel.moveFlowData.seamlessFlag = eligibilityResponse.seamlessflag
+                            
                             if eligibilityResponse.isEligible {
                                 self.performSegue(withIdentifier: "showSeamlessMove", sender: nil)
                             } else {
