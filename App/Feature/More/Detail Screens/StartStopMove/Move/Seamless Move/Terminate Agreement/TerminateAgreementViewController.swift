@@ -70,7 +70,6 @@ class TerminateAgreementViewController: UIViewController {
         if hasAgreed {
             ctaButton.setLoading()
             
-            #warning("todo, implement seamless move eligability after the review screen, and add seamless move parameters into move service?")
             MoveService.moveService(moveFlowData: moveFlowData) { [weak self] (result: Result<MoveServiceResponse, NetworkingError>) in
                 guard let `self` = self else { return }
                 switch result {
