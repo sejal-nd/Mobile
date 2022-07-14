@@ -38,6 +38,13 @@ class OutageViewController: AccountPickerViewController {
     @IBOutlet weak var outageStatusView: OutageStatusView!
     @IBOutlet weak var footerTextView: ZeroInsetDataDetectorTextView!
     
+    @IBOutlet weak var outageNotificationBannerTitle: UILabel!
+    @IBOutlet weak var outageNotificationBannerDesciption: UILabel!
+    @IBOutlet weak var spacerView: UIView!
+    @IBOutlet weak var outageNotificationAlertBannerView: BillAlertBannerView!
+   
+    @IBOutlet weak var outageAlertImageView: UIImageView!
+    
     private lazy var outageTrackerViewController: OutageTrackerViewController? = {
         let storyboard = UIStoryboard(name: "OutageTracker", bundle: Bundle.main)
         
@@ -84,6 +91,14 @@ class OutageViewController: AccountPickerViewController {
         configureUserState(userState)
         
         updateView()
+        
+        outageNotificationBannerTitle.font = SystemFont.regular.of(textStyle: .caption1)
+        outageNotificationBannerDesciption.font = SystemFont.regular.of(textStyle: .caption2)
+        outageNotificationBannerTitle.textColor = .deepGray
+        outageNotificationBannerDesciption.textColor = .gray
+        spacerView.backgroundColor = .softGray
+        spacerView.isHidden = true
+        outageNotificationAlertBannerView.isHidden = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -267,6 +282,11 @@ class OutageViewController: AccountPickerViewController {
                 self.outageStatusView.setOutageStatus(outageStatus,
                                                       reportedResults: self.viewModel.reportedOutage,
                                                       hasJustReported: self.viewModel.hasJustReportedOutage)
+                
+                if !self.viewModel.hasJustReportedOutage {
+                    self.spacerView.isHidden = true
+                    self.outageNotificationAlertBannerView.isHidden = true
+                }
             }
             
             // If coming from shortcut, check these flags for report outage button availablility
@@ -379,6 +399,14 @@ class OutageViewController: AccountPickerViewController {
         self.outageStatusView.setOutageStatus(outageStatus,
                                               reportedResults: self.viewModel.reportedOutage,
                                               hasJustReported: self.viewModel.hasJustReportedOutage)
+    }
+    
+    @IBAction func openOutageNotificationAlertPreferences(_ sender: Any) {
+        guard let tabBarCtl = self.tabBarController as? MainTabBarController else {
+            return
+        }
+        tabBarCtl.navigateToAlertPreferences()
+     
     }
 }
 
@@ -558,5 +586,10 @@ extension OutageViewController: ReportOutageDelegate {
             event = .unauthOutage(parameters: [.report_complete])
         }
         FirebaseUtility.logEvent(event)
+        
+        if userState == .authenticated && self.viewModel.hasJustReportedOutage {
+            spacerView.isHidden = false
+            outageNotificationAlertBannerView.isHidden = false
+        }
     }
 }

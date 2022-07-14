@@ -31,4 +31,6 @@ extension NSNotification.Name {
     
     static let didRecieveDdeDpa = NSNotification.Name("kdidRecieveDdeDpa")
     static let didHommeBillCardCTAStatusReady = NSNotification.Name("kdidhomeBillCTAReady")
+    
+    static let didOpenPreferenceFromOutageScreen = NSNotification.Name("kdidOpenPreferenceFromOutageScreen")
 }
