@@ -20,7 +20,6 @@ class SeamlessMoveViewController: UIViewController {
     private var transferOption: TransferServiceOption = .transfer
     
     var moveFlowData: MoveServiceFlowData!
-    var moveResponse: MoveServiceResponse?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,11 +80,17 @@ class SeamlessMoveViewController: UIViewController {
                 case .success(let moveResponse):
                     FirebaseUtility.logEvent(.authMoveService(parameters: [moveResponse.isResolved == true ? .complete_resolved : .complete_unresolved]))
                     
-                    self.moveResponse = moveResponse
-                    self.performSegue(withIdentifier: "showComplete", sender: nil)
+                    let storyboard = UIStoryboard(name: "ISUMMove", bundle: nil)
+                    let moveServiceConfirmationViewController = storyboard.instantiateViewController(withIdentifier: "MoveServiceConfirmationViewController") as! MoveServiceConfirmationViewController
+                    moveServiceConfirmationViewController.viewModel = MoveServiceConfirmationViewModel(moveServiceResponse: moveResponse,
+                                                                                                       isUnauth: false,
+                                                                                                       shouldShowSeamlessMove: true,
+                                                                                                       transferEligibility: .eligible,
+                                                                                                       transferOption: self.transferOption)
+                    self.navigationController?.pushViewController(moveServiceConfirmationViewController, animated: true)
                 case .failure(let error):
                     FirebaseUtility.logEvent(.authMoveService(parameters: [.complete_unresolved]))
-
+                    
                     let alertVc = UIAlertController(title: error.title, message: error.description, preferredStyle: .alert)
                     alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
                     self.present(alertVc, animated: true, completion: nil)
@@ -105,13 +110,6 @@ extension SeamlessMoveViewController {
         if let vc = segue.destination as? TerminateAgreementViewController {
             vc.moveFlowData = moveFlowData
             vc.transferEligibility = .eligible
-        } else if let vc = segue.destination as? MoveServiceConfirmationViewController,
-                  let moveResponse = moveResponse {
-            vc.viewModel = MoveServiceConfirmationViewModel(moveServiceResponse: moveResponse,
-                                                            isUnauth: false,
-                                                            shouldShowSeamlessMove: true,
-                                                            transferEligibility: .eligible,
-                                                            transferOption: transferOption)
         }
     }
 }
