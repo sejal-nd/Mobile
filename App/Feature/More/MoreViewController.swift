@@ -527,9 +527,8 @@ extension MoreViewController: ChangePasswordViewControllerDelegate {
     func changePasswordViewControllerDidChangePassword(_ changePasswordViewController: UIViewController) {
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
             self.view.showToast(NSLocalizedString("Password changed", comment: ""))
-            //GoogleAnalytics.log(event: .changePasswordComplete)
-           // FirebaseUtility.logEvent(.more(parameters: [.change_password_complete]))
-           // print("======password changed===============")
+            GoogleAnalytics.log(event: .changePasswordComplete)
+            FirebaseUtility.logEvent(.more(parameters: [.change_password_complete]))
             
         })
     }
