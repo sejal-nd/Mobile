@@ -56,13 +56,6 @@ class AlertPreferencesViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
-        NotificationCenter.default.rx.notification(.didOpenPreferenceFromOutageScreen)
-            .asDriver(onErrorDriveWith: .empty())
-            .drive(onNext: { [weak self] _ in
-                self?.sectionTapped(1)
-            })
-            .disposed(by: disposeBag)
-        
         errorLabel.isHidden = true
         tableView.isHidden = true
         viewModel.fetchData(onCompletion: { [weak self] in
@@ -85,7 +78,6 @@ class AlertPreferencesViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.sectionTapped(2)
         FirebaseUtility.logScreenView(.alertPreferencesView(className: self.className))
     }
     
@@ -152,7 +144,9 @@ class AlertPreferencesViewController: UIViewController {
             guard let self = self else { return }
             
             FirebaseUtility.logEvent(.more(parameters: [.alert_preferences_complete]))
-            
+            if self.viewModel.initiatedFromOutageView {
+                FirebaseUtility.logEvent(.more(parameters: [.report_outage_enroll_alerts]))
+            }
             self.delegate?.alertPreferencesViewControllerDidSavePreferences()
             self.dismiss(animated: true, completion: nil)
             }, onError: { [weak self] errMessage in

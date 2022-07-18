@@ -402,11 +402,14 @@ class OutageViewController: AccountPickerViewController {
     }
     
     @IBAction func openOutageNotificationAlertPreferences(_ sender: Any) {
-        guard let tabBarCtl = self.tabBarController as? MainTabBarController else {
+        
+        let storyboard = UIStoryboard(name: "Alerts", bundle: nil)
+        guard let alertPrefsVC = storyboard.instantiateViewController(withIdentifier: "alertPreferences") as? AlertPreferencesViewController else {
             return
         }
-        tabBarCtl.navigateToAlertPreferences()
-     
+        alertPrefsVC.viewModel.initiatedFromOutageView = true
+        let newNavController = LargeTitleNavigationController(rootViewController: alertPrefsVC)
+        self.navigationController?.present(newNavController, animated: true)
     }
 }
 
