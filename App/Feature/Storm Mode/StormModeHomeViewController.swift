@@ -819,6 +819,7 @@ class StormModeHomeViewController: AccountPickerViewController {
         if outageJustReported && viewModel.reportedOutage != nil {
             outageStatusButton.setReportedState(estimatedRestorationDateString: viewModel.estimatedRestorationDateString)
             FirebaseUtility.logEvent(.stormOutage(parameters: [.report_complete]))
+            GoogleAnalytics.log(event: .outageStatusOfferComplete)
         } else if currentOutageStatus.isFinaled || currentOutageStatus.isNoPay || currentOutageStatus.isNonService {
             loadingContentView.isHidden = true
             outageStatusButton.isHidden = true

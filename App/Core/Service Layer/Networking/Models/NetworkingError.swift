@@ -201,7 +201,7 @@ extension NetworkingError: LocalizedError {
         case .finaled:
             return NSLocalizedString("Finaled Account", comment: "Error title")
         case .noPay:
-            if Configuration.shared.opco == .peco {
+            if Configuration.shared.opco == .peco || Configuration.shared.opco == .ace {
                 return NSLocalizedString("Cut for non pay", comment: "Error title")
             } else {
             return NSLocalizedString("Finaled for Non-Pay", comment: "Error title")
@@ -234,7 +234,13 @@ extension NetworkingError: LocalizedError {
             return NSLocalizedString("Password Protected Account", comment: "Error title")
         case .noProfileExists:
             return NSLocalizedString("We're sorry, we weren't able to process your request.", comment: "Error title")
-        case .peakRewardsOverrides, .unknown, .invalidURL, .invalidResponse, .invalidData, .decoding, .generic, .invalidProfile, .utilityAccountVelocity:
+        case .unknown:
+            if Configuration.shared.opco == .ace {
+                return NSLocalizedString("Error", comment: "Error title")
+            }else{
+                return NSLocalizedString("Sorry, That Didn't Quite Work.", comment: "Error title")
+            }
+        case .peakRewardsOverrides, .invalidURL, .invalidResponse, .invalidData, .decoding, .generic, .invalidProfile, .utilityAccountVelocity:
             return NSLocalizedString("Sorry, That Didn't Quite Work.", comment: "Error title")
         case .tooManyPerAccount:
             return NSLocalizedString("Unable to process electronic payments", comment: "Error title")
@@ -307,6 +313,8 @@ extension NetworkingError: LocalizedError {
         case .noPay:
             if Configuration.shared.opco == .peco {
                 return NSLocalizedString("Our records indicate that you have been cut for non-payment. If you wish to restore your power, please call PECO at 1-888-480-1533.", comment: "Error description")
+            }else if Configuration.shared.opco == .ace{
+                return NSLocalizedString("Our records indicate that you have been cut for non-payment. If you wish to restore your power, please make a payment", comment: "Error description")
             } else {
              return NSLocalizedString("We can’t load the outage status for this account because it’s been closed for non-payment and is no longer connected to your premise address.", comment: "Error description")
             }
@@ -338,7 +346,13 @@ extension NetworkingError: LocalizedError {
             return NSLocalizedString("Your account is password protected and can’t be accessed through this app.", comment: "Error description")
         case .noProfileExists:
             return NSLocalizedString("An online profile already exists for this account. Please log in to view the profile.", comment: "Error description")
-        case .peakRewardsOverrides, .unknown, .invalidURL, .invalidResponse, .invalidData, .decoding, .generic, .invalidProfile, .utilityAccountVelocity:
+        case .unknown:
+            if Configuration.shared.opco == .ace {
+                return accountNotFoundMessage
+            }else{
+                return NSLocalizedString("Please try again later.", comment: "Error description")
+            }
+        case .peakRewardsOverrides, .invalidURL, .invalidResponse, .invalidData, .decoding, .generic, .invalidProfile, .utilityAccountVelocity:
             return NSLocalizedString("Please try again later.", comment: "Error description")
         case .tooManyPerAccount:
             return NSLocalizedString("Electronic payments for your utility account are not available at this time due to overuse. Please contact \(AccountsStore.shared.accountOpco.displayString) customer service for further assistance.", comment: "Error description")

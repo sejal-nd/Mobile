@@ -119,7 +119,7 @@ class AlertPreferencesViewModel {
                          [.forYourInformation])
                     ]
                     let isGameUser = UserDefaults.standard.string(forKey: UserDefaultKeys.gameAccountNumber) != nil
-                    if isGameUser {
+                    if isGameUser && FeatureFlagUtility.shared.bool(forKey: .isGamificationEnabled) {
                         self.sections.append((NSLocalizedString("BGE's Play-n-Save Pilot", comment: ""), [.energyBuddyUpdates]))
                     }
                 case .comEd:

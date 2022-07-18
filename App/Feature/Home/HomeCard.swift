@@ -15,7 +15,7 @@ enum HomeCard: Int {
     static let editableCards: [HomeCard] = {
         var cards: [HomeCard] = [.bill, .usage, .template, .outageStatus, .projectedBill]
         
-        if Configuration.shared.opco == .bge {
+        if Configuration.shared.opco == .bge && FeatureFlagUtility.shared.bool(forKey: .isGamificationEnabled) {
             cards[1] = .game
         }
         
