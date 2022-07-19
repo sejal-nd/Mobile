@@ -72,6 +72,10 @@ class AlertPreferencesViewController: UIViewController {
                 
                 self.tableView.reloadData()
                 UIAccessibility.post(notification: .screenChanged, argument: self.view)
+                
+                if let section = self.viewModel.sections.firstIndex(where: {$0.0 == (NSLocalizedString("Outage", comment: ""))}), self.viewModel.initiatedFromOutageView {
+                    self.sectionTapped(section + 1)
+                }
             }
         })
     }
