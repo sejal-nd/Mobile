@@ -623,6 +623,7 @@ enum MoreParameter: String, EventParameter {
     case release_of_info_complete
     case alert_preferences_start
     case alert_preferences_complete
+    case report_outage_enroll_alerts
     case sign_out
 }
 
