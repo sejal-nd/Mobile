@@ -25,6 +25,8 @@ struct MoveServiceFlowData {
     var hasCurrentServiceAddressForBill: Bool
     var mailingAddress: MailingAddress?
     var unauthMoveData: UnauthMoveData?
+    var seamlessFlag: String?
+    var queryStartPayload: QueryStartPayload?
 }
 
 struct IdVerification {
