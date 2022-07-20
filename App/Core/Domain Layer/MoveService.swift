@@ -78,10 +78,10 @@ enum MoveService {
         )
         let primaryCustomerID = PrimaryCustPersIdentification(ssnNumber: ssn,
                                                               dateOfBirth: DateFormatter.mmDdYyyyFormatter.string(from: dateOfBirth),
-                                                              employmentStatus: employmentStatus.0,
+                                                              employmentStatus: EmployeeStatus.getEmployeeStatus(employmentStatus.0),
                                                               driverLicenseNumber: driverLicense)
         let stopServiceAddress = StopServiceAddress(//address: moveFlowData.unauthMoveData?.accountDetails != nil ? moveFlowData.unauthMoveData?.accountDetails?.addressLine : moveFlowData.currentAccountDetail?.address,
-                                                    streetName: moveFlowData.unauthMoveData?.accountDetails != nil ? moveFlowData.unauthMoveData?.accountDetails?.addressLine : (moveFlowData.currentAccountDetail?.addressLine ?? moveFlowData.currentAccountDetail?.street),
+                                                    streetName: moveFlowData.unauthMoveData?.accountDetails != nil ? 	moveFlowData.unauthMoveData?.accountDetails?.addressLine : (moveFlowData.currentAccountDetail?.addressLine ?? moveFlowData.currentAccountDetail?.street),
                                                     city: moveFlowData.unauthMoveData?.accountDetails != nil ? moveFlowData.unauthMoveData?.accountDetails?.city : moveFlowData.currentAccountDetail?.city,
                                                     state: moveFlowData.unauthMoveData?.accountDetails != nil ? USState.getState(state: moveFlowData.unauthMoveData?.accountDetails?.state ?? "") : USState.getState(state: moveFlowData.currentAccountDetail?.state ?? ""),
 //                                                    country: "United States of America",
