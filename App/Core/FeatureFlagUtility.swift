@@ -26,9 +26,12 @@ final class FeatureFlagUtility {
         case isB2CAuthentication // calculated value = isAzureAuthentication || isPkceAuthentication
         case isGamificationEnabled
         // Commercial Agentis Widgets
-        case isAgentisUsageWidget
-        case isAgentisCompareWidget
-        case isAgentisTipsWidget
+        case isAgentisElectricUsageWidget
+        case isAgentisGasUsageWidget
+        case isAgentisElectricCompareBillsWidget
+        case isAgentisGasCompareBillsWidget
+        case isAgentisElectricTipsWidget
+        case isAgentisGasTipsWidget
         case isAgentisProjectedUsageWidget
     }
     
@@ -57,9 +60,9 @@ final class FeatureFlagUtility {
             FeatureFlagKey.hasUnauthenticatedISUM.rawValue : false,
             FeatureFlagKey.isB2CAuthentication.rawValue : false,
             FeatureFlagKey.isGamificationEnabled.rawValue: false,
-            FeatureFlagKey.isAgentisUsageWidget.rawValue: false,
-            FeatureFlagKey.isAgentisCompareWidget.rawValue: false,
-            FeatureFlagKey.isAgentisTipsWidget.rawValue: false,
+            FeatureFlagKey.isAgentisElectricUsageWidget.rawValue: false,
+            FeatureFlagKey.isAgentisElectricCompareBillsWidget.rawValue: false,
+            FeatureFlagKey.isAgentisElectricTipsWidget.rawValue: false,
             FeatureFlagKey.isAgentisProjectedUsageWidget.rawValue: false,
             FeatureFlagKey.isLowPaymentAllowed.rawValue : false
         ]
@@ -93,9 +96,12 @@ final class FeatureFlagUtility {
                     FeatureFlagKey.hasUnauthenticatedISUM.rawValue : featureFlags.hasUnauthenticatedISUM,
                     FeatureFlagKey.isB2CAuthentication.rawValue : featureFlags.isAzureAuthentication || featureFlags.isPkceAuthentication,
                     FeatureFlagKey.isGamificationEnabled.rawValue : featureFlags.isGamificationEnabled,
-                    FeatureFlagKey.isAgentisUsageWidget.rawValue : featureFlags.isAgentisUsageWidget,
-                    FeatureFlagKey.isAgentisCompareWidget.rawValue : featureFlags.isAgentisCompareWidget,
-                    FeatureFlagKey.isAgentisTipsWidget.rawValue : featureFlags.isAgentisTipsWidget,
+                    FeatureFlagKey.isAgentisElectricUsageWidget.rawValue : featureFlags.isAgentisElectricUsageWidget,
+                    FeatureFlagKey.isAgentisGasUsageWidget.rawValue : featureFlags.isAgentisGasUsageWidget,
+                    FeatureFlagKey.isAgentisElectricCompareBillsWidget.rawValue : featureFlags.isAgentisElectricCompareBillsWidget,
+                    FeatureFlagKey.isAgentisGasCompareBillsWidget.rawValue : featureFlags.isAgentisGasCompareBillsWidget,
+                    FeatureFlagKey.isAgentisElectricTipsWidget.rawValue : featureFlags.isAgentisElectricTipsWidget,
+                    FeatureFlagKey.isAgentisGasTipsWidget.rawValue : featureFlags.isAgentisGasTipsWidget,
                     FeatureFlagKey.isAgentisProjectedUsageWidget.rawValue : featureFlags.isAgentisProjectedWidget,
                     FeatureFlagKey.isLowPaymentAllowed.rawValue : featureFlags.isLowPaymentAllowed
                 ]

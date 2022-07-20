@@ -940,9 +940,12 @@ class UsageViewModel {
     }
     
     func shouldShowAgentisWidgets() -> Bool {
-        return FeatureFlagUtility.shared.bool(forKey: .isAgentisUsageWidget) ||
-        FeatureFlagUtility.shared.bool(forKey: .isAgentisCompareWidget) ||
-        FeatureFlagUtility.shared.bool(forKey: .isAgentisTipsWidget) ||
+        return FeatureFlagUtility.shared.bool(forKey: .isAgentisElectricUsageWidget) ||
+        FeatureFlagUtility.shared.bool(forKey: .isAgentisGasUsageWidget) ||
+        FeatureFlagUtility.shared.bool(forKey: .isAgentisElectricCompareBillsWidget) ||
+        FeatureFlagUtility.shared.bool(forKey: .isAgentisGasCompareBillsWidget) ||
+        FeatureFlagUtility.shared.bool(forKey: .isAgentisElectricTipsWidget) ||
+        FeatureFlagUtility.shared.bool(forKey: .isAgentisGasTipsWidget) ||
         FeatureFlagUtility.shared.bool(forKey: .isAgentisProjectedUsageWidget)
     }
 }

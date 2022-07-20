@@ -23,45 +23,34 @@ class B2CUsageViewModel {
         
         var widgets: [AgentisWidget] = []
         
-        if FeatureFlagUtility.shared.bool(forKey: .isAgentisUsageWidget) {
-            if isElectricAccount {
-                widgets.append(.electricUsage)
-            }
-            if isGasAccount {
-                widgets.append(.gasUsage)
-            }
+        if isElectricAccount && FeatureFlagUtility.shared.bool(forKey: .isAgentisElectricUsageWidget) {
+            widgets.append(.electricUsage)
         }
         
-        if FeatureFlagUtility.shared.bool(forKey: .isAgentisCompareWidget) {
-            if isElectricAccount {
-                widgets.append(.compareElectric)
-            }
-            if isGasAccount {
-                widgets.append(.compareGas)
-            }
+        if isGasAccount && FeatureFlagUtility.shared.bool(forKey: .isAgentisGasUsageWidget) {
+            widgets.append(.gasUsage)
         }
         
-        if FeatureFlagUtility.shared.bool(forKey: .isAgentisTipsWidget) {
-            if isElectricAccount {
-                widgets.append(.electricTips)
-            }
-            if isGasAccount {
-                widgets.append(.gasTips)
-            }
+        if isElectricAccount && FeatureFlagUtility.shared.bool(forKey: .isAgentisElectricCompareBillsWidget) {
+            widgets.append(.compareElectric)
+        }
+        
+        if isGasAccount && FeatureFlagUtility.shared.bool(forKey: .isAgentisGasCompareBillsWidget) {
+            widgets.append(.compareGas)
+        }
+        
+        if isElectricAccount && FeatureFlagUtility.shared.bool(forKey: .isAgentisElectricTipsWidget) {
+            widgets.append(.electricTips)
+        }
+        
+        if isGasAccount && FeatureFlagUtility.shared.bool(forKey: .isAgentisGasTipsWidget) {
+            widgets.append(.gasTips)
         }
         
         if FeatureFlagUtility.shared.bool(forKey: .isAgentisProjectedUsageWidget) {
             widgets.append(.projectedUsage)
         }
-//        return AgentisWidget.commercialWidgets.filter { widget in
-//            if widget == .gasUsage || widget == .compareGas || widget == .gasTips {
-//                return accountDetail?.serviceType?.uppercased().contains("GAS")  ?? false
-//            } else if widget == .electricUsage || widget == .compareElectric || widget == .electricTips {
-//                return accountDetail?.serviceType?.uppercased().contains("ELECTRIC") ?? false
-//            } else {
-//                return true
-//            }
-//        }
+
         return widgets
     }
     
