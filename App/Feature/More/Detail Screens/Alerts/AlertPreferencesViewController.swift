@@ -149,7 +149,7 @@ class AlertPreferencesViewController: UIViewController {
             
             FirebaseUtility.logEvent(.more(parameters: [.alert_preferences_complete]))
             if self.viewModel.initiatedFromOutageView {
-                FirebaseUtility.logEvent(.more(parameters: [.report_outage_enroll_alerts]))
+                FirebaseUtility.logEvent(.alerts(parameters: [.outage_enroll]))
             }
             self.delegate?.alertPreferencesViewControllerDidSavePreferences()
             self.dismiss(animated: true, completion: nil)

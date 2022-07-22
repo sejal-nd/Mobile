@@ -579,6 +579,7 @@ enum AlertsParameter: String, EventParameter {
     case bill_enroll_push_cancel
     case bill_enroll_push_continue
     case bill_unenroll_push_continue
+    case outage_enroll
 }
 
 enum ContactUsParameter: String, EventParameter {
@@ -624,7 +625,6 @@ enum MoreParameter: String, EventParameter {
     case release_of_info_complete
     case alert_preferences_start
     case alert_preferences_complete
-    case report_outage_enroll_alerts
     case sign_out
 }
 
