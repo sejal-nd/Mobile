@@ -20,7 +20,7 @@ public struct ThirdPartyTransferEligibilityResponse: Decodable {
     
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        seamlessflag = try container.decodeIfPresent(String.self, forKey: .seamlessflag) ?? "N"
+        seamlessflag = try container.decode(String.self, forKey: .seamlessflag)// ?? "N"
         queryStartPayload = try container.decodeIfPresent(QueryStartPayload.self, forKey: .queryStartPayload)
         isEligible = seamlessflag.lowercased() == "y"
     }
@@ -31,18 +31,37 @@ public struct ThirdPartyTransferEligibilityResponse: Decodable {
 public struct QueryStartPayload: Codable {
     public let startServiceResultForSecondStep: StartServiceResultForSecondStep
     public let noun: String
+    
+    enum CodingKeys: String, CodingKey {
+        case startServiceResultForSecondStep = "StartServiceResultForSecondStep"
+        case noun = "Noun"
+    }
 }
 
 // MARK: - StartServiceResultForSecondStep
 
 public struct StartServiceResultForSecondStep: Codable {
-    public let serviceOrderID, packageID: String
+    public let serviceOrderID, packageID: String?
     public let rcdCapable, serviceOff, appointmentRequired: Bool
     public let firstAvailableDate: FirstAvailableDate
+    
+    enum CodingKeys: String, CodingKey {
+        case serviceOrderID = "ServiceOrderID"
+        case packageID = "PackageID"
+        case rcdCapable = "RCDCapable"
+        case serviceOff = "ServiceOff"
+        case appointmentRequired = "AppointmentRequired"
+        case firstAvailableDate = "FirstAvailableDate"
+    }
 }
 
 // MARK: - FirstAvailableDate
 
 public struct FirstAvailableDate: Codable {
-    public let startDateTime, endDateTime: String
+    public let startDateTime, endDateTime: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case startDateTime = "StartDateTime"
+        case endDateTime = "EndDateTime"
+    }
 }

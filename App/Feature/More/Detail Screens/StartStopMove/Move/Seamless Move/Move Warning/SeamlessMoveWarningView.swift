@@ -32,7 +32,6 @@ struct SeamlessMoveWarningView: View {
                     .font(.subheadline)
                     .multilineTextAlignment(.leading)
                     .foregroundColor(.deepGray)
-                // is apartment # included in address?
                 Text(stopServiceAddress)
                     .fontWeight(.medium)
                     .multilineTextAlignment(.leading)
@@ -58,7 +57,6 @@ struct SeamlessMoveWarningView: View {
                     .font(.subheadline)
                     .multilineTextAlignment(.leading)
                     .foregroundColor(.deepGray)
-                // is apartment # included in address?
                 Text(startServiceAddress)
                     .fontWeight(.medium)
                     .multilineTextAlignment(.leading)

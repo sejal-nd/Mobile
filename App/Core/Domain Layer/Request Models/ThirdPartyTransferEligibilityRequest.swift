@@ -26,7 +26,8 @@ public struct ThirdPartyTransferEligibilityRequest: Codable {
 
 // MARK: - StartStopMoveDetails
 public struct StartStopMoveDetails: Codable {
-    public let emailAddress: String
+    public let accountNumber, emailAddress: String
+    public let createOnlineProfile: Bool
     public let primaryCustPersIdentification: PrimaryCustPersIdentification
     public let primaryCustInformation: PrimaryCustInformation
     public let startServiceDate, stopServiceDate: String
@@ -37,7 +38,9 @@ public struct StartStopMoveDetails: Codable {
     public let selectedStopServicePoints, serviceLists: [String]
 
     enum CodingKeys: String, CodingKey {
+        case accountNumber = "AccountNumber"
         case emailAddress = "EmailAddress"
+        case createOnlineProfile = "CreateOnlineProfile"
         case primaryCustPersIdentification = "PrimaryCustPersIdentification"
         case primaryCustInformation = "PrimaryCustInformation"
         case startServiceDate = "StartServiceDate"
@@ -52,8 +55,10 @@ public struct StartStopMoveDetails: Codable {
         case serviceLists = "ServiceLists"
     }
 
-    public init(emailAddress: String, primaryCustPersIdentification: PrimaryCustPersIdentification, primaryCustInformation: PrimaryCustInformation, startServiceDate: String, stopServiceDate: String, startServiceAddress: StartServiceAddress, stopServiceAddress: StopServiceAddress, rentOwn: String?, premiseOccupied: Bool?, rcdStopCapable: Bool?, requestCourtesyCall: Bool?) {//, selectedStopServicePoints: [Any?], serviceLists: [Any?]) {
+    public init(accountNumber: String, emailAddress: String, primaryCustPersIdentification: PrimaryCustPersIdentification, primaryCustInformation: PrimaryCustInformation, startServiceDate: String, stopServiceDate: String, startServiceAddress: StartServiceAddress, stopServiceAddress: StopServiceAddress, rentOwn: String?, premiseOccupied: Bool?, rcdStopCapable: Bool?, requestCourtesyCall: Bool?) {
+        self.accountNumber = accountNumber
         self.emailAddress = emailAddress
+        self.createOnlineProfile = false
         self.primaryCustPersIdentification = primaryCustPersIdentification
         self.primaryCustInformation = primaryCustInformation
         self.startServiceDate = startServiceDate
@@ -72,37 +77,35 @@ public struct StartStopMoveDetails: Codable {
 // MARK: - PrimaryCustInformation
 public struct PrimaryCustInformation: Codable {
     public let firstName, lastName, address, city: String?
-    public let zipCode, contactPhoneNo, altContactPhoneNo: String? //state
+    public let zipCode, contactPhoneNo, altContactPhoneNo: String?
     public let email: String
     public let useAltBillingAddress: Bool
-//    public var billingAddress: String?
+    public let billingAddress: TPSBillingAddress?
 
     enum CodingKeys: String, CodingKey {
         case firstName = "FirstName"
         case lastName = "LastName"
         case address = "Address"
         case city = "City"
-//        case state = "State" // optional?
         case zipCode = "ZipCode"
         case contactPhoneNo = "ContactPhoneNo"
-        case altContactPhoneNo = "AltContactPhoneNo" // optional?
+        case altContactPhoneNo = "AltContactPhoneNo"
         case email = "Email"
         case useAltBillingAddress = "UseAltBillingAddress"
-//        case billingAddress = "BillingAddress" // optional?
+        case billingAddress = "BillingAddress"
     }
 
-    public init(firstName: String?, lastName: String?, address: String?, city: String?, zipCode: String?, contactPhoneNo: String?, altContactPhoneNo: String?, email: String, useAltBillingAddress: Bool) {//, billingAddress: String?) { , state: String?
+    public init(firstName: String?, lastName: String?, address: String?, city: String?, zipCode: String?, contactPhoneNo: String?, altContactPhoneNo: String?, email: String, useAltBillingAddress: Bool, billingAddress: TPSBillingAddress?) {
         self.firstName = firstName
         self.lastName = lastName
         self.address = address
         self.city = city
-//        self.state = state
         self.zipCode = zipCode
         self.contactPhoneNo = contactPhoneNo
         self.altContactPhoneNo = altContactPhoneNo
         self.email = email
         self.useAltBillingAddress = useAltBillingAddress
-//        self.billingAddress = billingAddress
+        self.billingAddress = billingAddress
     }
 }
 
@@ -142,7 +145,6 @@ public struct StartServiceAddress: Codable {
         case state = "State"
         case country = "Country"
         case premiseID = "PremiseID"
-//        case buildingMrID = "BuildingMrID"
         case premiseOrganization = "PremiseOrganization"
         case accountNumber = "AccountNumber"
     }
@@ -157,7 +159,6 @@ public struct StartServiceAddress: Codable {
         self.state = state
         self.country = "United States of America"
         self.premiseID = premiseID
-//        self.buildingMrID = buildingMrID
         self.premiseOrganization = premiseOrganization
         self.accountNumber = accountNumber
     }
@@ -165,59 +166,76 @@ public struct StartServiceAddress: Codable {
 
 // MARK: - StopServiceAddress
 public struct StopServiceAddress: Codable {
-//    public let address: String?
     public let streetName, city, state, country: String?
     public let zipCode, accountNumber, premiseID: String?
 
     enum CodingKeys: String, CodingKey {
-//        case address = "Address"
         case streetName = "StreetName"
         case city = "City"
         case state = "State"
         case country = "Country"
         case zipCode = "ZipCode"
         case premiseID = "PremiseID"
-//        case customerID = "CustomerID" // optional?
         case accountNumber = "AccountNumber"
     }
-
-    public init(streetName: String?, city: String?, state: String?, zipCode: String?, premiseID: String?, accountNumber: String?) { //address: String?,
-//        self.address = address
+    
         self.streetName = streetName
         self.city = city
         self.state = state
         self.country = "United States of America"
-//        self.country = country
         self.zipCode = zipCode
         self.premiseID = premiseID
-//        self.customerID = customerID
         self.accountNumber = accountNumber
     }
 }
 
-// MARK: - Encode/decode helpers
+// MARK: - TPSBillingAddress
+public struct TPSBillingAddress: Codable {
+    public let streetName, apartmentUnitNo, city, state: String?
+    public let zipCode: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case streetName = "StreetName"
+        case apartmentUnitNo = "ApartmentUnitNo"
+        case city = "City"
+        case state = "State"
+        case zipCode = "ZipCode"
+    }
+    
+    public init(streetName: String?, apartmentUnitNo: String?, city: String?, state: String?, zipCode: String?) {
+        self.streetName = streetName
+        self.apartmentUnitNo = apartmentUnitNo
+        self.city = city
+        self.state = state
+        self.zipCode = zipCode
+    }
+    
+    init(moveFlowData: MoveServiceFlowData) {
+        
+        streetName =  moveFlowData.hasCurrentServiceAddressForBill ? (moveFlowData.addressLookupResponse?.first?.streetName ?? moveFlowData.addressLookupResponse?.first?.address) : moveFlowData.mailingAddress?.streetAddress
+        
+        city = moveFlowData.hasCurrentServiceAddressForBill ? moveFlowData.addressLookupResponse?.first?.city : moveFlowData.mailingAddress?.city
+        state = moveFlowData.hasCurrentServiceAddressForBill ? USState.getState(state: moveFlowData.addressLookupResponse?.first?.state ?? "") : USState.getState(state: moveFlowData.mailingAddress?.state.rawValue ?? "")
+        zipCode = moveFlowData.hasCurrentServiceAddressForBill ? moveFlowData.addressLookupResponse?.first?.zipCode : moveFlowData.mailingAddress?.zipCode
+        apartmentUnitNo = moveFlowData.hasCurrentServiceAddressForBill ? moveFlowData.addressLookupResponse?.first?.apartmentUnitNo : nil
+    }
+}
 
-//public class JSONNull: Codable, Hashable {
-//
-//    public static func == (lhs: JSONNull, rhs: JSONNull) -> Bool {
-//        return true
-//    }
-//
-//    public var hashValue: Int {
-//        return 0
-//    }
-//
-//    public init() {}
-//
-//    public required init(from decoder: Decoder) throws {
-//        let container = try decoder.singleValueContainer()
-//        if !container.decodeNil() {
-//            throw DecodingError.typeMismatch(JSONNull.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Wrong type for JSONNull"))
-//        }
-//    }
-//
-//    public func encode(to encoder: Encoder) throws {
-//        var container = encoder.singleValueContainer()
-//        try container.encodeNil()
-//    }
-//}
+// MARK: - ServiceList
+public struct ServiceList: Codable {
+    public let stop: Bool?
+    public let serviceAgreementID, type, saType, saStatus: String?
+    public let servicePointID, location: String?
+    public let hasError: Bool?
+
+    public init(stop: Bool?, serviceAgreementID: String?, type: String?, saType: String?, saStatus: String?, servicePointID: String?, location: String?, hasError: Bool?) {
+        self.stop = stop
+        self.serviceAgreementID = serviceAgreementID
+        self.type = type
+        self.saType = saType
+        self.saStatus = saStatus
+        self.servicePointID = servicePointID
+        self.location = location
+        self.hasError = hasError
+    }
+}
