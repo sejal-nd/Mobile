@@ -15,7 +15,7 @@ class SeamlessMoveViewController: UIViewController {
     @IBOutlet weak var stickyFooterView: StickyFooterView!
     @IBOutlet weak var ctaButton: PrimaryButton!
     
-    var childView: UIHostingController<SeamlessMoveWarningView>? = nil// = UIHostingController(rootView: SeamlessMoveWarningView())
+    var childView: UIHostingController<SeamlessMoveWarningView>? = nil
         
     private var transferOption: TransferServiceOption = .transfer
     
