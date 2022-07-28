@@ -55,7 +55,7 @@ public struct StartStopMoveDetails: Codable {
         case serviceLists = "ServiceLists"
     }
 
-    public init(accountNumber: String, emailAddress: String, primaryCustPersIdentification: PrimaryCustPersIdentification, primaryCustInformation: PrimaryCustInformation, startServiceDate: String, stopServiceDate: String, startServiceAddress: StartServiceAddress, stopServiceAddress: StopServiceAddress, rentOwn: String?, premiseOccupied: Bool?, rcdStopCapable: Bool?, requestCourtesyCall: Bool?) {
+    public init(accountNumber: String, emailAddress: String, primaryCustPersIdentification: PrimaryCustPersIdentification, primaryCustInformation: PrimaryCustInformation, startServiceDate: String, stopServiceDate: String, startServiceAddress: StartServiceAddress, stopServiceAddress: StopServiceAddress, rentOwn: String?, premiseOccupied: Bool?, rcdStopCapable: Bool?, requestCourtesyCall: Bool?) {//, selectedStopServicePoints: [Any?], serviceLists: [Any?]) {
         self.accountNumber = accountNumber
         self.emailAddress = emailAddress
         self.createOnlineProfile = false
@@ -132,7 +132,7 @@ public struct PrimaryCustPersIdentification: Codable {
 public struct StartServiceAddress: Codable {
     public let streetName, houseNo: String?
     public var apartmentUnitNo: String?
-    public let city, zipCode, state: String? //customerID
+    public let city, zipCode, state: String?
     public let country, customerID, premiseID, premiseOrganization, accountNumber: String?
 
     enum CodingKeys: String, CodingKey {
@@ -179,6 +179,7 @@ public struct StopServiceAddress: Codable {
         case accountNumber = "AccountNumber"
     }
     
+    public init(streetName: String?, city: String?, state: String?, zipCode: String?, premiseID: String?, accountNumber: String?) {
         self.streetName = streetName
         self.city = city
         self.state = state
