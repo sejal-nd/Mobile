@@ -80,10 +80,11 @@ class SeamlessMoveViewController: UIViewController {
                 case .success(let moveResponse):
                     FirebaseUtility.logEvent(.authMoveService(parameters: [moveResponse.isResolved == true ? .complete_resolved : .complete_unresolved]))
                     
+                    let isUnauth = self.moveFlowData.unauthMoveData?.isUnauthMove ?? false
                     let storyboard = UIStoryboard(name: "ISUMMove", bundle: nil)
                     let moveServiceConfirmationViewController = storyboard.instantiateViewController(withIdentifier: "MoveServiceConfirmationViewController") as! MoveServiceConfirmationViewController
                     moveServiceConfirmationViewController.viewModel = MoveServiceConfirmationViewModel(moveServiceResponse: moveResponse,
-                                                                                                       isUnauth: false,
+                                                                                                       isUnauth: isUnauth,
                                                                                                        shouldShowSeamlessMove: true,
                                                                                                        transferEligibility: .eligible,
                                                                                                        transferOption: self.transferOption)
