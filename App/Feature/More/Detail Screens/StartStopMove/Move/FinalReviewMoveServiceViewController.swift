@@ -127,7 +127,7 @@ class FinalReviewMoveServiceViewController: UIViewController {
         self.submitBtn.backgroundColor = UIColor(red: 0, green: 89.0/255.0, blue: 164.0/255.0, alpha: 1.0)
         self.submitBtn.setTitleColor(UIColor.white, for: .normal)
         
-        if self.viewModel.moveFlowData.currentAccountDetail?.hasThirdPartySupplier ?? false {
+        if self.viewModel.moveFlowData.currentAccountDetail?.hasThirdPartySupplier ?? false || self.viewModel.moveFlowData.unauthMoveData?.accountDetails?.hasThirdPartySupplier ?? false {
             submitBtn.setTitle("Continue", for: .normal)
         } else {
             submitBtn.setTitle("Submit", for: .normal)
@@ -140,7 +140,7 @@ class FinalReviewMoveServiceViewController: UIViewController {
                 self.navigationController?.view.isUserInteractionEnabled = false
                 LoadingView.show()
                 
-                if self.viewModel.moveFlowData.currentAccountDetail?.hasThirdPartySupplier ?? false {
+                if self.viewModel.moveFlowData.currentAccountDetail?.hasThirdPartySupplier ?? false || self.viewModel.moveFlowData.unauthMoveData?.accountDetails?.hasThirdPartySupplier ?? false {
                     MoveService.thirdPartyTransferEligibilityCheck(moveFlowData: self.viewModel.moveFlowData, completion: { [weak self] response in
                         guard let `self` = self else { return }
                                                 
