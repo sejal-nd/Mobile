@@ -33,13 +33,13 @@ enum MoveService {
     
     static func thirdPartyTransferEligibilityCheck(moveFlowData: MoveServiceFlowData, completion: @escaping (Result<ThirdPartyTransferEligibilityResponse, NetworkingError>) -> ()) {
         guard let unwrappedStartDate = moveFlowData.startServiceDate,
-              let ssn = moveFlowData.idVerification?.ssn,
-              let driverLicense = moveFlowData.idVerification?.driverLicenseNumber,
               let dateOfBirth = moveFlowData.idVerification?.dateOfBirth,
               let employmentStatus = moveFlowData.idVerification?.employmentStatus else {
                   completion(.failure(.decoding))
                   return
               }
+        let ssn = moveFlowData.idVerification?.ssn ?? ""
+        let driverLicense = moveFlowData.idVerification?.driverLicenseNumber ?? ""
         
         let startServiceDate = DateFormatter.mmDdYyyyFormatter.string(from: unwrappedStartDate)
         let stopServiceDate = DateFormatter.mmDdYyyyFormatter.string(from: moveFlowData.stopServiceDate)
