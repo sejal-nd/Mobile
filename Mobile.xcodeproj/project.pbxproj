@@ -500,6 +500,17 @@
 		678B621B24CF6AD3009F8A6B /* ValidateRegistrationMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 678B621424CF6AC8009F8A6B /* ValidateRegistrationMock.json */; };
 		678B622D24D09A1B009F8A6B /* RegistrationQuestionsMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 678B622C24D09A0D009F8A6B /* RegistrationQuestionsMock.json */; };
 		678B622E24D09A1C009F8A6B /* RegistrationQuestionsMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 678B622C24D09A0D009F8A6B /* RegistrationQuestionsMock.json */; };
+		678C7F242833F5EB006C0FDC /* SeamlessMove.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 678C7F232833F5EB006C0FDC /* SeamlessMove.storyboard */; };
+		678C7F262833F628006C0FDC /* SeamlessMoveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678C7F252833F628006C0FDC /* SeamlessMoveViewController.swift */; };
+		678C7F292833F8C9006C0FDC /* SeamlessMoveWarningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678C7F282833F8C9006C0FDC /* SeamlessMoveWarningView.swift */; };
+		678C7F2B2836A480006C0FDC /* RadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678C7F2A2836A480006C0FDC /* RadioButton.swift */; };
+		678C7F2D2836B68E006C0FDC /* TerminateAgreementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678C7F2C2836B68E006C0FDC /* TerminateAgreementViewController.swift */; };
+		678C7F2F2836B699006C0FDC /* TerminateAgreementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678C7F2E2836B699006C0FDC /* TerminateAgreementView.swift */; };
+		678C7F332836B8DD006C0FDC /* CheckBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678C7F322836B8DD006C0FDC /* CheckBoxView.swift */; };
+		678C7F352858DA55006C0FDC /* ThirdPartyTransferEligibilityRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678C7F342858DA53006C0FDC /* ThirdPartyTransferEligibilityRequest.swift */; };
+		678C7F372858DB85006C0FDC /* ThirdPartyTransferEligibilityResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678C7F362858DB85006C0FDC /* ThirdPartyTransferEligibilityResponse.swift */; };
+		678C7F382858E210006C0FDC /* ThirdPartyTransferEligibilityRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678C7F342858DA53006C0FDC /* ThirdPartyTransferEligibilityRequest.swift */; };
+		678C7F392858E2FC006C0FDC /* ThirdPartyTransferEligibilityResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678C7F362858DB85006C0FDC /* ThirdPartyTransferEligibilityResponse.swift */; };
 		6797115425DD87E3008A0080 /* OutageAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6797115325DD87E3008A0080 /* OutageAnimation.swift */; };
 		6797115B25DD901F008A0080 /* Arc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6797115A25DD901F008A0080 /* Arc.swift */; };
 		679C6EB124D1E84E00535DE7 /* AppointmentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679C6EB024D1E84E00535DE7 /* AppointmentService.swift */; };
@@ -1850,6 +1861,15 @@
 		67893BC624E318D1000143D6 /* String+DateParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+DateParser.swift"; sourceTree = "<group>"; };
 		678B621424CF6AC8009F8A6B /* ValidateRegistrationMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ValidateRegistrationMock.json; sourceTree = "<group>"; };
 		678B622C24D09A0D009F8A6B /* RegistrationQuestionsMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RegistrationQuestionsMock.json; sourceTree = "<group>"; };
+		678C7F232833F5EB006C0FDC /* SeamlessMove.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SeamlessMove.storyboard; sourceTree = "<group>"; };
+		678C7F252833F628006C0FDC /* SeamlessMoveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeamlessMoveViewController.swift; sourceTree = "<group>"; };
+		678C7F282833F8C9006C0FDC /* SeamlessMoveWarningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeamlessMoveWarningView.swift; sourceTree = "<group>"; };
+		678C7F2A2836A480006C0FDC /* RadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButton.swift; sourceTree = "<group>"; };
+		678C7F2C2836B68E006C0FDC /* TerminateAgreementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminateAgreementViewController.swift; sourceTree = "<group>"; };
+		678C7F2E2836B699006C0FDC /* TerminateAgreementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminateAgreementView.swift; sourceTree = "<group>"; };
+		678C7F322836B8DD006C0FDC /* CheckBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxView.swift; sourceTree = "<group>"; };
+		678C7F342858DA53006C0FDC /* ThirdPartyTransferEligibilityRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdPartyTransferEligibilityRequest.swift; sourceTree = "<group>"; };
+		678C7F362858DB85006C0FDC /* ThirdPartyTransferEligibilityResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdPartyTransferEligibilityResponse.swift; sourceTree = "<group>"; };
 		6797115325DD87E3008A0080 /* OutageAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutageAnimation.swift; sourceTree = "<group>"; };
 		6797115A25DD901F008A0080 /* Arc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arc.swift; sourceTree = "<group>"; };
 		679C6EB024D1E84E00535DE7 /* AppointmentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentService.swift; sourceTree = "<group>"; };
@@ -3195,6 +3215,7 @@
 		282B4F7826E7489D00ACD33C /* Move */ = {
 			isa = PBXGroup;
 			children = (
+				678C7F272833F8B3006C0FDC /* Seamless Move */,
 				21D1C50E270ADF6100EFAFAC /* AddressSearchModel.swift */,
 				21D1C50F270ADF6100EFAFAC /* AddressSearchViewController.swift */,
 				21D1C511270ADF6300EFAFAC /* AddressSearchCell.swift */,
@@ -4542,6 +4563,7 @@
 				215A1B7E270B172B003A4EE9 /* AddressLookupRequest.swift */,
 				4A6FB1ED271D8B000048E9F5 /* MoveISUMServiceRequest.swift */,
 				4A74A0C227310AB400F87986 /* AccountDetailsAnonRequest.swift */,
+				678C7F342858DA53006C0FDC /* ThirdPartyTransferEligibilityRequest.swift */,
 			);
 			path = "Request Models";
 			sourceTree = "<group>";
@@ -4627,6 +4649,7 @@
 				215A1B7B270B1713003A4EE9 /* AddressLookupResponse.swift */,
 				4AA4EAD72714A9B800B35F4D /* MoveServiceFlowData.swift */,
 				4A73F8BC274935A60051F315 /* EmployeeStatus.swift */,
+				678C7F362858DB85006C0FDC /* ThirdPartyTransferEligibilityResponse.swift */,
 			);
 			path = "Network Models";
 			sourceTree = "<group>";
@@ -4775,6 +4798,36 @@
 				6781BCC2271F5D0100FBCD5F /* SafariView.swift */,
 			);
 			path = "Safari Modal";
+			sourceTree = "<group>";
+		};
+		678C7F272833F8B3006C0FDC /* Seamless Move */ = {
+			isa = PBXGroup;
+			children = (
+				678C7F232833F5EB006C0FDC /* SeamlessMove.storyboard */,
+				678C7F312836B6AA006C0FDC /* Move Warning */,
+				678C7F302836B69D006C0FDC /* Terminate Agreement */,
+			);
+			path = "Seamless Move";
+			sourceTree = "<group>";
+		};
+		678C7F302836B69D006C0FDC /* Terminate Agreement */ = {
+			isa = PBXGroup;
+			children = (
+				678C7F2C2836B68E006C0FDC /* TerminateAgreementViewController.swift */,
+				678C7F2E2836B699006C0FDC /* TerminateAgreementView.swift */,
+				678C7F322836B8DD006C0FDC /* CheckBoxView.swift */,
+			);
+			path = "Terminate Agreement";
+			sourceTree = "<group>";
+		};
+		678C7F312836B6AA006C0FDC /* Move Warning */ = {
+			isa = PBXGroup;
+			children = (
+				678C7F252833F628006C0FDC /* SeamlessMoveViewController.swift */,
+				678C7F282833F8C9006C0FDC /* SeamlessMoveWarningView.swift */,
+				678C7F2A2836A480006C0FDC /* RadioButton.swift */,
+			);
+			path = "Move Warning";
 			sourceTree = "<group>";
 		};
 		6797115925DD9008008A0080 /* Outage Animation */ = {
@@ -6078,6 +6131,7 @@
 				676279EF247DB11100A57FBC /* TermPolicies.html in Resources */,
 				359BDB7822D8F9B2007002B0 /* outage_reported.json in Resources */,
 				67A986D524FD419700BD46E7 /* GoogleService-Info-BETA-FlavorACE.plist in Resources */,
+				678C7F242833F5EB006C0FDC /* SeamlessMove.storyboard in Resources */,
 				B0728E49215C149A0007C608 /* AlertPreferencesTableViewCell.xib in Resources */,
 				675F4DBC24AB828200A828F9 /* AlertPreferencesLoadMock.json in Resources */,
 				676DF27E27A2F54000185DB5 /* splash.json in Resources */,
@@ -6767,10 +6821,12 @@
 				6724800325D441810024467D /* WatchAccount.swift in Sources */,
 				C3055C182538FBEF000DB89C /* WalletService.swift in Sources */,
 				C3055C4B2538FD6E000DB89C /* NewMockDataKey.swift in Sources */,
+				678C7F392858E2FC006C0FDC /* ThirdPartyTransferEligibilityResponse.swift in Sources */,
 				355B10372369DB190038EAD3 /* WatchSessionController.swift in Sources */,
 				C3055BF92538FB11000DB89C /* WalletRequest.swift in Sources */,
 				C3055B5D2538F81B000DB89C /* ScheduledPayment.swift in Sources */,
 				35F9DDBD2333D91300AAA2B2 /* Optional+Comparable.swift in Sources */,
+				678C7F382858E210006C0FDC /* ThirdPartyTransferEligibilityRequest.swift in Sources */,
 				C3055B4D2538F812000DB89C /* PremiseInfo.swift in Sources */,
 				670DE2A426CC15FC00D4C863 /* KeychainSwift.swift in Sources */,
 				35F9DD932333D83F00AAA2B2 /* (null) in Sources */,
@@ -7139,6 +7195,7 @@
 				82A18F081EBD12D600BE9F21 /* Control.swift in Sources */,
 				9CB16EF7219DD4A4008C4871 /* WalletTableViewCell.swift in Sources */,
 				224EFF18216E4E67008A0E40 /* HomeAppointmentCardView.swift in Sources */,
+				678C7F2F2836B699006C0FDC /* TerminateAgreementView.swift in Sources */,
 				E80D2E271E72FC2C002626C9 /* AccountPicker.swift in Sources */,
 				C336045424D1B85C002CF260 /* EmailRequest.swift in Sources */,
 				C3B6555024ABD9320048C64B /* SERInfo.swift in Sources */,
@@ -7180,6 +7237,7 @@
 				4A12C2722706D42A007FFEA6 /* ScheduleMoveServiceViewModel.swift in Sources */,
 				E89518731F0A9ABE005E0E92 /* ReviewPaymentViewController.swift in Sources */,
 				C3087AA024B662C6005AE544 /* ReleaseOfInfoRequest.swift in Sources */,
+				678C7F2B2836A480006C0FDC /* RadioButton.swift in Sources */,
 				C36C398224ED95A800BA83B6 /* Weekday.swift in Sources */,
 				4AE3467C26E8C76900F4155C /* FinalMailingAddressViewController.swift in Sources */,
 				4A26E75D270EEFE10089EC0D /* StopConfirmationScreenViewModel.swift in Sources */,
@@ -7203,6 +7261,7 @@
 				C3BCD53E2567238C006F405E /* HomeGameCardView.swift in Sources */,
 				54DF4BDA1EE9CBAB008CF7AD /* AccountDetailsView.swift in Sources */,
 				9CE549712399941300025BD5 /* GameRewardViewController.swift in Sources */,
+				678C7F372858DB85006C0FDC /* ThirdPartyTransferEligibilityResponse.swift in Sources */,
 				670DE2A326CC15FC00D4C863 /* KeychainSwift.swift in Sources */,
 				82D5994B1EC36B5500DDB380 /* NumberFormatter.swift in Sources */,
 				675F4B5E24AB828100A828F9 /* OutageService.swift in Sources */,
@@ -7231,6 +7290,7 @@
 				35ACCB4720EA60F50022907F /* HomeOutageCardViewModel.swift in Sources */,
 				C3943F392799D1B9005E5327 /* PKCEResult.swift in Sources */,
 				C3087B0C24BDEFA3005AE544 /* AnyObserver.swift in Sources */,
+				678C7F332836B8DD006C0FDC /* CheckBoxView.swift in Sources */,
 				9CEE412123722AD9005A4AD3 /* DailyInsightCoinView.swift in Sources */,
 				E827D23C1ED491F6004DA1D6 /* InfoModalViewController.swift in Sources */,
 				B05E9D13217F688A0003FAB8 /* Application.swift in Sources */,
@@ -7323,6 +7383,7 @@
 				4AA4EAD2271442D400B35F4D /* PendingDisconnectView.swift in Sources */,
 				C36C398E24ED95A800BA83B6 /* PushNotification.swift in Sources */,
 				679C6EE524D1FE7B00535DE7 /* WeatherService+Rx.swift in Sources */,
+				678C7F292833F8C9006C0FDC /* SeamlessMoveWarningView.swift in Sources */,
 				C372B65F275850E600E38F64 /* OutageTracker.swift in Sources */,
 				B0D7860D2285C3F4007C551F /* CommercialUsageAlertStore.swift in Sources */,
 				C320FDCA24DC81410012E4ED /* WalletService+Rx.swift in Sources */,
@@ -7466,6 +7527,7 @@
 				675F4C1224AB828100A828F9 /* AuthenticationService.swift in Sources */,
 				675F4C6024AB828100A828F9 /* BillForecast.swift in Sources */,
 				9C0E1C942333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.swift in Sources */,
+				678C7F352858DA55006C0FDC /* ThirdPartyTransferEligibilityRequest.swift in Sources */,
 				673FA0F124C8A52700210BCD /* AnonymousService+Rx.swift in Sources */,
 				21D1C515270ADF6400EFAFAC /* AddressSearchCell.swift in Sources */,
 				675F4C5A24AB828100A828F9 /* AutoPayResult.swift in Sources */,
@@ -7529,6 +7591,7 @@
 				22EBDCCD1ED3FDA50038D696 /* ContactUsViewController.swift in Sources */,
 				350F669B274387CC00E92765 /* AssistanceProgramStore.swift in Sources */,
 				C33B5A4827C53D42005500C5 /* CalendarViewController.swift in Sources */,
+				678C7F262833F628006C0FDC /* SeamlessMoveViewController.swift in Sources */,
 				E8C453271EF435E500F5C781 /* BGEAutoPaySettingsViewController.swift in Sources */,
 				676434DD25AF702800DA6448 /* ProjectURLSuffix.swift in Sources */,
 				825171A31F1D1D4F0020A6CA /* RadioSelectControl.swift in Sources */,
@@ -7552,6 +7615,7 @@
 				9CA1381D238C2D010023248D /* WeeklyInsightViewController.swift in Sources */,
 				67A18B9024CB354100F7A77B /* RefreshTokenRequest.swift in Sources */,
 				E882B7FB1EAA92B200EA3C13 /* UIViewAddShadow.swift in Sources */,
+				678C7F2D2836B68E006C0FDC /* TerminateAgreementViewController.swift in Sources */,
 				675F4B8224AB828100A828F9 /* CompareBillRequest.swift in Sources */,
 				359BDB6222D8DCC1007002B0 /* TitleSubTitleRow.swift in Sources */,
 				679C6EB124D1E84E00535DE7 /* AppointmentService.swift in Sources */,
@@ -7607,7 +7671,7 @@
 				ANON_ASSOCIATED_DOMAIN = bge.com;
 				APP_CENTER_ID = "8bfce822-abdf-4e5c-8425-0897f447692a";
 				ASSOCIATED_DOMAIN = secure.bge.com;
-				BASE_URL = mcs.mobileenv.bge.com;
+				BASE_URL = eudapi.bge.com;
 				BUILD_DISPLAY_NAME = BGE;
 				BUILD_FLAVOR = BGE;
 				BUNDLE_ID = com.exelon.mobile.bge;
@@ -11354,7 +11418,7 @@
 				ANON_ASSOCIATED_DOMAIN = azstage.peco.com;
 				APP_CENTER_ID = "5396a42c-0b16-4984-af32-ee9957764960";
 				ASSOCIATED_DOMAIN = "azstg-secure.peco.com";
-				BASE_URL = "xze-e-n-eudapi-peco-t-ams-01.azure-api.net";
+				BASE_URL = "eudapi-test.peco.com";
 				BUILD_DISPLAY_NAME = PECO;
 				BUILD_FLAVOR = PECO;
 				BUNDLE_ID = com.exelon.mobile.peco.testing;
@@ -11659,7 +11723,7 @@
 				ANON_ASSOCIATED_DOMAIN = azstage.peco.com;
 				APP_CENTER_ID = "432a1a21-ccbb-4ee9-b3e3-2480090618f5";
 				ASSOCIATED_DOMAIN = "azstg-secure.peco.com";
-				BASE_URL = mcsstg.mobileenv.peco.com;
+				BASE_URL = eudapi-stage.peco.com;
 				BUILD_DISPLAY_NAME = PECO;
 				BUILD_FLAVOR = PECO;
 				BUNDLE_ID = com.exelon.mobile.peco.staging;
@@ -11880,7 +11944,7 @@
 				ANON_ASSOCIATED_DOMAIN = peco.com;
 				APP_CENTER_ID = "fbc9f960-869c-47c4-a765-a650369ffca1";
 				ASSOCIATED_DOMAIN = secure.peco.com;
-				BASE_URL = mcs.mobileenv.peco.com;
+				BASE_URL = eudapi.peco.com;
 				BUILD_DISPLAY_NAME = PECO;
 				BUILD_FLAVOR = PECO;
 				BUNDLE_ID = com.exelon.mobile.peco.prodbeta;
@@ -12100,7 +12164,7 @@
 				ANON_ASSOCIATED_DOMAIN = peco.com;
 				APP_CENTER_ID = "0a416441-1ad6-4be2-b009-79f8b15f8b58";
 				ASSOCIATED_DOMAIN = secure.peco.com;
-				BASE_URL = mcs.mobileenv.peco.com;
+				BASE_URL = eudapi.peco.com;
 				BUILD_DISPLAY_NAME = PECO;
 				BUILD_FLAVOR = PECO;
 				BUNDLE_ID = com.exelon.mobile.peco;
@@ -12321,7 +12385,7 @@
 				ANON_ASSOCIATED_DOMAIN = azstage.atlanticcityelectric.com;
 				APP_CENTER_ID = "57d12f65-bf2b-40b5-b707-dd8ebe73edfb";
 				ASSOCIATED_DOMAIN = "azstg-secure.atlanticcityelectric.com";
-				BASE_URL = "xze-e-n-eudapi-ace-t-ams-01.azure-api.net";
+				BASE_URL = "eudapi-test.atlanticcityelectric.com";
 				BUILD_DISPLAY_NAME = "AC Electric";
 				BUILD_FLAVOR = ACE;
 				BUNDLE_ID = com.exelon.mobile.ace.testing;
@@ -12626,7 +12690,7 @@
 				ANON_ASSOCIATED_DOMAIN = azstage.atlanticcityelectric.com;
 				APP_CENTER_ID = "95dc785e-3617-4005-81f4-42ae3e25d65d";
 				ASSOCIATED_DOMAIN = "azstg-secure.atlanticcityelectric.com";
-				BASE_URL = mcsstg.mobileenv.atlanticcityelectric.com;
+				BASE_URL = eudapi-stage.atlanticcityelectric.com;
 				BUILD_DISPLAY_NAME = "AC Electric";
 				BUILD_FLAVOR = ACE;
 				BUNDLE_ID = com.exelon.mobile.ace.staging;
@@ -12848,7 +12912,7 @@
 				ANON_ASSOCIATED_DOMAIN = atlanticcityelectric.com;
 				APP_CENTER_ID = "e9a6ea32-b142-4414-9e6d-d686f7364d95";
 				ASSOCIATED_DOMAIN = secure.atlanticcityelectric.com;
-				BASE_URL = mcs.mobileenv.atlanticcityelectric.com;
+				BASE_URL = eudapi.atlanticcityelectric.com;
 				BUILD_DISPLAY_NAME = "AC Electric";
 				BUILD_FLAVOR = ACE;
 				BUNDLE_ID = com.exelon.mobile.ace.prodbeta;
@@ -13069,7 +13133,7 @@
 				ANON_ASSOCIATED_DOMAIN = atlanticcityelectric.com;
 				APP_CENTER_ID = "e717a9ba-bed1-443f-8311-9653b4bd058b";
 				ASSOCIATED_DOMAIN = secure.atlanticcityelectric.com;
-				BASE_URL = mcs.mobileenv.atlanticcityelectric.com;
+				BASE_URL = eudapi.atlanticcityelectric.com;
 				BUILD_DISPLAY_NAME = "AC Electric";
 				BUILD_FLAVOR = ACE;
 				BUNDLE_ID = com.ifactorconsulting.ace;
@@ -13291,7 +13355,7 @@
 				ANON_ASSOCIATED_DOMAIN = azstage.delmarva.com;
 				APP_CENTER_ID = "6180db89-0219-4878-98c5-51f0e334f8fe";
 				ASSOCIATED_DOMAIN = "azstg-secure.delmarva.com";
-				BASE_URL = "xze-e-n-eudapi-dpl-t-ams-01.azure-api.net";
+				BASE_URL = "eudapi-test.delmarva.com";
 				BUILD_DISPLAY_NAME = Delmarva;
 				BUILD_FLAVOR = DPL;
 				BUNDLE_ID = com.exelon.mobile.delmarva.testing;
@@ -13596,7 +13660,7 @@
 				ANON_ASSOCIATED_DOMAIN = azstage.delmarva.com;
 				APP_CENTER_ID = "8b361cdc-3267-42de-91d0-b1bae6342067";
 				ASSOCIATED_DOMAIN = "azstg-secure.delmarva.com";
-				BASE_URL = mcsstg.mobileenv.delmarva.com;
+				BASE_URL = eudapi-stage.delmarva.com;
 				BUILD_DISPLAY_NAME = Delmarva;
 				BUILD_FLAVOR = DPL;
 				BUNDLE_ID = com.exelon.mobile.delmarva.staging;
@@ -13818,7 +13882,7 @@
 				ANON_ASSOCIATED_DOMAIN = delmarva.com;
 				APP_CENTER_ID = "d3ecc389-d8ad-4806-a5d3-e067b7adb02d";
 				ASSOCIATED_DOMAIN = secure.delmarva.com;
-				BASE_URL = mcs.mobileenv.delmarva.com;
+				BASE_URL = eudapi.delmarva.com;
 				BUILD_DISPLAY_NAME = Delmarva;
 				BUILD_FLAVOR = DPL;
 				BUNDLE_ID = com.exelon.mobile.delmarva.prodbeta;
@@ -14039,7 +14103,7 @@
 				ANON_ASSOCIATED_DOMAIN = delmarva.com;
 				APP_CENTER_ID = "9f85e63c-c1a6-40de-811b-df4074860f14";
 				ASSOCIATED_DOMAIN = secure.delmarva.com;
-				BASE_URL = mcs.mobileenv.delmarva.com;
+				BASE_URL = eudapi.delmarva.com;
 				BUILD_DISPLAY_NAME = Delmarva;
 				BUILD_FLAVOR = DPL;
 				BUNDLE_ID = com.ifactorconsulting.delmarva;
@@ -14261,7 +14325,7 @@
 				ANON_ASSOCIATED_DOMAIN = azstage.pepco.com;
 				APP_CENTER_ID = "0962af30-9abf-4ac5-92fa-358fbbe101af";
 				ASSOCIATED_DOMAIN = "azstg-secure.pepco.com";
-				BASE_URL = "xze-e-n-eudapi-pepco-t-ams-01.azure-api.net";
+				BASE_URL = "eudapi-test.pepco.com";
 				BUILD_DISPLAY_NAME = Pepco;
 				BUILD_FLAVOR = PEPCO;
 				BUNDLE_ID = com.exelon.mobile.pepco.testing;
@@ -14566,7 +14630,7 @@
 				ANON_ASSOCIATED_DOMAIN = azstage.pepco.com;
 				APP_CENTER_ID = "48d86d61-5d68-4757-92db-9c3996f5bc18";
 				ASSOCIATED_DOMAIN = "azstg-secure.pepco.com";
-				BASE_URL = mcsstg.mobileenv.pepco.com;
+				BASE_URL = eudapi-stage.pepco.com;
 				BUILD_DISPLAY_NAME = Pepco;
 				BUILD_FLAVOR = PEPCO;
 				BUNDLE_ID = com.exelon.mobile.pepco.staging;
@@ -14788,7 +14852,7 @@
 				ANON_ASSOCIATED_DOMAIN = pepco.com;
 				APP_CENTER_ID = "689f516c-90e8-48e5-b8a4-a9b51b0f0298";
 				ASSOCIATED_DOMAIN = secure.pepco.com;
-				BASE_URL = mcs.mobileenv.pepco.com;
+				BASE_URL = eudapi.pepco.com;
 				BUILD_DISPLAY_NAME = Pepco;
 				BUILD_FLAVOR = PEPCO;
 				BUNDLE_ID = com.exelon.mobile.pepco.prodbeta;
@@ -15009,7 +15073,7 @@
 				ANON_ASSOCIATED_DOMAIN = pepco.com;
 				APP_CENTER_ID = "5e8d65a7-7ffb-46b9-99f1-34d4080f52dd";
 				ASSOCIATED_DOMAIN = secure.pepco.com;
-				BASE_URL = mcs.mobileenv.pepco.com;
+				BASE_URL = eudapi.pepco.com;
 				BUILD_DISPLAY_NAME = Pepco;
 				BUILD_FLAVOR = PEPCO;
 				BUNDLE_ID = com.ifactorconsulting.pepco;
@@ -15231,7 +15295,7 @@
 				ANON_ASSOCIATED_DOMAIN = azstage.comed.com;
 				APP_CENTER_ID = "10cbbd03-c59b-4a65-ad28-bd1f289cd329";
 				ASSOCIATED_DOMAIN = "azstg-secure.comed.com";
-				BASE_URL = "xze-e-n-eudapi-comed-t-ams-01.azure-api.net";
+				BASE_URL = "eudapi-test.comed.com";
 				BUILD_DISPLAY_NAME = ComEd;
 				BUILD_FLAVOR = COMED;
 				BUNDLE_ID = com.exelon.mobile.comed.testing;
@@ -15536,7 +15600,7 @@
 				ANON_ASSOCIATED_DOMAIN = azstage.comed.com;
 				APP_CENTER_ID = "bf4bfe55-3dfd-423b-acfa-32ef84b3776c";
 				ASSOCIATED_DOMAIN = "azstg-secure.comed.com";
-				BASE_URL = mcsstg.mobileenv.comed.com;
+				BASE_URL = eudapi-stage.comed.com;
 				BUILD_DISPLAY_NAME = ComEd;
 				BUILD_FLAVOR = COMED;
 				BUNDLE_ID = com.exelon.mobile.comed.staging;
@@ -15757,7 +15821,7 @@
 				ANON_ASSOCIATED_DOMAIN = comed.com;
 				APP_CENTER_ID = "c98a5583-5894-4b00-bf91-c0a7822376a9";
 				ASSOCIATED_DOMAIN = secure.comed.com;
-				BASE_URL = mcs.mobileenv.comed.com;
+				BASE_URL = eudapi.comed.com;
 				BUILD_DISPLAY_NAME = ComEd;
 				BUILD_FLAVOR = COMED;
 				BUNDLE_ID = com.exelon.mobile.comed.prodbeta;
@@ -15977,7 +16041,7 @@
 				ANON_ASSOCIATED_DOMAIN = comed.com;
 				APP_CENTER_ID = "9f56e08c-6fa5-4209-93a2-d773601a1e45";
 				ASSOCIATED_DOMAIN = secure.comed.com;
-				BASE_URL = mcs.mobileenv.comed.com;
+				BASE_URL = eudapi.comed.com;
 				BUILD_DISPLAY_NAME = ComEd;
 				BUILD_FLAVOR = COMED;
 				BUNDLE_ID = com.iphoneproduction.exelon;
@@ -16198,7 +16262,7 @@
 				ANON_ASSOCIATED_DOMAIN = azstage.bge.com;
 				APP_CENTER_ID = "5555b456-47b1-4288-b4d4-c6cf44b15fb9";
 				ASSOCIATED_DOMAIN = "azstg-secure.bge.com";
-				BASE_URL = "xze-e-n-eudapi-bge-t-ams-01.azure-api.net";
+				BASE_URL = "eudapi-test.bge.com";
 				BUILD_DISPLAY_NAME = BGE;
 				BUILD_FLAVOR = BGE;
 				BUNDLE_ID = com.exelon.mobile.bge.testing;
@@ -16331,7 +16395,7 @@
 				ANON_ASSOCIATED_DOMAIN = bge.com;
 				APP_CENTER_ID = "bddc73d9-4dfb-421f-a59f-71c08c3647e5";
 				ASSOCIATED_DOMAIN = secure.bge.com;
-				BASE_URL = mcs.mobileenv.bge.com;
+				BASE_URL = eudapi.bge.com;
 				BUILD_DISPLAY_NAME = BGE;
 				BUILD_FLAVOR = BGE;
 				BUNDLE_ID = com.exelon.mobile.bge.prodbeta;
@@ -16463,7 +16527,7 @@
 				ANON_ASSOCIATED_DOMAIN = azstage.bge.com;
 				APP_CENTER_ID = "3bf3242e-af11-4b1e-9242-99dce77bbbc8";
 				ASSOCIATED_DOMAIN = "azstg-secure.bge.com";
-				BASE_URL = mcsstg.mobileenv.bge.com;
+				BASE_URL = eudapi-stage.bge.com;
 				BUILD_DISPLAY_NAME = BGE;
 				BUILD_FLAVOR = BGE;
 				BUNDLE_ID = com.exelon.mobile.bge.staging;

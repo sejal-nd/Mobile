@@ -196,7 +196,13 @@ class TemplateCardViewModel {
                         if accountDetail.isEnergyWiseRewardsEnrolled {
                             return NSLocalizedString("Manage your Energy Wise Rewards device from the palm of your hand.", comment: "")
                         } else {
-                            return NSLocalizedString("Join Energy Wise Rewards and get a smart thermostat or outdoor switch and $100 to $200 in bill credits from Jun—Sept.", comment: "")
+                            if accountDetail.state == "\(USState.MD)" {
+                                return NSLocalizedString("Join Energy Wise Rewards and get a smart thermostat or outdoor switch and up to $160 in bill credits the first year.", comment: "")
+                            } else if accountDetail.state == "\(USState.DE)" {
+                                return NSLocalizedString("Join Energy Wise Rewards and get a smart thermostat or outdoor switch and up to $80 once your device is installed.", comment: "")
+                            } else {
+                                return NSLocalizedString("Join Energy Wise Rewards and get a smart thermostat or outdoor switch and $100 to $200 in bill credits from Jun—Sept.", comment: "")
+                            }
                         }
                     } else {
                         return NSLocalizedString("Save with financial incentives and energy efficiency upgrades.", comment: "")
@@ -206,7 +212,13 @@ class TemplateCardViewModel {
                         if accountDetail.isEnergyWiseRewardsEnrolled {
                             return NSLocalizedString("Manage your Energy Wise Rewards device from the palm of your hand.", comment: "")
                         } else {
-                            return NSLocalizedString("Join Energy Wise Rewards and get a smart thermostat or outdoor switch and $100 to $200 in bill credits from Jun—Sept.", comment: "")
+                            if accountDetail.state == "\(USState.MD)" {
+                                return NSLocalizedString("Join Energy Wise Rewards and get a smart thermostat or outdoor switch and up to $160 in bill credits the first year.", comment: "")
+                            } else if accountDetail.state == "\(USState.DC)" {
+                                return NSLocalizedString("Join Energy Wise Rewards and get a smart thermostat or outdoor switch and up to $120 in bill credits the first year.", comment: "")
+                            } else {
+                                return NSLocalizedString("Join Energy Wise Rewards and get a smart thermostat or outdoor switch and $100 to $200 in bill credits from Jun—Sept.", comment: "")
+                            }
                         }
                     } else {
                         return NSLocalizedString("Save with financial incentives and energy efficiency upgrades.", comment: "")

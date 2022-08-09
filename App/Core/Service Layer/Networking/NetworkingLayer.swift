@@ -253,6 +253,12 @@ public enum NetworkingLayer {
                     if let url = urlRequest.url {
                         Log.custom("📬", url.absoluteString)
                     }
+                    
+                    if let httpResponse = response as? HTTPURLResponse {
+                        let contextID = httpResponse.value(forHTTPHeaderField: "ecid-context") ?? "N/A"
+                        Log.custom("✉️", "ContextID: \(contextID)")
+                    }
+                    
                     Log.custom("✉️", "RAW RESPONSE:\n\(String(data: data, encoding: .utf8) ?? "******* ERROR CONVERTING DATA TO STRING CHECK ENCODING ********")")
                 }
                 

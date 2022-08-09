@@ -53,6 +53,7 @@ class AlertPreferencesViewModel {
     var initialEnglishValue = true
     var initialEnergyBuddyUpdatesValue = UserDefaults.standard.bool(forKey: UserDefaultKeys.gameEnergyBuddyUpdatesAlertPreference)
     var initialBillThresholdValue = ""
+    var initiatedFromOutageView = false
     
     var shouldEnrollPaperlessEBill: Bool {
         if Configuration.shared.opco == .bge { return false }
