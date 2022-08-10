@@ -581,6 +581,7 @@ enum AlertsParameter: String, EventParameter {
     case bill_enroll_push_cancel
     case bill_enroll_push_continue
     case bill_unenroll_push_continue
+    case outage_enroll
 }
 
 enum ContactUsParameter: String, EventParameter {
@@ -619,6 +620,7 @@ enum UsageParameter: String, EventParameter {
 enum MoreParameter: String, EventParameter {
     case strong_password_complete
     case change_password_complete
+    case change_my_security_complete
     case default_account_help
     case set_default_account_complete
     case billing_videos
@@ -710,6 +712,7 @@ enum Screen {
     case autopayEnrolledView(className: String)
     case autopayUnenrolledView(className: String)
     case changePasswordView(className: String)
+    case mySecurityView(className: String)
     case releaseOfInfoView(className: String)
     case unauthenticatedOutageValidationView(className: String)
     case unauthenticatedOutageSelectView(className: String)
@@ -781,6 +784,8 @@ enum Screen {
             return "MoreView"
         case .changePasswordView:
             return "ChangePasswordView"
+        case .mySecurityView:
+            return "MySecurityView"
         case .releaseOfInfoView:
             return "ReleaseOfInfoView"
         case .unauthenticatedOutageValidationView:
@@ -885,6 +890,7 @@ enum Screen {
              .usageView(let className),
              .moreView(let className),
              .changePasswordView(let className),
+             .mySecurityView(let className),
              .releaseOfInfoView(let className),
              .unauthenticatedOutageValidationView(let className),
              .unauthenticatedOutageSelectView(let className),

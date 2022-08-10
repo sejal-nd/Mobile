@@ -7,20 +7,32 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
+import RxSwiftExt
 
 class InfoModalViewController: DismissableFormSheetViewController {
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var infoModalButton: SecondaryButton!
+    
+
+  
     
     private var image: UIImage
     private var infoDescription: String
+    private let infoModalBtnLabel: String?
     private let onClose: (() -> ())?
+    private let onBtnClick: (() -> ())?
     
-    init(title: String, image: UIImage, description: String, onClose: (() -> ())? = nil) {
+    init(title: String, image: UIImage, description: String, modalBtnLabel: String? = nil, onClose: (() -> ())? = nil, onBtnClick: (() -> ())? = nil) {
         self.image = image
         self.infoDescription = description
+        self.infoModalBtnLabel = modalBtnLabel
         self.onClose = onClose
+        self.onBtnClick = onBtnClick
+        
         
         super.init(nibName: "InfoModal", bundle: nil)
         
@@ -44,8 +56,19 @@ class InfoModalViewController: DismissableFormSheetViewController {
         descriptionLabel.font = SystemFont.regular.of(textStyle: .body)
         descriptionLabel.text = infoDescription
         descriptionLabel.setLineHeight(lineHeight: 25)
+        
+        self.infoModalButton.isHidden = infoModalBtnLabel == nil
+        infoModalButton.titleLabel?.text = infoModalBtnLabel ?? ""
+        
     }
     
+    
+    @IBAction func infoModalButtonPress() {
+        self.dismissModal()
+        onBtnClick?()
+    }
+
+   
     override func dismissModal() {
         onClose?()
         super.dismissModal()

@@ -72,13 +72,16 @@ class AlertPreferencesViewController: UIViewController {
                 
                 self.tableView.reloadData()
                 UIAccessibility.post(notification: .screenChanged, argument: self.view)
+                
+                if let section = self.viewModel.sections.firstIndex(where: {$0.0 == (NSLocalizedString("Outage", comment: ""))}), self.viewModel.initiatedFromOutageView {
+                    self.sectionTapped(section + 1)
+                }
             }
         })
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         FirebaseUtility.logScreenView(.alertPreferencesView(className: self.className))
     }
     
@@ -145,7 +148,9 @@ class AlertPreferencesViewController: UIViewController {
             guard let self = self else { return }
             
             FirebaseUtility.logEvent(.more(parameters: [.alert_preferences_complete]))
-            
+            if self.viewModel.initiatedFromOutageView {
+                FirebaseUtility.logEvent(.alerts(parameters: [.outage_enroll]))
+            }
             self.delegate?.alertPreferencesViewControllerDidSavePreferences()
             self.dismiss(animated: true, completion: nil)
             }, onError: { [weak self] errMessage in
