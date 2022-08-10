@@ -317,9 +317,11 @@ extension FinalReviewMoveServiceViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? SeamlessMoveViewController {
             vc.moveFlowData = viewModel.moveFlowData
+            vc.isUnauth = viewModel.isUnauth
         } else if let vc = segue.destination as? TerminateAgreementViewController {
             vc.moveFlowData = viewModel.moveFlowData
             vc.transferEligibility = .ineligible
+            vc.isUnauth = viewModel.isUnauth
         }
     }
 }
