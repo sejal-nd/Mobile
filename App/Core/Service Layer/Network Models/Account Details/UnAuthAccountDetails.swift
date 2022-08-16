@@ -42,9 +42,19 @@ public struct UnAuthAccountDetails: Decodable {
     public var accountNumber: String?
     public var isAMIAccount: Bool?
     public var isRCDCapable: Bool?
+    private var hasTPS: Bool?
+    private var isSupplier: Bool?
+    private var hasElectricSupplier: Bool?
+    private var hasGasSupplier: Bool?
+    
+    public var hasThirdPartySupplier: Bool {
+        print("HAS TPS: \(hasTPS ?? false || isSupplier ?? false || hasElectricSupplier ?? false || hasGasSupplier ?? false)")
+        return (hasTPS ?? false || isSupplier ?? false || hasElectricSupplier ?? false || hasGasSupplier ?? false)
+    }
+
 
     enum CodingKeys: String, CodingKey {
         
-        case customerInfo = "CustomerInfo", addressLine, street, city, state, zipCode, buildingNumber, premiseNumber, isResidential, isPasswordProtected, isGasOnly, status, accountStatusCode, isFinaled, serviceType, isCutOutNonPay, isCutOutIssued, isCutOutDispatched, serviceAgreementCount, isCashOnly, isAutoPay, revenueClassType, isAutoPayEligible, isEBillEligible, isEBillEnrollment, isBudgetBill, isBudgetBillEligible, isNetMetering, billingInfo = "BillingInfo", accountNumber, isAMIAccount, isRCDCapable
+        case customerInfo = "CustomerInfo", addressLine, street, city, state, zipCode, buildingNumber, premiseNumber, isResidential, isPasswordProtected, isGasOnly, status, accountStatusCode, isFinaled, serviceType, isCutOutNonPay, isCutOutIssued, isCutOutDispatched, serviceAgreementCount, isCashOnly, isAutoPay, revenueClassType, isAutoPayEligible, isEBillEligible, isEBillEnrollment, isBudgetBill, isBudgetBillEligible, isNetMetering, billingInfo = "BillingInfo", accountNumber, isAMIAccount, isRCDCapable, hasTPS = "hasThirdPartySupplier", isSupplier, hasElectricSupplier, hasGasSupplier
     }
 }

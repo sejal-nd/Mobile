@@ -127,7 +127,7 @@ class FinalReviewMoveServiceViewController: UIViewController {
         self.submitBtn.backgroundColor = UIColor(red: 0, green: 89.0/255.0, blue: 164.0/255.0, alpha: 1.0)
         self.submitBtn.setTitleColor(UIColor.white, for: .normal)
         
-        if self.viewModel.moveFlowData.currentAccountDetail?.hasThirdPartySupplier ?? false {
+        if self.viewModel.moveFlowData.currentAccountDetail?.hasThirdPartySupplier ?? false || self.viewModel.moveFlowData.unauthMoveData?.accountDetails?.hasThirdPartySupplier ?? false {
             submitBtn.setTitle("Continue", for: .normal)
         } else {
             submitBtn.setTitle("Submit", for: .normal)
@@ -140,7 +140,7 @@ class FinalReviewMoveServiceViewController: UIViewController {
                 self.navigationController?.view.isUserInteractionEnabled = false
                 LoadingView.show()
                 
-                if self.viewModel.moveFlowData.currentAccountDetail?.hasThirdPartySupplier ?? false {
+                if self.viewModel.moveFlowData.currentAccountDetail?.hasThirdPartySupplier ?? false || self.viewModel.moveFlowData.unauthMoveData?.accountDetails?.hasThirdPartySupplier ?? false {
                     MoveService.thirdPartyTransferEligibilityCheck(moveFlowData: self.viewModel.moveFlowData, completion: { [weak self] response in
                         guard let `self` = self else { return }
                                                 
@@ -228,7 +228,13 @@ class FinalReviewMoveServiceViewController: UIViewController {
 
         self.finalBillAddressStackView.isHidden = moveFlowData.currentAccountDetail?.isEBillEnrollment ?? false
         self.ebillStackView.isHidden = !(moveFlowData.currentAccountDetail?.isEBillEnrollment ?? false)
-        self.ebillUserInfoLabel.text = "The bill for service at your previous address will be delivered to \(moveFlowData.currentAccountDetail?.customerInfo.emailAddress ?? "")."
+        
+        if let email = moveFlowData.currentAccountDetail?.customerInfo.emailAddress {
+            self.ebillUserInfoLabel.text = "The bill for service at your previous address will be delivered to \(email)."
+        } else {
+            self.ebillUserInfoLabel.text = ""
+
+        }
 
         if moveFlowData.hasCurrentServiceAddressForBill {
             self.finalBillAddressLabel.text = "Same as new service address"
@@ -317,9 +323,11 @@ extension FinalReviewMoveServiceViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? SeamlessMoveViewController {
             vc.moveFlowData = viewModel.moveFlowData
+            vc.isUnauth = viewModel.isUnauth
         } else if let vc = segue.destination as? TerminateAgreementViewController {
             vc.moveFlowData = viewModel.moveFlowData
             vc.transferEligibility = .ineligible
+            vc.isUnauth = viewModel.isUnauth
         }
     }
 }
