@@ -10,13 +10,13 @@ import UIKit
 import SwiftUI
 
 class SeamlessMoveViewController: UIViewController {
-
+    
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var stickyFooterView: StickyFooterView!
     @IBOutlet weak var ctaButton: PrimaryButton!
     
     var childView: UIHostingController<SeamlessMoveWarningView>? = nil
-        
+    
     private var transferOption: TransferServiceOption = .transfer
     
     var moveFlowData: MoveServiceFlowData!
@@ -31,12 +31,24 @@ class SeamlessMoveViewController: UIViewController {
     }
     
     private func addHostingController() {
-        let seamlessMoveView = SeamlessMoveWarningView(stopServiceAddress: moveFlowData.currentPremise?.addressLineString ?? "",
+        let seamlessMoveView: SeamlessMoveWarningView
+        if let unauthMoveData = moveFlowData.unauthMoveData,
+           unauthMoveData.isUnauthMove,
+           let unauthAccountDetails = unauthMoveData.accountDetails {
+            seamlessMoveView = SeamlessMoveWarningView(stopServiceAddress: "\(unauthAccountDetails.addressLine)",
+                                                       stopServiceCountyStateZip: "\(unauthAccountDetails.city), \(unauthAccountDetails.state) \(unauthAccountDetails.zipCode)",
+                                                       startServiceAddress: moveFlowData.addressLookupResponse?.first?.address ?? "",
+                                                       startServiceCountyStateZip: "\(moveFlowData.addressLookupResponse?.first?.city ?? ""), \(moveFlowData.addressLookupResponse?.first?.state ?? "") \(moveFlowData.addressLookupResponse?.first?.zipCode ?? "")",
+                                                       didSelectRadioButton: didSelectRadioButton)
+            
+        } else {
+            seamlessMoveView = SeamlessMoveWarningView(stopServiceAddress: moveFlowData.currentPremise?.addressLineString ?? "",
                                                        stopServiceCountyStateZip: "\(moveFlowData.currentPremise?.townDetail.name ?? ""), \(moveFlowData.currentPremise?.townDetail.stateOrProvince ?? "") \(moveFlowData.currentPremise?.townDetail.code ?? "")",
                                                        startServiceAddress: moveFlowData.addressLookupResponse?.first?.address ?? "",
                                                        startServiceCountyStateZip: "\(moveFlowData.addressLookupResponse?.first?.city ?? ""), \(moveFlowData.addressLookupResponse?.first?.state ?? "") \(moveFlowData.addressLookupResponse?.first?.zipCode ?? "")",
                                                        didSelectRadioButton: didSelectRadioButton)
-
+        }
+        
         childView = UIHostingController(rootView: (seamlessMoveView))
         
         guard let unwrappedChildView = childView else {
@@ -47,7 +59,7 @@ class SeamlessMoveViewController: UIViewController {
         
         // Set constraints
         unwrappedChildView.view.translatesAutoresizingMaskIntoConstraints = false
-
+        
         
         NSLayoutConstraint.activate([
             unwrappedChildView.view.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
@@ -57,7 +69,7 @@ class SeamlessMoveViewController: UIViewController {
         ])
         
     }
-
+    
     private func didSelectRadioButton(transferOption: TransferServiceOption) {
         self.transferOption = transferOption
         switch transferOption {
@@ -74,7 +86,7 @@ class SeamlessMoveViewController: UIViewController {
         switch transferOption {
         case .transfer:
             ctaButton.setLoading()
-
+            
             if isUnauth {
                 MoveService.moveServiceAnon(moveFlowData: moveFlowData) { [weak self] (result: Result<MoveServiceResponse, NetworkingError>) in
                     guard let `self` = self else { return }
