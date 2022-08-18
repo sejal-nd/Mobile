@@ -104,32 +104,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         let token = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
-        Log.info("*-*-*-*-* APNS Device Token: \(token)")
+        Log.info("APNS Device Token: \(token)")
+        let hasRegisteredForPushNotifications = UserDefaults.standard.bool(forKey: UserDefaultKeys.hasRegisteredForPushNotifications)
         
-        var firstLogin = false
-        if let usernamesArray = UserDefaults.standard.array(forKey: UserDefaultKeys.usernamesRegisteredForPushNotifications) as? [String],
-            let loggedInUsername = UserDefaults.standard.string(forKey: UserDefaultKeys.loggedInUsername) {
-            if !usernamesArray.contains(loggedInUsername) {
-                firstLogin = true
-            }
-            
-            let alertRegistrationRequest = AlertRegistrationRequest(notificationToken: token,
-                                                                    notificationProvider: "APNS",
-                                                                    mobileClient: AlertRegistrationRequest.MobileClient(id: Bundle.main.bundleIdentifier ?? "",
-                                                                                                                        version: Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? ""),
-                                                                    setDefaults: firstLogin)
-            AlertService.register(request: alertRegistrationRequest) { result in
-                switch result {
-                case .success:
-                    Log.info("*-*-*-*-* Registered token with MCS")
-                    if firstLogin { // Add the username to the array
-                        var newUsernamesArray = usernamesArray
-                        newUsernamesArray.append(loggedInUsername)
-                        UserDefaults.standard.set(newUsernamesArray, forKey: UserDefaultKeys.usernamesRegisteredForPushNotifications)
-                    }
-                case .failure(let error):
-                    Log.info("*-*-*-*-* Failed to register token with MCS with error: \(error.localizedDescription)")
-                }
+        let alertRegistrationRequest = AlertRegistrationRequest(notificationToken: token,
+                                                                notificationProvider: "APNS",
+                                                                mobileClient: AlertRegistrationRequest.MobileClient(id: Bundle.main.bundleIdentifier ?? "",
+                                                                                                                    version: Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? ""),
+                                                                setDefaults: !hasRegisteredForPushNotifications)
+        AlertService.register(request: alertRegistrationRequest) { result in
+            switch result {
+            case .success:
+                Log.info("Registered APNS token")
+                UserDefaults.standard.set(true, forKey: UserDefaultKeys.hasRegisteredForPushNotifications)
+            case .failure(let error):
+                Log.error("Failed to register APNS token with error: \(error.localizedDescription)")
             }
         }
     }

@@ -7,7 +7,8 @@
 //
 
 struct UserDefaultKeys {
-    
+    static let hasRegisteredForPushNotifications = "hasRegisteredForPushNotifications" // Used to determine if is first registration for push notifications
+
     static let hasRunBefore = "kHasRunBefore"
     
     // Terms & Policies
