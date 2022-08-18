@@ -74,8 +74,10 @@ class SeamlessMoveViewController: UIViewController {
         self.transferOption = transferOption
         switch transferOption {
         case .transfer:
+            moveFlowData.seamlessFlag = "y"
             ctaButton.setTitle("Submit", for: .normal)
         case .doNotTransfer:
+            moveFlowData.seamlessFlag = "n"
             ctaButton.setTitle("Continue", for: .normal)
         }
     }
