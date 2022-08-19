@@ -291,7 +291,7 @@ class TapToPayViewModel {
 
         // Paymentus < $5
     var canEditReviewPayment: Bool {
-        return !(FeatureFlagUtility.shared.bool(forKey: .isLowPaymentAllowed) && self.paymentAmount.value < 5.0)
+        return !(FeatureFlagUtility.shared.bool(forKey: .isLowPaymentAllowed) && self.paymentAmount.value < 5.0 && self.paymentAmount.value > 0)
     }
     
     
