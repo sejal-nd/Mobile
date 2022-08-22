@@ -25,6 +25,12 @@ class MoveServiceConfirmationViewController: UIViewController {
     @IBOutlet weak var startServiceAddressStaticLabel: UILabel!
     @IBOutlet weak var startServiceAddressLabel: UILabel!
 
+    @IBOutlet weak var thirdPartySupplierStackView: UIStackView!
+    @IBOutlet weak var thirdPartySupplierInnerContentView: UIView!
+    @IBOutlet weak var thirdPartySupplierView: UIView!
+    @IBOutlet weak var thirdPartySupplierStatusLabel: UILabel!
+    @IBOutlet weak var thirdPartyInfoButton: UIButton!
+    
     @IBOutlet weak var nextStepStackView: UIStackView!
     @IBOutlet weak var billingAddressView: UIView!
     @IBOutlet weak var billingDescriptionLabel: UILabel!
@@ -74,7 +80,7 @@ class MoveServiceConfirmationViewController: UIViewController {
         accountNumberStaticLabel.font = SystemFont.regular.of(textStyle: .footnote)
         accountNumberLabel.font = SystemFont.semibold.of(size: 15.0)
 
-        for view in [stopServiceView, startServiceView, billingAddressView, billChargeView, accountNumberView] {
+        for view in [stopServiceView, startServiceView, billingAddressView, billChargeView, accountNumberView, thirdPartySupplierInnerContentView] {
             view?.roundCorners(.allCorners, radius: 10.0, borderColor: UIColor(red: 216.0/255.0, green: 216.0/255.0, blue: 216.0/255.0, alpha: 1.0), borderWidth: 1.0)
         }
     }
@@ -131,6 +137,25 @@ class MoveServiceConfirmationViewController: UIViewController {
         billingAddressLabel.text = viewModel.getBillingAddress()
         accountNumberLabel.text = viewModel.moveServiceResponse.accountNumber
         nextStepStackView.isHidden = viewModel.moveServiceResponse.isResolved ?? false
+        
+        if viewModel.shouldShowSeamlessMove {
+            thirdPartyInfoButton.setTitle("", for: .normal)
+            let thirdPartySupplierStatusText: String
+            if viewModel.transferEligibility == .eligible {
+                if viewModel.transferOption == .transfer {
+                    thirdPartySupplierStatusText = "Transfer to Start Service Address"
+                } else {
+                    thirdPartySupplierStatusText = "Discontinued"
+                }
+            } else {
+                thirdPartySupplierStatusText = "Discontinued"
+            }
+            
+            thirdPartySupplierStatusLabel.text = thirdPartySupplierStatusText
+            
+        } else {
+            thirdPartySupplierStackView.isHidden = true
+        }
     }
     
     func openMFMail() {
@@ -141,6 +166,24 @@ class MoveServiceConfirmationViewController: UIViewController {
             mailComposer.setMessageBody("", isHTML: false)
             present(mailComposer, animated: true, completion: nil)
         }
+    }
+    
+    @IBAction func thirdPartyToolTipPress(_ sender: Any) {
+        let modalText: String
+        
+        if viewModel.transferEligibility == .eligible {
+            if viewModel.transferOption == .transfer {
+                modalText = "You have indicated that we should carry forward your Third Party Electric Supplier Agreement.\n\nFor any questions or concerns, please contact your Third Party Supplier.\n\nYour retail electric supplier’s phone number is provided in the Electric Supply Charges portion of your BGE bill."
+            } else {
+                modalText = "You have chosen to discontinue your Third Party Electric Supplier Agreement. This will be reflected in your account after your new service start date.\n\nFor any questions or concerns, please contact your Third Party Supplier.\n\nYour retail electric supplier’s phone number is provided in the Electric Supply Charges portion of your BGE bill."
+            }
+        } else {
+            modalText = "Your Third Party Supplier electric agreement will be discontinued. This will be reflected in your account after your new start service date.\n\nFor any questions or concerns, please contact your Third Party Supplier.\n\nYour retail electric supplier’s phone number is provided in the Electric Supply Charges portion of your BGE bill."
+        }
+        
+        
+        let infoModal = InfoAlertController(title: "Third Party Supplier Update", message: modalText)
+        self.navigationController?.present(infoModal, animated: true, completion: nil)
     }
 }
 

@@ -38,6 +38,13 @@ class OutageViewController: AccountPickerViewController {
     @IBOutlet weak var outageStatusView: OutageStatusView!
     @IBOutlet weak var footerTextView: ZeroInsetDataDetectorTextView!
     
+    @IBOutlet weak var outageNotificationBannerTitle: UILabel!
+    @IBOutlet weak var outageNotificationBannerDesciption: UILabel!
+    @IBOutlet weak var spacerView: UIView!
+    @IBOutlet weak var outageNotificationAlertBannerView: BillAlertBannerView!
+   
+    @IBOutlet weak var outageAlertImageView: UIImageView!
+    
     private lazy var outageTrackerViewController: OutageTrackerViewController? = {
         let storyboard = UIStoryboard(name: "OutageTracker", bundle: Bundle.main)
         
@@ -84,6 +91,14 @@ class OutageViewController: AccountPickerViewController {
         configureUserState(userState)
         
         updateView()
+        
+        outageNotificationBannerTitle.font = SystemFont.regular.of(textStyle: .caption1)
+        outageNotificationBannerDesciption.font = SystemFont.regular.of(textStyle: .caption2)
+        outageNotificationBannerTitle.textColor = .deepGray
+        outageNotificationBannerDesciption.textColor = .gray
+        spacerView.backgroundColor = .softGray
+        spacerView.isHidden = true
+        outageNotificationAlertBannerView.isHidden = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -100,6 +115,12 @@ class OutageViewController: AccountPickerViewController {
         if userState == .authenticated {
             FirebaseUtility.logScreenView(.outageView(className: self.className))
         } else {
+            if viewModel.isOutageStatusInactive {
+                GoogleAnalytics.log(event: .reportAnOutageUnAuthOutScreen)
+            }else{
+                GoogleAnalytics.log(event: .outageStatusUnAuthComplete)
+            }
+       
             FirebaseUtility.logScreenView(.unauthenticatedOutageView(className: self.className))
         }
     }
@@ -267,6 +288,11 @@ class OutageViewController: AccountPickerViewController {
                 self.outageStatusView.setOutageStatus(outageStatus,
                                                       reportedResults: self.viewModel.reportedOutage,
                                                       hasJustReported: self.viewModel.hasJustReportedOutage)
+                
+                if !self.viewModel.hasJustReportedOutage {
+                    self.spacerView.isHidden = true
+                    self.outageNotificationAlertBannerView.isHidden = true
+                }
             }
             
             // If coming from shortcut, check these flags for report outage button availablility
@@ -380,6 +406,17 @@ class OutageViewController: AccountPickerViewController {
                                               reportedResults: self.viewModel.reportedOutage,
                                               hasJustReported: self.viewModel.hasJustReportedOutage)
     }
+    
+    @IBAction func openOutageNotificationAlertPreferences(_ sender: Any) {
+        
+        let storyboard = UIStoryboard(name: "Alerts", bundle: nil)
+        guard let alertPrefsVC = storyboard.instantiateViewController(withIdentifier: "alertPreferences") as? AlertPreferencesViewController else {
+            return
+        }
+        alertPrefsVC.viewModel.initiatedFromOutageView = true
+        let newNavController = LargeTitleNavigationController(rootViewController: alertPrefsVC)
+        self.navigationController?.present(newNavController, animated: true)
+    }
 }
 
 
@@ -449,6 +486,11 @@ extension OutageViewController: UITableViewDelegate {
         switch indexPath.row {
         case 0:
             performSegue(withIdentifier: "reportOutageSegue", sender: self)
+            if userState == .authenticated {
+                FirebaseUtility.logEvent(.authOutage(parameters: [.report_outage]))
+            } else {
+                FirebaseUtility.logEvent(.unauthOutage(parameters: [.report_outage]))
+            }
         case 1:
             GoogleAnalytics.log(event: .viewStreetlightMapOfferComplete)
             if userState == .authenticated {
@@ -458,10 +500,11 @@ extension OutageViewController: UITableViewDelegate {
             }
             performSegue(withIdentifier: "outageMapSegue", sender: true)
         case 2:
-            GoogleAnalytics.log(event: .viewMapOfferComplete)
             if userState == .authenticated {
+                GoogleAnalytics.log(event: .viewMapOfferComplete)
                 FirebaseUtility.logEvent(.authOutage(parameters: [.map]))
             } else {
+                GoogleAnalytics.log(event: .viewOutageUnAuthMenu)
                 FirebaseUtility.logEvent(.unauthOutage(parameters: [.map]))
             }
             performSegue(withIdentifier: "outageMapSegue", sender: false)
@@ -494,6 +537,7 @@ extension OutageViewController: OutageStatusDelegate {
             FirebaseUtility.logEvent(.authOutage(parameters: [.view_details]))
         } else {
             FirebaseUtility.logEvent(.unauthOutage(parameters: [.view_details]))
+            GoogleAnalytics.log(event: .outageStatusUnAuthStatusButton)
         }
         
         switch outageState {
@@ -521,10 +565,11 @@ extension OutageViewController: OutageStatusDelegate {
 extension OutageViewController: DataDetectorTextViewLinkTapDelegate {
     func dataDetectorTextView(_ textView: DataDetectorTextView, didInteractWith URL: URL) {
         // Analytics
-        GoogleAnalytics.log(event: .outageAuthEmergencyCall)
         if userState == .authenticated {
+            GoogleAnalytics.log(event: .outageAuthEmergencyCall)
             FirebaseUtility.logEvent(.authOutage(parameters: [.emergency_number]))
         } else {
+            GoogleAnalytics.log(event: .outageScreenUnAuthEmergencyPhone)
             FirebaseUtility.logEvent(.unauthOutage(parameters: [.emergency_number]))
         }
         viewModel.trackPhoneNumberAnalytics(isAuthenticated: userState == .authenticated, for: URL)
@@ -558,5 +603,10 @@ extension OutageViewController: ReportOutageDelegate {
             event = .unauthOutage(parameters: [.report_complete])
         }
         FirebaseUtility.logEvent(event)
+        
+        if userState == .authenticated && self.viewModel.hasJustReportedOutage  && Configuration.shared.opco.isPHI {
+            spacerView.isHidden = false
+            outageNotificationAlertBannerView.isHidden = false
+        }
     }
 }
