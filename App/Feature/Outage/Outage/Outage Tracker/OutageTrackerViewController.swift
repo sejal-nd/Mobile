@@ -33,6 +33,10 @@ class OutageTrackerViewController: UIViewController {
     @IBOutlet weak var trackerStatusView: TrackerStatusView!
     @IBOutlet weak var surveyView: SurveyView!
     @IBOutlet weak var powerOnContainer: UIView!
+    @IBOutlet weak var outageNotificationAlertBannerView: BillAlertBannerView!
+    @IBOutlet weak var outageNotificationBannerTitle: UILabel!
+    @IBOutlet weak var outageNotificationBannerDesciption: UILabel!
+    @IBOutlet weak var spacerView: UIView!
     
     let disposeBag = DisposeBag()
     var viewModel: OutageTrackerViewModel!
@@ -46,6 +50,14 @@ class OutageTrackerViewController: UIViewController {
         configureFooterTextView()
         setupUI()
         setupBinding()
+        
+        outageNotificationBannerTitle.font = SystemFont.regular.of(textStyle: .caption1)
+        outageNotificationBannerDesciption.font = SystemFont.regular.of(textStyle: .caption2)
+        outageNotificationBannerTitle.textColor = .deepGray
+        outageNotificationBannerDesciption.textColor = .gray
+        spacerView.backgroundColor = .softGray
+        spacerView.isHidden = true
+        outageNotificationAlertBannerView.isHidden = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -105,6 +117,15 @@ class OutageTrackerViewController: UIViewController {
     }
     
     private func update() {
+        if viewModel.hasJustReportedOutage  {
+            //show CTA for Outage Alert Preference
+            spacerView.isHidden = false
+            outageNotificationAlertBannerView.isHidden = false
+            viewModel.hasJustReportedOutage = false
+        } else {
+            spacerView.isHidden = true
+            outageNotificationAlertBannerView.isHidden = true
+        }
         logOutageTrackerEvents()
         if viewModel.isGasOnly {
             let gasOnlyView = GasOnlyView()
@@ -168,6 +189,16 @@ class OutageTrackerViewController: UIViewController {
         }
     }
     
+    @IBAction func openOutageAlertPreferenceTap(_ sender: Any) {
+            let storyboard = UIStoryboard(name: "Alerts", bundle: nil)
+            guard let alertPrefsVC = storyboard.instantiateViewController(withIdentifier: "alertPreferences") as? AlertPreferencesViewController else {
+                return
+            }
+            alertPrefsVC.viewModel.initiatedFromOutageView = true
+            let newNavController = LargeTitleNavigationController(rootViewController: alertPrefsVC)
+            self.navigationController?.present(newNavController, animated: true)
+    }
+    
     /**
      Function for logging Outage Tracker Firebase events
      */
@@ -227,6 +258,7 @@ class OutageTrackerViewController: UIViewController {
             if let outageStatus = viewModel.outageStatus.value {
                 reportOutageVC.viewModel.outageStatus = outageStatus
                 reportOutageVC.viewModel.phoneNumber.accept(outageStatus.contactHomeNumber ?? "")
+                reportOutageVC.delegate = self
                 navigationController?.pushViewController(reportOutageVC, animated: true)
             }
         }
@@ -373,4 +405,13 @@ extension OutageTrackerViewController: UITableViewDelegate {
             openOutageMap(forStreetMap: isStreetMap)
         }
     }
+}
+
+extension OutageTrackerViewController: ReportOutageDelegate {
+func didReportOutage() {
+    // Show Toast
+    view.showToast(NSLocalizedString("Outage report received", comment: ""))
+    // Enable Reported Outage State
+    viewModel.hasJustReportedOutage = true
+ }
 }
