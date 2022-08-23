@@ -203,7 +203,7 @@ class UnauthenticatedOutageValidateAccountViewController: KeyboardAvoidingSticky
                     let storyboard = UIStoryboard(name: "Login", bundle: nil)
                     let landingVC = storyboard.instantiateViewController(withIdentifier: "landingViewController")
                     let loginVC = storyboard.instantiateViewController(withIdentifier: "loginViewController")
-                    self?.navigationController?.setViewControllers([landingVC, loginVC], animated: false)
+                    self?.navigationController?.setViewControllers([loginVC, landingVC], animated: false)
                 }))
                 }
             } else if let phoneRange = errMessage.range(of:"1-\\d{3}-\\d{3}-\\d{4}", options: .regularExpression) {
