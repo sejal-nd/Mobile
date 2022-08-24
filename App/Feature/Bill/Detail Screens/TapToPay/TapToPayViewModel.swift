@@ -737,7 +737,7 @@ class TapToPayViewModel {
                 let maxPayment = accountDetail.billingInfo.maxPaymentAmount(bankOrCard: .bank)
                 if Configuration.shared.opco == .bge || Configuration.shared.opco.isPHI {
                     if paymentAmount < minPayment {
-                         if (FeatureFlagUtility.shared.bool(forKey: .isLowPaymentAllowed)){
+                         if (FeatureFlagUtility.shared.bool(forKey: .isLowPaymentAllowed)) && (paymentAmount == 0) {
                             return nil
                         } else {
                             return NSLocalizedString("Minimum payment allowed is \(minPayment.currencyString)", comment: "")
@@ -747,7 +747,7 @@ class TapToPayViewModel {
                     }
                 } else {
                     if paymentAmount < minPayment {
-                        if (FeatureFlagUtility.shared.bool(forKey: .isLowPaymentAllowed)){
+                        if (FeatureFlagUtility.shared.bool(forKey: .isLowPaymentAllowed))  && (paymentAmount == 0) {
                             return nil
                         } else {
                             return NSLocalizedString("Minimum payment allowed is \(minPayment.currencyString)", comment: "")
@@ -763,7 +763,7 @@ class TapToPayViewModel {
                 let maxPayment = accountDetail.billingInfo.maxPaymentAmount(bankOrCard: .card)
                 if Configuration.shared.opco == .bge || Configuration.shared.opco.isPHI {
                     if paymentAmount < minPayment {
-                        if (FeatureFlagUtility.shared.bool(forKey: .isLowPaymentAllowed)){
+                        if (FeatureFlagUtility.shared.bool(forKey: .isLowPaymentAllowed))  && (paymentAmount == 0) {
                             return nil
                         } else {
                             return NSLocalizedString("Minimum payment allowed is \(minPayment.currencyString)", comment: "")
@@ -773,7 +773,7 @@ class TapToPayViewModel {
                     }
                 } else {
                     if paymentAmount < minPayment {
-                        if (FeatureFlagUtility.shared.bool(forKey: .isLowPaymentAllowed)){
+                        if (FeatureFlagUtility.shared.bool(forKey: .isLowPaymentAllowed)) && (paymentAmount == 0) {
                             return nil
                         } else {
                             return NSLocalizedString("Minimum payment allowed is \(minPayment.currencyString)", comment: "")
