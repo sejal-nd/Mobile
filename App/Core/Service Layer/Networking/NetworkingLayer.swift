@@ -13,6 +13,8 @@ public enum NetworkingLayer {
     static let refreshTokenDispatchGroup = DispatchGroup()
     static var isRefreshingToken = false
     
+    static var history: [(Router, Date)] = []
+    
     public static func request<T: Decodable>(router: Router,
                                              completion: @escaping (Result<T, NetworkingError>) -> ()) {
         // Ensure token exists for auth requests
@@ -21,6 +23,8 @@ public enum NetworkingLayer {
             completion(.failure(.invalidToken))
             return
         }
+        
+        checkDuplicateCalls(for: router)
         
         // Configure URL Request
         var components = URLComponents()
@@ -92,6 +96,22 @@ public enum NetworkingLayer {
                                      urlRequest: urlRequest,
                                      completion: completion)
         }
+    }
+    
+    private static func checkDuplicateCalls(for router: Router) {
+        let now = Date.now
+        for (index, call) in NetworkingLayer.history.enumerated() {
+            if router.path == call.0.path { // TODO ???Implement Router Equatable???
+                let timeSince = call.1.distance(to: now)
+                
+                if timeSince < 2 {
+                    Log.custom("⚠️", "DUPLICATE API CALL --> \(router.path)")
+                    NetworkingLayer.history.remove(at: index)
+                }
+            }
+        }
+        
+        NetworkingLayer.history.append((router, now))
     }
     
     //Methods for B2C MSAuth
