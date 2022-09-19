@@ -37,6 +37,8 @@ class OutageTrackerViewController: UIViewController {
     @IBOutlet weak var outageNotificationBannerTitle: UILabel!
     @IBOutlet weak var outageNotificationBannerDesciption: UILabel!
     @IBOutlet weak var spacerView: UIView!
+    @IBOutlet weak var powerStatusHeader: UILabel!
+    @IBOutlet weak var powerStatusDescription: UILabel!
     
     let disposeBag = DisposeBag()
     var viewModel: OutageTrackerViewModel!
@@ -121,7 +123,6 @@ class OutageTrackerViewController: UIViewController {
             //show CTA for Outage Alert Preference
             spacerView.isHidden = false
             outageNotificationAlertBannerView.isHidden = false
-            viewModel.hasJustReportedOutage = false
         } else {
             spacerView.isHidden = true
             outageNotificationAlertBannerView.isHidden = true
@@ -151,6 +152,8 @@ class OutageTrackerViewController: UIViewController {
             
             if viewModel.isActiveOutage == false {
                 powerOnContainer.isHidden = false
+                powerStatusHeader.text = NSLocalizedString("Our records indicate", comment: "")
+                powerStatusDescription.text = NSLocalizedString("POWER IS ON", comment: "")
                 progressAnimationView.configure(withStatus: .restored)
             } else {
                 powerOnContainer.isHidden = true
@@ -276,6 +279,17 @@ class OutageTrackerViewController: UIViewController {
         if enabled {
             guard refreshControl == nil else { return }
             
+            // change animation and power status text if user reports an outage
+            if viewModel.hasJustReportedOutage {
+                viewModel.hasJustReportedOutage = false
+                if viewModel.isActiveOutage {
+                    progressAnimationView.setUpProgressAnimation(animName: "ot_reported")
+                } else {
+                    progressAnimationView.setUpProgressAnimation(animName: "outage_reported")
+                    powerStatusHeader.text = NSLocalizedString("Your outage is", comment: "")
+                    powerStatusDescription.text = NSLocalizedString("REPORTED", comment: "")
+                }
+            }
             let rc = UIRefreshControl()
             
             rc.rx.controlEvent(.valueChanged)

@@ -43,7 +43,7 @@ class StateAnimationView: UIView {
             errorImageView.isHidden = false
         } else {
             self.status = status
-            setUpProgressAnimation()
+            setUpProgressAnimation(animName: animationName)
             progressAnimationContainer.isHidden = false
         }
     }
@@ -75,9 +75,9 @@ extension StateAnimationView {
     
     // MARK - Lottie Animation
     
-    func setUpProgressAnimation() {
+    func setUpProgressAnimation(animName: String) {
         progressAnimation.removeFromSuperview()
-        progressAnimation = AnimationView(name: animationName)
+        progressAnimation = AnimationView(name: animName)
         
         progressAnimation.frame = CGRect(x: 0, y: 1, width: progressAnimationContainer.frame.size.width, height: progressAnimationContainer.frame.size.height)
         progressAnimation.loopMode = .loop

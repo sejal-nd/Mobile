@@ -564,6 +564,8 @@
                         <outlet property="outageNotificationBannerDesciption" destination="Qd0-Fk-izj" id="yc2-Sz-aRn"/>
                         <outlet property="outageNotificationBannerTitle" destination="6Kg-D4-7lc" id="b2O-wR-uQ9"/>
                         <outlet property="powerOnContainer" destination="Yyt-U9-0tJ" id="Soj-Cu-pcO"/>
+                        <outlet property="powerStatusDescription" destination="t2R-hi-ue9" id="6Cw-IQ-4QA"/>
+                        <outlet property="powerStatusHeader" destination="dgR-ao-ARO" id="Xx5-2T-6Do"/>
                         <outlet property="progressAnimationView" destination="hhk-NV-joZ" id="n2a-g2-OeF"/>
                         <outlet property="scrollView" destination="FM4-Ab-ESP" id="GE6-71-PIZ"/>
                         <outlet property="spacerView" destination="ysb-84-tMs" id="7Kj-Oz-9vC"/>
