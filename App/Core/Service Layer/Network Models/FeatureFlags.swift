@@ -41,6 +41,7 @@ public struct FeatureFlags: Decodable {
     public var hasUnauthenticatedISUM: Bool = false
     public var isGamificationEnabled: Bool = false
     public var isLowPaymentAllowed: Bool = false
+    public var hasAssistanceFinder: Bool = false
 
     enum CodingKeys: String, CodingKey {
         case outageMapUrl = "outageMapURL"
@@ -57,6 +58,7 @@ public struct FeatureFlags: Decodable {
         case hasUnauthenticatedISUM
         case isGamificationEnabled
         case isLowPaymentAllowed
+        case hasAssistanceFinder
     }
     
     public init() {
@@ -80,5 +82,6 @@ public struct FeatureFlags: Decodable {
         hasUnauthenticatedISUM = try container.decodeIfPresent(Bool.self, forKey: .hasUnauthenticatedISUM) ?? false
         isGamificationEnabled = try container.decodeIfPresent(Bool.self, forKey: .isGamificationEnabled) ?? false
         isLowPaymentAllowed = try container.decodeIfPresent(Bool.self, forKey: .isLowPaymentAllowed) ?? false
+        hasAssistanceFinder = try container.decodeIfPresent(Bool.self, forKey: .hasAssistanceFinder) ?? false
     }
 }

@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "img_card_boomer_assistance.jpg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

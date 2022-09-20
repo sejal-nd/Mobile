@@ -25,6 +25,7 @@ final class FeatureFlagUtility {
         case isLowPaymentAllowed // Paymentus <$5
         case isB2CAuthentication // calculated value = isAzureAuthentication || isPkceAuthentication
         case isGamificationEnabled
+        case hasAssistanceFinder
     }
     
     static let shared = FeatureFlagUtility()
@@ -52,7 +53,8 @@ final class FeatureFlagUtility {
             FeatureFlagKey.hasUnauthenticatedISUM.rawValue : false,
             FeatureFlagKey.isB2CAuthentication.rawValue : false,
             FeatureFlagKey.isGamificationEnabled.rawValue: false,
-            FeatureFlagKey.isLowPaymentAllowed.rawValue : false
+            FeatureFlagKey.isLowPaymentAllowed.rawValue : false,
+            FeatureFlagKey.hasAssistanceFinder.rawValue : false
         ]
         
         UserDefaults.standard.setValuesForKeys(appDefaults)
@@ -84,7 +86,8 @@ final class FeatureFlagUtility {
                     FeatureFlagKey.hasUnauthenticatedISUM.rawValue : featureFlags.hasUnauthenticatedISUM,
                     FeatureFlagKey.isB2CAuthentication.rawValue : featureFlags.isAzureAuthentication || featureFlags.isPkceAuthentication,
                     FeatureFlagKey.isGamificationEnabled.rawValue : featureFlags.isGamificationEnabled,
-                    FeatureFlagKey.isLowPaymentAllowed.rawValue : featureFlags.isLowPaymentAllowed   
+                    FeatureFlagKey.isLowPaymentAllowed.rawValue : featureFlags.isLowPaymentAllowed,
+                    FeatureFlagKey.hasAssistanceFinder.rawValue : featureFlags.hasAssistanceFinder
                 ]
                 
                 UserDefaults.standard.setValuesForKeys(keyedValues)
