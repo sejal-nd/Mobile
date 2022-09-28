@@ -902,9 +902,7 @@ class UsageViewModel {
             case .peco:
                 break
             case .ace, .delmarva, .pepco:
-                if accountDetail.opcoType == .ace {
-                    usageTools.insert(.energyWiseRewards, at: 1)
-                } else if accountDetail.opcoType == .delmarva {
+                if accountDetail.opcoType == .delmarva {
                     if accountDetail.isEnergyWiseRewardsEligible || accountDetail.isEnergyWiseRewardsEnrolled {
                         usageTools.insert(.energyWiseRewards, at: 1)
                     }
