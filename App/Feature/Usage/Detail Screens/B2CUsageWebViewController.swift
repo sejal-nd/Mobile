@@ -31,6 +31,7 @@ class B2CUsageWebViewController: UIViewController {
         }
         set {
             viewModel.accountDetail.accept(newValue)
+            viewModel.refreshCommercialWidgets()
         }
     }
     
@@ -57,7 +58,13 @@ class B2CUsageWebViewController: UIViewController {
             showCommercialView()
         }
         
-        fetchJWT()
+        viewModel.isLoading.not().bind(to: loadingIndicator.rx.isHidden).disposed(by: disposeBag)
+        viewModel.isError.not().bind(to: errorView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.accessToken.subscribe(onNext: { [weak self] _ in
+            self?.loadWebView()
+        }).disposed(by: disposeBag)
+        
+        viewModel.fetchJWT()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -92,7 +99,7 @@ class B2CUsageWebViewController: UIViewController {
                 guard let self = self else { return }
                 
                 self.viewModel.widget = self.viewModel.selectedCommercialWidget()
-                self.fetchJWT()
+                self.viewModel.fetchJWT()
             })
             .disposed(by: disposeBag)
         
@@ -105,7 +112,7 @@ class B2CUsageWebViewController: UIViewController {
             .bind(to: viewModel.selectedCommercialIndex)
             .disposed(by: disposeBag)
         
-        Observable.just(viewModel.commercialWidgets)
+        viewModel.commercialWidgets
             .bind(to: tabCollectionView.rx.items(cellIdentifier: TabCollectionViewCell.className,
                                                  cellType: TabCollectionViewCell.self))
             { [weak self] (row, tab, cell) in
@@ -128,58 +135,18 @@ class B2CUsageWebViewController: UIViewController {
     }
     
     func refresh() {
-        fetchJWT()
-    }
-    
-    private func fetchJWT() {
-        loadingIndicator.isHidden = false
-        webView.isHidden = true
-        
-        let accountNumber = viewModel.accountDetail.value?.accountNumber ?? ""
-        var nonce = accountNumber
-        
-        if viewModel.accountDetail.value?.isResidential == false {
-            nonce = "NR-\(accountNumber)"
-        }
-        let request = B2CTokenRequest(scope: "https://\(Configuration.shared.b2cTenant).onmicrosoft.com/opower/opower_connect",
-                                   nonce: nonce,
-                                   grantType: "refresh_token",
-                                   responseType: "token",
-                                   refreshToken: UserSession.refreshToken)
-        UsageService.fetchOpowerToken(request: request) { [weak self] result in
-            switch result {
-            case .success(let tokenResponse):
-                guard let self = self else { return }
-                self.errorView.isHidden = true
-                self.viewModel.accessToken = tokenResponse.token ?? ""
-
-                self.loadWebView()
-            case .failure:
-                guard let self = self else { return }
-                self.errorView.isHidden = false
-                self.webView.isHidden = true
-                self.loadingIndicator.isHidden = true
-            }
-        }
+        viewModel.refreshCommercialWidgets()
+        viewModel.fetchJWT()
     }
     
     func loadWebView() {
-        guard let token = viewModel.accessToken,
+        guard let token = viewModel.accessToken.value,
         !token.isEmpty else {
-            self.fetchJWT()
+            self.viewModel.fetchJWT()
             return
         }
         
-        let oPowerWidgetURL = Configuration.shared.getSecureOpCoOpowerURLString(viewModel.accountDetail.value?.opcoType ?? Configuration.shared.opco)
-        if let url = URL(string: oPowerWidgetURL) {
-            var request = NSURLRequest(url: url) as URLRequest
-            request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-            request.addValue(token, forHTTPHeaderField: "accessToken")
-            request.addValue(viewModel.accountDetail.value?.accountNumber ?? "", forHTTPHeaderField: "accountNumber")
-            request.addValue(viewModel.widget.identifier, forHTTPHeaderField: "opowerWidgetId")
-            request.addValue(viewModel.accountDetail.value?.utilityCode ?? Configuration.shared.opco.rawValue, forHTTPHeaderField: "opco")
-            request.addValue(viewModel.accountDetail.value?.state ?? "MD", forHTTPHeaderField: "state")
-            request.addValue("\(viewModel.accountDetail.value?.isResidential == false)", forHTTPHeaderField: "isCommercial")
+        if let request = viewModel.webViewRequest {
             webView.load(request)
         }
     }

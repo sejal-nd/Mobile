@@ -848,10 +848,8 @@ class UsageViewController: AccountPickerViewController {
         if viewModel.showAgentisWidgets() { // legacy commercial usage view controller does not need to be updated
             guard let viewController = children[0] as? B2CUsageWebViewController else { return }
             
-            if viewController.accountDetail?.accountNumber != accountDetail.accountNumber {
-                viewController.accountDetail = accountDetail
-                viewController.refresh()
-            }
+            viewController.accountDetail = accountDetail
+            viewController.refresh()
         }
     }
     
