@@ -676,10 +676,6 @@ class UsageViewController: AccountPickerViewController {
         maintenanceModeView.isHidden = true
         
         guard let _ = commercialViewController else {
-//            viewModel.accountDetail.asObservable().take(1).subscribe(onNext: {
-//                self.addCommercialView($0)
-//            }).disposed(by: disposeBag)
-            
             viewModel.accountDetail.asObservable().subscribe(onNext: {
                 if $0.isResidential {
                     return

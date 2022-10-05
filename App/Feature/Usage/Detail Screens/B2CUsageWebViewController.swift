@@ -44,8 +44,6 @@ class B2CUsageWebViewController: UIViewController {
         webView.isHidden = true
         
         webView.configuration.defaultWebpagePreferences.allowsContentJavaScript = true
-        let controller = webView.configuration.userContentController
-        controller.add(self, name: "error")
         
         errorImage.tintColor = .attentionOrange
         errorTitle.font = SystemFont.semibold.of(textStyle: .title3)
@@ -163,11 +161,5 @@ extension B2CUsageWebViewController: WKNavigationDelegate {
         loadingIndicator.isHidden = true
         webView.isHidden = true
         Log.error("Error loading usage web view: \(error)\n\(error.localizedDescription)")
-    }
-}
-
-extension B2CUsageWebViewController: WKScriptMessageHandler {
-    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-        print(message)
     }
 }
