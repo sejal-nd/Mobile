@@ -604,7 +604,7 @@ extension OutageViewController: ReportOutageDelegate {
         }
         FirebaseUtility.logEvent(event)
         
-        if userState == .authenticated && self.viewModel.hasJustReportedOutage  && Configuration.shared.opco.isPHI {
+        if userState == .authenticated && self.viewModel.hasJustReportedOutage {
             spacerView.isHidden = false
             outageNotificationAlertBannerView.isHidden = false
         }

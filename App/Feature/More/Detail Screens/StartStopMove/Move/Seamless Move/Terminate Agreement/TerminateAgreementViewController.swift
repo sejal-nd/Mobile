@@ -18,6 +18,7 @@ class TerminateAgreementViewController: UIViewController {
     private var childView: UIHostingController<TerminateAgreementView>? = nil
     
     var moveFlowData: MoveServiceFlowData!
+    var isUnauth = false
     var transferEligibility: TransferEligibility!
     
     private var hasAgreed = false
@@ -69,30 +70,58 @@ class TerminateAgreementViewController: UIViewController {
         if hasAgreed {
             ctaButton.setLoading()
             
-            MoveService.moveService(moveFlowData: moveFlowData) { [weak self] (result: Result<MoveServiceResponse, NetworkingError>) in
-                guard let `self` = self else { return }
-                switch result {
-                case .success(let moveResponse):
-                    FirebaseUtility.logEvent(.authMoveService(parameters: [moveResponse.isResolved == true ? .complete_resolved : .complete_unresolved]))
+            if isUnauth {
+                MoveService.moveServiceAnon(moveFlowData: moveFlowData) { [weak self] (result: Result<MoveServiceResponse, NetworkingError>) in
+                    guard let `self` = self else { return }
+                    switch result {
+                    case .success(let moveResponse):
+                        FirebaseUtility.logEvent(.authMoveService(parameters: [moveResponse.isResolved == true ? .complete_resolved : .complete_unresolved]))
+                        
+                        let isUnauth = self.moveFlowData.unauthMoveData?.isUnauthMove ?? false
+                        let storyboard = UIStoryboard(name: "ISUMMove", bundle: nil)
+                        let moveServiceConfirmationViewController = storyboard.instantiateViewController(withIdentifier: "MoveServiceConfirmationViewController") as! MoveServiceConfirmationViewController
+                        moveServiceConfirmationViewController.viewModel = MoveServiceConfirmationViewModel(moveServiceResponse: moveResponse,
+                                                                                                           isUnauth: isUnauth,
+                                                                                                           shouldShowSeamlessMove: true,
+                                                                                                           transferEligibility: self.transferEligibility,
+                                                                                                           transferOption: .doNotTransfer)
+                        self.navigationController?.pushViewController(moveServiceConfirmationViewController, animated: true)
+                    case .failure(let error):
+                        FirebaseUtility.logEvent(.authMoveService(parameters: [.complete_unresolved]))
+                        
+                        let alertVc = UIAlertController(title: error.title, message: error.description, preferredStyle: .alert)
+                        alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                        self.present(alertVc, animated: true, completion: nil)
+                    }
                     
-                    let isUnauth = self.moveFlowData.unauthMoveData?.isUnauthMove ?? false
-                    let storyboard = UIStoryboard(name: "ISUMMove", bundle: nil)
-                    let moveServiceConfirmationViewController = storyboard.instantiateViewController(withIdentifier: "MoveServiceConfirmationViewController") as! MoveServiceConfirmationViewController
-                    moveServiceConfirmationViewController.viewModel = MoveServiceConfirmationViewModel(moveServiceResponse: moveResponse,
-                                                                                                       isUnauth: isUnauth,
-                                                                                                       shouldShowSeamlessMove: true,
-                                                                                                       transferEligibility: self.transferEligibility,
-                                                                                                       transferOption: .doNotTransfer)
-                    self.navigationController?.pushViewController(moveServiceConfirmationViewController, animated: true)
-                case .failure(let error):
-                    FirebaseUtility.logEvent(.authMoveService(parameters: [.complete_unresolved]))
-                    
-                    let alertVc = UIAlertController(title: error.title, message: error.description, preferredStyle: .alert)
-                    alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-                    self.present(alertVc, animated: true, completion: nil)
+                    self.ctaButton.reset()
                 }
-                
-                self.ctaButton.reset()
+            } else {
+                MoveService.moveService(moveFlowData: moveFlowData) { [weak self] (result: Result<MoveServiceResponse, NetworkingError>) in
+                    guard let `self` = self else { return }
+                    switch result {
+                    case .success(let moveResponse):
+                        FirebaseUtility.logEvent(.authMoveService(parameters: [moveResponse.isResolved == true ? .complete_resolved : .complete_unresolved]))
+                        
+                        let isUnauth = self.moveFlowData.unauthMoveData?.isUnauthMove ?? false
+                        let storyboard = UIStoryboard(name: "ISUMMove", bundle: nil)
+                        let moveServiceConfirmationViewController = storyboard.instantiateViewController(withIdentifier: "MoveServiceConfirmationViewController") as! MoveServiceConfirmationViewController
+                        moveServiceConfirmationViewController.viewModel = MoveServiceConfirmationViewModel(moveServiceResponse: moveResponse,
+                                                                                                           isUnauth: isUnauth,
+                                                                                                           shouldShowSeamlessMove: true,
+                                                                                                           transferEligibility: self.transferEligibility,
+                                                                                                           transferOption: .doNotTransfer)
+                        self.navigationController?.pushViewController(moveServiceConfirmationViewController, animated: true)
+                    case .failure(let error):
+                        FirebaseUtility.logEvent(.authMoveService(parameters: [.complete_unresolved]))
+                        
+                        let alertVc = UIAlertController(title: error.title, message: error.description, preferredStyle: .alert)
+                        alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                        self.present(alertVc, animated: true, completion: nil)
+                    }
+                    
+                    self.ctaButton.reset()
+                }
             }
         }
     }

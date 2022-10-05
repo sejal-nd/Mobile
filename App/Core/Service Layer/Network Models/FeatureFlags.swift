@@ -48,6 +48,7 @@ public struct FeatureFlags: Decodable {
     public var isAgentisGasTipsWidget: Bool = false
     public var isAgentisProjectedWidget: Bool = false
     public var isLowPaymentAllowed: Bool = false
+    public var hasAssistanceFinder: Bool = false
 
     enum CodingKeys: String, CodingKey {
         case outageMapUrl = "outageMapURL"
@@ -71,6 +72,7 @@ public struct FeatureFlags: Decodable {
         case isAgentisGasTipsWidget
         case isAgentisProjectedWidget
         case isLowPaymentAllowed
+        case hasAssistanceFinder
     }
     
     public init() {
@@ -101,5 +103,6 @@ public struct FeatureFlags: Decodable {
         isAgentisGasTipsWidget = try container.decodeIfPresent(Bool.self, forKey: .isAgentisGasTipsWidget) ?? false
         isAgentisProjectedWidget = try container.decodeIfPresent(Bool.self, forKey: .isAgentisProjectedWidget) ?? false
         isLowPaymentAllowed = try container.decodeIfPresent(Bool.self, forKey: .isLowPaymentAllowed) ?? false
+        hasAssistanceFinder = try container.decodeIfPresent(Bool.self, forKey: .hasAssistanceFinder) ?? false
     }
 }

@@ -14,6 +14,7 @@ class OutageTrackerViewModel {
     let disposeBag = DisposeBag()
     var outageTracker = BehaviorRelay<OutageTracker?>(value: nil)
     var outageStatus: BehaviorRelay<OutageStatus?>
+    var hasJustReportedOutage = false
     
     public init(outageStatus: BehaviorRelay<OutageStatus?>) {
         self.outageStatus = outageStatus
