@@ -184,7 +184,7 @@ class UsageViewModel {
     private(set) lazy var showCommercialState: Driver<Void> = accountDetailEvents.elements()
         .filter { !$0.isResidential }
         .flatMap { accountDetails -> Observable<Void> in
-            if self.shouldShowAgentisWidgets() {
+            if self.showAgentisWidgets() {
                 return Observable.just(accountDetails).mapTo(())
             } else {
                 return self.commercialDataEvents.mapTo(())
@@ -939,7 +939,7 @@ class UsageViewModel {
         return false
     }
     
-    func shouldShowAgentisWidgets() -> Bool {
+    func showAgentisWidgets() -> Bool {
         return FeatureFlagUtility.shared.bool(forKey: .isAgentisElectricUsageWidget) ||
         FeatureFlagUtility.shared.bool(forKey: .isAgentisGasUsageWidget) ||
         FeatureFlagUtility.shared.bool(forKey: .isAgentisElectricCompareBillsWidget) ||

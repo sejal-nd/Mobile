@@ -13,7 +13,7 @@ import RxSwiftExt
 
 class B2CUsageViewModel {
     
-    var accountDetail: AccountDetail?
+    var accountDetail = BehaviorRelay<AccountDetail?>(value: nil)
     var accessToken: String?
     var widget: AgentisWidget = .usage
     
@@ -59,10 +59,10 @@ class B2CUsageViewModel {
     }
     
     var isGasAccount: Bool {
-        return accountDetail?.serviceType?.uppercased().contains("GAS")  ?? false
+        return accountDetail.value?.serviceType?.uppercased().contains("GAS")  ?? false
     }
     
     var isElectricAccount: Bool {
-        return accountDetail?.serviceType?.uppercased().contains("ELECTRIC") ?? false
+        return accountDetail.value?.serviceType?.uppercased().contains("ELECTRIC") ?? false
     }
 }

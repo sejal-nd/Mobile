@@ -27,10 +27,10 @@ class B2CUsageWebViewController: UIViewController {
      
     var accountDetail: AccountDetail? {
         get {
-            return viewModel.accountDetail
+            return viewModel.accountDetail.value
         }
         set {
-            viewModel.accountDetail = newValue
+            viewModel.accountDetail.accept(newValue)
         }
     }
     
@@ -53,7 +53,7 @@ class B2CUsageWebViewController: UIViewController {
         errorDescription.textColor = .deepGray
         errorView.isHidden = true
 
-        if viewModel.accountDetail?.isResidential == false {
+        if viewModel.accountDetail.value?.isResidential == false {
             showCommercialView()
         }
         
@@ -127,14 +127,18 @@ class B2CUsageWebViewController: UIViewController {
             .disposed(by: disposeBag)
     }
     
+    func refresh() {
+        fetchJWT()
+    }
+    
     private func fetchJWT() {
         loadingIndicator.isHidden = false
         webView.isHidden = true
         
-        let accountNumber = viewModel.accountDetail?.accountNumber ?? ""
+        let accountNumber = viewModel.accountDetail.value?.accountNumber ?? ""
         var nonce = accountNumber
         
-        if viewModel.accountDetail?.isResidential == false {
+        if viewModel.accountDetail.value?.isResidential == false {
             nonce = "NR-\(accountNumber)"
         }
         let request = B2CTokenRequest(scope: "https://\(Configuration.shared.b2cTenant).onmicrosoft.com/opower/opower_connect",
@@ -166,16 +170,16 @@ class B2CUsageWebViewController: UIViewController {
             return
         }
         
-        let oPowerWidgetURL = Configuration.shared.getSecureOpCoOpowerURLString(viewModel.accountDetail?.opcoType ?? Configuration.shared.opco)
+        let oPowerWidgetURL = Configuration.shared.getSecureOpCoOpowerURLString(viewModel.accountDetail.value?.opcoType ?? Configuration.shared.opco)
         if let url = URL(string: oPowerWidgetURL) {
             var request = NSURLRequest(url: url) as URLRequest
             request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
             request.addValue(token, forHTTPHeaderField: "accessToken")
-            request.addValue(viewModel.accountDetail?.accountNumber ?? "", forHTTPHeaderField: "accountNumber")
+            request.addValue(viewModel.accountDetail.value?.accountNumber ?? "", forHTTPHeaderField: "accountNumber")
             request.addValue(viewModel.widget.identifier, forHTTPHeaderField: "opowerWidgetId")
-            request.addValue(viewModel.accountDetail?.utilityCode ?? Configuration.shared.opco.rawValue, forHTTPHeaderField: "opco")
-            request.addValue(viewModel.accountDetail?.state ?? "MD", forHTTPHeaderField: "state")
-            request.addValue("\(viewModel.accountDetail?.isResidential == false)", forHTTPHeaderField: "isCommercial")
+            request.addValue(viewModel.accountDetail.value?.utilityCode ?? Configuration.shared.opco.rawValue, forHTTPHeaderField: "opco")
+            request.addValue(viewModel.accountDetail.value?.state ?? "MD", forHTTPHeaderField: "state")
+            request.addValue("\(viewModel.accountDetail.value?.isResidential == false)", forHTTPHeaderField: "isCommercial")
             webView.load(request)
         }
     }

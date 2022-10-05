@@ -664,7 +664,7 @@ class UsageViewController: AccountPickerViewController {
     }
     
     private func showCommercialState() {
-        scrollView?.isHidden = viewModel.shouldShowAgentisWidgets()
+        scrollView?.isHidden = viewModel.showAgentisWidgets()
         switchAccountsLoadingIndicator.isHidden = true
         unavailableView.isHidden = true
         accountPickerSpacerView.isHidden = true
@@ -676,9 +676,21 @@ class UsageViewController: AccountPickerViewController {
         maintenanceModeView.isHidden = true
         
         guard let _ = commercialViewController else {
-            viewModel.accountDetail.asObservable().take(1).subscribe(onNext: {
-                self.addCommercialView($0)
-            }).disposed(by: disposeBag) // dispose() is used without dispose bag so we only subscribe and add the commercial view once
+//            viewModel.accountDetail.asObservable().take(1).subscribe(onNext: {
+//                self.addCommercialView($0)
+//            }).disposed(by: disposeBag)
+            
+            viewModel.accountDetail.asObservable().subscribe(onNext: {
+                if $0.isResidential {
+                    return
+                }
+                
+                if self.commercialViewController == nil {
+                    self.addCommercialView($0)
+                } else {
+                    self.updateCommercialView(with: $0)
+                }
+            }).disposed(by: disposeBag)
             
             return
         }
@@ -798,7 +810,7 @@ class UsageViewController: AccountPickerViewController {
     }
     
     private func addCommercialView(_ accountDetail: AccountDetail) {
-        if viewModel.shouldShowAgentisWidgets() {
+        if viewModel.showAgentisWidgets() {
             let usageStoryboard = UIStoryboard(name: "Usage", bundle: nil)
             let commercialVC = usageStoryboard.instantiateViewController(withIdentifier: "B2CUsageWebViewController") as! B2CUsageWebViewController
             commercialVC.accountDetail = accountDetail
@@ -830,6 +842,17 @@ class UsageViewController: AccountPickerViewController {
         ])
         
         view.backgroundColor = .white
+    }
+    
+    private func updateCommercialView(with accountDetail: AccountDetail) {
+        if viewModel.showAgentisWidgets() { // legacy commercial usage view controller does not need to be updated
+            guard let viewController = children[0] as? B2CUsageWebViewController else { return }
+            
+            if viewController.accountDetail?.accountNumber != accountDetail.accountNumber {
+                viewController.accountDetail = accountDetail
+                viewController.refresh()
+            }
+        }
     }
     
     // MARK: - Usage Tool Cards
@@ -950,7 +973,7 @@ class UsageViewController: AccountPickerViewController {
         case let vc as UsageWebViewController:
             vc.accountDetail = accountDetail
         case let vc as B2CUsageWebViewController:
-            vc.viewModel.accountDetail = accountDetail
+            vc.accountDetail = accountDetail
             if segue.identifier == "serWebViewB2cSegue" {
                 vc.viewModel.widget = .ser
             } else {
