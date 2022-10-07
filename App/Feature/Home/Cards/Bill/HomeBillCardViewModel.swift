@@ -650,8 +650,8 @@ class HomeBillCardViewModel {
     }
     // MARK: - Assistance View States
     private(set) lazy var setComedPedoCTAAndEnrollment: Driver<Bool> =
-    Driver.combineLatest(accountDetailDriver, showBgeDdeDpaEligibility.asDriver())
-    { (accountDetail, recievedDDEDPAValues) in
+    accountDetailDriver.map
+    { (accountDetail) in
         
         if Configuration.shared.opco == .comEd || Configuration.shared.opco == .peco {
             
