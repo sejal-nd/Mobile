@@ -62,7 +62,7 @@ final class PeakEnergySavingsViewController: DismissableFormSheetViewController 
             vc.accountDetail = accountDetail
         case let vc as B2CUsageWebViewController:
             vc.accountDetail = accountDetail
-            vc.widget = .pesc
+            vc.viewModel.widget = .pesc
         default:
             break
         }
