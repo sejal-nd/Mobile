@@ -114,7 +114,7 @@ class AlertPreferencesViewModel {
                          [.billIsReady(self.accountDetail)]),
                         (NSLocalizedString("Payment", comment: ""),
                          paymentOptions),
-                        (NSLocalizedString("Customer Appointments", comment: ""),
+                        (NSLocalizedString("Appointments", comment: ""),
                          [.appointmentTracking]),
                         (NSLocalizedString("News", comment: ""),
                          [.forYourInformation])
@@ -633,7 +633,11 @@ class AlertPreferencesViewModel {
             case .budgetBillingReview:
                 return NSLocalizedString("Budget Billing Review", comment: "")
             case .appointmentTracking:
+                if Configuration.shared.opco == .bge {
+                return NSLocalizedString("Service Appointments", comment: "")
+                } else {
                 return NSLocalizedString("Appointment Tracking", comment: "")
+                }
             case .forYourInformation:
                 return Configuration.shared.opco.isPHI ? NSLocalizedString("Updates & General News", comment: "") : NSLocalizedString("For Your Information", comment: "")
             case .energyBuddyUpdates:
@@ -773,7 +777,11 @@ class AlertPreferencesViewModel {
                 
             // Appointment Tracking
             case (.appointmentTracking, _):
+                if Configuration.shared.opco == .bge {
+                return NSLocalizedString("Receive push notifications such as confirmations, reminders, and relevant status updates to track your scheduled service appointments.", comment: "")
+                } else {
                 return NSLocalizedString("Receive notifications such as confirmations, reminders, and relevant status updates for your scheduled service appointment.", comment: "")
+                }
                 
             // For Your Information
             case (.forYourInformation, .bge):
