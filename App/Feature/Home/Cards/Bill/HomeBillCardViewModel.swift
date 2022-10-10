@@ -650,8 +650,8 @@ class HomeBillCardViewModel {
     }
     // MARK: - Assistance View States
     private(set) lazy var setComedPedoCTAAndEnrollment: Driver<Bool> =
-    Driver.combineLatest(accountDetailDriver, showBgeDdeDpaEligibility.asDriver())
-    { (accountDetail, recievedDDEDPAValues) in
+    accountDetailDriver.map
+    { (accountDetail) in
         
         if Configuration.shared.opco == .comEd || Configuration.shared.opco == .peco {
             
@@ -790,11 +790,19 @@ class HomeBillCardViewModel {
                     ctaType: "Learn More")
             
         } else if accountDetail.billingInfo.pastDueAmount > 0  {
-            self.mobileAssistanceURL.accept(MobileAssistanceURL.getMobileAssistnceURL(assistanceType: .none, stateJurisdiction: accountDetail.state))
-            self.mobileAssistanceType = MobileAssistanceURL.none
-            return (title: "Having trouble keeping up with your \(Configuration.shared.opco.displayString) bill?",
-                    description: "Check out the many Assistance Programs \(Configuration.shared.opco.displayString) offers to find one that’s right for you.",
-                    ctaType: "Learn More")
+            if FeatureFlagUtility.shared.bool(forKey: .hasAssistanceFinder) {
+                self.mobileAssistanceURL.accept(MobileAssistanceURL.getMobileAssistnceURL(assistanceType: .none, stateJurisdiction: accountDetail.state))
+                self.mobileAssistanceType = MobileAssistanceURL.none
+                return (title: "Need Help with Energy Costs?",
+                        description: "Get personalized recommendations for financial assistance, bill management, and energy savings.",
+                        ctaType: "Find Assistance")
+            } else {
+                self.mobileAssistanceURL.accept(MobileAssistanceURL.getMobileAssistnceURL(assistanceType: .none, stateJurisdiction: accountDetail.state))
+                self.mobileAssistanceType = MobileAssistanceURL.none
+                return (title: "Having trouble keeping up with your \(Configuration.shared.opco.displayString) bill?",
+                        description: "Check out the many Assistance Programs \(Configuration.shared.opco.displayString) offers to find one that’s right for you.",
+                        ctaType: "Learn More")
+            }
         }
         return ("","","")
     }
@@ -1329,7 +1337,11 @@ class HomeBillCardViewModel {
             case .dde,.dpa,.dpaReintate:
                 baseURL = "https://" + Configuration.shared.associatedDomain
             case .none:
-                baseURL = Configuration.shared.myAccountUrl
+                if FeatureFlagUtility.shared.bool(forKey: .hasAssistanceFinder) {
+                    baseURL = "https://" + Configuration.shared.associatedDomain
+                } else {
+                    baseURL = Configuration.shared.myAccountUrl
+                }
             }
             
             switch projectTier {
@@ -1348,16 +1360,19 @@ class HomeBillCardViewModel {
             case .dpa,.dpaReintate:
                 return "/payments/dpa"
             case .none:
-                switch Configuration.shared.opco {
-                case .pepco:
-                    return stateJurisdiction == "DC" ? "/CustomerSupport/Pages/DC/AssistancePrograms(DC).aspx" : "/CustomerSupport/Pages/MD/AssistancePrograms(MD).aspx"
-                case .delmarva:
-                    return stateJurisdiction == "DE" ? "/CustomerSupport/Pages/DE/AssistancePrograms%20(DE).aspx" :
-                    "/CustomerSupport/Pages/MD/AssistancePrograms%20(MD).aspx"
-                default:
-                    return "/CustomerSupport/Pages/AssistancePrograms.aspx"
+                if FeatureFlagUtility.shared.bool(forKey: .hasAssistanceFinder) {
+                    return "/assistance/landing"
+                } else {
+                    switch Configuration.shared.opco {
+                    case .pepco:
+                        return stateJurisdiction == "DC" ? "/CustomerSupport/Pages/DC/AssistancePrograms(DC).aspx" : "/CustomerSupport/Pages/MD/AssistancePrograms(MD).aspx"
+                    case .delmarva:
+                        return stateJurisdiction == "DE" ? "/CustomerSupport/Pages/DE/AssistancePrograms%20(DE).aspx" :
+                        "/CustomerSupport/Pages/MD/AssistancePrograms%20(MD).aspx"
+                    default:
+                        return "/CustomerSupport/Pages/AssistancePrograms.aspx"
+                    }
                 }
-                
             }
         }
         

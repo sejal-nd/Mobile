@@ -33,6 +33,12 @@ class OutageTrackerViewController: UIViewController {
     @IBOutlet weak var trackerStatusView: TrackerStatusView!
     @IBOutlet weak var surveyView: SurveyView!
     @IBOutlet weak var powerOnContainer: UIView!
+    @IBOutlet weak var outageNotificationAlertBannerView: BillAlertBannerView!
+    @IBOutlet weak var outageNotificationBannerTitle: UILabel!
+    @IBOutlet weak var outageNotificationBannerDesciption: UILabel!
+    @IBOutlet weak var spacerView: UIView!
+    @IBOutlet weak var powerStatusHeader: UILabel!
+    @IBOutlet weak var powerStatusDescription: UILabel!
     
     let disposeBag = DisposeBag()
     var viewModel: OutageTrackerViewModel!
@@ -46,6 +52,14 @@ class OutageTrackerViewController: UIViewController {
         configureFooterTextView()
         setupUI()
         setupBinding()
+        
+        outageNotificationBannerTitle.font = SystemFont.regular.of(textStyle: .caption1)
+        outageNotificationBannerDesciption.font = SystemFont.regular.of(textStyle: .caption2)
+        outageNotificationBannerTitle.textColor = .deepGray
+        outageNotificationBannerDesciption.textColor = .gray
+        spacerView.backgroundColor = .softGray
+        spacerView.isHidden = true
+        outageNotificationAlertBannerView.isHidden = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -105,6 +119,14 @@ class OutageTrackerViewController: UIViewController {
     }
     
     private func update() {
+        if viewModel.hasJustReportedOutage  {
+            //show CTA for Outage Alert Preference
+            spacerView.isHidden = false
+            outageNotificationAlertBannerView.isHidden = false
+        } else {
+            spacerView.isHidden = true
+            outageNotificationAlertBannerView.isHidden = true
+        }
         logOutageTrackerEvents()
         if viewModel.isGasOnly {
             let gasOnlyView = GasOnlyView()
@@ -130,6 +152,8 @@ class OutageTrackerViewController: UIViewController {
             
             if viewModel.isActiveOutage == false {
                 powerOnContainer.isHidden = false
+                powerStatusHeader.text = NSLocalizedString("Our records indicate", comment: "")
+                powerStatusDescription.text = NSLocalizedString("POWER IS ON", comment: "")
                 progressAnimationView.configure(withStatus: .restored)
             } else {
                 powerOnContainer.isHidden = true
@@ -166,6 +190,16 @@ class OutageTrackerViewController: UIViewController {
             refreshControl?.endRefreshing()
             setRefreshControlEnabled(enabled: true)
         }
+    }
+    
+    @IBAction func openOutageAlertPreferenceTap(_ sender: Any) {
+            let storyboard = UIStoryboard(name: "Alerts", bundle: nil)
+            guard let alertPrefsVC = storyboard.instantiateViewController(withIdentifier: "alertPreferences") as? AlertPreferencesViewController else {
+                return
+            }
+            alertPrefsVC.viewModel.initiatedFromOutageView = true
+            let newNavController = LargeTitleNavigationController(rootViewController: alertPrefsVC)
+            self.navigationController?.present(newNavController, animated: true)
     }
     
     /**
@@ -227,6 +261,7 @@ class OutageTrackerViewController: UIViewController {
             if let outageStatus = viewModel.outageStatus.value {
                 reportOutageVC.viewModel.outageStatus = outageStatus
                 reportOutageVC.viewModel.phoneNumber.accept(outageStatus.contactHomeNumber ?? "")
+                reportOutageVC.delegate = self
                 navigationController?.pushViewController(reportOutageVC, animated: true)
             }
         }
@@ -244,6 +279,17 @@ class OutageTrackerViewController: UIViewController {
         if enabled {
             guard refreshControl == nil else { return }
             
+            // change animation and power status text if user reports an outage
+            if viewModel.hasJustReportedOutage {
+                viewModel.hasJustReportedOutage = false
+                if viewModel.isActiveOutage {
+                    progressAnimationView.setUpProgressAnimation(animName: "ot_reported")
+                } else {
+                    progressAnimationView.setUpProgressAnimation(animName: "outage_reported")
+                    powerStatusHeader.text = NSLocalizedString("Your outage is", comment: "")
+                    powerStatusDescription.text = NSLocalizedString("REPORTED", comment: "")
+                }
+            }
             let rc = UIRefreshControl()
             
             rc.rx.controlEvent(.valueChanged)
@@ -373,4 +419,13 @@ extension OutageTrackerViewController: UITableViewDelegate {
             openOutageMap(forStreetMap: isStreetMap)
         }
     }
+}
+
+extension OutageTrackerViewController: ReportOutageDelegate {
+func didReportOutage() {
+    // Show Toast
+    view.showToast(NSLocalizedString("Outage report received", comment: ""))
+    // Enable Reported Outage State
+    viewModel.hasJustReportedOutage = true
+ }
 }
