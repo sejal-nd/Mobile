@@ -12,7 +12,7 @@ def iOS_pods
   pod 'ReachabilitySwift', '4.3.1'
   pod 'RxSwiftExt/RxCocoa', '5.2.0'
   pod 'HorizonCalendar', '1.13.3'
-  pod 'Charts', '4.1.0'
+  pod 'Charts', '3.3'
   pod 'XLPagerTabStrip', '9.0.0'
   pod 'GoogleAnalytics', '3.17.0'
   pod 'Firebase/Core', '7.11.0'
