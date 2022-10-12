@@ -79,7 +79,7 @@ class BillBreakdownViewController: UIViewController {
         currentChargesPieChartView.highlightPerTapEnabled = false // Disable chart interaction
         currentChargesPieChartView.rotationEnabled = false // Disable chart interaction
         currentChargesPieChartView.legend.enabled = false // Hide the legend because we'll draw our own
-        currentChargesPieChartView.chartDescription?.enabled = false // Hides the chart description
+        currentChargesPieChartView.chartDescription.enabled = false // Hides the chart description
         currentChargesPieChartView.holeColor = .clear
         currentChargesPieChartView.holeRadiusPercent = 0.58
         currentChargesPieChartView.transparentCircleColor = .clear
