@@ -1057,6 +1057,7 @@
 		C3B6556024ABD9790048C64B /* SERResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B6555F24ABD9790048C64B /* SERResult.swift */; };
 		C3B6557024ABE6780048C64B /* BillingInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B6556F24ABE6780048C64B /* BillingInfo.swift */; };
 		C3B6558024ACD9080048C64B /* PaymentItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B6557F24ACD9080048C64B /* PaymentItem.swift */; };
+		C3B8904C28F73C4500AEE877 /* LandingRegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B8904B28F73C4400AEE877 /* LandingRegisterViewController.swift */; };
 		C3BCD53E2567238C006F405E /* HomeGameCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BCD53D2567238C006F405E /* HomeGameCardView.swift */; };
 		C3BCD5442567239D006F405E /* HomeGameCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3BCD5432567239D006F405E /* HomeGameCardView.xib */; };
 		C3C5696C256C33F60039C8A4 /* foresee_configuration.json in Resources */ = {isa = PBXBuildFile; fileRef = C3C5696B256C33F60039C8A4 /* foresee_configuration.json */; };
@@ -2416,6 +2417,7 @@
 		C3B6555F24ABD9790048C64B /* SERResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SERResult.swift; sourceTree = "<group>"; };
 		C3B6556F24ABE6780048C64B /* BillingInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillingInfo.swift; sourceTree = "<group>"; };
 		C3B6557F24ACD9080048C64B /* PaymentItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentItem.swift; sourceTree = "<group>"; };
+		C3B8904B28F73C4400AEE877 /* LandingRegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LandingRegisterViewController.swift; path = App/Feature/Authentication/Registration/LandingRegisterViewController.swift; sourceTree = SOURCE_ROOT; };
 		C3BCD53D2567238C006F405E /* HomeGameCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeGameCardView.swift; sourceTree = "<group>"; };
 		C3BCD5432567239D006F405E /* HomeGameCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeGameCardView.xib; sourceTree = "<group>"; };
 		C3C5696B256C33F60039C8A4 /* foresee_configuration.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = foresee_configuration.json; sourceTree = "<group>"; };
@@ -5338,6 +5340,7 @@
 			children = (
 				67A482ED26BC416300FBB0BB /* B2C */,
 				675F47C124AB6CD200A828F9 /* ComEd */,
+				C3B8904B28F73C4400AEE877 /* LandingRegisterViewController.swift */,
 				54B31A6F1EE0B8670002E657 /* RegistrationBGEAccountNumberViewController.swift */,
 				54DF4BC71EE63C53008CF7AD /* RegistrationSecurityQuestionsViewController.swift */,
 				54DF4BD41EE895CF008CF7AD /* RegistrationSecurityQuestionListViewController.swift */,
@@ -7265,6 +7268,7 @@
 				670DE2A326CC15FC00D4C863 /* KeychainSwift.swift in Sources */,
 				82D5994B1EC36B5500DDB380 /* NumberFormatter.swift in Sources */,
 				675F4B5E24AB828100A828F9 /* OutageService.swift in Sources */,
+				C3B8904C28F73C4500AEE877 /* LandingRegisterViewController.swift in Sources */,
 				9C5F096F23A8339F00B73049 /* GameTryFabViewController.swift in Sources */,
 				B0DB2757215EBEE600CD703B /* AlertPreferencesLanguageCell.swift in Sources */,
 				C3B6558024ACD9080048C64B /* PaymentItem.swift in Sources */,
@@ -11723,7 +11727,7 @@
 				ANON_ASSOCIATED_DOMAIN = azstage.peco.com;
 				APP_CENTER_ID = "432a1a21-ccbb-4ee9-b3e3-2480090618f5";
 				ASSOCIATED_DOMAIN = "azstg-secure.peco.com";
-				BASE_URL = eudapi-stage.peco.com;
+				BASE_URL = "eudapi-stage.peco.com";
 				BUILD_DISPLAY_NAME = PECO;
 				BUILD_FLAVOR = PECO;
 				BUNDLE_ID = com.exelon.mobile.peco.staging;
@@ -12690,7 +12694,7 @@
 				ANON_ASSOCIATED_DOMAIN = azstage.atlanticcityelectric.com;
 				APP_CENTER_ID = "95dc785e-3617-4005-81f4-42ae3e25d65d";
 				ASSOCIATED_DOMAIN = "azstg-secure.atlanticcityelectric.com";
-				BASE_URL = eudapi-stage.atlanticcityelectric.com;
+				BASE_URL = "eudapi-stage.atlanticcityelectric.com";
 				BUILD_DISPLAY_NAME = "AC Electric";
 				BUILD_FLAVOR = ACE;
 				BUNDLE_ID = com.exelon.mobile.ace.staging;
@@ -13660,7 +13664,7 @@
 				ANON_ASSOCIATED_DOMAIN = azstage.delmarva.com;
 				APP_CENTER_ID = "8b361cdc-3267-42de-91d0-b1bae6342067";
 				ASSOCIATED_DOMAIN = "azstg-secure.delmarva.com";
-				BASE_URL = eudapi-stage.delmarva.com;
+				BASE_URL = "eudapi-stage.delmarva.com";
 				BUILD_DISPLAY_NAME = Delmarva;
 				BUILD_FLAVOR = DPL;
 				BUNDLE_ID = com.exelon.mobile.delmarva.staging;
@@ -14630,7 +14634,7 @@
 				ANON_ASSOCIATED_DOMAIN = azstage.pepco.com;
 				APP_CENTER_ID = "48d86d61-5d68-4757-92db-9c3996f5bc18";
 				ASSOCIATED_DOMAIN = "azstg-secure.pepco.com";
-				BASE_URL = eudapi-stage.pepco.com;
+				BASE_URL = "eudapi-stage.pepco.com";
 				BUILD_DISPLAY_NAME = Pepco;
 				BUILD_FLAVOR = PEPCO;
 				BUNDLE_ID = com.exelon.mobile.pepco.staging;
@@ -15600,7 +15604,7 @@
 				ANON_ASSOCIATED_DOMAIN = azstage.comed.com;
 				APP_CENTER_ID = "bf4bfe55-3dfd-423b-acfa-32ef84b3776c";
 				ASSOCIATED_DOMAIN = "azstg-secure.comed.com";
-				BASE_URL = eudapi-stage.comed.com;
+				BASE_URL = "eudapi-stage.comed.com";
 				BUILD_DISPLAY_NAME = ComEd;
 				BUILD_FLAVOR = COMED;
 				BUNDLE_ID = com.exelon.mobile.comed.staging;
@@ -16527,7 +16531,7 @@
 				ANON_ASSOCIATED_DOMAIN = azstage.bge.com;
 				APP_CENTER_ID = "3bf3242e-af11-4b1e-9242-99dce77bbbc8";
 				ASSOCIATED_DOMAIN = "azstg-secure.bge.com";
-				BASE_URL = eudapi-stage.bge.com;
+				BASE_URL = "eudapi-stage.bge.com";
 				BUILD_DISPLAY_NAME = BGE;
 				BUILD_FLAVOR = BGE;
 				BUNDLE_ID = com.exelon.mobile.bge.staging;
