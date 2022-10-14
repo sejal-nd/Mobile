@@ -267,6 +267,7 @@ class HomeViewModel {
         .combineLatest(HomeCardPrefsStore.shared.listObservable, prepaidStatus, accountDetailEvents.elements(), gameUser.asObservable())
         .map({ (cards, prepaidStatus, accountDetails, gameUser) -> ([HomeCard], AccountDetail.PrepaidStatus) in
             var newCards = cards
+            /* Legacy logic for hiding card for BGE when not enrolled in Peak Rewards
             if Configuration.shared.opco == .bge && accountDetails.isResidential {
                 switch accountDetails.peakRewards {
                 case "ACTIVE"?, "ECOBEE WIFI"?:
@@ -282,6 +283,7 @@ class HomeViewModel {
                     }
                 }
             }
+            */
             
             if FeatureFlagUtility.shared.bool(forKey: .isGamificationEnabled) == false || Configuration.shared.opco != .bge || gameUser == nil || gameUser?.optedOut == true {
                 for (index, card) in newCards.enumerated() {
