@@ -10,7 +10,6 @@ import UIKit
 
 class LandingRegisterViewController: UIViewController {
 
-    @IBOutlet weak var continueButton: PrimaryButton!
     weak var delegate: RegistrationViewControllerDelegate?
     
     override func viewDidLoad() {
