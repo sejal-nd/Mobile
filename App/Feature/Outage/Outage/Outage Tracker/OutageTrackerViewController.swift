@@ -53,8 +53,8 @@ class OutageTrackerViewController: UIViewController {
         setupUI()
         setupBinding()
         
-        outageNotificationBannerTitle.font = SystemFont.regular.of(textStyle: .caption1)
-        outageNotificationBannerDesciption.font = SystemFont.regular.of(textStyle: .caption2)
+        outageNotificationBannerTitle.font = SystemFont.regular.of(textStyle: .subheadline)
+        outageNotificationBannerDesciption.font = SystemFont.regular.of(textStyle: .caption1)
         outageNotificationBannerTitle.textColor = .deepGray
         outageNotificationBannerDesciption.textColor = .gray
         spacerView.backgroundColor = .softGray
