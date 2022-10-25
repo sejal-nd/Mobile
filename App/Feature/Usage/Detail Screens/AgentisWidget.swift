@@ -39,7 +39,7 @@ enum AgentisWidget: String, CaseIterable {
         case .compareGas:
             return "Compare Gas Bills"
         case .electricTips:
-            return "View My Tips (Electric Only)"
+            return "View My Tips"
         case .gasTips:
             return "View My Tips (Gas Only)"
         case.projectedUsage:
