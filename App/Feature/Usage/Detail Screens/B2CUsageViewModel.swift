@@ -29,11 +29,15 @@ class B2CUsageViewModel {
             var request = NSURLRequest(url: url) as URLRequest
             request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
             request.addValue(token, forHTTPHeaderField: "accessToken")
-            request.addValue(accountDetail.value?.accountNumber ?? "", forHTTPHeaderField: "accountNumber")
             request.addValue(widget.identifier, forHTTPHeaderField: "opowerWidgetId")
             request.addValue(accountDetail.value?.utilityCode ?? Configuration.shared.opco.rawValue, forHTTPHeaderField: "opco")
             request.addValue(accountDetail.value?.state ?? "MD", forHTTPHeaderField: "state")
-            request.addValue("\(accountDetail.value?.isResidential == false)", forHTTPHeaderField: "isCommercial")
+
+            // IMPORTANT - adding "accountNumber" header breaks the residential widgets
+            if accountDetail.value?.isResidential == false {
+                request.addValue(accountDetail.value?.accountNumber ?? "", forHTTPHeaderField: "accountNumber")
+                request.addValue("\(accountDetail.value?.isResidential == false)", forHTTPHeaderField: "isCommercial")
+            }
 
             return request
         } else {

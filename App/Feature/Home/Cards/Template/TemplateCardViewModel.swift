@@ -297,7 +297,7 @@ class TemplateCardViewModel {
                     case "ECOBEE WIFI":
                         return nil
                     default:
-                        return "https://bgesavings.com/enroll"
+                        return "https://\(Configuration.shared.associatedDomain)/assistance/landing"
                     }
                 } else {
                     return "https://\(Configuration.shared.associatedDomain)/assistance/landing"
