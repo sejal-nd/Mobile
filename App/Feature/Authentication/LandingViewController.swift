@@ -344,7 +344,7 @@ class LandingViewController: UIViewController {
         view.endEditing(true)
         
         if let navController = segue.destination as? LargeTitleNavigationController,
-           let vc = navController.viewControllers.first as? RegistrationValidateAccountViewControllerNew {
+           let vc = navController.viewControllers.first as? LandingRegisterViewController {
             vc.delegate = self
         }
     }

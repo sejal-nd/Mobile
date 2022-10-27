@@ -92,8 +92,8 @@ class OutageViewController: AccountPickerViewController {
         
         updateView()
         
-        outageNotificationBannerTitle.font = SystemFont.regular.of(textStyle: .caption1)
-        outageNotificationBannerDesciption.font = SystemFont.regular.of(textStyle: .caption2)
+        outageNotificationBannerTitle.font = SystemFont.regular.of(textStyle: .subheadline)
+        outageNotificationBannerDesciption.font = SystemFont.regular.of(textStyle: .caption1)
         outageNotificationBannerTitle.textColor = .deepGray
         outageNotificationBannerDesciption.textColor = .gray
         spacerView.backgroundColor = .softGray
@@ -604,7 +604,7 @@ extension OutageViewController: ReportOutageDelegate {
         }
         FirebaseUtility.logEvent(event)
         
-        if userState == .authenticated && self.viewModel.hasJustReportedOutage  && Configuration.shared.opco.isPHI {
+        if userState == .authenticated && self.viewModel.hasJustReportedOutage {
             spacerView.isHidden = false
             outageNotificationAlertBannerView.isHidden = false
         }
