@@ -27,6 +27,7 @@ public struct AlertPreferences: Decodable {
     var paymentPastDue = false
     var budgetBilling = false // ComEd/PECO only
     var appointmentTracking = false
+    var advancedNotification = false
     var forYourInfo = false
     var grantStatus = false
     
@@ -49,6 +50,7 @@ public struct AlertPreferences: Decodable {
         case paymentPastDue
         case budgetBilling
         case appointmentTracking
+        case advancedNotification
         case forYourInfo
         case grantStatus
         case peakTimeSavingsDayResults
@@ -96,6 +98,8 @@ public struct AlertPreferences: Decodable {
                 budgetBilling = true
             case "Customer Appointments":
                 appointmentTracking = true
+            case "Advanced Notification":
+                advancedNotification = true
             case "News", "Marketing", "News \(AccountsStore.shared.currentAccount.utilityCode?.uppercased() ?? Configuration.shared.opco.rawValue)":
                 forYourInfo = true
             case "Payment Assistance Grant Status":
@@ -106,7 +110,7 @@ public struct AlertPreferences: Decodable {
         }
     }
     
-    public init(highUsage: Bool = false, alertThreshold: Int? = nil, previousAlertThreshold: Int? = nil, peakTimeSavings: Bool? = false, smartEnergyRewards: Bool? = false, energySavingsDayResults: Bool? = false, outage: Bool = false, scheduledMaint: Bool = false, severeWeather: Bool = false, billReady: Bool = false, paymentDue: Bool = false, paymentDueDaysBefore: Int = 1, paymentPosted: Bool = false, paymentPastDue: Bool = false, budgetBilling: Bool = false, appointmentTracking: Bool = false, forYourInfo: Bool = false, peakTimeSavingsDayAlert: Bool = false, peakTimeSavingsDayResults: Bool = false, grantStatus: Bool = false) {
+    public init(highUsage: Bool = false, alertThreshold: Int? = nil, previousAlertThreshold: Int? = nil, peakTimeSavings: Bool? = false, smartEnergyRewards: Bool? = false, energySavingsDayResults: Bool? = false, outage: Bool = false, scheduledMaint: Bool = false, severeWeather: Bool = false, billReady: Bool = false, paymentDue: Bool = false, paymentDueDaysBefore: Int = 1, paymentPosted: Bool = false, paymentPastDue: Bool = false, budgetBilling: Bool = false, appointmentTracking: Bool = false, advancedNotification: Bool = false, forYourInfo: Bool = false, peakTimeSavingsDayAlert: Bool = false, peakTimeSavingsDayResults: Bool = false, grantStatus: Bool = false) {
         self.highUsage = highUsage
         self.alertThreshold = alertThreshold
         self.previousAlertThreshold = previousAlertThreshold
@@ -123,6 +127,7 @@ public struct AlertPreferences: Decodable {
         self.paymentPastDue = paymentPastDue
         self.budgetBilling = budgetBilling
         self.appointmentTracking = appointmentTracking
+        self.advancedNotification = advancedNotification
         self.forYourInfo = forYourInfo
         self.grantStatus = grantStatus
         self.peakTimeSavingsDayAlert = peakTimeSavingsDayAlert
@@ -145,19 +150,20 @@ extension AlertPreferences {
         // Note: not checking paymentDueDaysBefore or alertThreshold here because those are compared for changes independently
         // in AlertPreferencesViewModel
         return highUsage != originalPrefs.highUsage ||
-            peakTimeSavings != originalPrefs.peakTimeSavings ||
-            smartEnergyRewards != originalPrefs.smartEnergyRewards ||
-            energySavingsDayResults != originalPrefs.energySavingsDayResults ||
-            outage != originalPrefs.outage ||
-            scheduledMaint != originalPrefs.scheduledMaint ||
-            severeWeather != originalPrefs.severeWeather ||
-            billReady != originalPrefs.billReady ||
-            paymentDue != originalPrefs.paymentDue ||
-            paymentPosted != originalPrefs.paymentPosted ||
-            paymentPastDue != originalPrefs.paymentPastDue ||
-            budgetBilling != originalPrefs.budgetBilling ||
-            appointmentTracking != originalPrefs.appointmentTracking ||
-            forYourInfo != originalPrefs.forYourInfo ||
-            grantStatus != originalPrefs.grantStatus
+        peakTimeSavings != originalPrefs.peakTimeSavings ||
+        smartEnergyRewards != originalPrefs.smartEnergyRewards ||
+        energySavingsDayResults != originalPrefs.energySavingsDayResults ||
+        outage != originalPrefs.outage ||
+        scheduledMaint != originalPrefs.scheduledMaint ||
+        severeWeather != originalPrefs.severeWeather ||
+        billReady != originalPrefs.billReady ||
+        paymentDue != originalPrefs.paymentDue ||
+        paymentPosted != originalPrefs.paymentPosted ||
+        paymentPastDue != originalPrefs.paymentPastDue ||
+        budgetBilling != originalPrefs.budgetBilling ||
+        appointmentTracking != originalPrefs.appointmentTracking ||
+        advancedNotification != originalPrefs.advancedNotification ||
+        forYourInfo != originalPrefs.forYourInfo ||
+        grantStatus != originalPrefs.grantStatus
     }
 }
