@@ -51,7 +51,7 @@ class TabCollectionViewCell: UICollectionViewCell {
     
     private func styleSelected() {
         titleLabel.font = SystemFont.semibold.of(textStyle: .footnote)
-        titleLabel.textColor = .actionBlue
+        titleLabel.textColor = .primaryBlue
         highlightBar.isHidden = false
     }
     

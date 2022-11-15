@@ -52,7 +52,7 @@ class InfoModalViewController: DismissableFormSheetViewController {
         
         imageView.image = image
 
-        descriptionLabel.textColor = .deepGray
+        descriptionLabel.textColor = .neutralDark
         descriptionLabel.font = SystemFont.regular.of(textStyle: .body)
         descriptionLabel.text = infoDescription
         descriptionLabel.setLineHeight(lineHeight: 25)

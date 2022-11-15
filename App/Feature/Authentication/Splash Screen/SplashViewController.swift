@@ -44,7 +44,7 @@ class SplashViewController: UIViewController{
     var bag = DisposeBag()
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
+        return .darkContent
     }
 
     override func viewDidLoad() {
@@ -52,16 +52,16 @@ class SplashViewController: UIViewController{
 
         view.backgroundColor = .primaryColor
         
-        loadingLabel.font = OpenSans.semibold.of(size: 18)
+        loadingLabel.font = ExelonFont.semibold.of(size: 18)
         loadingLabel.text = NSLocalizedString("We’re Working on Loading the App…", comment: "")
         
         errorViewBackground.addShadow(color: .black, opacity: 0.15, offset: .zero, radius: 4)
         errorViewBackground.layer.cornerRadius = 10
         
-        errorTitleLabel.textColor = .deepGray
+        errorTitleLabel.textColor = .neutralDark
         errorTitleLabel.text = viewModel.errorTitleText
         
-        errorTextView.tintColor = .actionBlue // For the phone numbers
+        errorTextView.tintColor = .primaryBlue // For the phone numbers
         errorTextView.attributedText = viewModel.errorLabelText
         addEnquiryFooterSection()
         
@@ -187,7 +187,7 @@ class SplashViewController: UIViewController{
         enquiryTextView.trailingAnchor.constraint(equalTo: errorView.trailingAnchor, constant: -20).isActive = true
         enquiryTextView.bottomAnchor.constraint(equalTo: errorView.bottomAnchor, constant: -30).isActive = true
         enquiryTextView.heightAnchor.constraint(greaterThanOrEqualToConstant: 40.0).isActive = true
-        enquiryTextView.tintColor = .actionBlue // For the phone numbers
+        enquiryTextView.tintColor = .primaryBlue // For the phone numbers
         enquiryTextView.attributedText = viewModel.enquiryFooterText
         enquiryTextView.isScrollEnabled = false
     }

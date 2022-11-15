@@ -70,7 +70,7 @@ class HomeAppointmentCardViewModel {
             guard let self = self else { return .init(string: "") }
             
             let standardAttributes: [NSAttributedString.Key: Any] =
-                [.font: OpenSans.regular.of(textStyle: .headline),
+                [.font: ExelonFont.regular.of(textStyle: .headline),
                  .foregroundColor: UIColor.blackText]
             
             guard appointments.count == 1 else {
@@ -97,11 +97,11 @@ class HomeAppointmentCardViewModel {
                 }
                 
                 let attributedText = NSMutableAttributedString(string: regularText + boldText)
-                attributedText.addAttribute(.font, value: OpenSans.regular.of(textStyle: .headline),
+                attributedText.addAttribute(.font, value: ExelonFont.regular.of(textStyle: .headline),
                                             range: NSMakeRange(0, regularText.count))
-                attributedText.addAttribute(.font, value: OpenSans.bold.of(textStyle: .headline),
+                attributedText.addAttribute(.font, value: ExelonFont.bold.of(textStyle: .headline),
                                             range: NSMakeRange(regularText.count, boldText.count))
-                attributedText.addAttribute(.font, value: OpenSans.bold.of(textStyle: .headline),
+                attributedText.addAttribute(.font, value: ExelonFont.bold.of(textStyle: .headline),
                                             range: NSMakeRange(regularText.count, boldText.count))
                 attributedText.addAttribute(.foregroundColor, value: UIColor.blackText,
                                             range: NSMakeRange(0, attributedText.string.count))
@@ -122,7 +122,7 @@ class HomeAppointmentCardViewModel {
                 let regularText = NSLocalizedString("Your appointment is in progress.", comment: "")
                 
                 let attributedText = NSMutableAttributedString(string: regularText)
-                attributedText.addAttribute(.font, value: OpenSans.regular.of(textStyle: .headline),
+                attributedText.addAttribute(.font, value: ExelonFont.regular.of(textStyle: .headline),
                                             range: NSMakeRange(0, regularText.count))
                 attributedText.addAttribute(.foregroundColor, value: UIColor.blackText,
                                             range: NSMakeRange(0, attributedText.string.count))

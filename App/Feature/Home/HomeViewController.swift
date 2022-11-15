@@ -57,7 +57,7 @@ class HomeViewController: AccountPickerViewController {
     
     let viewModel = HomeViewModel()
     
-    override var defaultStatusBarStyle: UIStatusBarStyle { return .lightContent }
+    override var defaultStatusBarStyle: UIStatusBarStyle { return .darkContent }
     
     let bag = DisposeBag()
     
@@ -160,7 +160,7 @@ class HomeViewController: AccountPickerViewController {
             // Add a terms & conditions Button at the end of the stack for PHI ocpos
             termsAndConditionsButton = UIButton()
             termsAndConditionsButton.setTitle("Policies & Terms", for: .normal)
-            termsAndConditionsButton.setTitleColor(.actionBlue, for: .normal)
+            termsAndConditionsButton.setTitleColor(.primaryBlue, for: .normal)
             termsAndConditionsButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .subheadline)
             termsAndConditionsButton.rx.tap.asDriver()
                 .drive(onNext: { [weak self] in
@@ -331,7 +331,7 @@ class HomeViewController: AccountPickerViewController {
             .disposed(by: bag)
         
         // Bottom personalize button setup
-        personalizeButton.setTitleColor(.actionBlue, for: .normal)
+        personalizeButton.setTitleColor(.primaryBlue, for: .normal)
         personalizeButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .subheadline)
         personalizeButton.isAccessibilityElement = true
         personalizeButton.accessibilityLabel = personalizeButton.currentTitle
@@ -491,7 +491,7 @@ class HomeViewController: AccountPickerViewController {
     }
     
     func styleViews() {
-        view.backgroundColor = .softGray        
+        view.backgroundColor = .softGray
         colorBackgroundView.backgroundColor = .primaryColor
         
         // We want the colored background view to scroll with the content, but that view also

@@ -37,18 +37,18 @@ class GameTryFabViewController: UIViewController {
         popupView.layer.cornerRadius = 10
         popupView.layer.masksToBounds = true
         
-        closeButton.tintColor = .actionBlue
+        closeButton.tintColor = .primaryBlue
         closeButton.addTarget(self, action: #selector(dismiss(_:)), for: .touchUpInside)
         
-        titleLabel.textColor = .deepGray
+        titleLabel.textColor = .neutralDark
         titleLabel.font = SystemFont.regular.of(textStyle: .headline)
         titleLabel.text = NSLocalizedString("Hello!", comment: "")
         
-        detailLabel1.textColor = .deepGray
+        detailLabel1.textColor = .neutralDark
         detailLabel1.font = SystemFont.regular.of(textStyle: .footnote)
         detailLabel1.text = NSLocalizedString("I’m LUMI℠!\n\nI’m here to help you make small changes that lead to big impacts by giving you tips, challenges, and insights to help you lower your energy use.\n\nTo see your old home screen, use the button at the bottom of the previous screen to swap between the two versions. It looks like this:", comment: "")
     
-        detailLabel2.textColor = .deepGray
+        detailLabel2.textColor = .neutralDark
         detailLabel2.font = SystemFont.regular.of(textStyle: .footnote)
         detailLabel2.text = NSLocalizedString("Return to the home screen and try tapping it to receive points toward your first gift!", comment: "")
         

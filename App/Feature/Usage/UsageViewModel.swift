@@ -858,8 +858,8 @@ class UsageViewModel {
         .map { $0 ? SystemFont.bold.of(textStyle: .footnote) : SystemFont.semibold.of(textStyle: .footnote) }
     
     private(set) lazy var previousDollarLabelTextColor: Driver<UIColor> = billComparison.map {
-        guard let compared = $0.comparedBill else { return .deepGray }
-        return compared.charges < 0 ? .successGreenText : .deepGray
+        guard let compared = $0.comparedBill else { return .neutralDark }
+        return compared.charges < 0 ? .successGreenText : .neutralDark
     }
     
     private(set) lazy var currentLabelFont: Driver<UIFont> = barGraphSelection.asDriver()
@@ -868,19 +868,19 @@ class UsageViewModel {
         .map { $0 ? SystemFont.bold.of(textStyle: .footnote) : SystemFont.semibold.of(textStyle: .footnote) }
     
     private(set) lazy var currentDollarLabelTextColor: Driver<UIColor> = billComparison.map {
-        guard let reference = $0.referenceBill else { return .deepGray }
-        return reference.charges < 0 ? .successGreenText : .deepGray
+        guard let reference = $0.referenceBill else { return .neutralDark }
+        return reference.charges < 0 ? .successGreenText : .neutralDark
     }
     
     private(set) lazy var projectedLabelFont: Driver<UIFont> = barGraphSelection.asDriver()
         .map { $0 == .projected }
         .distinctUntilChanged()
-        .map { $0 ? OpenSans.bold.of(textStyle: .footnote) : OpenSans.semibold.of(textStyle: .footnote) }
+        .map { $0 ? ExelonFont.bold.of(textStyle: .footnote) : ExelonFont.semibold.of(textStyle: .footnote) }
     
     private(set) lazy var projectionNotAvailableLabelFont: Driver<UIFont> = barGraphSelection.asDriver()
         .map { $0 == .projectionNotAvailable }
         .distinctUntilChanged()
-        .map { $0 ? OpenSans.bold.of(textStyle: .footnote) : OpenSans.semibold.of(textStyle: .footnote) }
+        .map { $0 ? ExelonFont.bold.of(textStyle: .footnote) : ExelonFont.semibold.of(textStyle: .footnote) }
     
     // MARK: - Usage Tools
     

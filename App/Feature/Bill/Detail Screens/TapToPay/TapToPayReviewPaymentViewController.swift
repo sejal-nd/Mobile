@@ -118,7 +118,7 @@ class TapToPayReviewPaymentViewController: UIViewController {
             title = NSLocalizedString("Review Payment", comment: "")
         }
         
-        youArePayingLabel.textColor = .deepGray
+        youArePayingLabel.textColor = .neutralDark
         youArePayingLabel.font = SystemFont.regular.of(size: 13)
         youArePayingLabel.text = NSLocalizedString("You’re Paying", comment: "")
         youArePayingLabel.isAccessibilityElement = true
@@ -128,13 +128,13 @@ class TapToPayReviewPaymentViewController: UIViewController {
         paymentAmountContainer.accessibilityLabel = youArePayingLabel.text
         paymentAmountContainerButton.isAccessibilityElement = false
         
-        amountLabel.textColor = .deepGray
+        amountLabel.textColor = .neutralDark
         amountLabel.font = SystemFont.semibold.of(size: 22)
         amountLabel.isAccessibilityElement = true
         amountLabel.accessibilityElementsHidden = false
         amountLabel.accessibilityLabel = amountLabel.text
         
-        convenienceFeeLabel.textColor = .deepGray
+        convenienceFeeLabel.textColor = .neutralDark
         convenienceFeeLabel.font = SystemFont.regular.of(size: 12)
         convenienceFeeLabel.isAccessibilityElement = true
         convenienceFeeLabel.accessibilityLabel = convenienceFeeLabel.text
@@ -144,10 +144,10 @@ class TapToPayReviewPaymentViewController: UIViewController {
                                                              convenienceFeeLabel as Any,
                                                              editPaymentAmountButton as Any]
         
-        addAdditionaRecipientButton.setTitleColor(.deepGray, for: .normal)
+        addAdditionaRecipientButton.setTitleColor(.neutralDark, for: .normal)
         addAdditionaRecipientButton.titleLabel?.font = SystemFont.medium.of(size: 16)
         
-        paymentsAssociatedTextLabel.textColor = .deepGray
+        paymentsAssociatedTextLabel.textColor = .neutralDark
         paymentsAssociatedTextLabel.font = SystemFont.regular.of(size: 12)
         
         if Configuration.shared.opco == .comEd {
@@ -156,11 +156,11 @@ class TapToPayReviewPaymentViewController: UIViewController {
             paymentsAssociatedTextLabel.text = "All payments and associated convenience fees are processed by Paymentus Corporation. Payment methods saved to My Wallet are stored by Paymentus Corporation. You will receive an email confirming that your payment was submitted successfully. If you receive an error message, please check for your email confirmation to verify you’ve successfully submitted payment."
         }
         
-        submitDescriptionLabel.textColor = .deepGray
+        submitDescriptionLabel.textColor = .neutralDark
         submitDescriptionLabel.font = SystemFont.regular.of(size: 12)
         submitDescriptionLabel.text = NSLocalizedString("By tapping Submit, you agree to the payment", comment: "")
         
-        termsNConditionsButton.setTitleColor(.actionBlue, for: .normal)
+        termsNConditionsButton.setTitleColor(.primaryBlue, for: .normal)
         termsNConditionsButton.titleLabel?.text = NSLocalizedString("Terms & Conditions.", comment: "")
         termsNConditionsButton.titleLabel?.font = SystemFont.semibold.of(size: 12)
         termsNConditionsButton.accessibilityLabel = termsNConditionsButton.titleLabel?.text
@@ -168,7 +168,7 @@ class TapToPayReviewPaymentViewController: UIViewController {
         paymentMethodContainer.isAccessibilityElement = false
         paymentMethodButton.isAccessibilityElement = false
         
-        paymentMethodAccountNumberLabel.textColor = .deepGray
+        paymentMethodAccountNumberLabel.textColor = .neutralDark
         paymentMethodAccountNumberLabel.font = SystemFont.regular.of(size: 16)
         paymentMethodAccountNumberLabel.isAccessibilityElement = true
         paymentMethodAccountNumberLabel.accessibilityLabel = paymentMethodAccountNumberLabel.text
@@ -179,34 +179,34 @@ class TapToPayReviewPaymentViewController: UIViewController {
         paymentMethodNicknameLabel.accessibilityLabel = paymentMethodNicknameLabel.text
         
         bankAccount.fullyRoundCorners(diameter: 20, borderColor: .accentGray, borderWidth: 1)
-        bankAccount.backgroundColorOnPress = .actionBlue
+        bankAccount.backgroundColorOnPress = .primaryBlue
         bankAccount.accessibilityLabel = NSLocalizedString("Bank Account", comment: "")
         
         bankAccountTitleLabel.text = NSLocalizedString("Bank Account", comment: "")
-        bankAccountTitleLabel.textColor = .actionBlue
+        bankAccountTitleLabel.textColor = .primaryBlue
         bankAccountTitleLabel.font = SystemFont.semibold.of(size: 12)
         
         creditDebitCard.fullyRoundCorners(diameter: 20, borderColor: .accentGray, borderWidth: 1)
-        creditDebitCard.backgroundColorOnPress = .actionBlue
+        creditDebitCard.backgroundColorOnPress = .primaryBlue
         creditDebitCard.accessibilityLabel = NSLocalizedString("Credit/Debit Card", comment: "")
         
         creditCardTitleLabel.text = NSLocalizedString("Credit/Debit Card", comment: "")
-        creditCardTitleLabel.textColor = .actionBlue
+        creditCardTitleLabel.textColor = .primaryBlue
         creditCardTitleLabel.font = SystemFont.semibold.of(size: 12)
         
         self.paymentDateButton.isAccessibilityElement = false
         
-        paymentDateLabel.textColor = .deepGray
+        paymentDateLabel.textColor = .neutralDark
         paymentDateLabel.font = SystemFont.semibold.of(size: 16)
         
-        selectPaymentLabel.textColor = .deepGray
+        selectPaymentLabel.textColor = .neutralDark
         selectPaymentLabel.font = SystemFont.semibold.of(size: 16)
         
-        paymentDatePastDueLabel.textColor = .deepGray
+        paymentDatePastDueLabel.textColor = .neutralDark
         paymentDatePastDueLabel.font = SystemFont.regular.of(size: 12)
         paymentDatePastDueLabel.text = NSLocalizedString("Past due payments cannot be scheduled for a later date.", comment: "")
         
-        sameDayPaymentWarningLabel.textColor = .deepGray
+        sameDayPaymentWarningLabel.textColor = .neutralDark
         sameDayPaymentWarningLabel.font = SystemFont.regular.of(size: 12)
         sameDayPaymentWarningLabel.text = NSLocalizedString("Same-day payments cannot be edited or canceled after submission.", comment: "")
         
@@ -215,7 +215,7 @@ class TapToPayReviewPaymentViewController: UIViewController {
         creditCardDateRangeError.text = NSLocalizedString("Error: Credit card payments cannot be scheduled more than 90 days in advance.", comment: "")
         
         errorLabel.font = SystemFont.regular.of(textStyle: .headline)
-        errorLabel.textColor = .deepGray
+        errorLabel.textColor = .neutralDark
         errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
         errorLabel.accessibilityLabel = errorLabel.text
         
@@ -226,11 +226,11 @@ class TapToPayReviewPaymentViewController: UIViewController {
         overPayingAmountLabel.isAccessibilityElement = true
         overPayingAmountLabel.accessibilityLabel = overPayingAmountLabel.text
         
-        overPayingHeaderLabel.textColor = .deepGray
+        overPayingHeaderLabel.textColor = .neutralDark
         overPayingHeaderLabel.font = SystemFont.regular.of(size: 15)
         overPayingHeaderLabel.text = NSLocalizedString("You are scheduling a payment that may result in overpaying your total amount due.", comment: "")
         
-        overPayingLabel.textColor = .deepGray
+        overPayingLabel.textColor = .neutralDark
         overPayingLabel.font = SystemFont.regular.of(size: 15)
         overPayingLabel.text = NSLocalizedString("Yes, I acknowledge I am scheduling a payment for more than is currently due on my account.", comment: "")
         
@@ -244,7 +244,7 @@ class TapToPayReviewPaymentViewController: UIViewController {
         paymentErrorLabel.textColor = .errorRed
         paymentErrorLabel.font = SystemFont.semibold.of(size: 12)
         
-        paymentsAssociatedTextLabel.textColor = .deepGray
+        paymentsAssociatedTextLabel.textColor = .neutralDark
         paymentsAssociatedTextLabel.font = SystemFont.regular.of(size: 12)
         
         submitButton.titleLabel?.textColor = .white
@@ -278,7 +278,7 @@ class TapToPayReviewPaymentViewController: UIViewController {
         cancelPaymentButton.accessibilityLabel = cancelPaymentText
         cancelPaymentLabel.text = cancelPaymentText
         cancelPaymentLabel.font = SystemFont.semibold.of(textStyle: .headline)
-        cancelPaymentLabel.textColor = .actionBlue
+        cancelPaymentLabel.textColor = .primaryBlue
         
         self.stickyPaymentFooterView.accessibilityElements = [submitDescriptionLabel as Any,
                                                               termsNConditionsButton as Any,
@@ -528,11 +528,11 @@ class TapToPayReviewPaymentViewController: UIViewController {
         self.alternateContactDivider.isHidden = true
         
         alternateViewTextView.backgroundColor = .softGray
-        alternateViewTextView.textColor = .deepGray
+        alternateViewTextView.textColor = .neutralDark
         alternateViewTextView.font = SystemFont.regular.of(size: 15)
         alternateViewTextView.text = NSLocalizedString("A confirmation will be sent to the email address associated with your My Account. If you'd like to send this payment confirmation to an additional email or via text message, add the recipients below. Standard messaging rates apply.", comment: "")
         
-        addAdditionaRecipientButton.setTitleColor(.deepGray, for: .normal)
+        addAdditionaRecipientButton.setTitleColor(.neutralDark, for: .normal)
         addAdditionaRecipientButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
         
         alternateEmailTextField.placeholder = NSLocalizedString("Email Address (Optional)",

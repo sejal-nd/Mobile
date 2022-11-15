@@ -17,7 +17,7 @@ class AlertRow: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        textView.textColor = .deepGray
+        textView.textColor = .neutralDark
         textView.font = SystemFont.regular.of(textStyle: .subheadline)
     }
     

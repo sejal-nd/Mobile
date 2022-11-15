@@ -40,7 +40,7 @@ class GameOptInOutViewController: UIViewController {
         }
         
         for label in labels {
-            label.textColor = .deepGray
+            label.textColor = .neutralDark
             label.font = SystemFont.regular.of(textStyle: .body)
         }
         

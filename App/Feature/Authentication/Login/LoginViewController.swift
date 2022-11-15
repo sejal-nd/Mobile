@@ -36,7 +36,7 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
     var forgotUsernamePopulated = false
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
+        return .darkContent
     }
 
     override func viewDidLoad() {
@@ -135,7 +135,7 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
             self?.onLoginPress()
         }).disposed(by: disposeBag)
 
-        forgotUsernamePasswordButton.tintColor = .actionBlue
+        forgotUsernamePasswordButton.tintColor = .primaryBlue
         forgotUsernamePasswordButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
         forgotUsernamePasswordButton.titleLabel?.numberOfLines = 0
         forgotUsernamePasswordButton.titleLabel?.textAlignment = .center

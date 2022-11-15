@@ -51,11 +51,11 @@ class RegistrationValidateAccountViewControllerNew: KeyboardAvoidingStickyFooter
 
         viewModel.validateAccountContinueEnabled.drive(continueButton.rx.isEnabled).disposed(by: disposeBag)
         
-        instructionLabel.textColor = .deepGray
+        instructionLabel.textColor = .neutralDark
         instructionLabel.text = NSLocalizedString("To start, let's find your residential or business service account using your personal/business information or bill details.", comment: "")
         instructionLabel.font = SystemFont.regular.of(textStyle: .headline)
         instructionLabel.setLineHeight(lineHeight: 24)
-        lastBillInformationLabel.textColor = .deepGray
+        lastBillInformationLabel.textColor = .neutralDark
         lastBillInformationLabel.text = NSLocalizedString("Use one of your last two bills to find the following information:", comment: "")
         lastBillInformationLabel.font = SystemFont.regular.of(textStyle: .headline)
         
@@ -188,7 +188,7 @@ class RegistrationValidateAccountViewControllerNew: KeyboardAvoidingStickyFooter
         var identifierString = "Last 4 digits of your Social Security Number"
         identifierString.append(" or Business Tax ID")
 
-        identifierDescriptionLabel.textColor = .deepGray
+        identifierDescriptionLabel.textColor = .neutralDark
         identifierDescriptionLabel.text = NSLocalizedString(identifierString, comment: "")
         identifierDescriptionLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         
@@ -394,7 +394,7 @@ extension RegistrationValidateAccountViewControllerNew: CalendarViewDelegate {
     func calendarViewController(_ controller: CalendarViewController, didSelect date: Date) {
         let components = Calendar.opCo.dateComponents([.year, .month, .day], from: date)
         guard let opCoTimeDate = Calendar.opCo.date(from: components) else { return }
-        dueDateButton.valueLabel.textColor = .deepGray
+        dueDateButton.valueLabel.textColor = .neutralDark
         viewModel.dueDate.accept(opCoTimeDate.isInToday(calendar: .opCo) ? .now : opCoTimeDate)
     }
 }

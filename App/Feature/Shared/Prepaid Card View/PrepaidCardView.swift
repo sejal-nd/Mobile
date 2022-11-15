@@ -41,10 +41,10 @@ final class PrepaidCardView: UIView {
         contentView.layer.cornerRadius = 10
         
         headerLabel.textColor = .blackText
-        headerLabel.font = OpenSans.semibold.of(textStyle: .headline)
+        headerLabel.font = ExelonFont.semibold.of(textStyle: .headline)
         
         detailLabel.textColor = .blackText
-        detailLabel.font = OpenSans.regular.of(textStyle: .subheadline)
+        detailLabel.font = ExelonFont.regular.of(textStyle: .subheadline)
     }
     
     @IBAction private func launchDashboard() {

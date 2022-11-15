@@ -23,8 +23,8 @@ class BillAlertBannerView: UIView {
         layer.borderColor = UIColor.accentGray.cgColor
         layer.borderWidth = 1
         
-        label.textColor = .deepGray
-        label.font = OpenSans.regular.of(textStyle: .footnote)
+        label.textColor = .neutralDark
+        label.font = ExelonFont.regular.of(textStyle: .footnote)
         
         animationView.isAccessibilityElement = true
         animationView.accessibilityLabel = NSLocalizedString("Alert", comment: "")

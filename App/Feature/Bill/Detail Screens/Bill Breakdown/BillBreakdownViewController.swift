@@ -79,7 +79,7 @@ class BillBreakdownViewController: UIViewController {
         currentChargesPieChartView.highlightPerTapEnabled = false // Disable chart interaction
         currentChargesPieChartView.rotationEnabled = false // Disable chart interaction
         currentChargesPieChartView.legend.enabled = false // Hide the legend because we'll draw our own
-        currentChargesPieChartView.chartDescription?.enabled = false // Hides the chart description
+        currentChargesPieChartView.chartDescription.enabled = false // Hides the chart description
         currentChargesPieChartView.holeColor = .clear
         currentChargesPieChartView.holeRadiusPercent = 0.58
         currentChargesPieChartView.transparentCircleColor = .clear
@@ -109,10 +109,10 @@ class BillBreakdownViewController: UIViewController {
     }
     
     private func styleLegend() {
-        totalChargesValueLabel.textColor = .deepGray
-        totalChargesValueLabel.font = OpenSans.semibold.of(textStyle: .title1)
+        totalChargesValueLabel.textColor = .neutralDark
+        totalChargesValueLabel.font = ExelonFont.semibold.of(textStyle: .title1)
         totalChargesValueLabel.text = viewModel.totalChargesString
-        totalChargesTextLabel.textColor = .deepGray
+        totalChargesTextLabel.textColor = .neutralDark
         totalChargesTextLabel.font = SystemFont.regular.of(textStyle: .caption1)
         totalChargesTextLabel.text = NSLocalizedString("Total Charges", comment: "")
         
@@ -121,28 +121,28 @@ class BillBreakdownViewController: UIViewController {
         
         supplyLegendCircle.layer.cornerRadius = 7.5
         supplyLegendCircle.backgroundColor = .accentGray
-        supplyLegendLabel.textColor = .deepGray
+        supplyLegendLabel.textColor = .neutralDark
         supplyLegendLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         supplyLegendLabel.text = NSLocalizedString("Supply", comment: "")
-        supplyValueLabel.textColor = .deepGray
+        supplyValueLabel.textColor = .neutralDark
         supplyValueLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         supplyValueLabel.text = viewModel.supplyCharges.currencyString
         
         taxesFeesLegendCircle.layer.cornerRadius = 7.5
         taxesFeesLegendCircle.backgroundColor = .blackText
-        taxesFeesLegendLabel.textColor = .deepGray
+        taxesFeesLegendLabel.textColor = .neutralDark
         taxesFeesLegendLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         taxesFeesLegendLabel.text = NSLocalizedString("Taxes & Fees", comment: "")
-        taxesFeesValueLabel.textColor = .deepGray
+        taxesFeesValueLabel.textColor = .neutralDark
         taxesFeesValueLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         taxesFeesValueLabel.text = viewModel.taxesAndFees.currencyString
         
         deliveryLegendCircle.layer.cornerRadius = 7.5
         deliveryLegendCircle.backgroundColor = .primaryColor
-        deliveryLegendLabel.textColor = .deepGray
+        deliveryLegendLabel.textColor = .neutralDark
         deliveryLegendLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         deliveryLegendLabel.text = NSLocalizedString("Delivery", comment: "")
-        deliveryValueLabel.textColor = .deepGray
+        deliveryValueLabel.textColor = .neutralDark
         deliveryValueLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         deliveryValueLabel.text = viewModel.deliveryCharges.currencyString
     }

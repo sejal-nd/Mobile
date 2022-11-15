@@ -22,14 +22,14 @@ class RegistrationConfirmationViewController: DismissableFormSheetViewController
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        xButton.tintColor = .actionBlue
+        xButton.tintColor = .primaryBlue
         xButton.accessibilityLabel = NSLocalizedString("Close", comment: "")
         
-        titleLabel.textColor = .deepGray
-        titleLabel.font = OpenSans.semibold.of(textStyle: .title3)
+        titleLabel.textColor = .neutralDark
+        titleLabel.font = ExelonFont.semibold.of(textStyle: .title3)
         titleLabel.text = NSLocalizedString("You’re almost done! Please check your email.", comment: "")
 
-        bodyLabel.textColor = .deepGray
+        bodyLabel.textColor = .neutralDark
         bodyLabel.font = SystemFont.regular.of(textStyle: .body)
         
         iconImageView.image = #imageLiteral(resourceName: "ic_registration_confirmation")

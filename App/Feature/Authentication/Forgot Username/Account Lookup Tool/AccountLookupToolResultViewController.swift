@@ -34,19 +34,19 @@ class AccountLookupToolResultViewController: UIViewController {
         
         title = NSLocalizedString("Account Lookup Tool", comment: "")
         
-        instructionLabel.textColor = .deepGray
+        instructionLabel.textColor = .neutralDark
         instructionLabel.text = NSLocalizedString("Please select your account.", comment: "")
         instructionLabel.font = SystemFont.regular.of(textStyle: .headline)
         
-        accountNumberHeaderLabel.textColor = .deepGray
+        accountNumberHeaderLabel.textColor = .neutralDark
         accountNumberHeaderLabel.font = SystemFont.regular.of(textStyle: .footnote)
         accountNumberHeaderLabel.text = NSLocalizedString("Account #", comment: "")
         
-        streetNumberHeaderLabel.textColor = .deepGray
+        streetNumberHeaderLabel.textColor = .neutralDark
         streetNumberHeaderLabel.font = SystemFont.regular.of(textStyle: .footnote)
         streetNumberHeaderLabel.text = NSLocalizedString("Street #", comment: "")
         
-        unitNumberHeaderLabel.textColor = .deepGray
+        unitNumberHeaderLabel.textColor = .neutralDark
         unitNumberHeaderLabel.font = SystemFont.regular.of(textStyle: .footnote)
         unitNumberHeaderLabel.text = NSLocalizedString("Unit #", comment: "")
         

@@ -38,7 +38,7 @@ class LoginTermsPoliciesViewController: UIViewController {
         
         continueButton.setTitle(NSLocalizedString("Continue", comment: ""), for: .normal)
         
-        agreeLabel.textColor = .deepGray
+        agreeLabel.textColor = .neutralDark
         agreeLabel.font = SystemFont.regular.of(textStyle: .headline)
         agreeLabel.text = viewModel.agreeLabelText
         

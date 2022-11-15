@@ -128,33 +128,33 @@ class HomeUsageCardView: UIView {
         styleSmartEnergyRewards()
         
         // Unavailable
-        unavailableTitleLabel.textColor = .deepGray
-        unavailableTitleLabel.font = OpenSans.regular.of(textStyle: .headline)
+        unavailableTitleLabel.textColor = .neutralDark
+        unavailableTitleLabel.font = ExelonFont.regular.of(textStyle: .headline)
         
-        unavailableDescriptionLabel.textColor = .deepGray
+        unavailableDescriptionLabel.textColor = .neutralDark
         unavailableDescriptionLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         unavailableDescriptionLabel.attributedText = NSLocalizedString("Usage is not available for this account.", comment: "")
             .attributedString(textAlignment: .center)
         
         // Commercial Usage
-        commercialTitleLabel.textColor = .deepGray
-        commercialTitleLabel.font = OpenSans.regular.of(textStyle: .headline)
+        commercialTitleLabel.textColor = .neutralDark
+        commercialTitleLabel.font = ExelonFont.regular.of(textStyle: .headline)
         
-        commercialDescriptionLabel.textColor = .deepGray
+        commercialDescriptionLabel.textColor = .neutralDark
         commercialDescriptionLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         
         commercialDescriptionLabel.attributedText = NSLocalizedString("View data to analyze trends in your energy consumption.", comment: "")
             .attributedString(textAlignment: .center)
         
         // Maintenance
-        maintenanceModeDescriptionLabel.textColor = .deepGray
+        maintenanceModeDescriptionLabel.textColor = .neutralDark
         maintenanceModeDescriptionLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         
         // Error State
-        errorTitleLabel.textColor = .deepGray
-        errorTitleLabel.font = OpenSans.regular.of(textStyle: .headline)
+        errorTitleLabel.textColor = .neutralDark
+        errorTitleLabel.font = ExelonFont.regular.of(textStyle: .headline)
         
-        errorLabel.textColor = .deepGray
+        errorLabel.textColor = .neutralDark
         errorLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         errorLabel.textAlignment = .center
     }
@@ -174,10 +174,10 @@ class HomeUsageCardView: UIView {
         layer.borderWidth = 1
         layer.cornerRadius = 10
         
-        usageOverviewLabel.textColor = .deepGray
-        usageOverviewLabel.font = OpenSans.regular.of(textStyle: .headline)
+        usageOverviewLabel.textColor = .neutralDark
+        usageOverviewLabel.font = ExelonFont.regular.of(textStyle: .headline)
         
-        billComparisonEmptyStateLabel.textColor = .deepGray
+        billComparisonEmptyStateLabel.textColor = .neutralDark
         billComparisonEmptyStateLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         
         let dashedBorderColor = UIColor(red: 0, green: 80/255, blue: 125/255, alpha: 0.24)
@@ -186,17 +186,17 @@ class HomeUsageCardView: UIView {
         currentBarView.backgroundColor = .primaryColor
         
         // Bar Graph Text Colors
-        noDataLabel.textColor = .deepGray
+        noDataLabel.textColor = .neutralDark
         noDataLabel.font = SystemFont.semibold.of(textStyle: .caption1)
-        noDataDateLabel.textColor = .deepGray
+        noDataDateLabel.textColor = .neutralDark
         noDataDateLabel.font = SystemFont.regular.of(textStyle: .caption1)
-        previousDollarLabel.textColor = .deepGray
+        previousDollarLabel.textColor = .neutralDark
         previousDollarLabel.font = SystemFont.regular.of(textStyle: .caption1)
-        previousDateLabel.textColor = .deepGray
+        previousDateLabel.textColor = .neutralDark
         previousDateLabel.font = SystemFont.regular.of(textStyle: .caption1)
-        currentDollarLabel.textColor = .deepGray
+        currentDollarLabel.textColor = .neutralDark
         currentDollarLabel.font = SystemFont.regular.of(textStyle: .caption1)
-        currentDateLabel.textColor = .deepGray
+        currentDateLabel.textColor = .neutralDark
         currentDateLabel.font = SystemFont.regular.of(textStyle: .caption1)
         
         // Bar Graph Text Fonts
@@ -206,48 +206,48 @@ class HomeUsageCardView: UIView {
         barDescriptionView.layer.borderColor = UIColor.accentGray.cgColor
         barDescriptionView.layer.cornerRadius = 10
         
-        barDescriptionDateLabel.textColor = .deepGray
+        barDescriptionDateLabel.textColor = .neutralDark
         barDescriptionDateLabel.font = SystemFont.semibold.of(textStyle: .caption1)
         
-        barDescriptionTotalBillTitleLabel.textColor = .deepGray
+        barDescriptionTotalBillTitleLabel.textColor = .neutralDark
         barDescriptionTotalBillTitleLabel.font = SystemFont.semibold.of(textStyle: .caption1)
         
-        barDescriptionTotalBillValueLabel.textColor = .deepGray
+        barDescriptionTotalBillValueLabel.textColor = .neutralDark
         barDescriptionTotalBillValueLabel.font = SystemFont.regular.of(textStyle: .caption1)
 
-        barDescriptionUsageTitleLabel.textColor = .deepGray
+        barDescriptionUsageTitleLabel.textColor = .neutralDark
         barDescriptionUsageTitleLabel.font = SystemFont.semibold.of(textStyle: .caption1)
         
-        barDescriptionUsageValueLabel.textColor = .deepGray
+        barDescriptionUsageValueLabel.textColor = .neutralDark
         barDescriptionUsageValueLabel.font = SystemFont.regular.of(textStyle: .caption1)
         
-        viewUsageButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
+        viewUsageButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .caption1)
         
-        viewCommercialUsageButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
+        viewCommercialUsageButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .caption1)
     }
     
     private func styleSmartEnergyRewards() {
-        smartEnergyRewardsTitleLabel.textColor = .deepGray
-        smartEnergyRewardsTitleLabel.font = OpenSans.regular.of(textStyle: .headline)
+        smartEnergyRewardsTitleLabel.textColor = .neutralDark
+        smartEnergyRewardsTitleLabel.font = ExelonFont.regular.of(textStyle: .headline)
         smartEnergyRewardsTitleLabel.text = Configuration.shared.opco == .comEd ? NSLocalizedString("Peak Time Savings", comment: "") :
             NSLocalizedString("Smart Energy Rewards", comment: "")
         
-        smartEnergyRewardsSeasonLabel.textColor = .deepGray
+        smartEnergyRewardsSeasonLabel.textColor = .neutralDark
         smartEnergyRewardsSeasonLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         
-        smartEnergyRewardsFooterLabel.textColor = .deepGray
+        smartEnergyRewardsFooterLabel.textColor = .neutralDark
         smartEnergyRewardsFooterLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         smartEnergyRewardsFooterLabel.text = NSLocalizedString("You earn bill credits for every kWh you save. " +
             "We calculate how much you save by comparing the energy you use on an Energy Savings Day to your typical use.", comment: "")
         
-        viewAllSavingsButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
+        viewAllSavingsButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .caption1)
         
-        smartEnergyRewardsEmptyStateTitleLabel.textColor = .deepGray
-        smartEnergyRewardsEmptyStateTitleLabel.font = OpenSans.regular.of(textStyle: .headline)
+        smartEnergyRewardsEmptyStateTitleLabel.textColor = .neutralDark
+        smartEnergyRewardsEmptyStateTitleLabel.font = ExelonFont.regular.of(textStyle: .headline)
         smartEnergyRewardsEmptyStateTitleLabel.text = Configuration.shared.opco == .comEd ? NSLocalizedString("Peak Time Savings", comment: "") :
             NSLocalizedString("Smart Energy Rewards", comment: "")
         
-        smartEnergyRewardsEmptyStateDetailLabel.textColor = .deepGray
+        smartEnergyRewardsEmptyStateDetailLabel.textColor = .neutralDark
         smartEnergyRewardsEmptyStateDetailLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         smartEnergyRewardsEmptyStateDetailLabel.text = NSLocalizedString("As a \(smartEnergyRewardsEmptyStateTitleLabel.text!) customer, you can earn bill credits for every kWh you save. " +
             "We calculate how much you save by comparing the energy you use on an Energy Savings Day to your typical use. Your savings information for the most recent " +
@@ -530,8 +530,8 @@ class HomeUsageCardView: UIView {
     }
     
     private(set) lazy var previousDollarLabelTextColor: Driver<UIColor> = self.viewModel.billComparisonDriver.map {
-        guard let compared = $0.comparedBill else { return .deepGray }
-        return compared.charges < 0 ? .successGreenText : .deepGray
+        guard let compared = $0.comparedBill else { return .neutralDark }
+        return compared.charges < 0 ? .successGreenText : .neutralDark
     }
     
     private(set) lazy var currentLabelFont: Driver<UIFont> = self.viewModel.barGraphSelectionStates.value[2].asDriver().map {
@@ -539,8 +539,8 @@ class HomeUsageCardView: UIView {
     }
     
     private(set) lazy var currentDollarLabelTextColor: Driver<UIColor> = self.viewModel.billComparisonDriver.map {
-        guard let reference = $0.referenceBill else { return .deepGray }
-        return reference.charges < 0 ? .successGreenText : .deepGray
+        guard let reference = $0.referenceBill else { return .neutralDark }
+        return reference.charges < 0 ? .successGreenText : .neutralDark
     }
 
 }

@@ -70,7 +70,7 @@ class MoveServiceConfirmationViewController: UIViewController {
     
     private func fontStyling() {
         
-        moveStatusLabel.font = OpenSans.semibold.of(textStyle: .title3)
+        moveStatusLabel.font = ExelonFont.semibold.of(textStyle: .title3)
         stopServiceDateStaticLabel.font = SystemFont.regular.of(textStyle: .footnote)
         stopServiceAddressStaticLabel.font = SystemFont.regular.of(textStyle: .footnote)
         startServiceDateStaticLabel.font = SystemFont.regular.of(textStyle: .footnote)
@@ -120,10 +120,10 @@ class MoveServiceConfirmationViewController: UIViewController {
         let range = (helplineDescription as NSString).range(of: "myhomerep@bge.com")
         let attributedString = NSMutableAttributedString(string: helplineDescription)
         attributedString.addAttribute(NSAttributedString.Key.link, value: "mailto:", range: range)
-        attributedString.addAttributes([ NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17, weight: .regular), NSAttributedString.Key.foregroundColor: UIColor.deepGray], range: NSRange(location: 0, length: helplineDescription.count))
-        attributedString.addAttributes([ NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17, weight: .semibold), NSAttributedString.Key.foregroundColor: UIColor.actionBlue], range: range)
+        attributedString.addAttributes([ NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17, weight: .regular), NSAttributedString.Key.foregroundColor: UIColor.neutralDark], range: NSRange(location: 0, length: helplineDescription.count))
+        attributedString.addAttributes([ NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17, weight: .semibold), NSAttributedString.Key.foregroundColor: UIColor.primaryBlue], range: range)
         helplineDescriptionTextView.attributedText = attributedString
-        helplineDescriptionTextView.linkTextAttributes = [ NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17, weight: .semibold), NSAttributedString.Key.foregroundColor: UIColor.actionBlue]
+        helplineDescriptionTextView.linkTextAttributes = [ NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17, weight: .semibold), NSAttributedString.Key.foregroundColor: UIColor.primaryBlue]
         helplineDescriptionTextView.isUserInteractionEnabled = true
         helplineDescriptionTextView.isEditable = false
         helplineDescriptionTextView.textContainerInset = .zero

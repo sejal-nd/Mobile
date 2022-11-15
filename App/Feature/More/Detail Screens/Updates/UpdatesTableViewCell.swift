@@ -31,10 +31,10 @@ class UpdatesTableViewCell: UITableViewCell {
         innerContentView.layer.borderColor = UIColor.accentGray.cgColor
         innerContentView.layer.borderWidth = 1
         
-        titleLabel.textColor = .deepGray
+        titleLabel.textColor = .neutralDark
         titleLabel.font = SystemFont.semibold.of(textStyle: .subheadline)
         
-        detailLabel.textColor = .deepGray
+        detailLabel.textColor = .neutralDark
         detailLabel.font = SystemFont.regular.of(textStyle: .footnote)
     }
     

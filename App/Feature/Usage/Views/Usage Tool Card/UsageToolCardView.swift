@@ -46,8 +46,8 @@ class UsageToolCardView: ButtonControl {
         lineView.backgroundColor = .softGray
         
         // Label
-        titleLabel.textColor = .deepGray
-        titleLabel.font = OpenSans.regular.of(textStyle: .subheadline)
+        titleLabel.textColor = .neutralDark
+        titleLabel.font = ExelonFont.regular.of(textStyle: .subheadline)
     }
 
 }

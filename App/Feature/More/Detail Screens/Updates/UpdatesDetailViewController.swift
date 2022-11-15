@@ -15,7 +15,7 @@ class UpdatesDetailViewController: UIViewController {
     var opcoUpdate: Alert!
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return StormModeStatus.shared.isOn ? .lightContent : .default
+        return StormModeStatus.shared.isOn ? .darkContent : .default
     }
 
     // MARK: - View Life Cycle
@@ -37,11 +37,11 @@ class UpdatesDetailViewController: UIViewController {
     // MARK: - Helper
     
     private func style() {
-        titleLabel.textColor = .deepGray
-        titleLabel.font = OpenSans.semibold.of(textStyle: .title3)
+        titleLabel.textColor = .neutralDark
+        titleLabel.font = ExelonFont.semibold.of(textStyle: .title3)
         
-        detailsTextView.textColor = .deepGray
-        detailsTextView.font = OpenSans.regular.of(textStyle: .body)
+        detailsTextView.textColor = .neutralDark
+        detailsTextView.font = ExelonFont.regular.of(textStyle: .body)
     }
     
     private func setValues() {

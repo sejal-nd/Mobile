@@ -143,13 +143,13 @@ class InfoAlertController: UIViewController {
         alertContainerView.backgroundColor = .white
         alertContainerView.layer.cornerRadius = 10
         xButton.setImage(#imageLiteral(resourceName: "ic_close"), for: .normal)
-        xButton.tintColor = .actionBlue
+        xButton.tintColor = .primaryBlue
         titleLabel.font = SystemFont.regular.of(textStyle: .headline)
-        titleLabel.textColor = .deepGray
+        titleLabel.textColor = .neutralDark
         titleLabel.numberOfLines = 0
         titleLabel.textAlignment = .center
         messageLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        messageLabel.textColor = .deepGray
+        messageLabel.textColor = .neutralDark
         messageLabel.numberOfLines = 0
         messageLabel.textAlignment = .center
         
@@ -157,7 +157,7 @@ class InfoAlertController: UIViewController {
             ctaButton?.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
             ctaButton?.layer.cornerRadius = 22
         } else {
-            ctaButton?.setTitleColor(.actionBlue, for: .normal)
+            ctaButton?.setTitleColor(.primaryBlue, for: .normal)
             ctaButton?.titleLabel?.font = SystemFont.semibold.of(textStyle: .body)
         }
     }

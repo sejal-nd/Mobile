@@ -29,7 +29,7 @@ class ForgotUsernameBGEAccountNumberViewController: KeyboardAvoidingStickyFooter
         
         viewModel.accountNumberHasValidLength.drive(continueButton.rx.isEnabled).disposed(by: disposeBag)
         
-        instructionLabel.textColor = .deepGray
+        instructionLabel.textColor = .neutralDark
         instructionLabel.font = SystemFont.regular.of(textStyle: .headline)
         instructionLabel.text = NSLocalizedString("The information entered is associated with multiple accounts. Please enter the account number you would like to proceed with.", comment: "")
 

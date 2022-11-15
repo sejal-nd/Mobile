@@ -34,9 +34,9 @@ class B2CRegistrationViewController: UIViewController {
         
         errorImage.tintColor = .attentionOrange
         errorTitle.font = SystemFont.semibold.of(textStyle: .title3)
-        errorTitle.textColor = .deepGray
+        errorTitle.textColor = .neutralDark
         errorDescription.font = SystemFont.regular.of(textStyle: .footnote)
-        errorDescription.textColor = .deepGray
+        errorDescription.textColor = .neutralDark
         errorView.isHidden = true
         
         fetchJWT()

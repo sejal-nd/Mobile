@@ -96,35 +96,35 @@ class SERPTSGraphView: UIView {
         bar3BarView.backgroundColor = .primaryColor
         
         // Bar Graph Text Colors
-        bar1DollarLabel.textColor = .deepGray
-        bar1DateLabel.textColor = .deepGray
-        bar2DollarLabel.textColor = .deepGray
-        bar2DateLabel.textColor = .deepGray
-        bar3DollarLabel.textColor = .deepGray
-        bar3DateLabel.textColor = .deepGray
+        bar1DollarLabel.textColor = .neutralDark
+        bar1DateLabel.textColor = .neutralDark
+        bar2DollarLabel.textColor = .neutralDark
+        bar2DateLabel.textColor = .neutralDark
+        bar3DollarLabel.textColor = .neutralDark
+        bar3DateLabel.textColor = .neutralDark
         
         barDescriptionView.layer.cornerRadius = 10
         barDescriptionView.layer.borderColor = UIColor.accentGray.cgColor
         barDescriptionView.layer.borderWidth = 1
-        barDescriptionDateLabel.textColor = .deepGray
+        barDescriptionDateLabel.textColor = .neutralDark
         barDescriptionDateLabel.font = SystemFont.semibold.of(textStyle: .caption1)
-        barDescriptionPeakHoursLabel.textColor = .deepGray
+        barDescriptionPeakHoursLabel.textColor = .neutralDark
         barDescriptionPeakHoursLabel.font = SystemFont.semibold.of(textStyle: .caption1)
-        barDescriptionTypicalUseTitleLabel.textColor = .deepGray
+        barDescriptionTypicalUseTitleLabel.textColor = .neutralDark
         barDescriptionTypicalUseTitleLabel.font = SystemFont.semibold.of(textStyle: .caption1)
-        barDescriptionTypicalUseValueLabel.textColor = .deepGray
+        barDescriptionTypicalUseValueLabel.textColor = .neutralDark
         barDescriptionTypicalUseValueLabel.font = SystemFont.regular.of(textStyle: .caption1)
-        barDescriptionActualUseTitleLabel.textColor = .deepGray
+        barDescriptionActualUseTitleLabel.textColor = .neutralDark
         barDescriptionActualUseTitleLabel.font = SystemFont.semibold.of(textStyle: .caption1)
-        barDescriptionActualUseValueLabel.textColor = .deepGray
+        barDescriptionActualUseValueLabel.textColor = .neutralDark
         barDescriptionActualUseValueLabel.font = SystemFont.regular.of(textStyle: .caption1)
-        barDescriptionEnergySavingsTitleLabel.textColor = .deepGray
+        barDescriptionEnergySavingsTitleLabel.textColor = .neutralDark
         barDescriptionEnergySavingsTitleLabel.font = SystemFont.semibold.of(textStyle: .caption1)
-        barDescriptionEnergySavingsValueLabel.textColor = .deepGray
+        barDescriptionEnergySavingsValueLabel.textColor = .neutralDark
         barDescriptionEnergySavingsValueLabel.font = SystemFont.regular.of(textStyle: .caption1)
-        barDescriptionBillCreditTitleLabel.textColor = .deepGray
+        barDescriptionBillCreditTitleLabel.textColor = .neutralDark
         barDescriptionBillCreditTitleLabel.font = SystemFont.semibold.of(textStyle: .caption1)
-        barDescriptionBillCreditValueLabel.textColor = .deepGray
+        barDescriptionBillCreditValueLabel.textColor = .neutralDark
         barDescriptionBillCreditValueLabel.font = SystemFont.regular.of(textStyle: .caption1)
     }
     

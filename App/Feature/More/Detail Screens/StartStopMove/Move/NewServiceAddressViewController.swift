@@ -82,9 +82,9 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
 
     private func setupUIBinding(){
         
-        selectedstreetAddressLabel.textColor = .deepGray
-        selectedAppartmentLabel.textColor = .deepGray
-        zipTextField.textField.textColor = .deepGray
+        selectedstreetAddressLabel.textColor = .neutralDark
+        selectedAppartmentLabel.textColor = .neutralDark
+        zipTextField.textField.textColor = .neutralDark
 
         viewModel.showLoadingState
             .subscribe (onNext: { [weak self] status in
@@ -212,7 +212,7 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
 
 
         noteLabel.text = NSLocalizedString("Please note: The address you entered is a commercial address and you’ll be subject to commercial rates. ", comment: "")
-        noteLabel.textColor = .deepGray
+        noteLabel.textColor = .neutralDark
 
     }
     func refreshData() {
@@ -278,7 +278,7 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
         } else {
             appartmentSelectionView.roundCorners(.allCorners, radius: 10.0, borderColor:.accentGray, borderWidth: 1.0)
             appartmentSelectionView.backgroundColor = .white
-            appartmentPlaceHolderLabel.textColor = .deepGray
+            appartmentPlaceHolderLabel.textColor = .neutralDark
         }
     }
     private func setStreetAddress(_ message: String?) {

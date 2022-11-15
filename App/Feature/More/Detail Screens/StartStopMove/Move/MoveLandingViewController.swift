@@ -13,63 +13,63 @@ import RxCocoa
 class MoveLandingViewController: UIViewController {
     @IBOutlet weak var headerLabel: UILabel! {
         didSet {
-            headerLabel.textColor = .deepGray
-            headerLabel.font = OpenSans.semibold.of(textStyle: .title3)
+            headerLabel.textColor = .neutralDark
+            headerLabel.font = ExelonFont.semibold.of(textStyle: .title3)
             headerLabel.text = NSLocalizedString("Stop current service and start new service at another address in BGE’s area", comment: "")
         }
     }
     @IBOutlet weak var estimatedTimeLabel: UILabel! {
         didSet {
-            estimatedTimeLabel.textColor = .deepGray
+            estimatedTimeLabel.textColor = .neutralDark
             estimatedTimeLabel.font = SystemFont.regular.of(textStyle: .caption1)
             estimatedTimeLabel.text = NSLocalizedString("EST. 4-6 MINUTES", comment: "")
         }
     }
     @IBOutlet weak var youMightNeedLabel: UILabel! {
         didSet {
-            youMightNeedLabel.textColor = .deepGray
+            youMightNeedLabel.textColor = .neutralDark
             youMightNeedLabel.font = SystemFont.regular.of(textStyle: .caption1)
             youMightNeedLabel.text = NSLocalizedString("You might need:", comment: "")
         }
     }
     @IBOutlet weak var identificationInformationLabel: UILabel! {
         didSet {
-            identificationInformationLabel.textColor = .deepGray
+            identificationInformationLabel.textColor = .neutralDark
             identificationInformationLabel.font = SystemFont.regular.of(textStyle: .subheadline)
             identificationInformationLabel.text = NSLocalizedString("Identification information", comment: "")
         }
     }
     @IBOutlet weak var socialSecurityTaxIdLabel: UILabel! {
         didSet {
-            socialSecurityTaxIdLabel.textColor = .deepGray
+            socialSecurityTaxIdLabel.textColor = .neutralDark
             socialSecurityTaxIdLabel.font = SystemFont.regular.of(textStyle: .caption1)
             socialSecurityTaxIdLabel.text = NSLocalizedString("Social Security Number / Tax ID", comment: "")
         }
     }
     @IBOutlet weak var diversLicenseStateIdLabel: UILabel! {
         didSet {
-            diversLicenseStateIdLabel.textColor = .deepGray
+            diversLicenseStateIdLabel.textColor = .neutralDark
             diversLicenseStateIdLabel.font = SystemFont.regular.of(textStyle: .caption1)
             diversLicenseStateIdLabel.text = NSLocalizedString("Driver’s license / State ID", comment: "")
         }
     }
     @IBOutlet weak var dateOfBirthLabel: UILabel! {
         didSet {
-            dateOfBirthLabel.textColor = .deepGray
+            dateOfBirthLabel.textColor = .neutralDark
             dateOfBirthLabel.font = SystemFont.regular.of(textStyle: .caption1)
             dateOfBirthLabel.text = NSLocalizedString("Date of birth", comment: "")
         }
     }
     @IBOutlet weak var startStopDateLabel: UILabel! {
         didSet {
-            startStopDateLabel.textColor = .deepGray
+            startStopDateLabel.textColor = .neutralDark
             startStopDateLabel.font = SystemFont.regular.of(textStyle: .subheadline)
             startStopDateLabel.text = NSLocalizedString("Dates to stop and start your service within 30 days, excluding holidays and Sundays", comment: "")
         }
     }
     @IBOutlet weak var newServiceAddressLabel: UILabel! {
         didSet {
-            newServiceAddressLabel.textColor = .deepGray
+            newServiceAddressLabel.textColor = .neutralDark
             newServiceAddressLabel.font = SystemFont.regular.of(textStyle: .subheadline)
             newServiceAddressLabel.text = NSLocalizedString("New service address", comment: "")
         }

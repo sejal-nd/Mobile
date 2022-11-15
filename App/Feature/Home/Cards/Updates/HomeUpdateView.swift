@@ -24,14 +24,14 @@ class HomeUpdateView: UIView {
     @IBOutlet private weak var titleLabel: UILabel! {
         didSet {
             titleLabel.textColor = .blackText
-            titleLabel.font = OpenSans.semibold.of(textStyle: .callout)
+            titleLabel.font = ExelonFont.semibold.of(textStyle: .callout)
         }
     }
     
     @IBOutlet private weak var descriptionLabel: UILabel! {
         didSet {
             descriptionLabel.textColor = .middleGray
-            descriptionLabel.font = OpenSans.regular.of(textStyle: .caption1)
+            descriptionLabel.font = ExelonFont.regular.of(textStyle: .caption1)
         }
     }
     

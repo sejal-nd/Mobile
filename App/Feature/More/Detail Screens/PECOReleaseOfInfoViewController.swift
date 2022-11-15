@@ -33,7 +33,7 @@ class PECOReleaseOfInfoViewController: UIViewController {
     var selectedRowIndex = 0
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return StormModeStatus.shared.isOn ? .lightContent : .default
+        return StormModeStatus.shared.isOn ? .darkContent : .default
     }
 
     override func viewDidLoad() {

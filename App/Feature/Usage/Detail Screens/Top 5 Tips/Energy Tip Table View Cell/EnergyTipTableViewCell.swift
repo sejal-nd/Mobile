@@ -18,10 +18,10 @@ class EnergyTipTableViewCell: UITableViewCell {
         
         selectionStyle = .none
         
-        titleLabel.textColor = .deepGray
-        titleLabel.font = OpenSans.semibold.of(textStyle: .title3)
+        titleLabel.textColor = .neutralDark
+        titleLabel.font = ExelonFont.semibold.of(textStyle: .title3)
         
-        bodyLabel.textColor = .deepGray
+        bodyLabel.textColor = .neutralDark
         bodyLabel.font = SystemFont.regular.of(textStyle: .body)
     }
     

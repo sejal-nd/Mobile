@@ -36,10 +36,10 @@ class WalletTableViewCell: UITableViewCell {
         innerContentView.layer.cornerRadius = 8
         innerContentView.layer.masksToBounds = true
         
-        accountNumberLabel.textColor = .deepGray
-        accountNumberLabel.font = OpenSans.regular.of(textStyle: .subheadline)
+        accountNumberLabel.textColor = .neutralDark
+        accountNumberLabel.font = ExelonFont.regular.of(textStyle: .subheadline)
 
-        nicknameLabel.textColor = .deepGray
+        nicknameLabel.textColor = .neutralDark
         nicknameLabel.font = SystemFont.regular.of(textStyle: .caption1)
         
         // Default

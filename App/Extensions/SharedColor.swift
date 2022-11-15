@@ -9,7 +9,137 @@
 import UIKit
 
 extension UIColor {
-    
+
+    // MARK: Brand Colors
+
+    /// Exelon Dark Blue #170D67
+    static var primaryBlue: UIColor {
+        return UIColor(named: "primaryBlue")!
+    }
+
+    /// Exelon Purple #6E06C1
+    static var primaryPurple: UIColor {
+        return UIColor(named: "primaryPurple")!
+    }
+
+    /// Exelon Light Blue #3A5CFF
+    static var secondaryBlue: UIColor {
+        return UIColor(named: "secondaryBlue")!
+    }
+
+    /// Exelon Green #00E4A5
+    static var secondaryGreen: UIColor {
+        return UIColor(named: "secondaryGreen")!
+    }
+
+    /// Exelon Gray #E8E7F0
+    static var secondaryGray: UIColor {
+        return UIColor(named: "secondaryGray")!
+    }
+
+    /// Exelon Orange #FF8300
+    static var tertiaryOrange: UIColor {
+        return UIColor(named: "tertiaryOrange")!
+    }
+
+    /// Exelon Yellow #FFD700
+    static var tertiaryYellow: UIColor {
+        return UIColor(named: "tertiaryYellow")!
+    }
+
+    // MARK: UI Colors
+
+    /// Action Dark #103870
+    static var actionDark: UIColor {
+        return UIColor(named: "actionDark")!
+    }
+
+    /// Action Primary #0059A4
+    static var actionPrimary: UIColor {
+        return UIColor(named: "actionPrimary")!
+    }
+
+    /// Neutral #020E1E, 95%
+    static var labelColor: UIColor {
+        return neutralDarker
+    }
+
+    /// Neutral #020E1E, 95%
+    static var neutralDarker: UIColor {
+        return UIColor(named: "neutralDarker")!
+    }
+
+    /// Neutral #020E1E, 65%
+    static var neutralDark: UIColor {
+        return UIColor(named: "neutral")!.withAlphaComponent(65)
+    }
+
+    /// Neutral #020E1E, 45%
+    static var neutralMedium: UIColor {
+        return UIColor(named: "neutral")!.withAlphaComponent(45)
+    }
+
+    /// Neutral #020E1E, 25%
+    static var neutralLight: UIColor {
+        return UIColor(named: "neutral")!.withAlphaComponent(25)
+    }
+
+    /// Neutral #020E1E, 10%
+    static var neutralLighter: UIColor {
+        return UIColor(named: "neutralLighter")!
+    }
+
+    /// Neutral #020E1E, 3%
+    static var neutralLightest: UIColor {
+        return UIColor(named: "neutral")!.withAlphaComponent(3)
+    }
+
+    // MARK: Status Colors
+
+    static var successPrimary: UIColor {
+        return UIColor(named: "successPrimary")!
+    }
+
+    static var successMedium: UIColor {
+        return UIColor(named: "successMedium")!
+    }
+
+    static var successLight: UIColor {
+        return UIColor(named: "successLight")!
+    }
+
+    static var successAda: UIColor {
+        return UIColor(named: "successAda")!
+    }
+
+    static var attentionPrimary: UIColor {
+        return UIColor(named: "attentionPrimary")!
+    }
+
+    static var attentionMedium: UIColor {
+        return UIColor(named: "attentionMedium")!
+    }
+
+    static var attentionLight: UIColor {
+        return UIColor(named: "attentionLight")!
+    }
+
+    static var errorPrimary: UIColor {
+        return UIColor(named: "error")!
+    }
+
+    static var errorMedium: UIColor {
+        return errorPrimary.withAlphaComponent(20)
+    }
+
+    static var errorLight: UIColor {
+        return errorPrimary.withAlphaComponent(3)
+    }
+
+
+
+
+
     @nonobjc static var blackText: UIColor {
         return UIColor(red: 35/255, green: 31/255, blue: 32/255, alpha: 1)
     }

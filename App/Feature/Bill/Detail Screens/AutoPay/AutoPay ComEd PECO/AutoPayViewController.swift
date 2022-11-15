@@ -119,21 +119,21 @@ class AutoPayViewController: KeyboardAvoidingStickyFooterViewController {
     private func style() {
         if accountDetail.isAutoPay {
             // Enrolled
-            enrolledTopLabel.textColor = .deepGray
+            enrolledTopLabel.textColor = .neutralDark
             enrolledTopLabel.font = SystemFont.regular.of(textStyle: .headline)
             enrolledTopLabel.setLineHeight(lineHeight: 16)
             
-            unenrollButtonLabel.textColor = .deepGray
+            unenrollButtonLabel.textColor = .neutralDark
             unenrollButtonLabel.font = SystemFont.regular.of(textStyle: .subheadline)
             
             unenrollButton.titleLabel?.font = SystemFont.bold.of(textStyle: .subheadline)
         } else {
             // Not enrolled
-            topLabel.textColor = .deepGray
+            topLabel.textColor = .neutralDark
             topLabel.font = SystemFont.regular.of(textStyle: .headline)
             topLabel.setLineHeight(lineHeight: 24)
             
-            tacLabel.textColor = .deepGray
+            tacLabel.textColor = .neutralDark
             tacLabel.text = viewModel.tacLabelText
             tacLabel.font = SystemFont.regular.of(textStyle: .subheadline)
             tacLabel.setLineHeight(lineHeight: 25)
@@ -142,7 +142,7 @@ class AutoPayViewController: KeyboardAvoidingStickyFooterViewController {
             GoogleAnalytics.log(event: .autoPayEnrollOffer)
         }
 
-        footerLabel.textColor = .deepGray
+        footerLabel.textColor = .neutralDark
         footerLabel.font = SystemFont.regular.of(textStyle: .footnote)
         footerLabel.setLineHeight(lineHeight: 16)
     }

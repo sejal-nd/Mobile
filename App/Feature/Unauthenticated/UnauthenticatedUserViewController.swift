@@ -42,14 +42,14 @@ class UnauthenticatedUserViewController: UIViewController, UIGestureRecognizerDe
     
     @IBOutlet weak var headerViewTitleLabel: UILabel! {
         didSet {
-            headerViewTitleLabel.font = OpenSans.semibold.of(textStyle: .callout)
-            headerViewTitleLabel.textColor = .actionBlue
+            headerViewTitleLabel.font = ExelonFont.semibold.of(textStyle: .callout)
+            headerViewTitleLabel.textColor = .primaryBlue
         }
     }
     
     @IBOutlet weak var headerViewDescriptionLabel: UILabel! {
         didSet {
-            headerViewDescriptionLabel.font = OpenSans.regular.of(textStyle: .caption1)
+            headerViewDescriptionLabel.font = ExelonFont.regular.of(textStyle: .caption1)
             headerViewDescriptionLabel.textColor = .blackText
         }
     }
@@ -59,7 +59,7 @@ class UnauthenticatedUserViewController: UIViewController, UIGestureRecognizerDe
     }()
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
+        return .darkContent
     }
     
     // Feature Flag Value

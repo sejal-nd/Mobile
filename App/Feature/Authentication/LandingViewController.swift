@@ -37,7 +37,7 @@ class LandingViewController: UIViewController {
     private var viewDidAppear = false
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
+        return .darkContent
     }
     
     // MARK: - View Life Cycle
@@ -71,7 +71,7 @@ class LandingViewController: UIViewController {
             debugButton.isEnabled = false
         }
         
-        versionLabel.font = OpenSans.regular.of(textStyle: .footnote)
+        versionLabel.font = ExelonFont.regular.of(textStyle: .footnote)
         
         logoBackgroundView.alpha = 0
         videoView.alpha = 0

@@ -50,11 +50,11 @@ class GameRewardViewController: UIViewController {
         popupView.layer.cornerRadius = 10
         popupView.layer.masksToBounds = true
         
-        closeButton.tintColor = .actionBlue
+        closeButton.tintColor = .primaryBlue
         closeButton.addTarget(self, action: #selector(dismiss(_:)), for: .touchUpInside)
         closeButton.isHidden = true
         
-        titleLabel.textColor = .deepGray
+        titleLabel.textColor = .neutralDark
         
         if isWelcomeGift {
             let attributedText = NSMutableAttributedString()

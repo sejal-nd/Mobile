@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol AccountPickerDelegate: class {
+protocol AccountPickerDelegate: AnyObject {
     func accountPickerDidChangeAccount(_ accountPicker: AccountPicker)
 }
 
@@ -45,10 +45,10 @@ class AccountPicker: UIControl {
     @IBInspectable var tintWhite: Bool = false {
         didSet {
             for label in accountNumberLabels {
-                label.textColor = tintWhite ? .white: .deepGray
+                label.textColor = tintWhite ? .white: .neutralDarker
             }
             for label in addressLabels {
-                label.textColor = tintWhite ? .white: .deepGray
+                label.textColor = tintWhite ? .white: .neutralDarker
             }
             
             switchAccountImageView.image = tintWhite ? UIImage(named: "ic_switchaccount")! :
@@ -89,19 +89,19 @@ class AccountPicker: UIControl {
         isAccessibilityElement = true
                 
         clipsToBounds = true
-        backgroundColor = .clear
-        view.backgroundColor = .clear
+        backgroundColor = .white
+        view.backgroundColor = .white
         
         multiAccountView.isHidden = true // Hide one so that intrinsic height is 50
         loadingIndicator.isHidden = true
         loadingIndicator.isStormMode = StormModeStatus.shared.isOn
     
         for label in accountNumberLabels {
-            label.textColor = .deepGray
+            label.textColor = .neutralDarker
             label.font = SystemFont.semibold.of(textStyle: .subheadline)
         }
         for label in addressLabels {
-            label.textColor = .deepGray
+            label.textColor = .neutralDarker
             label.font = SystemFont.regular.of(textStyle: .subheadline)
         }
         

@@ -25,6 +25,7 @@ class HomeBillCardView: UIView {
     
     @IBOutlet private weak var infoStack: UIStackView!
     
+    @IBOutlet weak var billCardHeader: HomeCardHeaderView!
     @IBOutlet private weak var headerView: UIView!
     @IBOutlet private weak var headerLabel: UILabel!
     @IBOutlet private weak var headerAlertAnimationContainer: UIView! {
@@ -76,7 +77,6 @@ class HomeBillCardView: UIView {
     @IBOutlet private weak var billNotReadyImageView: UIImageView!
     @IBOutlet private weak var billNotReadyLabel: UILabel!
     @IBOutlet private weak var errorStack: UIStackView!
-    @IBOutlet private weak var errorTitleLabel: UILabel!
     @IBOutlet private weak var errorLabel: UILabel!
     @IBOutlet private weak var maintenanceModeView: UIView!
     @IBOutlet private weak var maintenanceModeLabel: UILabel!
@@ -141,7 +141,7 @@ class HomeBillCardView: UIView {
     private func styleViews() {
         assistanceViewSeparator.backgroundColor = UIColor.accentGray
         titleAssistanceProgram.font = SystemFont.bold.of(textStyle: .caption1)
-        titleAssistanceProgram.textColor = .deepGray
+        titleAssistanceProgram.textColor = .neutralDark
         if assistanceCTA.titleLabel?.text == "Reinstate Payment Arrangement" {
             self.titleAssistanceProgram.font = SystemFont.regular.of(textStyle: .caption1)
             
@@ -149,42 +149,43 @@ class HomeBillCardView: UIView {
 
         descriptionAssistanceProgram.font = SystemFont.regular.of(textStyle: .caption1)
         }
-        descriptionAssistanceProgram.textColor = .deepGray
-        assistanceCTA.setTitleColor(.actionBlue, for: .normal)
+        descriptionAssistanceProgram.textColor = .neutralDark
+        assistanceCTA.setTitleColor(.primaryBlue, for: .normal)
         assistanceCTA.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
         
-        enrolmentStatusLabel.textColor = .deepGray
+        enrolmentStatusLabel.textColor = .neutralDark
         enrolmentStatusLabel.font = SystemFont.regular.of(textStyle: .caption1)
         
-        enrolmentStatusLabelBillNotReady.textColor = .deepGray
+        enrolmentStatusLabelBillNotReady.textColor = .neutralDark
         enrolmentStatusLabelBillNotReady.font = SystemFont.regular.of(textStyle: .caption1)
         
-        ddeExtendedDateLabel.textColor = .deepGray
+        ddeExtendedDateLabel.textColor = .neutralDark
         ddeExtendedDateLabel.font = SystemFont.semibold.of(textStyle: .caption1)
         
-        ddeExtendedDateLabelBillNotReady.textColor = .deepGray
+        ddeExtendedDateLabelBillNotReady.textColor = .neutralDark
         ddeExtendedDateLabelBillNotReady.font = SystemFont.semibold.of(textStyle: .caption1)
         
         layer.borderColor = UIColor.accentGray.cgColor
         layer.borderWidth = 1
         layer.cornerRadius = 10
         clippingView.layer.cornerRadius = 10
+
+//        Removing border for rebrand
+//        headerView.layer.borderColor = UIColor.accentGray.cgColor
+//        headerView.layer.borderWidth = 1
         
-        headerView.layer.borderColor = UIColor.accentGray.cgColor
-        headerView.layer.borderWidth = 1
+        headerLabel.font = SystemFont.regular.of(textStyle: .caption1)
         
-        headerLabel.font = SystemFont.semibold.of(textStyle: .caption1)
-        
-        paymentDescriptionLabel.textColor = .deepGray
-        paymentDescriptionLabel.font = OpenSans.regular.of(textStyle: .headline)
+        paymentDescriptionLabel.textColor = .neutralDark
+        paymentDescriptionLabel.font = ExelonFont.regular.of(textStyle: .headline)
         
         viewModel.amountColor.drive(amountLabel.rx.textColor).disposed(by: bag)
-        amountLabel.font = OpenSans.semibold.of(textStyle: .largeTitle)
+        amountLabel.font = ExelonFont.semibold.of(textStyle: .largeTitle)
         
         dueDateLabel.font = SystemFont.regular.of(textStyle: .caption1)
         dueDateTooltip.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
         
-        slideToPayConfirmationDetailLabel.textColor = .deepGray
+        slideToPayConfirmationDetailLabel.textColor = .neutralDark
         slideToPayConfirmationDetailLabel.font = SystemFont.regular.of(textStyle: .caption1)
         
         scheduledPaymentBox.layer.cornerRadius = 6
@@ -196,21 +197,17 @@ class HomeBillCardView: UIView {
         autoPayBox.layer.cornerRadius = 6
         autoPayBox.layer.borderColor = UIColor.accentGray.cgColor
         autoPayBox.layer.borderWidth = 1
-        autoPayButtonLabel.textColor = .actionBlue
+        autoPayButtonLabel.textColor = .primaryBlue
         autoPayButtonLabel.font = SystemFont.semibold.of(textStyle: .subheadline)
         
-        viewBillButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
+        viewBillButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .caption1)
         
         // Bill Not Ready
-        billNotReadyLabel.textColor = .deepGray
+        billNotReadyLabel.textColor = .neutralDark
         billNotReadyLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         billNotReadyLabel.textAlignment = .center
         
-        // Error State
-        errorTitleLabel.textColor = .deepGray
-        errorTitleLabel.font = OpenSans.regular.of(textStyle: .headline)
-        
-        errorLabel.textColor = .deepGray
+        errorLabel.textColor = .neutralDark
         errorLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         errorLabel.textAlignment = .center
         if let errorLabelText = errorLabel.text {
@@ -219,7 +216,7 @@ class HomeBillCardView: UIView {
         }
         
         // Maintenance Mode
-        maintenanceModeLabel.textColor = .deepGray
+        maintenanceModeLabel.textColor = .neutralDark
         maintenanceModeLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         
         // Accessibility
@@ -260,8 +257,6 @@ class HomeBillCardView: UIView {
         autoPayImageView.image = #imageLiteral(resourceName: "ic_autopay_sm.pdf")
         
         billNotReadyImageView.image = #imageLiteral(resourceName: "ic_home_billnotready_sm.pdf")
-        
-        errorTitleLabel.textColor = .white
     }
     
     private func bindViewModel() {
@@ -313,7 +308,7 @@ class HomeBillCardView: UIView {
             .drive(infoStack.rx.isHidden)
             .disposed(by: bag)
         
-        viewModel.showHeaderView.map { CGFloat($0 ? 20 : 30) }.drive(topSpacerHeight.rx.constant).disposed(by: bag)
+//        viewModel.showHeaderView.map { CGFloat($0 ? 20 : 30) }.drive(topSpacerHeight.rx.constant).disposed(by: bag)
         viewModel.showHeaderView.not().drive(headerView.rx.isHidden).disposed(by: bag)
         viewModel.showAlertAnimation.not().drive(headerAlertAnimationContainer.rx.isHidden).disposed(by: bag)
         
@@ -432,7 +427,8 @@ class HomeBillCardView: UIView {
             }).disposed(by: bag)
     }
     
-    private(set) lazy var viewBillPressed: Driver<Void> = self.viewBillButton.rx.touchUpInside.asDriver()
+    private(set) lazy var viewBillPressed: Driver<Void> =
+    Driver.merge([self.viewBillButton.rx.touchUpInside.asDriver(), self.billCardHeader.button.rx.touchUpInside.asDriver()])
         .do(onNext: {
             FirebaseUtility.logEvent(.home(parameters: [.bill_cta]))
             GoogleAnalytics.log(event: .viewBillBillCard)

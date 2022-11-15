@@ -52,12 +52,12 @@ class GasOnlyViewController: UIViewController {
             localizedString = NSLocalizedString("We currently do not allow reporting of gas issues online but want to hear from you right away.", comment: "")
         }
         
-        let attributedText = NSMutableAttributedString(string: localizedString, attributes: [.font: OpenSans.regular.of(textStyle: .subheadline)])
+        let attributedText = NSMutableAttributedString(string: localizedString, attributes: [.font: ExelonFont.regular.of(textStyle: .subheadline)])
         for phone in phoneNumbers {
             localizedString.ranges(of: phone, options: .regularExpression)
                 .map { NSRange($0, in: localizedString) }
                 .forEach {
-                    attributedText.addAttribute(.font, value: OpenSans.bold.of(textStyle: .subheadline), range: $0)
+                    attributedText.addAttribute(.font, value: ExelonFont.bold.of(textStyle: .subheadline), range: $0)
             }
         }
         return attributedText
@@ -77,10 +77,10 @@ class GasOnlyViewController: UIViewController {
     // MARK: - Helper
     
     private func style() {
-        titleLabel.textColor = .deepGray
+        titleLabel.textColor = .neutralDark
         titleLabel.font = SystemFont.semibold.of(textStyle: .title3)
         
-        textView.textColor = .deepGray
+        textView.textColor = .neutralDark
         textView.font = SystemFont.regular.of(textStyle: .subheadline)
         
         let padding: CGFloat = Configuration.shared.opco.isPHI ? 30.0 : 46.0

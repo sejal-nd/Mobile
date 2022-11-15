@@ -38,7 +38,7 @@ class MoreViewController: UIViewController {
                 versionLabel.text = nil
             }
             
-            versionLabel.font = OpenSans.regular.of(textStyle: .footnote)
+            versionLabel.font = ExelonFont.regular.of(textStyle: .footnote)
             versionLabel.textColor = .white
         }
     }
@@ -51,7 +51,7 @@ class MoreViewController: UIViewController {
 
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
+        return .darkContent
     }
     
     // MARK: - View Life Cycle

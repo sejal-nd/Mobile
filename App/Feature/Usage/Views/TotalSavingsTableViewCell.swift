@@ -21,19 +21,19 @@ class TotalSavingsTableViewCell: UITableViewCell {
         
         selectionStyle = .none
         
-        savingsDayLabel.textColor = .deepGray
+        savingsDayLabel.textColor = .neutralDark
         savingsDayLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         
-        billCreditLabel.textColor = .deepGray
+        billCreditLabel.textColor = .neutralDark
         billCreditLabel.font = SystemFont.semibold.of(textStyle: .subheadline)
         
-        typicalUseLabel.textColor = .deepGray
+        typicalUseLabel.textColor = .neutralDark
         typicalUseLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         
-        actualUseLabel.textColor = .deepGray
+        actualUseLabel.textColor = .neutralDark
         actualUseLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         
-        energySavingsLabel.textColor = .deepGray
+        energySavingsLabel.textColor = .neutralDark
         energySavingsLabel.font = SystemFont.regular.of(textStyle: .subheadline)
     }
 
@@ -74,23 +74,23 @@ class TotalSavingsHeaderCell: UITableViewCell {
         selectionStyle = .none
         accessibilityElementsHidden = true // Disable a11y on header cell
         
-        savingsDayLabel.textColor = .deepGray
+        savingsDayLabel.textColor = .neutralDark
         savingsDayLabel.font = SystemFont.semibold.of(textStyle: .caption1)
         savingsDayLabel.text = NSLocalizedString("Savings Day", comment: "")
         
-        billCreditLabel.textColor = .deepGray
+        billCreditLabel.textColor = .neutralDark
         billCreditLabel.font = SystemFont.semibold.of(textStyle: .caption1)
         billCreditLabel.text = NSLocalizedString("Bill Credit", comment: "")
         
-        typicalUseLabel.textColor = .deepGray
+        typicalUseLabel.textColor = .neutralDark
         typicalUseLabel.font = SystemFont.semibold.of(textStyle: .caption1)
         typicalUseLabel.text = NSLocalizedString("Typical Use", comment: "")
         
-        actualUseLabel.textColor = .deepGray
+        actualUseLabel.textColor = .neutralDark
         actualUseLabel.font = SystemFont.semibold.of(textStyle: .caption1)
         actualUseLabel.text = NSLocalizedString("Actual Use", comment: "")
         
-        energySavingsLabel.textColor = .deepGray
+        energySavingsLabel.textColor = .neutralDark
         energySavingsLabel.font = SystemFont.semibold.of(textStyle: .caption1)
         energySavingsLabel.text = NSLocalizedString("Energy Savings", comment: "")
     }

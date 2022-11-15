@@ -112,7 +112,7 @@ class FloatLabelTextField: UIView {
         textFieldContainerView.backgroundColor = .white
         textFieldContainerView.fullyRoundCorners(diameter: 20, borderColor: .accentGray, borderWidth: 1)
         
-        textField.textColor = .deepGray
+        textField.textColor = .neutralDark
         textField.attributedPlaceholder = NSAttributedString(string: placeholder ?? "", attributes: [
             NSAttributedString.Key.foregroundColor: UIColor.middleGray
         ])
@@ -181,7 +181,7 @@ class FloatLabelTextField: UIView {
             textFieldContainerView.backgroundColor = .softGray
         
             textField.attributedPlaceholder = NSAttributedString(string: placeholder ?? "", attributes: [
-                NSAttributedString.Key.foregroundColor: UIColor.deepGray.withAlphaComponent(0.5)
+                NSAttributedString.Key.foregroundColor: UIColor.neutralDark.withAlphaComponent(0.5)
             ])
         }
     }
@@ -211,7 +211,7 @@ class FloatLabelTextField: UIView {
     }
     
     private func addDoneButton(_ doneButton: UIBarButtonItem) {
-        doneButton.setTitleTextAttributes([.foregroundColor: UIColor.actionBlue], for: .normal)
+        doneButton.setTitleTextAttributes([.foregroundColor: UIColor.primaryBlue], for: .normal)
         
         let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 50))
         doneToolbar.barStyle = UIBarStyle.default

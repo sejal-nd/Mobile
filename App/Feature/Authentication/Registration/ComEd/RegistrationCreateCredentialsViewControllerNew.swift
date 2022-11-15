@@ -64,17 +64,17 @@ class RegistrationCreateCredentialsViewControllerNew: KeyboardAvoidingStickyFoot
         
         title = NSLocalizedString("Register", comment: "")
         
-        instructionLabel.textColor = .deepGray
+        instructionLabel.textColor = .neutralDark
         instructionLabel.text = NSLocalizedString("Then, set up your profile.", comment: "")
         instructionLabel.font = SystemFont.regular.of(textStyle: .headline)
         
-        passwordStrengthLabel.textColor = .deepGray
+        passwordStrengthLabel.textColor = .neutralDark
         passwordStrengthLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        mustAlsoContainLabel.textColor = .deepGray
+        mustAlsoContainLabel.textColor = .neutralDark
         mustAlsoContainLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         
         for label in passwordRequirementLabels {
-            label.textColor = .deepGray
+            label.textColor = .neutralDark
             label.font = SystemFont.regular.of(textStyle: .subheadline)
         }
         
@@ -97,11 +97,11 @@ class RegistrationCreateCredentialsViewControllerNew: KeyboardAvoidingStickyFoot
             eBillEnrollView.isHidden = true
         }
         
-        eBillEnrollInstructions.textColor = .deepGray
+        eBillEnrollInstructions.textColor = .neutralDark
         eBillEnrollInstructions.text = NSLocalizedString("Enroll me in Paperless eBill - an easy, convenient, simple, and secure way to receive your bill online instead of in the mail.", comment: "")
         eBillEnrollInstructions.font = SystemFont.regular.of(textStyle: .headline)
         
-        primaryProfileLabel.textColor = .deepGray
+        primaryProfileLabel.textColor = .neutralDark
         primaryProfileLabel.font = SystemFont.regular.of(textStyle: .headline)
         primaryProfileLabel.text = NSLocalizedString("Set as primary profile for this account", comment: "")
         

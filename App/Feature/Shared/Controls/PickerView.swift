@@ -80,7 +80,7 @@ fileprivate class BasePickerView: UIView {
         titleLabel.text = title
         titleLabel.textAlignment = .center
         titleLabel.font = SystemFont.semibold.of(size: 18)
-        titleLabel.textColor = .deepGray
+        titleLabel.textColor = .neutralDark
         titleLabel.setContentHuggingPriority(UILayoutPriority(rawValue: 1), for: .horizontal)
         titleLabel.numberOfLines = 0
         
@@ -88,13 +88,13 @@ fileprivate class BasePickerView: UIView {
         cancelButton.setContentCompressionResistancePriority(.required, for: .horizontal)
         cancelButton.titleLabel?.font = SystemFont.regular.of(size: 18)
         cancelButton.setTitle(NSLocalizedString("Cancel", comment: ""), for: .normal)
-        cancelButton.setTitleColor(.actionBlue, for: .normal)
+        cancelButton.setTitleColor(.primaryBlue, for: .normal)
         
         doneButton.setContentHuggingPriority(.required, for: .horizontal)
         doneButton.setContentCompressionResistancePriority(.required, for: .horizontal)
         doneButton.titleLabel?.font = SystemFont.semibold.of(size: 18)
         doneButton.setTitle(NSLocalizedString("Done", comment: ""), for: .normal)
-        doneButton.setTitleColor(.actionBlue, for: .normal)
+        doneButton.setTitleColor(.primaryBlue, for: .normal)
         
         let topBarContainer = UIView().usingAutoLayout()
         topBarContainer.clipsToBounds = true

@@ -69,7 +69,7 @@ class PrimaryButton: UIButton {
                     UIColor(red: 17/255, green: 57/255, blue: 112/255, alpha: 1) // Special case color - do not change
                 imageView?.alpha = 0.6
             } else {
-                backgroundColor = tintWhite ? .white : .actionBlue
+                backgroundColor = tintWhite ? .white : .primaryBlue
                 imageView?.alpha = 1
             }
         }
@@ -85,13 +85,13 @@ class PrimaryButton: UIButton {
         let titleColor: UIColor, highlightColor: UIColor, disabledColor: UIColor
         
         if tintWhite {
-            titleColor = .actionBlue
-            highlightColor = .actionBlue
-            disabledColor = UIColor.actionBlue.withAlphaComponent(0.5)
+            titleColor = .primaryBlue
+            highlightColor = .primaryBlue
+            disabledColor = UIColor.primaryBlue.withAlphaComponent(0.5)
         } else {
             titleColor = .white
             highlightColor = UIColor.white.withAlphaComponent(0.7)
-            disabledColor = UIColor.deepGray.withAlphaComponent(0.5)
+            disabledColor = UIColor.neutralDark.withAlphaComponent(0.5)
         }
         
         setTitleColor(titleColor, for: .normal)
@@ -101,7 +101,7 @@ class PrimaryButton: UIButton {
     
     private func updateEnabledState() {
         if isEnabled {
-            backgroundColor = tintWhite ? .white : .actionBlue
+            backgroundColor = tintWhite ? .white : .primaryBlue
             accessibilityTraits = .button
         } else {
             backgroundColor = tintWhite ? UIColor.white.withAlphaComponent(0.3) : .accentGray

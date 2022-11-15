@@ -78,12 +78,12 @@ class SmartThermostatScheduleViewController: UIViewController {
         let didYouKnowView = UIView().usingAutoLayout()
         let didYouKnowLabel = UILabel().usingAutoLayout()
         didYouKnowLabel.font = SystemFont.semibold.of(textStyle: .headline)
-        didYouKnowLabel.textColor = .deepGray
+        didYouKnowLabel.textColor = .neutralDark
         didYouKnowLabel.text = NSLocalizedString("Did you know?", comment: "")
         
         let didYouKnowDetailLabel = UILabel().usingAutoLayout()
         didYouKnowDetailLabel.font = SystemFont.regular.of(textStyle: .headline)
-        didYouKnowDetailLabel.textColor = .deepGray
+        didYouKnowDetailLabel.textColor = .neutralDark
         didYouKnowDetailLabel.numberOfLines = 0
         didYouKnowDetailLabel.text = viewModel.didYouKnowText
         

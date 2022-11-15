@@ -53,7 +53,7 @@ class ChangePasswordViewController: KeyboardAvoidingStickyFooterViewController {
     let viewModel = ChangePasswordViewModel(userDefaults: UserDefaults.standard)
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return StormModeStatus.shared.isOn ? .lightContent : .default
+        return StormModeStatus.shared.isOn ? .darkContent : .default
     }
     
     // MARK: - View Life Cycle
@@ -69,7 +69,7 @@ class ChangePasswordViewController: KeyboardAvoidingStickyFooterViewController {
         havingTroubleLabel.textColor = .blackText
         havingTroubleLabel.font = SystemFont.regular.of(textStyle: .headline)
         havingTroubleLabel.text = NSLocalizedString("Having trouble?", comment: "")
-        havingTroubleButton.tintColor = .actionBlue
+        havingTroubleButton.tintColor = .primaryBlue
         havingTroubleButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
         havingTroubleButton.setTitle(NSLocalizedString("Request a Temporary Password", comment: ""), for: .normal)
         
@@ -101,10 +101,10 @@ class ChangePasswordViewController: KeyboardAvoidingStickyFooterViewController {
         confirmPasswordTextField.textField.returnKeyType = .done
         confirmPasswordTextField.textField.delegate = self
         
-        mustAlsoContainLabel.textColor = .deepGray
+        mustAlsoContainLabel.textColor = .neutralDark
         mustAlsoContainLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         for label in passwordRequirementLabels {
-            label.textColor = .deepGray
+            label.textColor = .neutralDark
             label.font = SystemFont.regular.of(textStyle: .subheadline)
         }
         

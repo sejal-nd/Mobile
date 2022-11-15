@@ -46,8 +46,8 @@ class MoveGeneralSubmitErrorViewController: UIViewController {
         
         let range = (helplineDescription as NSString).range(of: contactNumber)
         let attributedString = NSMutableAttributedString(string: helplineDescription)
-        attributedString.addAttributes([ NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15, weight: .regular), NSAttributedString.Key.foregroundColor: UIColor.deepGray], range: NSRange(location: 0, length: helplineDescription.count))
-        attributedString.addAttributes([ NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15, weight: .semibold), NSAttributedString.Key.foregroundColor: UIColor.actionBlue], range: range)
+        attributedString.addAttributes([ NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15, weight: .regular), NSAttributedString.Key.foregroundColor: UIColor.neutralDark], range: NSRange(location: 0, length: helplineDescription.count))
+        attributedString.addAttributes([ NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15, weight: .semibold), NSAttributedString.Key.foregroundColor: UIColor.primaryBlue], range: range)
         helplineDescriptionTextView.attributedText = attributedString
         helplineDescriptionTextView.isUserInteractionEnabled = true
         helplineDescriptionTextView.isEditable = false

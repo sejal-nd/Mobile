@@ -61,9 +61,9 @@ class NoNetworkConnectionView: UIView {
     
     private func styleViews() {
         reloadLabel.font = SystemFont.bold.of(textStyle: .callout)
-        noNetworkConnectionLabel.textColor = .deepGray
-        noNetworkConnectionLabel.font = OpenSans.semibold.of(textStyle: .title3)
-        pleaseReloadLabel.textColor = .deepGray
+        noNetworkConnectionLabel.textColor = .neutralDark
+        noNetworkConnectionLabel.font = ExelonFont.semibold.of(textStyle: .title3)
+        pleaseReloadLabel.textColor = .neutralDark
         pleaseReloadLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         group1Label.font = SystemFont.regular.of(textStyle: .footnote)
         group2Label.font = SystemFont.regular.of(textStyle: .footnote)
@@ -92,7 +92,7 @@ class NoNetworkConnectionView: UIView {
             containerView.backgroundColor = .softGray
             noNetworkImageView.image = #imageLiteral(resourceName: "ic_nonetwork_color")
             reloadImageView.image = #imageLiteral(resourceName: "ic_reload_blue")
-            reloadLabel.textColor = .actionBlue
+            reloadLabel.textColor = .primaryBlue
             noNetworkConnectionLabel.textColor = .blackText
             pleaseReloadLabel.textColor = .blackText
             stormModeContactView.isHidden = true

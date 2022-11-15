@@ -61,8 +61,8 @@ class HomeGameCardView: UIView {
         clippingView.layer.cornerRadius = 10
         clippingView.heightAnchor.constraint(equalToConstant: 164.0).isActive = true
         
-        titleLabel.textColor = .deepGray
-        detailLabel.textColor = .deepGray
+        titleLabel.textColor = .neutralDark
+        detailLabel.textColor = .neutralDark
         detailLabel.font = SystemFont.regular.of(textStyle: .footnote)
         
         styleContentChips()

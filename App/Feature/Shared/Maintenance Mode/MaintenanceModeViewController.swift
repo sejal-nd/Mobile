@@ -32,7 +32,7 @@ class MaintenanceModeViewController: UIViewController {
     @IBOutlet weak var continueAsGuestButton: PrimaryButton!
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
+        return .darkContent
     }
         
     override func viewDidLoad() {
@@ -55,18 +55,18 @@ class MaintenanceModeViewController: UIViewController {
         maintenanceModeBody.layer.cornerRadius = 10
         
         headerLabel.text = viewModel.headerLabelText
-        headerLabel.textColor = .deepGray
+        headerLabel.textColor = .neutralDark
         headerLabel.font = SystemFont.bold.of(textStyle: .subheadline)
         
-        bodyTextView.font = OpenSans.regular.of(textStyle: .footnote)
+        bodyTextView.font = ExelonFont.regular.of(textStyle: .footnote)
         bodyTextView.attributedText = viewModel.labelBody
         bodyTextView.accessibilityLabel = viewModel.labelBody.string
         
         bodyTextView.textColor = .blackText
-        bodyTextView.tintColor = .actionBlue // Color of the phone numbers
+        bodyTextView.tintColor = .primaryBlue // Color of the phone numbers
         
-        footerTextView.font = OpenSans.regular.of(textStyle: .footnote)
-        footerTextView.tintColor = .actionBlue
+        footerTextView.font = ExelonFont.regular.of(textStyle: .footnote)
+        footerTextView.tintColor = .primaryBlue
         footerTextView.attributedText = viewModel.footerLabelText
         
         view.backgroundColor = .primaryColor

@@ -34,12 +34,12 @@ class LargeTitleNavigationController: UINavigationController {
             appearance.titleTextAttributes = [.foregroundColor: textColor]
             appearance.largeTitleTextAttributes = [
                 .foregroundColor: textColor,
-                .font: OpenSans.semibold.of(size: 24)
+                .font: ExelonFont.semibold.of(size: 24)
             ]
             
             appearance.titleTextAttributes = [
                 .foregroundColor: textColor,
-                .font: OpenSans.semibold.of(size: 15)
+                .font: ExelonFont.semibold.of(size: 15)
             ]
             
             if StormModeStatus.shared.isOn { // No bottom border in Storm Mode
@@ -62,12 +62,12 @@ class LargeTitleNavigationController: UINavigationController {
             
             navigationBar.largeTitleTextAttributes = [
                 .foregroundColor: textColor,
-                .font: OpenSans.semibold.of(size: 24)
+                .font: ExelonFont.semibold.of(size: 24)
             ]
             
             navigationBar.titleTextAttributes = [
                 .foregroundColor: textColor,
-                .font: OpenSans.semibold.of(size: 15)
+                .font: ExelonFont.semibold.of(size: 15)
             ]
         }
         
@@ -75,7 +75,7 @@ class LargeTitleNavigationController: UINavigationController {
         navigationBar.prefersLargeTitles = true
         
         navigationBar.barTintColor = backgroundColor
-        navigationBar.tintColor = StormModeStatus.shared.isOn ? .white : .actionBlue
+        navigationBar.tintColor = StormModeStatus.shared.isOn ? .white : .primaryBlue
         navigationBar.isTranslucent = false
         
         view.backgroundColor = backgroundColor

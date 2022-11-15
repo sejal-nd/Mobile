@@ -26,10 +26,10 @@ class SetDefaultAccountTableViewCell: UITableViewCell {
         radioButtonImageView.image = #imageLiteral(resourceName: "ic_radiobutton_deselected")
         radioButtonImageView.isAccessibilityElement = false
         
-        accountNumberLabel.textColor = .deepGray
+        accountNumberLabel.textColor = .neutralDark
         accountNumberLabel.font = SystemFont.regular.of(textStyle: .headline)
 
-        addressLabel.textColor = .deepGray
+        addressLabel.textColor = .neutralDark
         addressLabel.font = SystemFont.regular.of(textStyle: .caption1)
         
         dividerLine.backgroundColor = .accentGray

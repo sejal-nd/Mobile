@@ -93,30 +93,30 @@ class AppointmentDetailViewController: UIViewController, IndicatorInfoProvider {
     func styleViews() {
         appointmentDescriptionTextView.textContainerInset = UIEdgeInsets(top: 14, left: 0, bottom: 8, right: 0) // top/bottom padding
         appointmentDescriptionTextView.textColor = .blackText
-        appointmentDescriptionTextView.tintColor = .actionBlue // Color of the phone numbers
-        appointmentDescriptionTextView.font = OpenSans.regular.of(textStyle: .headline)
+        appointmentDescriptionTextView.tintColor = .primaryBlue // Color of the phone numbers
+        appointmentDescriptionTextView.font = ExelonFont.regular.of(textStyle: .headline)
         
-        addToCalendarLabel.textColor = .actionBlue
-        addToCalendarLabel.font = OpenSans.semibold.of(textStyle: .subheadline)
+        addToCalendarLabel.textColor = .primaryBlue
+        addToCalendarLabel.font = ExelonFont.semibold.of(textStyle: .subheadline)
         addToCalendarButton.accessibilityLabel = addToCalendarLabel.text
         
-        confirmedLabel.textColor = .deepGray
-        onOurWayLabel.textColor = .deepGray
-        inProgressLabel.textColor = .deepGray
-        completeLabel.textColor = .deepGray
+        confirmedLabel.textColor = .neutralDark
+        onOurWayLabel.textColor = .neutralDark
+        inProgressLabel.textColor = .neutralDark
+        completeLabel.textColor = .neutralDark
         
         wantNotificationsLabel.textColor = .blackText
-        wantNotificationsLabel.font = OpenSans.regular.of(textStyle: .headline)
+        wantNotificationsLabel.font = ExelonFont.regular.of(textStyle: .headline)
         
-        adjustAlertPreferencesButton.setTitleColor(.actionBlue, for: .normal)
-        adjustAlertPreferencesButton.titleLabel?.font = OpenSans.bold.of(textStyle: .headline)
+        adjustAlertPreferencesButton.setTitleColor(.primaryBlue, for: .normal)
+        adjustAlertPreferencesButton.titleLabel?.font = ExelonFont.bold.of(textStyle: .headline)
     }
     
     func bindViewModel() {
         progressView.isHidden = !viewModel.showProgressView
         
-        let regular = OpenSans.regular.of(textStyle: .headline)
-        let bold = OpenSans.bold.of(textStyle: .headline)
+        let regular = ExelonFont.regular.of(textStyle: .headline)
+        let bold = ExelonFont.bold.of(textStyle: .headline)
         
         confirmedLabel.font = viewModel.status == .scheduled ? bold : regular
         onOurWayLabel.font = viewModel.status == .onOurWay || viewModel.status == .enRoute ? bold : regular

@@ -38,7 +38,7 @@ class UnavailableView: UIView {
     }
     
     func styleViews() {
-        titleLabel.font = OpenSans.semibold.of(textStyle: .title3)
+        titleLabel.font = ExelonFont.semibold.of(textStyle: .title3)
         descriptionLabel.font = SystemFont.regular.of(textStyle: .subheadline)
     }
     

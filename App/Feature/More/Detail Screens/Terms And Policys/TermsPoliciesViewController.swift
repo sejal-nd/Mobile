@@ -16,7 +16,7 @@ class TermsPoliciesViewController: UIViewController {
     private let viewModel = TermsPoliciesViewModel()
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return StormModeStatus.shared.isOn ? .lightContent : .default
+        return StormModeStatus.shared.isOn ? .darkContent : .default
     }
     
     // MARK: - View Life Cycle

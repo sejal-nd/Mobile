@@ -85,47 +85,47 @@ class HomeOutageCardView: UIView {
         clippingView.layer.masksToBounds = true
         
         // Content View
-        titleLabel.textColor = .deepGray
-        titleLabel.font = OpenSans.regular.of(textStyle: .headline)
+        titleLabel.textColor = .neutralDark
+        titleLabel.font = ExelonFont.regular.of(textStyle: .headline)
         
-        powerStatusTitleLabel.textColor = .deepGray
+        powerStatusTitleLabel.textColor = .neutralDark
         powerStatusTitleLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         
-        powerStatusLabel.textColor = .deepGray
-        powerStatusLabel.font = OpenSans.semibold.of(textStyle: .title1)
+        powerStatusLabel.textColor = .neutralDark
+        powerStatusLabel.font = ExelonFont.semibold.of(textStyle: .title1)
         
-        restorationStatusLabel.textColor = .deepGray
+        restorationStatusLabel.textColor = .neutralDark
         restorationStatusLabel.font = SystemFont.regular.of(textStyle: .caption1)
         
-        restorationStatusLabel.textColor = .deepGray
+        restorationStatusLabel.textColor = .neutralDark
         restorationStatusLabel.font = SystemFont.regular.of(textStyle: .caption1)
         
-        outageReportedLabel.textColor = .deepGray
+        outageReportedLabel.textColor = .neutralDark
         outageReportedLabel.font = SystemFont.semibold.of(textStyle: .footnote)
         
         callToActionButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
         
         // Custom Error View
-        customErrorTitleLabel.textColor = .deepGray
-        customErrorTitleLabel.font = OpenSans.regular.of(textStyle: .headline)
+        customErrorTitleLabel.textColor = .neutralDark
+        customErrorTitleLabel.font = ExelonFont.regular.of(textStyle: .headline)
 
-        gasOnlyLabel.textColor = .deepGray
-        gasOnlyLabel.font = OpenSans.semibold.of(textStyle: .title3)
+        gasOnlyLabel.textColor = .neutralDark
+        gasOnlyLabel.font = ExelonFont.semibold.of(textStyle: .title3)
         
-        gasOnlySublabel.textColor = .deepGray
+        gasOnlySublabel.textColor = .neutralDark
         gasOnlySublabel.font = SystemFont.regular.of(textStyle: .caption1)
 
-        nonPayFinaledTextView.tintColor = .actionBlue // For phone numbers
+        nonPayFinaledTextView.tintColor = .primaryBlue // For phone numbers
         
         // Maintenance Mode View
-        maintenanceModeLabel.textColor = .deepGray
+        maintenanceModeLabel.textColor = .neutralDark
         maintenanceModeLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         
         // Generic Error View
-        errorTitleLabel.textColor = .deepGray
-        errorTitleLabel.font = OpenSans.regular.of(textStyle: .headline)
+        errorTitleLabel.textColor = .neutralDark
+        errorTitleLabel.font = ExelonFont.regular.of(textStyle: .headline)
         
-        errorLabel.textColor = .deepGray
+        errorLabel.textColor = .neutralDark
         errorLabel.font = SystemFont.regular.of(textStyle: .caption1)
         errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
     }

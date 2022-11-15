@@ -42,14 +42,14 @@ class AccountDetailsView: UIView {
             accountNumberLabel.text = "**** ****"
         }
         
-        accountNumberLabel.textColor = .deepGray
+        accountNumberLabel.textColor = .neutralDark
         accountNumberLabel.font = SystemFont.semibold.of(textStyle: .headline)
 
-        streetNumberLabel.textColor = .deepGray
+        streetNumberLabel.textColor = .neutralDark
         streetNumberLabel.text = account.streetNumber
         streetNumberLabel.font = SystemFont.regular.of(textStyle: .headline)
         
-        unitNumberLabel.textColor = .deepGray
+        unitNumberLabel.textColor = .neutralDark
         unitNumberLabel.text = account.unitNumber
         unitNumberLabel.font = SystemFont.regular.of(textStyle: .headline)
     }

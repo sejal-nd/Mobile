@@ -25,9 +25,9 @@ class PaperlessEBillAccountView: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        accountNumberLabel.textColor = .deepGray
+        accountNumberLabel.textColor = .neutralDark
         accountNumberLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        addressLabel.textColor = .deepGray
+        addressLabel.textColor = .neutralDark
         addressLabel.font = SystemFont.regular.of(textStyle: .caption2)
     }
 

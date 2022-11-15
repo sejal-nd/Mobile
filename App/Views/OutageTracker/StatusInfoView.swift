@@ -81,7 +81,7 @@ class StatusInfoView: UIView {
         titleTopConstraint.constant = info == .hazardMessage ? 88 : 50
         
         if info == .hazardMessage {
-            textView.tintColor = .actionBlue // For the phone numbers
+            textView.tintColor = .primaryBlue // For the phone numbers
             textView.attributedText = hazardText(text: info.details)
         } else {
             textView.text = info.details

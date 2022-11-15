@@ -62,8 +62,8 @@ class QuizAnswerView: UIView {
         answerButton.layer.borderColor = UIColor.accentGray.cgColor
         answerButton.backgroundColorOnPress = .softGray
         
-        answerLabel.textColor = .actionBlue
-        answerLabel.font = OpenSans.semibold.of(size: 12)
+        answerLabel.textColor = .primaryBlue
+        answerLabel.font = ExelonFont.semibold.of(size: 12)
     }
     
     @IBAction func onAnswerPress(_ sender: Any) {

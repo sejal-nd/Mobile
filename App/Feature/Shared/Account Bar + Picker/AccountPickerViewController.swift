@@ -20,7 +20,7 @@ class AccountPickerViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView?
     @IBOutlet weak var accountPicker: AccountPicker!
     
-    var defaultStatusBarStyle: UIStatusBarStyle { return .default }
+    var defaultStatusBarStyle: UIStatusBarStyle { return .darkContent }
     var safeAreaTop: CGFloat = 0
     var shouldLoadAccounts = true
     

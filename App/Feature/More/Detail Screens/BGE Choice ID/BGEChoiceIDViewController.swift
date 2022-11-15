@@ -33,7 +33,7 @@ class BGEChoiceIDViewController: AccountPickerViewController {
     let viewModel = BGEChoiceIDViewModel()
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return StormModeStatus.shared.isOn ? .lightContent : .default
+        return StormModeStatus.shared.isOn ? .darkContent : .default
     }
     
     override func viewDidLoad() {
@@ -44,7 +44,7 @@ class BGEChoiceIDViewController: AccountPickerViewController {
         accountPicker.delegate = self
         accountPicker.parentViewController = self
         
-        headerLabel.textColor = .deepGray
+        headerLabel.textColor = .neutralDark
         headerLabel.font = SystemFont.regular.of(textStyle: .body)
         headerLabel.text = NSLocalizedString("All customers in the BGE service area have the opportunity to choose their electricity or natural gas supplier. Research your options, but before choosing a new supplier, be certain the company is licensed by the PSC and registered with BGE.", comment: "")
         headerLabel.setLineHeight(lineHeight: 24)
@@ -52,23 +52,23 @@ class BGEChoiceIDViewController: AccountPickerViewController {
         choiceIdBox.layer.borderColor = UIColor.accentGray.cgColor
         choiceIdBox.layer.borderWidth = 1
         
-        electricTitleLabel.textColor = .deepGray
+        electricTitleLabel.textColor = .neutralDark
         electricTitleLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         electricTitleLabel.text = NSLocalizedString("Electric Choice ID", comment: "")
-        electricValueTextView.textColor = .deepGray
+        electricValueTextView.textColor = .neutralDark
         electricValueTextView.font = SystemFont.regular.of(textStyle: .subheadline)
         electricValueTextView.dataDetectorTypes.remove(.all)
         
         dividerLine.backgroundColor = .accentGray
         
-        gasTitleLabel.textColor = .deepGray
+        gasTitleLabel.textColor = .neutralDark
         gasTitleLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         gasTitleLabel.text = NSLocalizedString("Gas Choice ID", comment: "")
-        gasValueTextView.textColor = .deepGray
+        gasValueTextView.textColor = .neutralDark
         gasValueTextView.font = SystemFont.regular.of(textStyle: .subheadline)
         gasValueTextView.dataDetectorTypes.remove(.all)
         
-        errorEmptyStateLabel.textColor = .deepGray
+        errorEmptyStateLabel.textColor = .neutralDark
         errorEmptyStateLabel.font = SystemFont.regular.of(textStyle: .headline)
         errorEmptyStateLabel.text = NSLocalizedString("Your Choice ID could not be retrieved at this time.", comment: "")
         

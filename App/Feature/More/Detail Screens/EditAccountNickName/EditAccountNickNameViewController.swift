@@ -165,7 +165,7 @@ extension EditAccountNickNameViewController {
     }
     
     private func enableResetNicknameButton(isEnabled: Bool) {
-        resetNicknameButton.setTitleColor(isEnabled ? .primaryColor : .deepGray, for: .normal)
+        resetNicknameButton.setTitleColor(isEnabled ? .primaryColor : .neutralDark, for: .normal)
         resetNicknameButton.alpha = isEnabled ? 1.0 : 0.4
     }
 }

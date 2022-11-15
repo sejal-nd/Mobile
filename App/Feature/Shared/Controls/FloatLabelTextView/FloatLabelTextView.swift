@@ -58,7 +58,7 @@ class FloatLabelTextView: UIView {
         floatLabel.textColor = .middleGray
         floatLabel.alpha = 0
         
-        infoLabel.textColor = .deepGray
+        infoLabel.textColor = .neutralDark
         infoLabel.font = SystemFont.regular.of(textStyle: .caption1)
         infoLabel.text = nil
         infoView.isHidden = true
@@ -142,7 +142,7 @@ class FloatLabelTextView: UIView {
         textViewContainerView.backgroundColor = .white
         textViewContainerView.fullyRoundCorners(diameter: 20, borderColor: .accentGray, borderWidth: 1)
         
-        textView.textColor = .deepGray
+        textView.textColor = .neutralDark
     }
     
     func setInfoMessage(_ message: String?) {
@@ -164,7 +164,7 @@ class FloatLabelTextView: UIView {
     }
     
     private func addDoneButton(_ doneButton: UIBarButtonItem) {
-        doneButton.setTitleTextAttributes([.foregroundColor: UIColor.actionBlue], for: .normal)
+        doneButton.setTitleTextAttributes([.foregroundColor: UIColor.primaryBlue], for: .normal)
         
         let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 50))
         doneToolbar.barStyle = UIBarStyle.default

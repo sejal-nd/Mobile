@@ -252,7 +252,7 @@ class MiniWalletSheetViewController: UIViewController {
         
         handleView.layer.cornerRadius = handleView.bounds.height / 2
         
-        titleLabel.textColor = .deepGray
+        titleLabel.textColor = .neutralDark
         titleLabel.font = SystemFont.semibold.of(textStyle: .headline)
         titleLabel.text = titleText
         tableHeaderLabel.text = tableHeaderText
@@ -295,7 +295,7 @@ class MiniWalletSheetViewController: UIViewController {
     }
     
     private func style() {
-        tableHeaderLabel.textColor = .deepGray
+        tableHeaderLabel.textColor = .neutralDark
         tableHeaderLabel.font = SystemFont.regular.of(textStyle: .caption1)
     }
     

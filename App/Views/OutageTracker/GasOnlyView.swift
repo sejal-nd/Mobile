@@ -62,12 +62,12 @@ class GasOnlyView: UIView {
         textView.font = SystemFont.regular.of(textStyle: .footnote)
         textView.attributedText = gasText
         textView.textColor = .blackText
-        textView.tintColor = .actionBlue // For the phone numbers
+        textView.tintColor = .primaryBlue // For the phone numbers
         
         footerTextView.font = SystemFont.regular.of(textStyle: .footnote)
         footerTextView.attributedText = footerText
         footerTextView.textColor = .blackText
-        footerTextView.tintColor = .actionBlue // For the phone numbers
+        footerTextView.tintColor = .primaryBlue // For the phone numbers
     }
     
     // MARK: Init

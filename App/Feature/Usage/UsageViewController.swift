@@ -42,15 +42,15 @@ class UsageViewController: AccountPickerViewController {
     
     @IBOutlet private weak var compareBillTitlelabel: UILabel! {
         didSet {
-            compareBillTitlelabel.textColor = .deepGray
-            compareBillTitlelabel.font = OpenSans.regular.of(textStyle: .headline)
+            compareBillTitlelabel.textColor = .neutralDark
+            compareBillTitlelabel.font = ExelonFont.regular.of(textStyle: .headline)
         }
     }
     
     @IBOutlet private weak var myUsageToolsLabel: UILabel! {
         didSet {
-            myUsageToolsLabel.textColor = .deepGray
-            myUsageToolsLabel.font = OpenSans.regular.of(textStyle: .headline)
+            myUsageToolsLabel.textColor = .neutralDark
+            myUsageToolsLabel.font = ExelonFont.regular.of(textStyle: .headline)
         }
     }
     
@@ -122,22 +122,22 @@ class UsageViewController: AccountPickerViewController {
     
     @IBOutlet private weak var graphDetailDateLabel: UILabel! {
         didSet {
-            graphDetailDateLabel.textColor = .deepGray
-            graphDetailDateLabel.font = OpenSans.semibold.of(textStyle: .footnote)
+            graphDetailDateLabel.textColor = .neutralDark
+            graphDetailDateLabel.font = ExelonFont.semibold.of(textStyle: .footnote)
         }
     }
     
     @IBOutlet private weak var graphDetailTemperatureLabel: UILabel! {
         didSet {
-            graphDetailTemperatureLabel.textColor = .deepGray
-            graphDetailTemperatureLabel.font = OpenSans.regular.of(textStyle: .caption1)
+            graphDetailTemperatureLabel.textColor = .neutralDark
+            graphDetailTemperatureLabel.font = ExelonFont.regular.of(textStyle: .caption1)
         }
     }
     
     @IBOutlet private weak var graphDetailDescriptionLabel: UILabel! {
         didSet {
-            graphDetailDescriptionLabel.textColor = .deepGray
-            graphDetailDescriptionLabel.font = OpenSans.regular.of(textStyle: .caption1)
+            graphDetailDescriptionLabel.textColor = .neutralDark
+            graphDetailDescriptionLabel.font = ExelonFont.regular.of(textStyle: .caption1)
         }
     }
     
@@ -164,7 +164,7 @@ class UsageViewController: AccountPickerViewController {
     @IBOutlet private weak var billComparisonErrorLabel: UILabel! {
         didSet {
             // todo this has a title and detail label on sympli, is this the unavailalbe for your account label too?
-            billComparisonErrorLabel.textColor = .deepGray
+            billComparisonErrorLabel.textColor = .neutralDark
             billComparisonErrorLabel.font = SystemFont.regular.of(textStyle: .subheadline)
             billComparisonErrorLabel.textAlignment = .center
         }
@@ -298,26 +298,26 @@ class UsageViewController: AccountPickerViewController {
         }
         
         // Bar Graph Styling
-        noDataLabel.textColor = .deepGray
+        noDataLabel.textColor = .neutralDark
         noDataLabel.font = SystemFont.semibold.of(textStyle: .caption2)
         
-        noDataDateLabel.textColor = .deepGray
-        noDataDateLabel.font = OpenSans.semibold.of(textStyle: .footnote)
+        noDataDateLabel.textColor = .neutralDark
+        noDataDateLabel.font = ExelonFont.semibold.of(textStyle: .footnote)
         
-        previousDollarLabel.textColor = .deepGray
-        previousDateLabel.textColor = .deepGray
-        currentDollarLabel.textColor = .deepGray
-        currentDateLabel.textColor = .deepGray
-        projectedDollarLabel.textColor = .deepGray
-        projectedDateLabel.textColor = .deepGray
+        previousDollarLabel.textColor = .neutralDark
+        previousDateLabel.textColor = .neutralDark
+        currentDollarLabel.textColor = .neutralDark
+        currentDateLabel.textColor = .neutralDark
+        projectedDollarLabel.textColor = .neutralDark
+        projectedDateLabel.textColor = .neutralDark
         
-        projectedNotAvailableDaysRemainingLabel.textColor = .actionBlue
+        projectedNotAvailableDaysRemainingLabel.textColor = .primaryBlue
         projectedNotAvailableDaysRemainingLabel.font = SystemFont.semibold.of(textStyle: .caption1)
 
-        projectionNotAvailableUntilNextForecastLabel.textColor = .deepGray
+        projectionNotAvailableUntilNextForecastLabel.textColor = .neutralDark
         projectionNotAvailableUntilNextForecastLabel.font = SystemFont.regular.of(textStyle: .caption2)
 
-        projectedNotAvailableDateLabel.textColor = .deepGray
+        projectedNotAvailableDateLabel.textColor = .neutralDark
         viewModel.projectionNotAvailableLabelFont.drive(projectedNotAvailableDateLabel.rx.font).disposed(by: disposeBag)
         
         viewModel.noDataLabelFont.drive(noDataDateLabel.rx.font).disposed(by: disposeBag)

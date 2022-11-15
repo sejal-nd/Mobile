@@ -109,8 +109,8 @@ class AlertPreferencesViewController: UIViewController {
     }
 
     private func styleViews() {
-        errorLabel.font = OpenSans.regular.of(textStyle: .body)
-        errorLabel.textColor = .deepGray
+        errorLabel.font = ExelonFont.regular.of(textStyle: .body)
+        errorLabel.textColor = .neutralDark
         errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
     }
 

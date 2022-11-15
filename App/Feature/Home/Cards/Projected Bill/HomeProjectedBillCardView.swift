@@ -66,21 +66,21 @@ class HomeProjectedBillCardView: UIView {
         
         clippingView.layer.cornerRadius = 10
         
-        titleLabel.textColor = .deepGray
-        titleLabel.font = OpenSans.regular.of(textStyle: .headline)
+        titleLabel.textColor = .neutralDark
+        titleLabel.font = ExelonFont.regular.of(textStyle: .headline)
         
-        emptyStateTitleLabel.textColor = .deepGray
-        emptyStateTitleLabel.font = OpenSans.regular.of(textStyle: .headline)
+        emptyStateTitleLabel.textColor = .neutralDark
+        emptyStateTitleLabel.font = ExelonFont.regular.of(textStyle: .headline)
         
-        emptyStateDescriptionLabel.textColor = .deepGray
+        emptyStateDescriptionLabel.textColor = .neutralDark
         emptyStateDescriptionLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         emptyStateDescriptionLabel.attributedText = NSLocalizedString("Projected bill is not available for this account.", comment: "")
             .attributedString(textAlignment: .center, lineHeight: 26)
         
-        errorTitleLabel.textColor = .deepGray
-        errorTitleLabel.font = OpenSans.regular.of(textStyle: .headline)
+        errorTitleLabel.textColor = .neutralDark
+        errorTitleLabel.font = ExelonFont.regular.of(textStyle: .headline)
         
-        errorDescriptionLabel.textColor = .deepGray
+        errorDescriptionLabel.textColor = .neutralDark
         errorDescriptionLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         errorDescriptionLabel.attributedText = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
             .attributedString(textAlignment: .center, lineHeight: 26)
@@ -92,13 +92,13 @@ class HomeProjectedBillCardView: UIView {
 
         infoButton.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
         
-        projectionLabel.textColor = .deepGray
-        projectionLabel.font = OpenSans.semiboldItalic.of(textStyle: .title1)
+        projectionLabel.textColor = .neutralDark
+        projectionLabel.font = ExelonFont.semiboldItalic.of(textStyle: .title1)
         
-        projectionSubLabel.textColor = .deepGray
+        projectionSubLabel.textColor = .neutralDark
         projectionSubLabel.font = SystemFont.regular.of(textStyle: .caption1)
         
-        projectionFooterLabel.textColor = .deepGray
+        projectionFooterLabel.textColor = .neutralDark
         projectionFooterLabel.font = SystemFont.regular.of(textStyle: .footnote)
         
         callToActionButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)

@@ -17,7 +17,7 @@ class ViewedTipTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
     
-        titleLabel.textColor = .deepGray
+        titleLabel.textColor = .neutralDark
         titleLabel.font = SystemFont.regular.of(textStyle: .headline)
         
         reminderImageView.isHidden = true

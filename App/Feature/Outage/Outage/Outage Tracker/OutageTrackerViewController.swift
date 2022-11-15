@@ -55,7 +55,7 @@ class OutageTrackerViewController: UIViewController {
         
         outageNotificationBannerTitle.font = SystemFont.regular.of(textStyle: .subheadline)
         outageNotificationBannerDesciption.font = SystemFont.regular.of(textStyle: .caption1)
-        outageNotificationBannerTitle.textColor = .deepGray
+        outageNotificationBannerTitle.textColor = .neutralDark
         outageNotificationBannerDesciption.textColor = .gray
         spacerView.backgroundColor = .softGray
         spacerView.isHidden = true
@@ -87,7 +87,7 @@ class OutageTrackerViewController: UIViewController {
         footerTextView.font = SystemFont.regular.of(textStyle: .footnote)
         footerTextView.attributedText = viewModel.footerText
         footerTextView.textColor = .blackText
-        footerTextView.tintColor = .actionBlue // For the phone numbers
+        footerTextView.tintColor = .primaryBlue // For the phone numbers
     }
     
     private func setupBinding() {

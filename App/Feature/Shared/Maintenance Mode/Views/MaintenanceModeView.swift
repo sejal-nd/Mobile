@@ -37,7 +37,7 @@ class MaintenanceModeView: UIView {
                 containerView.backgroundColor = .softGray
                 maintenanceImageView.image = #imageLiteral(resourceName: "ic_maint_mode")
                 reloadImageView.image = #imageLiteral(resourceName: "ic_reload_blue")
-                reloadLabel.textColor = .actionBlue
+                reloadLabel.textColor = .primaryBlue
                 scheduledMaintenanceLabel.textColor = .blackText
                 detailLabel.textColor = .blackText
             }
@@ -93,9 +93,9 @@ class MaintenanceModeView: UIView {
     
     func styleViews() {
         reloadLabel.font = SystemFont.bold.of(textStyle: .headline)
-        scheduledMaintenanceLabel.font = OpenSans.semibold.of(textStyle: .title3)
-        detailLabel.font = OpenSans.regular.of(textStyle: .subheadline)
-        infoTextView.tintColor = .actionBlue
+        scheduledMaintenanceLabel.font = ExelonFont.semibold.of(textStyle: .title3)
+        detailLabel.font = ExelonFont.regular.of(textStyle: .subheadline)
+        infoTextView.tintColor = .primaryBlue
     }
     
     var scheduledMaintenanceText: String {
@@ -169,14 +169,14 @@ class MaintenanceModeView: UIView {
                 , leaveAreaString, phone1, phone2)
         }
         
-        let emergencyAttrString = NSMutableAttributedString(string: localizedString, attributes: [.font: OpenSans.regular.of(textStyle: .footnote)])
-        emergencyAttrString.addAttribute(.font, value: OpenSans.bold.of(textStyle: .footnote), range: (localizedString as NSString).range(of: leaveAreaString))
+        let emergencyAttrString = NSMutableAttributedString(string: localizedString, attributes: [.font: ExelonFont.regular.of(textStyle: .footnote)])
+        emergencyAttrString.addAttribute(.font, value: ExelonFont.bold.of(textStyle: .footnote), range: (localizedString as NSString).range(of: leaveAreaString))
         
         for phone in phoneNumbers {
             localizedString.ranges(of: phone, options: .regularExpression)
                 .map { NSRange($0, in: localizedString) }
                 .forEach {
-                    emergencyAttrString.addAttribute(.font, value: OpenSans.bold.of(textStyle: .footnote), range: $0)
+                    emergencyAttrString.addAttribute(.font, value: ExelonFont.bold.of(textStyle: .footnote), range: $0)
             }
         }
         

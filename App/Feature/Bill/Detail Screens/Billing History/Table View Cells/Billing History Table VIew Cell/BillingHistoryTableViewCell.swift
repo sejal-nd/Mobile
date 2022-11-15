@@ -28,11 +28,11 @@ class BillingHistoryTableViewCell: UITableViewCell {
         
         selectionStyle = .none
         
-        titleLabel.textColor = .deepGray
+        titleLabel.textColor = .neutralDark
         titleLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        dateLabel.textColor = .deepGray
+        dateLabel.textColor = .neutralDark
         dateLabel.font = SystemFont.regular.of(textStyle: .caption1)
-        amountLabel.textColor = .deepGray
+        amountLabel.textColor = .neutralDark
         amountLabel.font = SystemFont.regular.of(textStyle: .subheadline)
     }
 
@@ -107,7 +107,7 @@ class BillingHistoryTableViewCell: UITableViewCell {
         super.prepareForReuse()
         dateLabel.text = ""
         titleLabel.text = ""
-        amountLabel.textColor = .deepGray
+        amountLabel.textColor = .neutralDark
         amountLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         amountLabel.text = ""
         iconImageView.image = nil

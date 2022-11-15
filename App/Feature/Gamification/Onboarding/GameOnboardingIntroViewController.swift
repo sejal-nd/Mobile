@@ -18,11 +18,11 @@ class GameOnboardingIntroViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        closeButton.tintColor = .actionBlue
+        closeButton.tintColor = .primaryBlue
         closeButton.accessibilityLabel = NSLocalizedString("Close", comment: "")
         
-        label.textColor = .deepGray
-        label.font = OpenSans.semibold.of(textStyle: .title3)
+        label.textColor = .neutralDark
+        label.font = ExelonFont.semibold.of(textStyle: .title3)
         label.text = NSLocalizedString("In order to personalize your experience, we’d like to ask you a few questions!", comment: "")
     }
     

@@ -10,7 +10,7 @@ import UIKit
 
 //MARK: - Fonts
 
-enum OpenSans: String, FontType {
+enum ExelonFont: String, FontType {
     case bold = "OpenSans-Bold"
     case boldItalic = "OpenSans-BoldItalic"
     case extraBold = "OpenSans-Extrabold"

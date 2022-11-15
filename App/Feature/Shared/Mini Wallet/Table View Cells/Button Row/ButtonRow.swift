@@ -41,7 +41,7 @@ class ButtonRow: UITableViewCell {
     // MARK: - Helper
     
     private func style() {
-        titleLabel.textColor = .deepGray
+        titleLabel.textColor = .neutralDark
         titleLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         
         // Cell Selection Color

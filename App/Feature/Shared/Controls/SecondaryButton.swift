@@ -86,9 +86,9 @@ class SecondaryButton: UIButton {
             highlightColor = .white
             disabledColor = UIColor.white.withAlphaComponent(0.5)
         } else {
-            titleColor = .actionBlue
-            highlightColor = .actionBlue
-            disabledColor = UIColor.deepGray.withAlphaComponent(0.4)
+            titleColor = .primaryBlue
+            highlightColor = .primaryBlue
+            disabledColor = UIColor.neutralDark.withAlphaComponent(0.4)
         }
         
         setTitleColor(titleColor, for: .normal)

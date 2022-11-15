@@ -29,38 +29,38 @@ class WhatIsBudgetBillingViewController: DismissableFormSheetViewController {
         
         addCloseButton()
         descriptionLabel.isHidden = !Configuration.shared.opco.isPHI
-        card1TitleLabel.textColor = .deepGray
-        card1TitleLabel.font = OpenSans.semibold.of(textStyle: .title3)
+        card1TitleLabel.textColor = .neutralDark
+        card1TitleLabel.font = ExelonFont.semibold.of(textStyle: .title3)
         card1TitleLabel.text = NSLocalizedString("1 consistent bill over 12 months", comment: "")
-        card2TitleLabel.textColor = .deepGray
-        card2TitleLabel.font = OpenSans.semibold.of(textStyle: .title3)
+        card2TitleLabel.textColor = .neutralDark
+        card2TitleLabel.font = ExelonFont.semibold.of(textStyle: .title3)
         card2TitleLabel.text = NSLocalizedString("Adjusted throughout the year", comment: "")
         
-        card1Bullet1Label.textColor = .deepGray
-        card1Bullet2Label.textColor = .deepGray
-        card1Bullet3Label.textColor = .deepGray
-        card1Bullet4Label.textColor = .deepGray
+        card1Bullet1Label.textColor = .neutralDark
+        card1Bullet2Label.textColor = .neutralDark
+        card1Bullet3Label.textColor = .neutralDark
+        card1Bullet4Label.textColor = .neutralDark
 
-        card2Bullet1Label.textColor = .deepGray
-        card2Bullet2Label.textColor = .deepGray
-        card2Bullet3Label.textColor = .deepGray
-        card2Bullet4Label.textColor = .deepGray
-        card2Bullet5Label.textColor = .deepGray
+        card2Bullet1Label.textColor = .neutralDark
+        card2Bullet2Label.textColor = .neutralDark
+        card2Bullet3Label.textColor = .neutralDark
+        card2Bullet4Label.textColor = .neutralDark
+        card2Bullet5Label.textColor = .neutralDark
         
-        descriptionLabel.textColor = .deepGray
+        descriptionLabel.textColor = .neutralDark
         
-        card1Bullet1Label.font = OpenSans.regular.of(textStyle: .body)
-        card1Bullet2Label.font = OpenSans.regular.of(textStyle: .body)
-        card1Bullet3Label.font = OpenSans.regular.of(textStyle: .body)
-        card1Bullet4Label.font = OpenSans.regular.of(textStyle: .body)
+        card1Bullet1Label.font = ExelonFont.regular.of(textStyle: .body)
+        card1Bullet2Label.font = ExelonFont.regular.of(textStyle: .body)
+        card1Bullet3Label.font = ExelonFont.regular.of(textStyle: .body)
+        card1Bullet4Label.font = ExelonFont.regular.of(textStyle: .body)
 
-        card2Bullet1Label.font = OpenSans.regular.of(textStyle: .body)
-        card2Bullet2Label.font = OpenSans.regular.of(textStyle: .body)
-        card2Bullet3Label.font = OpenSans.regular.of(textStyle: .body)
-        card2Bullet4Label.font = OpenSans.regular.of(textStyle: .body)
-        card2Bullet5Label.font = OpenSans.regular.of(textStyle: .body)
+        card2Bullet1Label.font = ExelonFont.regular.of(textStyle: .body)
+        card2Bullet2Label.font = ExelonFont.regular.of(textStyle: .body)
+        card2Bullet3Label.font = ExelonFont.regular.of(textStyle: .body)
+        card2Bullet4Label.font = ExelonFont.regular.of(textStyle: .body)
+        card2Bullet5Label.font = ExelonFont.regular.of(textStyle: .body)
         
-        descriptionLabel.font = OpenSans.regular.of(textStyle: .body)
+        descriptionLabel.font = ExelonFont.regular.of(textStyle: .body)
 
         switch Configuration.shared.opco {
         case .bge:

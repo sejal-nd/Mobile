@@ -60,34 +60,34 @@ class WeeklyInsightViewController: UIViewController {
         ]
         segmentedControlContainer.isHidden = !viewModel.shouldShowSegmentedControl
                 
-        thisWeekDateLabel.textColor = .deepGray
+        thisWeekDateLabel.textColor = .neutralDark
         thisWeekDateLabel.font = SystemFont.semibold.of(textStyle: .footnote)
         
         thisWeekBarView.layer.cornerRadius = 7.5
         
-        lastWeekDateLabel.textColor = .deepGray
+        lastWeekDateLabel.textColor = .neutralDark
         lastWeekDateLabel.font = SystemFont.semibold.of(textStyle: .footnote)
         
         lastWeekBarView.backgroundColor = .accentGray
         lastWeekBarView.layer.cornerRadius = 7.5
 
-        comparisonLabel.textColor = .deepGray
+        comparisonLabel.textColor = .neutralDark
         comparisonLabel.font = SystemFont.regular.of(textStyle: .body)
         
-        mostEnergyLabel.textColor = .deepGray
+        mostEnergyLabel.textColor = .neutralDark
         mostEnergyLabel.font = SystemFont.regular.of(textStyle: .body)
         
-        leastEnergyLabel.textColor = .deepGray
+        leastEnergyLabel.textColor = .neutralDark
         leastEnergyLabel.font = SystemFont.regular.of(textStyle: .body)
         
-        billProjectionLabel.textColor = .deepGray
+        billProjectionLabel.textColor = .neutralDark
         billProjectionLabel.font = SystemFont.regular.of(textStyle: .body)
         
-        stickyFooterLabel.textColor = .deepGray
+        stickyFooterLabel.textColor = .neutralDark
         stickyFooterLabel.font = SystemFont.regular.of(textStyle: .caption1)
         stickyFooterLabel.text = NSLocalizedString("This is an estimate and the actual amount may vary based on your energy use, taxes, and fees.", comment: "")
         
-        errorLabel.textColor = .deepGray
+        errorLabel.textColor = .neutralDark
         errorLabel.font = SystemFont.regular.of(textStyle: .headline)
     
         bindViewModel()

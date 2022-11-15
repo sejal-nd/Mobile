@@ -23,7 +23,7 @@ class ViewBillViewController: UIViewController {
     var webView: WKWebView!
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return StormModeStatus.shared.isOn ? .lightContent : .default
+        return StormModeStatus.shared.isOn ? .darkContent : .default
     }
 
     override func viewDidLoad() {

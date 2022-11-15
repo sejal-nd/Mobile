@@ -263,7 +263,7 @@ class FinalReviewMoveServiceViewController: UIViewController {
         segmentedControl.backgroundColor = .softGray
 
         alertController.setBackgroundColor(color: .white)
-        alertController.setTitle(font: SystemFont.semibold.of(size: 17), color: .deepGray)
+        alertController.setTitle(font: SystemFont.semibold.of(size: 17), color: .neutralDark)
 
 
         alertController.view.addSubview(segmentedControl)

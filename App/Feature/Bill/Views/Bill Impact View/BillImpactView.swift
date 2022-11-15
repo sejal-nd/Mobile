@@ -22,15 +22,15 @@ class BillImpactView: UIView {
     }
     @IBOutlet weak var multipremiseHeaderLabel: UILabel! {
         didSet {
-            multipremiseHeaderLabel.textColor = .deepGray
+            multipremiseHeaderLabel.textColor = .neutralDark
             multipremiseHeaderLabel.font = SystemFont.semibold.of(textStyle: .caption1)
         }
     }
     
     @IBOutlet weak var reasonsWhyLabel: UILabel! {
         didSet {
-            reasonsWhyLabel.textColor = .deepGray
-            reasonsWhyLabel.font = OpenSans.regular.of(textStyle: .headline)
+            reasonsWhyLabel.textColor = .neutralDark
+            reasonsWhyLabel.font = ExelonFont.regular.of(textStyle: .headline)
         }
     }
     @IBOutlet weak var tooltipButton: UIButton!
@@ -42,8 +42,8 @@ class BillImpactView: UIView {
     
     @IBOutlet weak var differenceDescriptionLabel: UILabel! {
         didSet {
-            differenceDescriptionLabel.textColor = .deepGray
-            differenceDescriptionLabel.font = OpenSans.regular.of(textStyle: .callout)
+            differenceDescriptionLabel.textColor = .neutralDark
+            differenceDescriptionLabel.font = ExelonFont.regular.of(textStyle: .callout)
         }
     }
     
@@ -55,14 +55,14 @@ class BillImpactView: UIView {
     @IBOutlet weak var billPeriodTapView: UIView!
     @IBOutlet weak var billPeriodTitleLabel: UILabel! {
         didSet {
-            billPeriodTitleLabel.textColor = .deepGray
+            billPeriodTitleLabel.textColor = .neutralDark
             billPeriodTitleLabel.font = SystemFont.regular.of(textStyle: .caption2)
         }
     }
     @IBOutlet weak var billPeriodImageView: UIImageView!
     @IBOutlet weak var billPeriodAmountLabel: UILabel! {
         didSet {
-            billPeriodAmountLabel.textColor = .deepGray
+            billPeriodAmountLabel.textColor = .neutralDark
             billPeriodAmountLabel.font = SystemFont.regular.of(textStyle: .callout)
         }
     }
@@ -70,7 +70,7 @@ class BillImpactView: UIView {
     @IBOutlet weak var billPeriodDetailView: UIView!
     @IBOutlet weak var billPeriodDetailLabel: UILabel! {
         didSet {
-            billPeriodDetailLabel.textColor = .deepGray
+            billPeriodDetailLabel.textColor = .neutralDark
             billPeriodDetailLabel.font = SystemFont.regular.of(textStyle: .caption1)
         }
     }
@@ -79,14 +79,14 @@ class BillImpactView: UIView {
     @IBOutlet weak var weatherTapView: UIView!
     @IBOutlet weak var weatherTitleLabel: UILabel! {
         didSet {
-            weatherTitleLabel.textColor = .deepGray
+            weatherTitleLabel.textColor = .neutralDark
             weatherTitleLabel.font = SystemFont.regular.of(textStyle: .caption2)
         }
     }
     @IBOutlet weak var weatherImageView: UIImageView!
     @IBOutlet weak var weatherAmountLabel: UILabel! {
         didSet {
-            weatherAmountLabel.textColor = .deepGray
+            weatherAmountLabel.textColor = .neutralDark
             weatherAmountLabel.font = SystemFont.regular.of(textStyle: .callout)
         }
     }
@@ -94,7 +94,7 @@ class BillImpactView: UIView {
     @IBOutlet weak var weatherDetailView: UIView!
     @IBOutlet weak var weatherDetailLabel: UILabel! {
         didSet {
-            weatherDetailLabel.textColor = .deepGray
+            weatherDetailLabel.textColor = .neutralDark
             weatherDetailLabel.font = SystemFont.regular.of(textStyle: .caption1)
         }
     }
@@ -103,14 +103,14 @@ class BillImpactView: UIView {
     @IBOutlet weak var otherTapView: UIView!
     @IBOutlet weak var otherTitleLabel: UILabel! {
         didSet {
-            otherTitleLabel.textColor = .deepGray
+            otherTitleLabel.textColor = .neutralDark
             otherTitleLabel.font = SystemFont.regular.of(textStyle: .caption2)
         }
     }
     @IBOutlet weak var otherImageView: UIImageView!
     @IBOutlet weak var otherAmountLabel: UILabel! {
         didSet {
-            otherAmountLabel.textColor = .deepGray
+            otherAmountLabel.textColor = .neutralDark
             otherAmountLabel.font = SystemFont.regular.of(textStyle: .callout)
         }
     }
@@ -118,7 +118,7 @@ class BillImpactView: UIView {
     @IBOutlet weak var otherDetailView: UIView!
     @IBOutlet weak var otherDetailLabel: UILabel! {
         didSet {
-            otherDetailLabel.textColor = .deepGray
+            otherDetailLabel.textColor = .neutralDark
             otherDetailLabel.font = SystemFont.regular.of(textStyle: .caption1)
         }
     }

@@ -20,9 +20,9 @@ class PeakRewardsProgramCard: UIView {
         let titleLabel = UILabel()
         titleLabel.text = title
         titleLabel.numberOfLines = 0
-        titleLabel.textColor = .deepGray
+        titleLabel.textColor = .neutralDark
         titleLabel.textAlignment = .center
-        titleLabel.font = OpenSans.semibold.of(textStyle: .footnote)
+        titleLabel.font = ExelonFont.semibold.of(textStyle: .footnote)
         
         let separator = UIView()
         separator.backgroundColor = .accentGray
@@ -34,7 +34,7 @@ class PeakRewardsProgramCard: UIView {
         let descriptionLabel = UILabel()
         descriptionLabel.text = body
         descriptionLabel.numberOfLines = 0
-        descriptionLabel.textColor = .deepGray
+        descriptionLabel.textColor = .neutralDark
         descriptionLabel.textAlignment = .center
         descriptionLabel.font = SystemFont.regular.of(textStyle: .caption1)
         

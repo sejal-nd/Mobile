@@ -88,20 +88,20 @@ class ReviewPaymentViewController: UIViewController {
         
         viewModel.reviewPaymentSubmitButtonEnabled.drive(submitPaymentButton.rx.isEnabled).disposed(by: disposeBag)
         
-        activeSeveranceLabel.textColor = .deepGray
+        activeSeveranceLabel.textColor = .neutralDark
         activeSeveranceLabel.font = SystemFont.regular.of(textStyle: .headline)
         activeSeveranceLabel.text = NSLocalizedString("Due to the status of this account, this payment cannot be edited or deleted once it is submitted.", comment: "")
         activeSeveranceLabel.setLineHeight(lineHeight: 24)
         
-        overpaymentLabel.textColor = .deepGray
+        overpaymentLabel.textColor = .neutralDark
         overpaymentLabel.font = SystemFont.regular.of(textStyle: .headline)
         overpaymentLabel.text = NSLocalizedString("You are scheduling a payment that may result in overpaying your total amount due.", comment: "")
         overpaymentLabel.setLineHeight(lineHeight: 24)
         
-        paymentMethodTextLabel.textColor = .deepGray
+        paymentMethodTextLabel.textColor = .neutralDark
         paymentMethodTextLabel.font = SystemFont.regular.of(textStyle: .footnote)
         paymentMethodTextLabel.text = NSLocalizedString("Payment Method", comment: "")
-        paymentMethodMaskedAccountNumberLabel.textColor = .deepGray
+        paymentMethodMaskedAccountNumberLabel.textColor = .neutralDark
         paymentMethodMaskedAccountNumberLabel.font = SystemFont.regular.of(textStyle: .callout)
         paymentMethodNicknameLabel.textColor = .middleGray
         paymentMethodNicknameLabel.font = SystemFont.regular.of(textStyle: .caption1)
@@ -109,73 +109,73 @@ class ReviewPaymentViewController: UIViewController {
         receiptView.layer.borderWidth = 1
         receiptView.layer.borderColor = UIColor.accentGray.cgColor
         
-        amountDueTextLabel.textColor = .deepGray
+        amountDueTextLabel.textColor = .neutralDark
         amountDueTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         amountDueTextLabel.text = NSLocalizedString("Total Amount Due", comment: "")
-        amountDueValueLabel.textColor = .deepGray
+        amountDueValueLabel.textColor = .neutralDark
         amountDueValueLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        dueDateTextLabel.textColor = .deepGray
+        dueDateTextLabel.textColor = .neutralDark
         dueDateTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         dueDateTextLabel.text = NSLocalizedString("Due Date", comment: "")
-        dueDateValueLabel.textColor = .deepGray
+        dueDateValueLabel.textColor = .neutralDark
         dueDateValueLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         
-        paymentAmountTextLabel.textColor = .deepGray
+        paymentAmountTextLabel.textColor = .neutralDark
         paymentAmountTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         paymentAmountTextLabel.text = NSLocalizedString("Payment Amount", comment: "")
-        paymentAmountValueLabel.textColor = .deepGray
+        paymentAmountValueLabel.textColor = .neutralDark
         paymentAmountValueLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        convenienceFeeTextLabel.textColor = .deepGray
+        convenienceFeeTextLabel.textColor = .neutralDark
         convenienceFeeTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         convenienceFeeTextLabel.text = NSLocalizedString("Convenience Fee", comment: "")
-        convenienceFeeValueLabel.textColor = .deepGray
+        convenienceFeeValueLabel.textColor = .neutralDark
         convenienceFeeValueLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         
-        cardOverpayingTextLabel.textColor = .deepGray
+        cardOverpayingTextLabel.textColor = .neutralDark
         cardOverpayingTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         cardOverpayingTextLabel.text = NSLocalizedString("Overpaying", comment: "")
-        cardOverpayingValueLabel.textColor = .deepGray
+        cardOverpayingValueLabel.textColor = .neutralDark
         cardOverpayingValueLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         
-        bankOverpayingTextLabel.textColor = .deepGray
+        bankOverpayingTextLabel.textColor = .neutralDark
         bankOverpayingTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         bankOverpayingTextLabel.text = NSLocalizedString("Overpaying", comment: "")
-        bankOverpayingValueLabel.textColor = .deepGray
+        bankOverpayingValueLabel.textColor = .neutralDark
         bankOverpayingValueLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         
-        paymentDateTextLabel.textColor = .deepGray
+        paymentDateTextLabel.textColor = .neutralDark
         paymentDateTextLabel.font = SystemFont.semibold.of(textStyle: .subheadline)
         paymentDateTextLabel.text = NSLocalizedString("Payment Date", comment: "")
-        paymentDateValueLabel.textColor = .deepGray
+        paymentDateValueLabel.textColor = .neutralDark
         paymentDateValueLabel.font = SystemFont.semibold.of(textStyle: .subheadline)
-        totalPaymentTextLabel.textColor = .deepGray
+        totalPaymentTextLabel.textColor = .neutralDark
         totalPaymentTextLabel.font = SystemFont.semibold.of(textStyle: .subheadline)
-        totalPaymentValueLabel.textColor = .deepGray
+        totalPaymentValueLabel.textColor = .neutralDark
         totalPaymentValueLabel.font = SystemFont.semibold.of(textStyle: .subheadline)
         
-        termsConditionsCheckboxLabel.textColor = .deepGray
+        termsConditionsCheckboxLabel.textColor = .neutralDark
         termsConditionsCheckboxLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         termsConditionsCheckboxLabel.text = NSLocalizedString("Yes, I have read, understand, and agree to the terms and conditions provided below:", comment: "")
         termsConditionsButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .subheadline)
-        termsConditionsButton.setTitleColor(.actionBlue, for: .normal)
+        termsConditionsButton.setTitleColor(.primaryBlue, for: .normal)
         termsConditionsButton.setTitle(NSLocalizedString("View terms and conditions", comment: ""), for: .normal)
         termsConditionsButton.accessibilityLabel = termsConditionsButton.titleLabel?.text
         termsConditionsCheckboxLabel.isAccessibilityElement = false
         termsConditionsCheckbox.accessibilityLabel = termsConditionsCheckboxLabel.text!
         
-        overpayingCheckboxLabel.textColor = .deepGray
+        overpayingCheckboxLabel.textColor = .neutralDark
         overpayingCheckboxLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         overpayingCheckboxLabel.text = NSLocalizedString("Yes, I acknowledge I am scheduling a payment for more than is currently due on my account.", comment: "")
         overpayingCheckboxLabel.isAccessibilityElement = false
         overpayingCheckbox.accessibilityLabel = overpayingCheckboxLabel.text!
         
-        activeSeveranceCheckboxLabel.textColor = .deepGray
+        activeSeveranceCheckboxLabel.textColor = .neutralDark
         activeSeveranceCheckboxLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         activeSeveranceCheckboxLabel.text = NSLocalizedString("I acknowledge I will not be able to edit or delete this payment once submitted.", comment: "")
         activeSeveranceCheckboxLabel.isAccessibilityElement = false
         activeSeveranceCheckbox.accessibilityLabel = activeSeveranceCheckboxLabel.text!
         
-        footerLabel.textColor = .deepGray
+        footerLabel.textColor = .neutralDark
         footerLabel.font = SystemFont.regular.of(textStyle: .footnote)
         let reviewPaymentFooterLabelText = viewModel.reviewPaymentFooterLabelText
         footerLabel.text = reviewPaymentFooterLabelText
@@ -206,11 +206,11 @@ class ReviewPaymentViewController: UIViewController {
         alternateEmailNumberView.backgroundColor = .softGray
         
         alternateViewTextView.backgroundColor = .softGray
-        alternateViewTextView.textColor = .deepGray
+        alternateViewTextView.textColor = .neutralDark
         alternateViewTextView.font = SystemFont.regular.of(textStyle: .callout)
         alternateViewTextView.text = NSLocalizedString("A confirmation will be sent to the email address associated with your My Account. If you'd like to send this payment confirmation to an additional email or via text message, add the recipients below. Standard messaging rates apply.", comment: "")
         
-        addAdditionaRecipientButton.setTitleColor(.deepGray, for: .normal)
+        addAdditionaRecipientButton.setTitleColor(.neutralDark, for: .normal)
         addAdditionaRecipientButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
         
         alternateEmailTextField.placeholder = NSLocalizedString("Email Address (Optional)",

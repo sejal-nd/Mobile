@@ -379,11 +379,11 @@ class TapToPayViewModel {
     private(set) lazy var dueAmountDescriptionText: Driver<NSAttributedString> = accountDetailDriver.map {
         let billingInfo = $0.billingInfo
         var attributes: [NSAttributedString.Key: Any] = [.font: SystemFont.regular.of(textStyle: .caption1),
-                                                         .foregroundColor: UIColor.deepGray]
+                                                         .foregroundColor: UIColor.neutralDark]
         let string: String
         guard var dueAmount = billingInfo.netDueAmount else { return NSAttributedString() }
         dueAmount = Configuration.shared.opco.isPHI ? (dueAmount >= .zero ? dueAmount : .zero) : dueAmount
-        attributes[.foregroundColor] = UIColor.deepGray
+        attributes[.foregroundColor] = UIColor.neutralDark
         attributes[.font] = SystemFont.semibold.of(size: 17)
         if self.billingHistoryItem != nil {
             guard let billingHistory = self.billingHistoryItem ,
@@ -945,9 +945,9 @@ class TapToPayViewModel {
          let localizedText = String.localizedStringWithFormat("%@%@", boldText, bodyText)
          let attributedText = NSMutableAttributedString(string: localizedText,
                                                         attributes: [.foregroundColor: UIColor.blackText,
-                                                                     .font: OpenSans.regular.of(textStyle: .footnote)])
+                                                                     .font: ExelonFont.regular.of(textStyle: .footnote)])
          attributedText.addAttribute(.font,
-                                     value: OpenSans.bold.of(textStyle: .footnote),
+                                     value: ExelonFont.bold.of(textStyle: .footnote),
                                      range: NSRange(location: 0, length: boldText.count))
          
          return attributedText

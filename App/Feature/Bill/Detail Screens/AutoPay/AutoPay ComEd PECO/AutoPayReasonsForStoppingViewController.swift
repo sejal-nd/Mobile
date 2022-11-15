@@ -62,7 +62,7 @@ class AutoPayReasonsForStoppingViewController: UIViewController {
     }
     
     private func style() {
-        footerLabel.textColor = .deepGray
+        footerLabel.textColor = .neutralDark
         footerLabel.font = SystemFont.regular.of(textStyle: .caption2)
     }
     

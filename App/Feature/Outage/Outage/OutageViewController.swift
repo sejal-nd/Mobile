@@ -59,7 +59,7 @@ class OutageViewController: AccountPickerViewController {
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(loadOutageStatus(sender:)), for: .valueChanged)
-        refreshControl.tintColor = .deepGray
+        refreshControl.tintColor = .neutralDark
         refreshControl.backgroundColor = .softGray
         return refreshControl
     }()
@@ -94,7 +94,7 @@ class OutageViewController: AccountPickerViewController {
         
         outageNotificationBannerTitle.font = SystemFont.regular.of(textStyle: .subheadline)
         outageNotificationBannerDesciption.font = SystemFont.regular.of(textStyle: .caption1)
-        outageNotificationBannerTitle.textColor = .deepGray
+        outageNotificationBannerTitle.textColor = .neutralDark
         outageNotificationBannerDesciption.textColor = .gray
         spacerView.backgroundColor = .softGray
         spacerView.isHidden = true
@@ -247,7 +247,7 @@ class OutageViewController: AccountPickerViewController {
         footerTextView.font = SystemFont.regular.of(textStyle: .footnote)
         footerTextView.attributedText = viewModel.footerTextViewText
         footerTextView.textColor = .blackText
-        footerTextView.tintColor = .actionBlue // For the phone numbers
+        footerTextView.tintColor = .primaryBlue // For the phone numbers
         footerTextView.attributedText = viewModel.footerTextViewText
         footerTextView.linkTapDelegate = self
     }

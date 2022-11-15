@@ -23,7 +23,7 @@ class RadioSelectionTableViewCell: UITableViewCell {
         radioButtonImageView.image = #imageLiteral(resourceName: "ic_radiobutton_deselected")
         
         label.lineBreakMode = .byWordWrapping
-        label.textColor = .deepGray
+        label.textColor = .neutralDark
         label.font = SystemFont.regular.of(textStyle: .headline)
         
         dividerLine.backgroundColor = .accentGray

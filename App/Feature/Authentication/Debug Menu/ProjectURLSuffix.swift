@@ -27,6 +27,7 @@ enum ProjectURLSuffix: String, Identifiable, Equatable, CaseIterable {
     case maintenance = "Maintenance"
     
     case agentis = "Agentis"
+    case cis = "CIS"
 }
 
 // MARK: Convenience
@@ -62,6 +63,8 @@ extension ProjectURLSuffix {
             return "/maintenance"
         case .agentis:
             return "/agentis"
+        case .cis:
+            return "/cis-upgrade"
         }
     }
     

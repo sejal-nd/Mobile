@@ -27,11 +27,11 @@ class AlertPreferencesTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         nameLabel.isAccessibilityElement = false
-        nameLabel.textColor = .deepGray
+        nameLabel.textColor = .neutralDark
         nameLabel.font = SystemFont.regular.of(textStyle: .callout)
-        pickerButton.setTitleColor(.actionBlue, for: .normal)
+        pickerButton.setTitleColor(.primaryBlue, for: .normal)
         pickerButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .subheadline)
-        detailLabel.textColor = .deepGray
+        detailLabel.textColor = .neutralDark
         detailLabel.font = SystemFont.regular.of(textStyle: .footnote)
         contentView.backgroundColor = .softGray
     }

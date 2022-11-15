@@ -42,13 +42,13 @@ class HomeAppointmentCardView: UIView {
         clippingView.layer.cornerRadius = 10
         
         topTextView.textColor = .blackText
-        topTextView.tintColor = .actionBlue // Color of the phone numbers
-        topTextView.font = OpenSans.regular.of(textStyle: .headline)
+        topTextView.tintColor = .primaryBlue // Color of the phone numbers
+        topTextView.font = ExelonFont.regular.of(textStyle: .headline)
         
-        apologyLabel.textColor = .deepGray
-        apologyLabel.font = OpenSans.regular.of(textStyle: .footnote)
+        apologyLabel.textColor = .neutralDark
+        apologyLabel.font = ExelonFont.regular.of(textStyle: .footnote)
         
-        bottomButtonLabel.textColor = .actionBlue
+        bottomButtonLabel.textColor = .primaryBlue
         bottomButtonLabel.font = SystemFont.semibold.of(textStyle: .headline)
     }
     

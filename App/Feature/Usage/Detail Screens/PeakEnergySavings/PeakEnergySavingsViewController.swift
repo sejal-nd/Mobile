@@ -74,7 +74,7 @@ extension PeakEnergySavingsViewController {
     
     /// This function customizes the UI Elements
     private func styleViews() {
-        programDetailsLabel.textColor = .deepGray
+        programDetailsLabel.textColor = .neutralDark
         programDetailsLabel.font = SystemFont.regular.of(textStyle: .body)
         programDetailsLabel.setLineHeight(lineHeight: 24.0)
         programDetailsLabel.textAlignment = .center

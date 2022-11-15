@@ -58,7 +58,7 @@ class MiniWalletItemRow: UITableViewCell {
     // MARK: - Helper
     
     private func style() {
-        titleLabel.textColor = .deepGray
+        titleLabel.textColor = .neutralDark
         titleLabel.font = SystemFont.regular.of(textStyle: .headline)
         subtitleLabel.textColor = .middleGray
         subtitleLabel.font = SystemFont.regular.of(textStyle: .footnote)

@@ -36,7 +36,7 @@ class UnauthenticatedOutageValidateAccountViewController: KeyboardAvoidingSticky
 
         title = NSLocalizedString("Outage", comment: "")
         
-        headerLabel.textColor = .deepGray
+        headerLabel.textColor = .neutralDark
         headerLabel.font = SystemFont.regular.of(textStyle: .headline)
         headerLabel.text = NSLocalizedString("Please help us validate your account.", comment: "")
         
@@ -53,8 +53,8 @@ class UnauthenticatedOutageValidateAccountViewController: KeyboardAvoidingSticky
         accountNumberTooltipButton.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
         
         footerView.addTopBorder(color: .accentGray, width: 1)
-        footerTextView.textColor = .deepGray
-        footerTextView.tintColor = .actionBlue // For the phone numbers
+        footerTextView.textColor = .neutralDark
+        footerTextView.tintColor = .primaryBlue // For the phone numbers
         footerTextView.linkTapDelegate = self
         
         maintenanceModeView.isHidden = true

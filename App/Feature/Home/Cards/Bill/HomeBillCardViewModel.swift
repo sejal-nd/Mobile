@@ -470,11 +470,11 @@ class HomeBillCardViewModel {
     private(set) lazy var paymentDescriptionText: Driver<NSAttributedString?> =
     Driver.combineLatest(billState, accountDetailDriver)
     { (billState, accountDetail) in
-        let textColor = StormModeStatus.shared.isOn ? UIColor.white : UIColor.deepGray
+        let textColor = StormModeStatus.shared.isOn ? UIColor.white : UIColor.neutralDark
         switch billState {
         case .billPaid, .billPaidIntermediate:
             let text = NSLocalizedString("Thank you for your payment", comment: "")
-            return NSAttributedString(string: text, attributes: [.font: OpenSans.regular.of(textStyle: .headline),
+            return NSAttributedString(string: text, attributes: [.font: ExelonFont.regular.of(textStyle: .headline),
                                                                  .foregroundColor: textColor])
         case .paymentPending:
             let text: String
@@ -484,7 +484,7 @@ class HomeBillCardViewModel {
             case .ace, .comEd, .delmarva, .peco, .pepco:
                 text = NSLocalizedString("You have pending payments", comment: "")
             }
-            return NSAttributedString(string: text, attributes: [.font: OpenSans.italic.of(textStyle: .headline),
+            return NSAttributedString(string: text, attributes: [.font: ExelonFont.italic.of(textStyle: .headline),
                                                                  .foregroundColor: textColor])
         default:
             return nil
@@ -820,16 +820,16 @@ class HomeBillCardViewModel {
         let billingInfo = accountDetail.billingInfo
         let isMultiPremise = AccountsStore.shared.currentAccount.isMultipremise
         
-        let textColor = StormModeStatus.shared.isOn ? UIColor.white : UIColor.errorRed
+        let textColor = StormModeStatus.shared.isOn ? UIColor.white : UIColor.neutralDarker
         let style = NSMutableParagraphStyle()
         style.minimumLineHeight = 16
-        var attributes: [NSAttributedString.Key: Any] = [.font: SystemFont.semibold.of(textStyle: .caption1),
+        var attributes: [NSAttributedString.Key: Any] = [.font: SystemFont.regular.of(size: 13),
                                                          .paragraphStyle: style,
                                                          .foregroundColor: textColor]
         
         switch billState {
         case .credit:
-            attributes[.foregroundColor] = StormModeStatus.shared.isOn ? UIColor.white : UIColor.deepGray
+            attributes[.foregroundColor] = StormModeStatus.shared.isOn ? UIColor.white : UIColor.neutralDark
             return NSAttributedString(string: NSLocalizedString("Credit Balance", comment: ""),
                                       attributes: attributes)
         case .pastDue:
@@ -946,7 +946,7 @@ class HomeBillCardViewModel {
             return NSAttributedString(string: string, attributes: attributes)
         default:
             if AccountsStore.shared.currentAccount.isMultipremise {
-                attributes[.foregroundColor] = StormModeStatus.shared.isOn ? UIColor.white : UIColor.deepGray
+                attributes[.foregroundColor] = StormModeStatus.shared.isOn ? UIColor.white : UIColor.neutralDark
                 return NSAttributedString(string: NSLocalizedString("Multi-Premise Bill", comment: ""),
                                           attributes: attributes)
             }
@@ -976,7 +976,7 @@ class HomeBillCardViewModel {
     private(set) lazy var dueDateText: Driver<NSAttributedString?> = Driver.combineLatest(accountDetailDriver, billState)
     { accountDetail, billState in
         let grayAttributes: [NSAttributedString.Key: Any] =
-        [.foregroundColor: StormModeStatus.shared.isOn ? UIColor.white : UIColor.deepGray,
+        [.foregroundColor: StormModeStatus.shared.isOn ? UIColor.white : UIColor.neutralDark,
          .font: SystemFont.regular.of(textStyle: .caption1)]
         let redAttributes: [NSAttributedString.Key: Any] =
         [.foregroundColor: StormModeStatus.shared.isOn ? UIColor.white : UIColor.errorRed,
@@ -1063,19 +1063,19 @@ class HomeBillCardViewModel {
         .map {
             switch $0 {
             case .billReady, .billReadyAutoPay, .billPaid, .billPaidIntermediate, .credit:
-                return OpenSans.regular.of(textStyle: .headline)
+                return ExelonFont.regular.of(textStyle: .headline)
             case .paymentPending:
-                return OpenSans.italic.of(textStyle: .headline)
+                return ExelonFont.italic.of(textStyle: .headline)
             default:
-                return OpenSans.regular.of(textStyle: .headline)
+                return ExelonFont.regular.of(textStyle: .headline)
             }
         }
     
     private(set) lazy var amountFont: Driver<UIFont> = billState
-        .map { $0 == .paymentPending ? OpenSans.semibold.of(textStyle: .largeTitle): OpenSans.semibold.of(textStyle: .largeTitle) }
+        .map { $0 == .paymentPending ? ExelonFont.semibold.of(textStyle: .largeTitle): ExelonFont.semibold.of(textStyle: .largeTitle) }
     
     private(set) lazy var amountColor: Driver<UIColor> = billState
-        .map { Configuration.shared.opco.isPHI ? ($0 == .credit ? .successGreenText : .deepGray) : .deepGray }
+        .map { Configuration.shared.opco.isPHI ? ($0 == .credit ? .successGreenText : .neutralDark) : .neutralDark }
     
     private(set) lazy var automaticPaymentInfoButtonText: Driver<String> =
     Driver.combineLatest(accountDetailDriver, scheduledPaymentDriver)
@@ -1175,10 +1175,10 @@ class HomeBillCardViewModel {
     private(set) lazy var dueAmountDescriptionText: Driver<NSAttributedString> = accountDetailDriver.map {
         let billingInfo = $0.billingInfo
         var attributes: [NSAttributedString.Key: Any] = [.font: SystemFont.regular.of(textStyle: .caption1),
-                                                         .foregroundColor: UIColor.deepGray]
+                                                         .foregroundColor: UIColor.neutralDark]
         let string: String
         guard let dueAmount = billingInfo.netDueAmount else { return NSAttributedString() }
-        attributes[.foregroundColor] = UIColor.deepGray
+        attributes[.foregroundColor] = UIColor.neutralDark
         attributes[.font] = SystemFont.semibold.of(size: 17)
         if billingInfo.pastDueAmount > 0 {
             if billingInfo.pastDueAmount == billingInfo.netDueAmount {

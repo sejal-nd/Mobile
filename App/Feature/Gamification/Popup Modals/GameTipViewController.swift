@@ -66,24 +66,24 @@ class GameTipViewController: UIViewController {
         popupView.layer.cornerRadius = 10
         popupView.layer.masksToBounds = true
         
-        closeButton.tintColor = .actionBlue
+        closeButton.tintColor = .primaryBlue
         closeButton.addTarget(self, action: #selector(dismiss(_:)), for: .touchUpInside)
         
-        titleLabel.textColor = .deepGray
+        titleLabel.textColor = .neutralDark
         titleLabel.font = SystemFont.regular.of(textStyle: .headline)
         titleLabel.text = tip.title
         
-        detailLabel.textColor = .deepGray
+        detailLabel.textColor = .neutralDark
         detailLabel.font = SystemFont.regular.of(textStyle: .footnote)
         
-        reminderButton.tintColor = .actionBlue
-        reminderButton.setTitleColor(.actionBlue, for: .normal)
-        reminderButton.setTitleColor(UIColor.actionBlue.darker(), for: .highlighted)
+        reminderButton.tintColor = .primaryBlue
+        reminderButton.setTitleColor(.primaryBlue, for: .normal)
+        reminderButton.setTitleColor(UIColor.primaryBlue.darker(), for: .highlighted)
         reminderButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
         
-        favoriteButton.tintColor = .actionBlue
-        favoriteButton.setTitleColor(.actionBlue, for: .normal)
-        favoriteButton.setTitleColor(UIColor.actionBlue.darker(), for: .highlighted)
+        favoriteButton.tintColor = .primaryBlue
+        favoriteButton.setTitleColor(.primaryBlue, for: .normal)
+        favoriteButton.setTitleColor(UIColor.primaryBlue.darker(), for: .highlighted)
         favoriteButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
         
         let hourFromNow = Calendar.current.date(byAdding: .hour, value: 1, to: Date.now)!

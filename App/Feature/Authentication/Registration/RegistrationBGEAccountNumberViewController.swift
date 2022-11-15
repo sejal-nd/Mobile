@@ -27,7 +27,7 @@ class RegistrationBGEAccountNumberViewController: KeyboardAvoidingStickyFooterVi
         
         title = NSLocalizedString("Register", comment: "")
         
-        instructionLabel.textColor = .deepGray
+        instructionLabel.textColor = .neutralDark
         instructionLabel.text = NSLocalizedString("The information entered is associated with multiple accounts. Please enter the account number for which you would like to proceed.", comment: "")
         instructionLabel.font = SystemFont.regular.of(textStyle: .headline)
         

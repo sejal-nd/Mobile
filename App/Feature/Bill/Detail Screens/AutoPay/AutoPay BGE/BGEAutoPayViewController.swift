@@ -150,18 +150,18 @@ class BGEAutoPayViewController: UIViewController {
     
     private func styleViews() {
         addCustomBackButton()
-        selectBankAccountLabel.textColor = .deepGray
-        selectBankAccountLabel.font = OpenSans.semibold.of(textStyle: .caption2)
+        selectBankAccountLabel.textColor = .neutralDark
+        selectBankAccountLabel.font = ExelonFont.semibold.of(textStyle: .caption2)
         selectBankAccountLabel.text = NSLocalizedString("Bank Account", comment: "")
         
         bankAccountButton.fullyRoundCorners(diameter: 20, borderColor: .accentGray, borderWidth: 1)
         bankAccountButton.backgroundColorOnPress = .softGray
         
-        bankAccountButtonSelectLabel.textColor = .deepGray
+        bankAccountButtonSelectLabel.textColor = .neutralDark
         bankAccountButtonSelectLabel.font = SystemFont.regular.of(textStyle: .callout)
         bankAccountButtonSelectLabel.text = NSLocalizedString("Select Bank Account", comment: "")
         
-        bankAccountButtonAccountNumberLabel.textColor = .deepGray
+        bankAccountButtonAccountNumberLabel.textColor = .neutralDark
         bankAccountButtonAccountNumberLabel.font = SystemFont.regular.of(textStyle: .callout)
         bankAccountButtonNicknameLabel.textColor = .middleGray
         bankAccountButtonNicknameLabel.font = SystemFont.regular.of(textStyle: .caption1)
@@ -169,35 +169,35 @@ class BGEAutoPayViewController: UIViewController {
         settingsButton.fullyRoundCorners(diameter: 20, borderColor: .accentGray, borderWidth: 1)
         settingsButton.backgroundColorOnPress = .softGray
         
-        termsLabel.textColor = .deepGray
+        termsLabel.textColor = .neutralDark
         termsLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         termsLabel.setLineHeight(lineHeight: 25)
         termsLabel.isAccessibilityElement = false
-        termsButton.setTitleColor(.actionBlue, for: .normal)
+        termsButton.setTitleColor(.primaryBlue, for: .normal)
         termsButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .subheadline)
         termsSwitch.accessibilityLabel = termsLabel.text
         
-        bottomLabel.textColor = .deepGray
+        bottomLabel.textColor = .neutralDark
         let bottomLabelText = viewModel.bottomLabelText
         bottomLabel.text = bottomLabelText
         bottomLabel.font = SystemFont.regular.of(textStyle: .footnote)
         
-        settingsTitleLabel.textColor = .deepGray
-        settingsTitleLabel.font = OpenSans.semibold.of(textStyle: .caption2)
+        settingsTitleLabel.textColor = .neutralDark
+        settingsTitleLabel.font = ExelonFont.semibold.of(textStyle: .caption2)
         
-        settingsLabel.textColor = .deepGray
+        settingsLabel.textColor = .neutralDark
         settingsLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         
         settingsDescriptionLabel.textColor = .middleGray
         settingsDescriptionLabel.font = SystemFont.regular.of(textStyle: .caption1)
         
-        unenrollButtonLabel.textColor = .deepGray
+        unenrollButtonLabel.textColor = .neutralDark
         unenrollButtonLabel.font = SystemFont.regular.of(textStyle: .callout)
-        unenrollButton.setTitleColor(.actionBlue, for: .normal)
+        unenrollButton.setTitleColor(.primaryBlue, for: .normal)
         unenrollButton.titleLabel?.font = SystemFont.bold.of(textStyle: .callout)
         
         errorLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        errorLabel.textColor = .deepGray
+        errorLabel.textColor = .neutralDark
         errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
     }
     

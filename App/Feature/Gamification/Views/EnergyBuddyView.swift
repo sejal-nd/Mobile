@@ -81,8 +81,8 @@ class EnergyBuddyView: UIView {
         addSubview(view)
         
         speechBubbleView.layer.cornerRadius = 10
-        speechBubbleLabel.textColor = .deepGray
-        speechBubbleLabel.font = OpenSans.semibold.of(textStyle: .headline)
+        speechBubbleLabel.textColor = .neutralDark
+        speechBubbleLabel.font = ExelonFont.semibold.of(textStyle: .headline)
         speechBubbleContainerView.alpha = 0
         
         taskIndicatorView.isHidden = true

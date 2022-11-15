@@ -82,44 +82,44 @@ class BillingHistoryDetailsViewController: UIViewController {
     }
     
     func styleViews() {
-        paymentMethodLabel.textColor = .deepGray
+        paymentMethodLabel.textColor = .neutralDark
         paymentMethodLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        paymentMethodDetailsLabel.textColor = .deepGray
+        paymentMethodDetailsLabel.textColor = .neutralDark
         paymentMethodDetailsLabel.font = SystemFont.regular.of(textStyle: .callout)
         
-        paymentTypeLabel.textColor = .deepGray
+        paymentTypeLabel.textColor = .neutralDark
         paymentTypeLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        paymentTypeDetailsLabel.textColor = .deepGray
+        paymentTypeDetailsLabel.textColor = .neutralDark
         paymentTypeDetailsLabel.font = SystemFont.regular.of(textStyle: .callout)
         
-        paymentAmountLabel.textColor = .deepGray
+        paymentAmountLabel.textColor = .neutralDark
         paymentAmountLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        paymentAmountDetailsLabel.textColor = .deepGray
+        paymentAmountDetailsLabel.textColor = .neutralDark
         paymentAmountDetailsLabel.font = SystemFont.regular.of(textStyle: .callout)
         
-        convenienceFeeLabel.textColor = .deepGray
+        convenienceFeeLabel.textColor = .neutralDark
         convenienceFeeLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        convenienceFeeDetailsLabel.textColor = .deepGray
+        convenienceFeeDetailsLabel.textColor = .neutralDark
         convenienceFeeDetailsLabel.font = SystemFont.regular.of(textStyle: .callout)
         
-        totalAmountPaidLabel.textColor = .deepGray
+        totalAmountPaidLabel.textColor = .neutralDark
         totalAmountPaidLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        totalAmountPaidDetailsLabel.textColor = .deepGray
+        totalAmountPaidDetailsLabel.textColor = .neutralDark
         totalAmountPaidDetailsLabel.font = SystemFont.regular.of(textStyle: .callout)
         
-        paymentDateLabel.textColor = .deepGray
+        paymentDateLabel.textColor = .neutralDark
         paymentDateLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        paymentDateDetailsLabel.textColor = .deepGray
+        paymentDateDetailsLabel.textColor = .neutralDark
         paymentDateDetailsLabel.font = SystemFont.regular.of(textStyle: .callout)
         
-        paymentStatusLabel.textColor = .deepGray
+        paymentStatusLabel.textColor = .neutralDark
         paymentStatusLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        paymentStatusDetailsLabel.textColor = .deepGray
+        paymentStatusDetailsLabel.textColor = .neutralDark
         paymentStatusDetailsLabel.font = SystemFont.regular.of(textStyle: .callout)
         
-        confirmationNumberLabel.textColor = .deepGray
+        confirmationNumberLabel.textColor = .neutralDark
         confirmationNumberLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        confirmationNumberDetailTextView.textColor = .deepGray
+        confirmationNumberDetailTextView.textColor = .neutralDark
         confirmationNumberDetailTextView.font = SystemFont.regular.of(textStyle: .callout)
         confirmationNumberDetailTextView.dataDetectorTypes.remove(.all)
         
@@ -127,7 +127,7 @@ class BillingHistoryDetailsViewController: UIViewController {
         cancelPaymentButton.accessibilityLabel = cancelPaymentText
         cancelPaymentLabel.text = cancelPaymentText
         cancelPaymentLabel.font = SystemFont.regular.of(textStyle: .headline)
-        cancelPaymentLabel.textColor = .actionBlue
+        cancelPaymentLabel.textColor = .primaryBlue
         
         for line in dividerLines {
             line.backgroundColor = .accentGray

@@ -45,20 +45,20 @@ class GameCheckInViewController: UIViewController {
         popupView.layer.cornerRadius = 10
         popupView.layer.masksToBounds = true
         
-        closeButton.tintColor = .actionBlue
+        closeButton.tintColor = .primaryBlue
         closeButton.addTarget(self, action: #selector(dismiss(_:)), for: .touchUpInside)
         
-        titleLabel.textColor = .deepGray
+        titleLabel.textColor = .neutralDark
         titleLabel.font = SystemFont.regular.of(textStyle: .headline)
         titleLabel.text = NSLocalizedString("Just Checking In!", comment: "")
         
-        detailLabel.textColor = .deepGray
+        detailLabel.textColor = .neutralDark
         detailLabel.font = SystemFont.regular.of(textStyle: .footnote)
         detailLabel.text = NSLocalizedString("How do you feel about your energy usage?", comment: "")
         
-        notInterestedButton.tintColor = .actionBlue
-        notInterestedButton.setTitleColor(.actionBlue, for: .normal)
-        notInterestedButton.setTitleColor(UIColor.actionBlue.darker(), for: .highlighted)
+        notInterestedButton.tintColor = .primaryBlue
+        notInterestedButton.setTitleColor(.primaryBlue, for: .normal)
+        notInterestedButton.setTitleColor(UIColor.primaryBlue.darker(), for: .highlighted)
         notInterestedButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .subheadline)
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismiss(_:)))

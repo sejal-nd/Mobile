@@ -26,13 +26,13 @@ class UnauthenticatedMoveAccountSelectionCell: UITableViewCell {
         selectionStyle = .none
         accessibilityTraits = .button
 
-        accountNumberLabel.textColor = .deepGray
+        accountNumberLabel.textColor = .neutralDark
         accountNumberLabel.font = SystemFont.semibold.of(textStyle: .headline)
 
-        streetNumberLabel.textColor = .deepGray
+        streetNumberLabel.textColor = .neutralDark
         streetNumberLabel.font = SystemFont.regular.of(textStyle: .headline)
 
-        unitNumberLabel.textColor = .deepGray
+        unitNumberLabel.textColor = .neutralDark
         unitNumberLabel.font = SystemFont.regular.of(textStyle: .headline)
     }
 

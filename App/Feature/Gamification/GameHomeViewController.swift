@@ -87,26 +87,26 @@ class GameHomeViewController: AccountPickerViewController {
         ]
         segmentedControlContainer.isHidden = true
         
-        dailyInsightLabel.textColor = .deepGray
-        dailyInsightLabel.font = OpenSans.regular.of(textStyle: .headline)
+        dailyInsightLabel.textColor = .neutralDark
+        dailyInsightLabel.font = ExelonFont.regular.of(textStyle: .headline)
         dailyInsightLabel.text = NSLocalizedString("Daily Insight by LUMI℠", comment: "")
         
-        streakLabel.textColor = .actionBlue
+        streakLabel.textColor = .primaryBlue
         streakLabel.font = SystemFont.semibold.of(size: 13)
                 
         bubbleView.layer.borderColor = UIColor.accentGray.cgColor
         bubbleView.layer.borderWidth = 1
         bubbleView.layer.cornerRadius = 10
-        bubbleLabel.textColor = .deepGray
+        bubbleLabel.textColor = .neutralDark
         bubbleLabel.font = SystemFont.regular.of(textStyle: .footnote)
         
         weeklyInsightUnreadIndicator.layer.cornerRadius = 6
         weeklyInsightUnreadIndicator.backgroundColor = .successGreen
         
-        weeklyInsightButton.setTitleColor(.actionBlue, for: .normal)
+        weeklyInsightButton.setTitleColor(.primaryBlue, for: .normal)
         weeklyInsightButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
         
-        errorLabel.textColor = .deepGray
+        errorLabel.textColor = .neutralDark
         errorLabel.font = SystemFont.regular.of(textStyle: .headline)
         errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
     
