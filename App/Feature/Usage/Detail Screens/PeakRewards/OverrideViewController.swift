@@ -70,16 +70,16 @@ class OverrideViewController: UIViewController {
         let scheduledTitleLabel = UILabel()
         scheduledTitleLabel.text = NSLocalizedString("Scheduled Overrides", comment: "")
         scheduledTitleLabel.textColor = .neutralDark
-        scheduledTitleLabel.font = ExelonFont.regular.of(textStyle: .headline)
+        scheduledTitleLabel.font = SystemFont.regular.of(textStyle: .headline)
         topLabel.numberOfLines = 0
         
         scheduledSerialLabel.textColor = .neutralDark
-        scheduledSerialLabel.font = ExelonFont.regular.of(textStyle: .callout)
+        scheduledSerialLabel.font = SystemFont.regular.of(textStyle: .callout)
         scheduledSerialLabel.numberOfLines = 0
         scheduledSerialLabel.setContentHuggingPriority(UILayoutPriority(rawValue: 1), for: .horizontal)
         
         scheduledDateLabel.textColor = .neutralDark
-        scheduledDateLabel.font = ExelonFont.regular.of(textStyle: .callout)
+        scheduledDateLabel.font = SystemFont.regular.of(textStyle: .callout)
         scheduledDateLabel.numberOfLines = 0
         scheduledDateLabel.setContentHuggingPriority(UILayoutPriority(rawValue: 1), for: .horizontal)
         
@@ -117,16 +117,16 @@ class OverrideViewController: UIViewController {
         let activeTitleLabel = UILabel()
         activeTitleLabel.text = NSLocalizedString("Active Overrides", comment: "")
         activeTitleLabel.textColor = .neutralDark
-        activeTitleLabel.font = ExelonFont.regular.of(textStyle: .headline)
+        activeTitleLabel.font = SystemFont.regular.of(textStyle: .headline)
         topLabel.numberOfLines = 0
         
         activeSerialLabel.textColor = .neutralDark
-        activeSerialLabel.font = ExelonFont.regular.of(textStyle: .callout)
+        activeSerialLabel.font = SystemFont.regular.of(textStyle: .callout)
         activeSerialLabel.numberOfLines = 0
         activeSerialLabel.setContentHuggingPriority(UILayoutPriority(rawValue: 1), for: .horizontal)
         
         activeDateLabel.textColor = .neutralDark
-        activeDateLabel.font = ExelonFont.regular.of(textStyle: .callout)
+        activeDateLabel.font = SystemFont.regular.of(textStyle: .callout)
         activeDateLabel.numberOfLines = 0
         activeDateLabel.setContentHuggingPriority(UILayoutPriority(rawValue: 1), for: .horizontal)
         

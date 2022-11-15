@@ -94,10 +94,10 @@ class AppointmentDetailViewController: UIViewController, IndicatorInfoProvider {
         appointmentDescriptionTextView.textContainerInset = UIEdgeInsets(top: 14, left: 0, bottom: 8, right: 0) // top/bottom padding
         appointmentDescriptionTextView.textColor = .blackText
         appointmentDescriptionTextView.tintColor = .primaryBlue // Color of the phone numbers
-        appointmentDescriptionTextView.font = ExelonFont.regular.of(textStyle: .headline)
+        appointmentDescriptionTextView.font = SystemFont.regular.of(textStyle: .headline)
         
         addToCalendarLabel.textColor = .primaryBlue
-        addToCalendarLabel.font = ExelonFont.semibold.of(textStyle: .subheadline)
+        addToCalendarLabel.font = SystemFont.semibold.of(textStyle: .subheadline)
         addToCalendarButton.accessibilityLabel = addToCalendarLabel.text
         
         confirmedLabel.textColor = .neutralDark
@@ -106,17 +106,17 @@ class AppointmentDetailViewController: UIViewController, IndicatorInfoProvider {
         completeLabel.textColor = .neutralDark
         
         wantNotificationsLabel.textColor = .blackText
-        wantNotificationsLabel.font = ExelonFont.regular.of(textStyle: .headline)
+        wantNotificationsLabel.font = SystemFont.regular.of(textStyle: .headline)
         
         adjustAlertPreferencesButton.setTitleColor(.primaryBlue, for: .normal)
-        adjustAlertPreferencesButton.titleLabel?.font = ExelonFont.bold.of(textStyle: .headline)
+        adjustAlertPreferencesButton.titleLabel?.font = SystemFont.bold.of(textStyle: .headline)
     }
     
     func bindViewModel() {
         progressView.isHidden = !viewModel.showProgressView
         
-        let regular = ExelonFont.regular.of(textStyle: .headline)
-        let bold = ExelonFont.bold.of(textStyle: .headline)
+        let regular = SystemFont.regular.of(textStyle: .headline)
+        let bold = SystemFont.bold.of(textStyle: .headline)
         
         confirmedLabel.font = viewModel.status == .scheduled ? bold : regular
         onOurWayLabel.font = viewModel.status == .onOurWay || viewModel.status == .enRoute ? bold : regular

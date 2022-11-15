@@ -98,9 +98,9 @@ class SegmentedControl: UIControl {
                 let label = labels[index]
                 label.text = item
                 if index == selectedIndex.value {
-                    label.font = ExelonFont.semibold.of(textStyle: .subheadline)
+                    label.font = SystemFont.semibold.of(textStyle: .subheadline)
                 } else {
-                    label.font = ExelonFont.regular.of(textStyle: .subheadline)
+                    label.font = SystemFont.regular.of(textStyle: .subheadline)
                 }
                 label.frame.size = CGSize(width: view.bounds.size.width, height: view.bounds.size.height)
                 label.center = CGPoint(x: view.bounds.size.width / 2, y: view.bounds.size.height / 2)

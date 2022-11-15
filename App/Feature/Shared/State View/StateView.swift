@@ -46,6 +46,6 @@ class StateView: UIView {
     
     private func styleViews() {
         stateLabel.textColor = .middleGray
-        stateLabel.font = ExelonFont.regular.of(textStyle: .headline)
+        stateLabel.font = SystemFont.regular.of(textStyle: .headline)
     }
 }

@@ -37,7 +37,7 @@ class WalletTableViewCell: UITableViewCell {
         innerContentView.layer.masksToBounds = true
         
         accountNumberLabel.textColor = .neutralDark
-        accountNumberLabel.font = ExelonFont.regular.of(textStyle: .subheadline)
+        accountNumberLabel.font = SystemFont.regular.of(textStyle: .subheadline)
 
         nicknameLabel.textColor = .neutralDark
         nicknameLabel.font = SystemFont.regular.of(textStyle: .caption1)

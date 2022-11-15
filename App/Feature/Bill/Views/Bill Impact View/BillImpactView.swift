@@ -30,7 +30,7 @@ class BillImpactView: UIView {
     @IBOutlet weak var reasonsWhyLabel: UILabel! {
         didSet {
             reasonsWhyLabel.textColor = .neutralDark
-            reasonsWhyLabel.font = ExelonFont.regular.of(textStyle: .headline)
+            reasonsWhyLabel.font = SystemFont.regular.of(textStyle: .headline)
         }
     }
     @IBOutlet weak var tooltipButton: UIButton!
@@ -43,7 +43,7 @@ class BillImpactView: UIView {
     @IBOutlet weak var differenceDescriptionLabel: UILabel! {
         didSet {
             differenceDescriptionLabel.textColor = .neutralDark
-            differenceDescriptionLabel.font = ExelonFont.regular.of(textStyle: .callout)
+            differenceDescriptionLabel.font = SystemFont.regular.of(textStyle: .callout)
         }
     }
     

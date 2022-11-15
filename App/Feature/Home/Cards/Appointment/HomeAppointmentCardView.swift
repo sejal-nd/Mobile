@@ -43,10 +43,10 @@ class HomeAppointmentCardView: UIView {
         
         topTextView.textColor = .blackText
         topTextView.tintColor = .primaryBlue // Color of the phone numbers
-        topTextView.font = ExelonFont.regular.of(textStyle: .headline)
+        topTextView.font = SystemFont.regular.of(textStyle: .headline)
         
         apologyLabel.textColor = .neutralDark
-        apologyLabel.font = ExelonFont.regular.of(textStyle: .footnote)
+        apologyLabel.font = SystemFont.regular.of(textStyle: .footnote)
         
         bottomButtonLabel.textColor = .primaryBlue
         bottomButtonLabel.font = SystemFont.semibold.of(textStyle: .headline)

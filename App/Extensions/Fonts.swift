@@ -11,20 +11,20 @@ import UIKit
 //MARK: - Fonts
 
 enum ExelonFont: String, FontType {
-    case bold = "OpenSans-Bold"
-    case boldItalic = "OpenSans-BoldItalic"
-    case extraBold = "OpenSans-Extrabold"
-    case extraBoldItalic = "OpenSans-ExtraboldItalic"
-    case italic = "OpenSans-Italic"
-    case light = "OpenSans-Light"
-    case lightItalic = "OpenSansLight-Italic"
-    case regular = "OpenSans"
-    case semibold = "OpenSans-Semibold"
-    case semiboldItalic = "OpenSans-SemiboldItalic"
+    case light = "diodrum_light"
+    case lightItalic = "diodrum_lightitalic"
+    case regular = "diodrum_regular"
+    case italic = "diodrum_regularitalic"
+    case medium = "diodrum_medium"
+    case mediumItalic = "diodrum_mediumitalic"
+    case semibold = "diodrum_semibold"
+    case semiboldItalic = "diodrum_semibolditalic"
+    case bold = "diodrum_bold"
+    case boldItalic = "diodrum_bolditalic"
 }
 
 enum SystemFont: FontType {
-    case ultraLight, thin, light, regular, medium, semibold, bold, heavy, black, italic
+    case ultraLight, thin, light, regular, medium, semibold, bold, boldItalic, heavy, black, italic
     
     private var weight: UIFont.Weight {
         switch self {
@@ -35,6 +35,7 @@ enum SystemFont: FontType {
         case .medium: return .medium
         case .semibold: return .semibold
         case .bold: return .bold
+        case .boldItalic: return .bold
         case .heavy: return .heavy
         case .black: return .black
         case .italic: return .regular
@@ -45,6 +46,8 @@ enum SystemFont: FontType {
         switch self {
         case .italic:
             return .italicSystemFont(ofSize: size)
+        case .boldItalic:
+            return .systemFont(ofSize: size, weight: weight).italic()
         default:
             return .systemFont(ofSize: size, weight: weight)
         }
@@ -95,8 +98,7 @@ extension FontType where Self: RawRepresentable, Self.RawValue == String {
 
 //MARK: - Size Table
 
-extension UIFont {
-    
+extension UIFont {    
     static func preferredSize(forTextStyle textStyle: UIFont.TextStyle) -> CGFloat {
         let category = UIApplication.shared.preferredContentSizeCategory
         

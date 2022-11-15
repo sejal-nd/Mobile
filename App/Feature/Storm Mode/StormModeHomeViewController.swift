@@ -42,13 +42,13 @@ class StormModeHomeViewController: AccountPickerViewController {
     
     @IBOutlet private weak var headerViewTitleLabel: UILabel! {
         didSet {
-            headerViewTitleLabel.font = ExelonFont.semibold.of(textStyle: .headline)
+            headerViewTitleLabel.font = SystemFont.semibold.of(textStyle: .headline)
         }
     }
     
     @IBOutlet private weak var headerViewDescriptionLabel: UILabel! {
         didSet {
-            headerViewDescriptionLabel.font = ExelonFont.regular.of(textStyle: .footnote)
+            headerViewDescriptionLabel.font = SystemFont.regular.of(textStyle: .footnote)
         }
     }
     
@@ -59,7 +59,7 @@ class StormModeHomeViewController: AccountPickerViewController {
     @IBOutlet weak var contactGroup1StackView: UIStackView!
     @IBOutlet weak var group1Label: UILabel! {
         didSet {
-            group1Label.font = ExelonFont.regular.of(textStyle: .subheadline)
+            group1Label.font = SystemFont.regular.of(textStyle: .subheadline)
         }
     }
     @IBOutlet weak var phone1Button: ButtonControl! {
@@ -84,7 +84,7 @@ class StormModeHomeViewController: AccountPickerViewController {
     }
     @IBOutlet weak var group2Label: UILabel! {
         didSet {
-            group2Label.font = ExelonFont.regular.of(textStyle: .subheadline)
+            group2Label.font = SystemFont.regular.of(textStyle: .subheadline)
         }
     }
     @IBOutlet weak var phone3Button: ButtonControl! {
@@ -105,13 +105,13 @@ class StormModeHomeViewController: AccountPickerViewController {
     @IBOutlet private weak var gasOnlyView: UIView!
     @IBOutlet private weak var gasOnlyTitleLabel: UILabel! {
         didSet {
-            gasOnlyTitleLabel.font = ExelonFont.semibold.of(textStyle: .title1)
+            gasOnlyTitleLabel.font = ExelonFont.medium.of(textStyle: .title1)
         }
     }
     
     @IBOutlet private weak var gasOnlyDetailLabel: UILabel! {
         didSet {
-            gasOnlyDetailLabel.font = ExelonFont.regular.of(textStyle: .subheadline)
+            gasOnlyDetailLabel.font = SystemFont.regular.of(textStyle: .subheadline)
             gasOnlyDetailLabel.text = viewModel.gasOnlyMessage
         }
     }
@@ -138,13 +138,13 @@ class StormModeHomeViewController: AccountPickerViewController {
     @IBOutlet private weak var finalPayView: UIView!
     @IBOutlet private weak var finalPayTitleLabel: UILabel! {
         didSet {
-            finalPayTitleLabel.font = ExelonFont.semibold.of(textStyle: .title1)
+            finalPayTitleLabel.font = ExelonFont.medium.of(textStyle: .title1)
         }
     }
     
     @IBOutlet private weak var finalPayTextView: ZeroInsetDataDetectorTextView! {
         didSet {
-            finalPayTextView.font = ExelonFont.regular.of(textStyle: .subheadline)
+            finalPayTextView.font = SystemFont.regular.of(textStyle: .subheadline)
             finalPayTextView.tintColor = .white
         }
     }
@@ -160,7 +160,7 @@ class StormModeHomeViewController: AccountPickerViewController {
     
     @IBOutlet private weak var finalPayButtonLabel: UILabel! {
         didSet {
-            finalPayButtonLabel.font = ExelonFont.semibold.of(textStyle: .title1)
+            finalPayButtonLabel.font = ExelonFont.medium.of(textStyle: .title1)
         }
     }
     
@@ -227,7 +227,7 @@ class StormModeHomeViewController: AccountPickerViewController {
     
     @IBOutlet private weak var moreOptionsLabel: UILabel! {
         didSet {
-            moreOptionsLabel.font = ExelonFont.semibold.of(textStyle: .title1)
+            moreOptionsLabel.font = ExelonFont.medium.of(textStyle: .title1)
         }
     }
     

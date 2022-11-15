@@ -87,7 +87,7 @@ class AlertsViewController: AccountPickerViewController {
         preferencesButton.accessibilityLabel = preferencesButtonLabel.text
         
         alertsEmptyStateLabel.textColor = .middleGray
-        alertsEmptyStateLabel.font = ExelonFont.regular.of(textStyle: .headline)
+        alertsEmptyStateLabel.font = SystemFont.regular.of(textStyle: .headline)
         alertsEmptyStateLabel.text = NSLocalizedString("You haven't received any\nnotifications yet.", comment: "")
     }
     

@@ -24,7 +24,7 @@ class HomeUpdateView: UIView {
     @IBOutlet private weak var titleLabel: UILabel! {
         didSet {
             titleLabel.textColor = .blackText
-            titleLabel.font = ExelonFont.semibold.of(textStyle: .callout)
+            titleLabel.font = SystemFont.semibold.of(textStyle: .callout)
         }
     }
     

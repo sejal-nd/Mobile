@@ -41,7 +41,7 @@ class UpdatesDetailViewController: UIViewController {
         titleLabel.font = ExelonFont.semibold.of(textStyle: .title3)
         
         detailsTextView.textColor = .neutralDark
-        detailsTextView.font = ExelonFont.regular.of(textStyle: .body)
+        detailsTextView.font = SystemFont.regular.of(textStyle: .body)
     }
     
     private func setValues() {

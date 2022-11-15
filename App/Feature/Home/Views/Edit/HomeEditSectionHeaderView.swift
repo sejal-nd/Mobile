@@ -19,11 +19,11 @@ class HomeEditSectionHeaderView: UICollectionReusableView {
         super.awakeFromNib()
         
         instructionsLabel.textColor = .neutralDark
-        instructionsLabel.font = ExelonFont.regular.of(textStyle: .headline)
+        instructionsLabel.font = SystemFont.regular.of(textStyle: .headline)
         instructionsLabel.text = HomeEditSectionHeaderView.instructionsLabelString
         
         label.textColor = .neutralDark
-        label.font = ExelonFont.regular.of(textStyle: .headline)
+        label.font = SystemFont.regular.of(textStyle: .headline)
     }
     
 }

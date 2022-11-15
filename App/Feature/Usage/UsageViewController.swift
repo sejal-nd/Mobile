@@ -43,14 +43,14 @@ class UsageViewController: AccountPickerViewController {
     @IBOutlet private weak var compareBillTitlelabel: UILabel! {
         didSet {
             compareBillTitlelabel.textColor = .neutralDark
-            compareBillTitlelabel.font = ExelonFont.regular.of(textStyle: .headline)
+            compareBillTitlelabel.font = SystemFont.regular.of(textStyle: .headline)
         }
     }
     
     @IBOutlet private weak var myUsageToolsLabel: UILabel! {
         didSet {
             myUsageToolsLabel.textColor = .neutralDark
-            myUsageToolsLabel.font = ExelonFont.regular.of(textStyle: .headline)
+            myUsageToolsLabel.font = SystemFont.regular.of(textStyle: .headline)
         }
     }
     
@@ -123,7 +123,7 @@ class UsageViewController: AccountPickerViewController {
     @IBOutlet private weak var graphDetailDateLabel: UILabel! {
         didSet {
             graphDetailDateLabel.textColor = .neutralDark
-            graphDetailDateLabel.font = ExelonFont.semibold.of(textStyle: .footnote)
+            graphDetailDateLabel.font = SystemFont.semibold.of(textStyle: .footnote)
         }
     }
     
@@ -302,7 +302,7 @@ class UsageViewController: AccountPickerViewController {
         noDataLabel.font = SystemFont.semibold.of(textStyle: .caption2)
         
         noDataDateLabel.textColor = .neutralDark
-        noDataDateLabel.font = ExelonFont.semibold.of(textStyle: .footnote)
+        noDataDateLabel.font = SystemFont.semibold.of(textStyle: .footnote)
         
         previousDollarLabel.textColor = .neutralDark
         previousDateLabel.textColor = .neutralDark

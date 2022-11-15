@@ -875,12 +875,12 @@ class UsageViewModel {
     private(set) lazy var projectedLabelFont: Driver<UIFont> = barGraphSelection.asDriver()
         .map { $0 == .projected }
         .distinctUntilChanged()
-        .map { $0 ? ExelonFont.bold.of(textStyle: .footnote) : ExelonFont.semibold.of(textStyle: .footnote) }
+        .map { $0 ? SystemFont.bold.of(textStyle: .footnote) : SystemFont.semibold.of(textStyle: .footnote) }
     
     private(set) lazy var projectionNotAvailableLabelFont: Driver<UIFont> = barGraphSelection.asDriver()
         .map { $0 == .projectionNotAvailable }
         .distinctUntilChanged()
-        .map { $0 ? ExelonFont.bold.of(textStyle: .footnote) : ExelonFont.semibold.of(textStyle: .footnote) }
+        .map { $0 ? SystemFont.bold.of(textStyle: .footnote) : SystemFont.semibold.of(textStyle: .footnote) }
     
     // MARK: - Usage Tools
     

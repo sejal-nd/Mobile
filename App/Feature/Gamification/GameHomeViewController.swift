@@ -88,7 +88,7 @@ class GameHomeViewController: AccountPickerViewController {
         segmentedControlContainer.isHidden = true
         
         dailyInsightLabel.textColor = .neutralDark
-        dailyInsightLabel.font = ExelonFont.regular.of(textStyle: .headline)
+        dailyInsightLabel.font = SystemFont.regular.of(textStyle: .headline)
         dailyInsightLabel.text = NSLocalizedString("Daily Insight by LUMI℠", comment: "")
         
         streakLabel.textColor = .primaryBlue

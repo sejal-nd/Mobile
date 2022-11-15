@@ -94,7 +94,7 @@ class MaintenanceModeView: UIView {
     func styleViews() {
         reloadLabel.font = SystemFont.bold.of(textStyle: .headline)
         scheduledMaintenanceLabel.font = ExelonFont.semibold.of(textStyle: .title3)
-        detailLabel.font = ExelonFont.regular.of(textStyle: .subheadline)
+        detailLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         infoTextView.tintColor = .primaryBlue
     }
     
@@ -169,14 +169,14 @@ class MaintenanceModeView: UIView {
                 , leaveAreaString, phone1, phone2)
         }
         
-        let emergencyAttrString = NSMutableAttributedString(string: localizedString, attributes: [.font: ExelonFont.regular.of(textStyle: .footnote)])
-        emergencyAttrString.addAttribute(.font, value: ExelonFont.bold.of(textStyle: .footnote), range: (localizedString as NSString).range(of: leaveAreaString))
+        let emergencyAttrString = NSMutableAttributedString(string: localizedString, attributes: [.font: SystemFont.regular.of(textStyle: .footnote)])
+        emergencyAttrString.addAttribute(.font, value: SystemFont.bold.of(textStyle: .footnote), range: (localizedString as NSString).range(of: leaveAreaString))
         
         for phone in phoneNumbers {
             localizedString.ranges(of: phone, options: .regularExpression)
                 .map { NSRange($0, in: localizedString) }
                 .forEach {
-                    emergencyAttrString.addAttribute(.font, value: ExelonFont.bold.of(textStyle: .footnote), range: $0)
+                    emergencyAttrString.addAttribute(.font, value: SystemFont.bold.of(textStyle: .footnote), range: $0)
             }
         }
         

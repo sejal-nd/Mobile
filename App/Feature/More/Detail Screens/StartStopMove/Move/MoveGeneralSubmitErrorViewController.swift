@@ -31,7 +31,7 @@ class MoveGeneralSubmitErrorViewController: UIViewController {
     
     private func fontStyle() {
         
-        statusLabel.font = SystemFont.semibold.of(textStyle: .title3)
+        statusLabel.font = ExelonFont.semibold.of(textStyle: .title3)
         helplineDescriptionTextView.font = SystemFont.regular.of(textStyle: .subheadline)
     }
     

@@ -474,7 +474,7 @@ class HomeBillCardViewModel {
         switch billState {
         case .billPaid, .billPaidIntermediate:
             let text = NSLocalizedString("Thank you for your payment", comment: "")
-            return NSAttributedString(string: text, attributes: [.font: ExelonFont.regular.of(textStyle: .headline),
+            return NSAttributedString(string: text, attributes: [.font: SystemFont.regular.of(textStyle: .headline),
                                                                  .foregroundColor: textColor])
         case .paymentPending:
             let text: String
@@ -484,7 +484,7 @@ class HomeBillCardViewModel {
             case .ace, .comEd, .delmarva, .peco, .pepco:
                 text = NSLocalizedString("You have pending payments", comment: "")
             }
-            return NSAttributedString(string: text, attributes: [.font: ExelonFont.italic.of(textStyle: .headline),
+            return NSAttributedString(string: text, attributes: [.font: SystemFont.italic.of(textStyle: .headline),
                                                                  .foregroundColor: textColor])
         default:
             return nil
@@ -1063,16 +1063,16 @@ class HomeBillCardViewModel {
         .map {
             switch $0 {
             case .billReady, .billReadyAutoPay, .billPaid, .billPaidIntermediate, .credit:
-                return ExelonFont.regular.of(textStyle: .headline)
+                return SystemFont.regular.of(textStyle: .headline)
             case .paymentPending:
-                return ExelonFont.italic.of(textStyle: .headline)
+                return SystemFont.italic.of(textStyle: .headline)
             default:
-                return ExelonFont.regular.of(textStyle: .headline)
+                return SystemFont.regular.of(textStyle: .headline)
             }
         }
     
     private(set) lazy var amountFont: Driver<UIFont> = billState
-        .map { $0 == .paymentPending ? ExelonFont.semibold.of(textStyle: .largeTitle): ExelonFont.semibold.of(textStyle: .largeTitle) }
+        .map { $0 == .paymentPending ? ExelonFont.medium.of(textStyle: .largeTitle): ExelonFont.medium.of(textStyle: .largeTitle) }
     
     private(set) lazy var amountColor: Driver<UIColor> = billState
         .map { Configuration.shared.opco.isPHI ? ($0 == .credit ? .successGreenText : .neutralDark) : .neutralDark }

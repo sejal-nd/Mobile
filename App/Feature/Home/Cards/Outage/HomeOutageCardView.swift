@@ -86,13 +86,13 @@ class HomeOutageCardView: UIView {
         
         // Content View
         titleLabel.textColor = .neutralDark
-        titleLabel.font = ExelonFont.regular.of(textStyle: .headline)
+        titleLabel.font = SystemFont.regular.of(textStyle: .headline)
         
         powerStatusTitleLabel.textColor = .neutralDark
         powerStatusTitleLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         
         powerStatusLabel.textColor = .neutralDark
-        powerStatusLabel.font = ExelonFont.semibold.of(textStyle: .title1)
+        powerStatusLabel.font = ExelonFont.medium.of(textStyle: .title1)
         
         restorationStatusLabel.textColor = .neutralDark
         restorationStatusLabel.font = SystemFont.regular.of(textStyle: .caption1)
@@ -107,7 +107,7 @@ class HomeOutageCardView: UIView {
         
         // Custom Error View
         customErrorTitleLabel.textColor = .neutralDark
-        customErrorTitleLabel.font = ExelonFont.regular.of(textStyle: .headline)
+        customErrorTitleLabel.font = SystemFont.regular.of(textStyle: .headline)
 
         gasOnlyLabel.textColor = .neutralDark
         gasOnlyLabel.font = ExelonFont.semibold.of(textStyle: .title3)
@@ -123,7 +123,7 @@ class HomeOutageCardView: UIView {
         
         // Generic Error View
         errorTitleLabel.textColor = .neutralDark
-        errorTitleLabel.font = ExelonFont.regular.of(textStyle: .headline)
+        errorTitleLabel.font = SystemFont.regular.of(textStyle: .headline)
         
         errorLabel.textColor = .neutralDark
         errorLabel.font = SystemFont.regular.of(textStyle: .caption1)

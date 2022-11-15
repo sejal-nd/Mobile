@@ -177,10 +177,10 @@ class HomeBillCardView: UIView {
         headerLabel.font = SystemFont.regular.of(textStyle: .caption1)
         
         paymentDescriptionLabel.textColor = .neutralDark
-        paymentDescriptionLabel.font = ExelonFont.regular.of(textStyle: .headline)
+        paymentDescriptionLabel.font = SystemFont.regular.of(textStyle: .headline)
         
         viewModel.amountColor.drive(amountLabel.rx.textColor).disposed(by: bag)
-        amountLabel.font = ExelonFont.semibold.of(textStyle: .largeTitle)
+        amountLabel.font = ExelonFont.medium.of(textStyle: .largeTitle)
         
         dueDateLabel.font = SystemFont.regular.of(textStyle: .caption1)
         dueDateTooltip.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")

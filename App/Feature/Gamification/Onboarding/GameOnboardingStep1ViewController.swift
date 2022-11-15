@@ -52,15 +52,15 @@ class GameOnboardingStep1ViewController: UIViewController {
         button3.layer.cornerRadius = 10
         
         button1Label.textColor = .neutralDark
-        button1Label.font = ExelonFont.regular.of(textStyle: .headline)
+        button1Label.font = SystemFont.regular.of(textStyle: .headline)
         button1Label.text = NSLocalizedString("I've got it under control.", comment: "")
         
         button2Label.textColor = .neutralDark
-        button2Label.font = ExelonFont.regular.of(textStyle: .headline)
+        button2Label.font = SystemFont.regular.of(textStyle: .headline)
         button2Label.text = NSLocalizedString("I think I can do better.", comment: "")
         
         button3Label.textColor = .neutralDark
-        button3Label.font = ExelonFont.regular.of(textStyle: .headline)
+        button3Label.font = SystemFont.regular.of(textStyle: .headline)
         button3Label.text = NSLocalizedString("I really need help.", comment: "")
         
         selectedButton.asDriver().isNil().not().drive(continueButton.rx.isEnabled).disposed(by: bag)
@@ -85,7 +85,7 @@ class GameOnboardingStep1ViewController: UIViewController {
             label = button3Label
         }
         label.textColor = .primaryBlue
-        label.font = ExelonFont.semibold.of(textStyle: .headline)
+        label.font = SystemFont.semibold.of(textStyle: .headline)
         
         selectedButton.accept(sender)
     }
@@ -103,11 +103,11 @@ class GameOnboardingStep1ViewController: UIViewController {
         button3.layer.borderWidth = 1
         button3.layer.borderColor = UIColor.accentGray.cgColor
         button1Label.textColor = .neutralDark
-        button1Label.font = ExelonFont.regular.of(textStyle: .headline)
+        button1Label.font = SystemFont.regular.of(textStyle: .headline)
         button2Label.textColor = .neutralDark
-        button2Label.font = ExelonFont.regular.of(textStyle: .headline)
+        button2Label.font = SystemFont.regular.of(textStyle: .headline)
         button3Label.textColor = .neutralDark
-        button3Label.font = ExelonFont.regular.of(textStyle: .headline)
+        button3Label.font = SystemFont.regular.of(textStyle: .headline)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

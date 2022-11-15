@@ -81,7 +81,7 @@ class RadioSelectControl: ButtonControl {
         titleLabel.numberOfLines = 2
 		
 		detailButton.setTitleColor(.primaryBlue, for: .normal)
-		detailButton.titleLabel?.font = ExelonFont.semibold.of(textStyle: .headline)
+		detailButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
         detailButton.titleLabel?.numberOfLines = 2
 		detailButton.setContentCompressionResistancePriority(.required, for: .horizontal)
 		detailButton.setContentCompressionResistancePriority(.required, for: .vertical)

@@ -2425,6 +2425,16 @@
 		C3BCD53D2567238C006F405E /* HomeGameCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeGameCardView.swift; sourceTree = "<group>"; };
 		C3BCD5432567239D006F405E /* HomeGameCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeGameCardView.xib; sourceTree = "<group>"; };
 		C3C5696B256C33F60039C8A4 /* foresee_configuration.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = foresee_configuration.json; sourceTree = "<group>"; };
+		C3D253FB2923FE240024FF59 /* diodrum_light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = diodrum_light.ttf; sourceTree = "<group>"; };
+		C3D253FC2923FE240024FF59 /* diodrum_semibolditalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = diodrum_semibolditalic.ttf; sourceTree = "<group>"; };
+		C3D253FD2923FE250024FF59 /* diodrum_mediumitalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = diodrum_mediumitalic.ttf; sourceTree = "<group>"; };
+		C3D253FE2923FE250024FF59 /* diodrum_regularitalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = diodrum_regularitalic.ttf; sourceTree = "<group>"; };
+		C3D253FF2923FE260024FF59 /* diodrum_semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = diodrum_semibold.ttf; sourceTree = "<group>"; };
+		C3D254002923FE260024FF59 /* diodrum_medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = diodrum_medium.ttf; sourceTree = "<group>"; };
+		C3D254012923FE270024FF59 /* diodrum_bolditalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = diodrum_bolditalic.ttf; sourceTree = "<group>"; };
+		C3D254022923FE270024FF59 /* diodrum_bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = diodrum_bold.ttf; sourceTree = "<group>"; };
+		C3D254032923FE280024FF59 /* diodrum_lightitalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = diodrum_lightitalic.ttf; sourceTree = "<group>"; };
+		C3D254042923FE280024FF59 /* diodrum_regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = diodrum_regular.ttf; sourceTree = "<group>"; };
 		C3DE17DB291C2A0D0055275D /* HomeCardHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCardHeaderView.swift; sourceTree = "<group>"; };
 		C3DE17DD291C2E110055275D /* HomeCardHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeCardHeaderView.xib; sourceTree = "<group>"; };
 		C3DF2B9C24CB32D000A6D4EC /* BillService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillService.swift; sourceTree = "<group>"; };
@@ -5758,6 +5768,16 @@
 		E800431B1E65FF4D005CF531 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				C3D254022923FE270024FF59 /* diodrum_bold.ttf */,
+				C3D254012923FE270024FF59 /* diodrum_bolditalic.ttf */,
+				C3D253FB2923FE240024FF59 /* diodrum_light.ttf */,
+				C3D254032923FE280024FF59 /* diodrum_lightitalic.ttf */,
+				C3D254002923FE260024FF59 /* diodrum_medium.ttf */,
+				C3D253FD2923FE250024FF59 /* diodrum_mediumitalic.ttf */,
+				C3D254042923FE280024FF59 /* diodrum_regular.ttf */,
+				C3D253FE2923FE250024FF59 /* diodrum_regularitalic.ttf */,
+				C3D253FF2923FE260024FF59 /* diodrum_semibold.ttf */,
+				C3D253FC2923FE240024FF59 /* diodrum_semibolditalic.ttf */,
 				E800431C1E65FF70005CF531 /* OpenSans-Bold.ttf */,
 				E800431D1E65FF70005CF531 /* OpenSans-BoldItalic.ttf */,
 				E800431E1E65FF70005CF531 /* OpenSans-ExtraBold.ttf */,

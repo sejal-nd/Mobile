@@ -179,7 +179,7 @@ class HomeOutageCardViewModel {
             style.minimumLineHeight = 20
             attributeString.addAttribute(.paragraphStyle, value: style, range: NSMakeRange(0, text.count))
             attributeString.addAttribute(.foregroundColor, value: UIColor.neutralDark, range: NSMakeRange(0, text.count))
-            attributeString.addAttribute(.font, value: ExelonFont.regular.of(textStyle: .footnote), range: NSMakeRange(0, text.count))
+            attributeString.addAttribute(.font, value: SystemFont.regular.of(textStyle: .footnote), range: NSMakeRange(0, text.count))
             
             return attributeString
     }

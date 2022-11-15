@@ -22,7 +22,7 @@ class PeakRewardsProgramCard: UIView {
         titleLabel.numberOfLines = 0
         titleLabel.textColor = .neutralDark
         titleLabel.textAlignment = .center
-        titleLabel.font = ExelonFont.semibold.of(textStyle: .footnote)
+        titleLabel.font = SystemFont.semibold.of(textStyle: .footnote)
         
         let separator = UIView()
         separator.backgroundColor = .accentGray

@@ -174,7 +174,7 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
         paymentMethodFeeLabel.font = SystemFont.regular.of(textStyle: .caption1)
         
         selectPaymentAmountLabel.textColor = .neutralDark
-        selectPaymentAmountLabel.font = ExelonFont.regular.of(textStyle: .headline)
+        selectPaymentAmountLabel.font = SystemFont.regular.of(textStyle: .headline)
         
         paymentAmountTextField.placeholder = NSLocalizedString("Payment Amount*", comment: "")
         paymentAmountTextField.textField.text = viewModel.paymentAmount.value.currencyString
@@ -197,7 +197,7 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
         sameDayPaymentWarningLabel.text = NSLocalizedString("Same day payments cannot be edited or canceled after submission.", comment: "")
         
         addPaymentMethodLabel.textColor = .neutralDark
-        addPaymentMethodLabel.font = ExelonFont.regular.of(textStyle: .headline)
+        addPaymentMethodLabel.font = SystemFont.regular.of(textStyle: .headline)
         addPaymentMethodLabel.text = NSLocalizedString("Choose a payment method", comment: "")
 
         addBankAccountButton.fullyRoundCorners(diameter: 20, borderColor: .accentGray, borderWidth: 1)
@@ -221,7 +221,7 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
         cancelPaymentLabel.textColor = .primaryBlue
         
         footerLabel.textColor = .neutralDark
-        footerLabel.font = ExelonFont.regular.of(textStyle: .footnote)
+        footerLabel.font = SystemFont.regular.of(textStyle: .footnote)
         
         stickyPaymentFooterTotalPaymentLabel.textColor = .neutralDark
         stickyPaymentFooterTotalPaymentLabel.font = SystemFont.semibold.of(textStyle: .footnote)

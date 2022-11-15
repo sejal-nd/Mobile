@@ -666,7 +666,7 @@ class BillViewModel {
                         localizedString = String.localizedStringWithFormat("Your %@ charges are %@ more than your previous bill.", gasOrElectricString, difference.currencyString)
                     }
                     let attrString = NSMutableAttributedString(string: localizedString)
-                    attrString.addAttribute(.font, value: ExelonFont.semibold.of(textStyle: .callout), range: (localizedString as NSString).range(of: difference.currencyString))
+                    attrString.addAttribute(.font, value: SystemFont.semibold.of(textStyle: .callout), range: (localizedString as NSString).range(of: difference.currencyString))
                     return attrString
                 } else {
                     let localizedString: String
@@ -676,7 +676,7 @@ class BillViewModel {
                         localizedString = String.localizedStringWithFormat("Your %@ charges are %@ less than your previous bill.", gasOrElectricString, difference.currencyString)
                     }
                     let attrString = NSMutableAttributedString(string: localizedString)
-                    attrString.addAttribute(.font, value: ExelonFont.semibold.of(textStyle: .callout), range: (localizedString as NSString).range(of: difference.currencyString))
+                    attrString.addAttribute(.font, value: SystemFont.semibold.of(textStyle: .callout), range: (localizedString as NSString).range(of: difference.currencyString))
                     return attrString
                 }
             }

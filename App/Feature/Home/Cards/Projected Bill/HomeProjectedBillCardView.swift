@@ -67,10 +67,10 @@ class HomeProjectedBillCardView: UIView {
         clippingView.layer.cornerRadius = 10
         
         titleLabel.textColor = .neutralDark
-        titleLabel.font = ExelonFont.regular.of(textStyle: .headline)
+        titleLabel.font = SystemFont.regular.of(textStyle: .headline)
         
         emptyStateTitleLabel.textColor = .neutralDark
-        emptyStateTitleLabel.font = ExelonFont.regular.of(textStyle: .headline)
+        emptyStateTitleLabel.font = SystemFont.regular.of(textStyle: .headline)
         
         emptyStateDescriptionLabel.textColor = .neutralDark
         emptyStateDescriptionLabel.font = SystemFont.regular.of(textStyle: .subheadline)
@@ -78,7 +78,7 @@ class HomeProjectedBillCardView: UIView {
             .attributedString(textAlignment: .center, lineHeight: 26)
         
         errorTitleLabel.textColor = .neutralDark
-        errorTitleLabel.font = ExelonFont.regular.of(textStyle: .headline)
+        errorTitleLabel.font = SystemFont.regular.of(textStyle: .headline)
         
         errorDescriptionLabel.textColor = .neutralDark
         errorDescriptionLabel.font = SystemFont.regular.of(textStyle: .subheadline)
@@ -93,7 +93,7 @@ class HomeProjectedBillCardView: UIView {
         infoButton.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
         
         projectionLabel.textColor = .neutralDark
-        projectionLabel.font = ExelonFont.semiboldItalic.of(textStyle: .title1)
+        projectionLabel.font = ExelonFont.mediumItalic.of(textStyle: .title1)
         
         projectionSubLabel.textColor = .neutralDark
         projectionSubLabel.font = SystemFont.regular.of(textStyle: .caption1)

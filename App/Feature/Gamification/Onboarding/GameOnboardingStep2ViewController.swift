@@ -48,11 +48,11 @@ class GameOnboardingStep2ViewController: UIViewController {
         button2.layer.cornerRadius = 10
         
         button1Label.textColor = .neutralDark
-        button1Label.font = ExelonFont.regular.of(textStyle: .headline)
+        button1Label.font = SystemFont.regular.of(textStyle: .headline)
         button1Label.text = NSLocalizedString("I own my home.", comment: "")
         
         button2Label.textColor = .neutralDark
-        button2Label.font = ExelonFont.regular.of(textStyle: .headline)
+        button2Label.font = SystemFont.regular.of(textStyle: .headline)
         button2Label.text = NSLocalizedString("I rent my home.", comment: "")
 
         selectedButton.asDriver().isNil().not().drive(doneButton.rx.isEnabled).disposed(by: bag)
@@ -70,7 +70,7 @@ class GameOnboardingStep2ViewController: UIViewController {
         
         let label = sender === button1 ? button1Label : button2Label
         label?.textColor = .primaryBlue
-        label?.font = ExelonFont.semibold.of(textStyle: .headline)
+        label?.font = SystemFont.semibold.of(textStyle: .headline)
         
         selectedButton.accept(sender)
     }
@@ -127,9 +127,9 @@ class GameOnboardingStep2ViewController: UIViewController {
         button2.layer.borderWidth = 1
         button2.layer.borderColor = UIColor.accentGray.cgColor
         button1Label.textColor = .neutralDark
-        button1Label.font = ExelonFont.regular.of(textStyle: .headline)
+        button1Label.font = SystemFont.regular.of(textStyle: .headline)
         button2Label.textColor = .neutralDark
-        button2Label.font = ExelonFont.regular.of(textStyle: .headline)
+        button2Label.font = SystemFont.regular.of(textStyle: .headline)
     }
     
     

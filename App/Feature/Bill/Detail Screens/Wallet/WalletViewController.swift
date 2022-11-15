@@ -115,21 +115,21 @@ class WalletViewController: UIViewController {
     private func style() {
         // Empty state stuff
         choosePaymentMethodLabel.textColor = .neutralDark
-        choosePaymentMethodLabel.font = ExelonFont.regular.of(textStyle: .headline)
+        choosePaymentMethodLabel.font = SystemFont.regular.of(textStyle: .headline)
         choosePaymentMethodLabel.text = NSLocalizedString("Choose a payment method", comment: "")
         
         bankButton.layer.borderColor = UIColor.accentGray.cgColor
         bankButton.layer.borderWidth = 1
         bankButton.layer.cornerRadius = 10
         bankButtonLabel.textColor = .neutralDark
-        bankButtonLabel.font = ExelonFont.regular.of(textStyle: .subheadline)
+        bankButtonLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         bankButtonLabel.text = NSLocalizedString("Bank Account", comment: "")
         
         creditCardButton.layer.borderColor = UIColor.accentGray.cgColor
         creditCardButton.layer.borderWidth = 1
         creditCardButton.layer.cornerRadius = 10
         creditCardButtonLabel.textColor = .neutralDark
-        creditCardButtonLabel.font = ExelonFont.regular.of(textStyle: .subheadline)
+        creditCardButtonLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         creditCardButtonLabel.text = NSLocalizedString("Credit/Debit Card", comment: "")
         
         emptyStateFooter.textColor = .neutralDark
@@ -143,7 +143,7 @@ class WalletViewController: UIViewController {
         
         addPaymentAccountLabel.textColor = .neutralDark
         addPaymentAccountLabel.text = NSLocalizedString("Add Payment Method", comment: "")
-        addPaymentAccountLabel.font = ExelonFont.regular.of(textStyle: .subheadline)
+        addPaymentAccountLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         
         miniCreditCardButton.layer.borderColor = UIColor.accentGray.cgColor
         miniCreditCardButton.layer.borderWidth = 1

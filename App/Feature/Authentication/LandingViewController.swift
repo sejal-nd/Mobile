@@ -71,7 +71,7 @@ class LandingViewController: UIViewController {
             debugButton.isEnabled = false
         }
         
-        versionLabel.font = ExelonFont.regular.of(textStyle: .footnote)
+        versionLabel.font = SystemFont.regular.of(textStyle: .footnote)
         
         logoBackgroundView.alpha = 0
         videoView.alpha = 0

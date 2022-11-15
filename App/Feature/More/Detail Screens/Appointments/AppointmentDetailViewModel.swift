@@ -67,7 +67,7 @@ class AppointmentDetailViewModel {
     
     var appointmentDescriptionText: NSAttributedString {
         let standardAttributes: [NSAttributedString.Key: Any] =
-            [.font: ExelonFont.regular.of(textStyle: .headline),
+            [.font: SystemFont.regular.of(textStyle: .headline),
              .foregroundColor: UIColor.blackText]
         
         let statusType = appointment.statusType
@@ -86,7 +86,7 @@ class AppointmentDetailViewModel {
             let regularText = String.localizedStringWithFormat("Your appointment is in progress. %@", boldText)
             
             let attributedText = NSMutableAttributedString(string: regularText)
-            attributedText.addAttribute(.font, value: ExelonFont.regular.of(textStyle: .headline),
+            attributedText.addAttribute(.font, value: SystemFont.regular.of(textStyle: .headline),
                                         range: NSMakeRange(0, regularText.count))
             attributedText.addAttribute(.foregroundColor, value: UIColor.blackText,
                                         range: NSMakeRange(0, attributedText.string.count))
@@ -95,7 +95,7 @@ class AppointmentDetailViewModel {
             style.alignment = .center
             attributedText.addAttribute(.paragraphStyle, value: style,
                                         range: NSMakeRange(0, attributedText.string.count))
-            attributedText.addAttribute(.font, value: ExelonFont.bold.of(textStyle: .headline), range: (regularText as NSString).range(of: boldText))
+            attributedText.addAttribute(.font, value: SystemFont.bold.of(textStyle: .headline), range: (regularText as NSString).range(of: boldText))
             
             return attributedText
         case .complete:
@@ -111,7 +111,7 @@ class AppointmentDetailViewModel {
                 """
             , boldText)
             let attributedText = NSMutableAttributedString(attributedString: regularText.attributedString(textAlignment: .center, otherAttributes: standardAttributes))
-            attributedText.addAttribute(.font, value: ExelonFont.bold.of(textStyle: .headline), range: (regularText as NSString).range(of: boldText))
+            attributedText.addAttribute(.font, value: SystemFont.bold.of(textStyle: .headline), range: (regularText as NSString).range(of: boldText))
             return attributedText
         case .none:
             return NSLocalizedString("", comment: "")
@@ -157,11 +157,11 @@ class AppointmentDetailViewModel {
         }
         
         let attributedText = NSMutableAttributedString(string: regularText + boldText)
-        attributedText.addAttribute(.font, value: ExelonFont.regular.of(textStyle: .headline),
+        attributedText.addAttribute(.font, value: SystemFont.regular.of(textStyle: .headline),
                                     range: NSMakeRange(0, regularText.count))
-        attributedText.addAttribute(.font, value: ExelonFont.bold.of(textStyle: .headline),
+        attributedText.addAttribute(.font, value: SystemFont.bold.of(textStyle: .headline),
                                     range: NSMakeRange(regularText.count, boldText.count))
-        attributedText.addAttribute(.font, value: ExelonFont.bold.of(textStyle: .headline),
+        attributedText.addAttribute(.font, value: SystemFont.bold.of(textStyle: .headline),
                                     range: NSMakeRange(regularText.count, boldText.count))
         attributedText.addAttribute(.foregroundColor, value: UIColor.blackText,
                                     range: NSMakeRange(0, attributedText.string.count))

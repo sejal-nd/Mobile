@@ -20,10 +20,10 @@ final class HomePrepaidCardViewModel {
         let font: UIFont
         if isActive {
             text = NSLocalizedString("You are currently enrolled in BGE Prepaid Power", comment: "")
-            font = ExelonFont.semibold.of(textStyle: .headline)
+            font = SystemFont.semibold.of(textStyle: .headline)
         } else {
             text = NSLocalizedString("Take action to complete your Prepaid enrollment", comment: "")
-            font = ExelonFont.regular.of(textStyle: .headline)
+            font = SystemFont.regular.of(textStyle: .headline)
         }
         
         return NSAttributedString(string: text, attributes: [

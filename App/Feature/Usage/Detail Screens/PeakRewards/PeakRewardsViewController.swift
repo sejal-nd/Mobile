@@ -64,9 +64,9 @@ class PeakRewardsViewController: UIViewController {
     
     func styleViews() {
         cyclingStatusLabel.textColor = .neutralDark
-        cyclingStatusLabel.font = ExelonFont.regular.of(textStyle: .headline)
+        cyclingStatusLabel.font = SystemFont.regular.of(textStyle: .headline)
         adjustScaleLabel.textColor = .neutralDark
-        adjustScaleLabel.font = ExelonFont.regular.of(textStyle: .headline)
+        adjustScaleLabel.font = SystemFont.regular.of(textStyle: .headline)
         segmentedControl.items = [TemperatureScale.fahrenheit, TemperatureScale.celsius].map { $0.displayString }
         
         coolLegendLabel.textColor = .neutralDark

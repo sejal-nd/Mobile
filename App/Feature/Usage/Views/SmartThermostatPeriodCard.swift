@@ -36,7 +36,7 @@ class SmartThermostatPeriodCard: ButtonControl {
         backgroundColor = .white
         
         timeLabel.textColor = .neutralDark
-        timeLabel.font = SystemFont.regular.of(textStyle: .title3)
+        timeLabel.font = ExelonFont.regular.of(textStyle: .title3)
         
         periodNameLabel.textColor = .neutralDark
         periodNameLabel.font = SystemFont.regular.of(textStyle: .footnote)

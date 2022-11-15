@@ -62,7 +62,7 @@ class ForgotUsernameResultViewController: UIViewController {
         singleAccountView.layer.borderWidth = 1
         singleAccountView.layer.borderColor = UIColor.accentGray.cgColor
         usernameEmailLabel.textColor = .neutralDark
-        usernameEmailLabel.font = ExelonFont.semibold.of(textStyle: .footnote)
+        usernameEmailLabel.font = SystemFont.semibold.of(textStyle: .footnote)
         singleAccountValueLabel.textColor = .neutralDark
         
         let usernameEmailLabelText: String
@@ -73,7 +73,7 @@ class ForgotUsernameResultViewController: UIViewController {
         }
         
         usernameEmailLabel.text = usernameEmailLabelText
-        singleAccountValueLabel.font = ExelonFont.regular.of(textStyle: .headline)
+        singleAccountValueLabel.font = SystemFont.regular.of(textStyle: .headline)
         singleAccountValueLabel.text = viewModel.maskedUsernames.first?.email
         
         tableView.register(UINib(nibName: "RadioSelectionTableViewCell", bundle: nil), forCellReuseIdentifier: "ForgotUsernameCell")

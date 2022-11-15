@@ -49,18 +49,18 @@ class WhatIsBudgetBillingViewController: DismissableFormSheetViewController {
         
         descriptionLabel.textColor = .neutralDark
         
-        card1Bullet1Label.font = ExelonFont.regular.of(textStyle: .body)
-        card1Bullet2Label.font = ExelonFont.regular.of(textStyle: .body)
-        card1Bullet3Label.font = ExelonFont.regular.of(textStyle: .body)
-        card1Bullet4Label.font = ExelonFont.regular.of(textStyle: .body)
+        card1Bullet1Label.font = SystemFont.regular.of(textStyle: .body)
+        card1Bullet2Label.font = SystemFont.regular.of(textStyle: .body)
+        card1Bullet3Label.font = SystemFont.regular.of(textStyle: .body)
+        card1Bullet4Label.font = SystemFont.regular.of(textStyle: .body)
 
-        card2Bullet1Label.font = ExelonFont.regular.of(textStyle: .body)
-        card2Bullet2Label.font = ExelonFont.regular.of(textStyle: .body)
-        card2Bullet3Label.font = ExelonFont.regular.of(textStyle: .body)
-        card2Bullet4Label.font = ExelonFont.regular.of(textStyle: .body)
-        card2Bullet5Label.font = ExelonFont.regular.of(textStyle: .body)
+        card2Bullet1Label.font = SystemFont.regular.of(textStyle: .body)
+        card2Bullet2Label.font = SystemFont.regular.of(textStyle: .body)
+        card2Bullet3Label.font = SystemFont.regular.of(textStyle: .body)
+        card2Bullet4Label.font = SystemFont.regular.of(textStyle: .body)
+        card2Bullet5Label.font = SystemFont.regular.of(textStyle: .body)
         
-        descriptionLabel.font = ExelonFont.regular.of(textStyle: .body)
+        descriptionLabel.font = SystemFont.regular.of(textStyle: .body)
 
         switch Configuration.shared.opco {
         case .bge:

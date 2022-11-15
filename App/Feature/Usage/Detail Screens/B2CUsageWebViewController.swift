@@ -46,7 +46,7 @@ class B2CUsageWebViewController: UIViewController {
         webView.configuration.defaultWebpagePreferences.allowsContentJavaScript = true
         
         errorImage.tintColor = .attentionOrange
-        errorTitle.font = SystemFont.semibold.of(textStyle: .title3)
+        errorTitle.font = ExelonFont.semibold.of(textStyle: .title3)
         errorTitle.textColor = .neutralDark
         errorDescription.font = SystemFont.regular.of(textStyle: .footnote)
         errorDescription.textColor = .neutralDark

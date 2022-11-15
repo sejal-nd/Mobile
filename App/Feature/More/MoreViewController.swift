@@ -38,7 +38,7 @@ class MoreViewController: UIViewController {
                 versionLabel.text = nil
             }
             
-            versionLabel.font = ExelonFont.regular.of(textStyle: .footnote)
+            versionLabel.font = SystemFont.regular.of(textStyle: .footnote)
             versionLabel.textColor = .white
         }
     }

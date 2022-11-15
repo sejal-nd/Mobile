@@ -18,7 +18,7 @@ class ContactUsViewModel {
             let leaveAreaString = NSLocalizedString("leave the area immediately", comment: "")
             let localizedString = String(format: NSLocalizedString("If you see downed power lines or smell natural gas, %@ and then call BGE. Representatives are available 24 hours a day, 7 days a week.", comment: ""), leaveAreaString)
             emergencyAttrString = NSMutableAttributedString(string: localizedString)
-            emergencyAttrString.addAttribute(.font, value: ExelonFont.boldItalic.of(textStyle: .footnote), range: (localizedString as NSString).range(of: leaveAreaString))
+            emergencyAttrString.addAttribute(.font, value: SystemFont.boldItalic.of(textStyle: .footnote), range: (localizedString as NSString).range(of: leaveAreaString))
         case .peco:
             let leaveAreaString = NSLocalizedString("leave the area immediately", comment: "")
             let localizedString = String(format: NSLocalizedString(
@@ -31,29 +31,29 @@ class ContactUsViewModel {
                                             """
                                             , comment: ""), leaveAreaString)
             emergencyAttrString = NSMutableAttributedString(string: localizedString)
-            emergencyAttrString.addAttribute(.font, value: ExelonFont.boldItalic.of(textStyle: .footnote), range: (localizedString as NSString).range(of: leaveAreaString))
+            emergencyAttrString.addAttribute(.font, value: SystemFont.boldItalic.of(textStyle: .footnote), range: (localizedString as NSString).range(of: leaveAreaString))
         case .comEd:
             let leaveAreaString = NSLocalizedString("leave the area immediately", comment: "")
             let localizedString = String(format: NSLocalizedString("If you see downed power lines, %@ and then call ComEd. Representatives are available 24 hours a day, 7 days a week.", comment: ""), leaveAreaString)
             emergencyAttrString = NSMutableAttributedString(string: localizedString)
-            emergencyAttrString.addAttribute(.font, value: ExelonFont.boldItalic.of(textStyle: .footnote), range: (localizedString as NSString).range(of: leaveAreaString))
+            emergencyAttrString.addAttribute(.font, value: SystemFont.boldItalic.of(textStyle: .footnote), range: (localizedString as NSString).range(of: leaveAreaString))
         case .pepco:
             let leaveAreaString = NSLocalizedString("leave the area immediately", comment: "")
             let opcoTitle = opco.displayString
             let localizedString = String(format: NSLocalizedString("If you see downed power lines, %@ and call %@ at 1-877-737-2662", comment: ""), leaveAreaString, opcoTitle)
             emergencyAttrString = NSMutableAttributedString(string: localizedString)
-            emergencyAttrString.addAttribute(.font, value: ExelonFont.bold.of(textStyle: .footnote), range: (localizedString as NSString).range(of: leaveAreaString))
+            emergencyAttrString.addAttribute(.font, value: SystemFont.bold.of(textStyle: .footnote), range: (localizedString as NSString).range(of: leaveAreaString))
         case .delmarva:
             let leaveAreaString = NSLocalizedString("leave the area immediately", comment: "")
             let localizedString = String(format: NSLocalizedString("If you see downed power lines, %@ and call Delmarva at 1-800-898-8042", comment: ""), leaveAreaString)
             emergencyAttrString = NSMutableAttributedString(string: localizedString)
-            emergencyAttrString.addAttribute(.font, value: ExelonFont.bold.of(textStyle: .footnote), range: (localizedString as NSString).range(of: leaveAreaString))
+            emergencyAttrString.addAttribute(.font, value: SystemFont.bold.of(textStyle: .footnote), range: (localizedString as NSString).range(of: leaveAreaString))
         case .ace:
             let leaveAreaString = NSLocalizedString("leave the area immediately", comment: "")
             let opcoTitle = opco.displayString
             let localizedString = String(format: NSLocalizedString("If you see downed power lines, %@ and call %@ at 1-800-833-7476", comment: ""), leaveAreaString, opcoTitle)
             emergencyAttrString = NSMutableAttributedString(string: localizedString)
-            emergencyAttrString.addAttribute(.font, value: ExelonFont.bold.of(textStyle: .footnote), range: (localizedString as NSString).range(of: leaveAreaString))        }
+            emergencyAttrString.addAttribute(.font, value: SystemFont.bold.of(textStyle: .footnote), range: (localizedString as NSString).range(of: leaveAreaString))        }
         return emergencyAttrString
     }
     

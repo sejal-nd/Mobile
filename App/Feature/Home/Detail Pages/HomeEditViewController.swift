@@ -316,8 +316,8 @@ extension HomeEditViewController: UICollectionViewDelegateFlowLayout {
             let additionalCardsLabelHeight = (additionalCardsString as NSString).boundingRect(with: constraintRect, options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: [.font: ExelonFont.regular.of(textStyle: .title1)], context: nil).height
             return CGSize(width: width, height: additionalCardsLabelHeight + 30) // 30 top padding
         default:
-            let instructionsLabelHeight = (HomeEditSectionHeaderView.instructionsLabelString as NSString).boundingRect(with: constraintRect, options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: [.font: ExelonFont.regular.of(textStyle: .headline)], context: nil).height
-            let cardsInUseLabelHeight = (cardsInUseString as NSString).boundingRect(with: constraintRect, options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: [.font: ExelonFont.regular.of(textStyle: .headline)], context: nil).height
+            let instructionsLabelHeight = (HomeEditSectionHeaderView.instructionsLabelString as NSString).boundingRect(with: constraintRect, options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: [.font: SystemFont.regular.of(textStyle: .headline)], context: nil).height
+            let cardsInUseLabelHeight = (cardsInUseString as NSString).boundingRect(with: constraintRect, options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: [.font: SystemFont.regular.of(textStyle: .headline)], context: nil).height
             topSectionHeaderHeight = instructionsLabelHeight + cardsInUseLabelHeight + 46 // 16 top padding + 30 space between labels
             return CGSize(width: width, height: topSectionHeaderHeight)
         }

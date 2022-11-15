@@ -48,16 +48,16 @@ class TemplateCardView: UIView {
         layer.borderWidth = 1
         clippingView.layer.cornerRadius = 10
         titleLabel.textColor = .neutralDark
-        titleLabel.font = ExelonFont.regular.of(textStyle: .headline)
+        titleLabel.font = SystemFont.regular.of(textStyle: .headline)
         bodyLabel.textColor = .neutralDark
         bodyLabel.font = SystemFont.regular.of(textStyle: .footnote)
         callToActionButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
         
         errorTitleLabel.textColor = .neutralDark
-        errorTitleLabel.font = ExelonFont.regular.of(textStyle: .headline)
+        errorTitleLabel.font = SystemFont.regular.of(textStyle: .headline)
         
         errorLabel.textColor = .neutralDark
-        errorLabel.font = ExelonFont.regular.of(textStyle: .subheadline)
+        errorLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         errorLabel.textAlignment = .center
     }
     

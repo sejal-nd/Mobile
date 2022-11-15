@@ -110,13 +110,13 @@ class ContactUsViewController: UIViewController {
             bgeOnlyStackView.isHidden = true
         }
         
-        bgeGasNumberLabel.font = ExelonFont.regular.of(textStyle: .subheadline)
+        bgeGasNumberLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         bgeGasNumber1TextView.tintColor = .primaryBlue // Color of the phone numbers
         bgeGasNumber1TextView.linkTapDelegate = self
         bgeGasNumber2TextView.text = viewModel.bgeGasNumber2
         bgeGasNumber2TextView.tintColor = .primaryBlue // Color of the phone numbers
         bgeGasNumber2TextView.linkTapDelegate = self
-        bgePowerLineLabel.font = ExelonFont.regular.of(textStyle: .subheadline)
+        bgePowerLineLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         bgePowerLineNumber1TextView.text = viewModel.bgePowerLineNumber1
         bgePowerLineNumber1TextView.tintColor = .primaryBlue // Color of the phone numbers
         bgePowerLineNumber1TextView.linkTapDelegate = self
@@ -124,7 +124,7 @@ class ContactUsViewController: UIViewController {
         bgePowerLineNumber2TextView.tintColor = .primaryBlue // Color of the phone numbers
         bgePowerLineNumber2TextView.linkTapDelegate = self
 
-        emergencyDescriptionLabel.font = ExelonFont.regular.of(textStyle: .footnote)
+        emergencyDescriptionLabel.font = SystemFont.regular.of(textStyle: .footnote)
         emergencyDescriptionLabel.attributedText = viewModel.emergencyAttrString
     }
     
@@ -141,11 +141,11 @@ class ContactUsViewController: UIViewController {
             })
             .disposed(by: bag)
         
-        onlineDescriptionLabel.font = ExelonFont.regular.of(textStyle: .footnote)
+        onlineDescriptionLabel.font = SystemFont.regular.of(textStyle: .footnote)
     }
     
     func customerServiceSetup() {
-        firstLabel.font = ExelonFont.regular.of(textStyle: .subheadline)
+        firstLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         firstLabel.text = viewModel.label1
         contactServiceTimingsLabel.text = viewModel.contactServiceTimings
         firstNumberTextView.text = viewModel.phoneNumber2
@@ -154,7 +154,7 @@ class ContactUsViewController: UIViewController {
         
         if let label2 = viewModel.label2,
             let phoneNumber3 = viewModel.phoneNumber3 {
-            secondLabel.font = ExelonFont.regular.of(textStyle: .subheadline)
+            secondLabel.font = SystemFont.regular.of(textStyle: .subheadline)
             secondLabel.text = label2
             secondNumberTextView.text = phoneNumber3
             secondNumberTextView.tintColor = .primaryBlue // Color of the phone numbers
@@ -165,7 +165,7 @@ class ContactUsViewController: UIViewController {
         
         if let label3 = viewModel.label3,
             let phoneNumber4 = viewModel.phoneNumber4 {
-            thirdLabel.font = ExelonFont.regular.of(textStyle: .subheadline)
+            thirdLabel.font = SystemFont.regular.of(textStyle: .subheadline)
             thirdLabel.text = label3
             thirdNumberTextView.text = phoneNumber4
             thirdNumberTextView.tintColor = .primaryBlue // Color of the phone numbers

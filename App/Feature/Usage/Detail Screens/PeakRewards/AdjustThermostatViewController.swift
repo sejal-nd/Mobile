@@ -75,7 +75,7 @@ class AdjustThermostatViewController: UIViewController {
         permanentHoldStack.bottomAnchor.constraint(equalTo: permanentHoldContainer.bottomAnchor, constant: -20).isActive = true
         
         let modeLabel = UILabel()
-        modeLabel.font = ExelonFont.regular.of(textStyle: .headline)
+        modeLabel.font = SystemFont.regular.of(textStyle: .headline)
         modeLabel.textColor = .neutralDark
         modeLabel.textAlignment = .center
         modeLabel.text = NSLocalizedString("Mode", comment: "")
@@ -94,7 +94,7 @@ class AdjustThermostatViewController: UIViewController {
         modeStack.spacing = 10
         
         let fanLabel = UILabel()
-        fanLabel.font = ExelonFont.regular.of(textStyle: .headline)
+        fanLabel.font = SystemFont.regular.of(textStyle: .headline)
         fanLabel.textColor = .neutralDark
         fanLabel.textAlignment = .center
         fanLabel.text = NSLocalizedString("Fan", comment: "")

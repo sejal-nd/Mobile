@@ -86,11 +86,11 @@ class BudgetBillingViewController: UIViewController {
         paymentAmountView.layer.borderColor = UIColor.accentGray.cgColor
         paymentAmountView.layer.borderWidth = 1
 
-        yourPaymentWouldBeLabel.font = ExelonFont.semibold.of(textStyle: .footnote)
+        yourPaymentWouldBeLabel.font = SystemFont.semibold.of(textStyle: .footnote)
         yourPaymentWouldBeLabel.textColor = .neutralDark
         yourPaymentWouldBeLabel.text = NSLocalizedString("Your monthly payment would be", comment: "")
         paymentAmountLabel.textColor = .neutralDark
-        paymentAmountLabel.font = ExelonFont.semibold.of(textStyle: .title1)
+        paymentAmountLabel.font = ExelonFont.medium.of(textStyle: .title1)
         
         footerLabel.font = SystemFont.regular.of(textStyle: .footnote)
         footerLabel.textColor = .neutralDark

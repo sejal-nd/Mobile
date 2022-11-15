@@ -47,7 +47,7 @@ class UsageToolCardView: ButtonControl {
         
         // Label
         titleLabel.textColor = .neutralDark
-        titleLabel.font = ExelonFont.regular.of(textStyle: .subheadline)
+        titleLabel.font = SystemFont.regular.of(textStyle: .subheadline)
     }
 
 }

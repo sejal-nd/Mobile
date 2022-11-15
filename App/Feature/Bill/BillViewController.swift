@@ -269,8 +269,8 @@ class BillViewController: AccountPickerViewController {
         assistanceCTA.setTitleColor(.primaryBlue, for: .normal)
         assistanceCTA.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
         
-        prepaidHeaderLabel.font = ExelonFont.semibold.of(textStyle: .headline)
-        prepaidDetailLabel.font = ExelonFont.regular.of(textStyle: .subheadline)
+        prepaidHeaderLabel.font = SystemFont.semibold.of(textStyle: .headline)
+        prepaidDetailLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         prepaidBannerButton.layer.cornerRadius = 10
         if let header = prepaidHeaderLabel.text, let detail = prepaidDetailLabel.text {
             prepaidBannerButton.accessibilityLabel = "\(header). \(detail)"
@@ -287,9 +287,9 @@ class BillViewController: AccountPickerViewController {
         multipremiseHeaderLabel.text = NSLocalizedString("Multi-Premise Bill", comment: "")
         
         totalAmountLabel.textColor = .neutralDark
-        totalAmountLabel.font = ExelonFont.semibold.of(textStyle: .largeTitle)
+        totalAmountLabel.font = ExelonFont.medium.of(textStyle: .largeTitle)
 
-        totalAmountDescriptionLabel.font = ExelonFont.regular.of(textStyle: .footnote)
+        totalAmountDescriptionLabel.font = SystemFont.regular.of(textStyle: .footnote)
         
         pastDueCurrentBillBox.layer.borderColor = UIColor.accentGray.cgColor
         pastDueCurrentBillBox.layer.borderWidth = 1
@@ -298,7 +298,7 @@ class BillViewController: AccountPickerViewController {
         pastDueLabel.font = SystemFont.regular.of(textStyle: .footnote)
         pastDueDateLabel.font = SystemFont.regular.of(textStyle: .caption1)
         pastDueAmountLabel.textColor = .neutralDark
-        pastDueAmountLabel.font = ExelonFont.semibold.of(textStyle: .footnote)
+        pastDueAmountLabel.font = SystemFont.semibold.of(textStyle: .footnote)
         pastDueDividerLine.backgroundColor = .accentGray
         
         currentBillLabel.textColor = .neutralDark
@@ -306,7 +306,7 @@ class BillViewController: AccountPickerViewController {
         currentBillDateLabel.textColor = .middleGray
         currentBillDateLabel.font = SystemFont.regular.of(textStyle: .caption1)
         currentBillAmountLabel.textColor = .neutralDark
-        currentBillAmountLabel.font = ExelonFont.semibold.of(textStyle: .footnote)
+        currentBillAmountLabel.font = SystemFont.semibold.of(textStyle: .footnote)
         
         paymentReceivedView.layer.borderColor = UIColor.accentGray.cgColor
         paymentReceivedView.layer.borderWidth = 1
@@ -316,7 +316,7 @@ class BillViewController: AccountPickerViewController {
         paymentReceivedDateLabel.textColor = .middleGray
         paymentReceivedDateLabel.font = SystemFont.regular.of(textStyle: .caption1)
         paymentReceivedAmountLabel.textColor = .successGreenText
-        paymentReceivedAmountLabel.font = ExelonFont.semibold.of(textStyle: .footnote)
+        paymentReceivedAmountLabel.font = SystemFont.semibold.of(textStyle: .footnote)
         
         pendingPaymentRemainingBalanceBox.layer.borderColor = UIColor.accentGray.cgColor
         pendingPaymentRemainingBalanceBox.layer.borderWidth = 1
@@ -330,7 +330,7 @@ class BillViewController: AccountPickerViewController {
         remainingBalanceDueLabel.textColor = .neutralDark
         remainingBalanceDueLabel.font = SystemFont.regular.of(textStyle: .footnote)
         remainingBalanceDueAmountLabel.textColor = .neutralDark
-        remainingBalanceDueAmountLabel.font = ExelonFont.semibold.of(textStyle: .footnote)
+        remainingBalanceDueAmountLabel.font = SystemFont.semibold.of(textStyle: .footnote)
         
         catchUpDisclaimerLabel.textColor = .neutralDark
         catchUpDisclaimerLabel.font = SystemFont.regular.of(textStyle: .caption1)
@@ -340,10 +340,10 @@ class BillViewController: AccountPickerViewController {
         
         
         creditScenarioTitleLabel.textColor = .neutralDark
-        creditScenarioTitleLabel.font = ExelonFont.regular.of(textStyle: .callout)
+        creditScenarioTitleLabel.font = SystemFont.regular.of(textStyle: .callout)
         creditScenarioTitleLabel.text = NSLocalizedString("No Amount Due - Credit Balance", comment: "")
         creditScenarioAmountLabel.textColor = .neutralDark
-        creditScenarioAmountLabel.font = ExelonFont.semibold.of(textStyle: .largeTitle)
+        creditScenarioAmountLabel.font = ExelonFont.medium.of(textStyle: .largeTitle)
         
         billNotReadyLabel.textColor = .neutralDark
         billNotReadyLabel.font = SystemFont.regular.of(textStyle: .subheadline)
@@ -388,13 +388,13 @@ class BillViewController: AccountPickerViewController {
         usageBillImpactErrorLabel.text = NSLocalizedString("Bill trends could not be retrieved at this time. Please try again later.", comment: "")
         
         billingOptionsLabel.textColor = .neutralDark
-        billingOptionsLabel.font = ExelonFont.regular.of(textStyle: .headline)
+        billingOptionsLabel.font = SystemFont.regular.of(textStyle: .headline)
         
         paperlessButton.layer.cornerRadius = 10
         paperlessButton.layer.borderColor = UIColor.accentGray.cgColor
         paperlessButton.layer.borderWidth = 1
         paperlessTitleLabel.textColor = .neutralDark
-        paperlessTitleLabel.font = ExelonFont.regular.of(textStyle: .callout)
+        paperlessTitleLabel.font = SystemFont.regular.of(textStyle: .callout)
         paperlessDetailLabel.textColor = .neutralDark
         paperlessDetailLabel.font = SystemFont.regular.of(textStyle: .caption1)
         paperlessEnrolledView.layer.cornerRadius = 7.5
@@ -405,7 +405,7 @@ class BillViewController: AccountPickerViewController {
         autoPayButton.layer.borderColor = UIColor.accentGray.cgColor
         autoPayButton.layer.borderWidth = 1
         autoPayTitleLabel.textColor = .neutralDark
-        autoPayTitleLabel.font = ExelonFont.regular.of(textStyle: .callout)
+        autoPayTitleLabel.font = SystemFont.regular.of(textStyle: .callout)
         autoPayDetailLabel.textColor = .neutralDark
         autoPayDetailLabel.font = SystemFont.regular.of(textStyle: .caption1)
         autoPayEnrolledView.layer.cornerRadius = 7.5
@@ -416,7 +416,7 @@ class BillViewController: AccountPickerViewController {
         budgetButton.layer.borderColor = UIColor.accentGray.cgColor
         budgetButton.layer.borderWidth = 1
         budgetTitleLabel.textColor = .neutralDark
-        budgetTitleLabel.font = ExelonFont.regular.of(textStyle: .callout)
+        budgetTitleLabel.font = SystemFont.regular.of(textStyle: .callout)
         budgetDetailLabel.textColor = .neutralDark
         budgetDetailLabel.font = SystemFont.regular.of(textStyle: .caption1)
         budgetEnrolledView.layer.cornerRadius = 7.5

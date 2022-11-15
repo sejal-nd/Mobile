@@ -129,7 +129,7 @@ class HomeUsageCardView: UIView {
         
         // Unavailable
         unavailableTitleLabel.textColor = .neutralDark
-        unavailableTitleLabel.font = ExelonFont.regular.of(textStyle: .headline)
+        unavailableTitleLabel.font = SystemFont.regular.of(textStyle: .headline)
         
         unavailableDescriptionLabel.textColor = .neutralDark
         unavailableDescriptionLabel.font = SystemFont.regular.of(textStyle: .subheadline)
@@ -138,7 +138,7 @@ class HomeUsageCardView: UIView {
         
         // Commercial Usage
         commercialTitleLabel.textColor = .neutralDark
-        commercialTitleLabel.font = ExelonFont.regular.of(textStyle: .headline)
+        commercialTitleLabel.font = SystemFont.regular.of(textStyle: .headline)
         
         commercialDescriptionLabel.textColor = .neutralDark
         commercialDescriptionLabel.font = SystemFont.regular.of(textStyle: .subheadline)
@@ -152,7 +152,7 @@ class HomeUsageCardView: UIView {
         
         // Error State
         errorTitleLabel.textColor = .neutralDark
-        errorTitleLabel.font = ExelonFont.regular.of(textStyle: .headline)
+        errorTitleLabel.font = SystemFont.regular.of(textStyle: .headline)
         
         errorLabel.textColor = .neutralDark
         errorLabel.font = SystemFont.regular.of(textStyle: .subheadline)
@@ -175,7 +175,7 @@ class HomeUsageCardView: UIView {
         layer.cornerRadius = 10
         
         usageOverviewLabel.textColor = .neutralDark
-        usageOverviewLabel.font = ExelonFont.regular.of(textStyle: .headline)
+        usageOverviewLabel.font = SystemFont.regular.of(textStyle: .headline)
         
         billComparisonEmptyStateLabel.textColor = .neutralDark
         billComparisonEmptyStateLabel.font = SystemFont.regular.of(textStyle: .subheadline)
@@ -228,7 +228,7 @@ class HomeUsageCardView: UIView {
     
     private func styleSmartEnergyRewards() {
         smartEnergyRewardsTitleLabel.textColor = .neutralDark
-        smartEnergyRewardsTitleLabel.font = ExelonFont.regular.of(textStyle: .headline)
+        smartEnergyRewardsTitleLabel.font = SystemFont.regular.of(textStyle: .headline)
         smartEnergyRewardsTitleLabel.text = Configuration.shared.opco == .comEd ? NSLocalizedString("Peak Time Savings", comment: "") :
             NSLocalizedString("Smart Energy Rewards", comment: "")
         
@@ -243,7 +243,7 @@ class HomeUsageCardView: UIView {
         viewAllSavingsButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .caption1)
         
         smartEnergyRewardsEmptyStateTitleLabel.textColor = .neutralDark
-        smartEnergyRewardsEmptyStateTitleLabel.font = ExelonFont.regular.of(textStyle: .headline)
+        smartEnergyRewardsEmptyStateTitleLabel.font = SystemFont.regular.of(textStyle: .headline)
         smartEnergyRewardsEmptyStateTitleLabel.text = Configuration.shared.opco == .comEd ? NSLocalizedString("Peak Time Savings", comment: "") :
             NSLocalizedString("Smart Energy Rewards", comment: "")
         

@@ -30,7 +30,7 @@ class MovePendingDisconnectView: UIView {
     
     private func fontStyle() {
         
-        serviceStatusLabel.font = SystemFont.semibold.of(textStyle: .title3)
+        serviceStatusLabel.font = ExelonFont.semibold.of(textStyle: .title3)
         helplineDescriptionTextView.font = SystemFont.regular.of(textStyle: .subheadline)
     }
     

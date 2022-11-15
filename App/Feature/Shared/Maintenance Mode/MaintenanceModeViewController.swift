@@ -58,14 +58,14 @@ class MaintenanceModeViewController: UIViewController {
         headerLabel.textColor = .neutralDark
         headerLabel.font = SystemFont.bold.of(textStyle: .subheadline)
         
-        bodyTextView.font = ExelonFont.regular.of(textStyle: .footnote)
+        bodyTextView.font = SystemFont.regular.of(textStyle: .footnote)
         bodyTextView.attributedText = viewModel.labelBody
         bodyTextView.accessibilityLabel = viewModel.labelBody.string
         
         bodyTextView.textColor = .blackText
         bodyTextView.tintColor = .primaryBlue // Color of the phone numbers
         
-        footerTextView.font = ExelonFont.regular.of(textStyle: .footnote)
+        footerTextView.font = SystemFont.regular.of(textStyle: .footnote)
         footerTextView.tintColor = .primaryBlue
         footerTextView.attributedText = viewModel.footerLabelText
         

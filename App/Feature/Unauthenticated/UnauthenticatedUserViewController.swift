@@ -42,7 +42,7 @@ class UnauthenticatedUserViewController: UIViewController, UIGestureRecognizerDe
     
     @IBOutlet weak var headerViewTitleLabel: UILabel! {
         didSet {
-            headerViewTitleLabel.font = ExelonFont.semibold.of(textStyle: .callout)
+            headerViewTitleLabel.font = SystemFont.semibold.of(textStyle: .callout)
             headerViewTitleLabel.textColor = .primaryBlue
         }
     }
