@@ -27,7 +27,7 @@ enum ProjectURLSuffix: String, Identifiable, Equatable, CaseIterable {
     case maintenance = "Maintenance"
     
     case agentis = "Agentis"
-    case cis = "CIS"
+    case cis = "CIS Upgrade"
     case advancedNotifications = "Advance Notifications"
     
     case ace = "ACE NJ AMI"
