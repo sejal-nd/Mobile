@@ -130,14 +130,14 @@ class UsageViewController: AccountPickerViewController {
     @IBOutlet private weak var graphDetailTemperatureLabel: UILabel! {
         didSet {
             graphDetailTemperatureLabel.textColor = .neutralDark
-            graphDetailTemperatureLabel.font = ExelonFont.regular.of(textStyle: .caption1)
+            graphDetailTemperatureLabel.font = SystemFont.regular.of(textStyle: .caption1)
         }
     }
     
     @IBOutlet private weak var graphDetailDescriptionLabel: UILabel! {
         didSet {
             graphDetailDescriptionLabel.textColor = .neutralDark
-            graphDetailDescriptionLabel.font = ExelonFont.regular.of(textStyle: .caption1)
+            graphDetailDescriptionLabel.font = SystemFont.regular.of(textStyle: .caption1)
         }
     }
     

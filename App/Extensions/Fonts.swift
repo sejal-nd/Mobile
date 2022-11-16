@@ -24,7 +24,7 @@ enum ExelonFont: String, FontType {
 }
 
 enum SystemFont: FontType {
-    case ultraLight, thin, light, regular, medium, semibold, bold, boldItalic, heavy, black, italic
+    case ultraLight, thin, light, regular, medium, semibold, bold, heavy, black, italic
     
     private var weight: UIFont.Weight {
         switch self {
@@ -35,7 +35,6 @@ enum SystemFont: FontType {
         case .medium: return .medium
         case .semibold: return .semibold
         case .bold: return .bold
-        case .boldItalic: return .bold
         case .heavy: return .heavy
         case .black: return .black
         case .italic: return .regular
@@ -46,8 +45,6 @@ enum SystemFont: FontType {
         switch self {
         case .italic:
             return .italicSystemFont(ofSize: size)
-        case .boldItalic:
-            return .systemFont(ofSize: size, weight: weight).italic()
         default:
             return .systemFont(ofSize: size, weight: weight)
         }

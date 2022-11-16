@@ -55,7 +55,7 @@ class FloatLabelTextField: UIView {
         view.translatesAutoresizingMaskIntoConstraints = true
         addSubview(view)
         
-        errorLabel.textColor = .errorRed
+        errorLabel.textColor = .errorPrimary
         errorLabel.font = SystemFont.semibold.of(textStyle: .caption2)
         errorLabel.text = nil
         errorView.isHidden = true
@@ -124,9 +124,9 @@ class FloatLabelTextField: UIView {
             errorMessage = errMsg
             errorLabel.text = String(format: NSLocalizedString("Error: %@", comment: ""), errorMessage)
             
-            errorLabel.textColor = .errorRed
-            floatLabel.textColor = .errorRed
-            textFieldContainerView.layer.borderColor = UIColor.errorRed.cgColor
+            errorLabel.textColor = .errorPrimary
+            floatLabel.textColor = .errorPrimary
+            textFieldContainerView.layer.borderColor = UIColor.errorPrimary.cgColor
             
             errorView.isHidden = false
             checkAccessoryImageView.isHidden = true
@@ -158,7 +158,7 @@ class FloatLabelTextField: UIView {
             errorLabel.text = String(format: NSLocalizedString("%@", comment: ""), info)
             errorView.isHidden = false
         } else {
-            errorLabel.textColor = .errorRed
+            errorLabel.textColor = .errorPrimary
             errorLabel.text = nil
             errorView.isHidden = true
         }

@@ -271,10 +271,10 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
     }
     private func setAppartmentError(_ error: String?) {
         if let errMsg = error {
-            appartmentSelectionView.roundCorners(.allCorners, radius: 10.0, borderColor:.errorRed, borderWidth: 1.0)
+            appartmentSelectionView.roundCorners(.allCorners, radius: 10.0, borderColor:.errorPrimary, borderWidth: 1.0)
             appartmentSelectionView.backgroundColor = .white
             appartmentPlaceHolderLabel.text = errMsg
-            appartmentPlaceHolderLabel.textColor = .errorRed
+            appartmentPlaceHolderLabel.textColor = .errorPrimary
         } else {
             appartmentSelectionView.roundCorners(.allCorners, radius: 10.0, borderColor:.accentGray, borderWidth: 1.0)
             appartmentSelectionView.backgroundColor = .white

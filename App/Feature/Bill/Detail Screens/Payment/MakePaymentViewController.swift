@@ -184,7 +184,7 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
             self?.accessibilityErrorLabel()
         }).disposed(by: disposeBag)
         
-        paymentDateErrorLabel.textColor = .errorRed
+        paymentDateErrorLabel.textColor = .errorPrimary
         paymentDateErrorLabel.font = SystemFont.regular.of(textStyle: .footnote)
         paymentDateErrorLabel.text = NSLocalizedString("Error: Invalid payment date.", comment: "")
         
@@ -679,7 +679,7 @@ extension MakePaymentViewController: CalendarViewDelegate {
         viewModel.paymentDate.accept(opCoTimeDate.isInToday(calendar: .opCo) ? .now : opCoTimeDate)
         if Configuration.shared.opco.isPHI {
             viewModel.selectedDate.accept(date)
-            paymentDateErrorLabel.textColor = .errorRed
+            paymentDateErrorLabel.textColor = .errorPrimary
             paymentDateErrorLabel.font = SystemFont.regular.of(textStyle: .footnote)
             paymentDateErrorLabel.text = NSLocalizedString("The selected date is past your bill's due date and could result in a late payment.", comment: "")
         }

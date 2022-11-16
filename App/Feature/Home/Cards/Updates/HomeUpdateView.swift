@@ -31,7 +31,7 @@ class HomeUpdateView: UIView {
     @IBOutlet private weak var descriptionLabel: UILabel! {
         didSet {
             descriptionLabel.textColor = .middleGray
-            descriptionLabel.font = ExelonFont.regular.of(textStyle: .caption1)
+            descriptionLabel.font = SystemFont.regular.of(textStyle: .caption1)
         }
     }
     

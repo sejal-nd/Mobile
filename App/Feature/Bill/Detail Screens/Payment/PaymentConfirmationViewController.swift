@@ -73,7 +73,7 @@ class PaymentConfirmationViewController: UIViewController {
         confirmationNumberValueLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         
         convenienceFeeLabel.textColor = .neutralDark
-        convenienceFeeLabel.font = ExelonFont.regular.of(textStyle: .caption1)
+        convenienceFeeLabel.font = SystemFont.regular.of(textStyle: .caption1)
         
         autoPayLabel.textColor = .neutralDark
         autoPayLabel.font = SystemFont.regular.of(textStyle: .caption1)

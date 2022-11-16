@@ -976,11 +976,11 @@ class HomeBillCardViewModel {
     private(set) lazy var dueDateText: Driver<NSAttributedString?> = Driver.combineLatest(accountDetailDriver, billState)
     { accountDetail, billState in
         let grayAttributes: [NSAttributedString.Key: Any] =
-        [.foregroundColor: StormModeStatus.shared.isOn ? UIColor.white : UIColor.neutralDark,
-         .font: SystemFont.regular.of(textStyle: .caption1)]
+        [.foregroundColor: StormModeStatus.shared.isOn ? UIColor.white : UIColor.neutralDarker,
+         .font: SystemFont.regular.of(textStyle: .footnote)]
         let redAttributes: [NSAttributedString.Key: Any] =
-        [.foregroundColor: StormModeStatus.shared.isOn ? UIColor.white : UIColor.errorRed,
-         .font: SystemFont.semibold.of(textStyle: .caption1)]
+        [.foregroundColor: StormModeStatus.shared.isOn ? UIColor.white : UIColor.errorPrimary,
+         .font: SystemFont.semibold.of(textStyle: .footnote)]
         
         switch billState {
         case .pastDue, .finaled, .restoreService, .avoidShutoff, .eligibleForCutoff, .catchUp:
@@ -1183,7 +1183,7 @@ class HomeBillCardViewModel {
         if billingInfo.pastDueAmount > 0 {
             if billingInfo.pastDueAmount == billingInfo.netDueAmount {
                 string = String.localizedStringWithFormat("You have %@ due immediately", dueAmount.currencyString)
-                attributes[.foregroundColor] = UIColor.errorRed
+                attributes[.foregroundColor] = UIColor.errorPrimary
                 attributes[.font] = SystemFont.semibold.of(size: 17)
             } else {
                 string = String.localizedStringWithFormat("You have %@ due by %@", dueAmount.currencyString, billingInfo.dueByDate?.fullMonthDayAndYearString ?? "--")

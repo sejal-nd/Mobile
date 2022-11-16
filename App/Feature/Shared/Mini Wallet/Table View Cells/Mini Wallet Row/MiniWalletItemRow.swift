@@ -69,10 +69,10 @@ class MiniWalletItemRow: UITableViewCell {
         selectedBackgroundView = backgroundView
         
         // Expired
-        expiredLabel.textColor = .errorRed
+        expiredLabel.textColor = .errorPrimary
         expiredLabel.font = SystemFont.regular.of(textStyle: .caption2)
         
-        expiredView.layer.borderColor = UIColor.errorRed.cgColor
+        expiredView.layer.borderColor = UIColor.errorPrimary.cgColor
         expiredView.layer.borderWidth = 1
     }
     

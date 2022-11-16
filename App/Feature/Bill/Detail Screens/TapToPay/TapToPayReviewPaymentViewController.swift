@@ -210,7 +210,7 @@ class TapToPayReviewPaymentViewController: UIViewController {
         sameDayPaymentWarningLabel.font = SystemFont.regular.of(size: 12)
         sameDayPaymentWarningLabel.text = NSLocalizedString("Same-day payments cannot be edited or canceled after submission.", comment: "")
         
-        creditCardDateRangeError.textColor = .errorRed
+        creditCardDateRangeError.textColor = .errorPrimary
         creditCardDateRangeError.font = SystemFont.semibold.of(size: 12)
         creditCardDateRangeError.text = NSLocalizedString("Error: Credit card payments cannot be scheduled more than 90 days in advance.", comment: "")
         
@@ -220,7 +220,7 @@ class TapToPayReviewPaymentViewController: UIViewController {
         errorLabel.accessibilityLabel = errorLabel.text
         
         // Overpaying
-        overPayingAmountLabel.textColor = .errorRed
+        overPayingAmountLabel.textColor = .errorPrimary
         overPayingAmountLabel.font = SystemFont.semibold.of(size: 12)
         overPayingAmountLabel.text = NSLocalizedString("Overpaying: $0.00", comment: "")
         overPayingAmountLabel.isAccessibilityElement = true
@@ -234,14 +234,14 @@ class TapToPayReviewPaymentViewController: UIViewController {
         overPayingLabel.font = SystemFont.regular.of(size: 15)
         overPayingLabel.text = NSLocalizedString("Yes, I acknowledge I am scheduling a payment for more than is currently due on my account.", comment: "")
         
-        latePaymentErrorLabel.textColor = .errorRed
+        latePaymentErrorLabel.textColor = .errorPrimary
         latePaymentErrorLabel.font = SystemFont.regular.of(size: 12)
         latePaymentErrorLabel.numberOfLines = .zero
         latePaymentErrorLabel.text = "The Selected date is past your bill's due date and could result in a late payment"
         latePaymentErrorLabel.isAccessibilityElement = true
         latePaymentErrorLabel.accessibilityLabel = latePaymentErrorLabel.text
         
-        paymentErrorLabel.textColor = .errorRed
+        paymentErrorLabel.textColor = .errorPrimary
         paymentErrorLabel.font = SystemFont.semibold.of(size: 12)
         
         paymentsAssociatedTextLabel.textColor = .neutralDark

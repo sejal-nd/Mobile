@@ -70,9 +70,9 @@ class PeakRewardsViewController: UIViewController {
         segmentedControl.items = [TemperatureScale.fahrenheit, TemperatureScale.celsius].map { $0.displayString }
         
         coolLegendLabel.textColor = .neutralDark
-        coolLegendLabel.font = ExelonFont.regular.of(textStyle: .caption1)
+        coolLegendLabel.font = SystemFont.regular.of(textStyle: .caption1)
         heatLegendLabel.textColor = .neutralDark
-        heatLegendLabel.font = ExelonFont.regular.of(textStyle: .caption1)
+        heatLegendLabel.font = SystemFont.regular.of(textStyle: .caption1)
     }
     
     func bindViews() {

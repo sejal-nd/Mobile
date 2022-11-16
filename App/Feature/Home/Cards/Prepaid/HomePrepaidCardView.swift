@@ -37,7 +37,7 @@ final class HomePrepaidCardView: UIView {
         headerLabel.font = SystemFont.regular.of(textStyle: .callout)
         
         detailLabel.textColor = .neutralDark
-        detailLabel.font = ExelonFont.regular.of(textStyle: .caption1)
+        detailLabel.font = SystemFont.regular.of(textStyle: .caption1)
         
         callToActionButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
     }

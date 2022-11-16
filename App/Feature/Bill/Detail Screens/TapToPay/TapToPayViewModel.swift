@@ -393,7 +393,7 @@ class TapToPayViewModel {
             if billingInfo.pastDueAmount > 0 {
                 if billingInfo.pastDueAmount == billingInfo.netDueAmount {
                     string = String.localizedStringWithFormat("You have %@ due immediately", dueAmount.currencyString)
-                    attributes[.foregroundColor] = UIColor.errorRed
+                    attributes[.foregroundColor] = UIColor.errorPrimary
                     attributes[.font] = SystemFont.semibold.of(size: 17)
                 } else {
                     string = String.localizedStringWithFormat("You have %@ due by %@", dueAmount.currencyString, billingInfo.dueByDate?.fullMonthDayAndYearString ?? "--")

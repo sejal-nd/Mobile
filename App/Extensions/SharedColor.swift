@@ -168,10 +168,6 @@ extension UIColor {
         return UIColor(red: 0/255, green: 89/255, blue: 164/255, alpha: 1)
     }
     
-    @nonobjc static var errorRed: UIColor {
-        return UIColor(red: 113/255, green: 0/255, blue: 28/255, alpha: 1)
-    }
-    
     @nonobjc static var attentionOrange: UIColor {
         return UIColor(red: 254/255, green: 114/255, blue: 18/255, alpha: 1)
     }

@@ -424,14 +424,14 @@ class BillViewModel {
     
     private(set) lazy var totalAmountDescriptionText: Driver<NSAttributedString> = currentAccountDetail.map {
         let billingInfo = $0.billingInfo
-        var attributes: [NSAttributedString.Key: Any] = [.font: SystemFont.regular.of(textStyle: .caption1),
+        var attributes: [NSAttributedString.Key: Any] = [.font: SystemFont.regular.of(textStyle: .footnote),
                                                          .foregroundColor: UIColor.neutralDark]
         let string: String
         if billingInfo.pastDueAmount > 0 {
             if billingInfo.pastDueAmount == billingInfo.netDueAmount {
                 string = "Total Amount Due Immediately".localized()
-                attributes[.foregroundColor] = UIColor.errorRed
-                attributes[.font] = SystemFont.semibold.of(textStyle: .caption1)
+                attributes[.foregroundColor] = UIColor.errorPrimary
+                attributes[.font] = SystemFont.semibold.of(textStyle: .footnote)
             } else {
                 string = NSLocalizedString("Total Amount Due", comment: "")
             }
@@ -479,7 +479,7 @@ class BillViewModel {
                                                                        .font: SystemFont.regular.of(textStyle: .caption1)])
             } else {
                 let string = "Due Immediately".localized()
-                return NSAttributedString(string: string, attributes: [.foregroundColor: UIColor.errorRed,
+                return NSAttributedString(string: string, attributes: [.foregroundColor: UIColor.errorPrimary,
                                                                        .font: SystemFont.semibold.of(textStyle: .caption1)])
             }
     }

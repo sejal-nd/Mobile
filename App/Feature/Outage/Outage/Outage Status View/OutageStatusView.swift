@@ -117,9 +117,9 @@ class OutageStatusView: UIView {
         descriptionLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         
         detailDescriptionLabel.textColor = .neutralDark
-        detailDescriptionLabel.font = ExelonFont.regular.of(textStyle: .caption1)
+        detailDescriptionLabel.font = SystemFont.regular.of(textStyle: .caption1)
         detailLabel.textColor = .neutralDark
-        detailLabel.font = ExelonFont.semibold.of(textStyle: .caption1)
+        detailLabel.font = SystemFont.semibold.of(textStyle: .caption1)
         statusHeightConstraint.constant = 125
         statusWidthConstraint.constant = 125
 

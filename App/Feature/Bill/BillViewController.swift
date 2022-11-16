@@ -322,9 +322,9 @@ class BillViewController: AccountPickerViewController {
         pendingPaymentRemainingBalanceBox.layer.borderWidth = 1
         
         pendingPaymentLabel.textColor = .neutralDark
-        pendingPaymentLabel.font = SystemFont.italic.of(textStyle: .footnote)
+        pendingPaymentLabel.font = SystemFont.regular.of(textStyle: .footnote)
         pendingPaymentAmountLabel.textColor = .middleGray
-        pendingPaymentAmountLabel.font = ExelonFont.semiboldItalic.of(textStyle: .footnote)
+        pendingPaymentAmountLabel.font = SystemFont.semibold.of(textStyle: .footnote)
         pendingPaymentDividerLine.backgroundColor = .accentGray
         
         remainingBalanceDueLabel.textColor = .neutralDark
@@ -365,11 +365,11 @@ class BillViewController: AccountPickerViewController {
                 
         billBreakdownButton.backgroundColorOnPress = .softGray
         billBreakdownLabel.textColor = .neutralDark
-        billBreakdownLabel.font = SystemFont.medium.of(textStyle: .callout)
+        billBreakdownLabel.font = SystemFont.regular.of(textStyle: .callout)
         
         activityButton.backgroundColorOnPress = .softGray
         activityButtonLabel.textColor = .neutralDark
-        activityButtonLabel.font = SystemFont.medium.of(textStyle: .callout)
+        activityButtonLabel.font = SystemFont.regular.of(textStyle: .callout)
         
         walletButton.backgroundColorOnPress = .softGray
         walletButtonLabel.textColor = .neutralDark
@@ -658,10 +658,10 @@ class BillViewController: AccountPickerViewController {
         viewModel.makePaymentStatusTextTapRouting.drive(onNext: { [weak self] route in
             if route == .nowhere {
                 self?.makeAPaymentStatusLabel.textColor = .neutralDark
-                self?.makeAPaymentStatusLabel.font = ExelonFont.italic.of(textStyle: .caption1)
+                self?.makeAPaymentStatusLabel.font = SystemFont.italic.of(textStyle: .caption1)
             } else {
                 self?.makeAPaymentStatusLabel.textColor = .primaryBlue
-                self?.makeAPaymentStatusLabel.font = ExelonFont.semibold.of(textStyle: .caption1)
+                self?.makeAPaymentStatusLabel.font = SystemFont.semibold.of(textStyle: .caption1)
             }
         }).disposed(by: bag)
 

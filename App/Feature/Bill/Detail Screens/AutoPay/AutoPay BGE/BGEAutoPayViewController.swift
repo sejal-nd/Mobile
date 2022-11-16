@@ -151,7 +151,7 @@ class BGEAutoPayViewController: UIViewController {
     private func styleViews() {
         addCustomBackButton()
         selectBankAccountLabel.textColor = .neutralDark
-        selectBankAccountLabel.font = ExelonFont.semibold.of(textStyle: .caption2)
+        selectBankAccountLabel.font = SystemFont.semibold.of(textStyle: .caption2)
         selectBankAccountLabel.text = NSLocalizedString("Bank Account", comment: "")
         
         bankAccountButton.fullyRoundCorners(diameter: 20, borderColor: .accentGray, borderWidth: 1)
@@ -183,7 +183,7 @@ class BGEAutoPayViewController: UIViewController {
         bottomLabel.font = SystemFont.regular.of(textStyle: .footnote)
         
         settingsTitleLabel.textColor = .neutralDark
-        settingsTitleLabel.font = ExelonFont.semibold.of(textStyle: .caption2)
+        settingsTitleLabel.font = SystemFont.semibold.of(textStyle: .caption2)
         
         settingsLabel.textColor = .neutralDark
         settingsLabel.font = SystemFont.regular.of(textStyle: .subheadline)
