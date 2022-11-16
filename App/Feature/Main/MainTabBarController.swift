@@ -14,8 +14,8 @@ class MainTabBarController: UITabBarController {
     
     let disposeBag = DisposeBag()
     
-    let normalTitleFont = SystemFont.regular.of(textStyle: .caption2)
-    let selectedTitleFont = SystemFont.bold.of(textStyle: .caption2)
+    let normalTitleFont = UIFont.caption2
+    let selectedTitleFont = UIFont.caption2Semibold
     
     let normalTitleColor = UIColor.neutralDark
     let selectedTitleColor = UIColor.primaryColor

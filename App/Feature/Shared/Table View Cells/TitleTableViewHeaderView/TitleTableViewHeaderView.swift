@@ -18,7 +18,7 @@ class TitleTableViewHeaderView: UITableViewHeaderFooterView {
     @IBOutlet weak var titleLabel: UILabel! {
         didSet {
             titleLabel.textColor = .white
-            titleLabel.font = SystemFont.semibold.of(textStyle: .headline)
+            titleLabel.font = .headlineSemibold
         }
     }
     @IBOutlet weak var contentViewWidthConstraint: NSLayoutConstraint!

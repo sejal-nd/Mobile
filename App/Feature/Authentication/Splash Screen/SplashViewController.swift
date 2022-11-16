@@ -52,7 +52,7 @@ class SplashViewController: UIViewController{
 
         view.backgroundColor = .primaryColor
         
-        loadingLabel.font = ExelonFont.semibold.of(size: 18)
+        loadingLabel.font = .headlineSemibold
         loadingLabel.text = NSLocalizedString("We’re Working on Loading the App…", comment: "")
         
         errorViewBackground.addShadow(color: .black, opacity: 0.15, offset: .zero, radius: 4)
@@ -61,7 +61,7 @@ class SplashViewController: UIViewController{
         errorTitleLabel.textColor = .neutralDark
         errorTitleLabel.text = viewModel.errorTitleText
         
-        errorTextView.tintColor = .primaryBlue // For the phone numbers
+        errorTextView.tintColor = .actionBrand // For the phone numbers
         errorTextView.attributedText = viewModel.errorLabelText
         addEnquiryFooterSection()
         
@@ -187,7 +187,7 @@ class SplashViewController: UIViewController{
         enquiryTextView.trailingAnchor.constraint(equalTo: errorView.trailingAnchor, constant: -20).isActive = true
         enquiryTextView.bottomAnchor.constraint(equalTo: errorView.bottomAnchor, constant: -30).isActive = true
         enquiryTextView.heightAnchor.constraint(greaterThanOrEqualToConstant: 40.0).isActive = true
-        enquiryTextView.tintColor = .primaryBlue // For the phone numbers
+        enquiryTextView.tintColor = .actionBrand // For the phone numbers
         enquiryTextView.attributedText = viewModel.enquiryFooterText
         enquiryTextView.isScrollEnabled = false
     }

@@ -51,11 +51,11 @@ class StopConfirmationScreenViewController: UIViewController {
     
     private func fontStyling() {
         
-        confirmationStateMessageLabel.font = ExelonFont.semibold.of(textStyle: .title3)
-        stopServiceDateStaticLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        stopServiceAddressStaticLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        finalBillStaticLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        accountNumberStaticLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        confirmationStateMessageLabel.font = .title3
+        stopServiceDateStaticLabel.font = .footnote
+        stopServiceAddressStaticLabel.font = .footnote
+        finalBillStaticLabel.font = .footnote
+        accountNumberStaticLabel.font = .footnote
         accountNumberLabel.font = SystemFont.semibold.of(size: 15.0)
     }
     

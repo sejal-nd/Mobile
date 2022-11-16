@@ -40,10 +40,10 @@ class ForgotUsernameSecurityQuestionViewController: KeyboardAvoidingStickyFooter
         
         instructionLabel.textColor = .neutralDark
         instructionLabel.text = NSLocalizedString("Please answer the security question.", comment: "")
-        instructionLabel.font = SystemFont.regular.of(textStyle: .headline)
+        instructionLabel.font = .headline
         
         questionLabel.textColor = .neutralDark
-        questionLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        questionLabel.font = .subheadline
         questionLabel.text = viewModel.getSecurityQuestion()
         
         answerTextField.placeholder = NSLocalizedString("Your Answer*", comment: "")

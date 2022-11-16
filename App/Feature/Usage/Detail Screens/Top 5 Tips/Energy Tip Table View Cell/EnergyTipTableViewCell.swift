@@ -19,10 +19,10 @@ class EnergyTipTableViewCell: UITableViewCell {
         selectionStyle = .none
         
         titleLabel.textColor = .neutralDark
-        titleLabel.font = ExelonFont.semibold.of(textStyle: .title3)
+        titleLabel.font = .title3
         
         bodyLabel.textColor = .neutralDark
-        bodyLabel.font = SystemFont.regular.of(textStyle: .body)
+        bodyLabel.font = .body
     }
     
     func configure(with energyTip: EnergyTip, index: Int) {

@@ -50,15 +50,15 @@ class GameEnrollmentViewController: UIViewController {
         popupView.layer.cornerRadius = 10
         popupView.layer.masksToBounds = true
         
-        closeButton.tintColor = .primaryBlue
+        closeButton.tintColor = .actionBrand
         closeButton.addTarget(self, action: #selector(dismiss(_:)), for: .touchUpInside)
         
         titleLabel.textColor = .neutralDark
-        titleLabel.font = SystemFont.regular.of(textStyle: .headline)
+        titleLabel.font = .headline
         titleLabel.text = NSLocalizedString("Try this out!", comment: "")
         
         detailLabel.textColor = .neutralDark
-        detailLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        detailLabel.font = .footnote
         
         var buttonTitle: String
         if taskType == .eBill {
@@ -72,7 +72,7 @@ class GameEnrollmentViewController: UIViewController {
         ctaButton.accessibilityLabel = buttonTitle
         
         notInterestedButton.setTitleColor(.primaryBlue, for: .normal)
-        notInterestedButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
+        notInterestedButton.titleLabel?.font = .headlineSemibold
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismiss(_:)))
         tap.delegate = self

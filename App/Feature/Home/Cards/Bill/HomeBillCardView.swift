@@ -140,30 +140,30 @@ class HomeBillCardView: UIView {
     
     private func styleViews() {
         assistanceViewSeparator.backgroundColor = UIColor.accentGray
-        titleAssistanceProgram.font = SystemFont.bold.of(textStyle: .caption1)
+        titleAssistanceProgram.font = .caption1Semibold
         titleAssistanceProgram.textColor = .neutralDark
         if assistanceCTA.titleLabel?.text == "Reinstate Payment Arrangement" {
-            self.titleAssistanceProgram.font = SystemFont.regular.of(textStyle: .caption1)
+            self.titleAssistanceProgram.font = .caption1
             
         } else {
 
-        descriptionAssistanceProgram.font = SystemFont.regular.of(textStyle: .caption1)
+        descriptionAssistanceProgram.font = .caption1
         }
         descriptionAssistanceProgram.textColor = .neutralDark
         assistanceCTA.setTitleColor(.primaryBlue, for: .normal)
-        assistanceCTA.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
+        assistanceCTA.titleLabel?.font = .headlineSemibold
         
         enrolmentStatusLabel.textColor = .neutralDark
-        enrolmentStatusLabel.font = SystemFont.regular.of(textStyle: .caption1)
+        enrolmentStatusLabel.font = .caption1
         
         enrolmentStatusLabelBillNotReady.textColor = .neutralDark
-        enrolmentStatusLabelBillNotReady.font = SystemFont.regular.of(textStyle: .caption1)
+        enrolmentStatusLabelBillNotReady.font = .caption1
         
         ddeExtendedDateLabel.textColor = .neutralDark
-        ddeExtendedDateLabel.font = SystemFont.semibold.of(textStyle: .caption1)
+        ddeExtendedDateLabel.font = .caption1Semibold
         
         ddeExtendedDateLabelBillNotReady.textColor = .neutralDark
-        ddeExtendedDateLabelBillNotReady.font = SystemFont.semibold.of(textStyle: .caption1)
+        ddeExtendedDateLabelBillNotReady.font = .caption1Semibold
         
         layer.borderColor = UIColor.accentGray.cgColor
         layer.borderWidth = 1
@@ -174,41 +174,40 @@ class HomeBillCardView: UIView {
 //        headerView.layer.borderColor = UIColor.accentGray.cgColor
 //        headerView.layer.borderWidth = 1
         
-        headerLabel.font = SystemFont.regular.of(textStyle: .caption1)
+        headerLabel.font = .caption1
         
         paymentDescriptionLabel.textColor = .neutralDark
-        paymentDescriptionLabel.font = SystemFont.regular.of(textStyle: .headline)
+        paymentDescriptionLabel.font = .headline
         
         viewModel.amountColor.drive(amountLabel.rx.textColor).disposed(by: bag)
-        amountLabel.font = ExelonFont.medium.of(textStyle: .largeTitle)
+        amountLabel.font = .largeTitle
         
-        dueDateLabel.font = SystemFont.regular.of(textStyle: .caption1)
         dueDateTooltip.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
         
         slideToPayConfirmationDetailLabel.textColor = .neutralDark
-        slideToPayConfirmationDetailLabel.font = SystemFont.regular.of(textStyle: .caption1)
+        slideToPayConfirmationDetailLabel.font = .caption1
         
         scheduledPaymentBox.layer.cornerRadius = 6
         scheduledPaymentBox.layer.borderColor = UIColor.accentGray.cgColor
         scheduledPaymentBox.layer.borderWidth = 1
-        thankYouForSchedulingButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .subheadline)
+        thankYouForSchedulingButton.titleLabel?.font = .subheadlineSemibold
         thankYouForSchedulingButton.titleLabel?.numberOfLines = 0
         
         autoPayBox.layer.cornerRadius = 6
         autoPayBox.layer.borderColor = UIColor.accentGray.cgColor
         autoPayBox.layer.borderWidth = 1
         autoPayButtonLabel.textColor = .primaryBlue
-        autoPayButtonLabel.font = SystemFont.semibold.of(textStyle: .subheadline)
+        autoPayButtonLabel.font = .subheadlineSemibold
         
-        viewBillButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .caption1)
+        viewBillButton.titleLabel?.font = .caption1Semibold
         
         // Bill Not Ready
         billNotReadyLabel.textColor = .neutralDark
-        billNotReadyLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        billNotReadyLabel.font = .subheadline
         billNotReadyLabel.textAlignment = .center
         
         errorLabel.textColor = .neutralDark
-        errorLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        errorLabel.font = .subheadline
         errorLabel.textAlignment = .center
         if let errorLabelText = errorLabel.text {
             let localizedAccessibililtyText = NSLocalizedString("Bill OverView, %@", comment: "")
@@ -217,7 +216,7 @@ class HomeBillCardView: UIView {
         
         // Maintenance Mode
         maintenanceModeLabel.textColor = .neutralDark
-        maintenanceModeLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        maintenanceModeLabel.font = .subheadline
         
         // Accessibility
         alertAnimation.isAccessibilityElement = true
@@ -380,7 +379,7 @@ class HomeBillCardView: UIView {
             
             DispatchQueue.main.async {
                 if description?.ctaType == "Reinstate Payment Arrangement" {
-                    self.titleAssistanceProgram.font = SystemFont.regular.of(textStyle: .caption1)
+                    self.titleAssistanceProgram.font = .caption1
                 }
 
             }
@@ -409,7 +408,7 @@ class HomeBillCardView: UIView {
             
             DispatchQueue.main.async {
                 if description?.ctaType == "Reinstate Payment Arrangement" {
-                    self.titleAssistanceProgram.font = SystemFont.regular.of(textStyle: .caption1)
+                    self.titleAssistanceProgram.font = .caption1
                 }
 
             }

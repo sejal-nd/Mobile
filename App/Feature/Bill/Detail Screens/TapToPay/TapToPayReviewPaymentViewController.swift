@@ -214,7 +214,7 @@ class TapToPayReviewPaymentViewController: UIViewController {
         creditCardDateRangeError.font = SystemFont.semibold.of(size: 12)
         creditCardDateRangeError.text = NSLocalizedString("Error: Credit card payments cannot be scheduled more than 90 days in advance.", comment: "")
         
-        errorLabel.font = SystemFont.regular.of(textStyle: .headline)
+        errorLabel.font = .headline
         errorLabel.textColor = .neutralDark
         errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
         errorLabel.accessibilityLabel = errorLabel.text
@@ -277,7 +277,7 @@ class TapToPayReviewPaymentViewController: UIViewController {
         let cancelPaymentText = NSLocalizedString("Cancel Payment", comment: "")
         cancelPaymentButton.accessibilityLabel = cancelPaymentText
         cancelPaymentLabel.text = cancelPaymentText
-        cancelPaymentLabel.font = SystemFont.semibold.of(textStyle: .headline)
+        cancelPaymentLabel.font = .headlineSemibold
         cancelPaymentLabel.textColor = .primaryBlue
         
         self.stickyPaymentFooterView.accessibilityElements = [submitDescriptionLabel as Any,
@@ -533,7 +533,7 @@ class TapToPayReviewPaymentViewController: UIViewController {
         alternateViewTextView.text = NSLocalizedString("A confirmation will be sent to the email address associated with your My Account. If you'd like to send this payment confirmation to an additional email or via text message, add the recipients below. Standard messaging rates apply.", comment: "")
         
         addAdditionaRecipientButton.setTitleColor(.neutralDark, for: .normal)
-        addAdditionaRecipientButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
+        addAdditionaRecipientButton.titleLabel?.font = .headlineSemibold
         
         alternateEmailTextField.placeholder = NSLocalizedString("Email Address (Optional)",
                                                                 comment: "")

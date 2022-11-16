@@ -32,9 +32,9 @@ class B2CForgotPasswordViewController: UIViewController {
         webView.configuration.userContentController.add(self, name: "firebase")
         
         errorImage.tintColor = .attentionOrange
-        errorTitle.font = ExelonFont.semibold.of(textStyle: .title3)
+        errorTitle.font = .title3
         errorTitle.textColor = .neutralDark
-        errorDescription.font = SystemFont.regular.of(textStyle: .footnote)
+        errorDescription.font = .footnote
         errorDescription.textColor = .neutralDark
         errorView.isHidden = true
         

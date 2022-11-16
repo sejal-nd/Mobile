@@ -45,7 +45,7 @@ class MaintenanceModeViewController: UIViewController {
         reloadButton.isAccessibilityElement = true
         reloadButton.accessibilityLabel = NSLocalizedString("Reload", comment: "")
         
-        reloadLabel.font = SystemFont.bold.of(textStyle: .headline)
+        reloadLabel.font = .headlineSemibold
         
         reloadButton.rx.touchUpInside.asDriver()
             .drive(onNext: { [weak self] in self?.onReloadPress() })
@@ -56,17 +56,17 @@ class MaintenanceModeViewController: UIViewController {
         
         headerLabel.text = viewModel.headerLabelText
         headerLabel.textColor = .neutralDark
-        headerLabel.font = SystemFont.bold.of(textStyle: .subheadline)
+        headerLabel.font = .subheadlineSemibold
         
-        bodyTextView.font = SystemFont.regular.of(textStyle: .footnote)
+        bodyTextView.font = .footnote
         bodyTextView.attributedText = viewModel.labelBody
         bodyTextView.accessibilityLabel = viewModel.labelBody.string
         
         bodyTextView.textColor = .blackText
-        bodyTextView.tintColor = .primaryBlue // Color of the phone numbers
+        bodyTextView.tintColor = .actionBrand // Color of the phone numbers
         
-        footerTextView.font = SystemFont.regular.of(textStyle: .footnote)
-        footerTextView.tintColor = .primaryBlue
+        footerTextView.font = .footnote
+        footerTextView.tintColor = .actionBrand
         footerTextView.attributedText = viewModel.footerLabelText
         
         view.backgroundColor = .primaryColor

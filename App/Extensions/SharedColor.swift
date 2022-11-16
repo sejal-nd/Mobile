@@ -49,6 +49,11 @@ extension UIColor {
 
     // MARK: UI Colors
 
+    /// Action Dark #170D67 (Same as Primary Dark Blue)
+    static var actionBrand: UIColor {
+        return primaryBlue
+    }
+
     /// Action Dark #103870
     static var actionDark: UIColor {
         return UIColor(named: "actionDark")!
@@ -64,74 +69,79 @@ extension UIColor {
         return neutralDarker
     }
 
-    /// Neutral #020E1E, 95%
+    /// Neutral #0F1A2A
     static var neutralDarker: UIColor {
         return UIColor(named: "neutralDarker")!
     }
 
-    /// Neutral #020E1E, 65%
+    /// Neutral #5A626D
     static var neutralDark: UIColor {
-        return UIColor(named: "neutral")!.withAlphaComponent(65)
+        return UIColor(named: "neutralDark")!
     }
 
-    /// Neutral #020E1E, 45%
+    /// Neutral #8D929A
     static var neutralMedium: UIColor {
-        return UIColor(named: "neutral")!.withAlphaComponent(45)
+        return UIColor(named: "neutralMedium")!
     }
 
-    /// Neutral #020E1E, 25%
+    /// Neutral #C0C3C7
     static var neutralLight: UIColor {
-        return UIColor(named: "neutral")!.withAlphaComponent(25)
+        return UIColor(named: "neutralLight")!
     }
 
-    /// Neutral #020E1E, 10%
+    /// Neutral #E5E6E8
     static var neutralLighter: UIColor {
         return UIColor(named: "neutralLighter")!
     }
 
-    /// Neutral #020E1E, 3%
+    /// Neutral #F7F7F8
     static var neutralLightest: UIColor {
-        return UIColor(named: "neutral")!.withAlphaComponent(3)
+        return UIColor(named: "neutralLightest")!
     }
 
     // MARK: Status Colors
 
+    /// Success Primary #20804F
     static var successPrimary: UIColor {
         return UIColor(named: "successPrimary")!
     }
 
+    /// Success Primary #D5EFE2
     static var successMedium: UIColor {
         return UIColor(named: "successMedium")!
     }
 
+    /// Success Primary #F8FCFA
     static var successLight: UIColor {
         return UIColor(named: "successLight")!
     }
 
-    static var successAda: UIColor {
-        return UIColor(named: "successAda")!
-    }
-
+    /// Attention Primary #FE7212
     static var attentionPrimary: UIColor {
         return UIColor(named: "attentionPrimary")!
     }
 
+    /// Attention Medium #FFE3D0
     static var attentionMedium: UIColor {
         return UIColor(named: "attentionMedium")!
     }
 
+    /// Attention Light #FFFAF8
     static var attentionLight: UIColor {
         return UIColor(named: "attentionLight")!
     }
 
+    // Error Primary #BF002F
     static var errorPrimary: UIColor {
-        return UIColor(named: "error")!
+        return UIColor(named: "errorPrimary")!
     }
 
+    // Error Medium #F2CCD5
     static var errorMedium: UIColor {
         return errorPrimary.withAlphaComponent(20)
     }
 
+    // Error Light #FDF7F8
     static var errorLight: UIColor {
         return errorPrimary.withAlphaComponent(3)
     }

@@ -49,7 +49,7 @@ class LandingViewController: UIViewController {
         signInButton.hasBlueAnimations = true
         registerButton.setTitle(NSLocalizedString("Register for Online Access", comment: ""), for: .normal)
         continueAsGuestButon.setTitle(NSLocalizedString("Continue as Guest", comment: ""), for: .normal)
-        continueAsGuestButon.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
+        continueAsGuestButon.titleLabel?.font = .headlineSemibold
         
         logoBackgroundView.backgroundColor = .primaryColor
         view.backgroundColor = .primaryColor
@@ -71,7 +71,7 @@ class LandingViewController: UIViewController {
             debugButton.isEnabled = false
         }
         
-        versionLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        versionLabel.font = .footnote
         
         logoBackgroundView.alpha = 0
         videoView.alpha = 0

@@ -10,7 +10,78 @@ import UIKit
 
 //MARK: - Fonts
 
-enum ExelonFont: String, FontType {
+typealias EUTextStyle = UIFont.TextStyle
+
+extension EUTextStyle {
+
+    static var largeTitleLight: EUTextStyle {
+        return EUTextStyle(rawValue: "largeTitleLight")
+    }
+
+    var `default`: UIFont {
+        return preferredFontType.of(textStyle: self)
+    }
+
+    var light: UIFont {
+        return lightFontType.of(textStyle: self)
+    }
+
+    var bold: UIFont {
+        return semiboldFontType.of(textStyle: self)
+    }
+
+    var semibold: UIFont {
+        return semiboldFontType.of(textStyle: self)
+    }
+
+    private var preferredFontType: FontType {
+        switch self {
+        case .largeTitleLight:
+            return DiodrumFont.light
+        case .largeTitle, .title1, .title2, .title3:
+            return DiodrumFont.medium
+        case .headline, .subheadline, .body, .callout, .footnote, .caption1, .caption2:
+            return SystemFont.regular
+        default:
+            return SystemFont.regular
+        }
+    }
+
+    private var lightFontType: FontType {
+        switch self {
+        case .largeTitle, .title1, .title2, .title3:
+            return DiodrumFont.light
+        case .headline, .subheadline, .body, .callout, .footnote, .caption1, .caption2:
+            return SystemFont.light
+        default:
+            return SystemFont.light
+        }
+    }
+
+    private var semiboldFontType: FontType {
+        switch self {
+        case .largeTitle, .title1, .title2, .title3:
+            return DiodrumFont.semibold
+        case .headline, .subheadline, .body, .callout, .footnote, .caption1, .caption2:
+            return SystemFont.semibold
+        default:
+            return SystemFont.semibold
+        }
+    }
+
+    private var boldFontType: FontType {
+        switch self {
+        case .largeTitle, .title1, .title2, .title3:
+            return DiodrumFont.bold
+        case .headline, .subheadline, .body, .callout, .footnote, .caption1, .caption2:
+            return SystemFont.bold
+        default:
+            return SystemFont.bold
+        }
+    }
+}
+
+enum DiodrumFont: String, FontType {
     case light = "Diodrum-Light"
     case lightItalic = "Diodrum-LightItalic"
     case regular = "Diodrum-Regular"
@@ -25,7 +96,7 @@ enum ExelonFont: String, FontType {
 
 enum SystemFont: FontType {
     case ultraLight, thin, light, regular, medium, semibold, bold, heavy, black, italic
-    
+
     private var weight: UIFont.Weight {
         switch self {
         case .ultraLight: return .ultraLight
@@ -40,7 +111,7 @@ enum SystemFont: FontType {
         case .italic: return .regular
         }
     }
-    
+
     func of(size: CGFloat) -> UIFont {
         switch self {
         case .italic:
@@ -49,7 +120,7 @@ enum SystemFont: FontType {
             return .systemFont(ofSize: size, weight: weight)
         }
     }
-    
+
     func of(textStyle: UIFont.TextStyle) -> UIFont {
         let size = UIFont.preferredSize(forTextStyle: textStyle)
         switch self {
@@ -79,7 +150,7 @@ extension FontType where Self: RawRepresentable, Self.RawValue == String {
         }
         return font
     }
-    
+
     func of(textStyle: UIFont.TextStyle) -> UIFont {
         let size = UIFont.preferredSize(forTextStyle: textStyle)
         guard let font = UIFont(name: rawValue, size: size) else {
@@ -93,12 +164,45 @@ extension FontType where Self: RawRepresentable, Self.RawValue == String {
     }
 }
 
-//MARK: - Size Table
+extension UIFont {
 
-extension UIFont {    
+    static var largeTitle = EUTextStyle.largeTitle.default
+    static var largeTitleLight = EUTextStyle.largeTitle.light
+    static var title1 = EUTextStyle.title1.default
+    static var title2 = EUTextStyle.title2.default
+    static var title3 = EUTextStyle.title3.default
+    static var headline = EUTextStyle.headline.default
+    static var headlineSemibold = EUTextStyle.headline.semibold
+    static var body = EUTextStyle.body.default
+    static var bodyBold = EUTextStyle.body.bold
+    static var callout = EUTextStyle.callout.default
+    static var subheadline = EUTextStyle.subheadline.default
+    static var subheadlineSemibold = EUTextStyle.subheadline.semibold
+    static var footnote = EUTextStyle.footnote.default
+    static var footnoteSemibold = EUTextStyle.footnote.semibold
+    static var caption1 = EUTextStyle.caption1.default
+    static var caption1Semibold = EUTextStyle.caption1.semibold
+    static var caption2 = EUTextStyle.caption2.default
+    static var caption2Semibold = EUTextStyle.caption2.semibold
+
+    func withTraits(traits: UIFontDescriptor.SymbolicTraits) -> UIFont {
+        let descriptor = fontDescriptor.withSymbolicTraits(traits)
+        return UIFont(descriptor: descriptor!, size: 0) //size 0 means keep the size as it is
+    }
+
+    func bold() -> UIFont {
+        return withTraits(traits: .traitBold)
+    }
+
+    func italic() -> UIFont {
+        return withTraits(traits: .traitItalic)
+    }
+
+    //MARK: - Size Table
+
     static func preferredSize(forTextStyle textStyle: UIFont.TextStyle) -> CGFloat {
         let category = UIApplication.shared.preferredContentSizeCategory
-        
+
         #if DEBUG
             guard let size = sizeTable[textStyle]?[category] else {
                 fatalError("Font size not specified for style \"\(textStyle)\" and category \"\(category)\"")
@@ -112,7 +216,8 @@ extension UIFont {
             return size
         #endif
     }
-    
+
+    // TODO replace with UIFontMetrics(forTextStyle: .callout).scaledFont(for: ...)
     @nonobjc private static let sizeTable: [UIFont.TextStyle : [UIContentSizeCategory : CGFloat]] =
         [
             .largeTitle: [

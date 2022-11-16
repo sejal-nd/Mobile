@@ -49,7 +49,7 @@ class PECOReleaseOfInfoViewController: UIViewController {
         tableView.estimatedRowHeight = 51
         tableView.isHidden = true
         
-        errorLabel.font = SystemFont.regular.of(textStyle: .headline)
+        errorLabel.font = .headline
         errorLabel.textColor = .blackText
         errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
         errorLabel.isHidden = true

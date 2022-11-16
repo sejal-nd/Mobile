@@ -24,8 +24,8 @@ class PrimaryButton: UIButton {
     
     @IBInspectable var condensed: Bool = false {
         didSet {
-            titleLabel?.font = condensed ? SystemFont.semibold.of(textStyle: .subheadline) :
-                SystemFont.semibold.of(textStyle: .headline)
+            titleLabel?.font = condensed ? .subheadlineSemibold :
+                .headlineSemibold
         }
     }
     
@@ -51,7 +51,7 @@ class PrimaryButton: UIButton {
     func commonInit() {
         adjustsImageWhenHighlighted = false
         
-        titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
+        titleLabel?.font = .headlineSemibold
 
         updateTitleColors()
         updateEnabledState()

@@ -82,12 +82,12 @@ class AlertsViewController: AccountPickerViewController {
     
     private func styleViews() {
         preferencesButtonLabel.textColor = .primaryBlue
-        preferencesButtonLabel.font = SystemFont.semibold.of(textStyle: .subheadline)
+        preferencesButtonLabel.font = .subheadlineSemibold
         preferencesButtonLabel.text = NSLocalizedString("Preferences", comment: "")
         preferencesButton.accessibilityLabel = preferencesButtonLabel.text
         
         alertsEmptyStateLabel.textColor = .middleGray
-        alertsEmptyStateLabel.font = SystemFont.regular.of(textStyle: .headline)
+        alertsEmptyStateLabel.font = .headline
         alertsEmptyStateLabel.text = NSLocalizedString("You haven't received any\nnotifications yet.", comment: "")
     }
     

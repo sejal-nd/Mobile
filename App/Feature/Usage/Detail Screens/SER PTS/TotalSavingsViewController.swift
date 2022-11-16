@@ -26,11 +26,11 @@ class TotalSavingsViewController: UIViewController {
         title = NSLocalizedString("Total Savings", comment: "")
 
         totalSavingsValueLabel.textColor = .primaryColor
-        totalSavingsValueLabel.font = ExelonFont.medium.of(textStyle: .title1)
+        totalSavingsValueLabel.font = .title1
         totalSavingsValueLabel.text = totalSavingsValue.currencyString
         
         totalSavingsTitleLabel.textColor = .neutralDark
-        totalSavingsTitleLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        totalSavingsTitleLabel.font = .subheadline
         totalSavingsTitleLabel.text = NSLocalizedString("Total Bill Credits", comment: "")
         
         tableView.separatorColor = UIColor(red: 234/255, green: 234/255, blue: 234/255, alpha: 1)

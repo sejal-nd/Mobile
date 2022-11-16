@@ -33,7 +33,7 @@ class SetDefaultPaymentMethodTutorialViewController: UIViewController {
         addCloseButton()
         
         label.textColor = .neutralDark
-        label.font = SystemFont.regular.of(textStyle: .body)
+        label.font = .body
         label.text = NSLocalizedString("""
         You can easily pay your bill in full from the Home screen by setting a payment method as default.
         

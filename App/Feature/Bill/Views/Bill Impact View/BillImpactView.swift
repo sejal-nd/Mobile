@@ -23,14 +23,14 @@ class BillImpactView: UIView {
     @IBOutlet weak var multipremiseHeaderLabel: UILabel! {
         didSet {
             multipremiseHeaderLabel.textColor = .neutralDark
-            multipremiseHeaderLabel.font = SystemFont.semibold.of(textStyle: .caption1)
+            multipremiseHeaderLabel.font = .caption1Semibold
         }
     }
     
     @IBOutlet weak var reasonsWhyLabel: UILabel! {
         didSet {
             reasonsWhyLabel.textColor = .neutralDark
-            reasonsWhyLabel.font = SystemFont.regular.of(textStyle: .headline)
+            reasonsWhyLabel.font = .headline
         }
     }
     @IBOutlet weak var tooltipButton: UIButton!
@@ -43,7 +43,7 @@ class BillImpactView: UIView {
     @IBOutlet weak var differenceDescriptionLabel: UILabel! {
         didSet {
             differenceDescriptionLabel.textColor = .neutralDark
-            differenceDescriptionLabel.font = SystemFont.regular.of(textStyle: .callout)
+            differenceDescriptionLabel.font = .callout
         }
     }
     
@@ -56,14 +56,14 @@ class BillImpactView: UIView {
     @IBOutlet weak var billPeriodTitleLabel: UILabel! {
         didSet {
             billPeriodTitleLabel.textColor = .neutralDark
-            billPeriodTitleLabel.font = SystemFont.regular.of(textStyle: .caption2)
+            billPeriodTitleLabel.font = .caption2
         }
     }
     @IBOutlet weak var billPeriodImageView: UIImageView!
     @IBOutlet weak var billPeriodAmountLabel: UILabel! {
         didSet {
             billPeriodAmountLabel.textColor = .neutralDark
-            billPeriodAmountLabel.font = SystemFont.regular.of(textStyle: .callout)
+            billPeriodAmountLabel.font = .callout
         }
     }
     @IBOutlet weak var billPeriodCaretImageView: UIImageView!
@@ -71,7 +71,7 @@ class BillImpactView: UIView {
     @IBOutlet weak var billPeriodDetailLabel: UILabel! {
         didSet {
             billPeriodDetailLabel.textColor = .neutralDark
-            billPeriodDetailLabel.font = SystemFont.regular.of(textStyle: .caption1)
+            billPeriodDetailLabel.font = .caption1
         }
     }
     
@@ -80,14 +80,14 @@ class BillImpactView: UIView {
     @IBOutlet weak var weatherTitleLabel: UILabel! {
         didSet {
             weatherTitleLabel.textColor = .neutralDark
-            weatherTitleLabel.font = SystemFont.regular.of(textStyle: .caption2)
+            weatherTitleLabel.font = .caption2
         }
     }
     @IBOutlet weak var weatherImageView: UIImageView!
     @IBOutlet weak var weatherAmountLabel: UILabel! {
         didSet {
             weatherAmountLabel.textColor = .neutralDark
-            weatherAmountLabel.font = SystemFont.regular.of(textStyle: .callout)
+            weatherAmountLabel.font = .callout
         }
     }
     @IBOutlet weak var weatherCaretImageView: UIImageView!
@@ -95,7 +95,7 @@ class BillImpactView: UIView {
     @IBOutlet weak var weatherDetailLabel: UILabel! {
         didSet {
             weatherDetailLabel.textColor = .neutralDark
-            weatherDetailLabel.font = SystemFont.regular.of(textStyle: .caption1)
+            weatherDetailLabel.font = .caption1
         }
     }
     
@@ -104,14 +104,14 @@ class BillImpactView: UIView {
     @IBOutlet weak var otherTitleLabel: UILabel! {
         didSet {
             otherTitleLabel.textColor = .neutralDark
-            otherTitleLabel.font = SystemFont.regular.of(textStyle: .caption2)
+            otherTitleLabel.font = .caption2
         }
     }
     @IBOutlet weak var otherImageView: UIImageView!
     @IBOutlet weak var otherAmountLabel: UILabel! {
         didSet {
             otherAmountLabel.textColor = .neutralDark
-            otherAmountLabel.font = SystemFont.regular.of(textStyle: .callout)
+            otherAmountLabel.font = .callout
         }
     }
     @IBOutlet weak var otherCaretImageView: UIImageView!
@@ -119,7 +119,7 @@ class BillImpactView: UIView {
     @IBOutlet weak var otherDetailLabel: UILabel! {
         didSet {
             otherDetailLabel.textColor = .neutralDark
-            otherDetailLabel.font = SystemFont.regular.of(textStyle: .caption1)
+            otherDetailLabel.font = .caption1
         }
     }
     

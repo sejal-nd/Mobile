@@ -20,7 +20,7 @@ class MoreViewController: UIViewController {
 
     @IBOutlet weak var signOutButton: UIButton! {
         didSet {
-            signOutButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
+            signOutButton.titleLabel?.font = .headlineSemibold
             signOutButton.setTitleColor(.white, for: .normal)
         }
     }
@@ -38,7 +38,7 @@ class MoreViewController: UIViewController {
                 versionLabel.text = nil
             }
             
-            versionLabel.font = SystemFont.regular.of(textStyle: .footnote)
+            versionLabel.font = .footnote
             versionLabel.textColor = .white
         }
     }

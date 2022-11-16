@@ -59,7 +59,7 @@ class TitleSubTitleRow: UITableViewCell {
         titleLabel.textColor = .neutralDark
         titleLabel.font = SystemFont.medium.of(textStyle: .headline)
         subTitleLabel.textColor = .middleGray
-        subTitleLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        subTitleLabel.font = .footnote
         
         // Cell Selection Color
         let backgroundView = UIView()

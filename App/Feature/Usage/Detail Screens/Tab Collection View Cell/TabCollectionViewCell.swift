@@ -50,13 +50,13 @@ class TabCollectionViewCell: UICollectionViewCell {
     }
     
     private func styleSelected() {
-        titleLabel.font = SystemFont.semibold.of(textStyle: .footnote)
+        titleLabel.font = .footnoteSemibold
         titleLabel.textColor = .primaryBlue
         highlightBar.isHidden = false
     }
     
     private func styleDeselected() {
-        titleLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        titleLabel.font = .footnote
         titleLabel.textColor = .middleGray
         highlightBar.isHidden = true
     }
@@ -66,7 +66,7 @@ class TabCollectionViewCell: UICollectionViewCell {
         guard let labelWidth = titleLabel.text?
             .boundingRect(with: CGSize(width: CGFloat.greatestFiniteMagnitude, height: 0),
                           options: .usesLineFragmentOrigin,
-                          attributes: [.font : SystemFont.semibold.of(textStyle: .footnote)],
+                          attributes: [.font : UIFont.footnoteSemibold],
                           context: nil).size.width else { return .zero }
         let computedWidth = (titleLeadingConstraint.constant + 2) * 2 + labelWidth
         let width = max(minWidth, computedWidth)

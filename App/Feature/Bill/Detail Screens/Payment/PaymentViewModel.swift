@@ -835,9 +835,9 @@ class PaymentViewModel {
         let localizedText = String.localizedStringWithFormat("%@%@", boldText, bodyText)
         let attributedText = NSMutableAttributedString(string: localizedText,
                                                        attributes: [.foregroundColor: UIColor.blackText,
-                                                                    .font: SystemFont.regular.of(textStyle: .footnote)])
+                                                                    .font: UIFont.footnote])
         attributedText.addAttribute(.font,
-                                    value: SystemFont.bold.of(textStyle: .footnote),
+                                    value: UIFont.footnoteSemibold,
                                     range: NSRange(location: 0, length: boldText.count))
         
         return attributedText

@@ -63,7 +63,7 @@ class HomeGameCardView: UIView {
         
         titleLabel.textColor = .neutralDark
         detailLabel.textColor = .neutralDark
-        detailLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        detailLabel.font = .footnote
         
         styleContentChips()
     }

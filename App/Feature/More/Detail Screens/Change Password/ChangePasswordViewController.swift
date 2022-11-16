@@ -67,14 +67,14 @@ class ChangePasswordViewController: KeyboardAvoidingStickyFooterViewController {
         
         havingTroubleView.isHidden = true
         havingTroubleLabel.textColor = .blackText
-        havingTroubleLabel.font = SystemFont.regular.of(textStyle: .headline)
+        havingTroubleLabel.font = .headline
         havingTroubleLabel.text = NSLocalizedString("Having trouble?", comment: "")
-        havingTroubleButton.tintColor = .primaryBlue
-        havingTroubleButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
+        havingTroubleButton.tintColor = .actionBrand
+        havingTroubleButton.titleLabel?.font = .headlineSemibold
         havingTroubleButton.setTitle(NSLocalizedString("Request a Temporary Password", comment: ""), for: .normal)
         
         passwordStrengthView.isHidden = true
-        passwordStrengthLabel.font = SystemFont.regular.of(textStyle: .caption1)
+        passwordStrengthLabel.font = .caption1
         
         currentPasswordTextField.placeholder = tempPasswordWorkflow ? NSLocalizedString("Temporary Password", comment: "") : NSLocalizedString("Current Password", comment: "")
         currentPasswordTextField.textField.isSecureTextEntry = true
@@ -102,10 +102,10 @@ class ChangePasswordViewController: KeyboardAvoidingStickyFooterViewController {
         confirmPasswordTextField.textField.delegate = self
         
         mustAlsoContainLabel.textColor = .neutralDark
-        mustAlsoContainLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        mustAlsoContainLabel.font = .subheadline
         for label in passwordRequirementLabels {
             label.textColor = .neutralDark
-            label.font = SystemFont.regular.of(textStyle: .subheadline)
+            label.font = .subheadline
         }
         
         // Bind to the view model

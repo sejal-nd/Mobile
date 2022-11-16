@@ -29,10 +29,10 @@ class HomeEditCardCell: UICollectionViewCell {
     func configure(withCard card: HomeCard, isActive: Bool, addRemoveTapped: @escaping ()->()) {
         nameLabel.text = card.displayString
         nameLabel.textColor = .neutralDark
-        nameLabel.font = SystemFont.regular.of(textStyle: .callout)
+        nameLabel.font = .callout
         
         subLabel.textColor = .middleGray
-        subLabel.font = SystemFont.regular.of(textStyle: .caption1)
+        subLabel.font = .caption1
         subLabel.isHidden = card.isAlwaysAvailable
         
         gripView.isHidden = !isActive

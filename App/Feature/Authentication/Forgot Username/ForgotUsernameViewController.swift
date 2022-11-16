@@ -55,7 +55,7 @@ class ForgotUsernameViewController: KeyboardAvoidingStickyFooterViewController {
         viewModel.continueButtonEnabled.drive(continueButton.rx.isEnabled).disposed(by: disposeBag)
         
         instructionLabel.textColor = .neutralDark
-        instructionLabel.font = SystemFont.regular.of(textStyle: .headline)
+        instructionLabel.font = .headline
         instructionLabel.text = NSLocalizedString("Please help us validate your account.", comment: "")
         
         phoneNumberTextField.placeholder = Configuration.shared.opco.isPHI ? NSLocalizedString("Phone Number*", comment: "") : NSLocalizedString("Primary Phone Number*", comment: "")
@@ -85,7 +85,7 @@ class ForgotUsernameViewController: KeyboardAvoidingStickyFooterViewController {
         }).disposed(by: disposeBag)
         
         identifierDescriptionLabel.textColor = .neutralDark
-        identifierDescriptionLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        identifierDescriptionLabel.font = .subheadline
         identifierDescriptionLabel.text = NSLocalizedString("Last 4 Digits of primary account holder’s Social Security Number, Business Tax ID, or BGE PIN", comment: "")
         
         identifierTextField.placeholder = NSLocalizedString("SSN/Business Tax ID/BGE Pin*", comment: "")
@@ -149,7 +149,7 @@ class ForgotUsernameViewController: KeyboardAvoidingStickyFooterViewController {
         
         accountLookupToolButton.setTitle(NSLocalizedString("Account Lookup Tool", comment: ""), for: .normal)
         accountLookupToolButton.setTitleColor(.primaryBlue, for: .normal)
-        accountLookupToolButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
+        accountLookupToolButton.titleLabel?.font = .headlineSemibold
         accountLookupToolButton.accessibilityLabel = NSLocalizedString("Account lookup tool", comment: "")        
     }
     

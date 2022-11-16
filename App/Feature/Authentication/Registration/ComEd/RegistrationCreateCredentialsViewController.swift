@@ -52,7 +52,7 @@ class RegistrationCreateCredentialsViewController: KeyboardAvoidingStickyFooterV
         let items = [suggestPasswordButton, space]
         toolbar.setItems(items, animated: false)
         toolbar.sizeToFit()
-        toolbar.tintColor = .primaryBlue
+        toolbar.tintColor = .actionBrand
         return toolbar
     }()
     
@@ -65,16 +65,16 @@ class RegistrationCreateCredentialsViewController: KeyboardAvoidingStickyFooterV
         
         instructionLabel.textColor = .neutralDark
         instructionLabel.text = NSLocalizedString("Please create your sign in credentials", comment: "")
-        instructionLabel.font = SystemFont.regular.of(textStyle: .headline)
+        instructionLabel.font = .headline
         
         passwordStrengthLabel.textColor = .neutralDark
-        passwordStrengthLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        passwordStrengthLabel.font = .subheadline
         mustAlsoContainLabel.textColor = .neutralDark
-        mustAlsoContainLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        mustAlsoContainLabel.font = .subheadline
         
         for label in passwordRequirementLabels {
             label.textColor = .neutralDark
-            label.font = SystemFont.regular.of(textStyle: .subheadline)
+            label.font = .subheadline
         }
         
         setupValidation()
@@ -87,7 +87,7 @@ class RegistrationCreateCredentialsViewController: KeyboardAvoidingStickyFooterV
         }
         
         primaryProfileLabel.textColor = .neutralDark
-        primaryProfileLabel.font = SystemFont.regular.of(textStyle: .headline)
+        primaryProfileLabel.font = .headline
         
         primaryProfileCheckbox.rx.isChecked.bind(to: viewModel.primaryProfile).disposed(by: disposeBag)
         

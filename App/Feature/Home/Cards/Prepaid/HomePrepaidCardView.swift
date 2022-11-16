@@ -34,12 +34,12 @@ final class HomePrepaidCardView: UIView {
         clippingView.layer.cornerRadius = 10
         
         headerLabel.textColor = .neutralDark
-        headerLabel.font = SystemFont.regular.of(textStyle: .callout)
+        headerLabel.font = .callout
         
         detailLabel.textColor = .neutralDark
-        detailLabel.font = SystemFont.regular.of(textStyle: .caption1)
+        detailLabel.font = .caption1
         
-        callToActionButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
+        callToActionButton.titleLabel?.font = .headlineSemibold
     }
     
     func bindViewModel() {

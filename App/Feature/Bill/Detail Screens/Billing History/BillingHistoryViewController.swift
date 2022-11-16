@@ -50,7 +50,7 @@ class BillingHistoryViewController: UIViewController {
         }).disposed(by: disposeBag)
         
         emptyStateLabel.textColor = .neutralDark
-        emptyStateLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        emptyStateLabel.font = .subheadline
         var emptyStateText = NSLocalizedString("Once you receive your bill or make a payment, details about those activities can be accessed here.", comment: "")
         if viewModel.shouldShowAutoPayCellDetailLabel {
             emptyStateText += NSLocalizedString(" Automatic payments will be visible once your bill is generated.", comment: "")
@@ -58,7 +58,7 @@ class BillingHistoryViewController: UIViewController {
         }
         emptyStateLabel.text = emptyStateText
         
-        errorLabel.font = SystemFont.regular.of(textStyle: .headline)
+        errorLabel.font = .headline
         errorLabel.textColor = .blackText
         errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
         errorLabel.isHidden = true
@@ -312,7 +312,7 @@ extension BillingHistoryViewController: UITableViewDelegate {
         let button = UIButton(type: .system)
         
         label.text = section == 0 ? NSLocalizedString("UPCOMING", comment: "") : NSLocalizedString("PAST", comment: "")
-        label.font = SystemFont.regular.of(textStyle: .subheadline)
+        label.font = .subheadline
         label.textColor = .neutralDark
         
         var titleText = ""
@@ -334,7 +334,7 @@ extension BillingHistoryViewController: UITableViewDelegate {
         }
         
         button.setTitle(titleText, for: .normal)
-        button.titleLabel?.font = SystemFont.semibold.of(textStyle: .subheadline)
+        button.titleLabel?.font = .subheadlineSemibold
         button.setTitleColor(.primaryBlue, for: .normal)
         
         let selector = section == 0 ?
@@ -436,7 +436,7 @@ extension BillingHistoryViewController: UITableViewDataSource {
     private func viewMoreTableViewCell(indexPath: IndexPath) -> UITableViewCell {
         let button = UIButton(type: .system)
         button.contentEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
-        button.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
+        button.titleLabel?.font = .headlineSemibold
         button.setTitle("View More", for: .normal)
         button.setTitleColor(.primaryBlue, for: .normal)
         button.tag = 1
@@ -469,7 +469,7 @@ extension BillingHistoryViewController: UITableViewDataSource {
         
         let titleLabel = UILabel()
         titleLabel.textColor = .neutralDark
-        titleLabel.font = SystemFont.semibold.of(textStyle: .subheadline)
+        titleLabel.font = .subheadlineSemibold
         let titleText: String
         if viewModel.accountDetail.isAutoPay {
             titleText = NSLocalizedString("You are enrolled in AutoPay", comment: "")
@@ -480,7 +480,7 @@ extension BillingHistoryViewController: UITableViewDataSource {
         
         let detailLabel = UILabel()
         detailLabel.textColor = .neutralDark
-        detailLabel.font = SystemFont.regular.of(textStyle: .caption1)
+        detailLabel.font = .caption1
         detailLabel.text = NSLocalizedString("Your upcoming automatic payment will be\nvisible once your next bill is generated.", comment: "")
         detailLabel.numberOfLines = 0
         detailLabel.isHidden = true

@@ -98,11 +98,11 @@ class AccountPicker: UIControl {
     
         for label in accountNumberLabels {
             label.textColor = .neutralDarker
-            label.font = SystemFont.semibold.of(textStyle: .subheadline)
+            label.font = .subheadlineSemibold
         }
         for label in addressLabels {
             label.textColor = .neutralDarker
-            label.font = SystemFont.regular.of(textStyle: .subheadline)
+            label.font = .subheadline
         }
         
         addTarget(self, action: #selector(onAccountPickerPress), for: .touchUpInside)

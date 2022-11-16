@@ -20,7 +20,7 @@ class AlertPreferencesLanguageCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         label.textColor = .neutralDark
-        label.font = SystemFont.regular.of(textStyle: .subheadline)
+        label.font = .subheadline
         
         englishRadioSelectControl.rx.controlEvent(.touchUpInside)
             .subscribe(onNext: { GoogleAnalytics.log(event: .alertsEnglish) })

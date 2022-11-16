@@ -33,7 +33,7 @@ class GiftsViewController: ButtonBarPagerTabStripViewController {
         settings.style.selectedBarHeight = 4
         settings.style.selectedBarVerticalAlignment = .bottom
         settings.style.buttonBarItemBackgroundColor = .white
-        settings.style.buttonBarItemFont = SystemFont.semibold.of(textStyle: .subheadline)
+        settings.style.buttonBarItemFont = .subheadlineSemibold
         settings.style.buttonBarItemTitleColor = .middleGray
         settings.style.buttonBarItemsShouldFillAvailableWidth = false
         settings.style.buttonBarHeight = 48
@@ -41,9 +41,9 @@ class GiftsViewController: ButtonBarPagerTabStripViewController {
         changeCurrentIndexProgressive = { (oldCell: ButtonBarViewCell?, newCell: ButtonBarViewCell?, progressPercentage: CGFloat, changeCurrentIndex: Bool, animated: Bool) -> Void in
             guard changeCurrentIndex == true else { return }
             oldCell?.label.textColor = .middleGray
-            oldCell?.label.font = SystemFont.regular.of(textStyle: .subheadline)
+            oldCell?.label.font = .subheadline
             newCell?.label.textColor = .primaryBlue
-            newCell?.label.font = SystemFont.semibold.of(textStyle: .subheadline)
+            newCell?.label.font = .subheadlineSemibold
         }
     }
     

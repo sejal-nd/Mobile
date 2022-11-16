@@ -54,13 +54,13 @@ class ETAView: UIView {
         
         let cause = etaCause()
         etaCauseLabel.text = cause
-        etaCauseLabel.font = SystemFont.bold.of(textStyle: .footnote)
+        etaCauseLabel.font = .footnoteSemibold
         etaCauseLabel.isHidden = cause.isEmpty
         
         switch status {
             case .restored, .none:
                 etaDetailLabel.isHidden = true
-                etaCauseLabel.font = SystemFont.regular.of(textStyle: .footnote)
+                etaCauseLabel.font = .footnote
             default:
                 break
         }

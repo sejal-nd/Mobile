@@ -53,11 +53,11 @@ class RegistrationValidateAccountViewControllerNew: KeyboardAvoidingStickyFooter
         
         instructionLabel.textColor = .neutralDark
         instructionLabel.text = NSLocalizedString("To start, let's find your residential or business service account using your personal/business information or bill details.", comment: "")
-        instructionLabel.font = SystemFont.regular.of(textStyle: .headline)
+        instructionLabel.font = .headline
         instructionLabel.setLineHeight(lineHeight: 24)
         lastBillInformationLabel.textColor = .neutralDark
         lastBillInformationLabel.text = NSLocalizedString("Use one of your last two bills to find the following information:", comment: "")
-        lastBillInformationLabel.font = SystemFont.regular.of(textStyle: .headline)
+        lastBillInformationLabel.font = .headline
         
         segmentedControl.items = [NSLocalizedString("Personal", comment: ""),
                                   NSLocalizedString("Bill Details", comment: "")]
@@ -190,7 +190,7 @@ class RegistrationValidateAccountViewControllerNew: KeyboardAvoidingStickyFooter
 
         identifierDescriptionLabel.textColor = .neutralDark
         identifierDescriptionLabel.text = NSLocalizedString(identifierString, comment: "")
-        identifierDescriptionLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        identifierDescriptionLabel.font = .subheadline
         
         let identifierPlaceholder: String
         identifierPlaceholder = NSLocalizedString("SSN/Business Tax ID*", comment: "")

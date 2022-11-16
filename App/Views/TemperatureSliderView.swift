@@ -139,9 +139,9 @@ class TemperatureSliderView: UIView {
             .disposed(by: disposeBag)
         
         titleLabel.textColor = .neutralDark
-        titleLabel.font = SystemFont.bold.of(textStyle: .caption1)
+        titleLabel.font = .caption1Semibold
         temperatureLabel.textColor = .neutralDark
-        temperatureLabel.font = ExelonFont.semibold.of(textStyle: .title3)
+        temperatureLabel.font = .title3
         minLabel.font = SystemFont.regular.of(size: 17)
         maxLabel.font = SystemFont.regular.of(size: 17)
         

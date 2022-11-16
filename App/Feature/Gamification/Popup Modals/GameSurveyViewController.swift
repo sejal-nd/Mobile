@@ -52,15 +52,15 @@ class GameSurveyViewController: UIViewController {
         popupView.layer.cornerRadius = 10
         popupView.layer.masksToBounds = true
         
-        closeButton.tintColor = .primaryBlue
+        closeButton.tintColor = .actionBrand
         closeButton.addTarget(self, action: #selector(dismiss(_:)), for: .touchUpInside)
         
         titleLabel.textColor = .neutralDark
-        titleLabel.font = SystemFont.regular.of(textStyle: .headline)
+        titleLabel.font = .headline
         titleLabel.text = NSLocalizedString("We'd love your feedback!", comment: "")
         
         detailLabel.textColor = .neutralDark
-        detailLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        detailLabel.font = .footnote
         detailLabel.text = NSLocalizedString("Thank you for participating in BGE's Play-n-Save pilot program. What do you think of the new energy saving features added to our mobile app? Take this quick survey and let us know!", comment: "")
         
         let takeSurveyButtonTitle = survey.surveyNumber == 1 ?
@@ -71,19 +71,19 @@ class GameSurveyViewController: UIViewController {
             takeSurveyButton.layoutIfNeeded()
         }
         
-        remindMeLaterButton.tintColor = .primaryBlue
+        remindMeLaterButton.tintColor = .actionBrand
         remindMeLaterButton.setTitleColor(.primaryBlue, for: .normal)
         remindMeLaterButton.setTitleColor(UIColor.primaryBlue.darker(), for: .highlighted)
-        remindMeLaterButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
+        remindMeLaterButton.titleLabel?.font = .headlineSemibold
         if survey.attempt == 3 {
             dividerLine.isHidden = true
             remindMeLaterButton.isHidden = true
         }
         
-        notInterestedButton.tintColor = .primaryBlue
+        notInterestedButton.tintColor = .actionBrand
         notInterestedButton.setTitleColor(.primaryBlue, for: .normal)
         notInterestedButton.setTitleColor(UIColor.primaryBlue.darker(), for: .highlighted)
-        notInterestedButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
+        notInterestedButton.titleLabel?.font = .headlineSemibold
                 
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismiss(_:)))
         tap.delegate = self

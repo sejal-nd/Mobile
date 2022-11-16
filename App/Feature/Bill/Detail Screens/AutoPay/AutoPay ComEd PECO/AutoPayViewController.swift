@@ -120,30 +120,30 @@ class AutoPayViewController: KeyboardAvoidingStickyFooterViewController {
         if accountDetail.isAutoPay {
             // Enrolled
             enrolledTopLabel.textColor = .neutralDark
-            enrolledTopLabel.font = SystemFont.regular.of(textStyle: .headline)
+            enrolledTopLabel.font = .headline
             enrolledTopLabel.setLineHeight(lineHeight: 16)
             
             unenrollButtonLabel.textColor = .neutralDark
-            unenrollButtonLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+            unenrollButtonLabel.font = .subheadline
             
-            unenrollButton.titleLabel?.font = SystemFont.bold.of(textStyle: .subheadline)
+            unenrollButton.titleLabel?.font = .subheadlineSemibold
         } else {
             // Not enrolled
             topLabel.textColor = .neutralDark
-            topLabel.font = SystemFont.regular.of(textStyle: .headline)
+            topLabel.font = .headline
             topLabel.setLineHeight(lineHeight: 24)
             
             tacLabel.textColor = .neutralDark
             tacLabel.text = viewModel.tacLabelText
-            tacLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+            tacLabel.font = .subheadline
             tacLabel.setLineHeight(lineHeight: 25)
             tacSwitch.accessibilityLabel = viewModel.tacSwitchAccessibilityLabel
-            tacButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .subheadline)
+            tacButton.titleLabel?.font = .subheadlineSemibold
             GoogleAnalytics.log(event: .autoPayEnrollOffer)
         }
 
         footerLabel.textColor = .neutralDark
-        footerLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        footerLabel.font = .footnote
         footerLabel.setLineHeight(lineHeight: 16)
     }
     

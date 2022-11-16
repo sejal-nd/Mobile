@@ -56,15 +56,15 @@ class FloatLabelTextField: UIView {
         addSubview(view)
         
         errorLabel.textColor = .errorPrimary
-        errorLabel.font = SystemFont.semibold.of(textStyle: .caption2)
+        errorLabel.font = .caption2Semibold
         errorLabel.text = nil
         errorView.isHidden = true
         
-        floatLabel.font = SystemFont.semibold.of(textStyle: .caption2)
+        floatLabel.font = .caption2Semibold
         floatLabel.textColor = .middleGray
         floatLabel.alpha = 0
         
-        textField.font = SystemFont.regular.of(textStyle: .callout)
+        textField.font = .callout
         textField.tintColor = .primaryColor
 
         textField.rx.controlEvent(.editingDidBegin).asObservable().subscribe(onNext: { [weak self] _ in

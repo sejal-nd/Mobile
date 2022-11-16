@@ -151,52 +151,52 @@ class BGEAutoPayViewController: UIViewController {
     private func styleViews() {
         addCustomBackButton()
         selectBankAccountLabel.textColor = .neutralDark
-        selectBankAccountLabel.font = SystemFont.semibold.of(textStyle: .caption2)
+        selectBankAccountLabel.font = .caption2Semibold
         selectBankAccountLabel.text = NSLocalizedString("Bank Account", comment: "")
         
         bankAccountButton.fullyRoundCorners(diameter: 20, borderColor: .accentGray, borderWidth: 1)
         bankAccountButton.backgroundColorOnPress = .softGray
         
         bankAccountButtonSelectLabel.textColor = .neutralDark
-        bankAccountButtonSelectLabel.font = SystemFont.regular.of(textStyle: .callout)
+        bankAccountButtonSelectLabel.font = .callout
         bankAccountButtonSelectLabel.text = NSLocalizedString("Select Bank Account", comment: "")
         
         bankAccountButtonAccountNumberLabel.textColor = .neutralDark
-        bankAccountButtonAccountNumberLabel.font = SystemFont.regular.of(textStyle: .callout)
+        bankAccountButtonAccountNumberLabel.font = .callout
         bankAccountButtonNicknameLabel.textColor = .middleGray
-        bankAccountButtonNicknameLabel.font = SystemFont.regular.of(textStyle: .caption1)
+        bankAccountButtonNicknameLabel.font = .caption1
         
         settingsButton.fullyRoundCorners(diameter: 20, borderColor: .accentGray, borderWidth: 1)
         settingsButton.backgroundColorOnPress = .softGray
         
         termsLabel.textColor = .neutralDark
-        termsLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        termsLabel.font = .subheadline
         termsLabel.setLineHeight(lineHeight: 25)
         termsLabel.isAccessibilityElement = false
         termsButton.setTitleColor(.primaryBlue, for: .normal)
-        termsButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .subheadline)
+        termsButton.titleLabel?.font = .subheadlineSemibold
         termsSwitch.accessibilityLabel = termsLabel.text
         
         bottomLabel.textColor = .neutralDark
         let bottomLabelText = viewModel.bottomLabelText
         bottomLabel.text = bottomLabelText
-        bottomLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        bottomLabel.font = .footnote
         
         settingsTitleLabel.textColor = .neutralDark
-        settingsTitleLabel.font = SystemFont.semibold.of(textStyle: .caption2)
+        settingsTitleLabel.font = .caption2Semibold
         
         settingsLabel.textColor = .neutralDark
-        settingsLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        settingsLabel.font = .subheadline
         
         settingsDescriptionLabel.textColor = .middleGray
-        settingsDescriptionLabel.font = SystemFont.regular.of(textStyle: .caption1)
+        settingsDescriptionLabel.font = .caption1
         
         unenrollButtonLabel.textColor = .neutralDark
-        unenrollButtonLabel.font = SystemFont.regular.of(textStyle: .callout)
+        unenrollButtonLabel.font = .callout
         unenrollButton.setTitleColor(.primaryBlue, for: .normal)
-        unenrollButton.titleLabel?.font = SystemFont.bold.of(textStyle: .callout)
+        unenrollButton.titleLabel?.font = .callout
         
-        errorLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        errorLabel.font = .subheadline
         errorLabel.textColor = .neutralDark
         errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
     }

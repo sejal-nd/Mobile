@@ -61,7 +61,7 @@ class OverrideViewController: UIViewController {
         let topLabel = UILabel()
         topLabel.text = NSLocalizedString("Select a date to override an Energy Savings Day", comment: "")
         topLabel.textColor = .neutralDark
-        topLabel.font = SystemFont.regular.of(textStyle: .headline)
+        topLabel.font = .headline
         topLabel.numberOfLines = 0
         
         dateButton.heightAnchor.constraint(equalToConstant: 55).isActive = true
@@ -70,16 +70,16 @@ class OverrideViewController: UIViewController {
         let scheduledTitleLabel = UILabel()
         scheduledTitleLabel.text = NSLocalizedString("Scheduled Overrides", comment: "")
         scheduledTitleLabel.textColor = .neutralDark
-        scheduledTitleLabel.font = SystemFont.regular.of(textStyle: .headline)
+        scheduledTitleLabel.font = .headline
         topLabel.numberOfLines = 0
         
         scheduledSerialLabel.textColor = .neutralDark
-        scheduledSerialLabel.font = SystemFont.regular.of(textStyle: .callout)
+        scheduledSerialLabel.font = .callout
         scheduledSerialLabel.numberOfLines = 0
         scheduledSerialLabel.setContentHuggingPriority(UILayoutPriority(rawValue: 1), for: .horizontal)
         
         scheduledDateLabel.textColor = .neutralDark
-        scheduledDateLabel.font = SystemFont.regular.of(textStyle: .callout)
+        scheduledDateLabel.font = .callout
         scheduledDateLabel.numberOfLines = 0
         scheduledDateLabel.setContentHuggingPriority(UILayoutPriority(rawValue: 1), for: .horizontal)
         
@@ -90,7 +90,7 @@ class OverrideViewController: UIViewController {
         
         scheduledCancelButton.setTitle(NSLocalizedString("Cancel", comment: ""), for: .normal)
         scheduledCancelButton.setTitleColor(.primaryBlue, for: .normal)
-        scheduledCancelButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
+        scheduledCancelButton.titleLabel?.font = .headlineSemibold
         
         let scheduledCardStack = UIStackView(arrangedSubviews: [scheduledLabelStack, scheduledCancelButton]).usingAutoLayout()
         scheduledCardStack.axis = .horizontal
@@ -117,16 +117,16 @@ class OverrideViewController: UIViewController {
         let activeTitleLabel = UILabel()
         activeTitleLabel.text = NSLocalizedString("Active Overrides", comment: "")
         activeTitleLabel.textColor = .neutralDark
-        activeTitleLabel.font = SystemFont.regular.of(textStyle: .headline)
+        activeTitleLabel.font = .headline
         topLabel.numberOfLines = 0
         
         activeSerialLabel.textColor = .neutralDark
-        activeSerialLabel.font = SystemFont.regular.of(textStyle: .callout)
+        activeSerialLabel.font = .callout
         activeSerialLabel.numberOfLines = 0
         activeSerialLabel.setContentHuggingPriority(UILayoutPriority(rawValue: 1), for: .horizontal)
         
         activeDateLabel.textColor = .neutralDark
-        activeDateLabel.font = SystemFont.regular.of(textStyle: .callout)
+        activeDateLabel.font = .callout
         activeDateLabel.numberOfLines = 0
         activeDateLabel.setContentHuggingPriority(UILayoutPriority(rawValue: 1), for: .horizontal)
         
@@ -181,7 +181,7 @@ class OverrideViewController: UIViewController {
         
         errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
         errorLabel.textColor = .neutralDark
-        errorLabel.font = SystemFont.regular.of(textStyle: .headline)
+        errorLabel.font = .headline
         errorLabel.textAlignment = .center
         errorLabel.numberOfLines = 0
         view.addSubview(errorLabel)

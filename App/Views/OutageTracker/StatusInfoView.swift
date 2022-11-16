@@ -81,7 +81,7 @@ class StatusInfoView: UIView {
         titleTopConstraint.constant = info == .hazardMessage ? 88 : 50
         
         if info == .hazardMessage {
-            textView.tintColor = .primaryBlue // For the phone numbers
+            textView.tintColor = .actionBrand // For the phone numbers
             textView.attributedText = hazardText(text: info.details)
         } else {
             textView.text = info.details
@@ -93,12 +93,12 @@ class StatusInfoView: UIView {
         let phoneNumbers = [phone1]
         let localizedString = String.localizedStringWithFormat(text, phone1)
         
-        let attributedText = NSMutableAttributedString(string: localizedString, attributes: [.font: SystemFont.regular.of(textStyle: .caption1)])
+        let attributedText = NSMutableAttributedString(string: localizedString, attributes: [.font: UIFont.caption1])
         for phone in phoneNumbers {
             localizedString.ranges(of: phone, options: .regularExpression)
                 .map { NSRange($0, in: localizedString) }
                 .forEach {
-                    attributedText.addAttribute(.font, value: SystemFont.semibold.of(textStyle: .caption1), range: $0)
+                    attributedText.addAttribute(.font, value: UIFont.caption1Semibold, range: $0)
                 }
         }
         return attributedText

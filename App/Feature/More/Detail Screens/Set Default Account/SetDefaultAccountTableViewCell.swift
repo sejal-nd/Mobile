@@ -27,10 +27,10 @@ class SetDefaultAccountTableViewCell: UITableViewCell {
         radioButtonImageView.isAccessibilityElement = false
         
         accountNumberLabel.textColor = .neutralDark
-        accountNumberLabel.font = SystemFont.regular.of(textStyle: .headline)
+        accountNumberLabel.font = .headline
 
         addressLabel.textColor = .neutralDark
-        addressLabel.font = SystemFont.regular.of(textStyle: .caption1)
+        addressLabel.font = .caption1
         
         dividerLine.backgroundColor = .accentGray
         

@@ -67,22 +67,22 @@ class SERPTSViewController: UIViewController {
             NSLocalizedString("Smart Energy Rewards", comment: "")
         
         smartEnergyRewardsSeasonLabel.textColor = .neutralDark
-        smartEnergyRewardsSeasonLabel.font = SystemFont.regular.of(textStyle: .headline)
+        smartEnergyRewardsSeasonLabel.font = .headline
         
         smartEnergyRewardsViewAllSavingsButton.setTitleColor(.primaryBlue, for: .normal)
-        smartEnergyRewardsViewAllSavingsButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
+        smartEnergyRewardsViewAllSavingsButton.titleLabel?.font = .headlineSemibold
         smartEnergyRewardsViewAllSavingsButton.titleLabel?.text = NSLocalizedString("View All Savings", comment: "")
         
         smartEnergyRewardsFooterLabel.textColor = .neutralDark
-        smartEnergyRewardsFooterLabel.font = SystemFont.regular.of(textStyle: .caption1)
+        smartEnergyRewardsFooterLabel.font = .caption1
         
-        smartEnergyRewardsEmptyStateLabel.font = SystemFont.regular.of(textStyle: .headline)
+        smartEnergyRewardsEmptyStateLabel.font = .headline
         smartEnergyRewardsEmptyStateLabel.textAlignment = .center
         smartEnergyRewardsEmptyStateLabel.textColor = .neutralDark
         smartEnergyRewardsEmptyStateLabel.text = NSLocalizedString("Your energy savings data will be available here once we have more data.", comment: "")
         
         errorLabel.textColor = .neutralDark
-        errorLabel.font = SystemFont.regular.of(textStyle: .headline)
+        errorLabel.font = .headline
     }
     
     private func buttonTapSetup() {

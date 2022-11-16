@@ -37,12 +37,12 @@ class OutageStatusButton: UIView {
     @IBOutlet weak var statusImageView: UIImageView!
     @IBOutlet weak var statusTitleLabel: UILabel! {
         didSet {
-            statusTitleLabel.font = ExelonFont.regular.of(size: 14)
+            statusTitleLabel.font = .subheadlineSemibold
         }
     }
     @IBOutlet weak var statusDetailLabel: UILabel! {
         didSet {
-            statusDetailLabel.font = ExelonFont.bold.of(size: 22)
+            statusDetailLabel.font = .title2
         }
     }
 
@@ -50,22 +50,22 @@ class OutageStatusButton: UIView {
     @IBOutlet weak var statusETRImageView: UIImageView!
     @IBOutlet weak var statusETRLabel: UILabel! {
         didSet {
-            statusETRLabel.font = ExelonFont.regular.of(size: 14)
+            statusETRLabel.font = .subheadlineSemibold
         }
     }
     @IBOutlet weak var reportedDetailLabel: UILabel! {
         didSet {
-            reportedDetailLabel.font = ExelonFont.bold.of(size: 22)
+            reportedDetailLabel.font = .title2
         }
     }
     @IBOutlet weak var reportedETRTitleLabel: UILabel! {
         didSet {
-            reportedETRTitleLabel.font = ExelonFont.regular.of(size: 12)
+            reportedETRTitleLabel.font = .caption1
         }
     }
     @IBOutlet weak var reportedETRLabel: UILabel! {
         didSet {
-            reportedETRLabel.font = ExelonFont.bold.of(size: 14)
+            reportedETRLabel.font = .footnoteSemibold
             reportedETRLabel.adjustsFontSizeToFitWidth = true
             reportedETRLabel.minimumScaleFactor = 0.5
         }

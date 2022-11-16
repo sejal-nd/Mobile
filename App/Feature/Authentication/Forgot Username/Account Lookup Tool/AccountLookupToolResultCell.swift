@@ -27,13 +27,13 @@ class AccountLookupToolResultCell: UITableViewCell {
         accessibilityTraits = .button
         
         accountNumberLabel.textColor = .neutralDark
-        accountNumberLabel.font = SystemFont.semibold.of(textStyle: .headline)
+        accountNumberLabel.font = .headlineSemibold
         
         streetNumberLabel.textColor = .neutralDark
-        streetNumberLabel.font = SystemFont.regular.of(textStyle: .headline)
+        streetNumberLabel.font = .headline
         
         unitNumberLabel.textColor = .neutralDark
-        unitNumberLabel.font = SystemFont.regular.of(textStyle: .headline)
+        unitNumberLabel.font = .headline
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

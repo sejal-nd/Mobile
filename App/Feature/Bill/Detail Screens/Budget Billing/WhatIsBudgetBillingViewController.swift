@@ -30,10 +30,10 @@ class WhatIsBudgetBillingViewController: DismissableFormSheetViewController {
         addCloseButton()
         descriptionLabel.isHidden = !Configuration.shared.opco.isPHI
         card1TitleLabel.textColor = .neutralDark
-        card1TitleLabel.font = ExelonFont.semibold.of(textStyle: .title3)
+        card1TitleLabel.font = .title3
         card1TitleLabel.text = NSLocalizedString("1 consistent bill over 12 months", comment: "")
         card2TitleLabel.textColor = .neutralDark
-        card2TitleLabel.font = ExelonFont.semibold.of(textStyle: .title3)
+        card2TitleLabel.font = .title3
         card2TitleLabel.text = NSLocalizedString("Adjusted throughout the year", comment: "")
         
         card1Bullet1Label.textColor = .neutralDark
@@ -49,18 +49,18 @@ class WhatIsBudgetBillingViewController: DismissableFormSheetViewController {
         
         descriptionLabel.textColor = .neutralDark
         
-        card1Bullet1Label.font = SystemFont.regular.of(textStyle: .body)
-        card1Bullet2Label.font = SystemFont.regular.of(textStyle: .body)
-        card1Bullet3Label.font = SystemFont.regular.of(textStyle: .body)
-        card1Bullet4Label.font = SystemFont.regular.of(textStyle: .body)
+        card1Bullet1Label.font = .body
+        card1Bullet2Label.font = .body
+        card1Bullet3Label.font = .body
+        card1Bullet4Label.font = .body
 
-        card2Bullet1Label.font = SystemFont.regular.of(textStyle: .body)
-        card2Bullet2Label.font = SystemFont.regular.of(textStyle: .body)
-        card2Bullet3Label.font = SystemFont.regular.of(textStyle: .body)
-        card2Bullet4Label.font = SystemFont.regular.of(textStyle: .body)
-        card2Bullet5Label.font = SystemFont.regular.of(textStyle: .body)
+        card2Bullet1Label.font = .body
+        card2Bullet2Label.font = .body
+        card2Bullet3Label.font = .body
+        card2Bullet4Label.font = .body
+        card2Bullet5Label.font = .body
         
-        descriptionLabel.font = SystemFont.regular.of(textStyle: .body)
+        descriptionLabel.font = .body
 
         switch Configuration.shared.opco {
         case .bge:

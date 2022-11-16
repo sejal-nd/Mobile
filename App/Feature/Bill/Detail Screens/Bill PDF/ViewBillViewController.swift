@@ -31,7 +31,7 @@ class ViewBillViewController: UIViewController {
 
         title = NSLocalizedString("View Bill", comment: "")
         
-        errorLabel.font = SystemFont.regular.of(textStyle: .headline)
+        errorLabel.font = .headline
         errorLabel.textColor = .blackText
         errorLabel.text = NSLocalizedString("We are currently experiencing technical issues with downloading the PDF of your bill. We apologize for the inconvenience and appreciate your patience as we work to resolve the issue.", comment: "")
         errorLabel.isHidden = true

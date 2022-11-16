@@ -29,11 +29,11 @@ class BillingHistoryTableViewCell: UITableViewCell {
         selectionStyle = .none
         
         titleLabel.textColor = .neutralDark
-        titleLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        titleLabel.font = .subheadline
         dateLabel.textColor = .neutralDark
-        dateLabel.font = SystemFont.regular.of(textStyle: .caption1)
+        dateLabel.font = .caption1
         amountLabel.textColor = .neutralDark
-        amountLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        amountLabel.font = .subheadline
     }
 
     func configureWith(item: BillingHistoryItem) {
@@ -68,7 +68,7 @@ class BillingHistoryTableViewCell: UITableViewCell {
             case .success, .unknown:
                 iconImageView.image = #imageLiteral(resourceName: "ic_activity_success")
                 amountLabel.textColor = .successGreenText
-                amountLabel.font = SystemFont.semibold.of(textStyle: .subheadline)
+                amountLabel.font = .subheadlineSemibold
                 if let description = item.welcomeDescription {
                     let titleText = (description.lowercased().contains("reinstate") && Configuration.shared.opco == .peco) ? NSLocalizedString(description, comment: "") : NSLocalizedString("Payment", comment: "")
                     titleLabel.text = titleText
@@ -108,7 +108,7 @@ class BillingHistoryTableViewCell: UITableViewCell {
         dateLabel.text = ""
         titleLabel.text = ""
         amountLabel.textColor = .neutralDark
-        amountLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        amountLabel.font = .subheadline
         amountLabel.text = ""
         iconImageView.image = nil
         dateLabel.isHidden = false

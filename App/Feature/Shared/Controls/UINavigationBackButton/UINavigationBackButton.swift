@@ -57,7 +57,7 @@ class UINavigationBackButton: UIButton {
         addSubview(view)
         
         arrowImage.image = arrowImage.image!.withRenderingMode(.alwaysTemplate)
-        arrowImage.tintColor = .primaryBlue
+        arrowImage.tintColor = .actionBrand
         backLabel.textColor = .primaryBlue
     }
     

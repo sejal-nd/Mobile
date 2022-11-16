@@ -378,7 +378,7 @@ class TapToPayViewModel {
     
     private(set) lazy var dueAmountDescriptionText: Driver<NSAttributedString> = accountDetailDriver.map {
         let billingInfo = $0.billingInfo
-        var attributes: [NSAttributedString.Key: Any] = [.font: SystemFont.regular.of(textStyle: .caption1),
+        var attributes: [NSAttributedString.Key: Any] = [.font: UIFont.caption1,
                                                          .foregroundColor: UIColor.neutralDark]
         let string: String
         guard var dueAmount = billingInfo.netDueAmount else { return NSAttributedString() }
@@ -945,9 +945,9 @@ class TapToPayViewModel {
          let localizedText = String.localizedStringWithFormat("%@%@", boldText, bodyText)
          let attributedText = NSMutableAttributedString(string: localizedText,
                                                         attributes: [.foregroundColor: UIColor.blackText,
-                                                                     .font: SystemFont.regular.of(textStyle: .footnote)])
+                                                                     .font: UIFont.footnote])
          attributedText.addAttribute(.font,
-                                     value: SystemFont.bold.of(textStyle: .footnote),
+                                     value: UIFont.footnoteSemibold,
                                      range: NSRange(location: 0, length: boldText.count))
          
          return attributedText

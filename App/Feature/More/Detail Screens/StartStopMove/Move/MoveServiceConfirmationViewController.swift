@@ -70,14 +70,14 @@ class MoveServiceConfirmationViewController: UIViewController {
     
     private func fontStyling() {
         
-        moveStatusLabel.font = ExelonFont.semibold.of(textStyle: .title3)
-        stopServiceDateStaticLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        stopServiceAddressStaticLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        startServiceDateStaticLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        startServiceAddressStaticLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        billingDescriptionLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        billChargesStaticLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        accountNumberStaticLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        moveStatusLabel.font = .title3
+        stopServiceDateStaticLabel.font = .footnote
+        stopServiceAddressStaticLabel.font = .footnote
+        startServiceDateStaticLabel.font = .footnote
+        startServiceAddressStaticLabel.font = .footnote
+        billingDescriptionLabel.font = .footnote
+        billChargesStaticLabel.font = .footnote
+        accountNumberStaticLabel.font = .footnote
         accountNumberLabel.font = SystemFont.semibold.of(size: 15.0)
 
         for view in [stopServiceView, startServiceView, billingAddressView, billChargeView, accountNumberView, thirdPartySupplierInnerContentView] {

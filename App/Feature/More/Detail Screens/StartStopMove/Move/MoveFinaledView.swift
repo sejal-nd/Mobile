@@ -24,8 +24,8 @@ class MoveFinaledView: UIView {
     
     private func fontStyle() {
         
-        serviceStatusLabel.font = ExelonFont.semibold.of(textStyle: .title3)
-        helplineDescriptionTextView.font = SystemFont.regular.of(textStyle: .subheadline)
+        serviceStatusLabel.font = .title3
+        helplineDescriptionTextView.font = .subheadline
     }
     
     private func dataBinding() {

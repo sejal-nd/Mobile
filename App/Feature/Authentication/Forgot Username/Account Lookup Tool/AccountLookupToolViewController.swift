@@ -33,7 +33,7 @@ class AccountLookupToolViewController: KeyboardAvoidingStickyFooterViewControlle
         viewModel.searchButtonEnabled.drive(searchButton.rx.isEnabled).disposed(by: disposeBag)
         
         identifierDescriptionLabel.textColor = .neutralDark
-        identifierDescriptionLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        identifierDescriptionLabel.font = .subheadline
         identifierDescriptionLabel.text = NSLocalizedString("Last 4 Digits of primary account holder’s Social Security Number, or Business Tax ID", comment: "")
         
         phoneNumberTextField.placeholder = Configuration.shared.opco.isPHI ? NSLocalizedString("Phone Number*", comment: "") : NSLocalizedString("Primary Phone Number*", comment: "")

@@ -66,12 +66,12 @@ class AutoPayChangeBankViewController: KeyboardAvoidingStickyFooterViewControlle
 	private func style() {
 		tacLabel.text = NSLocalizedString("Yes, I have read, understand and agree to the terms and conditions below, and by checking this box, I authorize ComEd to regularly debit the bank account provided.\n\nI understand that my bank account will be automatically debited each billing period for the total amount due, that these are variable charges, and that my bill being posted in the ComEd mobile app acts as my notification.\n\nCustomers can see their bill monthly through the ComEd mobile app. Bills are delivered online during each billing cycle. Please note that this will not change your preferred bill delivery method.\n", comment: "")
         tacLabel.textColor = .neutralDark
-		tacLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+		tacLabel.font = .subheadline
 		tacLabel.setLineHeight(lineHeight: 25)
         tacSwitch.accessibilityLabel = "I agree to ComEd’s AutoPay Terms and Conditions"
-		tacButton.titleLabel?.font = SystemFont.bold.of(textStyle: .subheadline)
+        tacButton.titleLabel?.font = .subheadlineSemibold
         footerLabel.textColor = .neutralDark
-        footerLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        footerLabel.font = .footnote
         footerLabel.setLineHeight(lineHeight: 16)
 	}
 	

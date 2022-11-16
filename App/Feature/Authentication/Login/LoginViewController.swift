@@ -135,8 +135,8 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
             self?.onLoginPress()
         }).disposed(by: disposeBag)
 
-        forgotUsernamePasswordButton.tintColor = .primaryBlue
-        forgotUsernamePasswordButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
+        forgotUsernamePasswordButton.tintColor = .actionBrand
+        forgotUsernamePasswordButton.titleLabel?.font = .headlineSemibold
         forgotUsernamePasswordButton.titleLabel?.numberOfLines = 0
         forgotUsernamePasswordButton.titleLabel?.textAlignment = .center
         
@@ -156,7 +156,7 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
         if biometricsString == "Face ID" { // Touch ID icon is default
             biometricImageView.image = #imageLiteral(resourceName: "ic_faceid")
         }
-        biometricLabel.font = SystemFont.semibold.of(textStyle: .subheadline)
+        biometricLabel.font = .subheadlineSemibold
         biometricLabel.text = biometricsString
         biometricButton.accessibilityLabel = biometricsString
 

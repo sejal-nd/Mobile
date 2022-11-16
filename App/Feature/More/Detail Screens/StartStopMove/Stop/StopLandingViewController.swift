@@ -15,14 +15,14 @@ class StopLandingViewController: UIViewController {
     @IBOutlet weak var headerMessageLabel: UILabel! {
         didSet {
             headerMessageLabel.textColor = .neutralDark
-            headerMessageLabel.font = ExelonFont.semibold.of(textStyle: .title3)
+            headerMessageLabel.font = .title3
             headerMessageLabel.text = NSLocalizedString("Permanently stop your current service", comment: "")
         }
     }
     @IBOutlet weak var estimatedTimeLabel: UILabel! {
         didSet {
             estimatedTimeLabel.textColor = .neutralDark
-            estimatedTimeLabel.font = SystemFont.regular.of(textStyle: .caption1)
+            estimatedTimeLabel.font = .caption1
             estimatedTimeLabel.text = NSLocalizedString("EST. 2-4 MINUTES", comment: "")
             estimatedTimeLabel.accessibilityLabel = NSLocalizedString("Estimated Time 2 to 4 minutes", comment: "")
         }
@@ -30,7 +30,7 @@ class StopLandingViewController: UIViewController {
     @IBOutlet weak var youWillNeedLabel: UILabel! {
         didSet {
             youWillNeedLabel.textColor = .neutralDark
-            youWillNeedLabel.font = SystemFont.regular.of(textStyle: .caption1)
+            youWillNeedLabel.font = .caption1
             youWillNeedLabel.text = NSLocalizedString("You'll need:", comment: "")
         }
     }
@@ -38,7 +38,7 @@ class StopLandingViewController: UIViewController {
     @IBOutlet weak var stopDateMessagingLabel: UILabel! {
         didSet {
             stopDateMessagingLabel.textColor = .neutralDark
-            stopDateMessagingLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+            stopDateMessagingLabel.font = .subheadline
             stopDateMessagingLabel.text = NSLocalizedString("Date to stop your service within 30 days, excluding holidays and Sundays.", comment: "")
         }
     }

@@ -850,12 +850,12 @@ class UsageViewModel {
     private(set) lazy var noDataLabelFont: Driver<UIFont> = barGraphSelection.asDriver()
         .map { $0 == .noData }
         .distinctUntilChanged()
-        .map { $0 ? SystemFont.bold.of(textStyle: .footnote) : SystemFont.semibold.of(textStyle: .footnote) }
+        .map { $0 ? UIFont.footnoteSemibold : .footnoteSemibold }
     
     private(set) lazy var previousLabelFont: Driver<UIFont> = barGraphSelection.asDriver()
         .map { $0 == .previous }
         .distinctUntilChanged()
-        .map { $0 ? SystemFont.bold.of(textStyle: .footnote) : SystemFont.semibold.of(textStyle: .footnote) }
+        .map { $0 ? UIFont.footnoteSemibold : .footnoteSemibold }
     
     private(set) lazy var previousDollarLabelTextColor: Driver<UIColor> = billComparison.map {
         guard let compared = $0.comparedBill else { return .neutralDark }
@@ -865,7 +865,7 @@ class UsageViewModel {
     private(set) lazy var currentLabelFont: Driver<UIFont> = barGraphSelection.asDriver()
         .map { $0 == .current }
         .distinctUntilChanged()
-        .map { $0 ? SystemFont.bold.of(textStyle: .footnote) : SystemFont.semibold.of(textStyle: .footnote) }
+        .map { $0 ? UIFont.footnoteSemibold : .footnoteSemibold }
     
     private(set) lazy var currentDollarLabelTextColor: Driver<UIColor> = billComparison.map {
         guard let reference = $0.referenceBill else { return .neutralDark }
@@ -875,12 +875,12 @@ class UsageViewModel {
     private(set) lazy var projectedLabelFont: Driver<UIFont> = barGraphSelection.asDriver()
         .map { $0 == .projected }
         .distinctUntilChanged()
-        .map { $0 ? SystemFont.bold.of(textStyle: .footnote) : SystemFont.semibold.of(textStyle: .footnote) }
+        .map { $0 ? UIFont.footnoteSemibold : .footnoteSemibold }
     
     private(set) lazy var projectionNotAvailableLabelFont: Driver<UIFont> = barGraphSelection.asDriver()
         .map { $0 == .projectionNotAvailable }
         .distinctUntilChanged()
-        .map { $0 ? SystemFont.bold.of(textStyle: .footnote) : SystemFont.semibold.of(textStyle: .footnote) }
+        .map { $0 ? UIFont.footnoteSemibold : .footnoteSemibold }
     
     // MARK: - Usage Tools
     

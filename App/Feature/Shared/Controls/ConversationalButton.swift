@@ -28,7 +28,7 @@ class ConversationalButton: ButtonControl {
         layer.borderWidth = 1
         layer.borderColor = UIColor.accentGray.cgColor
         
-        titleLabel.font = SystemFont.semibold.of(textStyle: .subheadline)
+        titleLabel.font = .subheadlineSemibold
         titleLabel.textColor = .primaryBlue
         titleLabel.numberOfLines = 0
         

@@ -33,9 +33,9 @@ class B2CRegistrationViewController: UIViewController {
         webView.isHidden = true
         
         errorImage.tintColor = .attentionOrange
-        errorTitle.font = ExelonFont.semibold.of(textStyle: .title3)
+        errorTitle.font = .title3
         errorTitle.textColor = .neutralDark
-        errorDescription.font = SystemFont.regular.of(textStyle: .footnote)
+        errorDescription.font = .footnote
         errorDescription.textColor = .neutralDark
         errorView.isHidden = true
         

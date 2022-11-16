@@ -24,7 +24,7 @@ class RadioSelectionTableViewCell: UITableViewCell {
         
         label.lineBreakMode = .byWordWrapping
         label.textColor = .neutralDark
-        label.font = SystemFont.regular.of(textStyle: .headline)
+        label.font = .headline
         
         dividerLine.backgroundColor = .accentGray
         

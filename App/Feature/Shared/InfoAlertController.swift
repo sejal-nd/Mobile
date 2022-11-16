@@ -143,22 +143,22 @@ class InfoAlertController: UIViewController {
         alertContainerView.backgroundColor = .white
         alertContainerView.layer.cornerRadius = 10
         xButton.setImage(#imageLiteral(resourceName: "ic_close"), for: .normal)
-        xButton.tintColor = .primaryBlue
-        titleLabel.font = SystemFont.regular.of(textStyle: .headline)
+        xButton.tintColor = .actionBrand
+        titleLabel.font = .headline
         titleLabel.textColor = .neutralDark
         titleLabel.numberOfLines = 0
         titleLabel.textAlignment = .center
-        messageLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        messageLabel.font = .footnote
         messageLabel.textColor = .neutralDark
         messageLabel.numberOfLines = 0
         messageLabel.textAlignment = .center
         
         if buttonType != .system {
-            ctaButton?.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
+            ctaButton?.titleLabel?.font = .headlineSemibold
             ctaButton?.layer.cornerRadius = 22
         } else {
             ctaButton?.setTitleColor(.primaryBlue, for: .normal)
-            ctaButton?.titleLabel?.font = SystemFont.semibold.of(textStyle: .body)
+            ctaButton?.titleLabel?.font = .bodyBold
         }
     }
     

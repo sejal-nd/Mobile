@@ -83,14 +83,14 @@ class ReportOutageViewModel {
         }
         
         let attributedText = NSMutableAttributedString(string: localizedString, attributes: [
-            .font: SystemFont.regular.of(textStyle: .caption1),
+            .font: UIFont.caption1,
             .foregroundColor: UIColor.neutralDark
         ])
         for phone in phoneNumbers {
             localizedString.ranges(of: phone, options: .regularExpression)
                 .map { NSRange($0, in: localizedString) }
                 .forEach {
-                    attributedText.addAttribute(.font, value: SystemFont.bold.of(textStyle: .caption1), range: $0)
+                    attributedText.addAttribute(.font, value: UIFont.caption1Semibold, range: $0)
             }
         }
         return attributedText

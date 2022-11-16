@@ -59,10 +59,10 @@ class DisclosureButton: UIButton {
         
         fullyRoundCorners(diameter: 20, borderColor: .accentGray, borderWidth: 1)
 
-        descriptionLabel.font = SystemFont.semibold.of(textStyle: .caption2)
+        descriptionLabel.font = .caption2Semibold
         descriptionLabel.textColor = .middleGray
         
-        valueLabel.font = SystemFont.regular.of(textStyle: .callout)
+        valueLabel.font = .callout
         valueLabel.textColor = .neutralDark
 
         updateLabels()

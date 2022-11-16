@@ -65,7 +65,7 @@ class StatusView: UIView {
         let imageName = isStormMode ? "ic_check_white_2" : "ic_check_white"
         checkmarkImageView.image = UIImage(named: imageName)
         
-        statusTitleLabel.font = ExelonFont.regular.of(size: 15)
+        statusTitleLabel.font = UIFont.subheadlineSemibold
         
         let emptyColor: UIColor = isStormMode ? .clear : .white
         let fillColor: UIColor = isStormMode ? .mediumSpringBud : .successGreenText
@@ -80,14 +80,14 @@ class StatusView: UIView {
                 outerView.backgroundColor = emptyColor
                 outerView.isHidden = false
                 checkmarkImageView.isHidden = true
-                statusTitleLabel.font = ExelonFont.bold.of(size: 15)
+                statusTitleLabel.font = UIFont.subheadlineSemibold
                 innerViewConstant = 24
             case .completed:
                 innerView.backgroundColor = fillColor
                 outerView.isHidden = true
                 checkmarkImageView.isHidden = false
                 if isLast {
-                    statusTitleLabel.font = ExelonFont.bold.of(size: 15)
+                    statusTitleLabel.font = UIFont.subheadlineSemibold
                 }
         }
         

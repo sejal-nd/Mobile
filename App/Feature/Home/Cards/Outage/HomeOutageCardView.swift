@@ -86,47 +86,47 @@ class HomeOutageCardView: UIView {
         
         // Content View
         titleLabel.textColor = .neutralDark
-        titleLabel.font = SystemFont.regular.of(textStyle: .headline)
+        titleLabel.font = .headline
         
         powerStatusTitleLabel.textColor = .neutralDark
-        powerStatusTitleLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        powerStatusTitleLabel.font = .subheadline
         
         powerStatusLabel.textColor = .neutralDark
-        powerStatusLabel.font = ExelonFont.medium.of(textStyle: .title1)
+        powerStatusLabel.font = .title1
         
         restorationStatusLabel.textColor = .neutralDark
-        restorationStatusLabel.font = SystemFont.regular.of(textStyle: .caption1)
+        restorationStatusLabel.font = .caption1
         
         restorationStatusLabel.textColor = .neutralDark
-        restorationStatusLabel.font = SystemFont.regular.of(textStyle: .caption1)
+        restorationStatusLabel.font = .caption1
         
         outageReportedLabel.textColor = .neutralDark
-        outageReportedLabel.font = SystemFont.semibold.of(textStyle: .footnote)
+        outageReportedLabel.font = .footnoteSemibold
         
-        callToActionButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
+        callToActionButton.titleLabel?.font = .headlineSemibold
         
         // Custom Error View
         customErrorTitleLabel.textColor = .neutralDark
-        customErrorTitleLabel.font = SystemFont.regular.of(textStyle: .headline)
+        customErrorTitleLabel.font = .headline
 
         gasOnlyLabel.textColor = .neutralDark
-        gasOnlyLabel.font = ExelonFont.semibold.of(textStyle: .title3)
+        gasOnlyLabel.font = .title3
         
         gasOnlySublabel.textColor = .neutralDark
-        gasOnlySublabel.font = SystemFont.regular.of(textStyle: .caption1)
+        gasOnlySublabel.font = .caption1
 
-        nonPayFinaledTextView.tintColor = .primaryBlue // For phone numbers
+        nonPayFinaledTextView.tintColor = .actionBrand // For phone numbers
         
         // Maintenance Mode View
         maintenanceModeLabel.textColor = .neutralDark
-        maintenanceModeLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        maintenanceModeLabel.font = .subheadline
         
         // Generic Error View
         errorTitleLabel.textColor = .neutralDark
-        errorTitleLabel.font = SystemFont.regular.of(textStyle: .headline)
+        errorTitleLabel.font = .headline
         
         errorLabel.textColor = .neutralDark
-        errorLabel.font = SystemFont.regular.of(textStyle: .caption1)
+        errorLabel.font = .caption1
         errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
     }
     

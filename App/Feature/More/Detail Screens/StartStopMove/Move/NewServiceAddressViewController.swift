@@ -189,22 +189,22 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
         zipTextField.textField.isShowingAccessory = true
         zipTextField.textField.textContentType = .postalCode
 
-        streetAddressPlaceHolderLabel.font = SystemFont.regular.of(textStyle: .callout)
+        streetAddressPlaceHolderLabel.font = .callout
         streetAddressPlaceHolderLabel.textColor = .middleGray
         streetAddressPlaceHolderLabel.text = NSLocalizedString("Street Address*", comment: "")
 
         streetAddressFloatingLabel.text = NSLocalizedString("Street Address*", comment: "")
-        streetAddressFloatingLabel.font = SystemFont.semibold.of(textStyle: .caption2)
+        streetAddressFloatingLabel.font = .caption2Semibold
         streetAddressFloatingLabel.textColor = .middleGray
         enableStreetColorState(false)
 
 
-        appartmentPlaceHolderLabel.font = SystemFont.regular.of(textStyle: .callout)
+        appartmentPlaceHolderLabel.font = .callout
         appartmentPlaceHolderLabel.textColor = .middleGray
         appartmentPlaceHolderLabel.text = NSLocalizedString("Apt/Unit #* ", comment: "")
         appartmentFloatingLabel.text = NSLocalizedString("Apt/Unit #* ", comment: "")
 
-        appartmentFloatingLabel.font = SystemFont.semibold.of(textStyle: .caption2)
+        appartmentFloatingLabel.font = .caption2Semibold
         appartmentFloatingLabel.textColor = .middleGray
         enableAppartmentColorState(false)
 

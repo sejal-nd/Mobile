@@ -424,14 +424,14 @@ class BillViewModel {
     
     private(set) lazy var totalAmountDescriptionText: Driver<NSAttributedString> = currentAccountDetail.map {
         let billingInfo = $0.billingInfo
-        var attributes: [NSAttributedString.Key: Any] = [.font: SystemFont.regular.of(textStyle: .footnote),
+        var attributes: [NSAttributedString.Key: Any] = [.font: UIFont.footnote,
                                                          .foregroundColor: UIColor.neutralDark]
         let string: String
         if billingInfo.pastDueAmount > 0 {
             if billingInfo.pastDueAmount == billingInfo.netDueAmount {
                 string = "Total Amount Due Immediately".localized()
                 attributes[.foregroundColor] = UIColor.errorPrimary
-                attributes[.font] = SystemFont.semibold.of(textStyle: .footnote)
+                attributes[.font] = UIFont.footnoteSemibold
             } else {
                 string = NSLocalizedString("Total Amount Due", comment: "")
             }
@@ -476,11 +476,11 @@ class BillViewModel {
                 billingInfo.amtDpaReinst == billingInfo.pastDueAmount {
                 let string = String.localizedStringWithFormat("Due by %@", date.mmDdYyyyString)
                 return NSAttributedString(string: string, attributes: [.foregroundColor: UIColor.middleGray,
-                                                                       .font: SystemFont.regular.of(textStyle: .caption1)])
+                                                                       .font: UIFont.caption1])
             } else {
                 let string = "Due Immediately".localized()
                 return NSAttributedString(string: string, attributes: [.foregroundColor: UIColor.errorPrimary,
-                                                                       .font: SystemFont.semibold.of(textStyle: .caption1)])
+                                                                       .font: UIFont.caption1Semibold])
             }
     }
     
@@ -867,9 +867,9 @@ class BillViewModel {
         let topTextRange = NSMakeRange(0, topText.count)
         let bottomTextRange = NSMakeRange(topText.count + 1, bottomText.count)
         
-        mutableText.addAttribute(.font, value: ExelonFont.bold.of(size: 16), range: topTextRange)
+        mutableText.addAttribute(.font, value: UIFont.callout.bold(), range: topTextRange)
         mutableText.addAttribute(.foregroundColor, value: UIColor.blackText, range: topTextRange)
-        mutableText.addAttribute(.font, value: ExelonFont.regular.of(size: 14), range: bottomTextRange)
+        mutableText.addAttribute(.font, value: UIFont.footnote, range: bottomTextRange)
         mutableText.addAttribute(.foregroundColor, value: UIColor.successGreenText, range: bottomTextRange)
         
         return mutableText
@@ -879,8 +879,8 @@ class BillViewModel {
         let text = NSLocalizedString("Would you like to enroll in ", comment: "")
         let mutableText = NSMutableAttributedString(string: text + boldText, attributes: [.foregroundColor: UIColor.blackText])
         
-        mutableText.addAttribute(.font, value: ExelonFont.regular.of(size: 16), range: NSMakeRange(0, text.count))
-        mutableText.addAttribute(.font, value: ExelonFont.bold.of(size: 16), range: NSMakeRange(text.count, boldText.count))
+        mutableText.addAttribute(.font, value: UIFont.callout.bold(), range: NSMakeRange(0, text.count))
+        mutableText.addAttribute(.font, value: UIFont.callout.bold(), range: NSMakeRange(text.count, boldText.count))
         
         return mutableText
     }

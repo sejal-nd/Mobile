@@ -46,20 +46,20 @@ class FloatLabelTextView: UIView {
     func commonInit() {
         inflateView()
         
-        textView.font = SystemFont.regular.of(textStyle: .callout)
+        textView.font = .callout
         textView.tintColor = .primaryColor
         textView.textContainerInset = UIEdgeInsets(top: 0, left: 16, bottom: 17, right: 16)
         textView.textContainer.lineFragmentPadding = 0
         
-        placeholderLabel.font = SystemFont.regular.of(textStyle: .callout)
+        placeholderLabel.font = .callout
         placeholderLabel.textColor = .middleGray
         
-        floatLabel.font = SystemFont.semibold.of(textStyle: .caption2)
+        floatLabel.font = .caption2Semibold
         floatLabel.textColor = .middleGray
         floatLabel.alpha = 0
         
         infoLabel.textColor = .neutralDark
-        infoLabel.font = SystemFont.regular.of(textStyle: .caption1)
+        infoLabel.font = .caption1
         infoLabel.text = nil
         infoView.isHidden = true
         

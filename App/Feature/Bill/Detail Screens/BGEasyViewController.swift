@@ -24,7 +24,7 @@ class BGEasyViewController: DismissableFormSheetViewController {
         
         scrollView.backgroundColor = .primaryColor
         
-        xButton.imageView?.tintColor = .primaryBlue
+        xButton.imageView?.tintColor = .actionBrand
         xButton.isAccessibilityElement = true
         xButton.accessibilityLabel = NSLocalizedString("Close", comment: "")
         
@@ -34,10 +34,10 @@ class BGEasyViewController: DismissableFormSheetViewController {
         titleLabel.text = NSLocalizedString("BGEasy Customer", comment: "")
         titleLabel.setLineHeight(lineHeight: 25)
         
-        descriptionLabel.font = SystemFont.regular.of(textStyle: .headline)
+        descriptionLabel.font = .headline
         descriptionLabel.textColor = .neutralDark
         descriptionLabel.text = NSLocalizedString("You are currently enrolled in BGEasy, our legacy automatic payment system.", comment: "")
-        descriptionLabel.font = SystemFont.regular.of(textStyle: .headline)
+        descriptionLabel.font = .headline
 
         for view in bulletCollection {
             view.backgroundColor = .primaryColor
@@ -46,11 +46,11 @@ class BGEasyViewController: DismissableFormSheetViewController {
         
         bullet1Label.textColor = .neutralDark
         bullet1Label.text = NSLocalizedString("As an existing participant, you may continue to use this plan at no additional charge; however this payment option cannot be managed through an online account.", comment: "")
-        bullet1Label.font = SystemFont.regular.of(textStyle: .body)
+        bullet1Label.font = .body
         
         bullet2Label.textColor = .neutralDark
         bullet2Label.text = NSLocalizedString("If you would like to take advantage of the more flexible BGE.com payment options or if you would like to manage your BGEasy program enrollment, please contact us.", comment: "")
-        bullet2Label.font = SystemFont.regular.of(textStyle: .body)
+        bullet2Label.font = .body
     }
     
     override func viewWillAppear(_ animated: Bool) {

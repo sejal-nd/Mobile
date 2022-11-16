@@ -42,14 +42,14 @@ class HomeAppointmentCardView: UIView {
         clippingView.layer.cornerRadius = 10
         
         topTextView.textColor = .blackText
-        topTextView.tintColor = .primaryBlue // Color of the phone numbers
-        topTextView.font = SystemFont.regular.of(textStyle: .headline)
+        topTextView.tintColor = .actionBrand // Color of the phone numbers
+        topTextView.font = .headline
         
         apologyLabel.textColor = .neutralDark
-        apologyLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        apologyLabel.font = .footnote
         
         bottomButtonLabel.textColor = .primaryBlue
-        bottomButtonLabel.font = SystemFont.semibold.of(textStyle: .headline)
+        bottomButtonLabel.font = .headlineSemibold
     }
     
     func bindViewModel() {

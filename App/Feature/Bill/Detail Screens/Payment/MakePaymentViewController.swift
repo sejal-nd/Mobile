@@ -115,11 +115,11 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
         viewModel.makePaymentContinueButtonEnabled.drive(continueButton.rx.isEnabled).disposed(by: disposeBag)
         
         activeSeveranceLabel.textColor = .neutralDark
-        activeSeveranceLabel.font = SystemFont.semibold.of(textStyle: .headline)
+        activeSeveranceLabel.font = .headlineSemibold
         activeSeveranceLabel.text = NSLocalizedString("Due to the status of this account, online payments are limited to the current date. Payments also may not be edited or deleted.", comment: "")
         
         bankAccountsUnavailableLabel.textColor = .neutralDark
-        bankAccountsUnavailableLabel.font = SystemFont.semibold.of(textStyle: .headline)
+        bankAccountsUnavailableLabel.font = .headlineSemibold
         bankAccountsUnavailableLabel.text = NSLocalizedString("Bank account payments are not available for this account.", comment: "")
 
         billInfoBox.layer.borderColor = UIColor.accentGray.cgColor
@@ -127,54 +127,54 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
         stackView.setCustomSpacing(40, after: billInfoBox)
         amountDueTextLabel.text = NSLocalizedString("Total Amount Due", comment: "")
         amountDueTextLabel.textColor = .neutralDark
-        amountDueTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        amountDueTextLabel.font = .subheadline
         amountDueValueLabel.textColor = .neutralDark
-        amountDueValueLabel.font = SystemFont.semibold.of(textStyle: .subheadline)
+        amountDueValueLabel.font = .subheadlineSemibold
         billInfoBoxDivider.backgroundColor = .accentGray
         dueDateTextLabel.text = NSLocalizedString("Due Date", comment: "")
         dueDateTextLabel.textColor = .neutralDark
-        dueDateTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        dueDateTextLabel.font = .subheadline
         dueDateDateLabel.textColor = .neutralDark
-        dueDateDateLabel.font = SystemFont.semibold.of(textStyle: .subheadline)
+        dueDateDateLabel.font = .subheadlineSemibold
         
         editPaymentInfoBox.layer.borderColor = UIColor.accentGray.cgColor
         editPaymentInfoBox.layer.borderWidth = 1
         paymentStatusTextLabel.text = NSLocalizedString("Payment Status", comment: "")
         paymentStatusTextLabel.textColor = .neutralDark
-        paymentStatusTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        paymentStatusTextLabel.font = .subheadline
         paymentStatusValueLabel.textColor = .neutralDark
-        paymentStatusValueLabel.font = SystemFont.semibold.of(textStyle: .subheadline)
+        paymentStatusValueLabel.font = .subheadlineSemibold
         editPaymentInfoBoxDivider.backgroundColor = .accentGray
         confirmationNumberTextLabel.text = NSLocalizedString("Confirmation Number", comment: "")
         confirmationNumberTextLabel.textColor = .neutralDark
-        confirmationNumberTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        confirmationNumberTextLabel.font = .subheadline
         confirmationNumberValueTextView.textColor = .neutralDark
         confirmationNumberValueTextView.dataDetectorTypes.remove(.all) // Some confirmation numbers are detected as phone numbers
-        confirmationNumberValueTextView.font = SystemFont.semibold.of(textStyle: .subheadline)
+        confirmationNumberValueTextView.font = .subheadlineSemibold
         
         paymentMethodLabel.text = NSLocalizedString("Payment Method*", comment: "")
         paymentMethodLabel.accessibilityLabel = "Payment Method*"
         paymentMethodLabel.textColor = .middleGray
-        paymentMethodLabel.font = SystemFont.semibold.of(textStyle: .caption2)
+        paymentMethodLabel.font = .caption2Semibold
         
         paymentMethodButton.fullyRoundCorners(diameter: 20, borderColor: .accentGray, borderWidth: 1)
         paymentMethodButton.backgroundColorOnPress = .softGray
         paymentMethodAccountNumberLabel.textColor = .neutralDark
-        paymentMethodAccountNumberLabel.font = SystemFont.regular.of(textStyle: .callout)
+        paymentMethodAccountNumberLabel.font = .callout
         paymentMethodNicknameLabel.textColor = .middleGray
-        paymentMethodNicknameLabel.font = SystemFont.regular.of(textStyle: .caption1)
+        paymentMethodNicknameLabel.font = .caption1
         
         paymentMethodExpiredButton.fullyRoundCorners(diameter: 20, borderColor: .accentGray, borderWidth: 1)
         paymentMethodExpiredButton.backgroundColorOnPress = .softGray
         paymentMethodExpiredSelectLabel.textColor = .neutralDark
-        paymentMethodExpiredSelectLabel.font = SystemFont.regular.of(textStyle: .callout)
+        paymentMethodExpiredSelectLabel.font = .callout
         paymentMethodExpiredSelectLabel.text = NSLocalizedString("Select Payment Method", comment: "")
         
         paymentMethodFeeLabel.textColor = .neutralDark
-        paymentMethodFeeLabel.font = SystemFont.regular.of(textStyle: .caption1)
+        paymentMethodFeeLabel.font = .caption1
         
         selectPaymentAmountLabel.textColor = .neutralDark
-        selectPaymentAmountLabel.font = SystemFont.regular.of(textStyle: .headline)
+        selectPaymentAmountLabel.font = .headline
         
         paymentAmountTextField.placeholder = NSLocalizedString("Payment Amount*", comment: "")
         paymentAmountTextField.textField.text = viewModel.paymentAmount.value.currencyString
@@ -185,19 +185,19 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
         }).disposed(by: disposeBag)
         
         paymentDateErrorLabel.textColor = .errorPrimary
-        paymentDateErrorLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        paymentDateErrorLabel.font = .footnote
         paymentDateErrorLabel.text = NSLocalizedString("Error: Invalid payment date.", comment: "")
         
         paymentDatePastDueLabel.textColor = .neutralDark
-        paymentDatePastDueLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        paymentDatePastDueLabel.font = .footnote
         paymentDatePastDueLabel.text = NSLocalizedString("Past due payments cannot be scheduled.", comment: "")
         
         sameDayPaymentWarningLabel.textColor = .neutralDark
-        sameDayPaymentWarningLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        sameDayPaymentWarningLabel.font = .footnote
         sameDayPaymentWarningLabel.text = NSLocalizedString("Same day payments cannot be edited or canceled after submission.", comment: "")
         
         addPaymentMethodLabel.textColor = .neutralDark
-        addPaymentMethodLabel.font = SystemFont.regular.of(textStyle: .headline)
+        addPaymentMethodLabel.font = .headline
         addPaymentMethodLabel.text = NSLocalizedString("Choose a payment method", comment: "")
 
         addBankAccountButton.fullyRoundCorners(diameter: 20, borderColor: .accentGray, borderWidth: 1)
@@ -205,36 +205,36 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
         addBankAccountButton.accessibilityLabel = NSLocalizedString("Add bank account", comment: "")
         
         addBankAccountLabel.textColor = .neutralDark
-        addBankAccountLabel.font = SystemFont.regular.of(textStyle: .callout)
+        addBankAccountLabel.font = .callout
         
         addCreditCardButton.fullyRoundCorners(diameter: 20, borderColor: .accentGray, borderWidth: 1)
         addCreditCardButton.backgroundColorOnPress = .softGray
         addCreditCardButton.accessibilityLabel = NSLocalizedString("Add credit/debit card", comment: "")
         
         addCreditCardLabel.textColor = .neutralDark
-        addCreditCardLabel.font = SystemFont.regular.of(textStyle: .callout)
+        addCreditCardLabel.font = .callout
         
         let cancelPaymentText = NSLocalizedString("Cancel Payment", comment: "")
         cancelPaymentButton.accessibilityLabel = cancelPaymentText
         cancelPaymentLabel.text = cancelPaymentText
-        cancelPaymentLabel.font = SystemFont.semibold.of(textStyle: .headline)
+        cancelPaymentLabel.font = .headlineSemibold
         cancelPaymentLabel.textColor = .primaryBlue
         
         footerLabel.textColor = .neutralDark
-        footerLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        footerLabel.font = .footnote
         
         stickyPaymentFooterTotalPaymentLabel.textColor = .neutralDark
-        stickyPaymentFooterTotalPaymentLabel.font = SystemFont.semibold.of(textStyle: .footnote)
+        stickyPaymentFooterTotalPaymentLabel.font = .footnoteSemibold
         stickyPaymentFooterAmountLabel.textColor = .neutralDark
         stickyPaymentFooterAmountLabel.font = SystemFont.semibold.of(textStyle: .callout)
         stickyPaymentFooterFeeLabel.textColor = .neutralDark
-        stickyPaymentFooterFeeLabel.font = SystemFont.regular.of(textStyle: .caption1)
+        stickyPaymentFooterFeeLabel.font = .caption1
         stickyPaymentFooterView.accessibilityElements = [
             stickyPaymentFooterTotalPaymentLabel, stickyPaymentFooterAmountLabel,
             stickyPaymentFooterFeeLabel, continueButton
         ] as [UIView]
         
-        errorLabel.font = SystemFont.regular.of(textStyle: .headline)
+        errorLabel.font = .headline
         errorLabel.textColor = .neutralDark
         errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
         
@@ -680,7 +680,7 @@ extension MakePaymentViewController: CalendarViewDelegate {
         if Configuration.shared.opco.isPHI {
             viewModel.selectedDate.accept(date)
             paymentDateErrorLabel.textColor = .errorPrimary
-            paymentDateErrorLabel.font = SystemFont.regular.of(textStyle: .footnote)
+            paymentDateErrorLabel.font = .footnote
             paymentDateErrorLabel.text = NSLocalizedString("The selected date is past your bill's due date and could result in a late payment.", comment: "")
         }
     }

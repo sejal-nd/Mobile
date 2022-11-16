@@ -22,15 +22,15 @@ class RegistrationConfirmationViewController: DismissableFormSheetViewController
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        xButton.tintColor = .primaryBlue
+        xButton.tintColor = .actionBrand
         xButton.accessibilityLabel = NSLocalizedString("Close", comment: "")
         
         titleLabel.textColor = .neutralDark
-        titleLabel.font = ExelonFont.semibold.of(textStyle: .title3)
+        titleLabel.font = .title3
         titleLabel.text = NSLocalizedString("You’re almost done! Please check your email.", comment: "")
 
         bodyLabel.textColor = .neutralDark
-        bodyLabel.font = SystemFont.regular.of(textStyle: .body)
+        bodyLabel.font = .body
         
         iconImageView.image = #imageLiteral(resourceName: "ic_registration_confirmation")
         
@@ -43,7 +43,7 @@ class RegistrationConfirmationViewController: DismissableFormSheetViewController
         
         let boldString = NSLocalizedString("\nHaving trouble?\n\n", comment: "")
         let secondaryAttrString = NSMutableAttributedString(string: boldString)
-        secondaryAttrString.addAttribute(.font, value: SystemFont.bold.of(textStyle: .body), range: (boldString as NSString).range(of: boldString))
+        secondaryAttrString.addAttribute(.font, value: UIFont.bodyBold, range: (boldString as NSString).range(of: boldString))
         
         let secondaryStyle = NSMutableParagraphStyle()
         secondaryStyle.minimumLineHeight = 15

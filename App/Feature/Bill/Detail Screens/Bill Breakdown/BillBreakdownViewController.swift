@@ -110,10 +110,10 @@ class BillBreakdownViewController: UIViewController {
     
     private func styleLegend() {
         totalChargesValueLabel.textColor = .neutralDark
-        totalChargesValueLabel.font = ExelonFont.semibold.of(textStyle: .title1)
+        totalChargesValueLabel.font = .title1
         totalChargesValueLabel.text = viewModel.totalChargesString
         totalChargesTextLabel.textColor = .neutralDark
-        totalChargesTextLabel.font = SystemFont.regular.of(textStyle: .caption1)
+        totalChargesTextLabel.font = .caption1
         totalChargesTextLabel.text = NSLocalizedString("Total Charges", comment: "")
         
         currentChargesLegendView.layer.borderColor = UIColor.accentGray.cgColor
@@ -122,28 +122,28 @@ class BillBreakdownViewController: UIViewController {
         supplyLegendCircle.layer.cornerRadius = 7.5
         supplyLegendCircle.backgroundColor = .accentGray
         supplyLegendLabel.textColor = .neutralDark
-        supplyLegendLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        supplyLegendLabel.font = .subheadline
         supplyLegendLabel.text = NSLocalizedString("Supply", comment: "")
         supplyValueLabel.textColor = .neutralDark
-        supplyValueLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        supplyValueLabel.font = .subheadline
         supplyValueLabel.text = viewModel.supplyCharges.currencyString
         
         taxesFeesLegendCircle.layer.cornerRadius = 7.5
         taxesFeesLegendCircle.backgroundColor = .blackText
         taxesFeesLegendLabel.textColor = .neutralDark
-        taxesFeesLegendLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        taxesFeesLegendLabel.font = .subheadline
         taxesFeesLegendLabel.text = NSLocalizedString("Taxes & Fees", comment: "")
         taxesFeesValueLabel.textColor = .neutralDark
-        taxesFeesValueLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        taxesFeesValueLabel.font = .subheadline
         taxesFeesValueLabel.text = viewModel.taxesAndFees.currencyString
         
         deliveryLegendCircle.layer.cornerRadius = 7.5
         deliveryLegendCircle.backgroundColor = .primaryColor
         deliveryLegendLabel.textColor = .neutralDark
-        deliveryLegendLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        deliveryLegendLabel.font = .subheadline
         deliveryLegendLabel.text = NSLocalizedString("Delivery", comment: "")
         deliveryValueLabel.textColor = .neutralDark
-        deliveryValueLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        deliveryValueLabel.font = .subheadline
         deliveryValueLabel.text = viewModel.deliveryCharges.currencyString
     }
 

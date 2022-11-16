@@ -36,10 +36,10 @@ class SmartThermostatPeriodCard: ButtonControl {
         backgroundColor = .white
         
         timeLabel.textColor = .neutralDark
-        timeLabel.font = ExelonFont.medium.of(textStyle: .title3)
+        timeLabel.font = .title3
         
         periodNameLabel.textColor = .neutralDark
-        periodNameLabel.font = .footnote // SystemFont.regular.of(textStyle: .footnote)
+        periodNameLabel.font = .footnote
         
         let timePeriodStack = UIStackView(arrangedSubviews: [timeLabel, periodNameLabel])
         timePeriodStack.axis = .vertical

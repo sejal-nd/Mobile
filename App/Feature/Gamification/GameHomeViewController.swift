@@ -88,7 +88,7 @@ class GameHomeViewController: AccountPickerViewController {
         segmentedControlContainer.isHidden = true
         
         dailyInsightLabel.textColor = .neutralDark
-        dailyInsightLabel.font = SystemFont.regular.of(textStyle: .headline)
+        dailyInsightLabel.font = .headline
         dailyInsightLabel.text = NSLocalizedString("Daily Insight by LUMI℠", comment: "")
         
         streakLabel.textColor = .primaryBlue
@@ -98,16 +98,16 @@ class GameHomeViewController: AccountPickerViewController {
         bubbleView.layer.borderWidth = 1
         bubbleView.layer.cornerRadius = 10
         bubbleLabel.textColor = .neutralDark
-        bubbleLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        bubbleLabel.font = .footnote
         
         weeklyInsightUnreadIndicator.layer.cornerRadius = 6
         weeklyInsightUnreadIndicator.backgroundColor = .successGreen
         
         weeklyInsightButton.setTitleColor(.primaryBlue, for: .normal)
-        weeklyInsightButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
+        weeklyInsightButton.titleLabel?.font = .headlineSemibold
         
         errorLabel.textColor = .neutralDark
-        errorLabel.font = SystemFont.regular.of(textStyle: .headline)
+        errorLabel.font = .headline
         errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
     
         energyBuddyView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onBuddyTap)))
@@ -436,7 +436,7 @@ class GameHomeViewController: AccountPickerViewController {
         if let taskTimeStr = viewModel.nextAvaiableTaskTimeString {
             let attrString = NSMutableAttributedString(string: "\n\n\(taskTimeStr)", attributes: [
                 .foregroundColor: UIColor.primaryColor,
-                .font: SystemFont.semibold.of(textStyle: .subheadline)
+                .font: UIFont.subheadlineSemibold
             ])
             message.append(attrString)
         }

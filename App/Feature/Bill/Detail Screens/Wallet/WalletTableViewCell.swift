@@ -37,21 +37,21 @@ class WalletTableViewCell: UITableViewCell {
         innerContentView.layer.masksToBounds = true
         
         accountNumberLabel.textColor = .neutralDark
-        accountNumberLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        accountNumberLabel.font = .subheadline
 
         nicknameLabel.textColor = .neutralDark
-        nicknameLabel.font = SystemFont.regular.of(textStyle: .caption1)
+        nicknameLabel.font = .caption1
         
         // Default
         oneTouchPayLabel.textColor = .successGreenText
-        oneTouchPayLabel.font = SystemFont.regular.of(textStyle: .caption2)
+        oneTouchPayLabel.font = .caption2
 
         oneTouchPayView.layer.borderColor = UIColor.successGreenText.cgColor
         oneTouchPayView.layer.borderWidth = 1
         
         // Expired
         expiredLabel.textColor = .errorPrimary
-        expiredLabel.font = SystemFont.regular.of(textStyle: .caption2)
+        expiredLabel.font = .caption2
         
         expiredView.layer.borderColor = UIColor.errorPrimary.cgColor
         expiredView.layer.borderWidth = 1

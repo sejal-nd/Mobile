@@ -75,7 +75,7 @@ extension PeakEnergySavingsViewController {
     /// This function customizes the UI Elements
     private func styleViews() {
         programDetailsLabel.textColor = .neutralDark
-        programDetailsLabel.font = SystemFont.regular.of(textStyle: .body)
+        programDetailsLabel.font = .body
         programDetailsLabel.setLineHeight(lineHeight: 24.0)
         programDetailsLabel.textAlignment = .center
         let helpButton = UIBarButtonItem(image: UIImage(named: "ic_tooltip"), style: .plain, target: self, action: #selector(onLearnMorePress))

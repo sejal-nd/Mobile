@@ -36,18 +36,18 @@ class AccountLookupToolResultViewController: UIViewController {
         
         instructionLabel.textColor = .neutralDark
         instructionLabel.text = NSLocalizedString("Please select your account.", comment: "")
-        instructionLabel.font = SystemFont.regular.of(textStyle: .headline)
+        instructionLabel.font = .headline
         
         accountNumberHeaderLabel.textColor = .neutralDark
-        accountNumberHeaderLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        accountNumberHeaderLabel.font = .footnote
         accountNumberHeaderLabel.text = NSLocalizedString("Account #", comment: "")
         
         streetNumberHeaderLabel.textColor = .neutralDark
-        streetNumberHeaderLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        streetNumberHeaderLabel.font = .footnote
         streetNumberHeaderLabel.text = NSLocalizedString("Street #", comment: "")
         
         unitNumberHeaderLabel.textColor = .neutralDark
-        unitNumberHeaderLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        unitNumberHeaderLabel.font = .footnote
         unitNumberHeaderLabel.text = NSLocalizedString("Unit #", comment: "")
         
         firstSeparatorView.backgroundColor = tableView.separatorColor

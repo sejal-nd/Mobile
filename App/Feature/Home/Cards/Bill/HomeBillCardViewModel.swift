@@ -474,7 +474,7 @@ class HomeBillCardViewModel {
         switch billState {
         case .billPaid, .billPaidIntermediate:
             let text = NSLocalizedString("Thank you for your payment", comment: "")
-            return NSAttributedString(string: text, attributes: [.font: SystemFont.regular.of(textStyle: .headline),
+            return NSAttributedString(string: text, attributes: [.font: UIFont.headline,
                                                                  .foregroundColor: textColor])
         case .paymentPending:
             let text: String
@@ -977,10 +977,10 @@ class HomeBillCardViewModel {
     { accountDetail, billState in
         let grayAttributes: [NSAttributedString.Key: Any] =
         [.foregroundColor: StormModeStatus.shared.isOn ? UIColor.white : UIColor.neutralDarker,
-         .font: SystemFont.regular.of(textStyle: .footnote)]
+         .font: UIFont.footnote]
         let redAttributes: [NSAttributedString.Key: Any] =
         [.foregroundColor: StormModeStatus.shared.isOn ? UIColor.white : UIColor.errorPrimary,
-         .font: SystemFont.semibold.of(textStyle: .footnote)]
+         .font: UIFont.footnoteSemibold]
         
         switch billState {
         case .pastDue, .finaled, .restoreService, .avoidShutoff, .eligibleForCutoff, .catchUp:
@@ -1063,16 +1063,16 @@ class HomeBillCardViewModel {
         .map {
             switch $0 {
             case .billReady, .billReadyAutoPay, .billPaid, .billPaidIntermediate, .credit:
-                return SystemFont.regular.of(textStyle: .headline)
+                return .headline
             case .paymentPending:
                 return SystemFont.italic.of(textStyle: .headline)
             default:
-                return SystemFont.regular.of(textStyle: .headline)
+                return .headline
             }
         }
     
     private(set) lazy var amountFont: Driver<UIFont> = billState
-        .map { $0 == .paymentPending ? ExelonFont.medium.of(textStyle: .largeTitle): ExelonFont.medium.of(textStyle: .largeTitle) }
+        .map { $0 == .paymentPending ? .largeTitle: .largeTitle }
     
     private(set) lazy var amountColor: Driver<UIColor> = billState
         .map { Configuration.shared.opco.isPHI ? ($0 == .credit ? .successGreenText : .neutralDark) : .neutralDark }
@@ -1174,7 +1174,7 @@ class HomeBillCardViewModel {
     
     private(set) lazy var dueAmountDescriptionText: Driver<NSAttributedString> = accountDetailDriver.map {
         let billingInfo = $0.billingInfo
-        var attributes: [NSAttributedString.Key: Any] = [.font: SystemFont.regular.of(textStyle: .caption1),
+        var attributes: [NSAttributedString.Key: Any] = [.font: UIFont.caption1,
                                                          .foregroundColor: UIColor.neutralDark]
         let string: String
         guard let dueAmount = billingInfo.netDueAmount else { return NSAttributedString() }

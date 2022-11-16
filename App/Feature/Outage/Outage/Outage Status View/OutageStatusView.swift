@@ -109,17 +109,17 @@ class OutageStatusView: UIView {
     
     private func style() {
         titleDescriptionLabel.textColor = .blackText
-        titleDescriptionLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        titleDescriptionLabel.font = .subheadline
         titleLabel.textColor = .neutralDark
-        titleLabel.font = ExelonFont.semibold.of(textStyle: .title3)
+        titleLabel.font = .title3
         
         descriptionLabel.textColor = .neutralDark
-        descriptionLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        descriptionLabel.font = .subheadline
         
         detailDescriptionLabel.textColor = .neutralDark
-        detailDescriptionLabel.font = SystemFont.regular.of(textStyle: .caption1)
+        detailDescriptionLabel.font = .caption1
         detailLabel.textColor = .neutralDark
-        detailLabel.font = SystemFont.semibold.of(textStyle: .caption1)
+        detailLabel.font = .caption1Semibold
         statusHeightConstraint.constant = 125
         statusWidthConstraint.constant = 125
 

@@ -66,25 +66,25 @@ class GameTipViewController: UIViewController {
         popupView.layer.cornerRadius = 10
         popupView.layer.masksToBounds = true
         
-        closeButton.tintColor = .primaryBlue
+        closeButton.tintColor = .actionBrand
         closeButton.addTarget(self, action: #selector(dismiss(_:)), for: .touchUpInside)
         
         titleLabel.textColor = .neutralDark
-        titleLabel.font = SystemFont.regular.of(textStyle: .headline)
+        titleLabel.font = .headline
         titleLabel.text = tip.title
         
         detailLabel.textColor = .neutralDark
-        detailLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        detailLabel.font = .footnote
         
-        reminderButton.tintColor = .primaryBlue
+        reminderButton.tintColor = .actionBrand
         reminderButton.setTitleColor(.primaryBlue, for: .normal)
         reminderButton.setTitleColor(UIColor.primaryBlue.darker(), for: .highlighted)
-        reminderButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
+        reminderButton.titleLabel?.font = .headlineSemibold
         
-        favoriteButton.tintColor = .primaryBlue
+        favoriteButton.tintColor = .actionBrand
         favoriteButton.setTitleColor(.primaryBlue, for: .normal)
         favoriteButton.setTitleColor(UIColor.primaryBlue.darker(), for: .highlighted)
-        favoriteButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
+        favoriteButton.titleLabel?.font = .headlineSemibold
         
         let hourFromNow = Calendar.current.date(byAdding: .hour, value: 1, to: Date.now)!
         let tomorrow = Calendar.current.date(byAdding: .day, value: 1, to: Date.now)!

@@ -32,11 +32,11 @@ class GameOnboardingStep1ViewController: UIViewController {
         super.viewDidLoad()
 
         titleLabel.textColor = .neutralDark
-        titleLabel.font = ExelonFont.semibold.of(size: 15)
+        titleLabel.font = UIFont.subheadlineSemibold
         titleLabel.text = NSLocalizedString("Step 1 of 2", comment: "")
         
         howDoYouFeelLabel.textColor = .neutralDark
-        howDoYouFeelLabel.font = ExelonFont.semibold.of(textStyle: .title3)
+        howDoYouFeelLabel.font = .title3
         howDoYouFeelLabel.text = NSLocalizedString("How do you feel about your energy usage?", comment: "")
         
         button1.layer.borderWidth = 1
@@ -52,15 +52,15 @@ class GameOnboardingStep1ViewController: UIViewController {
         button3.layer.cornerRadius = 10
         
         button1Label.textColor = .neutralDark
-        button1Label.font = SystemFont.regular.of(textStyle: .headline)
+        button1Label.font = .headline
         button1Label.text = NSLocalizedString("I've got it under control.", comment: "")
         
         button2Label.textColor = .neutralDark
-        button2Label.font = SystemFont.regular.of(textStyle: .headline)
+        button2Label.font = .headline
         button2Label.text = NSLocalizedString("I think I can do better.", comment: "")
         
         button3Label.textColor = .neutralDark
-        button3Label.font = SystemFont.regular.of(textStyle: .headline)
+        button3Label.font = .headline
         button3Label.text = NSLocalizedString("I really need help.", comment: "")
         
         selectedButton.asDriver().isNil().not().drive(continueButton.rx.isEnabled).disposed(by: bag)
@@ -85,7 +85,7 @@ class GameOnboardingStep1ViewController: UIViewController {
             label = button3Label
         }
         label.textColor = .primaryBlue
-        label.font = SystemFont.semibold.of(textStyle: .headline)
+        label.font = .headlineSemibold
         
         selectedButton.accept(sender)
     }
@@ -103,11 +103,11 @@ class GameOnboardingStep1ViewController: UIViewController {
         button3.layer.borderWidth = 1
         button3.layer.borderColor = UIColor.accentGray.cgColor
         button1Label.textColor = .neutralDark
-        button1Label.font = SystemFont.regular.of(textStyle: .headline)
+        button1Label.font = .headline
         button2Label.textColor = .neutralDark
-        button2Label.font = SystemFont.regular.of(textStyle: .headline)
+        button2Label.font = .headline
         button3Label.textColor = .neutralDark
-        button3Label.font = SystemFont.regular.of(textStyle: .headline)
+        button3Label.font = .headline
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

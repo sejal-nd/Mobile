@@ -69,18 +69,18 @@ class MyHomeProfileViewController: KeyboardAvoidingStickyFooterViewController {
 
     func styleViews() {
         headerLabel.textColor = .neutralDark
-        headerLabel.font = SystemFont.regular.of(textStyle: .headline)
+        headerLabel.font = .headline
         headerLabel.setLineHeight(lineHeight: 24)
         homeTypeInfoLabel.textColor = .neutralDark
-        homeTypeInfoLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        homeTypeInfoLabel.font = .subheadline
         homeTypeInfoLabel.text = viewModel.homeTypeInfo
         heatingFuelInfoLabel.textColor = .neutralDark
-        heatingFuelInfoLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        heatingFuelInfoLabel.font = .subheadline
         heatingFuelInfoLabel.text = viewModel.heatingFuelInfo
         numberOfResidentsInfoLabel.textColor = .neutralDark
-        numberOfResidentsInfoLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        numberOfResidentsInfoLabel.font = .subheadline
         homeSizeInfoLabel.textColor = .neutralDark
-        homeSizeInfoLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        homeSizeInfoLabel.font = .subheadline
         
         homeSizeTextField.placeholder = NSLocalizedString("Home Size (sq. ft)*", comment: "")
         homeSizeTextField.textField.delegate = self

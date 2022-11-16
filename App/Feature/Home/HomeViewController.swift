@@ -161,7 +161,7 @@ class HomeViewController: AccountPickerViewController {
             termsAndConditionsButton = UIButton()
             termsAndConditionsButton.setTitle("Policies & Terms", for: .normal)
             termsAndConditionsButton.setTitleColor(.primaryBlue, for: .normal)
-            termsAndConditionsButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .subheadline)
+            termsAndConditionsButton.titleLabel?.font = .subheadlineSemibold
             termsAndConditionsButton.rx.tap.asDriver()
                 .drive(onNext: { [weak self] in
                     self?.onTermsAndPolicyPress()
@@ -332,7 +332,7 @@ class HomeViewController: AccountPickerViewController {
         
         // Bottom personalize button setup
         personalizeButton.setTitleColor(.primaryBlue, for: .normal)
-        personalizeButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .subheadline)
+        personalizeButton.titleLabel?.font = .subheadlineSemibold
         personalizeButton.isAccessibilityElement = true
         personalizeButton.accessibilityLabel = personalizeButton.currentTitle
         personalizeButton.rx.tap.asDriver()
