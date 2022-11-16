@@ -16,7 +16,7 @@ extension UIColor {
     
     // Specifically for float label text fields
     static var primaryColorDark: UIColor {
-        return .primaryPurple
+        return .primaryBlue
     }
     
     static var primaryColorAccountPicker: UIColor {

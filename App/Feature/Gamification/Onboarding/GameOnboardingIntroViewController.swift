@@ -21,7 +21,7 @@ class GameOnboardingIntroViewController: UIViewController {
         closeButton.tintColor = .actionBrand
         closeButton.accessibilityLabel = NSLocalizedString("Close", comment: "")
         
-        label.textColor = .neutralDark
+        label.textColor = .neutralDarker
         label.font = .title3
         label.text = NSLocalizedString("In order to personalize your experience, we’d like to ask you a few questions!", comment: "")
     }

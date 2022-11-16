@@ -29,10 +29,10 @@ class WhatIsBudgetBillingViewController: DismissableFormSheetViewController {
         
         addCloseButton()
         descriptionLabel.isHidden = !Configuration.shared.opco.isPHI
-        card1TitleLabel.textColor = .neutralDark
+        card1TitleLabel.textColor = .neutralDarker
         card1TitleLabel.font = .title3
         card1TitleLabel.text = NSLocalizedString("1 consistent bill over 12 months", comment: "")
-        card2TitleLabel.textColor = .neutralDark
+        card2TitleLabel.textColor = .neutralDarker
         card2TitleLabel.font = .title3
         card2TitleLabel.text = NSLocalizedString("Adjusted throughout the year", comment: "")
         

@@ -110,7 +110,7 @@ class OutageStatusView: UIView {
     private func style() {
         titleDescriptionLabel.textColor = .blackText
         titleDescriptionLabel.font = .subheadline
-        titleLabel.textColor = .neutralDark
+        titleLabel.textColor = .neutralDarker
         titleLabel.font = .title3
         
         descriptionLabel.textColor = .neutralDark

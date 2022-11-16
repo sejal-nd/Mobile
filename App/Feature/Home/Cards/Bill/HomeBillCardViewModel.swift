@@ -1075,7 +1075,7 @@ class HomeBillCardViewModel {
         .map { $0 == .paymentPending ? .largeTitle: .largeTitle }
     
     private(set) lazy var amountColor: Driver<UIColor> = billState
-        .map { Configuration.shared.opco.isPHI ? ($0 == .credit ? .successGreenText : .neutralDark) : .neutralDark }
+        .map { Configuration.shared.opco.isPHI ? ($0 == .credit ? .successGreenText : .neutralDarker) : .neutralDarker }
     
     private(set) lazy var automaticPaymentInfoButtonText: Driver<String> =
     Driver.combineLatest(accountDetailDriver, scheduledPaymentDriver)

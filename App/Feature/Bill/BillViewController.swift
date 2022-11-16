@@ -286,7 +286,7 @@ class BillViewController: AccountPickerViewController {
         multipremiseHeaderLabel.font = .caption1Semibold
         multipremiseHeaderLabel.text = NSLocalizedString("Multi-Premise Bill", comment: "")
         
-        totalAmountLabel.textColor = .neutralDark
+        totalAmountLabel.textColor = .neutralDarker
         totalAmountLabel.font = .largeTitle
 
         totalAmountDescriptionLabel.font = .footnote
@@ -342,7 +342,7 @@ class BillViewController: AccountPickerViewController {
         creditScenarioTitleLabel.textColor = .neutralDark
         creditScenarioTitleLabel.font = .callout
         creditScenarioTitleLabel.text = NSLocalizedString("No Amount Due - Credit Balance", comment: "")
-        creditScenarioAmountLabel.textColor = .neutralDark
+        creditScenarioAmountLabel.textColor = .neutralDarker
         creditScenarioAmountLabel.font = .largeTitle
         
         billNotReadyLabel.textColor = .neutralDark

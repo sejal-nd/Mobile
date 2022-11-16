@@ -61,7 +61,7 @@ class NoNetworkConnectionView: UIView {
     
     private func styleViews() {
         reloadLabel.font = .callout
-        noNetworkConnectionLabel.textColor = .neutralDark
+        noNetworkConnectionLabel.textColor = .neutralDarker
         noNetworkConnectionLabel.font = .title3
         pleaseReloadLabel.textColor = .neutralDark
         pleaseReloadLabel.font = .subheadline

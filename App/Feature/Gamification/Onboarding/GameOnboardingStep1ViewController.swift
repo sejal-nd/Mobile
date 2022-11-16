@@ -35,7 +35,7 @@ class GameOnboardingStep1ViewController: UIViewController {
         titleLabel.font = UIFont.subheadlineSemibold
         titleLabel.text = NSLocalizedString("Step 1 of 2", comment: "")
         
-        howDoYouFeelLabel.textColor = .neutralDark
+        howDoYouFeelLabel.textColor = .neutralDarker
         howDoYouFeelLabel.font = .title3
         howDoYouFeelLabel.text = NSLocalizedString("How do you feel about your energy usage?", comment: "")
         

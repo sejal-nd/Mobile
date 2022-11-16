@@ -491,7 +491,7 @@ class HomeViewController: AccountPickerViewController {
     }
     
     func styleViews() {
-        view.backgroundColor = .softGray
+        view.backgroundColor = .neutralLightest
         colorBackgroundView.backgroundColor = .primaryColor
         
         // We want the colored background view to scroll with the content, but that view also

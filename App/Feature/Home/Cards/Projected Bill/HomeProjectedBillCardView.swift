@@ -92,7 +92,7 @@ class HomeProjectedBillCardView: UIView {
 
         infoButton.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
         
-        projectionLabel.textColor = .neutralDark
+        projectionLabel.textColor = .neutralDarker
         projectionLabel.font = .title1
         
         projectionSubLabel.textColor = .neutralDark

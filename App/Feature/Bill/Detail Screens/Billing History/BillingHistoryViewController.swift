@@ -335,7 +335,7 @@ extension BillingHistoryViewController: UITableViewDelegate {
         
         button.setTitle(titleText, for: .normal)
         button.titleLabel?.font = .subheadlineSemibold
-        Button.setTitleColor(.actionBrand, for: .normal)
+        button.setTitleColor(.actionBrand, for: .normal)
         
         let selector = section == 0 ?
             #selector(BillingHistoryViewController.viewAllUpcoming) :
@@ -438,7 +438,7 @@ extension BillingHistoryViewController: UITableViewDataSource {
         button.contentEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         button.titleLabel?.font = .headlineSemibold
         button.setTitle("View More", for: .normal)
-        Button.setTitleColor(.actionBrand, for: .normal)
+        button.setTitleColor(.actionBrand, for: .normal)
         button.tag = 1
         button.addTarget(self, action: #selector(viewMorePast(_:)), for:.touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false

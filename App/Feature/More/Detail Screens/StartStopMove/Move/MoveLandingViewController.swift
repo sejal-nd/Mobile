@@ -13,7 +13,7 @@ import RxCocoa
 class MoveLandingViewController: UIViewController {
     @IBOutlet weak var headerLabel: UILabel! {
         didSet {
-            headerLabel.textColor = .neutralDark
+            headerLabel.textColor = .neutralDarker
             headerLabel.font = .title3
             headerLabel.text = NSLocalizedString("Stop current service and start new service at another address in BGE’s area", comment: "")
         }

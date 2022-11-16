@@ -35,7 +35,7 @@ class SmartThermostatPeriodCard: ButtonControl {
         layer.cornerRadius = 10
         backgroundColor = .white
         
-        timeLabel.textColor = .neutralDark
+        timeLabel.textColor = .neutralDarker
         timeLabel.font = .title3
         
         periodNameLabel.textColor = .neutralDark

@@ -84,7 +84,7 @@ extension UIColor {
         return UIColor(named: "neutralMedium")!
     }
 
-    /// Neutral #C0C3C7
+    /// Neutral Light #C0C3C7
     static var neutralLight: UIColor {
         return UIColor(named: "neutralLight")!
     }
@@ -151,31 +151,23 @@ extension UIColor {
 
 
     @nonobjc static var blackText: UIColor {
-        return UIColor(red: 35/255, green: 31/255, blue: 32/255, alpha: 1)
+        return .neutralDarker
     }
     
     @nonobjc static var deepGray: UIColor {
-        return UIColor(red: 74/255, green: 74/255, blue: 74/255, alpha: 1)
+        return .neutralDark
     }
     
     @nonobjc static var middleGray: UIColor {
-        return UIColor(red: 115/255, green: 115/255, blue: 115/255, alpha: 1)
+        return .neutralMedium
     }
     
     @nonobjc static var accentGray: UIColor {
-        return UIColor(red: 216/255, green: 216/255, blue: 216/255, alpha: 1)
+        return .neutralLight
     }
     
     @nonobjc static var softGray: UIColor {
-        return UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1)
-    }
-    
-    @nonobjc static var ctaBlue: UIColor {
-        return UIColor(red: 16/255, green: 56/255, blue: 112/255, alpha: 1)
-    }
-    
-    @nonobjc static var actionBlue: UIColor {
-        return UIColor(red: 0/255, green: 89/255, blue: 164/255, alpha: 1)
+        return .neutralLightest
     }
     
     @nonobjc static var attentionOrange: UIColor {

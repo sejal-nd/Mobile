@@ -89,7 +89,7 @@ class BudgetBillingViewController: UIViewController {
         yourPaymentWouldBeLabel.font = .footnoteSemibold
         yourPaymentWouldBeLabel.textColor = .neutralDark
         yourPaymentWouldBeLabel.text = NSLocalizedString("Your monthly payment would be", comment: "")
-        paymentAmountLabel.textColor = .neutralDark
+        paymentAmountLabel.textColor = .neutralDarker
         paymentAmountLabel.font = .title1
         
         footerLabel.font = .footnote
@@ -110,7 +110,7 @@ class BudgetBillingViewController: UIViewController {
             monthlyAmountTitleLabel.textColor = .neutralDark
             monthlyAmountTitleLabel.text = NSLocalizedString("Monthly Budget Bill Amount", comment: "")
             monthlyAmountLabel.font = .title3
-            monthlyAmountLabel.textColor = .neutralDark
+            monthlyAmountLabel.textColor = .neutralDarker
             monthlyAmountDescriptionLabel.font = .caption1
             monthlyAmountDescriptionLabel.textColor = .neutralDark
             monthlyAmountDescriptionLabel.text = NSLocalizedString("The amount that you are billed for BGE gas and/or electric service each month. This charge appears on the first page of your bill under Charges/Adjustments this period.", comment: "")
@@ -119,13 +119,13 @@ class BudgetBillingViewController: UIViewController {
             lastPaymentDateTitleLabel.textColor = .neutralDark
             lastPaymentDateTitleLabel.text = NSLocalizedString("Last Payment Date", comment: "")
             lastPaymentDateLabel.font = .title3
-            lastPaymentDateLabel.textColor = .neutralDark
+            lastPaymentDateLabel.textColor = .neutralDarker
             
             payoffBalanceTitleLabel.font = .footnoteSemibold
             payoffBalanceTitleLabel.textColor = .neutralDark
             payoffBalanceTitleLabel.text = NSLocalizedString("Payoff Balance for BGE Service", comment: "")
             payoffBalanceLabel.font = .title3
-            payoffBalanceLabel.textColor = .neutralDark
+            payoffBalanceLabel.textColor = .neutralDarker
             payoffBalanceDescriptionLabel.font = .caption1
             payoffBalanceDescriptionLabel.textColor = .neutralDark
             payoffBalanceDescriptionLabel.text = NSLocalizedString("Total actual-usage charges for BGE gas and/or electric service after payments and adjustments.", comment: "")
@@ -134,7 +134,7 @@ class BudgetBillingViewController: UIViewController {
             currentBalanceTitleLabel.textColor = .neutralDark
             currentBalanceTitleLabel.text = NSLocalizedString("Current Balance for BGE Service", comment: "")
             currentBalanceLabel.font = .title3
-            currentBalanceLabel.textColor = .neutralDark
+            currentBalanceLabel.textColor = .neutralDarker
             currentBalanceDescriptionLabel.font = .caption1
             currentBalanceDescriptionLabel.textColor = .neutralDark
             currentBalanceDescriptionLabel.text = NSLocalizedString("Total billed charges for BGE gas and/or electric service after payments and adjustments.", comment: "")
@@ -143,7 +143,7 @@ class BudgetBillingViewController: UIViewController {
             accDifferenceTitleLabel.textColor = .neutralDark
             accDifferenceTitleLabel.text = NSLocalizedString("Accumulated Difference for BGE Service", comment: "")
             accDifferenceLabel.font = .title3
-            accDifferenceLabel.textColor = .neutralDark
+            accDifferenceLabel.textColor = .neutralDarker
             accDifferenceDescriptionLabel.font = .caption1
             accDifferenceDescriptionLabel.textColor = .neutralDark
             accDifferenceDescriptionLabel.text = NSLocalizedString("The difference between your Payoff Balance and your Current Balance for BGE Service.", comment: "")

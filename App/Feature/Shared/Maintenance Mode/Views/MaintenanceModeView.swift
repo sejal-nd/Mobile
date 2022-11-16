@@ -38,7 +38,7 @@ class MaintenanceModeView: UIView {
                 maintenanceImageView.image = #imageLiteral(resourceName: "ic_maint_mode")
                 reloadImageView.image = #imageLiteral(resourceName: "ic_reload_blue")
                 reloadLabel.textColor = .primaryBlue
-                scheduledMaintenanceLabel.textColor = .blackText
+                scheduledMaintenanceLabel.textColor = .neutralDarker
                 detailLabel.textColor = .blackText
             }
         }

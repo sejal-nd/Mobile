@@ -32,6 +32,7 @@ class GeneralSubmitErrorViewController: UIViewController, UITextViewDelegate {
     private func fontStyle() {
         
         statusLabel.font = .title3
+        statusLabel.textColor = .neutralDarker
         helplineDescriptionTextView.font = .subheadline
     }
     

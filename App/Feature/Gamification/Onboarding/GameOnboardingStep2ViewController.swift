@@ -35,7 +35,7 @@ class GameOnboardingStep2ViewController: UIViewController {
         titleLabel.font = .subheadline
         titleLabel.text = NSLocalizedString("Step 2 of 2", comment: "")
         
-        rentOrOwnLabel.textColor = .neutralDark
+        rentOrOwnLabel.textColor = .neutralDarker
         rentOrOwnLabel.font = .title3
         rentOrOwnLabel.text = NSLocalizedString("Do you rent or own your home?", comment: "")
         

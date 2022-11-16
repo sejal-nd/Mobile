@@ -14,7 +14,7 @@ class StopLandingViewController: UIViewController {
 
     @IBOutlet weak var headerMessageLabel: UILabel! {
         didSet {
-            headerMessageLabel.textColor = .neutralDark
+            headerMessageLabel.textColor = .neutralDarker
             headerMessageLabel.font = .title3
             headerMessageLabel.text = NSLocalizedString("Permanently stop your current service", comment: "")
         }

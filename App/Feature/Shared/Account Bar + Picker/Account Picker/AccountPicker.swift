@@ -75,7 +75,7 @@ class AccountPicker: UIControl {
         
         // Need to set border here for it to properly stretch on iPad
         let borderWhiteAlpha: CGFloat = StormModeStatus.shared.isOn ? 0.3 : 0.5
-        let borderColor = tintWhite ? UIColor.white.withAlphaComponent(borderWhiteAlpha) : .accentGray
+        let borderColor = tintWhite ? UIColor.white.withAlphaComponent(borderWhiteAlpha) : .neutralLight
         addBottomBorder(color: borderColor, width: 1)
     }
 
@@ -89,8 +89,8 @@ class AccountPicker: UIControl {
         isAccessibilityElement = true
                 
         clipsToBounds = true
-        backgroundColor = .white
-        view.backgroundColor = .white
+        backgroundColor = .neutralLightest
+        view.backgroundColor = .neutralLightest
         
         multiAccountView.isHidden = true // Hide one so that intrinsic height is 50
         loadingIndicator.isHidden = true

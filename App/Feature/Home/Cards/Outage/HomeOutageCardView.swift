@@ -91,7 +91,7 @@ class HomeOutageCardView: UIView {
         powerStatusTitleLabel.textColor = .neutralDark
         powerStatusTitleLabel.font = .subheadline
         
-        powerStatusLabel.textColor = .neutralDark
+        powerStatusLabel.textColor = .neutralDarker
         powerStatusLabel.font = .title1
         
         restorationStatusLabel.textColor = .neutralDark
@@ -109,7 +109,7 @@ class HomeOutageCardView: UIView {
         customErrorTitleLabel.textColor = .neutralDark
         customErrorTitleLabel.font = .headline
 
-        gasOnlyLabel.textColor = .neutralDark
+        gasOnlyLabel.textColor = .neutralDarker
         gasOnlyLabel.font = .title3
         
         gasOnlySublabel.textColor = .neutralDark

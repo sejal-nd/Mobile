@@ -34,7 +34,7 @@ class B2CRegistrationViewController: UIViewController {
         
         errorImage.tintColor = .attentionOrange
         errorTitle.font = .title3
-        errorTitle.textColor = .neutralDark
+        errorTitle.textColor = .neutralDarker
         errorDescription.font = .footnote
         errorDescription.textColor = .neutralDark
         errorView.isHidden = true

@@ -37,7 +37,7 @@ class UpdatesDetailViewController: UIViewController {
     // MARK: - Helper
     
     private func style() {
-        titleLabel.textColor = .neutralDark
+        titleLabel.textColor = .neutralDarker
         titleLabel.font = .title3
         
         detailsTextView.textColor = .neutralDark

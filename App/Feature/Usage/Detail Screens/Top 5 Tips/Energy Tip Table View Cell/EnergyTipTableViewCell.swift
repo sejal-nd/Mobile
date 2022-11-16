@@ -18,7 +18,7 @@ class EnergyTipTableViewCell: UITableViewCell {
         
         selectionStyle = .none
         
-        titleLabel.textColor = .neutralDark
+        titleLabel.textColor = .neutralDarker
         titleLabel.font = .title3
         
         bodyLabel.textColor = .neutralDark

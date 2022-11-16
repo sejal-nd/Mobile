@@ -109,7 +109,7 @@ class BillBreakdownViewController: UIViewController {
     }
     
     private func styleLegend() {
-        totalChargesValueLabel.textColor = .neutralDark
+        totalChargesValueLabel.textColor = .neutralDarker
         totalChargesValueLabel.font = .title1
         totalChargesValueLabel.text = viewModel.totalChargesString
         totalChargesTextLabel.textColor = .neutralDark

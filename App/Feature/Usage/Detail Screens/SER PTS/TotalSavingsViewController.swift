@@ -25,7 +25,7 @@ class TotalSavingsViewController: UIViewController {
 
         title = NSLocalizedString("Total Savings", comment: "")
 
-        totalSavingsValueLabel.textColor = .primaryColor
+        totalSavingsValueLabel.textColor = .neutralDarker
         totalSavingsValueLabel.font = .title1
         totalSavingsValueLabel.text = totalSavingsValue.currencyString
         

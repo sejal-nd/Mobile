@@ -25,7 +25,7 @@ class RegistrationConfirmationViewController: DismissableFormSheetViewController
         xButton.tintColor = .actionBrand
         xButton.accessibilityLabel = NSLocalizedString("Close", comment: "")
         
-        titleLabel.textColor = .neutralDark
+        titleLabel.textColor = .neutralDarker
         titleLabel.font = .title3
         titleLabel.text = NSLocalizedString("You’re almost done! Please check your email.", comment: "")
 

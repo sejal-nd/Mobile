@@ -45,7 +45,7 @@ class PaymentConfirmationViewController: UIViewController {
         xButton.tintColor = .actionBrand
         xButton.accessibilityLabel = NSLocalizedString("Close", comment: "")
 
-        titleLabel.textColor = .neutralDark
+        titleLabel.textColor = .neutralDarker
         titleLabel.font = .title3
         
         confirmationLabel.textColor = .neutralDark

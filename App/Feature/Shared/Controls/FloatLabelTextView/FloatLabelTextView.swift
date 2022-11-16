@@ -52,10 +52,10 @@ class FloatLabelTextView: UIView {
         textView.textContainer.lineFragmentPadding = 0
         
         placeholderLabel.font = .callout
-        placeholderLabel.textColor = .middleGray
+        placeholderLabel.textColor = .neutralDark
         
         floatLabel.font = .caption2Semibold
-        floatLabel.textColor = .middleGray
+        floatLabel.textColor = .neutralDark
         floatLabel.alpha = 0
         
         infoLabel.textColor = .neutralDark
@@ -89,7 +89,7 @@ class FloatLabelTextView: UIView {
             guard let self = self else { return }
             self.textFieldIsFocused = false
             self.textViewContainerView.layer.borderColor = UIColor.accentGray.cgColor
-            self.floatLabel.textColor = .middleGray
+            self.floatLabel.textColor = .neutralDark
         }).disposed(by: disposeBag)
         
         textView.rx.didChange.asObservable().subscribe(onNext: { [weak self] in
