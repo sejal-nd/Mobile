@@ -108,7 +108,7 @@ class AppointmentDetailViewController: UIViewController, IndicatorInfoProvider {
         wantNotificationsLabel.textColor = .blackText
         wantNotificationsLabel.font = .headline
         
-        adjustAlertPreferencesButton.setTitleColor(.primaryBlue, for: .normal)
+        adjustAlertPreferencesButton.setTitleColor(.actionBrand, for: .normal)
         adjustAlertPreferencesButton.titleLabel?.font = .headlineSemibold
     }
     

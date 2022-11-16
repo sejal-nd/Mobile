@@ -173,7 +173,7 @@ class BGEAutoPayViewController: UIViewController {
         termsLabel.font = .subheadline
         termsLabel.setLineHeight(lineHeight: 25)
         termsLabel.isAccessibilityElement = false
-        termsButton.setTitleColor(.primaryBlue, for: .normal)
+        termsButton.setTitleColor(.actionBrand, for: .normal)
         termsButton.titleLabel?.font = .subheadlineSemibold
         termsSwitch.accessibilityLabel = termsLabel.text
         
@@ -193,7 +193,7 @@ class BGEAutoPayViewController: UIViewController {
         
         unenrollButtonLabel.textColor = .neutralDark
         unenrollButtonLabel.font = .callout
-        unenrollButton.setTitleColor(.primaryBlue, for: .normal)
+        unenrollButton.setTitleColor(.actionBrand, for: .normal)
         unenrollButton.titleLabel?.font = .callout
         
         errorLabel.font = .subheadline

@@ -48,7 +48,7 @@ class HomeAppointmentCardView: UIView {
         apologyLabel.textColor = .neutralDark
         apologyLabel.font = .footnote
         
-        bottomButtonLabel.textColor = .primaryBlue
+        bottomButtonLabel.textColor = .actionBrand
         bottomButtonLabel.font = .headlineSemibold
     }
     

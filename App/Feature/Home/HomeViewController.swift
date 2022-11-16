@@ -160,7 +160,7 @@ class HomeViewController: AccountPickerViewController {
             // Add a terms & conditions Button at the end of the stack for PHI ocpos
             termsAndConditionsButton = UIButton()
             termsAndConditionsButton.setTitle("Policies & Terms", for: .normal)
-            termsAndConditionsButton.setTitleColor(.primaryBlue, for: .normal)
+            termsAndConditionsButton.setTitleColor(.actionBrand, for: .normal)
             termsAndConditionsButton.titleLabel?.font = .subheadlineSemibold
             termsAndConditionsButton.rx.tap.asDriver()
                 .drive(onNext: { [weak self] in
@@ -331,7 +331,7 @@ class HomeViewController: AccountPickerViewController {
             .disposed(by: bag)
         
         // Bottom personalize button setup
-        personalizeButton.setTitleColor(.primaryBlue, for: .normal)
+        personalizeButton.setTitleColor(.actionBrand, for: .normal)
         personalizeButton.titleLabel?.font = .subheadlineSemibold
         personalizeButton.isAccessibilityElement = true
         personalizeButton.accessibilityLabel = personalizeButton.currentTitle

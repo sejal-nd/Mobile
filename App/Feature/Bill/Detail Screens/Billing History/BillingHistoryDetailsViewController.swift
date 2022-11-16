@@ -127,7 +127,7 @@ class BillingHistoryDetailsViewController: UIViewController {
         cancelPaymentButton.accessibilityLabel = cancelPaymentText
         cancelPaymentLabel.text = cancelPaymentText
         cancelPaymentLabel.font = .headline
-        cancelPaymentLabel.textColor = .primaryBlue
+        cancelPaymentLabel.textColor = .actionBrand
         
         for line in dividerLines {
             line.backgroundColor = .accentGray

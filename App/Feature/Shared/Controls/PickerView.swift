@@ -88,13 +88,13 @@ fileprivate class BasePickerView: UIView {
         cancelButton.setContentCompressionResistancePriority(.required, for: .horizontal)
         cancelButton.titleLabel?.font = SystemFont.regular.of(size: 18)
         cancelButton.setTitle(NSLocalizedString("Cancel", comment: ""), for: .normal)
-        cancelButton.setTitleColor(.primaryBlue, for: .normal)
+        cancelButton.setTitleColor(.actionBrand, for: .normal)
         
         doneButton.setContentHuggingPriority(.required, for: .horizontal)
         doneButton.setContentCompressionResistancePriority(.required, for: .horizontal)
         doneButton.titleLabel?.font = SystemFont.semibold.of(size: 18)
         doneButton.setTitle(NSLocalizedString("Done", comment: ""), for: .normal)
-        doneButton.setTitleColor(.primaryBlue, for: .normal)
+        doneButton.setTitleColor(.actionBrand, for: .normal)
         
         let topBarContainer = UIView().usingAutoLayout()
         topBarContainer.clipsToBounds = true

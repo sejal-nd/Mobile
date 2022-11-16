@@ -23,8 +23,8 @@ class UINavigationBackButton: UIButton {
     
     @IBInspectable var tintWhite: Bool = false {
         didSet {
-            arrowImage.tintColor = tintWhite ? .white : .primaryBlue
-            backLabel.textColor = tintWhite ? .white : .primaryBlue
+            arrowImage.tintColor = tintWhite ? .white : .actionBrand
+            backLabel.textColor = tintWhite ? .white : .actionBrand
         }
     }
     
@@ -58,7 +58,7 @@ class UINavigationBackButton: UIButton {
         
         arrowImage.image = arrowImage.image!.withRenderingMode(.alwaysTemplate)
         arrowImage.tintColor = .actionBrand
-        backLabel.textColor = .primaryBlue
+        backLabel.textColor = .actionBrand
     }
     
     override func layoutSubviews() {

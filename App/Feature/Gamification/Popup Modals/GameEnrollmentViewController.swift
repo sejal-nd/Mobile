@@ -71,7 +71,7 @@ class GameEnrollmentViewController: UIViewController {
         ctaButton.setTitle(buttonTitle, for: .normal)
         ctaButton.accessibilityLabel = buttonTitle
         
-        notInterestedButton.setTitleColor(.primaryBlue, for: .normal)
+        notInterestedButton.setTitleColor(.actionBrand, for: .normal)
         notInterestedButton.titleLabel?.font = .headlineSemibold
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismiss(_:)))

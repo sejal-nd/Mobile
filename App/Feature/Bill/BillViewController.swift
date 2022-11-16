@@ -266,7 +266,7 @@ class BillViewController: AccountPickerViewController {
         descriptionAssistanceProgram.font = .caption1
         }
         descriptionAssistanceProgram.textColor = .neutralDark
-        assistanceCTA.setTitleColor(.primaryBlue, for: .normal)
+        assistanceCTA.setTitleColor(.actionBrand, for: .normal)
         assistanceCTA.titleLabel?.font = .headlineSemibold
         
         prepaidHeaderLabel.font = .headlineSemibold
@@ -660,7 +660,7 @@ class BillViewController: AccountPickerViewController {
                 self?.makeAPaymentStatusLabel.textColor = .neutralDark
                 self?.makeAPaymentStatusLabel.font = SystemFont.italic.of(textStyle: .caption1)
             } else {
-                self?.makeAPaymentStatusLabel.textColor = .primaryBlue
+                self?.makeAPaymentStatusLabel.textColor = .actionBrand
                 self?.makeAPaymentStatusLabel.font = .caption1Semibold
             }
         }).disposed(by: bag)

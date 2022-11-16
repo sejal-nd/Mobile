@@ -157,7 +157,7 @@ class ReviewPaymentViewController: UIViewController {
         termsConditionsCheckboxLabel.font = .subheadline
         termsConditionsCheckboxLabel.text = NSLocalizedString("Yes, I have read, understand, and agree to the terms and conditions provided below:", comment: "")
         termsConditionsButton.titleLabel?.font = .subheadlineSemibold
-        termsConditionsButton.setTitleColor(.primaryBlue, for: .normal)
+        termsConditionsButton.setTitleColor(.actionBrand, for: .normal)
         termsConditionsButton.setTitle(NSLocalizedString("View terms and conditions", comment: ""), for: .normal)
         termsConditionsButton.accessibilityLabel = termsConditionsButton.titleLabel?.text
         termsConditionsCheckboxLabel.isAccessibilityElement = false

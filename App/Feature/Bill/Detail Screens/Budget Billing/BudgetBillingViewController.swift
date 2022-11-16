@@ -156,7 +156,7 @@ class BudgetBillingViewController: UIViewController {
         unenrollButtonLabel.textColor = .neutralDark
         unenrollButtonLabel.font = .callout
         unenrollButtonLabel.text = NSLocalizedString("Looking to end Budget Billing?", comment: "")
-        unenrollButton.setTitleColor(.primaryBlue, for: .normal)
+        unenrollButton.setTitleColor(.actionBrand, for: .normal)
         unenrollButton.titleLabel?.font = .callout
         unenrollButton.setTitle(NSLocalizedString("Unenroll", comment: ""), for: .normal)
         

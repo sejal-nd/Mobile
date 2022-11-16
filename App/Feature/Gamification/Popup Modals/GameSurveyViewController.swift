@@ -72,7 +72,7 @@ class GameSurveyViewController: UIViewController {
         }
         
         remindMeLaterButton.tintColor = .actionBrand
-        remindMeLaterButton.setTitleColor(.primaryBlue, for: .normal)
+        remindMeLaterButton.setTitleColor(.actionBrand, for: .normal)
         remindMeLaterButton.setTitleColor(UIColor.primaryBlue.darker(), for: .highlighted)
         remindMeLaterButton.titleLabel?.font = .headlineSemibold
         if survey.attempt == 3 {
@@ -81,7 +81,7 @@ class GameSurveyViewController: UIViewController {
         }
         
         notInterestedButton.tintColor = .actionBrand
-        notInterestedButton.setTitleColor(.primaryBlue, for: .normal)
+        notInterestedButton.setTitleColor(.actionBrand, for: .normal)
         notInterestedButton.setTitleColor(UIColor.primaryBlue.darker(), for: .highlighted)
         notInterestedButton.titleLabel?.font = .headlineSemibold
                 

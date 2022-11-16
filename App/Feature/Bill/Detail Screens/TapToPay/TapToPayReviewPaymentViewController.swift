@@ -160,7 +160,7 @@ class TapToPayReviewPaymentViewController: UIViewController {
         submitDescriptionLabel.font = SystemFont.regular.of(size: 12)
         submitDescriptionLabel.text = NSLocalizedString("By tapping Submit, you agree to the payment", comment: "")
         
-        termsNConditionsButton.setTitleColor(.primaryBlue, for: .normal)
+        termsNConditionsButton.setTitleColor(.actionBrand, for: .normal)
         termsNConditionsButton.titleLabel?.text = NSLocalizedString("Terms & Conditions.", comment: "")
         termsNConditionsButton.titleLabel?.font = SystemFont.semibold.of(size: 12)
         termsNConditionsButton.accessibilityLabel = termsNConditionsButton.titleLabel?.text

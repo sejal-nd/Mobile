@@ -157,7 +157,7 @@ class InfoAlertController: UIViewController {
             ctaButton?.titleLabel?.font = .headlineSemibold
             ctaButton?.layer.cornerRadius = 22
         } else {
-            ctaButton?.setTitleColor(.primaryBlue, for: .normal)
+            ctaButton?.setTitleColor(.actionBrand, for: .normal)
             ctaButton?.titleLabel?.font = .bodyBold
         }
     }

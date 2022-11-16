@@ -196,7 +196,7 @@ class HomeBillCardView: UIView {
         autoPayBox.layer.cornerRadius = 6
         autoPayBox.layer.borderColor = UIColor.accentGray.cgColor
         autoPayBox.layer.borderWidth = 1
-        autoPayButtonLabel.textColor = .primaryBlue
+        autoPayButtonLabel.textColor = .actionBrand
         autoPayButtonLabel.font = .subheadlineSemibold
         
         viewBillButton.titleLabel?.font = .caption1Semibold

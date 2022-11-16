@@ -29,7 +29,7 @@ class AlertPreferencesTableViewCell: UITableViewCell {
         nameLabel.isAccessibilityElement = false
         nameLabel.textColor = .neutralDark
         nameLabel.font = .callout
-        pickerButton.setTitleColor(.primaryBlue, for: .normal)
+        pickerButton.setTitleColor(.actionBrand, for: .normal)
         pickerButton.titleLabel?.font = .subheadlineSemibold
         detailLabel.textColor = .neutralDark
         detailLabel.font = .footnote

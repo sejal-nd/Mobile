@@ -69,7 +69,7 @@ class SERPTSViewController: UIViewController {
         smartEnergyRewardsSeasonLabel.textColor = .neutralDark
         smartEnergyRewardsSeasonLabel.font = .headline
         
-        smartEnergyRewardsViewAllSavingsButton.setTitleColor(.primaryBlue, for: .normal)
+        smartEnergyRewardsViewAllSavingsButton.setTitleColor(.actionBrand, for: .normal)
         smartEnergyRewardsViewAllSavingsButton.titleLabel?.font = .headlineSemibold
         smartEnergyRewardsViewAllSavingsButton.titleLabel?.text = NSLocalizedString("View All Savings", comment: "")
         

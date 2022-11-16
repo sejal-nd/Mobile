@@ -81,7 +81,7 @@ class AlertsViewController: AccountPickerViewController {
     // MARK: - Helper
     
     private func styleViews() {
-        preferencesButtonLabel.textColor = .primaryBlue
+        preferencesButtonLabel.textColor = .actionBrand
         preferencesButtonLabel.font = .subheadlineSemibold
         preferencesButtonLabel.text = NSLocalizedString("Preferences", comment: "")
         preferencesButton.accessibilityLabel = preferencesButtonLabel.text

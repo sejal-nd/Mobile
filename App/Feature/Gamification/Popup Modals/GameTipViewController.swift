@@ -77,12 +77,12 @@ class GameTipViewController: UIViewController {
         detailLabel.font = .footnote
         
         reminderButton.tintColor = .actionBrand
-        reminderButton.setTitleColor(.primaryBlue, for: .normal)
+        reminderButton.setTitleColor(.actionBrand, for: .normal)
         reminderButton.setTitleColor(UIColor.primaryBlue.darker(), for: .highlighted)
         reminderButton.titleLabel?.font = .headlineSemibold
         
         favoriteButton.tintColor = .actionBrand
-        favoriteButton.setTitleColor(.primaryBlue, for: .normal)
+        favoriteButton.setTitleColor(.actionBrand, for: .normal)
         favoriteButton.setTitleColor(UIColor.primaryBlue.darker(), for: .highlighted)
         favoriteButton.titleLabel?.font = .headlineSemibold
         

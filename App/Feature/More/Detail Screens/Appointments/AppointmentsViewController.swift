@@ -92,7 +92,7 @@ class AppointmentsViewController: ButtonBarPagerTabStripViewController {
             guard changeCurrentIndex == true else { return }
             oldCell?.label.textColor = .middleGray
             oldCell?.label.font = .subheadline
-            newCell?.label.textColor = .primaryBlue
+            newCell?.label.textColor = .actionBrand
             newCell?.label.font = .subheadlineSemibold
         }
         

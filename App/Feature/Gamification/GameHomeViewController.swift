@@ -103,7 +103,7 @@ class GameHomeViewController: AccountPickerViewController {
         weeklyInsightUnreadIndicator.layer.cornerRadius = 6
         weeklyInsightUnreadIndicator.backgroundColor = .successGreen
         
-        weeklyInsightButton.setTitleColor(.primaryBlue, for: .normal)
+        weeklyInsightButton.setTitleColor(.actionBrand, for: .normal)
         weeklyInsightButton.titleLabel?.font = .headlineSemibold
         
         errorLabel.textColor = .neutralDark

@@ -91,7 +91,7 @@ class PaperlessEBillViewController: UIViewController, UIGestureRecognizerDelegat
         unenrollButtonLabel.font = .callout
         unenrollButtonLabel.text = NSLocalizedString("Looking to end Paperless eBill?", comment: "")
         unenrollButton.accessibilityLabel = "Looking to end Paperless e-bill?"
-        unenrollButton.setTitleColor(.primaryBlue, for: .normal)
+        unenrollButton.setTitleColor(.actionBrand, for: .normal)
         unenrollButton.titleLabel?.font = .callout
         unenrollButton.setTitle(NSLocalizedString("Unenroll", comment: ""), for: .normal)
         

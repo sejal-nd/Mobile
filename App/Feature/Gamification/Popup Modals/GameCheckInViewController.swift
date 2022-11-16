@@ -57,7 +57,7 @@ class GameCheckInViewController: UIViewController {
         detailLabel.text = NSLocalizedString("How do you feel about your energy usage?", comment: "")
         
         notInterestedButton.tintColor = .actionBrand
-        notInterestedButton.setTitleColor(.primaryBlue, for: .normal)
+        notInterestedButton.setTitleColor(.actionBrand, for: .normal)
         notInterestedButton.setTitleColor(UIColor.primaryBlue.darker(), for: .highlighted)
         notInterestedButton.titleLabel?.font = .subheadlineSemibold
         

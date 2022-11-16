@@ -42,7 +42,7 @@ class PaperlessEBillCommercialViewController: DismissableFormSheetViewController
         linkButton.shouldFadeSubviewsOnPress = true
         buttonLabel.font = .bodyBold
         buttonLabel.setLineHeight(lineHeight: 25)
-        buttonLabel.textColor = .primaryBlue
+        buttonLabel.textColor = .actionBrand
         buttonLabel.text = NSLocalizedString("Business customers can create an online account and enroll in Paperless eBill here.", comment: "")
     }
     

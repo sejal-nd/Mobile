@@ -89,7 +89,7 @@ class OverrideViewController: UIViewController {
         scheduledLabelStack.spacing = 4
         
         scheduledCancelButton.setTitle(NSLocalizedString("Cancel", comment: ""), for: .normal)
-        scheduledCancelButton.setTitleColor(.primaryBlue, for: .normal)
+        scheduledCancelButton.setTitleColor(.actionBrand, for: .normal)
         scheduledCancelButton.titleLabel?.font = .headlineSemibold
         
         let scheduledCardStack = UIStackView(arrangedSubviews: [scheduledLabelStack, scheduledCancelButton]).usingAutoLayout()
