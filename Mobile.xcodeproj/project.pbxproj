@@ -1003,6 +1003,18 @@
 		C336045424D1B85C002CF260 /* EmailRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C336045324D1B85C002CF260 /* EmailRequest.swift */; };
 		C336046124D31EA9002CF260 /* AutoPayEnrollRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C336046024D31EA9002CF260 /* AutoPayEnrollRequest.swift */; };
 		C336047424D32D13002CF260 /* AutoPayUnenrollRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C336047324D32D13002CF260 /* AutoPayUnenrollRequest.swift */; };
+		C337183A2925378D0092F501 /* Diodrum-ExtralightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = C337182E292537860092F501 /* Diodrum-ExtralightItalic.otf */; };
+		C337183B2925378D0092F501 /* Diodrum-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = C337182F292537870092F501 /* Diodrum-Regular.otf */; };
+		C337183C2925378D0092F501 /* Diodrum-LightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = C3371830292537880092F501 /* Diodrum-LightItalic.otf */; };
+		C337183D2925378D0092F501 /* Diodrum-RegularItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = C3371831292537880092F501 /* Diodrum-RegularItalic.otf */; };
+		C337183E2925378D0092F501 /* Diodrum-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = C3371832292537890092F501 /* Diodrum-Semibold.otf */; };
+		C337183F2925378D0092F501 /* Diodrum-BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = C3371833292537890092F501 /* Diodrum-BoldItalic.otf */; };
+		C33718402925378D0092F501 /* Diodrum-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = C33718342925378A0092F501 /* Diodrum-Light.otf */; };
+		C33718412925378D0092F501 /* Diodrum-Extralight.otf in Resources */ = {isa = PBXBuildFile; fileRef = C33718352925378A0092F501 /* Diodrum-Extralight.otf */; };
+		C33718422925378D0092F501 /* Diodrum-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = C33718362925378B0092F501 /* Diodrum-Bold.otf */; };
+		C33718432925378D0092F501 /* Diodrum-SemiboldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = C33718372925378B0092F501 /* Diodrum-SemiboldItalic.otf */; };
+		C33718442925378D0092F501 /* Diodrum-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = C33718382925378C0092F501 /* Diodrum-Medium.otf */; };
+		C33718452925378D0092F501 /* Diodrum-MediumItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = C33718392925378C0092F501 /* Diodrum-MediumItalic.otf */; };
 		C3381A032424060400EA7062 /* SERWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3381A002424060400EA7062 /* SERWebViewController.swift */; };
 		C3381A042424060400EA7062 /* SERWebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3381A012424060400EA7062 /* SERWebViewModel.swift */; };
 		C3381A062424064100EA7062 /* PTRWidget.html in Resources */ = {isa = PBXBuildFile; fileRef = C3381A052424064100EA7062 /* PTRWidget.html */; };
@@ -1062,6 +1074,7 @@
 		C3BCD53E2567238C006F405E /* HomeGameCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BCD53D2567238C006F405E /* HomeGameCardView.swift */; };
 		C3BCD5442567239D006F405E /* HomeGameCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3BCD5432567239D006F405E /* HomeGameCardView.xib */; };
 		C3C5696C256C33F60039C8A4 /* foresee_configuration.json in Resources */ = {isa = PBXBuildFile; fileRef = C3C5696B256C33F60039C8A4 /* foresee_configuration.json */; };
+		C3D25406292439090024FF59 /* FontsV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D25405292439090024FF59 /* FontsV2.swift */; };
 		C3DC821F251A518B0014D571 /* AccountsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D340901EBA6A8700BA2D42 /* AccountsStore.swift */; };
 		C3DC8224251A525A0014D571 /* AlertsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E835D1C81FB631AA008CE250 /* AlertsStore.swift */; };
 		C3DE17DC291C2A0E0055275D /* HomeCardHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DE17DB291C2A0D0055275D /* HomeCardHeaderView.swift */; };
@@ -1079,16 +1092,6 @@
 		E71EBE9D26A6EDFB005AE781 /* B2CTokenRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71EBE9B26A6EDFB005AE781 /* B2CTokenRequest.swift */; };
 		E7F38E0F2760B73700F8711B /* PKCEAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F38E0E2760B73700F8711B /* PKCEAuthenticationService.swift */; };
 		E80043091E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80043071E64DEE2005CF531 /* ChangePasswordViewController.swift */; };
-		E80043261E65FF70005CF531 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E800431C1E65FF70005CF531 /* OpenSans-Bold.ttf */; };
-		E80043291E65FF70005CF531 /* OpenSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E800431D1E65FF70005CF531 /* OpenSans-BoldItalic.ttf */; };
-		E800432C1E65FF70005CF531 /* OpenSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E800431E1E65FF70005CF531 /* OpenSans-ExtraBold.ttf */; };
-		E800432F1E65FF70005CF531 /* OpenSans-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E800431F1E65FF70005CF531 /* OpenSans-ExtraBoldItalic.ttf */; };
-		E80043321E65FF70005CF531 /* OpenSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E80043201E65FF70005CF531 /* OpenSans-Italic.ttf */; };
-		E80043351E65FF70005CF531 /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E80043211E65FF70005CF531 /* OpenSans-Light.ttf */; };
-		E80043381E65FF70005CF531 /* OpenSans-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E80043221E65FF70005CF531 /* OpenSans-LightItalic.ttf */; };
-		E800433B1E65FF70005CF531 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E80043231E65FF70005CF531 /* OpenSans-Regular.ttf */; };
-		E800433E1E65FF70005CF531 /* OpenSans-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E80043241E65FF70005CF531 /* OpenSans-Semibold.ttf */; };
-		E80043411E65FF70005CF531 /* OpenSans-SemiboldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E80043251E65FF70005CF531 /* OpenSans-SemiboldItalic.ttf */; };
 		E800434D1E671FD6005CF531 /* PasswordStrengthMeterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E800434C1E671FD6005CF531 /* PasswordStrengthMeterView.swift */; };
 		E80043561E68CDCB005CF531 /* IndividualBorders.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80043551E68CDCB005CF531 /* IndividualBorders.swift */; };
 		E802AB3F1E85936700981D18 /* LineHeightLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E802AB3E1E85936700981D18 /* LineHeightLabel.swift */; };
@@ -2378,6 +2381,18 @@
 		C336046024D31EA9002CF260 /* AutoPayEnrollRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoPayEnrollRequest.swift; sourceTree = "<group>"; };
 		C336047324D32D13002CF260 /* AutoPayUnenrollRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoPayUnenrollRequest.swift; sourceTree = "<group>"; };
 		C336048024D333CB002CF260 /* BGEAutoPayInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BGEAutoPayInfo.swift; sourceTree = "<group>"; };
+		C337182E292537860092F501 /* Diodrum-ExtralightItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Diodrum-ExtralightItalic.otf"; sourceTree = "<group>"; };
+		C337182F292537870092F501 /* Diodrum-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Diodrum-Regular.otf"; sourceTree = "<group>"; };
+		C3371830292537880092F501 /* Diodrum-LightItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Diodrum-LightItalic.otf"; sourceTree = "<group>"; };
+		C3371831292537880092F501 /* Diodrum-RegularItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Diodrum-RegularItalic.otf"; sourceTree = "<group>"; };
+		C3371832292537890092F501 /* Diodrum-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Diodrum-Semibold.otf"; sourceTree = "<group>"; };
+		C3371833292537890092F501 /* Diodrum-BoldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Diodrum-BoldItalic.otf"; sourceTree = "<group>"; };
+		C33718342925378A0092F501 /* Diodrum-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Diodrum-Light.otf"; sourceTree = "<group>"; };
+		C33718352925378A0092F501 /* Diodrum-Extralight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Diodrum-Extralight.otf"; sourceTree = "<group>"; };
+		C33718362925378B0092F501 /* Diodrum-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Diodrum-Bold.otf"; sourceTree = "<group>"; };
+		C33718372925378B0092F501 /* Diodrum-SemiboldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Diodrum-SemiboldItalic.otf"; sourceTree = "<group>"; };
+		C33718382925378C0092F501 /* Diodrum-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Diodrum-Medium.otf"; sourceTree = "<group>"; };
+		C33718392925378C0092F501 /* Diodrum-MediumItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Diodrum-MediumItalic.otf"; sourceTree = "<group>"; };
 		C3381A002424060400EA7062 /* SERWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SERWebViewController.swift; sourceTree = "<group>"; };
 		C3381A012424060400EA7062 /* SERWebViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SERWebViewModel.swift; sourceTree = "<group>"; };
 		C3381A052424064100EA7062 /* PTRWidget.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = PTRWidget.html; sourceTree = "<group>"; };
@@ -2425,16 +2440,7 @@
 		C3BCD53D2567238C006F405E /* HomeGameCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeGameCardView.swift; sourceTree = "<group>"; };
 		C3BCD5432567239D006F405E /* HomeGameCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeGameCardView.xib; sourceTree = "<group>"; };
 		C3C5696B256C33F60039C8A4 /* foresee_configuration.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = foresee_configuration.json; sourceTree = "<group>"; };
-		C3D253FB2923FE240024FF59 /* diodrum_light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = diodrum_light.ttf; sourceTree = "<group>"; };
-		C3D253FC2923FE240024FF59 /* diodrum_semibolditalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = diodrum_semibolditalic.ttf; sourceTree = "<group>"; };
-		C3D253FD2923FE250024FF59 /* diodrum_mediumitalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = diodrum_mediumitalic.ttf; sourceTree = "<group>"; };
-		C3D253FE2923FE250024FF59 /* diodrum_regularitalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = diodrum_regularitalic.ttf; sourceTree = "<group>"; };
-		C3D253FF2923FE260024FF59 /* diodrum_semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = diodrum_semibold.ttf; sourceTree = "<group>"; };
-		C3D254002923FE260024FF59 /* diodrum_medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = diodrum_medium.ttf; sourceTree = "<group>"; };
-		C3D254012923FE270024FF59 /* diodrum_bolditalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = diodrum_bolditalic.ttf; sourceTree = "<group>"; };
-		C3D254022923FE270024FF59 /* diodrum_bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = diodrum_bold.ttf; sourceTree = "<group>"; };
-		C3D254032923FE280024FF59 /* diodrum_lightitalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = diodrum_lightitalic.ttf; sourceTree = "<group>"; };
-		C3D254042923FE280024FF59 /* diodrum_regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = diodrum_regular.ttf; sourceTree = "<group>"; };
+		C3D25405292439090024FF59 /* FontsV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontsV2.swift; sourceTree = "<group>"; };
 		C3DE17DB291C2A0D0055275D /* HomeCardHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCardHeaderView.swift; sourceTree = "<group>"; };
 		C3DE17DD291C2E110055275D /* HomeCardHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeCardHeaderView.xib; sourceTree = "<group>"; };
 		C3DF2B9C24CB32D000A6D4EC /* BillService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillService.swift; sourceTree = "<group>"; };
@@ -2511,16 +2517,16 @@
 		E7C92D899B3F95969C91CABF /* Pods-EUMobileUnitTests.prod-comed.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobileUnitTests.prod-comed.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobileUnitTests/Pods-EUMobileUnitTests.prod-comed.xcconfig"; sourceTree = "<group>"; };
 		E7F38E0E2760B73700F8711B /* PKCEAuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKCEAuthenticationService.swift; sourceTree = "<group>"; };
 		E80043071E64DEE2005CF531 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
-		E800431C1E65FF70005CF531 /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
-		E800431D1E65FF70005CF531 /* OpenSans-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-BoldItalic.ttf"; sourceTree = "<group>"; };
-		E800431E1E65FF70005CF531 /* OpenSans-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-ExtraBold.ttf"; sourceTree = "<group>"; };
-		E800431F1E65FF70005CF531 /* OpenSans-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
-		E80043201E65FF70005CF531 /* OpenSans-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Italic.ttf"; sourceTree = "<group>"; };
-		E80043211E65FF70005CF531 /* OpenSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Light.ttf"; sourceTree = "<group>"; };
-		E80043221E65FF70005CF531 /* OpenSans-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-LightItalic.ttf"; sourceTree = "<group>"; };
-		E80043231E65FF70005CF531 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
-		E80043241E65FF70005CF531 /* OpenSans-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Semibold.ttf"; sourceTree = "<group>"; };
-		E80043251E65FF70005CF531 /* OpenSans-SemiboldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiboldItalic.ttf"; sourceTree = "<group>"; };
+		E800431C1E65FF70005CF531 /* Diodrum-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Diodrum-Bold.ttf"; sourceTree = "<group>"; };
+		E800431D1E65FF70005CF531 /* Diodrum-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Diodrum-BoldItalic.ttf"; sourceTree = "<group>"; };
+		E800431E1E65FF70005CF531 /* Diodrum-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Diodrum-ExtraBold.ttf"; sourceTree = "<group>"; };
+		E800431F1E65FF70005CF531 /* Diodrum-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Diodrum-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
+		E80043201E65FF70005CF531 /* Diodrum-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Diodrum-Italic.ttf"; sourceTree = "<group>"; };
+		E80043211E65FF70005CF531 /* Diodrum-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Diodrum-Light.ttf"; sourceTree = "<group>"; };
+		E80043221E65FF70005CF531 /* Diodrum-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Diodrum-LightItalic.ttf"; sourceTree = "<group>"; };
+		E80043231E65FF70005CF531 /* Diodrum-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Diodrum-Regular.ttf"; sourceTree = "<group>"; };
+		E80043241E65FF70005CF531 /* Diodrum-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Diodrum-Semibold.ttf"; sourceTree = "<group>"; };
+		E80043251E65FF70005CF531 /* Diodrum-SemiboldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Diodrum-SemiboldItalic.ttf"; sourceTree = "<group>"; };
 		E800434C1E671FD6005CF531 /* PasswordStrengthMeterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordStrengthMeterView.swift; sourceTree = "<group>"; };
 		E80043551E68CDCB005CF531 /* IndividualBorders.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndividualBorders.swift; sourceTree = "<group>"; };
 		E802AB3E1E85936700981D18 /* LineHeightLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineHeightLabel.swift; sourceTree = "<group>"; };
@@ -5263,6 +5269,7 @@
 				225FF8591EC56B480079010C /* Date.swift */,
 				82BE057E1ED8D14D00BC06EE /* FadeSubviews.swift */,
 				826413781EAEAE5E007F4615 /* Fonts.swift */,
+				C3D25405292439090024FF59 /* FontsV2.swift */,
 				E80043551E68CDCB005CF531 /* IndividualBorders.swift */,
 				E802AB3E1E85936700981D18 /* LineHeightLabel.swift */,
 				E80D2E161E721668002626C9 /* MaskedString.swift */,
@@ -5768,26 +5775,28 @@
 		E800431B1E65FF4D005CF531 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				C3D254022923FE270024FF59 /* diodrum_bold.ttf */,
-				C3D254012923FE270024FF59 /* diodrum_bolditalic.ttf */,
-				C3D253FB2923FE240024FF59 /* diodrum_light.ttf */,
-				C3D254032923FE280024FF59 /* diodrum_lightitalic.ttf */,
-				C3D254002923FE260024FF59 /* diodrum_medium.ttf */,
-				C3D253FD2923FE250024FF59 /* diodrum_mediumitalic.ttf */,
-				C3D254042923FE280024FF59 /* diodrum_regular.ttf */,
-				C3D253FE2923FE250024FF59 /* diodrum_regularitalic.ttf */,
-				C3D253FF2923FE260024FF59 /* diodrum_semibold.ttf */,
-				C3D253FC2923FE240024FF59 /* diodrum_semibolditalic.ttf */,
-				E800431C1E65FF70005CF531 /* OpenSans-Bold.ttf */,
-				E800431D1E65FF70005CF531 /* OpenSans-BoldItalic.ttf */,
-				E800431E1E65FF70005CF531 /* OpenSans-ExtraBold.ttf */,
-				E800431F1E65FF70005CF531 /* OpenSans-ExtraBoldItalic.ttf */,
-				E80043201E65FF70005CF531 /* OpenSans-Italic.ttf */,
-				E80043211E65FF70005CF531 /* OpenSans-Light.ttf */,
-				E80043221E65FF70005CF531 /* OpenSans-LightItalic.ttf */,
-				E80043231E65FF70005CF531 /* OpenSans-Regular.ttf */,
-				E80043241E65FF70005CF531 /* OpenSans-Semibold.ttf */,
-				E80043251E65FF70005CF531 /* OpenSans-SemiboldItalic.ttf */,
+				C33718362925378B0092F501 /* Diodrum-Bold.otf */,
+				C3371833292537890092F501 /* Diodrum-BoldItalic.otf */,
+				C33718352925378A0092F501 /* Diodrum-Extralight.otf */,
+				C337182E292537860092F501 /* Diodrum-ExtralightItalic.otf */,
+				C33718342925378A0092F501 /* Diodrum-Light.otf */,
+				C3371830292537880092F501 /* Diodrum-LightItalic.otf */,
+				C33718382925378C0092F501 /* Diodrum-Medium.otf */,
+				C33718392925378C0092F501 /* Diodrum-MediumItalic.otf */,
+				C337182F292537870092F501 /* Diodrum-Regular.otf */,
+				C3371831292537880092F501 /* Diodrum-RegularItalic.otf */,
+				C3371832292537890092F501 /* Diodrum-Semibold.otf */,
+				C33718372925378B0092F501 /* Diodrum-SemiboldItalic.otf */,
+				E800431C1E65FF70005CF531 /* Diodrum-Bold.ttf */,
+				E800431D1E65FF70005CF531 /* Diodrum-BoldItalic.ttf */,
+				E800431E1E65FF70005CF531 /* Diodrum-ExtraBold.ttf */,
+				E800431F1E65FF70005CF531 /* Diodrum-ExtraBoldItalic.ttf */,
+				E80043201E65FF70005CF531 /* Diodrum-Italic.ttf */,
+				E80043211E65FF70005CF531 /* Diodrum-Light.ttf */,
+				E80043221E65FF70005CF531 /* Diodrum-LightItalic.ttf */,
+				E80043231E65FF70005CF531 /* Diodrum-Regular.ttf */,
+				E80043241E65FF70005CF531 /* Diodrum-Semibold.ttf */,
+				E80043251E65FF70005CF531 /* Diodrum-SemiboldItalic.ttf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -6111,6 +6120,7 @@
 			files = (
 				67A986A924F9693600BD46E7 /* outage-FlavorPECO.json in Resources */,
 				67A986DB24FD419A00BD46E7 /* GoogleService-Info-RELEASE-FlavorDPL.plist in Resources */,
+				C33718412925378D0092F501 /* Diodrum-Extralight.otf in Resources */,
 				675F47B724AB6C9700A828F9 /* Login.storyboard in Resources */,
 				0D79C6C51F1D3360004793DD /* Maintenance.storyboard in Resources */,
 				22EF559B2170507700070C13 /* AppointmentDetailViewController.xib in Resources */,
@@ -6126,7 +6136,6 @@
 				678B622D24D09A1B009F8A6B /* RegistrationQuestionsMock.json in Resources */,
 				35C9139222E9E9C1009DD71A /* MiniWalletSheet.storyboard in Resources */,
 				C364A87B2375DC7B00C7D51B /* StateView.xib in Resources */,
-				E80043381E65FF70005CF531 /* OpenSans-LightItalic.ttf in Resources */,
 				30636F0E24C82F8500CCBFAE /* OpcoIdentityCardView.xib in Resources */,
 				9CD3532722CABC0A00165F87 /* PrepaidCardView.xib in Resources */,
 				67A9869F24F9691600BD46E7 /* GoogleService-Info-BETA-FlavorPECO.plist in Resources */,
@@ -6136,6 +6145,7 @@
 				21D4983027310C3300EAE112 /* AddressLookupResponseMock.json in Resources */,
 				215D05B227739542009377AC /* SM_ot_enroute.json in Resources */,
 				B07E17E92209F0CA00B6E3C7 /* bill_comparison.json in Resources */,
+				C33718402925378D0092F501 /* Diodrum-Light.otf in Resources */,
 				216AE55B278E4B4E0018E220 /* StatusTextView.xib in Resources */,
 				67D5632024EDC14D00852551 /* landing_video-FlavorCOMED.mp4 in Resources */,
 				B089571F2217455200A97965 /* account_lookup.json in Resources */,
@@ -6152,7 +6162,6 @@
 				674A113925223E1000AF0D38 /* LaunchScreen-FlavorPEPCO.storyboard in Resources */,
 				67D5632424EDC6F500852551 /* Appt_Inprogress-FlavorCOMED.json in Resources */,
 				B039DB75225BD02B00BB5479 /* HomePrepaidCardView.xib in Resources */,
-				E80043261E65FF70005CF531 /* OpenSans-Bold.ttf in Resources */,
 				4A74A0BB27304D6C00F87986 /* ISUMUnauthMove.storyboard in Resources */,
 				35532445253D6B8E0080589F /* PaymentAmount.storyboard in Resources */,
 				21C72A732772527700C31411 /* GasOnlyView.xib in Resources */,
@@ -6180,17 +6189,14 @@
 				82D599511EC3A00900DDB380 /* alert_icon.json in Resources */,
 				67D5632124EDC6F500852551 /* Appt_Canceled-FlavorCOMED.json in Resources */,
 				B01FF0AF221DFC77008CA222 /* autopay_info.json in Resources */,
-				E80043321E65FF70005CF531 /* OpenSans-Italic.ttf in Resources */,
 				67A986A124F9691600BD46E7 /* GoogleService-Info-RC-FlavorPECO.plist in Resources */,
 				B0882CA6210B926B00EB756B /* UsageToolCardView.xib in Resources */,
 				675F4DE024AB828200A828F9 /* EnergyTipsMock.json in Resources */,
 				675F4D4A24AB828200A828F9 /* AlertBannerMock.json in Resources */,
-				E80043291E65FF70005CF531 /* OpenSans-BoldItalic.ttf in Resources */,
 				B0B083FC21710CDB00B1C632 /* Appt_Complete-FlavorBGE.json in Resources */,
 				B0EE78EA221353E700F53C56 /* report_outage.json in Resources */,
 				224EFF1C216E4E76008A0E40 /* HomeAppointmentCardView.xib in Resources */,
 				215BD794276298790011F642 /* StatusInfoView.xib in Resources */,
-				E800432F1E65FF70005CF531 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
 				9C34D746239EE92400DF7FE2 /* GameTasks.json in Resources */,
 				67A986A424F9693300BD46E7 /* Appt_Complete-FlavorPECO.json in Resources */,
 				675F4D6E24AB828200A828F9 /* BudgetBillingMock.json in Resources */,
@@ -6209,20 +6215,22 @@
 				9C97DB1B20EFE2E100FF8E20 /* HomeProjectedBillCardView.xib in Resources */,
 				9CABF6BD239719DB00B07B01 /* QuizAnswerView.xib in Resources */,
 				359BDBB122E0E6E3007002B0 /* smallcircleload_blue.json in Resources */,
+				C337183C2925378D0092F501 /* Diodrum-LightItalic.otf in Resources */,
 				359BB2792148349200FBAD83 /* outage-FlavorBGE.json in Resources */,
 				67A986A224F9691600BD46E7 /* GoogleService-Info-RELEASE-FlavorPECO.plist in Resources */,
 				67D5632324EDC6F500852551 /* Appt_Confirmed-FlavorCOMED.json in Resources */,
 				674A113725223E1000AF0D38 /* LaunchScreen-FlavorCOMED.storyboard in Resources */,
 				E8B4F4B71E5C99A00031D934 /* Outage.storyboard in Resources */,
-				E800432C1E65FF70005CF531 /* OpenSans-ExtraBold.ttf in Resources */,
+				C33718442925378D0092F501 /* Diodrum-Medium.otf in Resources */,
 				4A74A0CD273A6D8200F87986 /* AccountDetailsUnauthMock.json in Resources */,
 				B08957002215F6DC00A97965 /* home_profile.json in Resources */,
 				B0B083FA21710CDB00B1C632 /* Appt_otw-FlavorBGE.json in Resources */,
 				9C62445C22C171C900F14DA0 /* FloatLabelTextField.xib in Resources */,
+				C337183A2925378D0092F501 /* Diodrum-ExtralightItalic.otf in Resources */,
+				C337183B2925378D0092F501 /* Diodrum-Regular.otf in Resources */,
 				C3BCD5442567239D006F405E /* HomeGameCardView.xib in Resources */,
 				215BD789275ACE3A0011F642 /* StatusView.xib in Resources */,
 				67A986A724F9693300BD46E7 /* Appt_otw-FlavorPECO.json in Resources */,
-				E80043411E65FF70005CF531 /* OpenSans-SemiboldItalic.ttf in Resources */,
 				9CEE411D23722A0F005A4AD3 /* DailyInsightCoinView.xib in Resources */,
 				67D5632524EDC6F500852551 /* Appt_otw-FlavorCOMED.json in Resources */,
 				9CD3533822CABDBA00165F87 /* DisclosureCellButton.xib in Resources */,
@@ -6254,6 +6262,7 @@
 				9CC9978A237B49F500C68300 /* HomeGameOnboardingCardView.xib in Resources */,
 				4A74A0B3272E96B500F87986 /* StopServiceConfirmationMock.json in Resources */,
 				675F4D4424AB828200A828F9 /* AccountLookupMock.json in Resources */,
+				C33718422925378D0092F501 /* Diodrum-Bold.otf in Resources */,
 				4465DE891F1FD07C0014537F /* TemplateCardView.xib in Resources */,
 				675F4DDA24AB828200A828F9 /* AutoPayEnrollMock.json in Resources */,
 				3559C8B62301E4FF00481A87 /* AutoPay.storyboard in Resources */,
@@ -6284,6 +6293,7 @@
 				C3381A062424064100EA7062 /* PTRWidget.html in Resources */,
 				67A986E024FD41A100BD46E7 /* Assets-FlavorPEPCO.xcassets in Resources */,
 				35B9609922B7BC61003BCC97 /* PremiseListRow.xib in Resources */,
+				C33718452925378D0092F501 /* Diodrum-MediumItalic.otf in Resources */,
 				C34459BA2922F015009DEDAF /* LaunchScreen.storyboard in Resources */,
 				282B4F7A26E7490400ACD33C /* ISUMStop.storyboard in Resources */,
 				B08957072215FE7900A97965 /* recover_username.json in Resources */,
@@ -6297,7 +6307,6 @@
 				675F4D5024AB828200A828F9 /* TokenMock.json in Resources */,
 				8FD5AE9A1E54EAB8003F640D /* checkmark.json in Resources */,
 				215D05B327739542009377AC /* SM_alerticon.json in Resources */,
-				E800433E1E65FF70005CF531 /* OpenSans-Semibold.ttf in Resources */,
 				9C8775B622A082CE0087F0BA /* FirstFuelWidget.html in Resources */,
 				9C0A2C3C23A042DC002C4B8E /* message_bubble_unique.json in Resources */,
 				675F4DAA24AB828200A828F9 /* SSODataMock.json in Resources */,
@@ -6312,9 +6321,7 @@
 				B07E17EB2209F0CA00B6E3C7 /* maintenance.json in Resources */,
 				359BDBB522E0E6EA007002B0 /* checkmark_blue.json in Resources */,
 				8FD5AE9D1E54EAB8003F640D /* loading.json in Resources */,
-				E80043351E65FF70005CF531 /* OpenSans-Light.ttf in Resources */,
 				9C88942223C39F2B002E46A7 /* confetti.json in Resources */,
-				E800433B1E65FF70005CF531 /* OpenSans-Regular.ttf in Resources */,
 				675F4DC824AB828200A828F9 /* ForecastMonthlyBillMock.json in Resources */,
 				35C9139F22E9EFFB009DD71A /* MiniWalletItemRow.xib in Resources */,
 				674A113B25223E1000AF0D38 /* LaunchScreen-FlavorPECO.storyboard in Resources */,
@@ -6357,6 +6364,7 @@
 				359BB27F2148517F00FBAD83 /* sm_outage_loading-FlavorBGE.json in Resources */,
 				35A6C6B9211C6CCE00C2A58F /* TitleTableViewHeaderView.xib in Resources */,
 				9C0EA5BE237DAD2900D1E18F /* buddy_face_normal.json in Resources */,
+				C337183F2925378D0092F501 /* Diodrum-BoldItalic.otf in Resources */,
 				B0EE78F12214766700F53C56 /* appointments.json in Resources */,
 				215D05B627739543009377AC /* SM_OnWhite.json in Resources */,
 				B08956F22215C27100A97965 /* sso_data.json in Resources */,
@@ -6365,6 +6373,7 @@
 				9CEE411923722444005A4AD3 /* Game.storyboard in Resources */,
 				B089573422175BFE00A97965 /* budget_billing_info.json in Resources */,
 				215D05B727739543009377AC /* SM_ReportedWhite.json in Resources */,
+				C337183E2925378D0092F501 /* Diodrum-Semibold.otf in Resources */,
 				9C0EA5B8237DAD2900D1E18F /* buddy_face_happy.json in Resources */,
 				E82FF1EE1F97CC7900C50F8F /* HomeUsageCardView.xib in Resources */,
 				B07E17E72209F0CA00B6E3C7 /* accounts.json in Resources */,
@@ -6378,9 +6387,11 @@
 				359BDB7B22D8F9B2007002B0 /* outage_on.json in Resources */,
 				21C66E222791EF8E00DC1A07 /* SurveyView.xib in Resources */,
 				82AC2A111FAA691000EACB3B /* PeakRewards.storyboard in Resources */,
+				C33718432925378D0092F501 /* Diodrum-SemiboldItalic.otf in Resources */,
 				B0CB1C87227CB4510081F99B /* TabCollectionViewCell.xib in Resources */,
 				675F4D3224AB828200A828F9 /* ReportOutageMock.json in Resources */,
 				9C46B12B221613FB00A5D537 /* wallet.json in Resources */,
+				C337183D2925378D0092F501 /* Diodrum-RegularItalic.otf in Resources */,
 				67A986A324F9693300BD46E7 /* Appt_Canceled-FlavorPECO.json in Resources */,
 				67E78D8B25095439001AB1BD /* landing_video-FlavorPECO.mp4 in Resources */,
 				4A74A0B9272EB4BE00F87986 /* MoveServiceConfirmationMock.json in Resources */,
@@ -7236,6 +7247,7 @@
 				9CB16EF7219DD4A4008C4871 /* WalletTableViewCell.swift in Sources */,
 				224EFF18216E4E67008A0E40 /* HomeAppointmentCardView.swift in Sources */,
 				678C7F2F2836B699006C0FDC /* TerminateAgreementView.swift in Sources */,
+				C3D25406292439090024FF59 /* FontsV2.swift in Sources */,
 				E80D2E271E72FC2C002626C9 /* AccountPicker.swift in Sources */,
 				C336045424D1B85C002CF260 /* EmailRequest.swift in Sources */,
 				C3B6555024ABD9320048C64B /* SERInfo.swift in Sources */,

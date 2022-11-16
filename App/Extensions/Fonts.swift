@@ -11,16 +11,16 @@ import UIKit
 //MARK: - Fonts
 
 enum ExelonFont: String, FontType {
-    case light = "diodrum_light"
-    case lightItalic = "diodrum_lightitalic"
-    case regular = "diodrum_regular"
-    case italic = "diodrum_regularitalic"
-    case medium = "diodrum_medium"
-    case mediumItalic = "diodrum_mediumitalic"
-    case semibold = "diodrum_semibold"
-    case semiboldItalic = "diodrum_semibolditalic"
-    case bold = "diodrum_bold"
-    case boldItalic = "diodrum_bolditalic"
+    case light = "Diodrum-Light"
+    case lightItalic = "Diodrum-LightItalic"
+    case regular = "Diodrum-Regular"
+    case italic = "Diodrum-RegularItalic"
+    case medium = "Diodrum-Medium"
+    case mediumItalic = "Diodrum-MediumItalic"
+    case semibold = "Diodrum-Semibold"
+    case semiboldItalic = "Diodrum-SemiboldItalic"
+    case bold = "Diodrum-Bold"
+    case boldItalic = "Diodrum-BoldItalic"
 }
 
 enum SystemFont: FontType {
