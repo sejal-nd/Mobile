@@ -39,6 +39,7 @@ class AlertPreferencesViewModel {
     let paymentPastDue = BehaviorRelay(value: false)
     let budgetBilling = BehaviorRelay(value: false)
     let appointmentTracking = BehaviorRelay(value: false)
+    let advancedNotification = BehaviorRelay(value: false)
     let forYourInfo = BehaviorRelay(value: false)
     let energyBuddyUpdates = BehaviorRelay(value: false)
     let english = BehaviorRelay(value: true) // Language selection. False = Spanish
@@ -197,6 +198,7 @@ class AlertPreferencesViewModel {
                     }
                     
                     self.sections.append((NSLocalizedString("Payment", comment: ""), paymentOptions))
+                    self.sections.append((NSLocalizedString("Customer Appointments", comment: ""), [.appointmentTracking, .advancedNotification]))
                     self.sections.append((NSLocalizedString("News", comment: ""), [.forYourInformation]))
                 case .ace:
                     self.sections = [(NSLocalizedString("Outage", comment: ""),
@@ -214,6 +216,7 @@ class AlertPreferencesViewModel {
                     }
                     
                     self.sections.append((NSLocalizedString("Payment", comment: ""), paymentOptions))
+                    self.sections.append((NSLocalizedString("Customer Appointments", comment: ""), [.appointmentTracking, .advancedNotification]))
                     self.sections.append((NSLocalizedString("News", comment: ""), [.forYourInformation]))
                 case .delmarva:
                     var usageOptions: [AlertPreferencesOptions] = []
@@ -243,6 +246,7 @@ class AlertPreferencesViewModel {
                     }
                     
                     self.sections.append((NSLocalizedString("Payment", comment: ""), paymentOptions))
+                    self.sections.append((NSLocalizedString("Customer Appointments", comment: ""), [.appointmentTracking, .advancedNotification]))
                     self.sections.append((NSLocalizedString("News", comment: ""), [.forYourInformation]))
                 }
                 
@@ -597,6 +601,8 @@ class AlertPreferencesViewModel {
         case paymentDueReminder, paymentPosted, paymentPastDue, budgetBillingReview, grantStatus
         // Customer Appointments
         case appointmentTracking
+        // Advance Notification
+        case advancedNotification
         // News
         case forYourInformation
         // Energy Buddy
@@ -634,10 +640,14 @@ class AlertPreferencesViewModel {
                 return NSLocalizedString("Budget Billing Review", comment: "")
             case .appointmentTracking:
                 if Configuration.shared.opco == .bge {
-                return NSLocalizedString("Service Appointments", comment: "")
+                    return NSLocalizedString("Service Appointments", comment: "")
+                } else if Configuration.shared.opco.isPHI {
+                    return NSLocalizedString("Customer Appointment", comment: "")
                 } else {
-                return NSLocalizedString("Appointment Tracking", comment: "")
+                    return NSLocalizedString("Appointment Tracking", comment: "")
                 }
+            case .advancedNotification:
+                return NSLocalizedString("Advance Notification", comment: "")
             case .forYourInformation:
                 return Configuration.shared.opco.isPHI ? NSLocalizedString("Updates & General News", comment: "") : NSLocalizedString("For Your Information", comment: "")
             case .energyBuddyUpdates:
@@ -782,6 +792,8 @@ class AlertPreferencesViewModel {
                 } else {
                 return NSLocalizedString("Receive notifications such as confirmations, reminders, and relevant status updates for your scheduled service appointment.", comment: "")
                 }
+            case (.advancedNotification, _):
+                return "Receive enroute notification updates for your routine service appointments."
                 
             // For Your Information
             case (.forYourInformation, .bge):

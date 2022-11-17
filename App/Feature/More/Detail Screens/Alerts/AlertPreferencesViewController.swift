@@ -389,6 +389,8 @@ extension AlertPreferencesViewController: UITableViewDataSource {
             toggleVariable = viewModel.budgetBilling
         case .appointmentTracking:
             toggleVariable = viewModel.appointmentTracking
+        case .advancedNotification:
+            toggleVariable = viewModel.advancedNotification
         case .forYourInformation:
             toggleVariable = viewModel.forYourInfo
         case .energyBuddyUpdates:
