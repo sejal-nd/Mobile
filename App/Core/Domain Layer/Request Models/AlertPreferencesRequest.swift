@@ -94,7 +94,7 @@ public struct AlertPreferencesRequest: Encodable {
             let peakSavingsDayResultsProgramName = "Peak Savings Day Results \(opcoIdentifier)"
             let peakSavingsDayAlertProgramName = "PESC \(opcoIdentifier)"
             let customerAppointmentProgramName = "Customer Appointments \(opcoIdentifier)"
-            let advancedNotificationProgramName = "Advanced Notification \(opcoIdentifier)"
+            let advancedNotificationProgramName = "Advance Notification \(opcoIdentifier)"
 
             preferences.append(AlertRequest(isActive: alertPreferences.outage, programName: outageProgramName))
             preferences.append(AlertRequest(isActive: alertPreferences.severeWeather, programName: severeWeatherProgramName))
