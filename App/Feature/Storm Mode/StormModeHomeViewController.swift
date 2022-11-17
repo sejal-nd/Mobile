@@ -267,7 +267,7 @@ class StormModeHomeViewController: AccountPickerViewController {
         let gradientColor: UIColor
         switch Configuration.shared.opco {
         case .bge:
-            gradientColor = .bgeGreen
+            gradientColor = .primaryColor
             setupBinding()
         case .ace, .comEd, .delmarva, .peco, .pepco:
             gradientColor = .primaryColor

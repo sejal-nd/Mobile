@@ -138,17 +138,13 @@ extension UIColor {
 
     // Error Medium #F2CCD5
     static var errorMedium: UIColor {
-        return errorPrimary.withAlphaComponent(20)
+        return UIColor(named: "errorMedium")!
     }
 
     // Error Light #FDF7F8
     static var errorLight: UIColor {
-        return errorPrimary.withAlphaComponent(3)
+        return UIColor(named: "errorLight")!
     }
-
-
-
-
 
     @nonobjc static var blackText: UIColor {
         return .neutralDarker
@@ -171,46 +167,23 @@ extension UIColor {
     }
     
     @nonobjc static var attentionOrange: UIColor {
-        return UIColor(red: 254/255, green: 114/255, blue: 18/255, alpha: 1)
-    }
-    
-    @nonobjc static var lightbulbYellow: UIColor {
-        return UIColor(red: 255/255, green: 173/255, blue: 40/255, alpha: 1)
+        return .attentionPrimary
     }
     
     @nonobjc static var successGreen: UIColor {
-        return UIColor(red: 120/255, green: 190/255, blue: 32/255, alpha: 1)
+        return .successPrimary
     }
     
     @nonobjc static var successGreenText: UIColor {
-        return UIColor(red: 0/255, green: 122/255, blue: 51/255, alpha: 1)
+        return .successPrimary
     }
     
     @nonobjc static var mediumSpringBud: UIColor {
         return UIColor(red: 188/255, green: 228/255, blue: 139/255, alpha: 1)
     }
-    
-    @nonobjc static var mediumJungleGreen: UIColor {
-        return UIColor(red: 44/255, green: 38/255, blue: 51/255, alpha: 1)
-    }
-    
-    @nonobjc static var richElectricBlue: UIColor {
-        return UIColor(red: 13/255, green: 157/255, blue: 219/255, alpha: 1)
-    }
-    
-    @nonobjc static var burntSienna: UIColor {
-        return UIColor(red: 238/255, green: 127/255, blue: 75/255, alpha: 1)
-    }
-    
-    @nonobjc static var autoFillYellow: UIColor {
-        return UIColor(red: 234/255, green: 230/255, blue: 188/255, alpha: 1)
-    }
-    
-    @nonobjc static var bgeGreen: UIColor {
-        // Old BGE primary color
-        return UIColor(red: 102/255, green: 179/255, blue: 96/255, alpha: 1)
-    }
-    
+
+    // MARK: Storm Mode Colors
+
     @nonobjc static var stormModeBlack: UIColor {
         return UIColor(red: 44/255, green: 38/255, blue: 51/255, alpha: 1)
     }
@@ -222,9 +195,25 @@ extension UIColor {
     @nonobjc static var stormModeLightGray: UIColor {
         return UIColor(red: 84/255, green: 79/255, blue: 89/255, alpha: 1)
     }
-    
+
+    // MARK: Misc Colors
+
+    // #0D9DDB
+    @nonobjc static var thermostatCool: UIColor {
+        return UIColor(red: 13/255, green: 157/255, blue: 219/255, alpha: 1)
+    }
+
+    // #EE7F4B
+    @nonobjc static var thermostatHeat: UIColor {
+        return UIColor(red: 238/255, green: 127/255, blue: 75/255, alpha: 1)
+    }
+
+    // TODO what is this color
+    @nonobjc static var autoFillYellow: UIColor {
+        return UIColor(red: 234/255, green: 230/255, blue: 188/255, alpha: 1)
+    }
+
     @nonobjc static var roseQuartz: UIColor {
         return UIColor(red: 164/255, green: 155/255, blue: 174/255, alpha: 1)
     }
-    
 }

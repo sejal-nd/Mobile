@@ -48,7 +48,7 @@ class SmartThermostatPeriodCard: ButtonControl {
         timePeriodStack.isUserInteractionEnabled = false
         
         let coolCircle = UIView()
-        coolCircle.backgroundColor = .richElectricBlue
+        coolCircle.backgroundColor = .thermostatCool
         coolCircle.translatesAutoresizingMaskIntoConstraints = false
         coolCircle.heightAnchor.constraint(equalToConstant: 14).isActive = true
         coolCircle.widthAnchor.constraint(equalTo: coolCircle.heightAnchor).isActive = true
@@ -64,7 +64,7 @@ class SmartThermostatPeriodCard: ButtonControl {
         coolStack.isUserInteractionEnabled = false
         
         let heatCircle = UIView()
-        heatCircle.backgroundColor = .burntSienna
+        heatCircle.backgroundColor = .thermostatHeat
         heatCircle.translatesAutoresizingMaskIntoConstraints = false
         heatCircle.heightAnchor.constraint(equalToConstant: 14).isActive = true
         heatCircle.widthAnchor.constraint(equalTo: heatCircle.heightAnchor).isActive = true

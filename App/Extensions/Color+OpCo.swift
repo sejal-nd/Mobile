@@ -37,7 +37,7 @@ extension UIColor {
     static var stormPrimaryColor: UIColor {
         switch Configuration.shared.opco {
         case .bge:
-            return .bgeGreen
+            return .primaryColor
         case .comEd:
             return .primaryColor
         case .peco:

@@ -35,7 +35,7 @@
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hko-FX-HbW" userLabel="ContentView">
                                                                 <rect key="frame" x="0.0" y="0.0" width="465" height="690.66666666666663"/>
                                                                 <subviews>
-                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_isum_move_large_bge" translatesAutoresizingMaskIntoConstraints="NO" id="fyg-tx-zlq">
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_isum_move" translatesAutoresizingMaskIntoConstraints="NO" id="fyg-tx-zlq">
                                                                         <rect key="frame" x="169.33333333333331" y="30" width="126" height="126"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="126" id="1Ys-6Y-1ZP"/>
@@ -534,13 +534,13 @@
                                                                         </constraints>
                                                                     </imageView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your service will be disconnected on" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rYZ-RI-dZI">
-                                                                        <rect key="frame" x="30" y="93" width="405" height="27.333333333333329"/>
+                                                                        <rect key="frame" x="30" y="93" width="405" height="23.333333333333329"/>
                                                                         <fontDescription key="fontDescription" name="Diodrum-Semibold" family="Open Sans" pointSize="20"/>
                                                                         <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="XTJ-S9-WTt">
-                                                                        <rect key="frame" x="30" y="140.33333333333337" width="405" height="149.33333333333337"/>
+                                                                        <rect key="frame" x="30" y="136.33333333333337" width="405" height="153.33333333333337"/>
                                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                         <string key="text">If you didn’t make this request or if you want to make any changes, please call our Customer Care Center at 1-800-685-0123 Monday through Friday from 7 a.m to 7 p.m. for help and more information.</string>
                                                                         <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
@@ -592,13 +592,13 @@
                                                                         </constraints>
                                                                     </imageView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The account you selected is inactive." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="grh-VV-riD">
-                                                                        <rect key="frame" x="30" y="93" width="405" height="27.333333333333329"/>
+                                                                        <rect key="frame" x="30" y="93" width="405" height="23.333333333333329"/>
                                                                         <fontDescription key="fontDescription" name="Diodrum-Semibold" family="Open Sans" pointSize="20"/>
                                                                         <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="aX7-2n-evQ">
-                                                                        <rect key="frame" x="30" y="140.33333333333337" width="405" height="229"/>
+                                                                        <rect key="frame" x="30" y="136.33333333333337" width="405" height="233"/>
                                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                                         <color key="textColor" systemColor="labelColor"/>
@@ -2936,13 +2936,13 @@
                                                 </accessibility>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We were unable to process your request." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4qz-nc-9rW">
-                                                <rect key="frame" x="30" y="140" width="405" height="27.333333333333343"/>
+                                                <rect key="frame" x="30" y="140" width="405" height="23.333333333333343"/>
                                                 <fontDescription key="fontDescription" name="Diodrum-Semibold" family="Open Sans" pointSize="20"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" text="Please call our Customer Care Center at 1-800-685-0123 Monday-Friday from 7 a.m. to 7 p.m. for more information." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="0gW-vc-mPf">
-                                                <rect key="frame" x="40" y="187.33333333333329" width="385" height="260.66666666666674"/>
+                                                <rect key="frame" x="40" y="183.33333333333329" width="385" height="264.66666666666674"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <color key="textColor" systemColor="labelColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -3012,13 +3012,13 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="461.66666666666669" height="247"/>
                                                                 <subviews>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_confirmation" translatesAutoresizingMaskIntoConstraints="NO" id="HCJ-3X-4m6">
-                                                                        <rect key="frame" x="183" y="16" width="96" height="133.33333333333334"/>
+                                                                        <rect key="frame" x="183" y="16" width="96" height="137.33333333333334"/>
                                                                         <accessibility key="accessibilityConfiguration" label="Success">
                                                                             <bool key="isElement" value="YES"/>
                                                                         </accessibility>
                                                                     </imageView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thank you for being a BGE customer!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wnb-Hv-yOU">
-                                                                        <rect key="frame" x="30" y="169.33333333333334" width="401.66666666666669" height="27.333333333333343"/>
+                                                                        <rect key="frame" x="30" y="173.33333333333334" width="401.66666666666669" height="23.333333333333343"/>
                                                                         <fontDescription key="fontDescription" name="Diodrum-Semibold" family="Open Sans" pointSize="20"/>
                                                                         <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
@@ -3612,7 +3612,7 @@
         <image name="ic_isum_list_address" width="36" height="36"/>
         <image name="ic_isum_list_date" width="36" height="36"/>
         <image name="ic_isum_list_identification" width="36" height="36"/>
-        <image name="ic_isum_move_large_bge" width="125" height="126"/>
+        <image name="ic_isum_move" width="128" height="128"/>
         <image name="ic_mederror" width="49" height="48"/>
         <image name="ic_switchaccount_blue-change_account" width="30" height="30"/>
         <image name="ic_tooltip" width="24" height="24"/>

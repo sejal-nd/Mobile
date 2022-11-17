@@ -443,9 +443,9 @@ extension OutageViewController: UITableViewDataSource {
             cell.configure(image: UIImage(named: "ic_reportoutage"), title: "Report Outage", detail: detailText)
         case IndexPath(row: 1, section: 0):
             let title = Configuration.shared.opco.isPHI ? "Report Street Light Problem" : "Report Street Light Outage"
-            cell.configure(image: #imageLiteral(resourceName: "ic_streetlightoutage"), title: title, detail: nil)
+            cell.configure(image: #imageLiteral(resourceName: "ic_reportstreetlightoutage"), title: title, detail: nil)
         case IndexPath(row: 2, section: 0):
-            cell.configure(image: UIImage(named: "ic_mapoutage"), title: "View Outage Map", detail: nil)
+            cell.configure(image: UIImage(named: "ic_outagemap"), title: "View Outage Map", detail: nil)
         default:
             fatalError("Invalid index path.")
         }

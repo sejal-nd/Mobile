@@ -684,11 +684,11 @@ class BillViewModel {
 
     private(set) lazy var billPeriodArrowImage: Driver<UIImage?> = currentBillComparison.map {
         if $0.billPeriodCostDifference >= 1 {
-            return #imageLiteral(resourceName: "ic_trendup.pdf")
+            return UIImage(named: "ic_trendup")
         } else if $0.billPeriodCostDifference <= -1 {
-            return #imageLiteral(resourceName: "ic_trenddown.pdf")
+            return UIImage(named: "ic_trenddown")
         } else {
-            return #imageLiteral(resourceName: "ic_trendequal.pdf")
+            return UIImage(named: "ic_trendequal")
         }
     }
     

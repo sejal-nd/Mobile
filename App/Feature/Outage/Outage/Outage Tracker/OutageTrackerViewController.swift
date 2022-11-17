@@ -391,9 +391,9 @@ extension OutageTrackerViewController: UITableViewDataSource {
             case 0:
                 cell.configure(image: UIImage(named: "ic_reportoutage"), title: "Report Outage", detail: nil)
             case 1:
-                cell.configure(image: #imageLiteral(resourceName: "ic_streetlightoutage"), title: "Report Streetlight Outage", detail: nil)
+                cell.configure(image: #imageLiteral(resourceName: "ic_reportstreetlightoutage"), title: "Report Streetlight Outage", detail: nil)
             case 2:
-                cell.configure(image: UIImage(named: "ic_mapoutage"), title: "View Outage Map", detail: nil)
+                cell.configure(image: UIImage(named: "ic_outagemap"), title: "View Outage Map", detail: nil)
                 cell.hideSeparator = true
             default:
                 fatalError("Invalid index path.")

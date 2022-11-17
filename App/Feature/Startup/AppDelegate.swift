@@ -539,7 +539,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func configureQuickActions(isAuthenticated: Bool) {
-        let reportOutageIcon = UIApplicationShortcutIcon(templateImageName: "ic_quick_outage")
+        let reportOutageIcon = UIApplicationShortcutIcon(templateImageName: "ic_reportoutage")
         let reportOutageShortcut = UIApplicationShortcutItem(type: "ReportOutage", localizedTitle: "Report Outage", localizedSubtitle: nil, icon: reportOutageIcon, userInfo: nil)
         
         guard let accounts = AccountsStore.shared.accounts else {

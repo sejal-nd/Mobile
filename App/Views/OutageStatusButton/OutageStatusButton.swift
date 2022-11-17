@@ -75,7 +75,7 @@ class OutageStatusButton: UIView {
         let color: UIColor
         switch Configuration.shared.opco {
         case .bge:
-            color = .bgeGreen
+            color = .primaryColor
         case .comEd:
             color = .primaryColor
         case .peco:
