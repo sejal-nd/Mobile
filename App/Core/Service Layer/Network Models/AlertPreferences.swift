@@ -98,7 +98,7 @@ public struct AlertPreferences: Decodable {
                 budgetBilling = true
             case "Customer Appointments":
                 appointmentTracking = true
-            case "Advanced Notification":
+            case "Advance Notification":
                 advancedNotification = true
             case "News", "Marketing", "News \(AccountsStore.shared.currentAccount.utilityCode?.uppercased() ?? Configuration.shared.opco.rawValue)":
                 forYourInfo = true

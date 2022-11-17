@@ -601,7 +601,7 @@ class AlertPreferencesViewModel {
         case paymentDueReminder, paymentPosted, paymentPastDue, budgetBillingReview, grantStatus
         // Customer Appointments
         case appointmentTracking
-        // Advanced Notification
+        // Advance Notification
         case advancedNotification
         // News
         case forYourInformation
@@ -647,7 +647,7 @@ class AlertPreferencesViewModel {
                     return NSLocalizedString("Appointment Tracking", comment: "")
                 }
             case .advancedNotification:
-                return NSLocalizedString("Advanced Notification", comment: "")
+                return NSLocalizedString("Advance Notification", comment: "")
             case .forYourInformation:
                 return Configuration.shared.opco.isPHI ? NSLocalizedString("Updates & General News", comment: "") : NSLocalizedString("For Your Information", comment: "")
             case .energyBuddyUpdates:
