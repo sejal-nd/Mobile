@@ -58,7 +58,8 @@ class AlertPreferencesViewModel {
     
     var shouldEnrollPaperlessEBill: Bool {
         if Configuration.shared.opco == .bge { return false }
-        return initialBillReadyValue == false && billReady.value == true
+        // enroll in paperless if not already enrolled and enrolling in "Bill is Ready' alerts
+        return !accountDetail.isEBillEnrollment && (initialBillReadyValue == false && billReady.value == true)
     }
     
     var shouldShowHUABillThreshold: Bool {
