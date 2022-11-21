@@ -473,6 +473,7 @@ enum RegisterParameter: String, EventParameter {
     case account_verify
     case complete
     case account_invalid
+    case register_mobile_landing
 }
 
 enum AccountPickerParameter: String, EventParameter {

@@ -14,7 +14,7 @@ class LandingRegisterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        FirebaseUtility.logEvent(.register(parameters: [.register_mobile_landing]))
         title = NSLocalizedString("Register", comment: "")
         addCloseButton()
     }
