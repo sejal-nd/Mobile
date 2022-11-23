@@ -112,7 +112,7 @@ public struct AccountDetail: Decodable {
         // Not Enrolled
         case inactive = "INACTIVE"
         case invited = "INVITED"
-        case canceled = "CANCELED"
+        case canceled = "CANCELLED"
         case expired = "EXPIRED"
         // Pending
         case pending = "PENDING"
