@@ -1029,7 +1029,6 @@
 		C3639C2D292E7FA900F17619 /* outage_assigned_sm.json in Resources */ = {isa = PBXBuildFile; fileRef = C3639C29292E7FA900F17619 /* outage_assigned_sm.json */; };
 		C3639C2F292E800A00F17619 /* outage_on_sm.json in Resources */ = {isa = PBXBuildFile; fileRef = C3639C2E292E800A00F17619 /* outage_on_sm.json */; };
 		C3639C33292E808B00F17619 /* outage_on.json in Resources */ = {isa = PBXBuildFile; fileRef = C3639C32292E808B00F17619 /* outage_on.json */; };
-		C3639C35292E810B00F17619 /* outage_reported.json in Resources */ = {isa = PBXBuildFile; fileRef = C3639C34292E810A00F17619 /* outage_reported.json */; };
 		C364A87A2375DC7B00C7D51B /* StateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C364A8782375DC7B00C7D51B /* StateView.swift */; };
 		C364A87B2375DC7B00C7D51B /* StateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C364A8792375DC7B00C7D51B /* StateView.xib */; };
 		C364A87D2375DC9100C7D51B /* EmptyChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C364A87C2375DC9000C7D51B /* EmptyChildViewController.swift */; };
@@ -2399,7 +2398,6 @@
 		C3639C29292E7FA900F17619 /* outage_assigned_sm.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = outage_assigned_sm.json; sourceTree = "<group>"; };
 		C3639C2E292E800A00F17619 /* outage_on_sm.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = outage_on_sm.json; sourceTree = "<group>"; };
 		C3639C32292E808B00F17619 /* outage_on.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = outage_on.json; sourceTree = "<group>"; };
-		C3639C34292E810A00F17619 /* outage_reported.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = outage_reported.json; sourceTree = "<group>"; };
 		C364A8782375DC7B00C7D51B /* StateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateView.swift; sourceTree = "<group>"; };
 		C364A8792375DC7B00C7D51B /* StateView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StateView.xib; sourceTree = "<group>"; };
 		C364A87C2375DC9000C7D51B /* EmptyChildViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyChildViewController.swift; sourceTree = "<group>"; };
@@ -3139,16 +3137,18 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		214006562767F55F00430C6E /* OutageTracker */ = {
+		214006562767F55F00430C6E /* Outage */ = {
 			isa = PBXGroup;
 			children = (
+				C3639C32292E808B00F17619 /* outage_on.json */,
+				359BDB7222D8F9B2007002B0 /* outage_off.json */,
 				C3639C21292E7F2A00F17619 /* outage_assigned.json */,
 				C3639C20292E7F2900F17619 /* outage_enroute.json */,
 				C3639C1F292E7F2800F17619 /* outage_onsite.json */,
 				C3639C1E292E7F2700F17619 /* outage_reported.json */,
 				215D05AB2773950D009377AC /* SM */,
 			);
-			path = OutageTracker;
+			path = Outage;
 			sourceTree = "<group>";
 		};
 		215BD783275AC2A70011F642 /* OutageTracker */ = {
@@ -5223,6 +5223,7 @@
 				E8FE30AE1E7875EA009D28B7 /* ComEd */,
 				E8FE30AF1E7875F0009D28B7 /* PECO */,
 				9C0EA5AB237DAD1200D1E18F /* Gamification */,
+				214006562767F55F00430C6E /* Outage */,
 				8FD5AE981E54EAB8003F640D /* checkmark.json */,
 				82D599501EC3A00900DDB380 /* alert_icon.json */,
 				8FD5AE991E54EAB8003F640D /* loading.json */,
@@ -5230,9 +5231,6 @@
 				E8494F371EBBCB2B0047D6BE /* ellipses_loading.json */,
 				35AE569C214AD98500F633D0 /* ellipses_loading_white.json */,
 				B0B0840E217111CE00B1C632 /* appointment_tracker.json */,
-				C3639C32292E808B00F17619 /* outage_on.json */,
-				359BDB7222D8F9B2007002B0 /* outage_off.json */,
-				C3639C34292E810A00F17619 /* outage_reported.json */,
 				359BDBB422E0E6EA007002B0 /* checkmark_blue.json */,
 				359BDBB022E0E6E3007002B0 /* smallcircleload_blue.json */,
 			);
@@ -5823,7 +5821,6 @@
 		E8FE30AD1E7875E5009D28B7 /* BGE */ = {
 			isa = PBXGroup;
 			children = (
-				214006562767F55F00430C6E /* OutageTracker */,
 				B0B083C821710BAE00B1C632 /* Appointments */,
 			);
 			path = BGE;
@@ -6344,7 +6341,6 @@
 				B07E17E72209F0CA00B6E3C7 /* accounts.json in Resources */,
 				B07E17ED2209F0CA00B6E3C7 /* weather.json in Resources */,
 				67A986D924FD419A00BD46E7 /* GoogleService-Info-BETA-FlavorDPL.plist in Resources */,
-				C3639C35292E810B00F17619 /* outage_reported.json in Resources */,
 				67893AF324DB3825000143D6 /* RegisterForAlertsMock.json in Resources */,
 				359BDB7522D8F9B2007002B0 /* outage_off.json in Resources */,
 				675F4D6824AB828200A828F9 /* DasilyUsageMock.json in Resources */,
