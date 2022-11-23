@@ -40,25 +40,25 @@ class HomeAppointmentCardViewModel {
     
     //MARK: - View Content
     
-    private(set) lazy var icon: Driver<UIImage> = appointments
-        .map { appointments -> UIImage in
+    private(set) lazy var icon: Driver<UIImage?> = appointments
+        .map { appointments -> UIImage? in
             guard appointments.count == 1 else {
-                return #imageLiteral(resourceName: "ic_appt_confirmed")
+                return UIImage(named: "ic_appt_confirmed")?.withTintColor(.primaryBlue, renderingMode: .alwaysTemplate)
             }
             
             switch appointments[0].statusType {
             case .scheduled:
-                return #imageLiteral(resourceName: "ic_appt_confirmed")
+                return UIImage(named: "ic_appt_confirmed")?.withTintColor(.primaryBlue, renderingMode: .alwaysTemplate)
             case .onOurWay:
                 fallthrough
             case .enRoute:
-                return #imageLiteral(resourceName: "ic_appt_otw")
+                return UIImage(named: "ic_appt_otw")?.withTintColor(.primaryBlue, renderingMode: .alwaysTemplate)
             case .inProgress:
-                return #imageLiteral(resourceName: "ic_appt_inprogress")
+                return UIImage(named: "ic_appt_inprogress")?.withTintColor(.primaryBlue, renderingMode: .alwaysTemplate)
             case .complete:
-                return #imageLiteral(resourceName: "ic_appt_complete")
+                return UIImage(named: "ic_appt_complete")?.withTintColor(.primaryBlue, renderingMode: .alwaysTemplate)
             case .canceled:
-                return #imageLiteral(resourceName: "ic_appt_canceled")
+                return UIImage(named: "ic_appt_canceled")?.withTintColor(.primaryBlue, renderingMode: .alwaysTemplate)
             case .none:
                 return UIImage()
             }

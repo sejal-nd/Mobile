@@ -44,6 +44,11 @@ class ETAView: UIView {
     func configure(tracker: OutageTracker, status: OutageTracker.Status) {
         self.tracker = tracker
         self.status = status
+
+        etaTitleLabel.textColor = isStormMode ? .white : .neutralDarker
+        etaDateTimeLabel.textColor = isStormMode ? .white : .neutralDarker
+        etaDetailLabel.textColor = isStormMode ? .white : .neutralDark
+        etaCauseLabel.textColor = isStormMode ? .white : .neutralDark
         
         hideInfoButtonView = status == .restored
         hideUpdatedView = true
@@ -194,12 +199,13 @@ class ETAView: UIView {
         addSubview(contentView)
         contentView.frame = self.bounds
         contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        
-        self.roundCorners(.allCorners, radius: 10, borderColor: .successGreenText, borderWidth: 1.0)
+
+        let borderColor: UIColor = isStormMode ? .secondaryGreen : .secondaryBlue
+        self.roundCorners(.allCorners, radius: 10, borderColor: borderColor, borderWidth: 1.0)
         self.clipsToBounds = true
         
         let updatedViewRadius = etaUpdatedView.frame.size.height / 2
-        etaUpdatedView.roundCorners(.allCorners, radius: updatedViewRadius, borderColor: .successGreenText, borderWidth: 1.0)
+        etaUpdatedView.roundCorners(.allCorners, radius: updatedViewRadius, borderColor: borderColor, borderWidth: 1.0)
         etaUpdatedView.isHidden = true
     }
 

@@ -610,7 +610,7 @@
                                                                         <subviews>
                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dDm-KC-49a" customClass="ETAView" customModule="Atlantic_City_Electric" customModuleProvider="target">
                                                                                 <rect key="frame" x="0.0" y="5" width="343" height="86"/>
-                                                                                <color key="backgroundColor" red="0.92549019610000005" green="0.97647058819999999" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="width" constant="343" id="Rel-7j-b2O"/>
                                                                                 </constraints>

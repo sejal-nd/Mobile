@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -18,9 +20,9 @@
         <!--Tap To Pay Review Payment View Controller-->
         <scene sceneID="mAX-47-ORq">
             <objects>
-                <viewController storyboardIdentifier="TapToPayReviewPaymentViewController" id="6rb-tn-H7I" customClass="TapToPayReviewPaymentViewController" customModule="EUMobile" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TapToPayReviewPaymentViewController" id="6rb-tn-H7I" customClass="TapToPayReviewPaymentViewController" customModule="Atlantic_City_Electric" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eav-X4-4Ff">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="900"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="797"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kkg-xv-1bg">
@@ -29,8 +31,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RZU-7M-lyd" customClass="LoadingIndicator" customModule="EUMobile" customModuleProvider="target">
-                                <rect key="frame" x="177" y="422" width="60" height="12"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RZU-7M-lyd" customClass="LoadingIndicator" customModule="Atlantic_City_Electric" customModuleProvider="target">
+                                <rect key="frame" x="177" y="392.66666666666669" width="60" height="12"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="3xP-Vb-G9M"/>
@@ -38,7 +40,7 @@
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lgg-gx-JBI">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="744"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="685"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FYf-LO-fR8" userLabel="ContentView">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1706.6666666666667"/>
@@ -91,7 +93,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bc1-wR-BV2">
                                                         <rect key="frame" x="0.0" y="213" width="414" height="150"/>
                                                         <subviews>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h8K-aV-8e9" customClass="ButtonControl" customModule="EUMobile" customModuleProvider="target">
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h8K-aV-8e9" customClass="ButtonControl" customModule="Atlantic_City_Electric" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="150"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You’re Paying" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QJ7-qq-lsx">
@@ -189,7 +191,7 @@
                                                                     <constraint firstAttribute="height" constant="1" id="nVX-Oy-cAk"/>
                                                                 </constraints>
                                                             </view>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V0a-03-Szl" customClass="ButtonControl" customModule="EUMobile" customModuleProvider="target">
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V0a-03-Szl" customClass="ButtonControl" customModule="Atlantic_City_Electric" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="91.333333333333329"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Payment Method" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="015-IS-LFm">
@@ -199,19 +201,19 @@
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" image="bank_building_mini" translatesAutoresizingMaskIntoConstraints="NO" id="ZrQ-Kg-oAr">
-                                                                        <rect key="frame" x="16" y="45.333333333333314" width="28" height="26"/>
+                                                                        <rect key="frame" x="16" y="42.333333333333314" width="32" height="32"/>
                                                                     </imageView>
                                                                     <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="v7l-HP-zcz">
-                                                                        <rect key="frame" x="54" y="35" width="310" height="46.333333333333343"/>
+                                                                        <rect key="frame" x="58" y="35" width="306" height="46.333333333333343"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="**** 4321" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tbC-8a-2wr">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="310" height="32"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="306" height="32"/>
                                                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="1000" text="Nickname" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yzO-eh-2mE">
-                                                                                <rect key="frame" x="0.0" y="31.999999999999996" width="310" height="14.333333333333332"/>
+                                                                                <rect key="frame" x="0.0" y="31.999999999999996" width="306" height="14.333333333333332"/>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
@@ -241,7 +243,7 @@
                                                                 </constraints>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Bank account payments are not available for this account." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cbH-mc-Xog">
-                                                                <rect key="frame" x="16" y="96.333333333333314" width="398" height="14.333333333333329"/>
+                                                                <rect key="frame" x="16" y="96.333333333333371" width="398" height="14.333333333333329"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -265,7 +267,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h0W-BA-DNh">
                                                         <rect key="frame" x="0.0" y="483.66666666666663" width="414" height="95"/>
                                                         <subviews>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ykG-17-gwK" customClass="ButtonControl" customModule="EUMobile" customModuleProvider="target">
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ykG-17-gwK" customClass="ButtonControl" customModule="Atlantic_City_Electric" customModuleProvider="target">
                                                                 <rect key="frame" x="20" y="26" width="394" height="49"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Payment Method" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="97c-BV-Hhr">
@@ -344,7 +346,7 @@
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sKp-ie-bNF" customClass="ButtonControl" customModule="EUMobile" customModuleProvider="target">
+                                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sKp-ie-bNF" customClass="ButtonControl" customModule="Atlantic_City_Electric" customModuleProvider="target">
                                                                 <rect key="frame" x="20" y="92.666666666666742" width="160" height="60"/>
                                                                 <subviews>
                                                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" fixedFrame="YES" image="bank_building_mini" translatesAutoresizingMaskIntoConstraints="NO" id="dCN-1F-wry">
@@ -371,7 +373,7 @@
                                                                 <color key="textColor" red="0.22352941179999999" green="0.22352941179999999" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MeF-rm-r3H" customClass="ButtonControl" customModule="EUMobile" customModuleProvider="target">
+                                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MeF-rm-r3H" customClass="ButtonControl" customModule="Atlantic_City_Electric" customModuleProvider="target">
                                                                 <rect key="frame" x="219" y="92.666666666666742" width="160" height="60"/>
                                                                 <subviews>
                                                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" fixedFrame="YES" image="credit_card_mini" translatesAutoresizingMaskIntoConstraints="NO" id="vHV-8P-6Bt">
@@ -416,7 +418,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F7a-ce-Vaq">
                                                         <rect key="frame" x="0.0" y="775.66666666666663" width="414" height="118.33333333333337"/>
                                                         <subviews>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pwX-Ix-gld" customClass="ButtonControl" customModule="EUMobile" customModuleProvider="target">
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pwX-Ix-gld" customClass="ButtonControl" customModule="Atlantic_City_Electric" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="118.33333333333333"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cvV-EP-i6t" userLabel="DividerLine">
@@ -528,9 +530,9 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mdd-Z5-y5V">
-                                                                <rect key="frame" x="20" y="85.666666666666629" width="374" height="64.333333333333314"/>
+                                                                <rect key="frame" x="20" y="85.666666666666742" width="374" height="64.333333333333314"/>
                                                                 <subviews>
-                                                                    <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" placeholderIntrinsicWidth="44" placeholderIntrinsicHeight="44" translatesAutoresizingMaskIntoConstraints="NO" id="8Pg-HL-SYF" customClass="Checkbox" customModule="EUMobile" customModuleProvider="target">
+                                                                    <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" placeholderIntrinsicWidth="44" placeholderIntrinsicHeight="44" translatesAutoresizingMaskIntoConstraints="NO" id="8Pg-HL-SYF" customClass="Checkbox" customModule="Atlantic_City_Electric" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <accessibility key="accessibilityConfiguration">
@@ -641,11 +643,11 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QHh-pd-rOo">
                                                         <rect key="frame" x="0.0" y="1126" width="414" height="321"/>
                                                         <subviews>
-                                                            <view contentMode="scaleToFill" ambiguous="YES" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="60" translatesAutoresizingMaskIntoConstraints="NO" id="Hhb-v6-SI1" customClass="FloatLabelTextField" customModule="EUMobile" customModuleProvider="target">
+                                                            <view contentMode="scaleToFill" ambiguous="YES" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="60" translatesAutoresizingMaskIntoConstraints="NO" id="Hhb-v6-SI1" customClass="FloatLabelTextField" customModule="Atlantic_City_Electric" customModuleProvider="target">
                                                                 <rect key="frame" x="20" y="241" width="374" height="60"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             </view>
-                                                            <view contentMode="scaleToFill" ambiguous="YES" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="60" translatesAutoresizingMaskIntoConstraints="NO" id="LbX-ng-N1S" customClass="FloatLabelTextField" customModule="EUMobile" customModuleProvider="target">
+                                                            <view contentMode="scaleToFill" ambiguous="YES" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="60" translatesAutoresizingMaskIntoConstraints="NO" id="LbX-ng-N1S" customClass="FloatLabelTextField" customModule="Atlantic_City_Electric" customModuleProvider="target">
                                                                 <rect key="frame" x="20" y="124" width="374" height="60"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             </view>
@@ -682,7 +684,7 @@
                                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="fvm-nH-rk3"/>
                                                         </constraints>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vnw-Mm-0mG" customClass="ButtonControl" customModule="EUMobile" customModuleProvider="target">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vnw-Mm-0mG" customClass="ButtonControl" customModule="Atlantic_City_Electric" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="1448" width="414" height="90"/>
                                                         <subviews>
                                                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rdK-d4-Ud2" userLabel="DividerLine">
@@ -776,10 +778,10 @@
                                 <viewLayoutGuide key="contentLayoutGuide" id="blP-fc-Agn"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="cFV-XW-hPc"/>
                             </scrollView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FuN-1e-jdN" customClass="StickyFooterView" customModule="EUMobile" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="744" width="414" height="112"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FuN-1e-jdN" customClass="StickyFooterView" customModule="Atlantic_City_Electric" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="685" width="414" height="112"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ibq-lz-582" customClass="PrimaryButton" customModule="EUMobile" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ibq-lz-582" customClass="PrimaryButton" customModule="Atlantic_City_Electric" customModuleProvider="target">
                                         <rect key="frame" x="244" y="31" width="150" height="55"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="150" id="7to-Rr-VjR"/>
@@ -925,10 +927,10 @@
         <!--Large Title Navigation Controller-->
         <scene sceneID="C2l-ni-q9F">
             <objects>
-                <navigationController storyboardIdentifier="navViewController" automaticallyAdjustsScrollViewInsets="NO" id="OZp-Zo-fxX" customClass="LargeTitleNavigationController" customModule="EUMobile" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="navViewController" automaticallyAdjustsScrollViewInsets="NO" id="OZp-Zo-fxX" customClass="LargeTitleNavigationController" customModule="Atlantic_City_Electric" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="lcW-fa-eib">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -943,17 +945,17 @@
         <!--Tap To Pay Confirmation View Controller-->
         <scene sceneID="HWu-Nd-a6b">
             <objects>
-                <viewController id="38r-wt-FGs" customClass="TapToPayConfirmationViewController" customModule="EUMobile" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="38r-wt-FGs" customClass="TapToPayConfirmationViewController" customModule="Atlantic_City_Electric" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="IhF-1t-bbR"/>
                         <viewControllerLayoutGuide type="bottom" id="zae-A6-uqF"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="dmh-ae-St1">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HKb-Np-VZk" userLabel="Nav Bar View">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g4N-lc-Lpd">
                                         <rect key="frame" x="9" y="0.0" width="44" height="44"/>
@@ -976,43 +978,43 @@
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dUS-hd-gzd">
-                                <rect key="frame" x="0.0" y="44" width="600" height="536"/>
+                                <rect key="frame" x="0.0" y="103" width="393" height="680"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cEG-DE-tfD" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="723.33333333333337"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="718.66666666666663"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="36" translatesAutoresizingMaskIntoConstraints="NO" id="vbY-XG-cy1">
-                                                <rect key="frame" x="70" y="10" width="460" height="606.66666666666663"/>
+                                                <rect key="frame" x="20" y="10" width="353" height="606.66666666666663"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vzm-NS-YqJ">
-                                                        <rect key="frame" x="0.0" y="0.0" width="460" height="491"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="353" height="491"/>
                                                         <subviews>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_confirmation" translatesAutoresizingMaskIntoConstraints="NO" id="CU6-Jk-VSa">
-                                                                <rect key="frame" x="182" y="10" width="96" height="96"/>
+                                                                <rect key="frame" x="128.66666666666666" y="10" width="96" height="96"/>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thank you for your payment" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hqk-rB-zQF">
-                                                                <rect key="frame" x="0.0" y="125.99999999999999" width="460" height="27.333333333333329"/>
+                                                                <rect key="frame" x="0.0" y="126" width="353" height="20"/>
                                                                 <fontDescription key="fontDescription" name="Diodrum-Semibold" family="Open Sans" pointSize="20"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A confirmation email will be sent to you shortly." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Lh-aU-J3e">
-                                                                <rect key="frame" x="0.0" y="165.33333333333334" width="460" height="22"/>
+                                                                <rect key="frame" x="0.0" y="158" width="353" height="16"/>
                                                                 <fontDescription key="fontDescription" name="Diodrum" family="Open Sans" pointSize="16"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="mol-eP-9SS">
-                                                                <rect key="frame" x="0.0" y="227.33333333333329" width="460" height="263.66666666666674"/>
+                                                                <rect key="frame" x="0.0" y="214" width="353" height="277"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eFp-2D-igx" userLabel="Payment Info View">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="460" height="152"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="353" height="152"/>
                                                                         <subviews>
                                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="QID-Bd-7vg">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="460" height="152"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="353" height="152"/>
                                                                                 <subviews>
                                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VjT-GZ-SsM">
-                                                                                        <rect key="frame" x="0.0" y="0.0" width="460" height="50"/>
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="353" height="50"/>
                                                                                         <subviews>
                                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Payment Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ayQ-mw-wlB">
                                                                                                 <rect key="frame" x="19.999999999999993" y="16.666666666666686" width="90.333333333333314" height="17"/>
@@ -1021,7 +1023,7 @@
                                                                                                 <nil key="highlightedColor"/>
                                                                                             </label>
                                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="01/01/2000" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cNV-YP-q4t">
-                                                                                                <rect key="frame" x="367.33333333333331" y="16.666666666666686" width="72.666666666666686" height="17"/>
+                                                                                                <rect key="frame" x="260.33333333333331" y="16.666666666666686" width="72.666666666666686" height="17"/>
                                                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                                                 <nil key="textColor"/>
                                                                                                 <nil key="highlightedColor"/>
@@ -1038,10 +1040,10 @@
                                                                                         </constraints>
                                                                                     </view>
                                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O63-FN-1c7" userLabel="Divider Line">
-                                                                                        <rect key="frame" x="0.0" y="50" width="460" height="1"/>
+                                                                                        <rect key="frame" x="0.0" y="50" width="353" height="1"/>
                                                                                         <subviews>
                                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9qP-BK-2nb" userLabel="Divider Line">
-                                                                                                <rect key="frame" x="10" y="0.0" width="440" height="1"/>
+                                                                                                <rect key="frame" x="10" y="0.0" width="333" height="1"/>
                                                                                                 <color key="backgroundColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                                 <constraints>
                                                                                                     <constraint firstAttribute="height" constant="1" id="Jky-yF-QJj"/>
@@ -1058,7 +1060,7 @@
                                                                                         </constraints>
                                                                                     </view>
                                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CmG-9d-ohf">
-                                                                                        <rect key="frame" x="0.0" y="51" width="460" height="50"/>
+                                                                                        <rect key="frame" x="0.0" y="51" width="353" height="50"/>
                                                                                         <subviews>
                                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amount Paid" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xuz-kf-Tag">
                                                                                                 <rect key="frame" x="20" y="16.666666666666686" width="82" height="17"/>
@@ -1067,7 +1069,7 @@
                                                                                                 <nil key="highlightedColor"/>
                                                                                             </label>
                                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$0.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bUA-6m-5WX">
-                                                                                                <rect key="frame" x="402.33333333333331" y="16.666666666666686" width="37.666666666666686" height="17"/>
+                                                                                                <rect key="frame" x="295.33333333333331" y="16.666666666666686" width="37.666666666666686" height="17"/>
                                                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                                                 <nil key="textColor"/>
                                                                                                 <nil key="highlightedColor"/>
@@ -1084,10 +1086,10 @@
                                                                                         </constraints>
                                                                                     </view>
                                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ib3-dU-UC6" userLabel="Divider Line">
-                                                                                        <rect key="frame" x="0.0" y="101" width="460" height="1"/>
+                                                                                        <rect key="frame" x="0.0" y="101" width="353" height="1"/>
                                                                                         <subviews>
                                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fRP-MS-kVj" userLabel="Divider Line">
-                                                                                                <rect key="frame" x="10" y="0.0" width="440" height="1"/>
+                                                                                                <rect key="frame" x="10" y="0.0" width="333" height="1"/>
                                                                                                 <color key="backgroundColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                                 <constraints>
                                                                                                     <constraint firstAttribute="height" constant="1" id="9vb-pG-3Sv"/>
@@ -1104,7 +1106,7 @@
                                                                                         </constraints>
                                                                                     </view>
                                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y2b-N4-qzI">
-                                                                                        <rect key="frame" x="0.0" y="102" width="460" height="50"/>
+                                                                                        <rect key="frame" x="0.0" y="102" width="353" height="50"/>
                                                                                         <subviews>
                                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Confirmation Number" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QPN-nI-2En">
                                                                                                 <rect key="frame" x="20" y="16.666666666666686" width="139.33333333333334" height="17"/>
@@ -1113,7 +1115,7 @@
                                                                                                 <nil key="highlightedColor"/>
                                                                                             </label>
                                                                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" text="12345" textAlignment="right" translatesAutoresizingMaskIntoConstraints="NO" id="fzS-pI-aJQ">
-                                                                                                <rect key="frame" x="389.33333333333331" y="8.6666666666666856" width="50.666666666666686" height="33"/>
+                                                                                                <rect key="frame" x="282.33333333333331" y="8.6666666666666856" width="50.666666666666686" height="33"/>
                                                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                                 <color key="textColor" red="0.13725490200000001" green="0.1215686275" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -1142,7 +1144,7 @@
                                                                         </constraints>
                                                                     </view>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8zM-zF-QjM">
-                                                                        <rect key="frame" x="0.0" y="247.00000000000006" width="460" height="16.666666666666686"/>
+                                                                        <rect key="frame" x="0.0" y="265" width="353" height="12"/>
                                                                         <fontDescription key="fontDescription" name="Diodrum" family="Open Sans" pointSize="12"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -1173,16 +1175,16 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sdR-ar-Jz2">
-                                                        <rect key="frame" x="0.0" y="527" width="460" height="79.666666666666629"/>
+                                                        <rect key="frame" x="0.0" y="527" width="353" height="79.666666666666629"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Would you like to set up Automatic Payments?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aWz-YS-vef">
-                                                                <rect key="frame" x="0.0" y="0.0" width="460" height="14.666666666666666"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="353" height="14.666666666666666"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                 <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ks0-9Z-4v6" customClass="SecondaryButton" customModule="EUMobile" customModuleProvider="target">
-                                                                <rect key="frame" x="10" y="24.666666666666629" width="440" height="55"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ks0-9Z-4v6" customClass="SecondaryButton" customModule="Atlantic_City_Electric" customModuleProvider="target">
+                                                                <rect key="frame" x="10" y="24.666666666666629" width="333" height="55"/>
                                                                 <accessibility key="accessibilityConfiguration" label="Enroll in AutoPay"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" priority="999" constant="55" id="nsw-SX-Few"/>
@@ -1211,11 +1213,11 @@
                                                     <constraint firstItem="vzm-NS-YqJ" firstAttribute="top" secondItem="vbY-XG-cy1" secondAttribute="top" id="cf7-0e-SG8"/>
                                                 </constraints>
                                             </stackView>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ffq-hG-9Vw" customClass="StickyFooterView" customModule="EUMobile" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="646.66666666666663" width="600" height="76.666666666666629"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ffq-hG-9Vw" customClass="StickyFooterView" customModule="Atlantic_City_Electric" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="646.66666666666663" width="393" height="72"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JPE-ph-7Xj">
-                                                        <rect key="frame" x="70" y="30" width="460" height="16.666666666666671"/>
+                                                        <rect key="frame" x="20" y="30" width="353" height="12"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="3cP-vO-eTq"/>
                                                         </constraints>
@@ -1296,8 +1298,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="bank_building_mini" width="28" height="26"/>
-        <image name="credit_card_mini" width="28" height="26"/>
+        <image name="bank_building_mini" width="32" height="32"/>
+        <image name="credit_card_mini" width="32" height="32"/>
         <image name="ic_caret_down" width="13" height="8"/>
         <image name="ic_close" width="24" height="24"/>
         <image name="ic_delete" width="20" height="20"/>

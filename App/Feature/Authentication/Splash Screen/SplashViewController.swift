@@ -44,7 +44,7 @@ class SplashViewController: UIViewController{
     var bag = DisposeBag()
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .darkContent
+        return .lightContent
     }
 
     override func viewDidLoad() {

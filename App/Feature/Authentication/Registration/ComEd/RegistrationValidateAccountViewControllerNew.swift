@@ -65,16 +65,7 @@ class RegistrationValidateAccountViewControllerNew: KeyboardAvoidingStickyFooter
         stackView.setCustomSpacing(20, after: instructionLabel)
         stackView.setCustomSpacing(20, after: segmentContainer)
         segmentedControl.selectedIndex.accept(.zero)
-        switch Configuration.shared.opco {
-        case .comEd:
-            illustrationImageView.image = #imageLiteral(resourceName: "img_resbill_comed.pdf")
-        case .ace, .delmarva, .pepco:
-            illustrationImageView.image = #imageLiteral(resourceName: "img_resbill_PHI")
-        case .peco:
-            illustrationImageView.image = #imageLiteral(resourceName: "img_resbill_peco.pdf")
-        case .bge:
-            illustrationImageView.image = #imageLiteral(resourceName: "img_resbill_bge.pdf")
-        }
+        illustrationImageView.image = UIImage(named: "img_resbill")
         viewModel.checkForMaintenance()
     }
     
@@ -258,7 +249,7 @@ class RegistrationValidateAccountViewControllerNew: KeyboardAvoidingStickyFooter
         case .pepco, .delmarva, .ace:
             description = NSLocalizedString("Your Account Number is located in the upper-left portion of your bill. Please enter all 11 digits, but no spaces.", comment: "")
         }
-        let infoModal = InfoModalViewController(title: NSLocalizedString("Find Account Number", comment: ""), image: #imageLiteral(resourceName: "bill_infographic"), description: description)
+        let infoModal = InfoModalViewController(title: NSLocalizedString("Find Account Number", comment: ""), image: UIImage(named: "bill_infographic")!, description: description)
         
         navigationController?.present(infoModal, animated: true, completion: nil)
     }

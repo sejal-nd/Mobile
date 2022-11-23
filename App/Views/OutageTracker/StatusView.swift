@@ -62,13 +62,13 @@ class StatusView: UIView {
     private func update(forState state: TrackerState, isPaused: Bool, isLast: Bool) {
         var innerViewConstant: CGFloat = 26.0
         
-        let imageName = isStormMode ? "ic_check_white_2" : "ic_check_white"
+        let imageName = isStormMode ? "ic_check_white_sm" : "ic_check_white"
         checkmarkImageView.image = UIImage(named: imageName)
         
         statusTitleLabel.font = UIFont.subheadlineSemibold
         
         let emptyColor: UIColor = isStormMode ? .clear : .white
-        let fillColor: UIColor = isStormMode ? .mediumSpringBud : .successGreenText
+        let fillColor: UIColor = isStormMode ? .secondaryGreen : .secondaryBlue
         
         switch state {
             case .notStarted:

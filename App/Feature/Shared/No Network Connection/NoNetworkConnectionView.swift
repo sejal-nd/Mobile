@@ -80,8 +80,8 @@ class NoNetworkConnectionView: UIView {
         // Colored Background
         case (true, false):
             containerView.backgroundColor = .primaryColor
-            noNetworkImageView.image = #imageLiteral(resourceName: "ic_nonetwork")
-            reloadImageView.image = #imageLiteral(resourceName: "ic_reload")
+            noNetworkImageView.image = UIImage(named: "ic_nonetwork")
+            reloadImageView.image = UIImage(named: "ic_reload")
             reloadLabel.textColor = .white
             noNetworkConnectionLabel.textColor = .white
             pleaseReloadLabel.textColor = .white
@@ -90,8 +90,8 @@ class NoNetworkConnectionView: UIView {
         // Light Background
         case (false, false):
             containerView.backgroundColor = .softGray
-            noNetworkImageView.image = #imageLiteral(resourceName: "ic_nonetwork_color")
-            reloadImageView.image = #imageLiteral(resourceName: "ic_reload_blue")
+            noNetworkImageView.image = UIImage(named: "ic_nonetwork")
+            reloadImageView.image = UIImage(named: "ic_reload_blue")
             reloadLabel.textColor = .primaryBlue
             noNetworkConnectionLabel.textColor = .blackText
             pleaseReloadLabel.textColor = .blackText
@@ -100,8 +100,8 @@ class NoNetworkConnectionView: UIView {
         // Storm Mode
         case (_, true):
             containerView.backgroundColor = .clear
-            noNetworkImageView.image = #imageLiteral(resourceName: "ic_nonetwork_sm.pdf")
-            reloadImageView.image = #imageLiteral(resourceName: "ic_reload")
+            noNetworkImageView.image = UIImage(named: "ic_nonetwork")
+            reloadImageView.image = UIImage(named: "ic_reload")
             reloadLabel.textColor = .white
             noNetworkConnectionLabel.textColor = .white
             pleaseReloadLabel.textColor = .white

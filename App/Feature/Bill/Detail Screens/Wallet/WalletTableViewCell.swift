@@ -46,7 +46,7 @@ class WalletTableViewCell: UITableViewCell {
         oneTouchPayLabel.textColor = .successGreenText
         oneTouchPayLabel.font = .caption2
 
-        oneTouchPayView.layer.borderColor = UIColor.successGreenText.cgColor
+        oneTouchPayView.layer.borderColor = UIColor.secondaryBlue.cgColor
         oneTouchPayView.layer.borderWidth = 1
         
         // Expired

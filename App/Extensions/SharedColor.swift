@@ -177,10 +177,6 @@ extension UIColor {
     @nonobjc static var successGreenText: UIColor {
         return .successPrimary
     }
-    
-    @nonobjc static var mediumSpringBud: UIColor {
-        return UIColor(red: 188/255, green: 228/255, blue: 139/255, alpha: 1)
-    }
 
     // MARK: Storm Mode Colors
 

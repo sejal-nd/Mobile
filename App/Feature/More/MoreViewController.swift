@@ -51,7 +51,7 @@ class MoreViewController: UIViewController {
 
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .darkContent
+        return .lightContent
     }
     
     // MARK: - View Life Cycle

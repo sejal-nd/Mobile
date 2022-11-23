@@ -867,7 +867,7 @@
                                                     <constraint firstAttribute="height" constant="50" id="Lcl-tP-btZ"/>
                                                 </constraints>
                                             </view>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_phi_thermostat" translatesAutoresizingMaskIntoConstraints="NO" id="O89-wZ-8w1">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_thermostat" translatesAutoresizingMaskIntoConstraints="NO" id="O89-wZ-8w1">
                                                 <rect key="frame" x="142" y="70" width="109" height="109"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="109" id="2dD-kK-9Uu"/>
@@ -2188,10 +2188,10 @@
         <image name="ic_caret_left" width="8" height="13"/>
         <image name="ic_lock_opco" width="125" height="126"/>
         <image name="ic_nousage" width="128" height="128"/>
-        <image name="ic_phi_thermostat" width="43" height="43"/>
         <image name="ic_savings_caretleft" width="24" height="24"/>
         <image name="ic_savings_caretright" width="24" height="24"/>
         <image name="ic_smartenergyempty" width="120" height="120"/>
+        <image name="ic_thermostat" width="40" height="40"/>
         <image name="img_predictedstripes" width="300" height="300"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

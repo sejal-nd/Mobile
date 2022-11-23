@@ -154,7 +154,7 @@ class FloatLabelTextField: UIView {
         
     func setInfoMessage(_ message: String?) {
         if let info = message {
-            errorLabel.textColor = .successGreenText
+            errorLabel.textColor = .secondaryBlue
             errorLabel.text = String(format: NSLocalizedString("%@", comment: ""), info)
             errorView.isHidden = false
         } else {

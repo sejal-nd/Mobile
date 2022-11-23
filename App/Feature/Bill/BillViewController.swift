@@ -315,7 +315,7 @@ class BillViewController: AccountPickerViewController {
         paymentReceivedLabel.font = .footnote
         paymentReceivedDateLabel.textColor = .middleGray
         paymentReceivedDateLabel.font = .caption1
-        paymentReceivedAmountLabel.textColor = .successGreenText
+        paymentReceivedAmountLabel.textColor = .secondaryBlue
         paymentReceivedAmountLabel.font = .footnoteSemibold
         
         pendingPaymentRemainingBalanceBox.layer.borderColor = UIColor.accentGray.cgColor
@@ -398,7 +398,7 @@ class BillViewController: AccountPickerViewController {
         paperlessDetailLabel.textColor = .neutralDark
         paperlessDetailLabel.font = .caption1
         paperlessEnrolledView.layer.cornerRadius = 7.5
-        paperlessEnrolledView.layer.borderColor = UIColor.successGreenText.cgColor
+        paperlessEnrolledView.layer.borderColor = UIColor.secondaryBlue.cgColor
         paperlessEnrolledView.layer.borderWidth = 1
         
         autoPayButton.layer.cornerRadius = 10
@@ -409,7 +409,7 @@ class BillViewController: AccountPickerViewController {
         autoPayDetailLabel.textColor = .neutralDark
         autoPayDetailLabel.font = .caption1
         autoPayEnrolledView.layer.cornerRadius = 7.5
-        autoPayEnrolledView.layer.borderColor = UIColor.successGreenText.cgColor
+        autoPayEnrolledView.layer.borderColor = UIColor.secondaryBlue.cgColor
         autoPayEnrolledView.layer.borderWidth = 1
         
         budgetButton.layer.cornerRadius = 10
@@ -420,7 +420,7 @@ class BillViewController: AccountPickerViewController {
         budgetDetailLabel.textColor = .neutralDark
         budgetDetailLabel.font = .caption1
         budgetEnrolledView.layer.cornerRadius = 7.5
-        budgetEnrolledView.layer.borderColor = UIColor.successGreenText.cgColor
+        budgetEnrolledView.layer.borderColor = UIColor.secondaryBlue.cgColor
         budgetEnrolledView.layer.borderWidth = 1
         
         genericErrorLabel.textColor = .neutralDark
