@@ -104,6 +104,9 @@ class RegistrationViewModel {
                     onMultipleAccounts()
                 } else {
                     onError(error.title, error.description)
+                    if error ==  NetworkingError.noProfileExists || error == NetworkingError.accountNotFound {
+                    FirebaseUtility.logEvent(.register(parameters: [.account_invalid]))
+                    }
                 }
             }
         }

@@ -172,7 +172,7 @@ class UsageViewController: AccountPickerViewController {
     
     // MARK: - Other Properties
     
-    private var commercialViewController: CommercialUsageViewController?
+    private var commercialViewController: UIViewController?
     
     var refreshControl: UIRefreshControl?
     
@@ -664,7 +664,7 @@ class UsageViewController: AccountPickerViewController {
     }
     
     private func showCommercialState() {
-        scrollView?.isHidden = false
+        scrollView?.isHidden = viewModel.showAgentisWidgets()
         switchAccountsLoadingIndicator.isHidden = true
         unavailableView.isHidden = true
         accountPickerSpacerView.isHidden = true
@@ -676,7 +676,18 @@ class UsageViewController: AccountPickerViewController {
         maintenanceModeView.isHidden = true
         
         guard let _ = commercialViewController else {
-            addCommercialView()
+            viewModel.accountDetail.asObservable().subscribe(onNext: {
+                if $0.isResidential {
+                    return
+                }
+                
+                if self.commercialViewController == nil {
+                    self.addCommercialView($0)
+                } else {
+                    self.updateCommercialView(with: $0)
+                }
+            }).disposed(by: disposeBag)
+            
             return
         }
     }
@@ -794,17 +805,48 @@ class UsageViewController: AccountPickerViewController {
         view.backgroundColor = .softGray
     }
     
-    private func addCommercialView() {
-        let commercialVC = CommercialUsageViewController(with: viewModel.commercialViewModel)
-        addChild(commercialVC)
-        mainStack.addArrangedSubview(commercialVC.view)
+    private func addCommercialView(_ accountDetail: AccountDetail) {
+        if viewModel.showAgentisWidgets() {
+            let usageStoryboard = UIStoryboard(name: "Usage", bundle: nil)
+            let commercialVC = usageStoryboard.instantiateViewController(withIdentifier: "B2CUsageWebViewController") as! B2CUsageWebViewController
+            commercialVC.accountDetail = accountDetail
+            
+            addChild(commercialVC)
+            view.addSubview(commercialVC.view)
+            
+            commercialViewController = commercialVC
+        } else {
+            let commercialVC = CommercialUsageViewController(with: viewModel.commercialViewModel)
+            
+            addChild(commercialVC)
+            mainStack.addArrangedSubview(commercialVC.view)
+            
+            commercialViewController = commercialVC
+        }
+        
+        guard let commercialVC = commercialViewController else { return }
+        
+        commercialVC.view.translatesAutoresizingMaskIntoConstraints = false
+        
         commercialVC.didMove(toParent: self)
+        
         NSLayoutConstraint.activate([
+            commercialVC.view.topAnchor.constraint(equalTo: scrollView!.topAnchor),
+            commercialVC.view.bottomAnchor.constraint(equalTo: scrollView!.bottomAnchor),
             commercialVC.view.leadingAnchor.constraint(equalTo: mainStack.leadingAnchor),
             commercialVC.view.trailingAnchor.constraint(equalTo: mainStack.trailingAnchor)
         ])
-        commercialViewController = commercialVC
+        
         view.backgroundColor = .white
+    }
+    
+    private func updateCommercialView(with accountDetail: AccountDetail) {
+        if viewModel.showAgentisWidgets() { // legacy commercial usage view controller does not need to be updated
+            guard let viewController = children[0] as? B2CUsageWebViewController else { return }
+            
+            viewController.accountDetail = accountDetail
+            viewController.refresh()
+        }
     }
     
     // MARK: - Usage Tool Cards
@@ -927,9 +969,9 @@ class UsageViewController: AccountPickerViewController {
         case let vc as B2CUsageWebViewController:
             vc.accountDetail = accountDetail
             if segue.identifier == "serWebViewB2cSegue" {
-                vc.widget = .ser
+                vc.viewModel.widget = .ser
             } else {
-                vc.widget = .usage
+                vc.viewModel.widget = .usage
             }
         case let vc as Top5EnergyTipsViewController:
             vc.accountDetail = accountDetail

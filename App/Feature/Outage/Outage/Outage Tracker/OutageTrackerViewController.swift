@@ -33,6 +33,12 @@ class OutageTrackerViewController: UIViewController {
     @IBOutlet weak var trackerStatusView: TrackerStatusView!
     @IBOutlet weak var surveyView: SurveyView!
     @IBOutlet weak var powerOnContainer: UIView!
+    @IBOutlet weak var outageNotificationAlertBannerView: BillAlertBannerView!
+    @IBOutlet weak var outageNotificationBannerTitle: UILabel!
+    @IBOutlet weak var outageNotificationBannerDesciption: UILabel!
+    @IBOutlet weak var spacerView: UIView!
+    @IBOutlet weak var powerStatusHeader: UILabel!
+    @IBOutlet weak var powerStatusDescription: UILabel!
     
     let disposeBag = DisposeBag()
     var viewModel: OutageTrackerViewModel!
@@ -46,6 +52,14 @@ class OutageTrackerViewController: UIViewController {
         configureFooterTextView()
         setupUI()
         setupBinding()
+        
+        outageNotificationBannerTitle.font = SystemFont.regular.of(textStyle: .subheadline)
+        outageNotificationBannerDesciption.font = SystemFont.regular.of(textStyle: .caption1)
+        outageNotificationBannerTitle.textColor = .deepGray
+        outageNotificationBannerDesciption.textColor = .gray
+        spacerView.backgroundColor = .softGray
+        spacerView.isHidden = true
+        outageNotificationAlertBannerView.isHidden = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -105,6 +119,15 @@ class OutageTrackerViewController: UIViewController {
     }
     
     private func update() {
+        if viewModel.hasJustReportedOutage  {
+            //show CTA for Outage Alert Preference
+            spacerView.isHidden = false
+            outageNotificationAlertBannerView.isHidden = false
+        } else {
+            spacerView.isHidden = true
+            outageNotificationAlertBannerView.isHidden = true
+        }
+        logOutageTrackerEvents()
         if viewModel.isGasOnly {
             let gasOnlyView = GasOnlyView()
             gasOnlyView.frame = self.view.bounds
@@ -129,6 +152,8 @@ class OutageTrackerViewController: UIViewController {
             
             if viewModel.isActiveOutage == false {
                 powerOnContainer.isHidden = false
+                powerStatusHeader.text = NSLocalizedString("Our records indicate", comment: "")
+                powerStatusDescription.text = NSLocalizedString("POWER IS ON", comment: "")
                 progressAnimationView.configure(withStatus: .restored)
             } else {
                 powerOnContainer.isHidden = true
@@ -145,7 +170,7 @@ class OutageTrackerViewController: UIViewController {
                     
                     if viewModel.status == .restored {
                         countContainerView.isHidden = true
-                    } 
+                    }
                     
                     whyButtonContainer.isHidden = viewModel.hideWhyButton
                     whyButton.setTitle(viewModel.whyButtonText, for: .normal)
@@ -167,23 +192,84 @@ class OutageTrackerViewController: UIViewController {
         }
     }
     
+    @IBAction func openOutageAlertPreferenceTap(_ sender: Any) {
+            let storyboard = UIStoryboard(name: "Alerts", bundle: nil)
+            guard let alertPrefsVC = storyboard.instantiateViewController(withIdentifier: "alertPreferences") as? AlertPreferencesViewController else {
+                return
+            }
+            alertPrefsVC.viewModel.initiatedFromOutageView = true
+            let newNavController = LargeTitleNavigationController(rootViewController: alertPrefsVC)
+            self.navigationController?.present(newNavController, animated: true)
+    }
+    
+    /**
+     Function for logging Outage Tracker Firebase events
+     */
+    private func logOutageTrackerEvents() {
+        if viewModel.status == .none {
+            FirebaseUtility.logEvent(.outageTracker(parameters: [.technical_error]))
+        } else if viewModel.isGasOnly {
+            FirebaseUtility.logEvent(.outageTracker(parameters: [.account_gas_only]))
+        } else if viewModel.isInactive {
+            FirebaseUtility.logEvent(.outageTracker(parameters: [.account_inactive]))
+        } else {
+            guard let tracker = viewModel.outageTracker.value else { return }
+            if viewModel.isActiveOutage == true {
+                FirebaseUtility.logEvent(.outageTracker(parameters: [.active_outage]))
+            } else {
+                FirebaseUtility.logEvent(.outageTracker(parameters: [.power_on]))
+            }
+            
+            if viewModel.status == .restored {
+                if viewModel.isDefinitive {
+                    FirebaseUtility.logEvent(.outageTracker(parameters: [.power_restored_definitive]))
+                } else {
+                    FirebaseUtility.logEvent(.outageTracker(parameters: [.power_restored_non_definitive]))
+                }
+            } else if viewModel.status == .enRoute && tracker.isCrewDiverted == true {
+                FirebaseUtility.logEvent(.outageTracker(parameters: [.crew_en_route_diverted]))
+            } else if viewModel.status == .onSite && tracker.isCrewDiverted == true {
+                FirebaseUtility.logEvent(.outageTracker(parameters: [.crew_on_site_diverted]))
+            }
+            
+            if tracker.isPartialRestoration == true {
+                FirebaseUtility.logEvent(.outageTracker(parameters: [.partial_restoration]))
+            }
+            
+            if tracker.isCrewExtDamage == true {
+                FirebaseUtility.logEvent(.outageTracker(parameters: [.extensive_damage]))
+            }
+            
+            if tracker.isSafetyHazard == true {
+                FirebaseUtility.logEvent(.outageTracker(parameters: [.safety_hazard]))
+            }
+            
+            if tracker.isMultipleOutage == true {
+                FirebaseUtility.logEvent(.outageTracker(parameters: [.nested_outage]))
+            }
+        }
+    }
+    
     private func updateETA() {
         guard let tracker = viewModel.outageTracker.value else { return }
         etaView.configure(tracker: tracker, status: viewModel.status)
     }
     
     private func reportOutage() {
+        FirebaseUtility.logEvent(.authOutage(parameters: [.report_outage]))
         let storyboard = UIStoryboard(name: "Outage", bundle: Bundle.main)
         if let reportOutageVC = storyboard.instantiateViewController(withIdentifier: "ReportOutageViewController") as?  ReportOutageViewController {
             if let outageStatus = viewModel.outageStatus.value {
                 reportOutageVC.viewModel.outageStatus = outageStatus
                 reportOutageVC.viewModel.phoneNumber.accept(outageStatus.contactHomeNumber ?? "")
+                reportOutageVC.delegate = self
                 navigationController?.pushViewController(reportOutageVC, animated: true)
             }
         }
     }
     
     private func openOutageMap(forStreetMap isStreetMap: Bool) {
+        FirebaseUtility.logEvent(.authOutage(parameters: [.map]))
         let storyboard = UIStoryboard(name: "Outage", bundle: Bundle.main)
         if let outageMapVC = storyboard.instantiateViewController(withIdentifier: "OutageMapViewController") as?  OutageMapViewController {
             outageMapVC.hasPressedStreetlightOutageMapButton = isStreetMap
@@ -195,6 +281,17 @@ class OutageTrackerViewController: UIViewController {
         if enabled {
             guard refreshControl == nil else { return }
             
+            // change animation and power status text if user reports an outage
+            if viewModel.hasJustReportedOutage {
+                viewModel.hasJustReportedOutage = false
+                if viewModel.isActiveOutage {
+                    progressAnimationView.setUpProgressAnimation(animName: "ot_reported")
+                } else {
+                    progressAnimationView.setUpProgressAnimation(animName: "outage_reported")
+                    powerStatusHeader.text = NSLocalizedString("Your outage is", comment: "")
+                    powerStatusDescription.text = NSLocalizedString("REPORTED", comment: "")
+                }
+            }
             let rc = UIRefreshControl()
             
             rc.rx.controlEvent(.valueChanged)
@@ -324,4 +421,13 @@ extension OutageTrackerViewController: UITableViewDelegate {
             openOutageMap(forStreetMap: isStreetMap)
         }
     }
+}
+
+extension OutageTrackerViewController: ReportOutageDelegate {
+func didReportOutage() {
+    // Show Toast
+    view.showToast(NSLocalizedString("Outage report received", comment: ""))
+    // Enable Reported Outage State
+    viewModel.hasJustReportedOutage = true
+ }
 }

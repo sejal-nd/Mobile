@@ -14,6 +14,7 @@ class OutageTrackerViewModel {
     let disposeBag = DisposeBag()
     var outageTracker = BehaviorRelay<OutageTracker?>(value: nil)
     var outageStatus: BehaviorRelay<OutageStatus?>
+    var hasJustReportedOutage = false
     
     public init(outageStatus: BehaviorRelay<OutageStatus?>) {
         self.outageStatus = outageStatus
@@ -51,6 +52,9 @@ class OutageTrackerViewModel {
     }
     var isGasOnly: Bool {
         return outageStatus.value?.isGasOnly ?? false
+    }
+    var isInactive: Bool {
+        return isGasOnly || outageStatus.value?.isNonService == true || outageStatus.value?.isNoPay == true
     }
     var isPaused: Bool {
         guard let tracker = outageTracker.value else {

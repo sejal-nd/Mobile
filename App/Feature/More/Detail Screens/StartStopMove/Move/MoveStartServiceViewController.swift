@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import PDTSimpleCalendar
 
 class MoveStartServiceViewController: UIViewController {
 
@@ -123,7 +122,7 @@ class MoveStartServiceViewController: UIViewController {
     @IBAction func onStartDateClicked(_ sender: Any) {
                 
         FirebaseUtility.logEvent(viewModel.isUnauth ? .unauthMoveService(parameters: [.calendar_start_date]) : .authMoveService(parameters: [.calendar_start_date]))
-        let calendarVC = PDTSimpleCalendarViewController()
+        let calendarVC = CalendarViewController()
         calendarVC.calendar = .opCo
         calendarVC.delegate = self
         calendarVC.firstDate = Calendar.current.date(byAdding: .month, value: 0, to: Calendar.current.startOfDay(for: .now))
@@ -131,9 +130,6 @@ class MoveStartServiceViewController: UIViewController {
         if let selectedDate = viewModel.moveServiceFlow.startServiceDate {
             calendarVC.selectedDate = Calendar.opCo.startOfDay(for: selectedDate)
         }
-        calendarVC.scroll(toSelectedDate: true)
-        calendarVC.weekdayHeaderEnabled = true
-        calendarVC.weekdayTextType = PDTSimpleCalendarViewWeekdayTextType.veryShort
 
         let calendarNavigationController = LargeTitleNavigationController(rootViewController: calendarVC)
         calendarNavigationController.setNavigationBarHidden(false, animated: false)
@@ -162,13 +158,13 @@ class MoveStartServiceViewController: UIViewController {
 }
 
 // MARK: - PDTSimpleCalendarViewDelegate
-extension MoveStartServiceViewController: PDTSimpleCalendarViewDelegate {
-    func simpleCalendarViewController(_ controller: PDTSimpleCalendarViewController!, isEnabledDate date: Date!) -> Bool {
+extension MoveStartServiceViewController: CalendarViewDelegate {
+    func calendarViewController(_ controller: CalendarViewController, isDateEnabled date: Date) -> Bool {
         
         return viewModel.isValidDate(date)
     }
     
-    func simpleCalendarViewController(_ controller: PDTSimpleCalendarViewController!, didSelect date: Date!) {
+    func calendarViewController(_ controller: CalendarViewController, didSelect date: Date) {
 
         refreshUI(startDate: date)
         controller.dismiss(animated: true, completion: nil)

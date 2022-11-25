@@ -87,21 +87,25 @@ class StatusTextView: UIView {
         if status == .restored {
             details = timeToRestore().detailText(isDefinitive: isDefinitive)
         } else if status == OutageTracker.Status.none {
-            return StatusDetailString.none
-        } 
-        else {
-            if status == .onSite {
-                if tracker.isCrewExtDamage == true {
-                    details = StatusDetailString.crewExtDamage
-                } else if tracker.isPartialRestoration == true {
-                    let count = tracker.customersOutOnOutage ?? ""
-                    details = String.localizedStringWithFormat(StatusDetailString.partialRestoration, count)
-                }
-            } else if status == .reported {
-                if tracker.isMultipleOutage == true {
-                    details = StatusDetailString.crewLeftSite
-                }
+            details = StatusDetailString.none
+        } else if status == .onSite {
+            if tracker.isCrewExtDamage == true && tracker.isPartialRestoration == true {
+                let count = tracker.customersOutOnOutage ?? ""
+                details = StatusDetailString.crewExtDamage +
+                "\n\n" +
+                String.localizedStringWithFormat(StatusDetailString.partialRestoration, count)
+                
+            } else if tracker.isCrewExtDamage == true {
+                details = StatusDetailString.crewExtDamage
+            } else if tracker.isPartialRestoration == true {
+                let count = tracker.customersOutOnOutage ?? ""
+                details = String.localizedStringWithFormat(StatusDetailString.partialRestoration, count)
             }
+        } else if status == .reported && tracker.isMultipleOutage == true {
+            details = StatusDetailString.crewLeftSite
+        } else if tracker.isPartialRestoration == true {
+            let count = tracker.customersOutOnOutage ?? ""
+            details = String.localizedStringWithFormat(StatusDetailString.partialRestoration, count)
         }
         
         return details

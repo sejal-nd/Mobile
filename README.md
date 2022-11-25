@@ -48,11 +48,10 @@ Third party libraries are primarily managed using Cocoa Pods (https://github.com
 - Lottie
 - JVFloatLabeledTextField
 - ReachabilitySwift
-- PDTSimpleCalendar
+- HorizonCalendar
 - Charts
 - XLPagerTabStrip
 - GoogleAnalytics
 - Firebase
 - AppCenter
 - ForeSee
-

@@ -9,7 +9,6 @@
 import UIKit
 import RxSwift
 import RxCocoa
-import PDTSimpleCalendar
 
 protocol BGEAutoPaySettingsViewControllerDelegate: class {
     func didUpdateSettings(amountToPay: AmountType,

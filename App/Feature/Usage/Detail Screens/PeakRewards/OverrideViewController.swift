@@ -9,7 +9,6 @@
 import RxSwift
 import RxCocoa
 import RxSwiftExt
-import PDTSimpleCalendar
 
 class OverrideViewController: UIViewController {
     
@@ -245,7 +244,7 @@ class OverrideViewController: UIViewController {
                 let backItem = UIBarButtonItem(title: " ", style: .plain, target: .none, action: .none)
                 self.navigationItem.backBarButtonItem = backItem
                 
-                let calendarVC = PDTSimpleCalendarViewController()
+                let calendarVC = CalendarViewController()
                 calendarVC.calendar = .opCo
                 calendarVC.delegate = self
                 calendarVC.title = NSLocalizedString("Select Override Date", comment: "")
@@ -297,8 +296,8 @@ class OverrideViewController: UIViewController {
     }
 }
 
-extension OverrideViewController: PDTSimpleCalendarViewDelegate {
-    func simpleCalendarViewController(_ controller: PDTSimpleCalendarViewController!, isEnabledDate date: Date!) -> Bool {
+extension OverrideViewController: CalendarViewDelegate {
+    func calendarViewController(_ controller: CalendarViewController, isDateEnabled date: Date) -> Bool {
         let components = Calendar.opCo.dateComponents([.year, .month, .day], from: date)
         guard let opCoTimeDate = Calendar.opCo.date(from: components) else { return false }
         
@@ -310,7 +309,7 @@ extension OverrideViewController: PDTSimpleCalendarViewDelegate {
         return opCoTimeDate >= today && opCoTimeDate <= latestDay
     }
     
-    func simpleCalendarViewController(_ controller: PDTSimpleCalendarViewController!, didSelect date: Date!) {
+    func calendarViewController(_ controller: CalendarViewController, didSelect date: Date) {
         let components = Calendar.opCo.dateComponents([.year, .month, .day], from: date)
         guard let opCoTimeDate = Calendar.opCo.date(from: components) else { return }
         viewModel.selectedDate.onNext(opCoTimeDate)

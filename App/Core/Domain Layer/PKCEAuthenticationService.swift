@@ -80,6 +80,28 @@ class PKCEAuthenticationService: UIViewController {
         authSession.start()
     }
     
+    func presentAssistanceCTA(ctaURL: String, completion: @escaping (Result<String, Error>) -> ()) {
+
+        guard let url = URL(string: ctaURL) else { return }
+        
+        let callbackScheme = Configuration.shared.b2cRedirectURI
+        
+        authSession = ASWebAuthenticationSession(url: url, callbackURLScheme: callbackScheme, completionHandler: { (callbackURL, error) in
+            guard error == nil, let successURL = callbackURL else {
+                Log.error("ASWebAuthentication Session failed/terminated")
+                completion(.failure(error!))
+                return
+            }
+            
+            let oauthToken = NSURLComponents(string: (successURL.absoluteString))?.fragment?.components(separatedBy: "id_token=").get(at: 1)
+            Log.info("ASWebAuthentication Success Callback URL: \(successURL.absoluteString)")
+            completion(.success(oauthToken ?? ""))
+        })
+        
+        authSession.presentationContextProvider = self
+        authSession.start()
+    }
+    
     // https://docs.microsoft.com/en-us/azure/active-directory-b2c/authorization-code-flow
     // https://auth0.com/docs/get-started/authentication-and-authorization-flow/call-your-api-using-the-authorization-code-flow-with-pkce#authorize-user
     private func createCodeVerifier() -> String {

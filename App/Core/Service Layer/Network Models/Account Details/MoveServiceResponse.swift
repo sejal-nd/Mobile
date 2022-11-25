@@ -36,7 +36,7 @@ public struct MoveServiceResponse: Decodable {
         case stopDate, stopAddress, startDate, startAddress, remoteShutoffCapable, accountNumber, finalBillEmail, useAltBillingAddress, finalBillAddress, isResolved, isServiceChargeFee, isEBillEnrollment
     }
     
-    struct StopAddress: Decodable {
+    public struct StopAddress: Decodable {
         
         let address: String
         let streetName: String
@@ -58,7 +58,7 @@ public struct MoveServiceResponse: Decodable {
         }
     }
     
-    struct StartAddress: Decodable {
+    public struct StartAddress: Decodable {
         
         let streetName: String?
         let houseNo: String?
@@ -80,7 +80,7 @@ public struct MoveServiceResponse: Decodable {
         }
     }
     
-    struct FinalBillAddress: Decodable {
+    public struct FinalBillAddress: Decodable {
         
         let streetName: String?
         let apartmentUnitNo: String?

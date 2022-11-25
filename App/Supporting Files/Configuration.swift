@@ -424,7 +424,15 @@ struct Configuration {
             case .test:
                 oPowerURLString = "https://aztst1-secure.\(accountOpCo.urlDisplayString).com/pages/mobileopower.aspx"
             case .stage:
-                oPowerURLString = "https://azstg-secure.\(accountOpCo.urlDisplayString).com/pages/mobileopower.aspx"
+                if let projectURLRawValue = UserDefaults.standard.string(forKey: "selectedProjectURL"), let projectURLSuffix = ProjectURLSuffix(rawValue: projectURLRawValue), projectURLSuffix == .agentis {
+                    if accountOpCo == .pepco {
+                        oPowerURLString = "https://s-c-\(projectURLSuffix.projectURLString)-\(accountOpCo.urlDisplayString)-ui-01.azurewebsites.net/pages/mobileopower.aspx"
+                    } else {
+                        oPowerURLString = "https://s-c-\(projectURLSuffix.projectURLString)-\(accountOpCo.urlString)-ui-01.azurewebsites.net/pages/mobileopower.aspx"
+                    }
+                } else {
+                    oPowerURLString = "https://azstg-secure.\(accountOpCo.urlDisplayString).com/pages/mobileopower.aspx"
+                }
             }
         }
         return oPowerURLString
@@ -459,10 +467,10 @@ struct Configuration {
                     // Unsure what oAuth would be here...
                     oAuthEndpoint = "api-development.exeloncorp.com"
                 case .test:
-                    baseUrl = "xze-e-n-eudapi-\(operatingCompany.rawValue.lowercased())-t-ams-01.azure-api.net"
+                    baseUrl = "eudapi-test.\(operatingCompany.urlDisplayString).com"
                     oAuthEndpoint = "api-development.exeloncorp.com"
                 case .stage:
-                    baseUrl = "mcsstg.mobileenv.\(operatingCompany.urlDisplayString).com"
+                    baseUrl = "eudapi-stage.\(operatingCompany.urlDisplayString).com"
                     oAuthEndpoint = "api-stage.exeloncorp.com"
                 }
             } else {

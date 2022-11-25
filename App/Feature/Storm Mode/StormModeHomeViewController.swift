@@ -345,18 +345,21 @@ class StormModeHomeViewController: AccountPickerViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         navigationController?.setNavigationBarHidden(true, animated: true)
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+         
         // Start polling when the home screen appears, only if storm mode hasn't ended yet
         stormModePollingDisposable?.dispose()
         if !viewModel.stormModeEnded {
             stormModePollingDisposable = viewModel.startStormModePolling()
                 .drive(onNext: { [weak self] in self?.stormModeDidEnd() })
         }
+       
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -501,6 +504,8 @@ class StormModeHomeViewController: AccountPickerViewController {
     @IBAction func showStormModeDetails(_ sender: Any) {
         if viewModel.stormModeUpdate.value != nil {
             performSegue(withIdentifier: "UpdatesDetailSegue", sender: nil)
+            FirebaseUtility.logEvent(.stormOutage(parameters: [.view_details]))
+
         }
     }
 
@@ -560,7 +565,7 @@ class StormModeHomeViewController: AccountPickerViewController {
             phone1Label.text = "1-800-841-4141"
         case .ace, .delmarva, .pepco:
             if AccountsStore.shared.accountOpco == .ace {
-                group1Label.text = NSLocalizedString("To report a downed or sparking power line, please call", comment: "")
+                group1Label.text = NSLocalizedString("If you see downed power lines, leave the area immediately and call \(Configuration.shared.opco.displayString) at ", comment: "")
                 phone1Label.text = "1-800-833-7476"
                 
                 group2Label.isHidden = true
@@ -574,7 +579,8 @@ class StormModeHomeViewController: AccountPickerViewController {
 
             } else if AccountsStore.shared.accountOpco == .delmarva {
                 group1Label.text = NSLocalizedString("If you smell natural gas, leave the area immediately and then call ", comment: "")
-                group2Label.text = NSLocalizedString("To report a downed or sparking power line, please call ", comment: "")
+                
+                group2Label.text = NSLocalizedString("If you see downed power lines, leave the area immediately and call \(Configuration.shared.opco.displayString) at ", comment: "")
                 phone1Label.text = "302-454-0317"
                 phone3Label.text = "1-800-898-8042"
                 
@@ -587,7 +593,7 @@ class StormModeHomeViewController: AccountPickerViewController {
                 phone4Button.isHidden = true
 
             } else if AccountsStore.shared.accountOpco == .pepco {
-                group1Label.text = NSLocalizedString("To report a downed or sparking power line, please call", comment: "")
+                group1Label.text = NSLocalizedString("If you see downed power lines, leave the area immediately and call \(Configuration.shared.opco.displayString) at ", comment: "")
                 phone1Label.text = "1-877-737-2662"
                
                 group2Label.isHidden = true
@@ -639,7 +645,7 @@ class StormModeHomeViewController: AccountPickerViewController {
     private func configureFeatureFlags() {
         FeatureFlagUtility.shared.loadingDoneCallback = { [weak self] in
             self?.viewModel.outageMapURLString = FeatureFlagUtility.shared.string(forKey: .outageMapURL)
-            
+
             if self?.viewModel.outageMapURLString.isEmpty ?? true {
                 self?.outageMapButton.isHidden = true
             } else {
@@ -697,6 +703,7 @@ class StormModeHomeViewController: AccountPickerViewController {
             self.loadingView.isHidden = true
             self.finalPayTitleLabel.isHidden = false
             self.setRefreshControlEnabled(enabled: true)
+            self.update()
             self.updateContent(outageJustReported: false)
         }, onError: { [weak self] error in
             guard let self = self else { return }
@@ -761,6 +768,10 @@ class StormModeHomeViewController: AccountPickerViewController {
     
     private func updateContent(outageJustReported: Bool) {
         guard let currentOutageStatus = viewModel.currentOutageStatus  else { return }
+        
+        if outageJustReported {
+            FirebaseUtility.logEvent(.stormOutage(parameters: [.report_complete]))
+        }
         
         // Show/hide the top level container views
         if currentOutageStatus.isGasOnly {
@@ -850,8 +861,15 @@ class StormModeHomeViewController: AccountPickerViewController {
             let outageStatus = viewModel.currentOutageStatus {
             vc.viewModel.outageStatus = outageStatus
             vc.viewModel.phoneNumber.accept(outageStatus.contactHomeNumber ?? "")
+            
+            FirebaseUtility.logEvent(.stormOutage(parameters: [.report_outage]))
         } else if let vc = segue.destination as? OutageMapViewController {
             vc.hasPressedStreetlightOutageMapButton = segue.identifier == "ReportStreetlightProblemSegue" ? true : false
+            if segue.identifier == "ReportStreetlightProblemSegue" {
+                FirebaseUtility.logEvent(.stormOutage(parameters: [.streetlight_map]))
+            } else if segue.identifier == "OutageMapSegue" {
+                FirebaseUtility.logEvent(.stormOutage(parameters: [.map]))
+            }
         }
     }
     

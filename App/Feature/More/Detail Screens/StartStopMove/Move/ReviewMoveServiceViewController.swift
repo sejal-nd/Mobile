@@ -8,7 +8,6 @@
 
 import UIKit
 import RxSwift
-import PDTSimpleCalendar
 
 class ReviewMoveServiceViewController: UIViewController {
 
@@ -98,14 +97,11 @@ class ReviewMoveServiceViewController: UIViewController {
                 guard let `self` = self else { return }
                 FirebaseUtility.logEvent(self.viewModel.isUnauth ? .unauthMoveService(parameters: [.calendar_stop_date]) : .authMoveService(parameters: [.calendar_stop_date]))
                 self.changeDateType = .stop
-                let calendarVC = PDTSimpleCalendarViewController()
+                let calendarVC = CalendarViewController()
                 calendarVC.calendar = .opCo
                 calendarVC.delegate = self
                 calendarVC.firstDate = Calendar.current.date(byAdding: .month, value: 0, to: Calendar.current.startOfDay(for: .now))
                 calendarVC.lastDate = Calendar.current.date(byAdding: .month, value: 1, to: Calendar.current.startOfDay(for: .now))
-                calendarVC.scroll(toSelectedDate: true)
-                calendarVC.weekdayHeaderEnabled = true
-                calendarVC.weekdayTextType = PDTSimpleCalendarViewWeekdayTextType.veryShort
                 calendarVC.selectedDate = Calendar.opCo.startOfDay(for: self.viewModel.moveFlowData.stopServiceDate)
                 let navigationController = LargeTitleNavigationController(rootViewController: calendarVC)
                 navigationController.setNavigationBarHidden(false, animated: false)
@@ -123,14 +119,11 @@ class ReviewMoveServiceViewController: UIViewController {
                 
                 FirebaseUtility.logEvent(self.viewModel.isUnauth ? .unauthMoveService(parameters: [.calendar_start_date]) : .authMoveService(parameters: [.calendar_start_date]))
                 self.changeDateType = .start
-                let calendarVC = PDTSimpleCalendarViewController()
+                let calendarVC = CalendarViewController()
                 calendarVC.calendar = .opCo
                 calendarVC.delegate = self
                 calendarVC.firstDate = Calendar.current.date(byAdding: .month, value: 0, to: Calendar.current.startOfDay(for: .now))
                 calendarVC.lastDate = Calendar.current.date(byAdding: .month, value: 1, to: Calendar.current.startOfDay(for: .now))
-                calendarVC.scroll(toSelectedDate: true)
-                calendarVC.weekdayHeaderEnabled = true
-                calendarVC.weekdayTextType = PDTSimpleCalendarViewWeekdayTextType.veryShort
                 if let startDate =  self.viewModel.moveFlowData.startServiceDate{
                     calendarVC.selectedDate = Calendar.opCo.startOfDay(for: startDate)
                 }
@@ -237,12 +230,12 @@ class ReviewMoveServiceViewController: UIViewController {
 }
 
 // MARK: - PDTSimpleCalendarViewDelegate
-extension ReviewMoveServiceViewController: PDTSimpleCalendarViewDelegate {
-    func simpleCalendarViewController(_ controller: PDTSimpleCalendarViewController!, isEnabledDate date: Date!) -> Bool {
+extension ReviewMoveServiceViewController: CalendarViewDelegate {
+    func calendarViewController(_ controller: CalendarViewController, isDateEnabled date: Date) -> Bool {
         return viewModel.isValidDate(date, workDays: viewModel.moveFlowData.workDays)
     }
 
-    func simpleCalendarViewController(_ controller: PDTSimpleCalendarViewController!, didSelect date: Date!) {
+    func calendarViewController(_ controller: CalendarViewController, didSelect date: Date) {
         switch changeDateType {
         case .stop:
             self.viewModel.moveFlowData.stopServiceDate = date

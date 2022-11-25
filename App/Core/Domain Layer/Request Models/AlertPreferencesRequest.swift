@@ -82,17 +82,19 @@ public struct AlertPreferencesRequest: Encodable {
             
             let opcoIdentifier = AccountsStore.shared.currentAccount.utilityCode?.uppercased() ?? Configuration.shared.opco.rawValue
             
-            let outageProgramName = "Outage" + " " + opcoIdentifier
-            let severeWeatherProgramName = "Severe Weather" + " " + opcoIdentifier
-            let paymentDueProgramName = "Payment Reminder" + " " + opcoIdentifier
-            let paymentPostedProgramName = "Payment Posted" + " " + opcoIdentifier
-            let paymentPastDueProgramName = "Payment Past Due" + " " + opcoIdentifier
-            let billReadyProgramName = "Bill is Ready" + " " + opcoIdentifier
-            let budgetBillingProgramName = "Budget Billing" + " " + opcoIdentifier
-            let forYourInfoProgramName = "News" + " " + opcoIdentifier
-            let highUsageAlertProgramName = "High Usage Alert" + " " + opcoIdentifier
-            let peakSavingsDayResultsProgramName = "Peak Savings Day Results" + " " + opcoIdentifier
-            let peakSavingsDayAlertProgramName = "PESC" + " " + opcoIdentifier
+            let outageProgramName = "Outage \(opcoIdentifier)"
+            let severeWeatherProgramName = "Severe Weather \(opcoIdentifier)"
+            let paymentDueProgramName = "Payment Reminder \(opcoIdentifier)"
+            let paymentPostedProgramName = "Payment Posted \(opcoIdentifier)"
+            let paymentPastDueProgramName = "Payment Past Due \(opcoIdentifier)"
+            let billReadyProgramName = "Bill is Ready \(opcoIdentifier)"
+            let budgetBillingProgramName = "Budget Billing \(opcoIdentifier)"
+            let forYourInfoProgramName = "News \(opcoIdentifier)"
+            let highUsageAlertProgramName = "High Usage Alert \(opcoIdentifier)"
+            let peakSavingsDayResultsProgramName = "Peak Savings Day Results \(opcoIdentifier)"
+            let peakSavingsDayAlertProgramName = "PESC \(opcoIdentifier)"
+            let customerAppointmentProgramName = "Customer Appointments \(opcoIdentifier)"
+            let advancedNotificationProgramName = "Advance Notification \(opcoIdentifier)"
 
             preferences.append(AlertRequest(isActive: alertPreferences.outage, programName: outageProgramName))
             preferences.append(AlertRequest(isActive: alertPreferences.severeWeather, programName: severeWeatherProgramName))
@@ -105,6 +107,8 @@ public struct AlertPreferencesRequest: Encodable {
             preferences.append(AlertPreferencesRequest.AlertRequest(isActive: alertPreferences.highUsage, programName: highUsageAlertProgramName, alertThreshold: alertPreferences.alertThreshold))
             preferences.append(AlertPreferencesRequest.AlertRequest(isActive: alertPreferences.peakTimeSavingsDayAlert ?? false, programName: peakSavingsDayAlertProgramName))
             preferences.append(AlertPreferencesRequest.AlertRequest(isActive: alertPreferences.peakTimeSavingsDayResults ?? false, programName: peakSavingsDayResultsProgramName))
+            preferences.append(AlertPreferencesRequest.AlertRequest(isActive: alertPreferences.appointmentTracking, programName: customerAppointmentProgramName))
+            preferences.append(AlertPreferencesRequest.AlertRequest(isActive: alertPreferences.advancedNotification, programName: advancedNotificationProgramName))
         }
         
         alertPreferenceRequests = preferences

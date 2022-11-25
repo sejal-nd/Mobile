@@ -89,13 +89,13 @@ PODS:
     - GoogleUtilities/Logger
   - GoogleUtilities/UserDefaults (7.5.0):
     - GoogleUtilities/Logger
+  - HorizonCalendar (1.13.3)
   - lottie-ios (3.1.5)
   - nanopb (2.30908.0):
     - nanopb/decode (= 2.30908.0)
     - nanopb/encode (= 2.30908.0)
   - nanopb/decode (2.30908.0)
   - nanopb/encode (2.30908.0)
-  - PDTSimpleCalendar (0.9.1)
   - PromisesObjC (1.2.12)
   - ReachabilitySwift (4.3.1)
   - RxCocoa (5.1.1):
@@ -123,8 +123,8 @@ DEPENDENCIES:
   - ForeSee/Core (= 6.0.4)
   - ForeSee/ForeSeeFeedback (= 6.0.4)
   - GoogleAnalytics (= 3.17.0)
+  - HorizonCalendar (= 1.13.3)
   - lottie-ios (= 3.1.5)
-  - PDTSimpleCalendar (= 0.9.1)
   - ReachabilitySwift (= 4.3.1)
   - RxSwift (= 5.1.0)
   - RxSwiftExt (= 5.2.0)
@@ -147,9 +147,9 @@ SPEC REPOS:
     - GoogleAppMeasurement
     - GoogleDataTransport
     - GoogleUtilities
+    - HorizonCalendar
     - lottie-ios
     - nanopb
-    - PDTSimpleCalendar
     - PromisesObjC
     - ReachabilitySwift
     - RxCocoa
@@ -173,9 +173,9 @@ SPEC CHECKSUMS:
   GoogleAppMeasurement: fd19169c3034975cb934e865e5667bfdce59df7f
   GoogleDataTransport: cd9db2180fcecd8da1b561aea31e3e56cf834aa7
   GoogleUtilities: eea970f4a389963963bffe8d8fabe43540678b9c
+  HorizonCalendar: d1c69852fa0fd57166fc9f338936237b9bd0b86e
   lottie-ios: 32bf84389337d86fbc8b12266e88452e0abf1dee
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
-  PDTSimpleCalendar: d1c03387678422715dc021aa1a85d70f4d1014f2
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   ReachabilitySwift: 4032e2f59586e11e3b0ebe15b167abdd587a388b
   RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
@@ -186,6 +186,6 @@ SPEC CHECKSUMS:
   XLPagerTabStrip: 61c57fd61f611ee5f01ff1495ad6fbee8bf496c5
   zxcvbn-ios: fef98b7c80f1512ff0eec47ac1fa399fc00f7e3c
 
-PODFILE CHECKSUM: 685ec9e971c5f9aa8e33039ec104b1d13209b848
+PODFILE CHECKSUM: b62e0eb189c7261dc0a8eea181c3c769b09df445
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.11.2

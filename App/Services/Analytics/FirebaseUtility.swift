@@ -61,6 +61,9 @@ enum FirebaseEvent: Event {
     
     case authOutage(parameters: [OutageParameter]?)
     case unauthOutage(parameters: [OutageParameter]?)
+    case stormOutage(parameters: [OutageParameter]?)
+    
+    case outageTracker(parameters: [OutageTrackerParameter]?)
     
     case home(parameters: [HomeParameter]?)
     case accountPicker(parameters: [AccountPickerParameter]?)
@@ -141,6 +144,10 @@ enum FirebaseEvent: Event {
             return "authOutage"
         case .unauthOutage:
             return "unauthOutage"
+        case .stormOutage:
+            return "storm"
+        case .outageTracker:
+            return "outageTracker"
         case .register:
             return "register"
         case .home:
@@ -195,6 +202,8 @@ enum FirebaseEvent: Event {
              .payment(let parameters as [EventParameter]?),
              .authOutage(let parameters as [EventParameter]?),
              .unauthOutage(let parameters as [EventParameter]?),
+             .stormOutage(let parameters as [EventParameter]?),
+             .outageTracker(let parameters as [EventParameter]?),
              .home(let parameters as [EventParameter]?),
              .register(let parameters as [EventParameter]?),
              .forgotPassword(let parameters as [EventParameter]?),
@@ -391,6 +400,32 @@ enum OutageParameter: String, EventParameter {
     case account_number_help
 }
 
+enum OutageTrackerParameter: String, EventParameter {
+    case active_outage
+    case power_restored_definitive
+    case power_restored_non_definitive
+    case power_on
+    case account_gas_only
+    case account_inactive
+    case partial_restoration
+    case crew_on_site_diverted
+    case crew_en_route_diverted
+    case extensive_damage
+    case safety_hazard
+    case nested_outage
+    
+    case technical_error
+    
+    var type: ParameterType {
+        switch self {
+        case .technical_error:
+            return .error
+        default:
+            return .action
+        }
+    }
+}
+
 enum HomeParameter: String, EventParameter {
     case view_screen
     case personalize_banner
@@ -437,6 +472,7 @@ enum RegisterParameter: String, EventParameter {
     case ebill_enroll
     case account_verify
     case complete
+    case account_invalid
 }
 
 enum AccountPickerParameter: String, EventParameter {
@@ -545,6 +581,7 @@ enum AlertsParameter: String, EventParameter {
     case bill_enroll_push_cancel
     case bill_enroll_push_continue
     case bill_unenroll_push_continue
+    case outage_enroll
 }
 
 enum ContactUsParameter: String, EventParameter {
@@ -583,6 +620,7 @@ enum UsageParameter: String, EventParameter {
 enum MoreParameter: String, EventParameter {
     case strong_password_complete
     case change_password_complete
+    case change_my_security_complete
     case default_account_help
     case set_default_account_complete
     case billing_videos
@@ -674,12 +712,14 @@ enum Screen {
     case autopayEnrolledView(className: String)
     case autopayUnenrolledView(className: String)
     case changePasswordView(className: String)
+    case mySecurityView(className: String)
     case releaseOfInfoView(className: String)
     case unauthenticatedOutageValidationView(className: String)
     case unauthenticatedOutageSelectView(className: String)
     case unauthenticatedOutageView(className: String)
     case paymentView(className: String)
     case alertPreferencesView(className: String)
+    
     
     // ISUM Auth Stop
     case stopLandingView(className: String)
@@ -744,6 +784,8 @@ enum Screen {
             return "MoreView"
         case .changePasswordView:
             return "ChangePasswordView"
+        case .mySecurityView:
+            return "MySecurityView"
         case .releaseOfInfoView:
             return "ReleaseOfInfoView"
         case .unauthenticatedOutageValidationView:
@@ -768,6 +810,8 @@ enum Screen {
             return "StopReviewSubmitView"
         case .stopConfirmationView:
             return "StopConfirmationView"
+
+      
             
         // ISUM Move
         case .moveLandingView:
@@ -846,6 +890,7 @@ enum Screen {
              .usageView(let className),
              .moreView(let className),
              .changePasswordView(let className),
+             .mySecurityView(let className),
              .releaseOfInfoView(let className),
              .unauthenticatedOutageValidationView(let className),
              .unauthenticatedOutageSelectView(let className),
@@ -857,7 +902,8 @@ enum Screen {
              .stopFinalBillAddressView(let className),
              .stopReviewSubmitView(let className),
              .stopConfirmationView(let className),
-            
+           
+
              .moveLandingView(let className),
              .moveSelectStopDateView(let className),
              .moveNewAddressView(let className),

@@ -248,7 +248,7 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
             case 4:
                 return Configuration.shared.opco == .bge ? 60 : 0
             case 5:
-                let isGameUser = UserDefaults.standard.string(forKey: UserDefaultKeys.gameAccountNumber) != nil
+                let isGameUser = UserDefaults.standard.string(forKey: UserDefaultKeys.gameAccountNumber) != nil && FeatureFlagUtility.shared.bool(forKey: .isGamificationEnabled)
                 return isGameUser ? 60 : 0
             case 6:
                 return Configuration.shared.opco.isPHI ? 60 : .zero
@@ -387,15 +387,21 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
         case 1:
             switch indexPath.row {
             case 0:
+                GoogleAnalytics.log(event: .changePasswordOffer)
+                FirebaseUtility.logScreenView(.mySecurityView(className: self.className))
+                
                 if FeatureFlagUtility.shared.bool(forKey: .isPkceAuthentication) {
                     PKCEAuthenticationService.default.presentMySecurityForm { result in
                         switch (result) {
                         case .success(let token):
+                            FirebaseUtility.logEvent(.more(parameters: [.change_my_security_complete]))
                             if let json = TokenResponse.decodeToJson(token: token),
                                let editAction = json["profileEditActionTaken"] as? String {
                                 
                                 if editAction == "PasswordUpdate" {
                                     self.view.showToast("Password changed")
+                                    GoogleAnalytics.log(event: .changePasswordComplete)
+                                    FirebaseUtility.logEvent(.more(parameters: [.change_password_complete]))
                                 } else {
                                     self.view.showToast("Two-Step Verification settings updated")
                                 }
@@ -522,6 +528,8 @@ extension MoreViewController: ChangePasswordViewControllerDelegate {
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
             self.view.showToast(NSLocalizedString("Password changed", comment: ""))
             GoogleAnalytics.log(event: .changePasswordComplete)
+            FirebaseUtility.logEvent(.more(parameters: [.change_password_complete]))
+            
         })
     }
     

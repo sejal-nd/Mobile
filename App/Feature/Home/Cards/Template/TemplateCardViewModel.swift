@@ -43,7 +43,7 @@ class TemplateCardViewModel {
             switch Configuration.shared.opco {
             case .peco:
                 if accountDetail.isResidential {
-                    return #imageLiteral(resourceName: "marketplace")
+                    return #imageLiteral(resourceName: "marketplace-peco")
                 } else {
                     return #imageLiteral(resourceName: "Commercial")
                 }
@@ -55,7 +55,7 @@ class TemplateCardViewModel {
                     case "ECOBEE WIFI"?:
                         return #imageLiteral(resourceName: "PeakRewards-WiFi-TStat")
                     default: // User is not enrolled in PeakRewards
-                        return #imageLiteral(resourceName: "Residential-Unenrolled")
+                        return UIImage(named: "img_card_boomer_assistance")
                     }
                 } else { // Commercial account
                     return #imageLiteral(resourceName: "SmallBusiness")
@@ -84,7 +84,7 @@ class TemplateCardViewModel {
             switch Configuration.shared.opco {
             case .peco:
                 if accountDetail.isResidential {
-                    return NSLocalizedString("Explore Energy-Saving Solutions for Your Home", comment: "")
+                    return NSLocalizedString("PECO is Helping Customers Pay Their Bills  ", comment: "")
                 } else {
                     return NSLocalizedString("Reduce Your Business’s Energy Costs", comment: "")
                 }
@@ -94,7 +94,7 @@ class TemplateCardViewModel {
                     case "ACTIVE"?, "ECOBEE WIFI"?:
                         return NSLocalizedString("PeakRewards Program", comment: "")
                     default:
-                        return NSLocalizedString("BGE Bill Credits with PeakRewards", comment: "")
+                        return NSLocalizedString("Looking for Assistance?", comment: "")
                     }
                 } else {
                     return NSLocalizedString("Lower your Business’s energy costs", comment: "")
@@ -154,7 +154,7 @@ class TemplateCardViewModel {
             switch Configuration.shared.opco {
             case .peco:
                 if accountDetail.isResidential {
-                    return NSLocalizedString("Find valuable information and solutions to help you manage and control your energy usage.", comment: "")
+                    return NSLocalizedString("Learn abount PECO's financial assistance programs. ", comment: "")
                 } else {
                     return NSLocalizedString("PECO can help you get on the fast track to substantial energy & cost savings.", comment: "")
                 }
@@ -166,7 +166,7 @@ class TemplateCardViewModel {
                     case "ECOBEE WIFI"?:
                         return NSLocalizedString("Save energy all year round. Adjust your thermostat from the palm of your hand.", comment: "")
                     default:
-                        return NSLocalizedString("Join PeakRewards and get a smart thermostat or outdoor switch and $100 to $200 in bill credits from Jun—Sept.", comment: "")
+                        return NSLocalizedString("Get personalized recommendations for financial assistance, bill management, and energy savings.", comment: "")
                     }
                 } else {
                     return NSLocalizedString("Save with financial incentives and energy efficiency upgrades.", comment: "")
@@ -196,7 +196,13 @@ class TemplateCardViewModel {
                         if accountDetail.isEnergyWiseRewardsEnrolled {
                             return NSLocalizedString("Manage your Energy Wise Rewards device from the palm of your hand.", comment: "")
                         } else {
-                            return NSLocalizedString("Join Energy Wise Rewards and get a smart thermostat or outdoor switch and $100 to $200 in bill credits from Jun—Sept.", comment: "")
+                            if accountDetail.state == "\(USState.MD)" {
+                                return NSLocalizedString("Join Energy Wise Rewards and get a smart thermostat or outdoor switch and up to $160 in bill credits the first year.", comment: "")
+                            } else if accountDetail.state == "\(USState.DE)" {
+                                return NSLocalizedString("Join Energy Wise Rewards and get a smart thermostat or outdoor switch and up to $80 once your device is installed.", comment: "")
+                            } else {
+                                return NSLocalizedString("Join Energy Wise Rewards and get a smart thermostat or outdoor switch and $100 to $200 in bill credits from Jun—Sept.", comment: "")
+                            }
                         }
                     } else {
                         return NSLocalizedString("Save with financial incentives and energy efficiency upgrades.", comment: "")
@@ -206,7 +212,13 @@ class TemplateCardViewModel {
                         if accountDetail.isEnergyWiseRewardsEnrolled {
                             return NSLocalizedString("Manage your Energy Wise Rewards device from the palm of your hand.", comment: "")
                         } else {
-                            return NSLocalizedString("Join Energy Wise Rewards and get a smart thermostat or outdoor switch and $100 to $200 in bill credits from Jun—Sept.", comment: "")
+                            if accountDetail.state == "\(USState.MD)" {
+                                return NSLocalizedString("Join Energy Wise Rewards and get a smart thermostat or outdoor switch and up to $160 in bill credits the first year.", comment: "")
+                            } else if accountDetail.state == "\(USState.DC)" {
+                                return NSLocalizedString("Join Energy Wise Rewards and get a smart thermostat or outdoor switch and up to $120 in bill credits the first year.", comment: "")
+                            } else {
+                                return NSLocalizedString("Join Energy Wise Rewards and get a smart thermostat or outdoor switch and $100 to $200 in bill credits from Jun—Sept.", comment: "")
+                            }
                         }
                     } else {
                         return NSLocalizedString("Save with financial incentives and energy efficiency upgrades.", comment: "")
@@ -231,7 +243,7 @@ class TemplateCardViewModel {
             switch Configuration.shared.opco {
             case .peco:
                 if accountDetail.isResidential {
-                    return NSLocalizedString("Save Now", comment: "")
+                    return NSLocalizedString("Learn More", comment: "")
                 } else {
                     return NSLocalizedString("Get started today", comment: "")
                 }
@@ -244,7 +256,7 @@ class TemplateCardViewModel {
                     case "ECOBEE WIFI"?:
                         return NSLocalizedString("Manage Your Devices", comment: "")
                     default:
-                        return NSLocalizedString("Enroll Now", comment: "")
+                        return NSLocalizedString("Find the Right Help", comment: "")
                     }
                 } else {
                     return NSLocalizedString("Learn More", comment: "")
@@ -273,7 +285,7 @@ class TemplateCardViewModel {
             switch Configuration.shared.opco {
             case .peco:
                 if accountDetail.isResidential {
-                    return "https://www.peco.com/WaysToSave/ForYourHome/Pages/PECOMarketplace.aspx"
+                    return "https://www.peco.com/Help"
                 } else {
                     return "https://www.peco.com/smartideas"
                 }
@@ -285,10 +297,10 @@ class TemplateCardViewModel {
                     case "ECOBEE WIFI":
                         return nil
                     default:
-                        return "https://bgesavings.com/enroll"
+                        return "https://\(Configuration.shared.associatedDomain)/assistance/landing"
                     }
                 } else {
-                    return "https://bgesmartenergy.com/business"
+                    return "https://\(Configuration.shared.associatedDomain)/assistance/landing"
                 }
             case .comEd:
                 if accountDetail.isResidential {

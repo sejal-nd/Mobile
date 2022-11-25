@@ -9,7 +9,6 @@
 import RxSwift
 import RxCocoa
 import AVFoundation
-import PDTSimpleCalendar
 import UIKit
 
 class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
@@ -471,7 +470,7 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
             guard let self = self else { return }
             self.view.endEditing(true)
             
-            let calendarVC = PDTSimpleCalendarViewController()
+            let calendarVC = CalendarViewController()
             calendarVC.extendedLayoutIncludesOpaqueBars = true
             calendarVC.calendar = Calendar.current
             calendarVC.delegate = self
@@ -669,12 +668,12 @@ extension MakePaymentViewController: PaymentusFormViewControllerDelegate {
 
 // MARK: - PDTSimpleCalendarViewDelegate
 
-extension MakePaymentViewController: PDTSimpleCalendarViewDelegate {
-    func simpleCalendarViewController(_ controller: PDTSimpleCalendarViewController!, isEnabledDate date: Date!) -> Bool {
+extension MakePaymentViewController: CalendarViewDelegate {
+    func calendarViewController(_ controller: CalendarViewController, isDateEnabled date: Date) -> Bool {
         return viewModel.shouldCalendarDateBeEnabled(date)
     }
     
-    func simpleCalendarViewController(_ controller: PDTSimpleCalendarViewController!, didSelect date: Date!) {
+    func calendarViewController(_ controller: CalendarViewController, didSelect date: Date) {
         let components = Calendar.opCo.dateComponents([.year, .month, .day], from: date)
         guard let opCoTimeDate = Calendar.opCo.date(from: components) else { return }
         viewModel.paymentDate.accept(opCoTimeDate.isInToday(calendar: .opCo) ? .now : opCoTimeDate)
