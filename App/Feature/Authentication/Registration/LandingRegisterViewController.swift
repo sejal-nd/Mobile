@@ -14,7 +14,7 @@ class LandingRegisterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        FirebaseUtility.logScreenView(.landingRegisterView(className: self.className))
         title = NSLocalizedString("Register", comment: "")
         addCloseButton()
     }
