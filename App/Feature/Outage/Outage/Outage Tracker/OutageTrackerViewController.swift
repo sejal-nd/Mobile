@@ -256,6 +256,7 @@ class OutageTrackerViewController: UIViewController {
     }
     
     private func reportOutage() {
+        FirebaseUtility.logEvent(.authOutage(parameters: [.report_outage]))
         let storyboard = UIStoryboard(name: "Outage", bundle: Bundle.main)
         if let reportOutageVC = storyboard.instantiateViewController(withIdentifier: "ReportOutageViewController") as?  ReportOutageViewController {
             if let outageStatus = viewModel.outageStatus.value {
@@ -268,6 +269,7 @@ class OutageTrackerViewController: UIViewController {
     }
     
     private func openOutageMap(forStreetMap isStreetMap: Bool) {
+        FirebaseUtility.logEvent(.authOutage(parameters: [.map]))
         let storyboard = UIStoryboard(name: "Outage", bundle: Bundle.main)
         if let outageMapVC = storyboard.instantiateViewController(withIdentifier: "OutageMapViewController") as?  OutageMapViewController {
             outageMapVC.hasPressedStreetlightOutageMapButton = isStreetMap

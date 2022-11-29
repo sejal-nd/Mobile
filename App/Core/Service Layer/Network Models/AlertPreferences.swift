@@ -61,10 +61,12 @@ public struct AlertPreferences: Decodable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let preferences = try container.decode([AlertPreference].self,
                                            forKey: .preferences)
-        
+
+        let opcoIdentifier = AccountsStore.shared.currentAccount.utilityCode?.uppercased() ?? Configuration.shared.opco.rawValue
+
         for preference in preferences {
-            switch preference.programName {
-            case "High Usage Residential Alert", "High Usage Alert \(AccountsStore.shared.currentAccount.utilityCode?.uppercased() ?? Configuration.shared.opco.rawValue)":
+            switch preference.programName.trimmingCharacters(in: .whitespaces) {
+            case "High Usage Residential Alert", "High Usage Alert \(opcoIdentifier)":
                 highUsage = true
                 alertThreshold = preference.alertThreshold
             case "Energy Savings Day Alert":
@@ -73,34 +75,34 @@ public struct AlertPreferences: Decodable {
                 energySavingsDayResults = true
             case "Peak Time Savings":
                 peakTimeSavings = true
-            case "Peak Savings Day Results \(AccountsStore.shared.currentAccount.utilityCode?.uppercased() ?? Configuration.shared.opco.rawValue)":
+            case "Peak Savings Day Results \(opcoIdentifier)":
                 peakTimeSavingsDayResults = true
-            case "PESC \(AccountsStore.shared.currentAccount.utilityCode?.uppercased() ?? Configuration.shared.opco.rawValue)":
+            case "PESC \(opcoIdentifier)":
                 peakTimeSavingsDayAlert = true
-            case "Outage Notifications", "Outage \(AccountsStore.shared.currentAccount.utilityCode?.uppercased() ?? Configuration.shared.opco.rawValue)":
+            case "Outage Notifications", "Outage \(opcoIdentifier)":
                 outage = true
             case "Planned Outage":
                 scheduledMaint = true
-            case "Severe Weather", "Severe Weather \(AccountsStore.shared.currentAccount.utilityCode?.uppercased() ?? Configuration.shared.opco.rawValue)":
+            case "Severe Weather", "Severe Weather \(opcoIdentifier)":
                 severeWeather = true
-            case "Paperless Billing", "Bill is Ready", "Bill is Ready \(AccountsStore.shared.currentAccount.utilityCode?.uppercased() ?? Configuration.shared.opco.rawValue)":
+            case "Paperless Billing", "Bill is Ready", "Bill is Ready \(opcoIdentifier)":
                 billReady = true
-            case "Payment Reminder", "Payment Reminders", "Payment Reminder \(AccountsStore.shared.currentAccount.utilityCode?.uppercased() ?? Configuration.shared.opco.rawValue)":
+            case "Payment Reminder", "Payment Reminders", "Payment Reminder \(opcoIdentifier)":
                 paymentDue = true
                 if let daysBefore = preference.daysPrior {
                     paymentDueDaysBefore = daysBefore
                 }
-            case "Payment Posted", "Payment Posted \(AccountsStore.shared.currentAccount.utilityCode?.uppercased() ?? Configuration.shared.opco.rawValue)":
+            case "Payment Posted", "Payment Posted \(opcoIdentifier)":
                 paymentPosted = true
-            case "Payment Past Due", "Payment Past Due \(AccountsStore.shared.currentAccount.utilityCode?.uppercased() ?? Configuration.shared.opco.rawValue)":
+            case "Payment Past Due", "Payment Past Due \(opcoIdentifier)":
                 paymentPastDue = true
-            case "Budget Billing", "Budget Billing \(AccountsStore.shared.currentAccount.utilityCode?.uppercased() ?? Configuration.shared.opco.rawValue)":
+            case "Budget Billing", "Budget Billing \(opcoIdentifier)":
                 budgetBilling = true
-            case "Customer Appointments":
+            case "Customer Appointments", "Customer Appointments \(opcoIdentifier)":
                 appointmentTracking = true
-            case "Advance Notification":
+            case "Advance Notification", "Advance Notification \(opcoIdentifier)":
                 advancedNotification = true
-            case "News", "Marketing", "News \(AccountsStore.shared.currentAccount.utilityCode?.uppercased() ?? Configuration.shared.opco.rawValue)":
+            case "News", "Marketing", "News \(opcoIdentifier)":
                 forYourInfo = true
             case "Payment Assistance Grant Status":
                 grantStatus = true

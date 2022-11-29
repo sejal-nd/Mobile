@@ -58,7 +58,8 @@ class AlertPreferencesViewModel {
     
     var shouldEnrollPaperlessEBill: Bool {
         if Configuration.shared.opco == .bge { return false }
-        return initialBillReadyValue == false && billReady.value == true
+        // enroll in paperless if not already enrolled and enrolling in "Bill is Ready' alerts
+        return !accountDetail.isEBillEnrollment && (initialBillReadyValue == false && billReady.value == true)
     }
     
     var shouldShowHUABillThreshold: Bool {
@@ -302,6 +303,7 @@ class AlertPreferencesViewModel {
                 self.paymentPastDue.accept(alertPrefs.paymentPastDue)
                 self.budgetBilling.accept(alertPrefs.budgetBilling)
                 self.appointmentTracking.accept(alertPrefs.appointmentTracking)
+                self.advancedNotification.accept(alertPrefs.advancedNotification)
                 self.forYourInfo.accept(alertPrefs.forYourInfo)
                 self.energyBuddyUpdates.accept(UserDefaults.standard.bool(forKey: UserDefaultKeys.gameEnergyBuddyUpdatesAlertPreference))
                 self.grantStatus.accept(alertPrefs.grantStatus)
@@ -369,7 +371,10 @@ class AlertPreferencesViewModel {
                                                               paymentPastDue.asObservable(),
                                                               grantStatus.asObservable()])
     
-    private lazy var appointmentPrefs = Observable.combineLatest([appointmentTracking.asObservable()])
+    private lazy var appointmentPrefs = Observable.combineLatest([
+        appointmentTracking.asObservable(),
+        advancedNotification.asObservable()
+    ])
     
     private lazy var newsPrefs = Observable.combineLatest([forYourInfo.asObservable()])
     
@@ -400,6 +405,7 @@ class AlertPreferencesViewModel {
                                     paymentPastDue: paymentPrefs[2],
                                     budgetBilling: billingPrefs[1],
                                     appointmentTracking: appointmentPrefs[0],
+                                    advancedNotification: appointmentPrefs[1],
                                     forYourInfo: newsPrefs[0],
                                     grantStatus: paymentPrefs[3])
         }
@@ -469,6 +475,7 @@ class AlertPreferencesViewModel {
                                                 paymentPastDue: paymentPastDue.value,
                                                 budgetBilling: budgetBilling.value,
                                                 appointmentTracking: appointmentTracking.value,
+                                                advancedNotification: advancedNotification.value,
                                                 forYourInfo: forYourInfo.value,
                                                 peakTimeSavingsDayAlert: peakSavingsDayAlert.value,
                                                 peakTimeSavingsDayResults: peakSavingsDayResults.value,
@@ -647,7 +654,7 @@ class AlertPreferencesViewModel {
                     return NSLocalizedString("Appointment Tracking", comment: "")
                 }
             case .advancedNotification:
-                return NSLocalizedString("Advance Notification", comment: "")
+                return NSLocalizedString("Advanced Notification", comment: "")
             case .forYourInformation:
                 return Configuration.shared.opco.isPHI ? NSLocalizedString("Updates & General News", comment: "") : NSLocalizedString("For Your Information", comment: "")
             case .energyBuddyUpdates:

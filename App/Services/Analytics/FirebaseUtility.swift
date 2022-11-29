@@ -719,6 +719,7 @@ enum Screen {
     case unauthenticatedOutageView(className: String)
     case paymentView(className: String)
     case alertPreferencesView(className: String)
+    case landingRegisterView(className: String)
     
     
     // ISUM Auth Stop
@@ -876,6 +877,8 @@ enum Screen {
             return "usage_screen_view"
         case .watchBillView:
             return "bill_screen_view"
+        case .landingRegisterView:
+            return "LandingRegisterView"
         }
     }
         
@@ -935,7 +938,8 @@ enum Screen {
              .watchOutageView(let className),
              .watchReportOutageView(let className),
              .watchUsageView(let className),
-             .watchBillView(let className):
+             .watchBillView(let className),
+             .landingRegisterView(let className):
             return className
         }
     }
