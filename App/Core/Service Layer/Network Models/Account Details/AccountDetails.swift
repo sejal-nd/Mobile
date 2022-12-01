@@ -112,7 +112,7 @@ public struct AccountDetail: Decodable {
         // Not Enrolled
         case inactive = "INACTIVE"
         case invited = "INVITED"
-        case canceled = "CANCELED"
+        case canceled = "CANCELLED"
         case expired = "EXPIRED"
         // Pending
         case pending = "PENDING"
@@ -373,7 +373,7 @@ public struct AccountDetail: Decodable {
         self.premiseInfo = try container.decodeIfPresent([PremiseInfo].self,
                                                          forKey: .premiseInfo) ?? []
         self.isHourlyPricing = try container.decodeIfPresent(Bool.self, forKey: .isHourlyPricing) ?? false
-        self.prepaidStatus = try container.decodeIfPresent(PrepaidStatus.self, forKey: .prepaidStatus) ?? .inactive
+        self.prepaidStatus = (try? container.decodeIfPresent(PrepaidStatus.self, forKey: .prepaidStatus) ?? .inactive) ?? .inactive
         self.isHUAEligible = try container.decodeIfPresent(Bool.self, forKey: .isHUAEligible)
         self.isPTREligible = try container.decodeIfPresent(Bool.self, forKey: .isPTREligible)
         self.isPTSEligible = try container.decodeIfPresent(Bool.self, forKey: .isPTSEligible)
