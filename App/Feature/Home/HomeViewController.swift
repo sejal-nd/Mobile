@@ -14,11 +14,14 @@ import UserNotifications
 import SafariServices
 
 fileprivate let editHomeSegueId = "editHomeSegue"
-fileprivate let colorBackgroundViewHeight: CGFloat = 342
+fileprivate let colorBackgroundViewHeight: CGFloat = 446
 fileprivate let opcoIdentityViewHeight: CGFloat = 73
 
 class HomeViewController: AccountPickerViewController {
     
+    @IBOutlet weak var backgroundImageView: UIImageView!
+    @IBOutlet weak var greetingLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var colorBackgroundView: UIView!
     @IBOutlet weak var colorBackgroundHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var noNetworkConnectionView: NoNetworkConnectionView!
@@ -63,7 +66,10 @@ class HomeViewController: AccountPickerViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                
+
+        viewModel.backgroundImageDriver.drive(backgroundImageView.rx.image).disposed(by: bag)
+        viewModel.greetingDriver.drive(greetingLabel.rx.text).disposed(by: bag)
+        viewModel.greetingDateDriver.drive(dateLabel.rx.text).disposed(by: bag)
         colorBackgroundHeightConstraint.constant = colorBackgroundViewHeight
         
         accountPicker.delegate = self
@@ -151,10 +157,10 @@ class HomeViewController: AccountPickerViewController {
         if Configuration.shared.opco.isPHI {
             // Create Opco Identifier Card
             opcoIdentityView = .create()
-            mainStackView.insertArrangedSubview(opcoIdentityView, at: 0)
-            mainStackView.insertArrangedSubview(weatherView, at: 1)
-            opcoIdentityView.leadingAnchor.constraint(equalTo: mainStackView.leadingAnchor).isActive = true
-            opcoIdentityView.trailingAnchor.constraint(equalTo: mainStackView.trailingAnchor).isActive = true
+            contentStackView.insertArrangedSubview(opcoIdentityView, at: 0)
+//            contentStackView.insertArrangedSubview(weatherView, at: 1)
+            opcoIdentityView.leadingAnchor.constraint(equalTo: contentStackView.leadingAnchor).isActive = true
+            opcoIdentityView.trailingAnchor.constraint(equalTo: contentStackView.trailingAnchor).isActive = true
             opcoIdentityViewHeightConstraint = opcoIdentityView.heightAnchor.constraint(equalToConstant: opcoIdentityViewHeight)
             opcoIdentityViewHeightConstraint.isActive = true
             // Add a terms & conditions Button at the end of the stack for PHI ocpos
@@ -168,10 +174,10 @@ class HomeViewController: AccountPickerViewController {
                 }).disposed(by: bag)
             contentStackView.insertArrangedSubview(termsAndConditionsButton, at: contentStackView.subviews.count)
         } else {
-            mainStackView.insertArrangedSubview(weatherView, at: 0)
+//            contentStackView.insertArrangedSubview(weatherView, at: 0)
         }
-        weatherView.leadingAnchor.constraint(equalTo: mainStackView.leadingAnchor).isActive = true
-        weatherView.trailingAnchor.constraint(equalTo: mainStackView.trailingAnchor).isActive = true
+//        weatherView.leadingAnchor.constraint(equalTo: contentStackView.leadingAnchor).isActive = true
+//        weatherView.trailingAnchor.constraint(equalTo: contentStackView.trailingAnchor).isActive = true
         
         weatherView.didTapTemperatureTip
             .map(InfoModalViewController.init)
@@ -317,8 +323,8 @@ class HomeViewController: AccountPickerViewController {
                     importantUpdateView.configure(withUpdate: update)
                 } else {
                     let importantUpdateView = HomeUpdateView.create(withUpdate: update)
-                    self.mainStackView.insertArrangedSubview(importantUpdateView, at: !Configuration.shared.opco.isPHI ? 0 : 1)
-                    importantUpdateView.addTabletWidthConstraints(horizontalPadding: 16)
+                    self.contentStackView.insertArrangedSubview(importantUpdateView, at: !Configuration.shared.opco.isPHI ? 0 : 1)
+//                    importantUpdateView.addTabletWidthConstraints(horizontalPadding: 16)
                     importantUpdateView.button.rx.touchUpInside.asDriver()
                         .drive(onNext: { [weak self] in
                             self?.performSegue(withIdentifier: "UpdatesDetailSegue", sender: update)
@@ -502,7 +508,7 @@ class HomeViewController: AccountPickerViewController {
             .distinctUntilChanged()
             .map { [weak self] offset in
                 guard let self = self else { return colorBackgroundViewHeight }
-                let minimumHeight = self.view.safeAreaInsets.top + self.accountPicker.frame.size.height
+                let minimumHeight = 0.0 // self.view.safeAreaInsets.top // + self.accountPicker.frame.size.height
                 let heightMinusScrollOffset = colorBackgroundViewHeight - offset.y
                 return max(minimumHeight, heightMinusScrollOffset)
             }
@@ -948,11 +954,11 @@ extension HomeViewController: AccountPickerDelegate {
             if Configuration.shared.opco.isPHI {
                 if accountPicker.accounts.count > 1 && account.accountNickname?.count == .zero {
                     opcoIdentityView.reset()
-                    mainStackView.removeArrangedSubview(opcoIdentityView)
+                    contentStackView.removeArrangedSubview(opcoIdentityView)
                 } else {
                     if let opcoType = account.opcoType {
-                        mainStackView.insertArrangedSubview(opcoIdentityView, at: 0)
-                        mainStackView.insertArrangedSubview(weatherView, at: 1)
+                        contentStackView.insertArrangedSubview(opcoIdentityView, at: 0)
+//                        contentStackView.insertArrangedSubview(weatherView, at: 1)
                         if let accountNickname = account.accountNickname {
                             var nickname = ""
                             if accountNickname != account.accountNumber {
@@ -960,7 +966,7 @@ extension HomeViewController: AccountPickerDelegate {
                             }
                             if nickname.isEmpty && accountPicker.accounts.count == 1 {
                                 opcoIdentityView.reset()
-                                mainStackView.removeArrangedSubview(opcoIdentityView)
+                                contentStackView.removeArrangedSubview(opcoIdentityView)
                             } else {
                                 opcoIdentityView.resetNickname()
                                 opcoIdentityView.configure(nickname: nickname,

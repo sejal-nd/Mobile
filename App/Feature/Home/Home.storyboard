@@ -8,6 +8,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="Diodrum-Regular.otf">
+            <string>Diodrum-Regular</string>
+        </array>
         <array key="Diodrum-Regular.ttf">
             <string>Diodrum</string>
         </array>
@@ -21,11 +24,11 @@
             <objects>
                 <viewController extendedLayoutIncludesOpaqueBars="YES" hidesBottomBarWhenPushed="YES" id="jop-CG-TUs" customClass="HomeEditViewController" customModule="Atlantic_City_Electric" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ru0-ER-Lgv">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="531"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="SaA-dQ-kuY">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="446"/>
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="698"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="qE7-g0-s29">
                                     <size key="itemSize" width="375" height="60"/>
@@ -35,7 +38,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell autoresizesSubviews="NO" opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HomeEditCardCell" id="w0P-kT-Xhw" customClass="HomeEditCardCell" customModule="Atlantic_City_Electric" customModuleProvider="target">
-                                        <rect key="frame" x="112.66666666666667" y="75" width="375" height="60"/>
+                                        <rect key="frame" x="9" y="75" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
@@ -149,7 +152,7 @@
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell autoresizesSubviews="NO" opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HomeEditEmptyCell" id="OVN-Em-l8H" customClass="HomeEditEmptyCell" customModule="Atlantic_City_Electric" customModuleProvider="target">
-                                        <rect key="frame" x="112.66666666666667" y="145" width="375" height="60"/>
+                                        <rect key="frame" x="9" y="145" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
@@ -188,7 +191,7 @@
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell autoresizesSubviews="NO" opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HomeEditRestoreDefaultCell" id="XfF-mc-HWD" customClass="HomeEditRestoreDefaultCell" customModule="Atlantic_City_Electric" customModuleProvider="target">
-                                        <rect key="frame" x="112.66666666666667" y="215" width="375" height="60"/>
+                                        <rect key="frame" x="9" y="215" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
@@ -227,23 +230,23 @@
                                     </collectionViewCell>
                                 </cells>
                                 <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="HomeEditSectionHeaderView" id="cbJ-sv-HlZ" customClass="HomeEditSectionHeaderView" customModule="Atlantic_City_Electric" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="75"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="75"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wzA-e0-pWV">
-                                            <rect key="frame" x="70" y="0.0" width="460" height="75"/>
+                                            <rect key="frame" x="16" y="0.0" width="361" height="75"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="hUV-xS-cpA">
-                                                    <rect key="frame" x="0.0" y="3" width="460" height="72"/>
+                                                    <rect key="frame" x="0.0" y="3" width="361" height="72"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GMp-xh-Mlt">
-                                                            <rect key="frame" x="0.0" y="0.0" width="460" height="20.333333333333332"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="361" height="20.333333333333332"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="More Cards" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EXI-ND-0ih">
-                                                            <rect key="frame" x="0.0" y="50.333333333333336" width="460" height="21.666666666666664"/>
+                                                            <rect key="frame" x="0.0" y="50.333333333333336" width="361" height="21.666666666666664"/>
                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
@@ -282,10 +285,10 @@
                                 </connections>
                             </collectionView>
                             <view contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ONv-RL-qH5" customClass="StickyFooterView" customModule="Atlantic_City_Electric" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="446" width="600" height="85"/>
+                                <rect key="frame" x="0.0" y="698" width="393" height="85"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1zG-sw-7Fq" customClass="PrimaryButton" customModule="Atlantic_City_Electric" customModuleProvider="target">
-                                        <rect key="frame" x="70" y="15" width="460" height="55"/>
+                                        <rect key="frame" x="28" y="15" width="337" height="55"/>
                                         <accessibility key="accessibilityConfiguration" label="Save Changes"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="RAJ-zK-1QZ"/>
@@ -698,14 +701,14 @@
                         <viewControllerLayoutGuide type="bottom" id="Dqq-1a-lJA"/>
                     </layoutGuides>
                     <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="bB9-IB-WIF">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="531"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="wrg-RC-Urp">
-                                <rect key="frame" x="0.0" y="59" width="600" height="387"/>
+                                <rect key="frame" x="0.0" y="59" width="393" height="639"/>
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="dSq-GB-YL7" customClass="ButtonBarView" customModule="XLPagerTabStrip">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="48"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="48"/>
                                         <color key="backgroundColor" red="0.027450980390000001" green="0.72549019609999998" blue="0.60784313729999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="48" id="zdq-6F-69a"/>
@@ -719,25 +722,25 @@
                                         <cells/>
                                     </collectionView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4KE-rm-CKT">
-                                        <rect key="frame" x="0.0" y="48" width="600" height="1"/>
+                                        <rect key="frame" x="0.0" y="48" width="393" height="1"/>
                                         <color key="backgroundColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="OPS-sm-uZT"/>
                                         </constraints>
                                     </view>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mTr-Pe-azx">
-                                        <rect key="frame" x="0.0" y="49" width="600" height="338"/>
+                                        <rect key="frame" x="0.0" y="49" width="393" height="590"/>
                                     </scrollView>
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nzs-yn-phX" customClass="NoNetworkConnectionView" customModule="Atlantic_City_Electric" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="49" width="600" height="338"/>
+                                        <rect key="frame" x="0.0" y="49" width="393" height="590"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="epj-nW-btH" customClass="StateView" customModule="Atlantic_City_Electric" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="49" width="600" height="338"/>
+                                        <rect key="frame" x="0.0" y="49" width="393" height="590"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bCZ-fZ-pSB" customClass="StateView" customModule="Atlantic_City_Electric" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="387" width="600" height="0.0"/>
+                                        <rect key="frame" x="0.0" y="639" width="393" height="0.0"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                 </subviews>
@@ -757,14 +760,14 @@
                                 </constraints>
                             </stackView>
                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="Sx1-DX-5IR" customClass="LoadingIndicator" customModule="Atlantic_City_Electric" customModuleProvider="target">
-                                <rect key="frame" x="270" y="259.66666666666669" width="60" height="12"/>
+                                <rect key="frame" x="166.66666666666666" y="385.66666666666669" width="60" height="12"/>
                                 <color key="backgroundColor" red="0.84705882349999995" green="0.84705882349999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <view contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YwV-bN-j38" customClass="StickyFooterView" customModule="Atlantic_City_Electric" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="446" width="600" height="85"/>
+                                <rect key="frame" x="0.0" y="698" width="393" height="85"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZVL-zv-6aa" customClass="PrimaryButton" customModule="Atlantic_City_Electric" customModuleProvider="target">
-                                        <rect key="frame" x="70" y="15" width="460" height="55"/>
+                                        <rect key="frame" x="28" y="15" width="337" height="55"/>
                                         <accessibility key="accessibilityConfiguration" label="Contact Us"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="hL0-g1-6Cu"/>
@@ -818,18 +821,18 @@
             <objects>
                 <viewController storyboardIdentifier="Home" id="c2T-h3-4Jv" customClass="HomeViewController" customModule="Atlantic_City_Electric" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yS8-Uk-pA0">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6vT-aD-3n4">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="342"/>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6vT-aD-3n4">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="342"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="342" id="Hal-jK-5QX"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UsA-Tw-sQH" customClass="MaintenanceModeView" customModule="Atlantic_City_Electric" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="566"/>
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="818"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isColorBackground" value="YES"/>
@@ -838,43 +841,89 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GJI-lc-AQv" customClass="NoNetworkConnectionView" customModule="Atlantic_City_Electric" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="566"/>
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="818"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isColorBackground" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="50" translatesAutoresizingMaskIntoConstraints="NO" id="VZW-lf-qq1" customClass="AccountPicker" customModule="Atlantic_City_Electric" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="59" width="600" height="0.0"/>
+                                <rect key="frame" x="0.0" y="59" width="393" height="0.0"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="tintWhite" value="NO"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_home_afternoon_mobile" translatesAutoresizingMaskIntoConstraints="NO" id="UwC-l1-373">
+                                <rect key="frame" x="-3" y="59" width="399" height="446"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="446" id="PDb-kL-W4C"/>
+                                </constraints>
+                            </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YFa-0s-0sf">
-                                <rect key="frame" x="0.0" y="59" width="600" height="507"/>
+                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Mj-TS-qwu" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="458"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="953"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="R0W-6B-Jg1" userLabel="Main Stack">
-                                                <rect key="frame" x="0.0" y="0.0" width="600" height="428"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="393" height="923"/>
                                                 <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="03C-Li-pe1" userLabel="Home Header">
+                                                        <rect key="frame" x="16" y="0.0" width="361" height="243"/>
+                                                        <subviews>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_logo_white" translatesAutoresizingMaskIntoConstraints="NO" id="yyQ-Fy-vJo">
+                                                                <rect key="frame" x="102.66666666666669" y="40" width="156" height="62.333333333333343"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="156" id="3mo-0F-WG3"/>
+                                                                    <constraint firstAttribute="height" constant="62.399999999999999" id="LZd-qh-RnX"/>
+                                                                </constraints>
+                                                            </imageView>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Good Morning" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RAs-or-L7J">
+                                                                <rect key="frame" x="83.666666666666671" y="115" width="193.66666666666663" height="46"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="46" id="slN-T0-PRZ"/>
+                                                                </constraints>
+                                                                <fontDescription key="fontDescription" name="Diodrum-Regular" family="Diodrum" pointSize="30"/>
+                                                                <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="It’s Sunday, May 12, 2020" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DZd-sS-7y6">
+                                                                <rect key="frame" x="88.333333333333329" y="161" width="184.66666666666669" height="22"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="22" id="8Kk-hn-kc5"/>
+                                                                </constraints>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                                <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstItem="yyQ-Fy-vJo" firstAttribute="centerX" secondItem="03C-Li-pe1" secondAttribute="centerX" id="3bD-al-fgc"/>
+                                                            <constraint firstAttribute="height" constant="243" id="BND-Tt-5Qe"/>
+                                                            <constraint firstItem="RAs-or-L7J" firstAttribute="centerX" secondItem="03C-Li-pe1" secondAttribute="centerX" id="QlV-5g-BGr"/>
+                                                            <constraint firstItem="DZd-sS-7y6" firstAttribute="centerX" secondItem="03C-Li-pe1" secondAttribute="centerX" id="ZLj-br-PCt"/>
+                                                            <constraint firstItem="DZd-sS-7y6" firstAttribute="top" secondItem="RAs-or-L7J" secondAttribute="bottom" id="f9y-fw-n3r"/>
+                                                            <constraint firstItem="yyQ-Fy-vJo" firstAttribute="top" secondItem="03C-Li-pe1" secondAttribute="top" constant="40" id="yfc-gf-CqD"/>
+                                                            <constraint firstItem="RAs-or-L7J" firstAttribute="top" secondItem="yyQ-Fy-vJo" secondAttribute="bottom" constant="12.5" id="z3g-oF-CBa"/>
+                                                        </constraints>
+                                                    </view>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="EIE-Dk-9Kb">
-                                                        <rect key="frame" x="70" y="0.0" width="460" height="71"/>
+                                                        <rect key="frame" x="16" y="243" width="361" height="71"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="0.0" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="yAw-yc-4Zv" userLabel="Card Stack View">
-                                                                <rect key="frame" x="0.0" y="0.0" width="460" height="0.0"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="361" height="0.0"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="cwq-qy-aQc"/>
                                                                 </constraints>
                                                             </stackView>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cXe-ii-e2G">
-                                                                <rect key="frame" x="0.0" y="25" width="460" height="46"/>
+                                                                <rect key="frame" x="0.0" y="25" width="361" height="46"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="csJ-YN-Yl6" customClass="SecondaryButton" customModule="Atlantic_City_Electric" customModuleProvider="target">
-                                                                        <rect key="frame" x="100" y="1" width="260" height="45"/>
+                                                                        <rect key="frame" x="50.666666666666686" y="1" width="260" height="45"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="45" id="04K-Sv-Jkv"/>
                                                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="260" id="MHl-g9-xBa"/>
@@ -903,22 +952,22 @@
                                                         </constraints>
                                                     </stackView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2cU-Xy-mq7">
-                                                        <rect key="frame" x="0.0" y="71" width="600" height="357"/>
+                                                        <rect key="frame" x="0.0" y="314" width="393" height="609"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SVR-2m-y9N">
-                                                                <rect key="frame" x="70" y="74.666666666666657" width="460" height="207.99999999999997"/>
+                                                                <rect key="frame" x="0.0" y="200.66666666666663" width="393" height="208"/>
                                                                 <subviews>
                                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_lock_white" translatesAutoresizingMaskIntoConstraints="NO" id="QKQ-gs-etb">
-                                                                        <rect key="frame" x="167.66666666666666" y="0.0" width="124.99999999999997" height="126"/>
+                                                                        <rect key="frame" x="134" y="0.0" width="125" height="126"/>
                                                                     </imageView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Account Ineligible" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RTj-42-gKa">
-                                                                        <rect key="frame" x="156.33333333333331" y="160.00000000000003" width="147.33333333333331" height="18"/>
+                                                                        <rect key="frame" x="123.00000000000001" y="160" width="147.33333333333337" height="18"/>
                                                                         <fontDescription key="fontDescription" name="Diodrum-Semibold" family="Open Sans" pointSize="18"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This profile type does not have access to the mobile app. Access your account on our responsive website." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qr4-9G-ITF">
-                                                                        <rect key="frame" x="29" y="180.00000000000003" width="402" height="28"/>
+                                                                        <rect key="frame" x="29" y="180" width="335" height="28"/>
                                                                         <fontDescription key="fontDescription" name="Diodrum" family="Open Sans" pointSize="14"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
@@ -995,18 +1044,24 @@
                             <constraint firstItem="vvV-Ex-WN8" firstAttribute="trailing" secondItem="VZW-lf-qq1" secondAttribute="trailing" id="gGh-MZ-rfm"/>
                             <constraint firstItem="YFa-0s-0sf" firstAttribute="top" secondItem="VZW-lf-qq1" secondAttribute="bottom" id="gMr-ij-Pne"/>
                             <constraint firstItem="GJI-lc-AQv" firstAttribute="top" secondItem="yS8-Uk-pA0" secondAttribute="top" id="gUx-A6-K0Q"/>
+                            <constraint firstItem="UwC-l1-373" firstAttribute="trailing" secondItem="yS8-Uk-pA0" secondAttribute="trailing" constant="3" id="heU-is-tUf"/>
+                            <constraint firstItem="UwC-l1-373" firstAttribute="top" secondItem="VZW-lf-qq1" secondAttribute="bottom" id="hss-fC-JOA"/>
                             <constraint firstItem="vvV-Ex-WN8" firstAttribute="trailing" secondItem="6vT-aD-3n4" secondAttribute="trailing" id="nkW-4V-Izx"/>
                             <constraint firstItem="VZW-lf-qq1" firstAttribute="top" secondItem="vvV-Ex-WN8" secondAttribute="top" id="rn1-bu-OWT"/>
                             <constraint firstItem="YFa-0s-0sf" firstAttribute="leading" secondItem="vvV-Ex-WN8" secondAttribute="leading" id="siF-H6-fXi"/>
+                            <constraint firstItem="UwC-l1-373" firstAttribute="leading" secondItem="yS8-Uk-pA0" secondAttribute="leading" constant="-3" id="xFh-iM-8zk"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="accountDisallowView" destination="2cU-Xy-mq7" id="b1i-Gv-JPK"/>
                         <outlet property="accountPicker" destination="VZW-lf-qq1" id="bWD-aI-6wN"/>
+                        <outlet property="backgroundImageView" destination="UwC-l1-373" id="2ja-4u-p55"/>
                         <outlet property="cardStackView" destination="yAw-yc-4Zv" id="4I4-0L-LHn"/>
-                        <outlet property="colorBackgroundHeightConstraint" destination="Hal-jK-5QX" id="76k-Mw-F0M"/>
+                        <outlet property="colorBackgroundHeightConstraint" destination="PDb-kL-W4C" id="0TF-NS-aR6"/>
                         <outlet property="colorBackgroundView" destination="6vT-aD-3n4" id="8hx-cm-OcP"/>
                         <outlet property="contentStackView" destination="EIE-Dk-9Kb" id="akV-NY-HQz"/>
+                        <outlet property="dateLabel" destination="DZd-sS-7y6" id="Osq-Rk-ieD"/>
+                        <outlet property="greetingLabel" destination="RAs-or-L7J" id="4Ia-pm-73z"/>
                         <outlet property="mainStackView" destination="R0W-6B-Jg1" id="tZK-Yg-oz3"/>
                         <outlet property="maintenanceModeView" destination="UsA-Tw-sQH" id="foV-1C-SXv"/>
                         <outlet property="noNetworkConnectionView" destination="GJI-lc-AQv" id="6ha-EO-03T"/>
@@ -1022,7 +1077,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="arn-JF-3F9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-207.24637681159422" y="-1465.1785714285713"/>
+            <point key="canvasLocation" x="-208.3969465648855" y="-1465.4929577464789"/>
         </scene>
     </scenes>
     <resources>
@@ -1031,5 +1086,7 @@
         <image name="ic_lock_white" width="125" height="126"/>
         <image name="ic_savings_caretleft" width="24" height="24"/>
         <image name="ic_savings_caretright" width="24" height="24"/>
+        <image name="img_home_afternoon_mobile" width="380" height="450"/>
+        <image name="img_logo_white" width="250" height="100"/>
     </resources>
 </document>
