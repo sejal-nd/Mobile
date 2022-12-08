@@ -31,7 +31,9 @@ class B2CUsageWebViewController: UIViewController {
         }
         set {
             viewModel.accountDetail.accept(newValue)
-            viewModel.refreshCommercialWidgets()
+            if viewModel.accountDetail.value?.isResidential == false {
+                viewModel.refreshCommercialWidgets()
+            }
         }
     }
     
@@ -133,7 +135,9 @@ class B2CUsageWebViewController: UIViewController {
     }
     
     func refresh() {
-        viewModel.refreshCommercialWidgets()
+        if viewModel.accountDetail.value?.isResidential == false {
+            viewModel.refreshCommercialWidgets()
+        }
         viewModel.fetchJWT()
     }
     
