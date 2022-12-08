@@ -39,8 +39,6 @@ class RegistrationValidateAccountViewControllerNew: KeyboardAvoidingStickyFooter
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var segmentedControl: SegmentedControl!
     @IBOutlet weak var continueButton: PrimaryButton!
-
-    @IBOutlet weak var stepperView: UIStackView!
     
     let viewModel = RegistrationViewModel()
     weak var delegate: RegistrationViewControllerDelegate?
@@ -50,10 +48,6 @@ class RegistrationValidateAccountViewControllerNew: KeyboardAvoidingStickyFooter
         
         title = NSLocalizedString("Register", comment: "")
         addCloseButton()
-        
-        if Configuration.shared.opco != .bge {
-            stepperView.isHidden = true
-        }
 
         viewModel.validateAccountContinueEnabled.drive(continueButton.rx.isEnabled).disposed(by: disposeBag)
         

@@ -3250,7 +3250,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Account Identification" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t3I-2a-2FM">
-                                                                                <rect key="frame" x="72.333333333333314" y="0.0" width="124" height="14.333333333333334"/>
+                                                                                <rect key="frame" x="68.333333333333314" y="0.0" width="124" height="14.333333333333334"/>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
@@ -3262,7 +3262,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                                                             <constraint firstItem="fSv-C3-ouf" firstAttribute="leading" secondItem="xXt-rl-FzH" secondAttribute="leading" id="JSS-SO-8Rl"/>
                                                                             <constraint firstItem="fSv-C3-ouf" firstAttribute="baseline" secondItem="t3I-2a-2FM" secondAttribute="baseline" id="QUD-Lj-1mz"/>
                                                                             <constraint firstItem="fSv-C3-ouf" firstAttribute="top" secondItem="xXt-rl-FzH" secondAttribute="top" id="jaS-JD-Q1V"/>
-                                                                            <constraint firstItem="t3I-2a-2FM" firstAttribute="leading" secondItem="fSv-C3-ouf" secondAttribute="trailing" constant="2" id="sl6-S3-9gi"/>
+                                                                            <constraint firstItem="t3I-2a-2FM" firstAttribute="leading" secondItem="fSv-C3-ouf" secondAttribute="trailing" constant="-2" id="sl6-S3-9gi"/>
                                                                         </constraints>
                                                                     </view>
                                                                 </subviews>
@@ -3480,7 +3480,6 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                         <outlet property="segmentContainer" destination="nXO-Jg-mm1" id="XXo-2T-7Q2"/>
                         <outlet property="segmentedControl" destination="wFa-mA-csV" id="me6-xs-Kjy"/>
                         <outlet property="stackView" destination="iVO-hx-ud7" id="HEJ-48-NUW"/>
-                        <outlet property="stepperView" destination="pP6-VY-CIg" id="i1l-O9-3WX"/>
                         <outlet property="stickyFooterBottomConstraint" destination="lW8-2l-Wwa" id="rY5-dv-iJN"/>
                         <segue destination="ueA-xd-0Gb" kind="show" identifier="createCredentialsSegue" id="PqP-gN-czM"/>
                         <segue destination="mUI-y0-ZYJ" kind="show" identifier="chooseAccountSegue" id="tNW-C1-9Bi"/>
