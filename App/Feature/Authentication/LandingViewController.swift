@@ -11,6 +11,7 @@ import AVFoundation
 import RxSwift
 import RxCocoa
 import AuthenticationServices
+import Lottie
 
 #if canImport(SwiftUI)
 import SwiftUI
@@ -29,6 +30,9 @@ class LandingViewController: UIViewController {
     @IBOutlet weak var versionLabel: UILabel!
     @IBOutlet weak var debugButton: UIButton!
     @IBOutlet weak var videoView: UIView!
+
+    @IBOutlet weak var backgroundImageView: UIImageView!
+    var backgroundAnimationView = AnimationView()
     
     private var playerLayer: AVPlayerLayer!
     private var avPlayer: AVPlayer?
@@ -51,7 +55,7 @@ class LandingViewController: UIViewController {
         continueAsGuestButon.setTitle(NSLocalizedString("Continue as Guest", comment: ""), for: .normal)
         continueAsGuestButon.titleLabel?.font = .headlineSemibold
         
-        logoBackgroundView.backgroundColor = .primaryColor
+//        logoBackgroundView.backgroundColor = .primaryColor
         view.backgroundColor = .primaryColor
         
         // Version Label
@@ -82,7 +86,8 @@ class LandingViewController: UIViewController {
         let a11yText = NSLocalizedString("%@, an Exelon Company", comment: "")
         logoImageView.accessibilityLabel = String(format: a11yText, Configuration.shared.opco.displayString)
         
-        backgroundVideoSetup()
+//        backgroundVideoSetup()
+        setUpackgroundAnimation()
         
         (UIApplication.shared.delegate as? AppDelegate)?.checkIOSVersion()
     }
@@ -92,7 +97,7 @@ class LandingViewController: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: true)
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationItem.largeTitleDisplayMode = .always
-        backgroundVideoResume(at: avPlayerPlaybackTime)
+//        backgroundVideoResume(at: avPlayerPlaybackTime)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -283,7 +288,7 @@ class LandingViewController: UIViewController {
         try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: .mixWithOthers)
         
         view.sendSubviewToBack(videoView)
-        let movieUrl = URL(fileURLWithPath: Bundle.main.path(forResource: "landing_video-Flavor\(Configuration.shared.opco.rawValue)", ofType: "mp4")!)
+        let movieUrl = URL(fileURLWithPath: Bundle.main.path(forResource: "wavemotif_slower_trimmed", ofType: "mov")!)
         let asset = AVAsset(url: movieUrl)
         let avPlayerItem = AVPlayerItem(asset: asset)
         avPlayer = AVPlayer(playerItem: avPlayerItem)
@@ -326,7 +331,7 @@ class LandingViewController: UIViewController {
     }
     
     private func backgroundVideoResume(at playbackTime: CMTime) {
-        let movieUrl = URL(fileURLWithPath: Bundle.main.path(forResource: "landing_video-Flavor\(Configuration.shared.opco.rawValue)", ofType: "mp4")!)
+        let movieUrl = URL(fileURLWithPath: Bundle.main.path(forResource: "wavemotif_slower_trimmed", ofType: "mov")!)
         let asset = AVAsset(url: movieUrl)
         let avPlayerItem = AVPlayerItem(asset: asset)
         avPlayer = AVPlayer(playerItem: avPlayerItem)
@@ -336,6 +341,39 @@ class LandingViewController: UIViewController {
         
         guard let avPlayer = avPlayer else { return }
         playerLayer.player = avPlayer
+    }
+
+    private func setUpackgroundAnimation() {
+
+        let rotationAnimation = CABasicAnimation(keyPath: "transform.rotation")
+        rotationAnimation.fromValue = 0.0
+        rotationAnimation.toValue = Double.pi * 2 // negative can control direction
+        rotationAnimation.duration = 240.0
+        rotationAnimation.repeatCount = .infinity
+        backgroundImageView.layer.add(rotationAnimation, forKey: nil)
+        backgroundImageView.clipsToBounds = false
+
+//        backgroundAnimationView = AnimationView(name: "wavemotif")
+//        backgroundAnimationView.loopMode = .loop
+//        backgroundAnimationView.backgroundBehavior = .pauseAndRestore
+//        backgroundAnimationView.translatesAutoresizingMaskIntoConstraints = false
+//        backgroundAnimationView.contentMode = .scaleAspectFill
+//
+//        backgroundAnimationView.setContentHuggingPriority(.required, for: .horizontal)
+//        backgroundAnimationView.setContentHuggingPriority(.required, for: .vertical)
+//        backgroundAnimationView.setContentCompressionResistancePriority(.required, for: .horizontal)
+//        backgroundAnimationView.setContentCompressionResistancePriority(.required, for: .vertical)
+//
+//        view.addSubview(backgroundAnimationView)
+//
+//        view.addConstraints([
+//            backgroundAnimationView.topAnchor.constraint(equalTo: view.topAnchor),
+//            backgroundAnimationView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+//            backgroundAnimationView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+//            backgroundAnimationView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+//        ])
+//
+//        backgroundAnimationView.play()
     }
     
     // MARK: - Navigation

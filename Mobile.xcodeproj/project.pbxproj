@@ -503,8 +503,6 @@
 		679C6EBE24D1EBCA00535DE7 /* AppointmentService+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679C6EBD24D1EBCA00535DE7 /* AppointmentService+Rx.swift */; };
 		679C6ED824D1F0A800535DE7 /* Appointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679C6ED724D1F0A800535DE7 /* Appointment.swift */; };
 		679C6EE524D1FE7B00535DE7 /* WeatherService+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679C6EE424D1FE7B00535DE7 /* WeatherService+Rx.swift */; };
-		679CC72D2500041F00A46BBE /* landing_video-FlavorACE.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 679CC72A2500041E00A46BBE /* landing_video-FlavorACE.mp4 */; };
-		679CC72E2500041F00A46BBE /* landing_video-FlavorDPL.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 679CC72B2500041E00A46BBE /* landing_video-FlavorDPL.mp4 */; };
 		67A18B7324CA0EA100F7A77B /* ApigeeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A18B7224CA0EA100F7A77B /* ApigeeError.swift */; };
 		67A18B9024CB354100F7A77B /* RefreshTokenRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A18B8F24CB354100F7A77B /* RefreshTokenRequest.swift */; };
 		67A482BE26BA09FE00FBB0BB /* WatchAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A482BD26BA09FE00FBB0BB /* WatchAppDelegate.swift */; };
@@ -559,7 +557,6 @@
 		67D5626924EADAA700852551 /* GameSurvery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D5626824EADAA700852551 /* GameSurvery.swift */; };
 		67D5626B24EADAC900852551 /* GameTaskType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D5626A24EADAC900852551 /* GameTaskType.swift */; };
 		67D5631E24ED9F2A00852551 /* Assets-FlavorCOMED.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06CF1E521B8B00BBA4ED /* Assets-FlavorCOMED.xcassets */; };
-		67D5632024EDC14D00852551 /* landing_video-FlavorCOMED.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 825FEE031FDF370B00DC1961 /* landing_video-FlavorCOMED.mp4 */; };
 		67D5632124EDC6F500852551 /* Appt_Canceled-FlavorCOMED.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B083E921710C8500B1C632 /* Appt_Canceled-FlavorCOMED.json */; };
 		67D5632224EDC6F500852551 /* Appt_Complete-FlavorCOMED.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B083ED21710C8900B1C632 /* Appt_Complete-FlavorCOMED.json */; };
 		67D5632324EDC6F500852551 /* Appt_Confirmed-FlavorCOMED.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B083EC21710C8800B1C632 /* Appt_Confirmed-FlavorCOMED.json */; };
@@ -577,8 +574,6 @@
 		67D73AF7246C480500450B63 /* BillingHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D73AF0246C480500450B63 /* BillingHistoryTableViewCell.swift */; };
 		67D73B00246C72F100450B63 /* (null) in Resources */ = {isa = PBXBuildFile; };
 		67DDBDBF24646E38006CD6EB /* Color+OpCo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67DDBDBE24646E38006CD6EB /* Color+OpCo.swift */; };
-		67E78D892509541A001AB1BD /* landing_video-FlavorPEPCO.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 67E78D882509541A001AB1BD /* landing_video-FlavorPEPCO.mp4 */; };
-		67E78D8B25095439001AB1BD /* landing_video-FlavorPECO.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 67E78D8A25095439001AB1BD /* landing_video-FlavorPECO.mp4 */; };
 		67F950FC24BCA111009B5F07 /* RegistrationValidateAccountViewControllerNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F47C224AB6CD200A828F9 /* RegistrationValidateAccountViewControllerNew.swift */; };
 		67F950FD24BCA111009B5F07 /* RegistrationCreateCredentialsViewControllerNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3535363724AC9A3000B428D6 /* RegistrationCreateCredentialsViewControllerNew.swift */; };
 		67F950FE24BCA111009B5F07 /* RegistrationSecurityQuestionsViewControllerNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E1F85724ADA49900574065 /* RegistrationSecurityQuestionsViewControllerNew.swift */; };
@@ -636,7 +631,6 @@
 		82D599421EC2374500DDB380 /* ActivityTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D599411EC2374500DDB380 /* ActivityTracker.swift */; };
 		82D5994B1EC36B5500DDB380 /* NumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D5994A1EC36B5500DDB380 /* NumberFormatter.swift */; };
 		82D599511EC3A00900DDB380 /* alert_icon.json in Resources */ = {isa = PBXBuildFile; fileRef = 82D599501EC3A00900DDB380 /* alert_icon.json */; };
-		82D626181FE1AD8B00B09F00 /* landing_video-FlavorBGE.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 82D626171FE1AD8B00B09F00 /* landing_video-FlavorBGE.mp4 */; };
 		82DE61051FB9F34A00DC25C1 /* OverrideViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82DE61041FB9F34A00DC25C1 /* OverrideViewModel.swift */; };
 		82DE610A1FB9F36D00DC25C1 /* OverrideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82DE61091FB9F36D00DC25C1 /* OverrideViewController.swift */; };
 		82E22B5E1F9FC7CE001F1A1B /* EnergyTipTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E22B5C1F9FC7CE001F1A1B /* EnergyTipTableViewCell.swift */; };
@@ -1069,6 +1063,9 @@
 		C3BCD53E2567238C006F405E /* HomeGameCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BCD53D2567238C006F405E /* HomeGameCardView.swift */; };
 		C3BCD5442567239D006F405E /* HomeGameCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3BCD5432567239D006F405E /* HomeGameCardView.xib */; };
 		C3C5696C256C33F60039C8A4 /* foresee_configuration.json in Resources */ = {isa = PBXBuildFile; fileRef = C3C5696B256C33F60039C8A4 /* foresee_configuration.json */; };
+		C3CD431829412C1000297553 /* Exelon_WaveGraphic_B_RGB_2.png in Resources */ = {isa = PBXBuildFile; fileRef = C3CD431629412C0D00297553 /* Exelon_WaveGraphic_B_RGB_2.png */; };
+		C3CD431929412C1000297553 /* wavemotif.json in Resources */ = {isa = PBXBuildFile; fileRef = C3CD431729412C0E00297553 /* wavemotif.json */; };
+		C3CD431B29426ACB00297553 /* wavemotif_slower_trimmed.mov in Resources */ = {isa = PBXBuildFile; fileRef = C3CD431A29426ACB00297553 /* wavemotif_slower_trimmed.mov */; };
 		C3D25406292439090024FF59 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D25405292439090024FF59 /* Fonts.swift */; };
 		C3DC821F251A518B0014D571 /* AccountsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D340901EBA6A8700BA2D42 /* AccountsStore.swift */; };
 		C3DC8224251A525A0014D571 /* AlertsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E835D1C81FB631AA008CE250 /* AlertsStore.swift */; };
@@ -1864,8 +1861,6 @@
 		679C6EBD24D1EBCA00535DE7 /* AppointmentService+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppointmentService+Rx.swift"; sourceTree = "<group>"; };
 		679C6ED724D1F0A800535DE7 /* Appointment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appointment.swift; sourceTree = "<group>"; };
 		679C6EE424D1FE7B00535DE7 /* WeatherService+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WeatherService+Rx.swift"; sourceTree = "<group>"; };
-		679CC72A2500041E00A46BBE /* landing_video-FlavorACE.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "landing_video-FlavorACE.mp4"; sourceTree = "<group>"; };
-		679CC72B2500041E00A46BBE /* landing_video-FlavorDPL.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "landing_video-FlavorDPL.mp4"; sourceTree = "<group>"; };
 		67A18B7224CA0EA100F7A77B /* ApigeeError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApigeeError.swift; sourceTree = "<group>"; };
 		67A18B8F24CB354100F7A77B /* RefreshTokenRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshTokenRequest.swift; sourceTree = "<group>"; };
 		67A482BD26BA09FE00FBB0BB /* WatchAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchAppDelegate.swift; sourceTree = "<group>"; };
@@ -1903,8 +1898,6 @@
 		67DDBDB62464632F006CD6EB /* GoogleService-Info-RC-FlavorPEPCO.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-RC-FlavorPEPCO.plist"; sourceTree = "<group>"; };
 		67DDBDBA246463B7006CD6EB /* GoogleService-Info-BETA-FlavorPEPCO.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-BETA-FlavorPEPCO.plist"; sourceTree = "<group>"; };
 		67DDBDBE24646E38006CD6EB /* Color+OpCo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+OpCo.swift"; sourceTree = "<group>"; };
-		67E78D882509541A001AB1BD /* landing_video-FlavorPEPCO.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "landing_video-FlavorPEPCO.mp4"; sourceTree = "<group>"; };
-		67E78D8A25095439001AB1BD /* landing_video-FlavorPECO.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "landing_video-FlavorPECO.mp4"; sourceTree = "<group>"; };
 		680FEAC89543EFDDA1CC1E98 /* Pods-UITests.bge-beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UITests.bge-beta.xcconfig"; path = "Pods/Target Support Files/Pods-UITests/Pods-UITests.bge-beta.xcconfig"; sourceTree = "<group>"; };
 		68A2B01FFCACB64D965D63A2 /* Pods-EUMobile.test-bge.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile.test-bge.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile/Pods-EUMobile.test-bge.xcconfig"; sourceTree = "<group>"; };
 		68D36CE014A99FEBEEC49B46 /* Pods-EUMobileUITests.testing-ace.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobileUITests.testing-ace.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobileUITests/Pods-EUMobileUITests.testing-ace.xcconfig"; sourceTree = "<group>"; };
@@ -1962,7 +1955,6 @@
 		824A96681FB5F3480026FA4B /* AdjustThermostatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdjustThermostatViewModel.swift; sourceTree = "<group>"; };
 		825171A21F1D1D4F0020A6CA /* RadioSelectControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadioSelectControl.swift; sourceTree = "<group>"; };
 		825171B41F1D25130020A6CA /* HomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
-		825FEE031FDF370B00DC1961 /* landing_video-FlavorCOMED.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "landing_video-FlavorCOMED.mp4"; sourceTree = "<group>"; };
 		826773301FB0C38600A8CFAA /* SelectDeviceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDeviceViewController.swift; sourceTree = "<group>"; };
 		826773341FB0C42F00A8CFAA /* UIViewUsingAutoLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewUsingAutoLayout.swift; sourceTree = "<group>"; };
 		8267733C1FB2286200A8CFAA /* SmartThermostatScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartThermostatScheduleViewController.swift; sourceTree = "<group>"; };
@@ -2005,7 +1997,6 @@
 		82D599411EC2374500DDB380 /* ActivityTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityTracker.swift; sourceTree = "<group>"; };
 		82D5994A1EC36B5500DDB380 /* NumberFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberFormatter.swift; sourceTree = "<group>"; };
 		82D599501EC3A00900DDB380 /* alert_icon.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = alert_icon.json; sourceTree = "<group>"; };
-		82D626171FE1AD8B00B09F00 /* landing_video-FlavorBGE.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "landing_video-FlavorBGE.mp4"; sourceTree = "<group>"; };
 		82DE61041FB9F34A00DC25C1 /* OverrideViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverrideViewModel.swift; sourceTree = "<group>"; };
 		82DE61091FB9F36D00DC25C1 /* OverrideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverrideViewController.swift; sourceTree = "<group>"; };
 		82E22B5C1F9FC7CE001F1A1B /* EnergyTipTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyTipTableViewCell.swift; sourceTree = "<group>"; };
@@ -2430,6 +2421,9 @@
 		C3BCD53D2567238C006F405E /* HomeGameCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeGameCardView.swift; sourceTree = "<group>"; };
 		C3BCD5432567239D006F405E /* HomeGameCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeGameCardView.xib; sourceTree = "<group>"; };
 		C3C5696B256C33F60039C8A4 /* foresee_configuration.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = foresee_configuration.json; sourceTree = "<group>"; };
+		C3CD431629412C0D00297553 /* Exelon_WaveGraphic_B_RGB_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Exelon_WaveGraphic_B_RGB_2.png; sourceTree = "<group>"; };
+		C3CD431729412C0E00297553 /* wavemotif.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = wavemotif.json; sourceTree = "<group>"; };
+		C3CD431A29426ACB00297553 /* wavemotif_slower_trimmed.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = wavemotif_slower_trimmed.mov; sourceTree = "<group>"; };
 		C3D25405292439090024FF59 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		C3DE17DB291C2A0D0055275D /* HomeCardHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCardHeaderView.swift; sourceTree = "<group>"; };
 		C3DE17DD291C2E110055275D /* HomeCardHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeCardHeaderView.xib; sourceTree = "<group>"; };
@@ -5156,12 +5150,9 @@
 		82F2BDE51FD6EF9A00612309 /* Landing Video */ = {
 			isa = PBXGroup;
 			children = (
-				825FEE031FDF370B00DC1961 /* landing_video-FlavorCOMED.mp4 */,
-				67E78D8A25095439001AB1BD /* landing_video-FlavorPECO.mp4 */,
-				82D626171FE1AD8B00B09F00 /* landing_video-FlavorBGE.mp4 */,
-				679CC72A2500041E00A46BBE /* landing_video-FlavorACE.mp4 */,
-				679CC72B2500041E00A46BBE /* landing_video-FlavorDPL.mp4 */,
-				67E78D882509541A001AB1BD /* landing_video-FlavorPEPCO.mp4 */,
+				C3CD431629412C0D00297553 /* Exelon_WaveGraphic_B_RGB_2.png */,
+				C3CD431729412C0E00297553 /* wavemotif.json */,
+				C3CD431A29426ACB00297553 /* wavemotif_slower_trimmed.mov */,
 			);
 			path = "Landing Video";
 			sourceTree = "<group>";
@@ -6099,6 +6090,7 @@
 				675F4DC224AB828200A828F9 /* MaintenanceModeMock.json in Resources */,
 				67A986AA24F9693600BD46E7 /* sm_outage_loading-FlavorPECO.json in Resources */,
 				678B622D24D09A1B009F8A6B /* RegistrationQuestionsMock.json in Resources */,
+				C3CD431929412C1000297553 /* wavemotif.json in Resources */,
 				35C9139222E9E9C1009DD71A /* MiniWalletSheet.storyboard in Resources */,
 				C364A87B2375DC7B00C7D51B /* StateView.xib in Resources */,
 				30636F0E24C82F8500CCBFAE /* OpcoIdentityCardView.xib in Resources */,
@@ -6111,7 +6103,6 @@
 				B07E17E92209F0CA00B6E3C7 /* bill_comparison.json in Resources */,
 				C33718402925378D0092F501 /* Diodrum-Light.otf in Resources */,
 				216AE55B278E4B4E0018E220 /* StatusTextView.xib in Resources */,
-				67D5632024EDC14D00852551 /* landing_video-FlavorCOMED.mp4 in Resources */,
 				B089571F2217455200A97965 /* account_lookup.json in Resources */,
 				675F4D5624AB828200A828F9 /* HomeProfileLoadMock.json in Resources */,
 				675F4DCE24AB828200A828F9 /* WalletMock.json in Resources */,
@@ -6130,6 +6121,7 @@
 				4A74A0BB27304D6C00F87986 /* ISUMUnauthMove.storyboard in Resources */,
 				35532445253D6B8E0080589F /* PaymentAmount.storyboard in Resources */,
 				21C72A732772527700C31411 /* GasOnlyView.xib in Resources */,
+				C3CD431829412C1000297553 /* Exelon_WaveGraphic_B_RGB_2.png in Resources */,
 				9C62446822C42B4200F14DA0 /* FloatLabelTextView.xib in Resources */,
 				351241EF22B3DB8700E8BD25 /* AccountSheet.storyboard in Resources */,
 				30DD883625498122007C320D /* ItronSSODataMock.json in Resources */,
@@ -6205,7 +6197,6 @@
 				359BDB6B22D8DCEC007002B0 /* OutageStatusView.xib in Resources */,
 				675F4D6224AB828200A828F9 /* WeatherMock.json in Resources */,
 				B07E17EC2209F0CA00B6E3C7 /* payments.json in Resources */,
-				67E78D892509541A001AB1BD /* landing_video-FlavorPEPCO.mp4 in Resources */,
 				82A18EFC1EBA6A4100BE9F21 /* DisclosureButton.xib in Resources */,
 				B08956F92215D11B00A97965 /* energy_tips.json in Resources */,
 				67A986A524F9693300BD46E7 /* Appt_Confirmed-FlavorPECO.json in Resources */,
@@ -6221,7 +6212,6 @@
 				675F4D9824AB828200A828F9 /* RecoverUsernameMock.json in Resources */,
 				675F4D7A24AB828200A828F9 /* BillPDFMock.json in Resources */,
 				674A113A25223E1000AF0D38 /* LaunchScreen-FlavorACE.storyboard in Resources */,
-				679CC72D2500041F00A46BBE /* landing_video-FlavorACE.mp4 in Resources */,
 				67A986DE24FD419D00BD46E7 /* GoogleService-Info-RC-FlavorPEPCO.plist in Resources */,
 				B07E17EF220A2EAF00B6E3C7 /* opco_updates.json in Resources */,
 				B0B125FB221B080400AF4DC4 /* peak_rewards_summary.json in Resources */,
@@ -6252,7 +6242,6 @@
 				35A5DCC32305D70400A82AA8 /* AutoPayBGE.storyboard in Resources */,
 				E867A8FA1F053B00007F4FD9 /* Wallet.storyboard in Resources */,
 				82AEF2E41F618F560057E7ED /* Settings.bundle in Resources */,
-				82D626181FE1AD8B00B09F00 /* landing_video-FlavorBGE.mp4 in Resources */,
 				B089572D2217596400A97965 /* billing_history.json in Resources */,
 				B066281A2252953B0060A89F /* ser_results.json in Resources */,
 				C3381A062424064100EA7062 /* PTRWidget.html in Resources */,
@@ -6262,7 +6251,6 @@
 				C34459BA2922F015009DEDAF /* LaunchScreen.storyboard in Resources */,
 				282B4F7A26E7490400ACD33C /* ISUMStop.storyboard in Resources */,
 				B08957072215FE7900A97965 /* recover_username.json in Resources */,
-				679CC72E2500041F00A46BBE /* landing_video-FlavorDPL.mp4 in Resources */,
 				C338282724E30B0600F133C5 /* PeakRewardsSummaryMock.json in Resources */,
 				9C0A2C3923A042DC002C4B8E /* message_bubble_tip.json in Resources */,
 				9C0EA5C1237DAD2900D1E18F /* buddy_particles_hearts.json in Resources */,
@@ -6308,6 +6296,7 @@
 				675F4D5C24AB828200A828F9 /* PaymentMock.json in Resources */,
 				35ACCB4320EA590D0022907F /* HomeOutageCardView.xib in Resources */,
 				675F4D8C24AB828200A828F9 /* MinVersionMock.json in Resources */,
+				C3CD431B29426ACB00297553 /* wavemotif_slower_trimmed.mov in Resources */,
 				35A6C6FA2121D64100C2A58F /* ToggleTableViewCell.xib in Resources */,
 				67D5632824EDC6F600852551 /* sm_outage_loading-FlavorCOMED.json in Resources */,
 				B5D415781F3A6C6300AC32B2 /* GoogleService-Info-RELEASE-FlavorBGE.plist in Resources */,
@@ -6354,7 +6343,6 @@
 				9C46B12B221613FB00A5D537 /* wallet.json in Resources */,
 				C337183D2925378D0092F501 /* Diodrum-RegularItalic.otf in Resources */,
 				67A986A324F9693300BD46E7 /* Appt_Canceled-FlavorPECO.json in Resources */,
-				67E78D8B25095439001AB1BD /* landing_video-FlavorPECO.mp4 in Resources */,
 				4A74A0B9272EB4BE00F87986 /* MoveServiceConfirmationMock.json in Resources */,
 				675F4D9224AB828200A828F9 /* CompareBillMock.json in Resources */,
 				675F4D7424AB828200A828F9 /* SharePointAlertMock.json in Resources */,
