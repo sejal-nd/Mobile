@@ -39,7 +39,7 @@ class RegistrationValidateAccountViewControllerNew: KeyboardAvoidingStickyFooter
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var segmentedControl: SegmentedControl!
     @IBOutlet weak var continueButton: PrimaryButton!
-
+    
     let viewModel = RegistrationViewModel()
     weak var delegate: RegistrationViewControllerDelegate?
     
