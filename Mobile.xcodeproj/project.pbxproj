@@ -1013,6 +1013,8 @@
 		C34459BA2922F015009DEDAF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C34459B92922F014009DEDAF /* LaunchScreen.storyboard */; };
 		C348F97427F3942000A9CC0C /* B2CUsageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C348F97327F3942000A9CC0C /* B2CUsageViewModel.swift */; };
 		C34A7ED42519524200438B7B /* BGEAutoPayInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C336048024D333CB002CF260 /* BGEAutoPayInfo.swift */; };
+		C34D54E12948E6B700E6012B /* HomeDiscoverCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34D54E02948E6B700E6012B /* HomeDiscoverCardView.swift */; };
+		C34D54E32948E6CA00E6012B /* HomeDiscoverCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C34D54E22948E6CA00E6012B /* HomeDiscoverCardView.xib */; };
 		C3639C22292E7F2A00F17619 /* outage_reported.json in Resources */ = {isa = PBXBuildFile; fileRef = C3639C1E292E7F2700F17619 /* outage_reported.json */; };
 		C3639C23292E7F2A00F17619 /* outage_onsite.json in Resources */ = {isa = PBXBuildFile; fileRef = C3639C1F292E7F2800F17619 /* outage_onsite.json */; };
 		C3639C24292E7F2B00F17619 /* outage_enroute.json in Resources */ = {isa = PBXBuildFile; fileRef = C3639C20292E7F2900F17619 /* outage_enroute.json */; };
@@ -2379,6 +2381,8 @@
 		C33C3384254C9C5200E59CF8 /* LanguageResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageResult.swift; sourceTree = "<group>"; };
 		C34459B92922F014009DEDAF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C348F97327F3942000A9CC0C /* B2CUsageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = B2CUsageViewModel.swift; sourceTree = "<group>"; };
+		C34D54E02948E6B700E6012B /* HomeDiscoverCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDiscoverCardView.swift; sourceTree = "<group>"; };
+		C34D54E22948E6CA00E6012B /* HomeDiscoverCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeDiscoverCardView.xib; sourceTree = "<group>"; };
 		C3639C1E292E7F2700F17619 /* outage_reported.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = outage_reported.json; sourceTree = "<group>"; };
 		C3639C1F292E7F2800F17619 /* outage_onsite.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = outage_onsite.json; sourceTree = "<group>"; };
 		C3639C20292E7F2900F17619 /* outage_enroute.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = outage_enroute.json; sourceTree = "<group>"; };
@@ -3647,6 +3651,7 @@
 		3559C89822F9C51400481A87 /* Cards */ = {
 			isa = PBXGroup;
 			children = (
+				C34D54DF2948E68900E6012B /* Discover */,
 				C3DE17DB291C2A0D0055275D /* HomeCardHeaderView.swift */,
 				C3DE17DD291C2E110055275D /* HomeCardHeaderView.xib */,
 				30636F0624C82EBD00CCBFAE /* OpcoIdentityCardView */,
@@ -5698,6 +5703,15 @@
 			path = "Network Extensions";
 			sourceTree = "<group>";
 		};
+		C34D54DF2948E68900E6012B /* Discover */ = {
+			isa = PBXGroup;
+			children = (
+				C34D54E02948E6B700E6012B /* HomeDiscoverCardView.swift */,
+				C34D54E22948E6CA00E6012B /* HomeDiscoverCardView.xib */,
+			);
+			path = Discover;
+			sourceTree = "<group>";
+		};
 		C364A8772375DC7B00C7D51B /* State View */ = {
 			isa = PBXGroup;
 			children = (
@@ -6332,6 +6346,7 @@
 				67A986D924FD419A00BD46E7 /* GoogleService-Info-BETA-FlavorDPL.plist in Resources */,
 				67893AF324DB3825000143D6 /* RegisterForAlertsMock.json in Resources */,
 				359BDB7522D8F9B2007002B0 /* outage_off.json in Resources */,
+				C34D54E32948E6CA00E6012B /* HomeDiscoverCardView.xib in Resources */,
 				675F4D6824AB828200A828F9 /* DasilyUsageMock.json in Resources */,
 				B07D247720C590BE00BD22EB /* HomeWeatherView.xib in Resources */,
 				3575232D22C53A1B00A0AFAC /* AccountListRow.xib in Resources */,
@@ -7392,6 +7407,7 @@
 				21D41E1A2706CDFE00A622F9 /* MoveService+Rx.swift in Sources */,
 				359BDB8322DCDDCA007002B0 /* GasOnlyViewController.swift in Sources */,
 				C3087A8824B63D03005AE544 /* AccountService+Rx.swift in Sources */,
+				C34D54E12948E6B700E6012B /* HomeDiscoverCardView.swift in Sources */,
 				675F4CDE24AB828200A828F9 /* ForgotMaskedUsername.swift in Sources */,
 				C338281A24E2FDE000F133C5 /* WalletItem.swift in Sources */,
 				82A18EF01EBA686500BE9F21 /* PaperlessEBillAccountView.swift in Sources */,

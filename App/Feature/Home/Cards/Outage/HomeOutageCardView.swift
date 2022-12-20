@@ -28,6 +28,7 @@ class HomeOutageCardView: UIView {
     @IBOutlet private weak var outageReportedView: UIView!
     @IBOutlet private weak var outageReportedLabel: UILabel!
     @IBOutlet weak var callToActionButton: UIButton!
+    @IBOutlet weak var homeCardHeaderView: HomeCardHeaderView!
     
     // Custom Error View
     @IBOutlet private weak var customErrorView: UIView!
@@ -52,7 +53,9 @@ class HomeOutageCardView: UIView {
     
     var bag = DisposeBag()
     
-    private(set) lazy var reportOutageTapped: Driver<OutageStatus> = callToActionButton.rx.touchUpInside.asDriver()
+    private(set) lazy var reportOutageTapped: Driver<OutageStatus> = Driver.merge(
+        callToActionButton.rx.touchUpInside.asDriver(),
+        homeCardHeaderView.button.rx.touchUpInside.asDriver())
         .withLatestFrom(viewModel.showReportedOutageTime)
         .filter(!)
         .withLatestFrom(viewModel.currentOutageStatus)

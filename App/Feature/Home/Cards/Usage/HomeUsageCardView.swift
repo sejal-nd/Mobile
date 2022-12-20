@@ -59,6 +59,7 @@ class HomeUsageCardView: UIView {
     @IBOutlet private weak var barDescriptionTriangleImageView: UIImageView!
     @IBOutlet private weak var barDescriptionTriangleCenterXConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var homeCardHeaderView: HomeCardHeaderView!
     @IBOutlet weak var viewUsageButton: UIButton!
     
     @IBOutlet private weak var comparisonLoadingView: UIView!

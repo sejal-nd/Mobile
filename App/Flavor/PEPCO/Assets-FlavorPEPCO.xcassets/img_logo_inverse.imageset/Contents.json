@@ -1,15 +1,12 @@
 {
   "images" : [
     {
-      "filename" : "img_logo_white_pepco.pdf",
+      "filename" : "img_logo_inverse_pepco.svg",
       "idiom" : "universal"
     }
   ],
   "info" : {
     "author" : "xcode",
     "version" : 1
-  },
-  "properties" : {
-    "preserves-vector-representation" : true
   }
 }

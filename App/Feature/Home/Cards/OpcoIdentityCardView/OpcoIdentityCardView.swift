@@ -78,12 +78,8 @@ final class OpcoIdentityCardView: UIView {
     /// - Parameter opco: `opco`
     private func setOpcoLogo(opco: OpCo) {
         switch opco {
-        case .ace:
-            logo.image = #imageLiteral(resourceName: "img_logo_white_ace")
-        case .delmarva:
-            logo.image = #imageLiteral(resourceName: "img_logo_white_dpl")
-        case .pepco:
-            logo.image = #imageLiteral(resourceName: "img_logo_white_pep")
+        case .ace, .delmarva, .pepco:
+            logo.image = UIImage(named: "img_logo_white")
         default:
             break
         }

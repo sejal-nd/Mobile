@@ -1,15 +1,12 @@
 {
   "images" : [
     {
-      "filename" : "ic_passwordprotected_comed.pdf",
+      "filename" : "ic_bell.svg",
       "idiom" : "universal"
     }
   ],
   "info" : {
     "author" : "xcode",
     "version" : 1
-  },
-  "properties" : {
-    "localizable" : true
   }
 }

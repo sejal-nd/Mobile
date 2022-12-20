@@ -11,7 +11,7 @@
         <array key="Diodrum-Regular.ttf">
             <string>Diodrum</string>
         </array>
-        <array key="Diodrum-SemiboldItalic.ttf">
+        <array key="Diodrum-SemiboldItalic.otf">
             <string>Diodrum-SemiboldItalic</string>
         </array>
     </customFonts>
@@ -31,7 +31,7 @@
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="WUO-id-1FM">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="983"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yV7-RV-fTk" userLabel="Bill Card Header" customClass="HomeCardHeaderView" customModule="Atlantic_City_Electric" customModuleProvider="target">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yV7-RV-fTk" userLabel="Home Card Header" customClass="HomeCardHeaderView" customModule="Atlantic_City_Electric" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="37"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             <constraints>
@@ -43,7 +43,7 @@
                                             </userDefinedRuntimeAttributes>
                                         </view>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="x0h-2o-3eW">
-                                            <rect key="frame" x="0.0" y="37" width="375" height="344.5"/>
+                                            <rect key="frame" x="0.0" y="37" width="375" height="358"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lyQ-BA-aBw" userLabel="Spacer">
                                                     <rect key="frame" x="187.5" y="0.0" width="0.0" height="20"/>
@@ -54,7 +54,7 @@
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Projected Bill" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hfn-ET-rw1">
-                                                    <rect key="frame" x="137.5" y="20" width="100" height="0.0"/>
+                                                    <rect key="frame" x="137.5" y="20" width="100" height="18.5"/>
                                                     <accessibility key="accessibilityConfiguration">
                                                         <accessibilityTraits key="traits" staticText="YES" header="YES"/>
                                                     </accessibility>
@@ -63,7 +63,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="RVf-JB-EAb">
-                                                    <rect key="frame" x="0.0" y="20" width="375" height="274.5"/>
+                                                    <rect key="frame" x="0.0" y="38.5" width="375" height="269.5"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J2y-A3-9xY">
                                                             <rect key="frame" x="19" y="0.0" width="337" height="70"/>
@@ -88,25 +88,25 @@
                                                             </constraints>
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oxa-oP-USt">
-                                                            <rect key="frame" x="0.0" y="70" width="375" height="204.5"/>
+                                                            <rect key="frame" x="0.0" y="70" width="375" height="199.5"/>
                                                             <subviews>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="mhY-b6-KRD">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="174.5"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="169.5"/>
                                                                     <subviews>
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tS3-Jt-yAh">
                                                                             <rect key="frame" x="105.5" y="0.0" width="164" height="156.5"/>
                                                                             <subviews>
                                                                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="H4x-4C-4sr">
-                                                                                    <rect key="frame" x="0.0" y="31" width="164" height="92"/>
+                                                                                    <rect key="frame" x="0.0" y="31" width="164" height="96.5"/>
                                                                                     <subviews>
                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="999" text="$00.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bqP-4o-FJD">
-                                                                                            <rect key="frame" x="0.0" y="23" width="103" height="46.5"/>
+                                                                                            <rect key="frame" x="0.0" y="28" width="113" height="41"/>
                                                                                             <fontDescription key="fontDescription" name="Diodrum-SemiboldItalic" family="Open Sans" pointSize="34"/>
                                                                                             <nil key="textColor"/>
                                                                                             <nil key="highlightedColor"/>
                                                                                         </label>
                                                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="izL-VW-bDo">
-                                                                                            <rect key="frame" x="116" y="23" width="48" height="46.5"/>
+                                                                                            <rect key="frame" x="126" y="28" width="38" height="41"/>
                                                                                             <state key="normal" image="ic_tooltip"/>
                                                                                         </button>
                                                                                     </subviews>
@@ -115,7 +115,7 @@
                                                                                     </constraints>
                                                                                 </stackView>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="APR 12 - MAY 10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fbN-nx-82e">
-                                                                                    <rect key="frame" x="0.0" y="123" width="164" height="16.5"/>
+                                                                                    <rect key="frame" x="0.0" y="127.5" width="164" height="12"/>
                                                                                     <fontDescription key="fontDescription" name="Diodrum" family="Open Sans" pointSize="12"/>
                                                                                     <nil key="textColor"/>
                                                                                     <nil key="highlightedColor"/>
@@ -134,7 +134,7 @@
                                                                             </constraints>
                                                                         </view>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You've spent about $59 so far this bill period." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8sh-Ha-qR4">
-                                                                            <rect key="frame" x="51.5" y="156.5" width="272.5" height="18"/>
+                                                                            <rect key="frame" x="58.5" y="156.5" width="258.5" height="13"/>
                                                                             <fontDescription key="fontDescription" name="Diodrum" family="Open Sans" pointSize="13"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
@@ -163,7 +163,7 @@
                                                     </constraints>
                                                 </stackView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fHv-hB-UU0">
-                                                    <rect key="frame" x="151" y="294.5" width="73" height="50"/>
+                                                    <rect key="frame" x="151" y="308" width="73" height="50"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="50" id="TBz-ut-O1a"/>
                                                     </constraints>
@@ -184,7 +184,7 @@
                                             </constraints>
                                         </stackView>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wtK-UO-Kiv">
-                                            <rect key="frame" x="0.0" y="381.5" width="375" height="171.5"/>
+                                            <rect key="frame" x="0.0" y="395" width="375" height="171.5"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="KOA-zV-ZOX">
                                                     <rect key="frame" x="21" y="20" width="333" height="121.5"/>
@@ -219,13 +219,13 @@
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" verticalHuggingPriority="999" verticalCompressionResistancePriority="999" translatesAutoresizingMaskIntoConstraints="NO" id="lzd-vh-9k8">
-                                            <rect key="frame" x="0.0" y="553" width="375" height="217.5"/>
+                                            <rect key="frame" x="0.0" y="566.5" width="375" height="204"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" image="ic_maintenancemode_overall" translatesAutoresizingMaskIntoConstraints="NO" id="6bX-qd-TJF">
                                                     <rect key="frame" x="125" y="29" width="125" height="90"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" text="Projected Bill is currently unavailable due to maintenance." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l0g-Lw-SqJ">
-                                                    <rect key="frame" x="31.5" y="139" width="312.5" height="49.5"/>
+                                                    <rect key="frame" x="35.5" y="139" width="304" height="36"/>
                                                     <fontDescription key="fontDescription" name="Diodrum" family="Open Sans" pointSize="18"/>
                                                     <color key="textColor" red="0.45098039220000002" green="0.45098039220000002" blue="0.45098039220000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -336,6 +336,7 @@
                 <outlet property="errorDescriptionLabel" destination="7oO-Gb-8Vi" id="cA4-5D-39b"/>
                 <outlet property="errorTitleLabel" destination="cXn-MC-DFH" id="b0P-Ke-NDR"/>
                 <outlet property="errorView" destination="wtK-UO-Kiv" id="pyZ-x8-0cv"/>
+                <outlet property="homeCardHeaderView" destination="yV7-RV-fTk" id="g8V-E0-0OZ"/>
                 <outlet property="infoButton" destination="izL-VW-bDo" id="Gt3-mO-cxH"/>
                 <outlet property="infoStack" destination="x0h-2o-3eW" id="VLl-aZ-jN1"/>
                 <outlet property="loadingView" destination="r4c-kt-5oe" id="H7k-nK-rhE"/>
@@ -357,7 +358,7 @@
         <image name="ic_home_error_opcocard" width="36" height="36"/>
         <image name="ic_maintenancemode_overall" width="125" height="90"/>
         <image name="ic_pbempty" width="179" height="65"/>
-        <image name="ic_tooltip" width="24" height="24"/>
+        <image name="ic_tooltip" width="25" height="24"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

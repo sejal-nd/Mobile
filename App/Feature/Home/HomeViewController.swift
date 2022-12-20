@@ -35,7 +35,8 @@ class HomeViewController: AccountPickerViewController {
     @IBOutlet weak var personalizeButton: UIButton!
     
     var termsAndConditionsButton: UIButton!
-    
+
+    var discoverCardView: HomeDiscoverCardView!
     var weatherView: HomeWeatherView!
     var importantUpdateView: HomeUpdateView?
     var gameOnboardingCardView: HomeGameOnboardingCardView?
@@ -150,6 +151,9 @@ class HomeViewController: AccountPickerViewController {
                 }
             })
             .disposed(by: bag)
+
+        discoverCardView = .create()
+        contentStackView.addArrangedSubview(discoverCardView)
         
         // Create weather card
         weatherView = .create(withViewModel: viewModel.weatherViewModel)
@@ -535,6 +539,8 @@ class HomeViewController: AccountPickerViewController {
         view.removeFromSuperview()
         
         switch card {
+        case.discover:
+            discoverCardView = nil
         case .bill:
             billCardView = nil
         case .usage:
@@ -558,6 +564,17 @@ class HomeViewController: AccountPickerViewController {
     
     func cardView(forCard card: HomeCard) -> UIView {
         switch card {
+        case .discover:
+            let discoverCardView: HomeDiscoverCardView
+            if let discoverCard = self.discoverCardView {
+                discoverCardView = discoverCard
+            } else {
+                discoverCardView = .create()
+                self.discoverCardView = discoverCardView
+//                bindBillCard()
+            }
+
+            return discoverCardView
         case .bill:
             let billCardView: HomeBillCardView
             if let billCard = self.billCardView {
@@ -733,6 +750,7 @@ class HomeViewController: AccountPickerViewController {
         guard let usageCardView = usageCardView else { return }
         
         Driver.merge(usageCardView.viewUsageButton.rx.touchUpInside.asDriver(),
+                     usageCardView.homeCardHeaderView.button.rx.touchUpInside.asDriver(),
                      usageCardView.viewCommercialUsageButton.rx.touchUpInside.asDriver())
             .withLatestFrom(viewModel.accountDetailEvents.elements().asDriver(onErrorDriveWith: .empty()))
             .drive(onNext: { [weak self] in
@@ -777,19 +795,20 @@ class HomeViewController: AccountPickerViewController {
         viewModel.accountDetailEvents.elements().subscribe(onNext: { accountDetail in
             projectedBillCardView.isHidden = !accountDetail.isAMIAccount
         }).disposed(by: bag)
-        
-        projectedBillCardView.callToActionButton.rx.touchUpInside.asDriver()
-            .withLatestFrom(Driver.combineLatest(viewModel.projectedBillCardViewModel.isGas,
-                                                 viewModel.projectedBillCardViewModel.projectionNotAvailable))
-            .drive(onNext: { [weak self] isGas, projectionNotAvailable in
-                guard let tabBarCtl = self?.tabBarController as? MainTabBarController else {
-                    return
-                }
-                
-                tabBarCtl.navigateToUsage(selectedBar: projectionNotAvailable ? .projectionNotAvailable : .projected,
-                                          isGas: isGas,
-                                          isPreviousBill: true)
-            }).disposed(by: projectedBillCardView.disposeBag)
+
+        Driver.merge(projectedBillCardView.callToActionButton.rx.touchUpInside.asDriver(),
+                     projectedBillCardView.homeCardHeaderView.button.rx.touchUpInside.asDriver())
+        .withLatestFrom(Driver.combineLatest(viewModel.projectedBillCardViewModel.isGas,
+                                             viewModel.projectedBillCardViewModel.projectionNotAvailable))
+        .drive(onNext: { [weak self] isGas, projectionNotAvailable in
+            guard let tabBarCtl = self?.tabBarController as? MainTabBarController else {
+                return
+            }
+
+            tabBarCtl.navigateToUsage(selectedBar: projectionNotAvailable ? .projectionNotAvailable : .projected,
+                                      isGas: isGas,
+                                      isPreviousBill: true)
+        }).disposed(by: projectedBillCardView.disposeBag)
         
         projectedBillCardView.infoButton.rx.touchUpInside.asDriver().drive(onNext: { [weak self] in
             let alertViewController = InfoAlertController(title: NSLocalizedString("Estimated Amount", comment: ""),

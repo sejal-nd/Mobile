@@ -33,6 +33,7 @@ class HomeProjectedBillCardView: UIView {
     @IBOutlet private weak var projectionSubLabel: UILabel!
     @IBOutlet private weak var projectionFooterLabel: UILabel!
     
+    @IBOutlet weak var homeCardHeaderView: HomeCardHeaderView!
     @IBOutlet weak var callToActionButton: UIButton!
     @IBOutlet private weak var emptyStateView: UIView!
     @IBOutlet private weak var emptyStateTitleLabel: UILabel!

@@ -87,7 +87,7 @@ class LandingViewController: UIViewController {
         logoImageView.accessibilityLabel = String(format: a11yText, Configuration.shared.opco.displayString)
         
 //        backgroundVideoSetup()
-        setUpackgroundAnimation()
+        setUpBackgroundAnimation()
         
         (UIApplication.shared.delegate as? AppDelegate)?.checkIOSVersion()
     }
@@ -343,12 +343,12 @@ class LandingViewController: UIViewController {
         playerLayer.player = avPlayer
     }
 
-    private func setUpackgroundAnimation() {
+    private func setUpBackgroundAnimation() {
 
         let rotationAnimation = CABasicAnimation(keyPath: "transform.rotation")
         rotationAnimation.fromValue = 0.0
         rotationAnimation.toValue = Double.pi * 2 // negative can control direction
-        rotationAnimation.duration = 240.0
+        rotationAnimation.duration = 180.0
         rotationAnimation.repeatCount = .infinity
         backgroundImageView.layer.add(rotationAnimation, forKey: nil)
         backgroundImageView.clipsToBounds = false

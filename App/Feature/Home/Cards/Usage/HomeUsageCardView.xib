@@ -29,7 +29,7 @@
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="THu-XW-f24">
                             <rect key="frame" x="0.0" y="0.0" width="505" height="2268"/>
                             <subviews>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ra5-G3-yjD" userLabel="Bill Card Header" customClass="HomeCardHeaderView" customModule="Atlantic_City_Electric" customModuleProvider="target">
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ra5-G3-yjD" userLabel="Home Card Header" customClass="HomeCardHeaderView" customModule="Atlantic_City_Electric" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="505" height="37"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
@@ -769,6 +769,7 @@
                 <outlet property="errorLabel" destination="QqW-8v-4mx" id="gWC-8g-sgv"/>
                 <outlet property="errorTitleLabel" destination="RsQ-su-XRQ" id="dvc-HX-9xQ"/>
                 <outlet property="errorView" destination="NLz-uW-q8M" id="Hnw-hO-r9n"/>
+                <outlet property="homeCardHeaderView" destination="Ra5-G3-yjD" id="4JS-uw-uax"/>
                 <outlet property="loadingView" destination="FqI-MA-nEY" id="uRo-CC-lZA"/>
                 <outlet property="maintenanceModeDescriptionLabel" destination="CXb-S0-w5k" id="XGh-Ii-mrJ"/>
                 <outlet property="maintenanceModeView" destination="SI1-bD-NfN" id="Vfa-J4-a6A"/>

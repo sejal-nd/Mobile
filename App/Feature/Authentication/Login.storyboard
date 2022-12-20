@@ -295,11 +295,11 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="syC-iS-GQ0">
-                                <rect key="frame" x="250" y="0.0" width="143" height="852"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="syC-iS-GQ0" userLabel="Background View">
+                                <rect key="frame" x="250" y="-50" width="393" height="952"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_exelon_wave_motif" translatesAutoresizingMaskIntoConstraints="NO" id="ZCc-qf-hh0">
-                                        <rect key="frame" x="0.0" y="0.0" width="143" height="852"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="952"/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -442,8 +442,9 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                             <constraint firstItem="eKI-Yo-BGg" firstAttribute="leading" secondItem="ahA-qN-Vae" secondAttribute="leading" constant="20" id="FAe-Bi-rbB"/>
                             <constraint firstItem="NyF-Jg-tI8" firstAttribute="top" secondItem="V4v-xx-mGY" secondAttribute="top" id="GYN-b9-NQr"/>
                             <constraint firstItem="cn2-ei-69X" firstAttribute="centerX" secondItem="ahA-qN-Vae" secondAttribute="centerX" id="JwI-sL-3Uu"/>
-                            <constraint firstItem="syC-iS-GQ0" firstAttribute="top" secondItem="V4v-xx-mGY" secondAttribute="top" id="Mf2-L1-Cj3"/>
-                            <constraint firstAttribute="bottom" secondItem="syC-iS-GQ0" secondAttribute="bottom" id="OZe-rf-XZg"/>
+                            <constraint firstItem="syC-iS-GQ0" firstAttribute="width" secondItem="V4v-xx-mGY" secondAttribute="width" id="MIh-0v-arW"/>
+                            <constraint firstItem="syC-iS-GQ0" firstAttribute="top" secondItem="V4v-xx-mGY" secondAttribute="top" constant="-50" id="Mf2-L1-Cj3"/>
+                            <constraint firstAttribute="bottom" secondItem="syC-iS-GQ0" secondAttribute="bottom" constant="-50" id="OZe-rf-XZg"/>
                             <constraint firstItem="cn2-ei-69X" firstAttribute="leading" secondItem="ahA-qN-Vae" secondAttribute="leading" priority="999" constant="29" id="ZEj-6f-u1p"/>
                             <constraint firstItem="ahA-qN-Vae" firstAttribute="bottom" secondItem="Rwh-jf-fVT" secondAttribute="bottom" constant="21" id="cuz-Tk-enC"/>
                             <constraint firstItem="ahA-qN-Vae" firstAttribute="trailing" secondItem="jAP-dP-E5T" secondAttribute="trailing" id="dLJ-wC-flv"/>
@@ -451,7 +452,6 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                             <constraint firstItem="ahA-qN-Vae" firstAttribute="bottom" secondItem="eKI-Yo-BGg" secondAttribute="bottom" id="mcv-0e-oEj"/>
                             <constraint firstItem="syC-iS-GQ0" firstAttribute="leading" secondItem="ahA-qN-Vae" secondAttribute="leading" constant="250" id="p1m-mi-Zys"/>
                             <constraint firstItem="ahA-qN-Vae" firstAttribute="trailing" secondItem="NyF-Jg-tI8" secondAttribute="trailing" id="rEk-Cj-8z7"/>
-                            <constraint firstItem="syC-iS-GQ0" firstAttribute="trailing" secondItem="ahA-qN-Vae" secondAttribute="trailing" id="s4J-EP-FS1"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="iC8-QL-izm">
