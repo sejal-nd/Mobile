@@ -106,7 +106,7 @@ class ReportOutageViewModel {
     }()
     
     lazy var shouldPingPHIMeter: Bool = {
-        return shouldPingMeter && (Configuration.shared.opco == .pepco || Configuration.shared.opco == .delmarva)
+        return shouldPingMeter && (Configuration.shared.opco == .ace || Configuration.shared.opco == .pepco || Configuration.shared.opco == .delmarva)
     }()
     
     func reportOutage(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
