@@ -1,5 +1,6 @@
 inhibit_all_warnings! # ignore all warnings from all pods
-
+source 'https://github.com/DecibelInsight/decibel-sdk-ios-spec'
+source 'https://github.com/CocoaPods/Specs.git'
 def shared_pods # Shared in both iOS and WatchOS
   pod 'RxSwift', '5.1.0'
   pod 'RxSwiftExt', '5.2.0'
@@ -19,6 +20,7 @@ def iOS_pods
   pod 'AppCenter', '1.14'
   pod 'ForeSee/Core', '6.0.4'
   pod 'ForeSee/ForeSeeFeedback', '6.0.4'
+  pod 'MedalliaDigitalSDK', :http => 'https://repository.medallia.com/digital-generic/ios-sdk/4.1.0/ios-sdk-4.1.0.zip' #MedalliaSDK
 end
 
 def iOS_UnitTestPods

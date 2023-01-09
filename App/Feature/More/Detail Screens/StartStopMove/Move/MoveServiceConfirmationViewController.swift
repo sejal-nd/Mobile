@@ -56,9 +56,21 @@ class MoveServiceConfirmationViewController: UIViewController {
         super.viewWillAppear(animated)
         if viewModel.isUnauth {
             FirebaseUtility.logScreenView(.unauthMoveConfirmationView(className: self.className))
+            medalliaMoveServiceSurveyForUnAuthUser()
         } else {
             FirebaseUtility.logScreenView(.moveConfirmationView(className: self.className))
+            medalliaMoveServiceSurveyForAuthUser()
         }
+    }
+    
+    func medalliaMoveServiceSurveyForAuthUser(){
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(5000), execute: {
+            MedalliaUtility.shared.medalliaMoveService(customerID: AccountsStore.shared.customerIdentifier, accountType: self.viewModel.accountDetail.isResidential ? "Residential" : "Commercial", lowIncomeStatus: self.viewModel.accountDetail.isLowIncome, serviceType: self.viewModel.accountDetail.serviceType ?? "", amountDue:  self.viewModel.accountDetail.billingInfo.currentDueAmount ?? 0)
+        })
+    }
+    
+    func medalliaMoveServiceSurveyForUnAuthUser(){
+        MedalliaUtility.shared.medalliaMoveServiceAnon(customerPhoneNumber:self.viewModel.unAuthAccountDetail.customerInfo.primaryPhoneNumber ?? "" )
     }
     
     private func intialSetup() {

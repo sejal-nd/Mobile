@@ -20,7 +20,7 @@ class ReportOutageViewModel {
     var phoneExtension = BehaviorRelay(value: "")
     var comments = BehaviorRelay(value: "")
     var reportFormHidden = BehaviorRelay(value: false)
-    
+    var accountDetail: AccountDetail! //Passed from OutageViewController
     required init() {
         
     }

@@ -176,6 +176,11 @@ class FinalReviewMoveServiceViewController: UIViewController {
                         let isUnauth = self.moveFlowData.unauthMoveData?.isUnauthMove ?? false
                         moveServiceConfirmationViewController.viewModel = MoveServiceConfirmationViewModel(moveServiceResponse: response, isUnauth: isUnauth)
                         moveServiceConfirmationViewController.viewModel.moveServiceResponse.isEBillEnrollment = (self.moveFlowData.unauthMoveData?.isUnauthMove ?? false) ? (self.moveFlowData.unauthMoveData?.accountDetails?.isEBillEnrollment ?? false) : (self.moveFlowData.currentAccountDetail?.isEBillEnrollment ?? true)
+                        if isUnauth {
+                            moveServiceConfirmationViewController.viewModel.unAuthAccountDetail = self.moveFlowData.unauthMoveData?.accountDetails
+                        }else{
+                            moveServiceConfirmationViewController.viewModel.accountDetail = self.moveFlowData.currentAccountDetail
+                        }
                         self.navigationController?.pushViewController(moveServiceConfirmationViewController, animated: true)
                     } onFailure: { [weak self] _ in
                         guard let `self` = self else { return }

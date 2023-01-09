@@ -440,6 +440,16 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
         
     }
     
+    func medalliaReportOutageSurvey(){
+    
+       if(unauthenticatedExperience){
+         //  MedalliaUtility.shared.medalliaOutageReportingAnon(customerPhoneNumber: self.viewModel.outageStatus.contactHomeNumber ?? "", outageID: self.viewModel.outageTracker.outageID!, outageETR: self.viewModel.outageStatus.estimatedRestorationDate!)
+
+       }else{
+           MedalliaUtility.shared.medalliaOutageReporting(customerID: AccountsStore.shared.customerIdentifier, accountType: self.viewModel.accountDetail.isResidential ? "Residential" : "Commercial", lowIncomeStatus: self.viewModel.accountDetail.isLowIncome, serviceType: self.viewModel.accountDetail.serviceType ?? "", amountDue: self.viewModel.accountDetail.billingInfo.currentDueAmount ?? 0, outageID: "", outageETR: "")
+      }
+   }
+    
     @IBAction func checkboxToggled() {
         if meterPingFuseBoxCheckbox.isChecked {
             GoogleAnalytics.log(event: .reportOutageAuthCircuitBreak)

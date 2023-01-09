@@ -97,6 +97,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         ForeSee.start()
         
+        //Medallia SDK
+        MedalliaUtility.shared.medalliaSDKInit()
+        
         return true
     }
     
