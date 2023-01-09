@@ -73,12 +73,12 @@ final class MedalliaUtility {
     
     //MARK: - Medallia StopService
     func medalliaStopService(customerID : String ,accountType : String , lowIncomeStatus : Bool , serviceType : String , amountDue : Double ){
-        medalliaSetCustomParams(params: ["PageName" :MedalliaPage.stopService.screenName,"CustomerID​" : customerID, "AccountType" : accountType, "LowIncomeStatus​" : lowIncomeStatus, "ServiceType​" : serviceType, "AmountDue​" : amountDue])
+        medalliaSetCustomParams(params: ["PageName" :MedalliaPage.stopService.screenName,"CustomerId​" : customerID, "AccountType" : accountType, "LowIncomeStatus​" : lowIncomeStatus, "ServiceType​" : serviceType, "AmountDue​" : amountDue])
     }
         
     //MARK: - Medallia MoveService
         func medalliaMoveService( customerID : String ,accountType : String , lowIncomeStatus : Bool , serviceType : String , amountDue : Double ){
-            medalliaSetCustomParams(params: ["PageName" :MedalliaPage.moveService.screenName,"CustomerID​" : customerID, "AccountType" : accountType, "LowIncomeStatus​" : lowIncomeStatus, "ServiceType​" : serviceType, "AmountDue​" : amountDue])
+            medalliaSetCustomParams(params: ["PageName" :MedalliaPage.moveService.screenName,"CustomerId​" : customerID, "AccountType" : accountType, "LowIncomeStatus​" : lowIncomeStatus, "ServiceType​" : serviceType, "AmountDue​" : amountDue])
         }
     
     //MARK: - Medallia MoveServiceAnon
@@ -88,7 +88,7 @@ final class MedalliaUtility {
     
     //MARK: - Medallia OutageReporting
     func medalliaOutageReporting( customerID : String ,accountType : String , lowIncomeStatus : Bool , serviceType : String , amountDue : Double ,outageID : String ,outageETR : String){
-        medalliaSetCustomParams(params: ["PageName" :MedalliaPage.reportOutage.screenName,"CustomerID​" : customerID, "AccountType" : accountType, "LowIncomeStatus​" : lowIncomeStatus, "ServiceType​" : serviceType, "AmountDue​" : amountDue, "OutageID" : outageID,"OutageETR" : outageETR])
+        medalliaSetCustomParams(params: ["PageName" :MedalliaPage.reportOutage.screenName,"CustomerId​" : customerID, "AccountType" : accountType, "LowIncomeStatus​" : lowIncomeStatus, "ServiceType​" : serviceType, "AmountDue​" : amountDue, "OutageID" : outageID,"OutageETR" : outageETR])
         }
     
     //MARK: - Medallia OutageReportingAnon
@@ -98,6 +98,6 @@ final class MedalliaUtility {
     
     //MARK: - Medallia Payment
     func medalliaPayment(customerID : String ,accountType : String , lowIncomeStatus : Bool , serviceType : String , amountDue : Double ){
-        medalliaSetCustomParams(params: ["PageName" :MedalliaPage.payment.screenName,"CustomerID​" : customerID, "AccountType" : accountType, "LowIncomeStatus​" : lowIncomeStatus, "ServiceType​" : serviceType, "AmountDue​" : amountDue])
+        medalliaSetCustomParams(params: ["PageName" :MedalliaPage.payment.screenName,"CustomerId​" : customerID, "AccountType" : accountType, "LowIncomeStatus​" : lowIncomeStatus, "ServiceType​" : serviceType, "AmountDue​" : amountDue])
     }
 }

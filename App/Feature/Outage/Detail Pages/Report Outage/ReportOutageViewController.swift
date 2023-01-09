@@ -422,6 +422,7 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
                 self.navigationController?.popViewController(animated: true)
                 }, onError: errorBlock)
             GoogleAnalytics.log(event: .reportAnOutageUnAuthSubmit)
+            medalliaReportOutageSurvey()
         } else {
             viewModel.reportOutage(onSuccess: { [weak self] in
                 FirebaseUtility.logEvent(.reportOutageNetworkComplete)
@@ -436,6 +437,7 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
                 self.navigationController?.popViewController(animated: true)
                 }, onError: errorBlock)
             GoogleAnalytics.log(event: .reportOutageAuthSubmit)
+            medalliaReportOutageSurvey()
         }
         
     }
@@ -443,10 +445,10 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
     func medalliaReportOutageSurvey(){
     
        if(unauthenticatedExperience){
-         //  MedalliaUtility.shared.medalliaOutageReportingAnon(customerPhoneNumber: self.viewModel.outageStatus.contactHomeNumber ?? "", outageID: self.viewModel.outageTracker.outageID!, outageETR: self.viewModel.outageStatus.estimatedRestorationDate!)
+           MedalliaUtility.shared.medalliaSetCustomParam(pageName: "ReportOutage")
 
        }else{
-           MedalliaUtility.shared.medalliaOutageReporting(customerID: AccountsStore.shared.customerIdentifier, accountType: self.viewModel.accountDetail.isResidential ? "Residential" : "Commercial", lowIncomeStatus: self.viewModel.accountDetail.isLowIncome, serviceType: self.viewModel.accountDetail.serviceType ?? "", amountDue: self.viewModel.accountDetail.billingInfo.currentDueAmount ?? 0, outageID: "", outageETR: "")
+           MedalliaUtility.shared.medalliaSetCustomParam(pageName: "ReportOutage")
       }
    }
     
