@@ -1,15 +1,12 @@
 {
   "images" : [
     {
-      "filename" : "ic_tooltip.pdf",
+      "filename" : "ic_tooltip.svg",
       "idiom" : "universal"
     }
   ],
   "info" : {
     "author" : "xcode",
     "version" : 1
-  },
-  "properties" : {
-    "preserves-vector-representation" : true
   }
 }

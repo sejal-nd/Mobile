@@ -424,14 +424,14 @@ class BillViewModel {
     
     private(set) lazy var totalAmountDescriptionText: Driver<NSAttributedString> = currentAccountDetail.map {
         let billingInfo = $0.billingInfo
-        var attributes: [NSAttributedString.Key: Any] = [.font: SystemFont.regular.of(textStyle: .caption1),
-                                                         .foregroundColor: UIColor.deepGray]
+        var attributes: [NSAttributedString.Key: Any] = [.font: UIFont.footnote,
+                                                         .foregroundColor: UIColor.neutralDark]
         let string: String
         if billingInfo.pastDueAmount > 0 {
             if billingInfo.pastDueAmount == billingInfo.netDueAmount {
                 string = "Total Amount Due Immediately".localized()
-                attributes[.foregroundColor] = UIColor.errorRed
-                attributes[.font] = SystemFont.semibold.of(textStyle: .caption1)
+                attributes[.foregroundColor] = UIColor.errorPrimary
+                attributes[.font] = UIFont.footnoteSemibold
             } else {
                 string = NSLocalizedString("Total Amount Due", comment: "")
             }
@@ -476,11 +476,11 @@ class BillViewModel {
                 billingInfo.amtDpaReinst == billingInfo.pastDueAmount {
                 let string = String.localizedStringWithFormat("Due by %@", date.mmDdYyyyString)
                 return NSAttributedString(string: string, attributes: [.foregroundColor: UIColor.middleGray,
-                                                                       .font: SystemFont.regular.of(textStyle: .caption1)])
+                                                                       .font: UIFont.caption1])
             } else {
                 let string = "Due Immediately".localized()
-                return NSAttributedString(string: string, attributes: [.foregroundColor: UIColor.errorRed,
-                                                                       .font: SystemFont.semibold.of(textStyle: .caption1)])
+                return NSAttributedString(string: string, attributes: [.foregroundColor: UIColor.errorPrimary,
+                                                                       .font: UIFont.caption1Semibold])
             }
     }
     
@@ -666,7 +666,7 @@ class BillViewModel {
                         localizedString = String.localizedStringWithFormat("Your %@ charges are %@ more than your previous bill.", gasOrElectricString, difference.currencyString)
                     }
                     let attrString = NSMutableAttributedString(string: localizedString)
-                    attrString.addAttribute(.font, value: OpenSans.semibold.of(textStyle: .callout), range: (localizedString as NSString).range(of: difference.currencyString))
+                    attrString.addAttribute(.font, value: SystemFont.semibold.of(textStyle: .callout), range: (localizedString as NSString).range(of: difference.currencyString))
                     return attrString
                 } else {
                     let localizedString: String
@@ -676,7 +676,7 @@ class BillViewModel {
                         localizedString = String.localizedStringWithFormat("Your %@ charges are %@ less than your previous bill.", gasOrElectricString, difference.currencyString)
                     }
                     let attrString = NSMutableAttributedString(string: localizedString)
-                    attrString.addAttribute(.font, value: OpenSans.semibold.of(textStyle: .callout), range: (localizedString as NSString).range(of: difference.currencyString))
+                    attrString.addAttribute(.font, value: SystemFont.semibold.of(textStyle: .callout), range: (localizedString as NSString).range(of: difference.currencyString))
                     return attrString
                 }
             }
@@ -684,11 +684,11 @@ class BillViewModel {
 
     private(set) lazy var billPeriodArrowImage: Driver<UIImage?> = currentBillComparison.map {
         if $0.billPeriodCostDifference >= 1 {
-            return #imageLiteral(resourceName: "ic_trendup.pdf")
+            return UIImage(named: "ic_trendup")
         } else if $0.billPeriodCostDifference <= -1 {
-            return #imageLiteral(resourceName: "ic_trenddown.pdf")
+            return UIImage(named: "ic_trenddown")
         } else {
-            return #imageLiteral(resourceName: "ic_trendequal.pdf")
+            return UIImage(named: "ic_trendequal")
         }
     }
     
@@ -813,7 +813,7 @@ class BillViewModel {
             return NSAttributedString(string: text, attributes: [.foregroundColor: UIColor.successGreenText])
         } else {
             let text = NSLocalizedString("Set up automatic, recurring payments.", comment: "")
-            return NSAttributedString(string: text, attributes: [.foregroundColor: UIColor.deepGray])
+            return NSAttributedString(string: text, attributes: [.foregroundColor: UIColor.neutralDark])
         }
     }
     
@@ -867,9 +867,9 @@ class BillViewModel {
         let topTextRange = NSMakeRange(0, topText.count)
         let bottomTextRange = NSMakeRange(topText.count + 1, bottomText.count)
         
-        mutableText.addAttribute(.font, value: OpenSans.bold.of(size: 16), range: topTextRange)
+        mutableText.addAttribute(.font, value: UIFont.callout.bold(), range: topTextRange)
         mutableText.addAttribute(.foregroundColor, value: UIColor.blackText, range: topTextRange)
-        mutableText.addAttribute(.font, value: OpenSans.regular.of(size: 14), range: bottomTextRange)
+        mutableText.addAttribute(.font, value: UIFont.footnote, range: bottomTextRange)
         mutableText.addAttribute(.foregroundColor, value: UIColor.successGreenText, range: bottomTextRange)
         
         return mutableText
@@ -879,8 +879,8 @@ class BillViewModel {
         let text = NSLocalizedString("Would you like to enroll in ", comment: "")
         let mutableText = NSMutableAttributedString(string: text + boldText, attributes: [.foregroundColor: UIColor.blackText])
         
-        mutableText.addAttribute(.font, value: OpenSans.regular.of(size: 16), range: NSMakeRange(0, text.count))
-        mutableText.addAttribute(.font, value: OpenSans.bold.of(size: 16), range: NSMakeRange(text.count, boldText.count))
+        mutableText.addAttribute(.font, value: UIFont.callout.bold(), range: NSMakeRange(0, text.count))
+        mutableText.addAttribute(.font, value: UIFont.callout.bold(), range: NSMakeRange(text.count, boldText.count))
         
         return mutableText
     }

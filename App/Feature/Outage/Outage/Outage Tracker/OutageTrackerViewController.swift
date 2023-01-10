@@ -53,9 +53,9 @@ class OutageTrackerViewController: UIViewController {
         setupUI()
         setupBinding()
         
-        outageNotificationBannerTitle.font = SystemFont.regular.of(textStyle: .subheadline)
-        outageNotificationBannerDesciption.font = SystemFont.regular.of(textStyle: .caption1)
-        outageNotificationBannerTitle.textColor = .deepGray
+        outageNotificationBannerTitle.font = .subheadline
+        outageNotificationBannerDesciption.font = .caption1
+        outageNotificationBannerTitle.textColor = .neutralDark
         outageNotificationBannerDesciption.textColor = .gray
         spacerView.backgroundColor = .softGray
         spacerView.isHidden = true
@@ -84,10 +84,10 @@ class OutageTrackerViewController: UIViewController {
     }
     
     private func configureFooterTextView() {
-        footerTextView.font = SystemFont.regular.of(textStyle: .footnote)
+        footerTextView.font = .footnote
         footerTextView.attributedText = viewModel.footerText
         footerTextView.textColor = .blackText
-        footerTextView.tintColor = .actionBlue // For the phone numbers
+        footerTextView.tintColor = .actionBrand // For the phone numbers
     }
     
     private func setupBinding() {
@@ -109,13 +109,17 @@ class OutageTrackerViewController: UIViewController {
         
         etaView.delegate = self
         surveyView.delegate = self
+
+        let isStormMode = StormModeStatus.shared.isOn
+        let borderColor: UIColor = isStormMode ? .clear : .accentGray
         
         let whyViewRadius = whyButtonView.frame.size.height / 2
-        whyButtonView.roundCorners(.allCorners, radius: whyViewRadius, borderColor: .accentGray, borderWidth: 1.0)
-        
-        countView.roundCorners(.allCorners, radius: 10, borderColor: .accentGray, borderWidth: 1.0)
-        
-        hazardView.roundCorners(.allCorners, radius: 10, borderColor: .accentGray, borderWidth: 1.0)
+
+        whyButtonView.roundCorners(.allCorners, radius: whyViewRadius, borderColor: borderColor, borderWidth: 1.0)
+        countView.roundCorners(.allCorners, radius: 10, borderColor: borderColor, borderWidth: 1.0)
+        hazardView.roundCorners(.allCorners, radius: 10, borderColor: borderColor, borderWidth: 1.0)
+
+        countView.backgroundColor = isStormMode ? .white.withAlphaComponent(0.10) : .clear
     }
     
     private func update() {
@@ -393,9 +397,9 @@ extension OutageTrackerViewController: UITableViewDataSource {
             case 0:
                 cell.configure(image: UIImage(named: "ic_reportoutage"), title: "Report Outage", detail: nil)
             case 1:
-                cell.configure(image: #imageLiteral(resourceName: "ic_streetlightoutage"), title: "Report Streetlight Outage", detail: nil)
+                cell.configure(image: #imageLiteral(resourceName: "ic_reportstreetlightoutage"), title: "Report Streetlight Outage", detail: nil)
             case 2:
-                cell.configure(image: UIImage(named: "ic_mapoutage"), title: "View Outage Map", detail: nil)
+                cell.configure(image: UIImage(named: "ic_outagemap"), title: "View Outage Map", detail: nil)
                 cell.hideSeparator = true
             default:
                 fatalError("Invalid index path.")

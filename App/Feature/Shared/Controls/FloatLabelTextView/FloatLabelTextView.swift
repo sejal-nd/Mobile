@@ -46,20 +46,20 @@ class FloatLabelTextView: UIView {
     func commonInit() {
         inflateView()
         
-        textView.font = SystemFont.regular.of(textStyle: .callout)
+        textView.font = .callout
         textView.tintColor = .primaryColor
         textView.textContainerInset = UIEdgeInsets(top: 0, left: 16, bottom: 17, right: 16)
         textView.textContainer.lineFragmentPadding = 0
         
-        placeholderLabel.font = SystemFont.regular.of(textStyle: .callout)
-        placeholderLabel.textColor = .middleGray
+        placeholderLabel.font = .callout
+        placeholderLabel.textColor = .neutralDark
         
-        floatLabel.font = SystemFont.semibold.of(textStyle: .caption2)
-        floatLabel.textColor = .middleGray
+        floatLabel.font = .caption2Semibold
+        floatLabel.textColor = .neutralDark
         floatLabel.alpha = 0
         
-        infoLabel.textColor = .deepGray
-        infoLabel.font = SystemFont.regular.of(textStyle: .caption1)
+        infoLabel.textColor = .neutralDark
+        infoLabel.font = .caption1
         infoLabel.text = nil
         infoView.isHidden = true
         
@@ -89,7 +89,7 @@ class FloatLabelTextView: UIView {
             guard let self = self else { return }
             self.textFieldIsFocused = false
             self.textViewContainerView.layer.borderColor = UIColor.accentGray.cgColor
-            self.floatLabel.textColor = .middleGray
+            self.floatLabel.textColor = .neutralDark
         }).disposed(by: disposeBag)
         
         textView.rx.didChange.asObservable().subscribe(onNext: { [weak self] in
@@ -142,7 +142,7 @@ class FloatLabelTextView: UIView {
         textViewContainerView.backgroundColor = .white
         textViewContainerView.fullyRoundCorners(diameter: 20, borderColor: .accentGray, borderWidth: 1)
         
-        textView.textColor = .deepGray
+        textView.textColor = .neutralDark
     }
     
     func setInfoMessage(_ message: String?) {
@@ -164,7 +164,7 @@ class FloatLabelTextView: UIView {
     }
     
     private func addDoneButton(_ doneButton: UIBarButtonItem) {
-        doneButton.setTitleTextAttributes([.foregroundColor: UIColor.actionBlue], for: .normal)
+        doneButton.setTitleTextAttributes([.foregroundColor: UIColor.primaryBlue], for: .normal)
         
         let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 50))
         doneToolbar.barStyle = UIBarStyle.default

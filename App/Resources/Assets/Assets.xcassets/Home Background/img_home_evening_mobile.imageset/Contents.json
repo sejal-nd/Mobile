@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "img_home_evening_mobile.pdf",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

@@ -60,13 +60,13 @@ class NoNetworkConnectionView: UIView {
     }
     
     private func styleViews() {
-        reloadLabel.font = SystemFont.bold.of(textStyle: .callout)
-        noNetworkConnectionLabel.textColor = .deepGray
-        noNetworkConnectionLabel.font = OpenSans.semibold.of(textStyle: .title3)
-        pleaseReloadLabel.textColor = .deepGray
-        pleaseReloadLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        group1Label.font = SystemFont.regular.of(textStyle: .footnote)
-        group2Label.font = SystemFont.regular.of(textStyle: .footnote)
+        reloadLabel.font = .callout
+        noNetworkConnectionLabel.textColor = .neutralDarker
+        noNetworkConnectionLabel.font = .title3
+        pleaseReloadLabel.textColor = .neutralDark
+        pleaseReloadLabel.font = .subheadline
+        group1Label.font = .footnote
+        group2Label.font = .footnote
         phone1Button.roundCorners(.allCorners, radius: 4)
         phone1Button.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 3)
         phone2Button.roundCorners(.allCorners, radius: 4)
@@ -80,8 +80,8 @@ class NoNetworkConnectionView: UIView {
         // Colored Background
         case (true, false):
             containerView.backgroundColor = .primaryColor
-            noNetworkImageView.image = #imageLiteral(resourceName: "ic_nonetwork")
-            reloadImageView.image = #imageLiteral(resourceName: "ic_reload")
+            noNetworkImageView.image = UIImage(named: "ic_nonetwork")
+            reloadImageView.image = UIImage(named: "ic_reload")
             reloadLabel.textColor = .white
             noNetworkConnectionLabel.textColor = .white
             pleaseReloadLabel.textColor = .white
@@ -90,9 +90,9 @@ class NoNetworkConnectionView: UIView {
         // Light Background
         case (false, false):
             containerView.backgroundColor = .softGray
-            noNetworkImageView.image = #imageLiteral(resourceName: "ic_nonetwork_color")
-            reloadImageView.image = #imageLiteral(resourceName: "ic_reload_blue")
-            reloadLabel.textColor = .actionBlue
+            noNetworkImageView.image = UIImage(named: "ic_nonetwork")
+            reloadImageView.image = UIImage(named: "ic_reload_blue")
+            reloadLabel.textColor = .primaryBlue
             noNetworkConnectionLabel.textColor = .blackText
             pleaseReloadLabel.textColor = .blackText
             stormModeContactView.isHidden = true
@@ -100,8 +100,8 @@ class NoNetworkConnectionView: UIView {
         // Storm Mode
         case (_, true):
             containerView.backgroundColor = .clear
-            noNetworkImageView.image = #imageLiteral(resourceName: "ic_nonetwork_sm.pdf")
-            reloadImageView.image = #imageLiteral(resourceName: "ic_reload")
+            noNetworkImageView.image = UIImage(named: "ic_nonetwork")
+            reloadImageView.image = UIImage(named: "ic_reload")
             reloadLabel.textColor = .white
             noNetworkConnectionLabel.textColor = .white
             pleaseReloadLabel.textColor = .white

@@ -59,11 +59,11 @@ class DisclosureButton: UIButton {
         
         fullyRoundCorners(diameter: 20, borderColor: .accentGray, borderWidth: 1)
 
-        descriptionLabel.font = SystemFont.semibold.of(textStyle: .caption2)
+        descriptionLabel.font = .caption2Semibold
         descriptionLabel.textColor = .middleGray
         
-        valueLabel.font = SystemFont.regular.of(textStyle: .callout)
-        valueLabel.textColor = .deepGray
+        valueLabel.font = .callout
+        valueLabel.textColor = .neutralDark
 
         updateLabels()
     }
@@ -100,13 +100,13 @@ class DisclosureButton: UIButton {
             if isEnabled {
                 view.backgroundColor = stormTheme ? .stormModeGray : .white
                 descriptionLabel.textColor = .middleGray
-                valueLabel.textColor = .deepGray
+                valueLabel.textColor = .neutralDark
                 caretAccessory.alpha = 1
                 accessibilityTraits = .button
             } else {
                 view.backgroundColor = stormTheme ? UIColor.stormModeGray.darker(by: 10) : .softGray
                 descriptionLabel.textColor = UIColor.middleGray.withAlphaComponent(0.5)
-                valueLabel.textColor = UIColor.deepGray.withAlphaComponent(0.5)
+                valueLabel.textColor = UIColor.neutralDark.withAlphaComponent(0.5)
                 caretAccessory.alpha = 0.5
                 accessibilityTraits = [.button, .notEnabled]
             }

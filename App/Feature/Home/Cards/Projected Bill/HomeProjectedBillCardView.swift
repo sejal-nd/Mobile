@@ -33,6 +33,7 @@ class HomeProjectedBillCardView: UIView {
     @IBOutlet private weak var projectionSubLabel: UILabel!
     @IBOutlet private weak var projectionFooterLabel: UILabel!
     
+    @IBOutlet weak var homeCardHeaderView: HomeCardHeaderView!
     @IBOutlet weak var callToActionButton: UIButton!
     @IBOutlet private weak var emptyStateView: UIView!
     @IBOutlet private weak var emptyStateTitleLabel: UILabel!
@@ -66,22 +67,22 @@ class HomeProjectedBillCardView: UIView {
         
         clippingView.layer.cornerRadius = 10
         
-        titleLabel.textColor = .deepGray
-        titleLabel.font = OpenSans.regular.of(textStyle: .headline)
+        titleLabel.textColor = .neutralDark
+        titleLabel.font = .headline
         
-        emptyStateTitleLabel.textColor = .deepGray
-        emptyStateTitleLabel.font = OpenSans.regular.of(textStyle: .headline)
+        emptyStateTitleLabel.textColor = .neutralDark
+        emptyStateTitleLabel.font = .headline
         
-        emptyStateDescriptionLabel.textColor = .deepGray
-        emptyStateDescriptionLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        emptyStateDescriptionLabel.textColor = .neutralDark
+        emptyStateDescriptionLabel.font = .subheadline
         emptyStateDescriptionLabel.attributedText = NSLocalizedString("Projected bill is not available for this account.", comment: "")
             .attributedString(textAlignment: .center, lineHeight: 26)
         
-        errorTitleLabel.textColor = .deepGray
-        errorTitleLabel.font = OpenSans.regular.of(textStyle: .headline)
+        errorTitleLabel.textColor = .neutralDark
+        errorTitleLabel.font = .headline
         
-        errorDescriptionLabel.textColor = .deepGray
-        errorDescriptionLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        errorDescriptionLabel.textColor = .neutralDark
+        errorDescriptionLabel.font = .subheadline
         errorDescriptionLabel.attributedText = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
             .attributedString(textAlignment: .center, lineHeight: 26)
         
@@ -92,16 +93,16 @@ class HomeProjectedBillCardView: UIView {
 
         infoButton.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
         
-        projectionLabel.textColor = .deepGray
-        projectionLabel.font = OpenSans.semiboldItalic.of(textStyle: .title1)
+        projectionLabel.textColor = .neutralDarker
+        projectionLabel.font = .title1
         
-        projectionSubLabel.textColor = .deepGray
-        projectionSubLabel.font = SystemFont.regular.of(textStyle: .caption1)
+        projectionSubLabel.textColor = .neutralDark
+        projectionSubLabel.font = .caption1
         
-        projectionFooterLabel.textColor = .deepGray
-        projectionFooterLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        projectionFooterLabel.textColor = .neutralDark
+        projectionFooterLabel.font = .footnote
         
-        callToActionButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
+        callToActionButton.titleLabel?.font = .headlineSemibold
     }
     
     private func showContent() {

@@ -51,13 +51,13 @@ class RegistrationValidateAccountViewControllerNew: KeyboardAvoidingStickyFooter
 
         viewModel.validateAccountContinueEnabled.drive(continueButton.rx.isEnabled).disposed(by: disposeBag)
         
-        instructionLabel.textColor = .deepGray
+        instructionLabel.textColor = .neutralDark
         instructionLabel.text = NSLocalizedString("To start, let's find your residential or business service account using your personal/business information or bill details.", comment: "")
-        instructionLabel.font = SystemFont.regular.of(textStyle: .headline)
+        instructionLabel.font = .headline
         instructionLabel.setLineHeight(lineHeight: 24)
-        lastBillInformationLabel.textColor = .deepGray
+        lastBillInformationLabel.textColor = .neutralDark
         lastBillInformationLabel.text = NSLocalizedString("Use one of your last two bills to find the following information:", comment: "")
-        lastBillInformationLabel.font = SystemFont.regular.of(textStyle: .headline)
+        lastBillInformationLabel.font = .headline
         
         segmentedControl.items = [NSLocalizedString("Personal", comment: ""),
                                   NSLocalizedString("Bill Details", comment: "")]
@@ -65,16 +65,7 @@ class RegistrationValidateAccountViewControllerNew: KeyboardAvoidingStickyFooter
         stackView.setCustomSpacing(20, after: instructionLabel)
         stackView.setCustomSpacing(20, after: segmentContainer)
         segmentedControl.selectedIndex.accept(.zero)
-        switch Configuration.shared.opco {
-        case .comEd:
-            illustrationImageView.image = #imageLiteral(resourceName: "img_resbill_comed.pdf")
-        case .ace, .delmarva, .pepco:
-            illustrationImageView.image = #imageLiteral(resourceName: "img_resbill_PHI")
-        case .peco:
-            illustrationImageView.image = #imageLiteral(resourceName: "img_resbill_peco.pdf")
-        case .bge:
-            illustrationImageView.image = #imageLiteral(resourceName: "img_resbill_bge.pdf")
-        }
+        illustrationImageView.image = UIImage(named: "img_resbill")
         viewModel.checkForMaintenance()
     }
     
@@ -188,9 +179,9 @@ class RegistrationValidateAccountViewControllerNew: KeyboardAvoidingStickyFooter
         var identifierString = "Last 4 digits of your Social Security Number"
         identifierString.append(" or Business Tax ID")
 
-        identifierDescriptionLabel.textColor = .deepGray
+        identifierDescriptionLabel.textColor = .neutralDark
         identifierDescriptionLabel.text = NSLocalizedString(identifierString, comment: "")
-        identifierDescriptionLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        identifierDescriptionLabel.font = .subheadline
         
         let identifierPlaceholder: String
         identifierPlaceholder = NSLocalizedString("SSN/Business Tax ID*", comment: "")
@@ -258,7 +249,7 @@ class RegistrationValidateAccountViewControllerNew: KeyboardAvoidingStickyFooter
         case .pepco, .delmarva, .ace:
             description = NSLocalizedString("Your Account Number is located in the upper-left portion of your bill. Please enter all 11 digits, but no spaces.", comment: "")
         }
-        let infoModal = InfoModalViewController(title: NSLocalizedString("Find Account Number", comment: ""), image: #imageLiteral(resourceName: "bill_infographic"), description: description)
+        let infoModal = InfoModalViewController(title: NSLocalizedString("Find Account Number", comment: ""), image: UIImage(named: "bill_infographic")!, description: description)
         
         navigationController?.present(infoModal, animated: true, completion: nil)
     }
@@ -394,7 +385,7 @@ extension RegistrationValidateAccountViewControllerNew: CalendarViewDelegate {
     func calendarViewController(_ controller: CalendarViewController, didSelect date: Date) {
         let components = Calendar.opCo.dateComponents([.year, .month, .day], from: date)
         guard let opCoTimeDate = Calendar.opCo.date(from: components) else { return }
-        dueDateButton.valueLabel.textColor = .deepGray
+        dueDateButton.valueLabel.textColor = .neutralDark
         viewModel.dueDate.accept(opCoTimeDate.isInToday(calendar: .opCo) ? .now : opCoTimeDate)
     }
 }

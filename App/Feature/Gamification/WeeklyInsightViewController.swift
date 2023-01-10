@@ -60,35 +60,35 @@ class WeeklyInsightViewController: UIViewController {
         ]
         segmentedControlContainer.isHidden = !viewModel.shouldShowSegmentedControl
                 
-        thisWeekDateLabel.textColor = .deepGray
-        thisWeekDateLabel.font = SystemFont.semibold.of(textStyle: .footnote)
+        thisWeekDateLabel.textColor = .neutralDark
+        thisWeekDateLabel.font = .footnoteSemibold
         
         thisWeekBarView.layer.cornerRadius = 7.5
         
-        lastWeekDateLabel.textColor = .deepGray
-        lastWeekDateLabel.font = SystemFont.semibold.of(textStyle: .footnote)
+        lastWeekDateLabel.textColor = .neutralDark
+        lastWeekDateLabel.font = .footnoteSemibold
         
         lastWeekBarView.backgroundColor = .accentGray
         lastWeekBarView.layer.cornerRadius = 7.5
 
-        comparisonLabel.textColor = .deepGray
-        comparisonLabel.font = SystemFont.regular.of(textStyle: .body)
+        comparisonLabel.textColor = .neutralDark
+        comparisonLabel.font = .body
         
-        mostEnergyLabel.textColor = .deepGray
-        mostEnergyLabel.font = SystemFont.regular.of(textStyle: .body)
+        mostEnergyLabel.textColor = .neutralDark
+        mostEnergyLabel.font = .body
         
-        leastEnergyLabel.textColor = .deepGray
-        leastEnergyLabel.font = SystemFont.regular.of(textStyle: .body)
+        leastEnergyLabel.textColor = .neutralDark
+        leastEnergyLabel.font = .body
         
-        billProjectionLabel.textColor = .deepGray
-        billProjectionLabel.font = SystemFont.regular.of(textStyle: .body)
+        billProjectionLabel.textColor = .neutralDark
+        billProjectionLabel.font = .body
         
-        stickyFooterLabel.textColor = .deepGray
-        stickyFooterLabel.font = SystemFont.regular.of(textStyle: .caption1)
+        stickyFooterLabel.textColor = .neutralDark
+        stickyFooterLabel.font = .caption1
         stickyFooterLabel.text = NSLocalizedString("This is an estimate and the actual amount may vary based on your energy use, taxes, and fees.", comment: "")
         
-        errorLabel.textColor = .deepGray
-        errorLabel.font = SystemFont.regular.of(textStyle: .headline)
+        errorLabel.textColor = .neutralDark
+        errorLabel.font = .headline
     
         bindViewModel()
         

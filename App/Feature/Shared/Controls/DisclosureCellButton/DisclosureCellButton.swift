@@ -18,13 +18,13 @@ class DisclosureCellButton: ButtonControl {
     @IBOutlet weak var titleLabel: UILabel! {
         didSet {
             titleLabel.textColor = .white
-            titleLabel.font = SystemFont.medium.of(textStyle: .headline)
+            titleLabel.font = .headline
         }
     }
     @IBOutlet weak var detailLabel: UILabel! {
         didSet {
             detailLabel.textColor = .white
-            detailLabel.font = SystemFont.regular.of(textStyle: .footnote)
+            detailLabel.font = .footnote
         }
     }
     

@@ -87,27 +87,27 @@ class GameHomeViewController: AccountPickerViewController {
         ]
         segmentedControlContainer.isHidden = true
         
-        dailyInsightLabel.textColor = .deepGray
-        dailyInsightLabel.font = OpenSans.regular.of(textStyle: .headline)
+        dailyInsightLabel.textColor = .neutralDark
+        dailyInsightLabel.font = .headline
         dailyInsightLabel.text = NSLocalizedString("Daily Insight by LUMI℠", comment: "")
         
-        streakLabel.textColor = .actionBlue
+        streakLabel.textColor = .primaryBlue
         streakLabel.font = SystemFont.semibold.of(size: 13)
                 
         bubbleView.layer.borderColor = UIColor.accentGray.cgColor
         bubbleView.layer.borderWidth = 1
         bubbleView.layer.cornerRadius = 10
-        bubbleLabel.textColor = .deepGray
-        bubbleLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        bubbleLabel.textColor = .neutralDark
+        bubbleLabel.font = .footnote
         
         weeklyInsightUnreadIndicator.layer.cornerRadius = 6
         weeklyInsightUnreadIndicator.backgroundColor = .successGreen
         
-        weeklyInsightButton.setTitleColor(.actionBlue, for: .normal)
-        weeklyInsightButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
+        weeklyInsightButton.setTitleColor(.actionBrand, for: .normal)
+        weeklyInsightButton.titleLabel?.font = .headlineSemibold
         
-        errorLabel.textColor = .deepGray
-        errorLabel.font = SystemFont.regular.of(textStyle: .headline)
+        errorLabel.textColor = .neutralDark
+        errorLabel.font = .headline
         errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
     
         energyBuddyView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onBuddyTap)))
@@ -436,7 +436,7 @@ class GameHomeViewController: AccountPickerViewController {
         if let taskTimeStr = viewModel.nextAvaiableTaskTimeString {
             let attrString = NSMutableAttributedString(string: "\n\n\(taskTimeStr)", attributes: [
                 .foregroundColor: UIColor.primaryColor,
-                .font: SystemFont.semibold.of(textStyle: .subheadline)
+                .font: UIFont.subheadlineSemibold
             ])
             message.append(attrString)
         }

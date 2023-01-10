@@ -67,14 +67,14 @@ class ChangePasswordViewController: KeyboardAvoidingStickyFooterViewController {
         
         havingTroubleView.isHidden = true
         havingTroubleLabel.textColor = .blackText
-        havingTroubleLabel.font = SystemFont.regular.of(textStyle: .headline)
+        havingTroubleLabel.font = .headline
         havingTroubleLabel.text = NSLocalizedString("Having trouble?", comment: "")
-        havingTroubleButton.tintColor = .actionBlue
-        havingTroubleButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
+        havingTroubleButton.tintColor = .actionBrand
+        havingTroubleButton.titleLabel?.font = .headlineSemibold
         havingTroubleButton.setTitle(NSLocalizedString("Request a Temporary Password", comment: ""), for: .normal)
         
         passwordStrengthView.isHidden = true
-        passwordStrengthLabel.font = SystemFont.regular.of(textStyle: .caption1)
+        passwordStrengthLabel.font = .caption1
         
         currentPasswordTextField.placeholder = tempPasswordWorkflow ? NSLocalizedString("Temporary Password", comment: "") : NSLocalizedString("Current Password", comment: "")
         currentPasswordTextField.textField.isSecureTextEntry = true
@@ -101,11 +101,11 @@ class ChangePasswordViewController: KeyboardAvoidingStickyFooterViewController {
         confirmPasswordTextField.textField.returnKeyType = .done
         confirmPasswordTextField.textField.delegate = self
         
-        mustAlsoContainLabel.textColor = .deepGray
-        mustAlsoContainLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        mustAlsoContainLabel.textColor = .neutralDark
+        mustAlsoContainLabel.font = .subheadline
         for label in passwordRequirementLabels {
-            label.textColor = .deepGray
-            label.font = SystemFont.regular.of(textStyle: .subheadline)
+            label.textColor = .neutralDark
+            label.font = .subheadline
         }
         
         // Bind to the view model

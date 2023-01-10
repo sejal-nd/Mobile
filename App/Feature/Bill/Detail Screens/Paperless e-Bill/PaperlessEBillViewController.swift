@@ -68,31 +68,31 @@ class PaperlessEBillViewController: UIViewController, UIGestureRecognizerDelegat
         emailBox.layer.borderColor = UIColor.accentGray.cgColor
         emailBox.layer.borderWidth = 1
         emailDivider.backgroundColor = .accentGray
-        emailsWillBeSentToLabel.textColor = .deepGray
-        emailsWillBeSentToLabel.font = SystemFont.semibold.of(textStyle: .footnote)
+        emailsWillBeSentToLabel.textColor = .neutralDark
+        emailsWillBeSentToLabel.font = .footnoteSemibold
         emailsWillBeSentToLabel.text = NSLocalizedString("Emails will be sent to", comment: "")
-        emailLabel.textColor = .deepGray
+        emailLabel.textColor = .neutralDark
         emailLabel.text = viewModel.initialAccountDetail.value.customerInfo.emailAddress
-        emailLabel.font = SystemFont.regular.of(textStyle: .callout)
+        emailLabel.font = .callout
         
-        singleAccountCurrentlyEnrolledLabel.textColor = .deepGray
-        singleAccountCurrentlyEnrolledLabel.font = SystemFont.regular.of(textStyle: .body)
+        singleAccountCurrentlyEnrolledLabel.textColor = .neutralDark
+        singleAccountCurrentlyEnrolledLabel.font = .body
         singleAccountCurrentlyEnrolledLabel.text = NSLocalizedString("You are currently enrolled in Paperless eBill.", comment: "")
         
-        allAccountsLabel.textColor = .deepGray
-        allAccountsLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        allAccountsLabel.textColor = .neutralDark
+        allAccountsLabel.font = .subheadline
         allAccountsLabel.text = NSLocalizedString("All Eligible Accounts", comment: "")
         
-        footerLabel.font = SystemFont.regular.of(textStyle: .caption1)
+        footerLabel.font = .caption1
         footerLabel.text = viewModel.footerText
         footerContainer.isHidden = viewModel.footerText == nil
         
-        unenrollButtonLabel.textColor = .deepGray
-        unenrollButtonLabel.font = SystemFont.regular.of(textStyle: .callout)
+        unenrollButtonLabel.textColor = .neutralDark
+        unenrollButtonLabel.font = .callout
         unenrollButtonLabel.text = NSLocalizedString("Looking to end Paperless eBill?", comment: "")
         unenrollButton.accessibilityLabel = "Looking to end Paperless e-bill?"
-        unenrollButton.setTitleColor(.actionBlue, for: .normal)
-        unenrollButton.titleLabel?.font = SystemFont.bold.of(textStyle: .callout)
+        unenrollButton.setTitleColor(.actionBrand, for: .normal)
+        unenrollButton.titleLabel?.font = .callout
         unenrollButton.setTitle(NSLocalizedString("Unenroll", comment: ""), for: .normal)
         
         self.enrollAllAccountsCheckbox.isEnabled = false

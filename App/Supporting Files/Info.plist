@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>ITSAppUsesNonExemptEncryption</key>
-	<false/>
 	<key>Account URL</key>
 	<string>$(ACCOUNT_URL)</string>
 	<key>App Center ID</key>
@@ -32,12 +30,6 @@
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
 	<string>$(MARKETING_VERSION)</string>
-	<key>CFBundleVersion</key>
-	<string>$(CURRENT_PROJECT_VERSION)</string>
-	<key>Environment Tier</key>
-	<string>$(ENVIRONMENT_TIER)</string>
-	<key>Google Analytics ID</key>
-	<string>$(GOOGLE_ANALYTICS_ID)</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -49,6 +41,14 @@
 			</array>
 		</dict>
 	</array>
+	<key>CFBundleVersion</key>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>Environment Tier</key>
+	<string>$(ENVIRONMENT_TIER)</string>
+	<key>Google Analytics ID</key>
+	<string>$(GOOGLE_ANALYTICS_ID)</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fb</string>
@@ -85,19 +85,19 @@
 	<string>$(PAYMENT_URL)</string>
 	<key>UIAppFonts</key>
 	<array>
-		<string>OpenSans-Bold.ttf</string>
-		<string>OpenSans-BoldItalic.ttf</string>
-		<string>OpenSans-ExtraBold.ttf</string>
-		<string>OpenSans-ExtraBoldItalic.ttf</string>
-		<string>OpenSans-Italic.ttf</string>
-		<string>OpenSans-Light.ttf</string>
-		<string>OpenSans-LightItalic.ttf</string>
-		<string>OpenSans-Regular.ttf</string>
-		<string>OpenSans-Semibold.ttf</string>
-		<string>OpenSans-SemiboldItalic.ttf</string>
+		<string>Diodrum-Bold.otf</string>
+		<string>Diodrum-BoldItalic.otf</string>
+		<string>Diodrum-Light.otf</string>
+		<string>Diodrum-Lightitalic.otf</string>
+		<string>Diodrum-Medium.otf</string>
+		<string>Diodrum-MediumItalic.otf</string>
+		<string>Diodrum-Regular.otf</string>
+		<string>Diodrum-RegularItalic.otf</string>
+		<string>Diodrum-Semibold.otf</string>
+		<string>Diodrum-SemiboldItalic.otf</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
-	<string>$(LAUNCH_SCREEN_FILE_NAME)</string>
+	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Login</string>
 	<key>UIRequiredDeviceCapabilities</key>
