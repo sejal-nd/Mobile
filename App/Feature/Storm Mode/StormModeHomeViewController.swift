@@ -378,6 +378,9 @@ class StormModeHomeViewController: AccountPickerViewController {
     
     
     private func configureOutageTracker() {
+
+        setupBinding()
+
         infoView.frame = self.view.bounds
         self.view.addSubview(infoView)
         self.infoView.delegate = self
