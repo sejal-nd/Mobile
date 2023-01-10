@@ -30,7 +30,7 @@ class AlertsViewController: AccountPickerViewController {
     let viewModel = AlertsViewModel()
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return StormModeStatus.shared.isOn ? .darkContent : .default
+        return StormModeStatus.shared.isOn ? .lightContent : .default
     }
     
     // MARK: - Helper

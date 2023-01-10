@@ -865,10 +865,10 @@
                                 <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Mj-TS-qwu" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="953"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="951"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="R0W-6B-Jg1" userLabel="Main Stack">
-                                                <rect key="frame" x="0.0" y="0.0" width="393" height="923"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="393" height="921"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="03C-Li-pe1" userLabel="Home Header">
                                                         <rect key="frame" x="16" y="0.0" width="361" height="243"/>
@@ -910,20 +910,20 @@
                                                             <constraint firstItem="RAs-or-L7J" firstAttribute="top" secondItem="yyQ-Fy-vJo" secondAttribute="bottom" constant="12.5" id="z3g-oF-CBa"/>
                                                         </constraints>
                                                     </view>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="EIE-Dk-9Kb">
-                                                        <rect key="frame" x="16" y="243" width="361" height="71"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="EIE-Dk-9Kb">
+                                                        <rect key="frame" x="16" y="243" width="361" height="69"/>
                                                         <subviews>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="0.0" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="yAw-yc-4Zv" userLabel="Card Stack View">
+                                                            <stackView opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="0.0" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="yAw-yc-4Zv" userLabel="Card Stack View">
                                                                 <rect key="frame" x="0.0" y="0.0" width="361" height="0.0"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="cwq-qy-aQc"/>
                                                                 </constraints>
                                                             </stackView>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cXe-ii-e2G">
-                                                                <rect key="frame" x="0.0" y="25" width="361" height="46"/>
+                                                                <rect key="frame" x="0.0" y="12" width="361" height="57"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="csJ-YN-Yl6" customClass="SecondaryButton" customModule="Atlantic_City_Electric" customModuleProvider="target">
-                                                                        <rect key="frame" x="50.666666666666686" y="1" width="260" height="45"/>
+                                                                        <rect key="frame" x="50.666666666666686" y="12" width="260" height="45"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="45" id="04K-Sv-Jkv"/>
                                                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="260" id="MHl-g9-xBa"/>
@@ -942,7 +942,7 @@
                                                                     <constraint firstAttribute="bottom" secondItem="csJ-YN-Yl6" secondAttribute="bottom" priority="999" id="Rb1-TN-FDh"/>
                                                                     <constraint firstItem="csJ-YN-Yl6" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="cXe-ii-e2G" secondAttribute="leading" constant="16" id="nfE-pf-GCH"/>
                                                                     <constraint firstItem="csJ-YN-Yl6" firstAttribute="centerX" secondItem="cXe-ii-e2G" secondAttribute="centerX" id="vhS-t9-nXK"/>
-                                                                    <constraint firstItem="csJ-YN-Yl6" firstAttribute="top" secondItem="cXe-ii-e2G" secondAttribute="top" priority="999" constant="1" id="ysi-7d-jd4"/>
+                                                                    <constraint firstItem="csJ-YN-Yl6" firstAttribute="top" secondItem="cXe-ii-e2G" secondAttribute="top" priority="999" constant="12" id="ysi-7d-jd4"/>
                                                                 </constraints>
                                                             </view>
                                                         </subviews>
@@ -952,7 +952,7 @@
                                                         </constraints>
                                                     </stackView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2cU-Xy-mq7">
-                                                        <rect key="frame" x="0.0" y="314" width="393" height="609"/>
+                                                        <rect key="frame" x="0.0" y="312" width="393" height="609"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SVR-2m-y9N">
                                                                 <rect key="frame" x="0.0" y="200.66666666666663" width="393" height="208"/>
@@ -1086,7 +1086,7 @@
         <image name="ic_lock_white" width="125" height="126"/>
         <image name="ic_savings_caretleft" width="24" height="24"/>
         <image name="ic_savings_caretright" width="24" height="24"/>
-        <image name="img_home_afternoon_mobile" width="380" height="450"/>
+        <image name="img_home_afternoon_mobile" width="375" height="446"/>
         <image name="img_logo_white" width="250" height="100"/>
     </resources>
 </document>

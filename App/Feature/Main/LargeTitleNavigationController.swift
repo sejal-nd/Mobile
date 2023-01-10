@@ -25,7 +25,7 @@ class LargeTitleNavigationController: UINavigationController {
     }
     
     private func commonInit() {
-        let backgroundColor: UIColor = StormModeStatus.shared.isOn ? .stormModeBlack : .white
+        let backgroundColor: UIColor = StormModeStatus.shared.isOn ? .stormModeBackground : .white
         let textColor = StormModeStatus.shared.isOn ? UIColor.white : UIColor.blackText
         
         if #available(iOS 13.0, *) {

@@ -41,7 +41,7 @@ class LandingViewController: UIViewController {
     private var viewDidAppear = false
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .darkContent
+        return .lightContent
     }
     
     // MARK: - View Life Cycle

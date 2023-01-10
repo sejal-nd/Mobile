@@ -1065,6 +1065,7 @@
 		C3BCD53E2567238C006F405E /* HomeGameCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BCD53D2567238C006F405E /* HomeGameCardView.swift */; };
 		C3BCD5442567239D006F405E /* HomeGameCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3BCD5432567239D006F405E /* HomeGameCardView.xib */; };
 		C3C5696C256C33F60039C8A4 /* foresee_configuration.json in Resources */ = {isa = PBXBuildFile; fileRef = C3C5696B256C33F60039C8A4 /* foresee_configuration.json */; };
+		C3C8290229649AB200A7E390 /* HomeDiscoverCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C8290129649AB200A7E390 /* HomeDiscoverCardViewModel.swift */; };
 		C3CD431829412C1000297553 /* Exelon_WaveGraphic_B_RGB_2.png in Resources */ = {isa = PBXBuildFile; fileRef = C3CD431629412C0D00297553 /* Exelon_WaveGraphic_B_RGB_2.png */; };
 		C3CD431929412C1000297553 /* wavemotif.json in Resources */ = {isa = PBXBuildFile; fileRef = C3CD431729412C0E00297553 /* wavemotif.json */; };
 		C3CD431B29426ACB00297553 /* wavemotif_slower_trimmed.mov in Resources */ = {isa = PBXBuildFile; fileRef = C3CD431A29426ACB00297553 /* wavemotif_slower_trimmed.mov */; };
@@ -2425,6 +2426,7 @@
 		C3BCD53D2567238C006F405E /* HomeGameCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeGameCardView.swift; sourceTree = "<group>"; };
 		C3BCD5432567239D006F405E /* HomeGameCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeGameCardView.xib; sourceTree = "<group>"; };
 		C3C5696B256C33F60039C8A4 /* foresee_configuration.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = foresee_configuration.json; sourceTree = "<group>"; };
+		C3C8290129649AB200A7E390 /* HomeDiscoverCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDiscoverCardViewModel.swift; sourceTree = "<group>"; };
 		C3CD431629412C0D00297553 /* Exelon_WaveGraphic_B_RGB_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Exelon_WaveGraphic_B_RGB_2.png; sourceTree = "<group>"; };
 		C3CD431729412C0E00297553 /* wavemotif.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = wavemotif.json; sourceTree = "<group>"; };
 		C3CD431A29426ACB00297553 /* wavemotif_slower_trimmed.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = wavemotif_slower_trimmed.mov; sourceTree = "<group>"; };
@@ -5707,6 +5709,7 @@
 			isa = PBXGroup;
 			children = (
 				C34D54E02948E6B700E6012B /* HomeDiscoverCardView.swift */,
+				C3C8290129649AB200A7E390 /* HomeDiscoverCardViewModel.swift */,
 				C34D54E22948E6CA00E6012B /* HomeDiscoverCardView.xib */,
 			);
 			path = Discover;
@@ -7041,6 +7044,7 @@
 				9C62447422C5617D00F14DA0 /* SegmentedControl.swift in Sources */,
 				675F4C4E24AB828100A828F9 /* ForecastBill.swift in Sources */,
 				9CCE3E3F21B865F30008E1AF /* UIAlertController+SaveToWallet.swift in Sources */,
+				C3C8290229649AB200A7E390 /* HomeDiscoverCardViewModel.swift in Sources */,
 				B0DB274B215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.swift in Sources */,
 				358DE0AA21021B7A002C544E /* UnavailableView.swift in Sources */,
 				E8C453231EF4310800F5C781 /* BGEAutoPayViewController.swift in Sources */,
@@ -15721,6 +15725,7 @@
 				ENABLE_BITCODE = NO;
 				ENVIRONMENT_TIER = BETA;
 				EXCLUDED_ARCHS = "";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
@@ -16648,6 +16653,7 @@
 				ENABLE_BITCODE = NO;
 				ENVIRONMENT_TIER = BETA;
 				EXCLUDED_ARCHS = "";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;

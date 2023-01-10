@@ -180,8 +180,18 @@ extension UIColor {
 
     // MARK: Storm Mode Colors
 
+    @nonobjc static var stormModeBackground: UIColor {
+        return .primaryColor
+    }
+
+    // #2C2633
     @nonobjc static var stormModeBlack: UIColor {
-        return UIColor(red: 44/255, green: 38/255, blue: 51/255, alpha: 1)
+        return UIColor(named: "stormModeBlack")!
+    }
+
+    // #3854E1
+    @nonobjc static var stormModeGradient: UIColor {
+        return UIColor(red: 56/255, green: 84/255, blue: 225/255, alpha: 1)
     }
     
     @nonobjc static var stormModeGray: UIColor {

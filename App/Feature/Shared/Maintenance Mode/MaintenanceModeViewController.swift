@@ -32,7 +32,7 @@ class MaintenanceModeViewController: UIViewController {
     @IBOutlet weak var continueAsGuestButton: PrimaryButton!
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .darkContent
+        return StormModeStatus.shared.isOn ? .lightContent : .default
     }
         
     override func viewDidLoad() {

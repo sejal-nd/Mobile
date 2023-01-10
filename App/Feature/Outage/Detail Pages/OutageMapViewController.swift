@@ -26,7 +26,7 @@ class OutageMapViewController: UIViewController {
     private var outageMapURLString = FeatureFlagUtility.shared.string(forKey: .outageMapURL)
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return StormModeStatus.shared.isOn ? .darkContent : .default
+        return StormModeStatus.shared.isOn ? .lightContent : .default
     }
     
     override func viewDidLoad() {

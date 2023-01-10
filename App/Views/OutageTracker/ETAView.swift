@@ -19,8 +19,10 @@ class ETAView: UIView {
     @IBOutlet weak var etaDetailLabel: UILabel!
     @IBOutlet weak var etaCauseLabel: UILabel!
     @IBOutlet weak var etaUpdatedView: UIView!
+    @IBOutlet weak var etaUpdatedLabel: UILabel!
     @IBOutlet weak var etaInfoButtonView: UIView!
-    
+    @IBOutlet weak var tooltipImageView: UIImageView!
+
     weak var delegate: ETAViewDelegate?
     var tracker: OutageTracker!
     var status: OutageTracker.Status!
@@ -49,6 +51,10 @@ class ETAView: UIView {
         etaDateTimeLabel.textColor = isStormMode ? .white : .neutralDarker
         etaDetailLabel.textColor = isStormMode ? .white : .neutralDark
         etaCauseLabel.textColor = isStormMode ? .white : .neutralDark
+
+        if isStormMode {
+            tooltipImageView.image = tooltipImageView.image?.withTintColor(.secondaryGreen)
+        }
         
         hideInfoButtonView = status == .restored
         hideUpdatedView = true
@@ -197,16 +203,18 @@ class ETAView: UIView {
     func commonInit() {
         Bundle.main.loadNibNamed(self.className, owner: self, options: nil)
         addSubview(contentView)
+        contentView.backgroundColor = isStormMode ? .white.withAlphaComponent(0.10) : .white
         contentView.frame = self.bounds
         contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
 
-        let borderColor: UIColor = isStormMode ? .secondaryGreen : .secondaryBlue
+        let borderColor: UIColor = isStormMode ? .clear : .secondaryBlue
         self.roundCorners(.allCorners, radius: 10, borderColor: borderColor, borderWidth: 1.0)
         self.clipsToBounds = true
         
         let updatedViewRadius = etaUpdatedView.frame.size.height / 2
         etaUpdatedView.roundCorners(.allCorners, radius: updatedViewRadius, borderColor: borderColor, borderWidth: 1.0)
         etaUpdatedView.isHidden = true
+        etaUpdatedLabel.textColor = isStormMode ? .secondaryGreen : .secondaryBlue
     }
 
 }

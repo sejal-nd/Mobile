@@ -252,7 +252,7 @@ class StormModeHomeViewController: AccountPickerViewController {
     var stormModePollingDisposable: Disposable?
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .darkContent
+        return .lightContent
     }
 
     // MARK: - View Life Cycle
@@ -262,20 +262,20 @@ class StormModeHomeViewController: AccountPickerViewController {
         
         configureFeatureFlags()
         
-        view.backgroundColor = .stormModeBlack
-        
-        let gradientColor: UIColor
-        switch Configuration.shared.opco {
-        case .bge:
-            gradientColor = .primaryColor
-            setupBinding()
-        case .ace, .comEd, .delmarva, .peco, .pepco:
-            gradientColor = .primaryColor
-        }
-        
+        view.backgroundColor = .stormModeBackground
+
         gradientLayer.colors = [
-            gradientColor.cgColor,
-            gradientColor.withAlphaComponent(0).cgColor
+            UIColor.stormModeBlack.cgColor,
+            UIColor.secondaryBlue.cgColor,
+            UIColor.stormModeGradient.withAlphaComponent(0.85).cgColor,
+            UIColor.stormModeBlack.withAlphaComponent(0).cgColor
+        ]
+
+        gradientLayer.locations = [
+            0,
+            0.75,
+            0.85,
+            1.0
         ]
         
         gradientView.layer.insertSublayer(gradientLayer, at: 0)
@@ -389,10 +389,10 @@ class StormModeHomeViewController: AccountPickerViewController {
         
         let whyViewRadius = whyButtonView.frame.size.height / 2
         whyButtonView.roundCorners(.allCorners, radius: whyViewRadius, borderColor: .white, borderWidth: 1.0)
-        
-        countView.roundCorners(.allCorners, radius: 10, borderColor: .white, borderWidth: 1.0)
-        
+        countView.roundCorners(.allCorners, radius: 10, borderColor: .clear, borderWidth: 1.0)
         hazardView.roundCorners(.allCorners, radius: 10, borderColor: .clear, borderWidth: 1.0)
+
+        countView.backgroundColor = .white.withAlphaComponent(0.10)
     }
     
     private func setupBinding() {

@@ -37,6 +37,9 @@ class HomeViewModel {
     private(set) lazy var weatherViewModel =
         HomeWeatherViewModel(accountDetailEvents: accountDetailEvents,
                              accountDetailTracker: accountDetailTracker)
+
+    private(set) lazy var discoverCardViewModel =
+        HomeDiscoverCardViewModel(accountDetailEvents: accountDetailEvents)
     
     private(set) lazy var billCardViewModel =
         HomeBillCardViewModel(fetchData: fetchDataObservable,
@@ -50,13 +53,6 @@ class HomeViewModel {
                                maintenanceModeEvents: maintenanceModeEvents,
                                accountDetailEvents: accountDetailEvents,
                                fetchTracker: usageTracker)
-    
-    private(set) lazy var templateCardViewModel =
-        TemplateCardViewModel(accountDetailEvents: accountDetailEvents,
-                              showLoadingState: accountDetailTracker.asDriver()
-                                .filter { $0 }
-                                .mapTo(())
-                                .startWith(()))
     
     private(set) lazy var projectedBillCardViewModel =
         HomeProjectedBillCardViewModel(fetchData: fetchDataObservable,

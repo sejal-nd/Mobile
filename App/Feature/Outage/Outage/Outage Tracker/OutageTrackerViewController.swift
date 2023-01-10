@@ -109,13 +109,17 @@ class OutageTrackerViewController: UIViewController {
         
         etaView.delegate = self
         surveyView.delegate = self
+
+        let isStormMode = StormModeStatus.shared.isOn
+        let borderColor: UIColor = isStormMode ? .clear : .accentGray
         
         let whyViewRadius = whyButtonView.frame.size.height / 2
-        whyButtonView.roundCorners(.allCorners, radius: whyViewRadius, borderColor: .accentGray, borderWidth: 1.0)
-        
-        countView.roundCorners(.allCorners, radius: 10, borderColor: .accentGray, borderWidth: 1.0)
-        
-        hazardView.roundCorners(.allCorners, radius: 10, borderColor: .accentGray, borderWidth: 1.0)
+
+        whyButtonView.roundCorners(.allCorners, radius: whyViewRadius, borderColor: borderColor, borderWidth: 1.0)
+        countView.roundCorners(.allCorners, radius: 10, borderColor: borderColor, borderWidth: 1.0)
+        hazardView.roundCorners(.allCorners, radius: 10, borderColor: borderColor, borderWidth: 1.0)
+
+        countView.backgroundColor = isStormMode ? .white.withAlphaComponent(0.10) : .clear
     }
     
     private func update() {

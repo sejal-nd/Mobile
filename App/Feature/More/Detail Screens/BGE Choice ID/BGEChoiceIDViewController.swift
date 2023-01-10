@@ -33,7 +33,7 @@ class BGEChoiceIDViewController: AccountPickerViewController {
     let viewModel = BGEChoiceIDViewModel()
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return StormModeStatus.shared.isOn ? .darkContent : .default
+        return StormModeStatus.shared.isOn ? .lightContent : .default
     }
     
     override func viewDidLoad() {

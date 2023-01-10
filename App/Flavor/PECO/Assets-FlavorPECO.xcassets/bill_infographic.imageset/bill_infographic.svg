@@ -1,0 +1,23 @@
+<svg width="330" height="317" viewBox="0 0 330 317" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="67" y="29" width="197" height="250" rx="9.6" fill="white" stroke="#E5E6E8" stroke-width="2"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M79 53.8C79 51.149 81.149 49 83.8 49H247.2C249.851 49 252 51.149 252 53.8V66.2C252 68.851 249.851 71 247.2 71H83.8C81.149 71 79 68.851 79 66.2V53.8Z" fill="#170D67"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M86 56H122V58H86V56Z" fill="white"/>
+<circle cx="128" cy="57" r="1" fill="white"/>
+<circle cx="132" cy="57" r="1" fill="white"/>
+<circle cx="136" cy="57" r="1" fill="white"/>
+<circle cx="140" cy="57" r="1" fill="white"/>
+<circle cx="144" cy="57" r="1" fill="white"/>
+<circle cx="149" cy="57" r="1" fill="white"/>
+<circle cx="153" cy="57" r="1" fill="white"/>
+<circle cx="157" cy="57" r="1" fill="white"/>
+<circle cx="161" cy="57" r="1" fill="white"/>
+<circle cx="165" cy="57" r="1" fill="white"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M169 92C169 91.4477 169.448 91 170 91H233C233.552 91 234 91.4477 234 92C234 92.5523 233.552 93 233 93H170C169.448 93 169 92.5523 169 92Z" fill="#E5E6E8"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M169 115C169 114.448 169.448 114 170 114H245C245.552 114 246 114.448 246 115C246 115.552 245.552 116 245 116H170C169.448 116 169 115.552 169 115Z" fill="#E5E6E8"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M169 146C169 145.448 169.448 145 170 145H245C245.552 145 246 145.448 246 146C246 146.552 245.552 147 245 147H170C169.448 147 169 146.552 169 146Z" fill="#E5E6E8"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M169 155C169 154.448 169.448 154 170 154H245C245.552 154 246 154.448 246 155C246 155.552 245.552 156 245 156H170C169.448 156 169 155.552 169 155Z" fill="#E5E6E8"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M169 164C169 163.448 169.448 163 170 163H245C245.552 163 246 163.448 246 164C246 164.552 245.552 165 245 165H170C169.448 165 169 164.552 169 164Z" fill="#E5E6E8"/>
+<circle cx="111.5" cy="103.5" r="17" stroke="#E5E6E8" stroke-width="5"/>
+<circle cx="111.5" cy="148.5" r="17" stroke="#E5E6E8" stroke-width="5"/>
+<path d="M142 230C142 227.239 144.239 225 147 225H244C246.761 225 249 227.239 249 230V246C249 248.761 246.761 251 244 251H147C144.239 251 142 248.761 142 246V230Z" stroke="#E5E6E8" stroke-width="2"/>
+</svg>

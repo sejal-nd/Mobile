@@ -70,7 +70,7 @@ class MoreViewController: UIViewController {
         // for smooth large title nav collapsing. Outside of Storm Mode there is no nav bar, so we
         // constrain to the safe area so that content does not overlap the status bar
         if StormModeStatus.shared.isOn {
-            view.backgroundColor = .stormModeBlack
+            view.backgroundColor = .stormModeBackground
             view.removeConstraint(safeAreaTopConstraint)
             view.addConstraint(superviewTopConstraint)
         } else {
@@ -508,7 +508,7 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
         }
         
         if StormModeStatus.shared.isOn {
-            headerView.colorView.backgroundColor = .stormModeBlack
+            headerView.colorView.backgroundColor = .stormModeBackground
         }
         return headerView
     }

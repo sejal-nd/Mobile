@@ -5,7 +5,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,11 +12,11 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="T3F-0B-lUp" customClass="HomeDiscoverCardView" customModule="Atlantic_City_Electric" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="380" height="540"/>
+            <rect key="frame" x="0.0" y="0.0" width="380" height="660"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="whf-1X-Rc7">
-                    <rect key="frame" x="0.0" y="0.0" width="380" height="540"/>
+                    <rect key="frame" x="0.0" y="0.0" width="380" height="660"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="6Mi-4U-rPz">
                             <rect key="frame" x="0.0" y="0.0" width="380" height="660"/>
@@ -667,18 +666,17 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="6Mi-4U-rPz" firstAttribute="top" secondItem="whf-1X-Rc7" secondAttribute="top" id="0Aa-O4-hVY"/>
+                        <constraint firstAttribute="bottom" secondItem="6Mi-4U-rPz" secondAttribute="bottom" id="HL7-kj-ahY"/>
                         <constraint firstAttribute="trailing" secondItem="6Mi-4U-rPz" secondAttribute="trailing" id="d7n-ah-2qN"/>
                         <constraint firstItem="6Mi-4U-rPz" firstAttribute="leading" secondItem="whf-1X-Rc7" secondAttribute="leading" id="f6n-KX-fg8"/>
-                        <constraint firstAttribute="height" constant="540" id="yOK-R9-J23"/>
                     </constraints>
                 </view>
             </subviews>
-            <viewLayoutGuide key="safeArea" id="n1a-nk-2i6"/>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="whf-1X-Rc7" secondAttribute="trailing" id="BQN-Bg-J7a"/>
                 <constraint firstItem="whf-1X-Rc7" firstAttribute="leading" secondItem="T3F-0B-lUp" secondAttribute="leading" id="IDl-qC-uFm"/>
-                <constraint firstAttribute="bottom" secondItem="whf-1X-Rc7" secondAttribute="bottom" id="fuP-zt-Wks"/>
+                <constraint firstAttribute="bottom" secondItem="whf-1X-Rc7" secondAttribute="bottom" id="qqP-8s-0TZ"/>
                 <constraint firstItem="whf-1X-Rc7" firstAttribute="top" secondItem="T3F-0B-lUp" secondAttribute="top" id="xGJ-WX-3wI"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
@@ -690,14 +688,24 @@
                 <outlet property="loadingView" destination="Z5J-EO-yoX" id="KqO-2x-a0h"/>
                 <outlet property="row1" destination="Brc-AT-0yB" id="T6W-aQ-QbN"/>
                 <outlet property="row10" destination="R3M-lX-Uqv" id="JpT-KD-jvC"/>
+                <outlet property="row10Button" destination="WbJ-Tm-HoR" id="acJ-dc-UeL"/>
+                <outlet property="row1Button" destination="THz-fB-bpS" id="nki-LR-hXM"/>
                 <outlet property="row2" destination="WK1-oc-4Zi" id="Bg0-JI-Uhw"/>
+                <outlet property="row2Button" destination="3dd-Fd-5SD" id="WSv-Iv-IN7"/>
                 <outlet property="row3" destination="GoT-Tj-2BE" id="yZN-cl-1Js"/>
+                <outlet property="row3Button" destination="ZWT-GB-MsZ" id="jaN-dU-clQ"/>
                 <outlet property="row4" destination="jeb-Th-k5i" id="ZEJ-9Q-meb"/>
+                <outlet property="row4Button" destination="FpL-Tc-g32" id="eoR-sC-IjJ"/>
                 <outlet property="row5" destination="Sod-xm-KuN" id="Xzj-6A-KmK"/>
+                <outlet property="row5Button" destination="WBK-Zl-aBN" id="YgD-wZ-qEP"/>
                 <outlet property="row6" destination="0ik-Qx-Mkw" id="BuR-p8-zMi"/>
+                <outlet property="row6Button" destination="X5A-eb-nnv" id="j3P-Lj-cEu"/>
                 <outlet property="row7" destination="uVI-Xg-aYw" id="915-Oa-Ou8"/>
+                <outlet property="row7Button" destination="ZMt-kc-iwa" id="XxL-Z0-K98"/>
                 <outlet property="row8" destination="Fo2-XM-NAN" id="CMy-Ti-4IQ"/>
+                <outlet property="row8Button" destination="r4b-KA-2b6" id="qHG-zY-VZG"/>
                 <outlet property="row9" destination="c4w-bv-Q6O" id="eL2-Fu-Dy6"/>
+                <outlet property="row9Button" destination="nVh-2j-JbF" id="2PT-rv-nPx"/>
             </connections>
             <point key="canvasLocation" x="-277.86259541984731" y="803.52112676056345"/>
         </view>

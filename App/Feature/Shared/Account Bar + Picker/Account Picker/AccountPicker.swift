@@ -50,6 +50,9 @@ class AccountPicker: UIControl {
             for label in addressLabels {
                 label.textColor = tintWhite ? .white: .neutralDarker
             }
+
+            backgroundColor = tintWhite ? .clear : .neutralLightest
+            view.backgroundColor = tintWhite ? .clear : .neutralLightest
             
             switchAccountImageView.image = tintWhite ? UIImage(named: "ic_switchaccount")! :
                 UIImage(named: "ic_switchaccount_blue")
@@ -89,8 +92,9 @@ class AccountPicker: UIControl {
         isAccessibilityElement = true
                 
         clipsToBounds = true
-        backgroundColor = .neutralLightest
-        view.backgroundColor = .neutralLightest
+
+        backgroundColor = tintWhite ? .clear : .neutralLightest
+        view.backgroundColor = tintWhite ? .clear : .neutralLightest
         
         multiAccountView.isHidden = true // Hide one so that intrinsic height is 50
         loadingIndicator.isHidden = true

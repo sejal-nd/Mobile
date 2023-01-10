@@ -15,7 +15,7 @@ class UpdatesDetailViewController: UIViewController {
     var opcoUpdate: Alert!
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return StormModeStatus.shared.isOn ? .darkContent : .default
+        return StormModeStatus.shared.isOn ? .lightContent : .default
     }
 
     // MARK: - View Life Cycle

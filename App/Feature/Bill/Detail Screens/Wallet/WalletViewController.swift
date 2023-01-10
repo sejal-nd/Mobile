@@ -48,7 +48,7 @@ class WalletViewController: UIViewController {
     private(set) lazy var didUpdate: Observable<String> = self.didUpdateSubject.asObservable()
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return StormModeStatus.shared.isOn ? .darkContent : .default
+        return StormModeStatus.shared.isOn ? .lightContent : .default
     }
     
     // MARK: - View Life Cycle

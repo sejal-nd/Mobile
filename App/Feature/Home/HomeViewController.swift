@@ -37,7 +37,6 @@ class HomeViewController: AccountPickerViewController {
     var termsAndConditionsButton: UIButton!
 
     var discoverCardView: HomeDiscoverCardView!
-    var weatherView: HomeWeatherView!
     var importantUpdateView: HomeUpdateView?
     var gameOnboardingCardView: HomeGameOnboardingCardView?
     var appointmentCardView: HomeAppointmentCardView?
@@ -45,7 +44,6 @@ class HomeViewController: AccountPickerViewController {
     var prepaidActiveCardView: HomePrepaidCardView?
     var billCardView: HomeBillCardView?
     var usageCardView: HomeUsageCardView?
-    var templateCardView: TemplateCardView?
     var projectedBillCardView: HomeProjectedBillCardView?
     var outageCardView: HomeOutageCardView?
     var topPersonalizeButton: ConversationalButton?
@@ -152,17 +150,10 @@ class HomeViewController: AccountPickerViewController {
             })
             .disposed(by: bag)
 
-        discoverCardView = .create()
-        contentStackView.addArrangedSubview(discoverCardView)
-        
-        // Create weather card
-        weatherView = .create(withViewModel: viewModel.weatherViewModel)
-
         if Configuration.shared.opco.isPHI {
             // Create Opco Identifier Card
             opcoIdentityView = .create()
             contentStackView.insertArrangedSubview(opcoIdentityView, at: 0)
-//            contentStackView.insertArrangedSubview(weatherView, at: 1)
             opcoIdentityView.leadingAnchor.constraint(equalTo: contentStackView.leadingAnchor).isActive = true
             opcoIdentityView.trailingAnchor.constraint(equalTo: contentStackView.trailingAnchor).isActive = true
             opcoIdentityViewHeightConstraint = opcoIdentityView.heightAnchor.constraint(equalToConstant: opcoIdentityViewHeight)
@@ -177,18 +168,7 @@ class HomeViewController: AccountPickerViewController {
                     self?.onTermsAndPolicyPress()
                 }).disposed(by: bag)
             contentStackView.insertArrangedSubview(termsAndConditionsButton, at: contentStackView.subviews.count)
-        } else {
-//            contentStackView.insertArrangedSubview(weatherView, at: 0)
         }
-//        weatherView.leadingAnchor.constraint(equalTo: contentStackView.leadingAnchor).isActive = true
-//        weatherView.trailingAnchor.constraint(equalTo: contentStackView.trailingAnchor).isActive = true
-        
-        weatherView.didTapTemperatureTip
-            .map(InfoModalViewController.init)
-            .drive(onNext: { [weak self] in
-                self?.navigationController?.present($0, animated: true, completion: nil)
-            })
-            .disposed(by: weatherView.bag)
         
         // Top personalize button logic
         let versionString = UserDefaults.standard.string(forKey: UserDefaultKeys.homeCardCustomizeTappedVersion) ?? "0.0.0"
@@ -300,13 +280,12 @@ class HomeViewController: AccountPickerViewController {
                 .disposed(by: bag)
         }
         
-        // If no update, show weather and personalize button at the top.
+        // If no update, show personalize button at the top.
         // Hide the update view.
         viewModel.importantUpdate
             .filter { $0 == nil }
             .drive(onNext: { [weak self] _ in
                 guard let self = self else { return }
-                self.weatherView.isHidden = false
                 self.topPersonalizeButton?.isHidden = false
                 self.importantUpdateView?.removeFromSuperview()
                 self.importantUpdateView = nil
@@ -314,13 +293,12 @@ class HomeViewController: AccountPickerViewController {
             .disposed(by: bag)
         
         // If update, show the update view.
-        // Hide weather and personalize button at the top.
+        // Hide personalize button at the top.
         // For PHI the update view will come at the second position for other EU apps it will be at the top most position after account picker
         viewModel.importantUpdate
             .filter { $0 != nil }
             .drive(onNext: { [weak self] update in
                 guard let self = self, let update = update else { return }
-                self.weatherView.isHidden = true
                 self.topPersonalizeButton?.isHidden = true
                 
                 if let importantUpdateView = self.importantUpdateView {
@@ -545,8 +523,6 @@ class HomeViewController: AccountPickerViewController {
             billCardView = nil
         case .usage:
             usageCardView = nil
-        case .template:
-            templateCardView = nil
         case .projectedBill:
             projectedBillCardView = nil
         case .outageStatus:
@@ -569,9 +545,9 @@ class HomeViewController: AccountPickerViewController {
             if let discoverCard = self.discoverCardView {
                 discoverCardView = discoverCard
             } else {
-                discoverCardView = .create()
+                discoverCardView = .create(withViewModel: viewModel.discoverCardViewModel)
                 self.discoverCardView = discoverCardView
-//                bindBillCard()
+                bindDiscoverCard()
             }
 
             return discoverCardView
@@ -597,17 +573,6 @@ class HomeViewController: AccountPickerViewController {
             }
             
             return usageCardView
-        case .template:
-            let templateCardView: TemplateCardView
-            if let templateCard = self.templateCardView {
-                templateCardView = templateCard
-            } else {
-                templateCardView = .create(withViewModel: viewModel.templateCardViewModel)
-                self.templateCardView = templateCardView
-                bindTemplateCard()
-            }
-            
-            return templateCardView
         case .projectedBill:
             let projectedBillCardView: HomeProjectedBillCardView
             if let projectedBillCard = self.projectedBillCardView {
@@ -665,6 +630,55 @@ class HomeViewController: AccountPickerViewController {
         default:
             fatalError(card.displayString + " card view doesn't exist yet")
         }
+    }
+
+    func bindDiscoverCard() {
+        guard let discoverCardView = discoverCardView else { return }
+
+//        discoverCardView.row2Button.rx.tap.asDriver().drive { [weak self] _ in
+//            self?.present(viewController, animated: true, completion: nil)
+//        }
+
+        discoverCardView.helpViewController
+            .drive(onNext: { [weak self] viewController in
+                self?.present(viewController, animated: true, completion: nil)
+            }).disposed(by: discoverCardView.disposeBag)
+
+        discoverCardView.assistanceViewController
+            .drive(onNext: { [weak self] viewController in
+                self?.present(viewController, animated: true, completion: nil)
+            }).disposed(by: discoverCardView.disposeBag)
+
+        discoverCardView.energySavingsViewController
+            .drive(onNext: { [weak self] viewController in
+                self?.present(viewController, animated: true, completion: nil)
+            }).disposed(by: discoverCardView.disposeBag)
+
+        discoverCardView.energyWiseRewardsOfferViewController
+            .drive(onNext: { [weak self] viewController in
+                self?.present(viewController, animated: true, completion: nil)
+            }).disposed(by: discoverCardView.disposeBag)
+
+        discoverCardView.commercialViewController
+            .drive(onNext: { [weak self] viewController in
+                self?.present(viewController, animated: true, completion: nil)
+            }).disposed(by: discoverCardView.disposeBag)
+
+        discoverCardView.homeEnergyCheckupViewController
+            .drive(onNext: { [weak self] viewController in
+                self?.present(viewController, animated: true, completion: nil)
+            }).disposed(by: discoverCardView.disposeBag)
+
+        discoverCardView.alertPrefsViewController
+            .drive(onNext: { [weak self] viewController in
+                self?.navigationController?.present(viewController, animated: true)
+            }).disposed(by: discoverCardView.disposeBag)
+
+        discoverCardView.pushedViewControllers
+            .drive(onNext: { [weak self] viewController in
+                viewController.hidesBottomBarWhenPushed = true
+                self?.navigationController?.pushViewController(viewController, animated: true)
+            }).disposed(by: discoverCardView.disposeBag)
     }
     
     func bindBillCard() {
@@ -774,21 +788,6 @@ class HomeViewController: AccountPickerViewController {
             }).disposed(by: usageCardView.disposeBag)
     }
     
-    func bindTemplateCard() {
-        guard let templateCardView = templateCardView else { return }
-        
-        templateCardView.safariViewController
-            .drive(onNext: { [weak self] viewController in
-                self?.present(viewController, animated: true, completion: nil)
-            }).disposed(by: templateCardView.bag)
-        
-        templateCardView.pushedViewControllers
-            .drive(onNext: { [weak self] viewController in
-                viewController.hidesBottomBarWhenPushed = true
-                self?.navigationController?.pushViewController(viewController, animated: true)
-            }).disposed(by: templateCardView.bag)
-    }
-    
     func bindProjectedBillCard() {
         guard let projectedBillCardView = projectedBillCardView else { return }
         
@@ -877,7 +876,6 @@ class HomeViewController: AccountPickerViewController {
         Driver.combineLatest(viewModel.showAccountDisallowState, viewModel.importantUpdate).drive(onNext: { [weak self] (showAcctDisallow, update) in
             self?.accountDisallowView.isHidden = !showAcctDisallow
             self?.contentStackView.isHidden = showAcctDisallow
-            self?.weatherView.isHidden = showAcctDisallow || update != nil
             self?.importantUpdateView?.isHidden = showAcctDisallow
         }).disposed(by:bag)
         
@@ -977,7 +975,6 @@ extension HomeViewController: AccountPickerDelegate {
                 } else {
                     if let opcoType = account.opcoType {
                         contentStackView.insertArrangedSubview(opcoIdentityView, at: 0)
-//                        contentStackView.insertArrangedSubview(weatherView, at: 1)
                         if let accountNickname = account.accountNickname {
                             var nickname = ""
                             if accountNickname != account.accountNumber {
