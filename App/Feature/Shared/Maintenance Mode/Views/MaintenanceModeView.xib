@@ -8,11 +8,11 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="OpenSans-Regular.ttf">
-            <string>OpenSans</string>
+        <array key="Diodrum-Regular.ttf">
+            <string>Diodrum</string>
         </array>
-        <array key="OpenSans-Semibold.ttf">
-            <string>OpenSans-Semibold</string>
+        <array key="Diodrum-Semibold.ttf">
+            <string>Diodrum-Semibold</string>
         </array>
     </customFonts>
     <objects>
@@ -81,7 +81,7 @@
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Maintenance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rgx-50-2me">
                                     <rect key="frame" x="118" y="204.5" width="114" height="25"/>
-                                    <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="18"/>
+                                    <fontDescription key="fontDescription" name="Diodrum-Semibold" family="Open Sans" pointSize="18"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
@@ -92,7 +92,7 @@
                                     </constraints>
                                     <string key="text">Billing is currently unavailable due to
 maintenance.</string>
-                                    <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
+                                    <fontDescription key="fontDescription" name="Diodrum" family="Open Sans" pointSize="14"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
@@ -133,7 +133,7 @@ maintenance.</string>
 
 For all other inquiries please call 1-800-494-4000 M-F 7AM to 7PM</string>
                             <color key="textColor" red="0.1372549236" green="0.1215686426" blue="0.1254901886" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
+                            <fontDescription key="fontDescription" name="Diodrum" family="Open Sans" pointSize="12"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
                     </subviews>

@@ -28,12 +28,12 @@ class BillingHistoryTableViewCell: UITableViewCell {
         
         selectionStyle = .none
         
-        titleLabel.textColor = .deepGray
-        titleLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        dateLabel.textColor = .deepGray
-        dateLabel.font = SystemFont.regular.of(textStyle: .caption1)
-        amountLabel.textColor = .deepGray
-        amountLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        titleLabel.textColor = .neutralDark
+        titleLabel.font = .subheadline
+        dateLabel.textColor = .neutralDark
+        dateLabel.font = .caption1
+        amountLabel.textColor = .neutralDark
+        amountLabel.font = .subheadline
     }
 
     func configureWith(item: BillingHistoryItem) {
@@ -68,7 +68,7 @@ class BillingHistoryTableViewCell: UITableViewCell {
             case .success, .unknown:
                 iconImageView.image = #imageLiteral(resourceName: "ic_activity_success")
                 amountLabel.textColor = .successGreenText
-                amountLabel.font = SystemFont.semibold.of(textStyle: .subheadline)
+                amountLabel.font = .subheadlineSemibold
                 if let description = item.welcomeDescription {
                     let titleText = (description.lowercased().contains("reinstate") && Configuration.shared.opco == .peco) ? NSLocalizedString(description, comment: "") : NSLocalizedString("Payment", comment: "")
                     titleLabel.text = titleText
@@ -107,8 +107,8 @@ class BillingHistoryTableViewCell: UITableViewCell {
         super.prepareForReuse()
         dateLabel.text = ""
         titleLabel.text = ""
-        amountLabel.textColor = .deepGray
-        amountLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        amountLabel.textColor = .neutralDark
+        amountLabel.font = .subheadline
         amountLabel.text = ""
         iconImageView.image = nil
         dateLabel.isHidden = false

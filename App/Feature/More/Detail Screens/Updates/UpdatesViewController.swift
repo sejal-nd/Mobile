@@ -57,12 +57,12 @@ class UpdatesViewController: UIViewController {
         
         tableView.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
         
-        errorLabel.font = SystemFont.regular.of(textStyle: .headline)
+        errorLabel.font = .headline
         errorLabel.textColor = .blackText
         errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
 
         updatesEmptyStateLabel.textColor = .middleGray
-        updatesEmptyStateLabel.font = OpenSans.regular.of(textStyle: .headline)
+        updatesEmptyStateLabel.font = .headline
         updatesEmptyStateLabel.text = NSLocalizedString("There are no updates at\nthis time.", comment: "")
     }
 

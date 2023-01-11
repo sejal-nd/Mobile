@@ -256,21 +256,21 @@ class BillViewController: AccountPickerViewController {
     func styleViews() {
         view.backgroundColor = .softGray
         assistanceViewSepartors.forEach{($0.backgroundColor = UIColor.accentGray)}
-        titleAssistanceProgram.font = SystemFont.bold.of(textStyle: .caption1)
-        titleAssistanceProgram.textColor = .deepGray
+        titleAssistanceProgram.font = .caption1Semibold
+        titleAssistanceProgram.textColor = .neutralDark
         if assistanceCTA.titleLabel?.text == "Reinstate Payment Arrangement" {
-            self.titleAssistanceProgram.font = SystemFont.regular.of(textStyle: .caption1)
+            self.titleAssistanceProgram.font = .caption1
             
         } else {
 
-        descriptionAssistanceProgram.font = SystemFont.regular.of(textStyle: .caption1)
+        descriptionAssistanceProgram.font = .caption1
         }
-        descriptionAssistanceProgram.textColor = .deepGray
-        assistanceCTA.setTitleColor(.actionBlue, for: .normal)
-        assistanceCTA.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
+        descriptionAssistanceProgram.textColor = .neutralDark
+        assistanceCTA.setTitleColor(.actionBrand, for: .normal)
+        assistanceCTA.titleLabel?.font = .headlineSemibold
         
-        prepaidHeaderLabel.font = OpenSans.semibold.of(textStyle: .headline)
-        prepaidDetailLabel.font = OpenSans.regular.of(textStyle: .subheadline)
+        prepaidHeaderLabel.font = .headlineSemibold
+        prepaidDetailLabel.font = .subheadline
         prepaidBannerButton.layer.cornerRadius = 10
         if let header = prepaidHeaderLabel.text, let detail = prepaidDetailLabel.text {
             prepaidBannerButton.accessibilityLabel = "\(header). \(detail)"
@@ -282,149 +282,149 @@ class BillViewController: AccountPickerViewController {
         
         multipremiseHeaderView.layer.borderColor = UIColor.accentGray.cgColor
         multipremiseHeaderView.layer.borderWidth = 1
-        multipremiseHeaderLabel.textColor = .deepGray
-        multipremiseHeaderLabel.font = SystemFont.semibold.of(textStyle: .caption1)
+        multipremiseHeaderLabel.textColor = .neutralDark
+        multipremiseHeaderLabel.font = .caption1Semibold
         multipremiseHeaderLabel.text = NSLocalizedString("Multi-Premise Bill", comment: "")
         
-        totalAmountLabel.textColor = .deepGray
-        totalAmountLabel.font = OpenSans.semibold.of(textStyle: .largeTitle)
+        totalAmountLabel.textColor = .neutralDarker
+        totalAmountLabel.font = .largeTitle
 
-        totalAmountDescriptionLabel.font = OpenSans.regular.of(textStyle: .footnote)
+        totalAmountDescriptionLabel.font = .footnote
         
         pastDueCurrentBillBox.layer.borderColor = UIColor.accentGray.cgColor
         pastDueCurrentBillBox.layer.borderWidth = 1
         
-        pastDueLabel.textColor = .deepGray
-        pastDueLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        pastDueDateLabel.font = SystemFont.regular.of(textStyle: .caption1)
-        pastDueAmountLabel.textColor = .deepGray
-        pastDueAmountLabel.font = OpenSans.semibold.of(textStyle: .footnote)
+        pastDueLabel.textColor = .neutralDark
+        pastDueLabel.font = .footnote
+        pastDueDateLabel.font = .caption1
+        pastDueAmountLabel.textColor = .neutralDark
+        pastDueAmountLabel.font = .footnoteSemibold
         pastDueDividerLine.backgroundColor = .accentGray
         
-        currentBillLabel.textColor = .deepGray
-        currentBillLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        currentBillLabel.textColor = .neutralDark
+        currentBillLabel.font = .footnote
         currentBillDateLabel.textColor = .middleGray
-        currentBillDateLabel.font = SystemFont.regular.of(textStyle: .caption1)
-        currentBillAmountLabel.textColor = .deepGray
-        currentBillAmountLabel.font = OpenSans.semibold.of(textStyle: .footnote)
+        currentBillDateLabel.font = .caption1
+        currentBillAmountLabel.textColor = .neutralDark
+        currentBillAmountLabel.font = .footnoteSemibold
         
         paymentReceivedView.layer.borderColor = UIColor.accentGray.cgColor
         paymentReceivedView.layer.borderWidth = 1
         
-        paymentReceivedLabel.textColor = .deepGray
-        paymentReceivedLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        paymentReceivedLabel.textColor = .neutralDark
+        paymentReceivedLabel.font = .footnote
         paymentReceivedDateLabel.textColor = .middleGray
-        paymentReceivedDateLabel.font = SystemFont.regular.of(textStyle: .caption1)
-        paymentReceivedAmountLabel.textColor = .successGreenText
-        paymentReceivedAmountLabel.font = OpenSans.semibold.of(textStyle: .footnote)
+        paymentReceivedDateLabel.font = .caption1
+        paymentReceivedAmountLabel.textColor = .secondaryBlue
+        paymentReceivedAmountLabel.font = .footnoteSemibold
         
         pendingPaymentRemainingBalanceBox.layer.borderColor = UIColor.accentGray.cgColor
         pendingPaymentRemainingBalanceBox.layer.borderWidth = 1
         
-        pendingPaymentLabel.textColor = .deepGray
-        pendingPaymentLabel.font = SystemFont.italic.of(textStyle: .footnote)
+        pendingPaymentLabel.textColor = .neutralDark
+        pendingPaymentLabel.font = .footnote
         pendingPaymentAmountLabel.textColor = .middleGray
-        pendingPaymentAmountLabel.font = OpenSans.semiboldItalic.of(textStyle: .footnote)
+        pendingPaymentAmountLabel.font = .footnoteSemibold
         pendingPaymentDividerLine.backgroundColor = .accentGray
         
-        remainingBalanceDueLabel.textColor = .deepGray
-        remainingBalanceDueLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        remainingBalanceDueAmountLabel.textColor = .deepGray
-        remainingBalanceDueAmountLabel.font = OpenSans.semibold.of(textStyle: .footnote)
+        remainingBalanceDueLabel.textColor = .neutralDark
+        remainingBalanceDueLabel.font = .footnote
+        remainingBalanceDueAmountLabel.textColor = .neutralDark
+        remainingBalanceDueAmountLabel.font = .footnoteSemibold
         
-        catchUpDisclaimerLabel.textColor = .deepGray
-        catchUpDisclaimerLabel.font = SystemFont.regular.of(textStyle: .caption1)
+        catchUpDisclaimerLabel.textColor = .neutralDark
+        catchUpDisclaimerLabel.font = .caption1
         
-        ddeExtendedDateLabel.textColor = .deepGray
-        ddeExtendedDateLabel.font = SystemFont.semibold.of(textStyle: .caption1)
+        ddeExtendedDateLabel.textColor = .neutralDark
+        ddeExtendedDateLabel.font = .caption1Semibold
         
         
-        creditScenarioTitleLabel.textColor = .deepGray
-        creditScenarioTitleLabel.font = OpenSans.regular.of(textStyle: .callout)
+        creditScenarioTitleLabel.textColor = .neutralDark
+        creditScenarioTitleLabel.font = .callout
         creditScenarioTitleLabel.text = NSLocalizedString("No Amount Due - Credit Balance", comment: "")
-        creditScenarioAmountLabel.textColor = .deepGray
-        creditScenarioAmountLabel.font = OpenSans.semibold.of(textStyle: .largeTitle)
+        creditScenarioAmountLabel.textColor = .neutralDarker
+        creditScenarioAmountLabel.font = .largeTitle
         
-        billNotReadyLabel.textColor = .deepGray
-        billNotReadyLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        billNotReadyLabel.textColor = .neutralDark
+        billNotReadyLabel.font = .subheadline
         billNotReadyLabel.text = NSLocalizedString("Once you receive your bill, details about your charges will appear here.", comment: "")
         
         viewBillButton.layer.cornerRadius = viewBillButton.frame.size.height / 2
         viewBillButton.layer.borderColor = UIColor.accentGray.cgColor
         viewBillButton.layer.borderWidth = 1
         viewBillButton.backgroundColorOnPress = .softGray
-        viewBillLabel.font = SystemFont.semibold.of(textStyle: .caption1)
+        viewBillLabel.font = .caption1Semibold
         
         billPaidFakeButtonView.backgroundColor = .accentGray
         billPaidFakeButtonView.layer.cornerRadius = 27.5
         billPaidFakeButtonView.isAccessibilityElement = true
         billPaidFakeButtonView.accessibilityLabel = NSLocalizedString("Bill Paid, dimmed, button", comment: "")
         
-        billPaidLabel.textColor = UIColor.deepGray.withAlphaComponent(0.5)
-        billPaidLabel.font = SystemFont.semibold.of(textStyle: .headline)
+        billPaidLabel.textColor = UIColor.neutralDark.withAlphaComponent(0.5)
+        billPaidLabel.font = .headlineSemibold
                 
         billBreakdownButton.backgroundColorOnPress = .softGray
-        billBreakdownLabel.textColor = .deepGray
-        billBreakdownLabel.font = SystemFont.medium.of(textStyle: .callout)
+        billBreakdownLabel.textColor = .neutralDark
+        billBreakdownLabel.font = .callout
         
         activityButton.backgroundColorOnPress = .softGray
-        activityButtonLabel.textColor = .deepGray
-        activityButtonLabel.font = SystemFont.medium.of(textStyle: .callout)
+        activityButtonLabel.textColor = .neutralDark
+        activityButtonLabel.font = .callout
         
         walletButton.backgroundColorOnPress = .softGray
-        walletButtonLabel.textColor = .deepGray
-        walletButtonLabel.font = SystemFont.medium.of(textStyle: .callout)
+        walletButtonLabel.textColor = .neutralDark
+        walletButtonLabel.font = .callout
         
         usageBillImpactCardView.layer.cornerRadius = 10
         usageBillImpactCardView.layer.borderColor = UIColor.accentGray.cgColor
         usageBillImpactCardView.layer.borderWidth = 1
         
-        usageBillImpactEmptyStateLabel.textColor = .deepGray
-        usageBillImpactEmptyStateLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        usageBillImpactEmptyStateLabel.textColor = .neutralDark
+        usageBillImpactEmptyStateLabel.font = .subheadline
         usageBillImpactEmptyStateLabel.text = NSLocalizedString("After a few bill cycles, insights about your bill will be available here.", comment: "")
         
-        usageBillImpactErrorLabel.textColor = .deepGray
-        usageBillImpactErrorLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        usageBillImpactErrorLabel.textColor = .neutralDark
+        usageBillImpactErrorLabel.font = .subheadline
         usageBillImpactErrorLabel.text = NSLocalizedString("Bill trends could not be retrieved at this time. Please try again later.", comment: "")
         
-        billingOptionsLabel.textColor = .deepGray
-        billingOptionsLabel.font = OpenSans.regular.of(textStyle: .headline)
+        billingOptionsLabel.textColor = .neutralDark
+        billingOptionsLabel.font = .headline
         
         paperlessButton.layer.cornerRadius = 10
         paperlessButton.layer.borderColor = UIColor.accentGray.cgColor
         paperlessButton.layer.borderWidth = 1
-        paperlessTitleLabel.textColor = .deepGray
-        paperlessTitleLabel.font = OpenSans.regular.of(textStyle: .callout)
-        paperlessDetailLabel.textColor = .deepGray
-        paperlessDetailLabel.font = SystemFont.regular.of(textStyle: .caption1)
+        paperlessTitleLabel.textColor = .neutralDark
+        paperlessTitleLabel.font = .callout
+        paperlessDetailLabel.textColor = .neutralDark
+        paperlessDetailLabel.font = .caption1
         paperlessEnrolledView.layer.cornerRadius = 7.5
-        paperlessEnrolledView.layer.borderColor = UIColor.successGreenText.cgColor
+        paperlessEnrolledView.layer.borderColor = UIColor.secondaryBlue.cgColor
         paperlessEnrolledView.layer.borderWidth = 1
         
         autoPayButton.layer.cornerRadius = 10
         autoPayButton.layer.borderColor = UIColor.accentGray.cgColor
         autoPayButton.layer.borderWidth = 1
-        autoPayTitleLabel.textColor = .deepGray
-        autoPayTitleLabel.font = OpenSans.regular.of(textStyle: .callout)
-        autoPayDetailLabel.textColor = .deepGray
-        autoPayDetailLabel.font = SystemFont.regular.of(textStyle: .caption1)
+        autoPayTitleLabel.textColor = .neutralDark
+        autoPayTitleLabel.font = .callout
+        autoPayDetailLabel.textColor = .neutralDark
+        autoPayDetailLabel.font = .caption1
         autoPayEnrolledView.layer.cornerRadius = 7.5
-        autoPayEnrolledView.layer.borderColor = UIColor.successGreenText.cgColor
+        autoPayEnrolledView.layer.borderColor = UIColor.secondaryBlue.cgColor
         autoPayEnrolledView.layer.borderWidth = 1
         
         budgetButton.layer.cornerRadius = 10
         budgetButton.layer.borderColor = UIColor.accentGray.cgColor
         budgetButton.layer.borderWidth = 1
-        budgetTitleLabel.textColor = .deepGray
-        budgetTitleLabel.font = OpenSans.regular.of(textStyle: .callout)
-        budgetDetailLabel.textColor = .deepGray
-        budgetDetailLabel.font = SystemFont.regular.of(textStyle: .caption1)
+        budgetTitleLabel.textColor = .neutralDark
+        budgetTitleLabel.font = .callout
+        budgetDetailLabel.textColor = .neutralDark
+        budgetDetailLabel.font = .caption1
         budgetEnrolledView.layer.cornerRadius = 7.5
-        budgetEnrolledView.layer.borderColor = UIColor.successGreenText.cgColor
+        budgetEnrolledView.layer.borderColor = UIColor.secondaryBlue.cgColor
         budgetEnrolledView.layer.borderWidth = 1
         
-        genericErrorLabel.textColor = .deepGray
-        genericErrorLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        genericErrorLabel.textColor = .neutralDark
+        genericErrorLabel.font = .subheadline
         genericErrorLabel.text = NSLocalizedString("Billing data could not be retrieved at this time. Please try again later.", comment: "")
     }
     
@@ -657,11 +657,11 @@ class BillViewController: AccountPickerViewController {
         viewModel.paymentStatusText.drive(makeAPaymentStatusButton.rx.accessibilityLabel).disposed(by: bag)
         viewModel.makePaymentStatusTextTapRouting.drive(onNext: { [weak self] route in
             if route == .nowhere {
-                self?.makeAPaymentStatusLabel.textColor = .deepGray
-                self?.makeAPaymentStatusLabel.font = OpenSans.italic.of(textStyle: .caption1)
+                self?.makeAPaymentStatusLabel.textColor = .neutralDark
+                self?.makeAPaymentStatusLabel.font = SystemFont.italic.of(textStyle: .caption1)
             } else {
-                self?.makeAPaymentStatusLabel.textColor = .actionBlue
-                self?.makeAPaymentStatusLabel.font = OpenSans.semibold.of(textStyle: .caption1)
+                self?.makeAPaymentStatusLabel.textColor = .actionBrand
+                self?.makeAPaymentStatusLabel.font = .caption1Semibold
             }
         }).disposed(by: bag)
 
@@ -704,7 +704,7 @@ class BillViewController: AccountPickerViewController {
             
             DispatchQueue.main.async {
                 if description?.ctaType == "Reinstate Payment Arrangement" {
-                    self.titleAssistanceProgram.font = SystemFont.regular.of(textStyle: .caption1)
+                    self.titleAssistanceProgram.font = .caption1
                 }
 
             }
@@ -728,7 +728,7 @@ class BillViewController: AccountPickerViewController {
             
             DispatchQueue.main.async {
                 if description?.ctaType == "Reinstate Payment Arrangement" {
-                    self.titleAssistanceProgram.font = SystemFont.regular.of(textStyle: .caption1)
+                    self.titleAssistanceProgram.font = .caption1
                 }
 
             }

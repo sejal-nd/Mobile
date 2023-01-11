@@ -15,7 +15,7 @@ class ToggleTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel! {
         didSet {
             titleLabel.textColor = .white
-            titleLabel.font = SystemFont.regular.of(textStyle: .callout)
+            titleLabel.font = .callout
         }
     }
     @IBOutlet weak var toggleCheckImageView: UIImageView!

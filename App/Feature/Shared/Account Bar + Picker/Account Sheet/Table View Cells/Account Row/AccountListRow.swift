@@ -53,9 +53,9 @@ class AccountListRow: UITableViewCell {
         
         // Syle View
         accountNumber.textColor = .blackText
-        accountNumber.font = SystemFont.regular.of(textStyle: .headline)
+        accountNumber.font = .headline
         addressLabel.textColor = .middleGray
-        addressLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        addressLabel.font = .footnote
     }
     
     

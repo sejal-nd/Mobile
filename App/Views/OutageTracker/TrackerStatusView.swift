@@ -27,7 +27,7 @@ class TrackerStatusView: UIView {
             stackView.addArrangedSubview(statusView)
         }
         dateLabel.text = "Last Update: \(time)"
-        let textColor = isStormMode ? UIColor.white : UIColor.deepGray
+        let textColor = isStormMode ? UIColor.white : UIColor.neutralDark
         dateLabel.textColor = textColor
     }
 

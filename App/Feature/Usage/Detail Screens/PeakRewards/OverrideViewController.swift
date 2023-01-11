@@ -60,8 +60,8 @@ class OverrideViewController: UIViewController {
         
         let topLabel = UILabel()
         topLabel.text = NSLocalizedString("Select a date to override an Energy Savings Day", comment: "")
-        topLabel.textColor = .deepGray
-        topLabel.font = SystemFont.regular.of(textStyle: .headline)
+        topLabel.textColor = .neutralDark
+        topLabel.font = .headline
         topLabel.numberOfLines = 0
         
         dateButton.heightAnchor.constraint(equalToConstant: 55).isActive = true
@@ -69,17 +69,17 @@ class OverrideViewController: UIViewController {
         
         let scheduledTitleLabel = UILabel()
         scheduledTitleLabel.text = NSLocalizedString("Scheduled Overrides", comment: "")
-        scheduledTitleLabel.textColor = .deepGray
-        scheduledTitleLabel.font = OpenSans.regular.of(textStyle: .headline)
+        scheduledTitleLabel.textColor = .neutralDark
+        scheduledTitleLabel.font = .headline
         topLabel.numberOfLines = 0
         
-        scheduledSerialLabel.textColor = .deepGray
-        scheduledSerialLabel.font = OpenSans.regular.of(textStyle: .callout)
+        scheduledSerialLabel.textColor = .neutralDark
+        scheduledSerialLabel.font = .callout
         scheduledSerialLabel.numberOfLines = 0
         scheduledSerialLabel.setContentHuggingPriority(UILayoutPriority(rawValue: 1), for: .horizontal)
         
-        scheduledDateLabel.textColor = .deepGray
-        scheduledDateLabel.font = OpenSans.regular.of(textStyle: .callout)
+        scheduledDateLabel.textColor = .neutralDark
+        scheduledDateLabel.font = .callout
         scheduledDateLabel.numberOfLines = 0
         scheduledDateLabel.setContentHuggingPriority(UILayoutPriority(rawValue: 1), for: .horizontal)
         
@@ -89,8 +89,8 @@ class OverrideViewController: UIViewController {
         scheduledLabelStack.spacing = 4
         
         scheduledCancelButton.setTitle(NSLocalizedString("Cancel", comment: ""), for: .normal)
-        scheduledCancelButton.setTitleColor(.actionBlue, for: .normal)
-        scheduledCancelButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
+        scheduledCancelButton.setTitleColor(.actionBrand, for: .normal)
+        scheduledCancelButton.titleLabel?.font = .headlineSemibold
         
         let scheduledCardStack = UIStackView(arrangedSubviews: [scheduledLabelStack, scheduledCancelButton]).usingAutoLayout()
         scheduledCardStack.axis = .horizontal
@@ -116,17 +116,17 @@ class OverrideViewController: UIViewController {
         
         let activeTitleLabel = UILabel()
         activeTitleLabel.text = NSLocalizedString("Active Overrides", comment: "")
-        activeTitleLabel.textColor = .deepGray
-        activeTitleLabel.font = OpenSans.regular.of(textStyle: .headline)
+        activeTitleLabel.textColor = .neutralDark
+        activeTitleLabel.font = .headline
         topLabel.numberOfLines = 0
         
-        activeSerialLabel.textColor = .deepGray
-        activeSerialLabel.font = OpenSans.regular.of(textStyle: .callout)
+        activeSerialLabel.textColor = .neutralDark
+        activeSerialLabel.font = .callout
         activeSerialLabel.numberOfLines = 0
         activeSerialLabel.setContentHuggingPriority(UILayoutPriority(rawValue: 1), for: .horizontal)
         
-        activeDateLabel.textColor = .deepGray
-        activeDateLabel.font = OpenSans.regular.of(textStyle: .callout)
+        activeDateLabel.textColor = .neutralDark
+        activeDateLabel.font = .callout
         activeDateLabel.numberOfLines = 0
         activeDateLabel.setContentHuggingPriority(UILayoutPriority(rawValue: 1), for: .horizontal)
         
@@ -180,8 +180,8 @@ class OverrideViewController: UIViewController {
         saveButton.heightAnchor.constraint(equalToConstant: 55).isActive = true
         
         errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
-        errorLabel.textColor = .deepGray
-        errorLabel.font = SystemFont.regular.of(textStyle: .headline)
+        errorLabel.textColor = .neutralDark
+        errorLabel.font = .headline
         errorLabel.textAlignment = .center
         errorLabel.numberOfLines = 0
         view.addSubview(errorLabel)

@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "ic_appt_otw.pdf",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

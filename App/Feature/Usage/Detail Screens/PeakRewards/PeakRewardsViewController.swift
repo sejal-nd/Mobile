@@ -63,16 +63,16 @@ class PeakRewardsViewController: UIViewController {
     }
     
     func styleViews() {
-        cyclingStatusLabel.textColor = .deepGray
-        cyclingStatusLabel.font = OpenSans.regular.of(textStyle: .headline)
-        adjustScaleLabel.textColor = .deepGray
-        adjustScaleLabel.font = OpenSans.regular.of(textStyle: .headline)
+        cyclingStatusLabel.textColor = .neutralDark
+        cyclingStatusLabel.font = .headline
+        adjustScaleLabel.textColor = .neutralDark
+        adjustScaleLabel.font = .headline
         segmentedControl.items = [TemperatureScale.fahrenheit, TemperatureScale.celsius].map { $0.displayString }
         
-        coolLegendLabel.textColor = .deepGray
-        coolLegendLabel.font = OpenSans.regular.of(textStyle: .caption1)
-        heatLegendLabel.textColor = .deepGray
-        heatLegendLabel.font = OpenSans.regular.of(textStyle: .caption1)
+        coolLegendLabel.textColor = .neutralDark
+        coolLegendLabel.font = .caption1
+        heatLegendLabel.textColor = .neutralDark
+        heatLegendLabel.font = .caption1
     }
     
     func bindViews() {

@@ -83,7 +83,7 @@ class AppointmentsViewController: ButtonBarPagerTabStripViewController {
         settings.style.selectedBarHeight = 4
         settings.style.selectedBarVerticalAlignment = .bottom
         settings.style.buttonBarItemBackgroundColor = .white
-        settings.style.buttonBarItemFont = OpenSans.semibold.of(textStyle: .subheadline)
+        settings.style.buttonBarItemFont = .subheadlineSemibold
         settings.style.buttonBarItemTitleColor = .middleGray
         settings.style.buttonBarItemsShouldFillAvailableWidth = false
         settings.style.buttonBarHeight = 48
@@ -91,9 +91,9 @@ class AppointmentsViewController: ButtonBarPagerTabStripViewController {
         changeCurrentIndexProgressive = { (oldCell: ButtonBarViewCell?, newCell: ButtonBarViewCell?, progressPercentage: CGFloat, changeCurrentIndex: Bool, animated: Bool) -> Void in
             guard changeCurrentIndex == true else { return }
             oldCell?.label.textColor = .middleGray
-            oldCell?.label.font = OpenSans.regular.of(textStyle: .subheadline)
-            newCell?.label.textColor = .actionBlue
-            newCell?.label.font = OpenSans.semibold.of(textStyle: .subheadline)
+            oldCell?.label.font = .subheadline
+            newCell?.label.textColor = .actionBrand
+            newCell?.label.font = .subheadlineSemibold
         }
         
         contactUsButton.rx

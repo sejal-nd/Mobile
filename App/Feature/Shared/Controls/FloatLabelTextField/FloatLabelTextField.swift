@@ -55,16 +55,16 @@ class FloatLabelTextField: UIView {
         view.translatesAutoresizingMaskIntoConstraints = true
         addSubview(view)
         
-        errorLabel.textColor = .errorRed
-        errorLabel.font = SystemFont.semibold.of(textStyle: .caption2)
+        errorLabel.textColor = .errorPrimary
+        errorLabel.font = .caption2Semibold
         errorLabel.text = nil
         errorView.isHidden = true
         
-        floatLabel.font = SystemFont.semibold.of(textStyle: .caption2)
+        floatLabel.font = .caption2Semibold
         floatLabel.textColor = .middleGray
         floatLabel.alpha = 0
         
-        textField.font = SystemFont.regular.of(textStyle: .callout)
+        textField.font = .callout
         textField.tintColor = .primaryColor
 
         textField.rx.controlEvent(.editingDidBegin).asObservable().subscribe(onNext: { [weak self] _ in
@@ -112,7 +112,7 @@ class FloatLabelTextField: UIView {
         textFieldContainerView.backgroundColor = .white
         textFieldContainerView.fullyRoundCorners(diameter: 20, borderColor: .accentGray, borderWidth: 1)
         
-        textField.textColor = .deepGray
+        textField.textColor = .neutralDark
         textField.attributedPlaceholder = NSAttributedString(string: placeholder ?? "", attributes: [
             NSAttributedString.Key.foregroundColor: UIColor.middleGray
         ])
@@ -124,9 +124,9 @@ class FloatLabelTextField: UIView {
             errorMessage = errMsg
             errorLabel.text = String(format: NSLocalizedString("Error: %@", comment: ""), errorMessage)
             
-            errorLabel.textColor = .errorRed
-            floatLabel.textColor = .errorRed
-            textFieldContainerView.layer.borderColor = UIColor.errorRed.cgColor
+            errorLabel.textColor = .errorPrimary
+            floatLabel.textColor = .errorPrimary
+            textFieldContainerView.layer.borderColor = UIColor.errorPrimary.cgColor
             
             errorView.isHidden = false
             checkAccessoryImageView.isHidden = true
@@ -154,11 +154,11 @@ class FloatLabelTextField: UIView {
         
     func setInfoMessage(_ message: String?) {
         if let info = message {
-            errorLabel.textColor = .successGreenText
+            errorLabel.textColor = .secondaryBlue
             errorLabel.text = String(format: NSLocalizedString("%@", comment: ""), info)
             errorView.isHidden = false
         } else {
-            errorLabel.textColor = .errorRed
+            errorLabel.textColor = .errorPrimary
             errorLabel.text = nil
             errorView.isHidden = true
         }
@@ -181,7 +181,7 @@ class FloatLabelTextField: UIView {
             textFieldContainerView.backgroundColor = .softGray
         
             textField.attributedPlaceholder = NSAttributedString(string: placeholder ?? "", attributes: [
-                NSAttributedString.Key.foregroundColor: UIColor.deepGray.withAlphaComponent(0.5)
+                NSAttributedString.Key.foregroundColor: UIColor.neutralDark.withAlphaComponent(0.5)
             ])
         }
     }
@@ -211,7 +211,7 @@ class FloatLabelTextField: UIView {
     }
     
     private func addDoneButton(_ doneButton: UIBarButtonItem) {
-        doneButton.setTitleTextAttributes([.foregroundColor: UIColor.actionBlue], for: .normal)
+        doneButton.setTitleTextAttributes([.foregroundColor: UIColor.primaryBlue], for: .normal)
         
         let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 50))
         doneToolbar.barStyle = UIBarStyle.default

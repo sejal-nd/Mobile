@@ -463,8 +463,8 @@ struct Configuration {
                 let projectTier = ProjectTier(rawValue: projectTierRawValue) ?? .stage
                 switch projectTier {
                 case .dev:
-                    baseUrl = "xzc-e-n-eudapi-\(operatingCompany.rawValue.lowercased())-d-ams-01.azure-api.net"
-                    // Unsure what oAuth would be here...
+//                    baseUrl = "xzc-e-n-eudapi-\(operatingCompany.rawValue.lowercased())-d-ams-01.azure-api.net"
+                    baseUrl = "eudapi-dev.\(operatingCompany.urlDisplayString).com"
                     oAuthEndpoint = "api-development.exeloncorp.com"
                 case .test:
                     baseUrl = "eudapi-test.\(operatingCompany.urlDisplayString).com"

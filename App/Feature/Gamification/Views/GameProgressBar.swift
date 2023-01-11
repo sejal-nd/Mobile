@@ -36,7 +36,7 @@ class GameProgressBar: UIView {
         innerBackgroundView.backgroundColor = .softGray
         
         progressView.layer.cornerRadius = 6
-        progressView.backgroundColor = .bgeGreen
+        progressView.backgroundColor = .primaryColor
         
         progressWidthConstraint.constant = 0
     }

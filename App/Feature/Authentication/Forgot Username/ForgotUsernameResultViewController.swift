@@ -48,9 +48,9 @@ class ForgotUsernameResultViewController: UIViewController {
         
         styleTopLabels()
         
-        selectLabel.textColor = .deepGray
+        selectLabel.textColor = .neutralDark
         selectLabel.text = NSLocalizedString("Select Username / Email Address", comment: "")
-        selectLabel.font = SystemFont.regular.of(textStyle: .headline)
+        selectLabel.font = .headline
         
         if viewModel.maskedUsernames.count > 1 {
             singleAccountView.isHidden = true
@@ -61,9 +61,9 @@ class ForgotUsernameResultViewController: UIViewController {
         
         singleAccountView.layer.borderWidth = 1
         singleAccountView.layer.borderColor = UIColor.accentGray.cgColor
-        usernameEmailLabel.textColor = .deepGray
-        usernameEmailLabel.font = OpenSans.semibold.of(textStyle: .footnote)
-        singleAccountValueLabel.textColor = .deepGray
+        usernameEmailLabel.textColor = .neutralDark
+        usernameEmailLabel.font = .footnoteSemibold
+        singleAccountValueLabel.textColor = .neutralDark
         
         let usernameEmailLabelText: String
         if Configuration.shared.opco != .bge {
@@ -73,7 +73,7 @@ class ForgotUsernameResultViewController: UIViewController {
         }
         
         usernameEmailLabel.text = usernameEmailLabelText
-        singleAccountValueLabel.font = OpenSans.regular.of(textStyle: .headline)
+        singleAccountValueLabel.font = .headline
         singleAccountValueLabel.text = viewModel.maskedUsernames.first?.email
         
         tableView.register(UINib(nibName: "RadioSelectionTableViewCell", bundle: nil), forCellReuseIdentifier: "ForgotUsernameCell")
@@ -95,17 +95,17 @@ class ForgotUsernameResultViewController: UIViewController {
     }
     
     func styleTopLabels() {
-        topLabel1.textColor = .deepGray
-        topLabel1.font = SystemFont.regular.of(textStyle: .headline)
+        topLabel1.textColor = .neutralDark
+        topLabel1.font = .headline
         
-        signInButton.tintColor = .actionBlue
-        signInButton.titleLabel?.font = SystemFont.bold.of(textStyle: .headline)
+        signInButton.tintColor = .actionBrand
+        signInButton.titleLabel?.font = .headlineSemibold
         
-        topLabel2.textColor = .deepGray
-        topLabel2.font = SystemFont.regular.of(textStyle: .headline)
+        topLabel2.textColor = .neutralDark
+        topLabel2.font = .headline
         
-        topLabel3.textColor = .deepGray
-        topLabel3.font = SystemFont.regular.of(textStyle: .headline)
+        topLabel3.textColor = .neutralDark
+        topLabel3.font = .headline
         
         if UIScreen.main.bounds.width <= 375 {
             // Prevent text from getting cut off on iPhone 5/SE with dynamic font all the way up

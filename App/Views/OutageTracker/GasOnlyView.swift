@@ -24,12 +24,12 @@ class GasOnlyView: UIView {
                 """
                 ,phone1)
         
-        let attributedText = NSMutableAttributedString(string: localizedString, attributes: [.font: SystemFont.regular.of(textStyle: .subheadline)])
+        let attributedText = NSMutableAttributedString(string: localizedString, attributes: [.font: UIFont.subheadline])
         for phone in phoneNumbers {
             localizedString.ranges(of: phone, options: .regularExpression)
                 .map { NSRange($0, in: localizedString) }
                 .forEach {
-                    attributedText.addAttribute(.font, value: SystemFont.semibold.of(textStyle: .subheadline), range: $0)
+                    attributedText.addAttribute(.font, value: UIFont.subheadlineSemibold, range: $0)
                 }
         }
         return attributedText
@@ -46,12 +46,12 @@ class GasOnlyView: UIView {
                 """
                 ,phone1, phone2, phone3)
         
-        let attributedText = NSMutableAttributedString(string: localizedString, attributes: [.font: SystemFont.regular.of(textStyle: .caption1)])
+        let attributedText = NSMutableAttributedString(string: localizedString, attributes: [.font: UIFont.caption1])
         for phone in phoneNumbers {
             localizedString.ranges(of: phone, options: .regularExpression)
                 .map { NSRange($0, in: localizedString) }
                 .forEach {
-                    attributedText.addAttribute(.font, value: SystemFont.semibold.of(textStyle: .caption1), range: $0)
+                    attributedText.addAttribute(.font, value: UIFont.caption1Semibold, range: $0)
                 }
         }
         return attributedText
@@ -59,15 +59,15 @@ class GasOnlyView: UIView {
     
     
     private func configureFooterTextView() {
-        textView.font = SystemFont.regular.of(textStyle: .footnote)
+        textView.font = .footnote
         textView.attributedText = gasText
         textView.textColor = .blackText
-        textView.tintColor = .actionBlue // For the phone numbers
+        textView.tintColor = .actionBrand // For the phone numbers
         
-        footerTextView.font = SystemFont.regular.of(textStyle: .footnote)
+        footerTextView.font = .footnote
         footerTextView.attributedText = footerText
         footerTextView.textColor = .blackText
-        footerTextView.tintColor = .actionBlue // For the phone numbers
+        footerTextView.tintColor = .actionBrand // For the phone numbers
     }
     
     // MARK: Init

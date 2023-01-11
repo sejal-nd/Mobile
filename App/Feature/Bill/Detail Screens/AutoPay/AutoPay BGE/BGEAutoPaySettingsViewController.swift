@@ -146,47 +146,47 @@ class BGEAutoPaySettingsViewController: KeyboardAvoidingStickyFooterViewControll
     }
     
     private func style() {
-        totalAmountDueRadioControl.titleLabel.textColor = .deepGray
-        totalAmountDueRadioControl.titleLabel.font = SystemFont.regular.of(textStyle: .callout)
+        totalAmountDueRadioControl.titleLabel.textColor = .neutralDark
+        totalAmountDueRadioControl.titleLabel.font = .callout
         
-        amountDueHeaderLabel.textColor = .deepGray
+        amountDueHeaderLabel.textColor = .neutralDark
         amountDueHeaderLabel.numberOfLines = 0
-        amountDueHeaderLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        amountDueHeaderLabel.font = .subheadline
         amountDueHeaderLabel.text = NSLocalizedString("How much do you want to pay?", comment: "")
         
-        amountNotToExceedTextField.textField.textColor = .deepGray
+        amountNotToExceedTextField.textField.textColor = .neutralDark
         amountNotToExceedTextField.placeholder = NSLocalizedString("Amount Not To Exceed*", comment: "")
         amountNotToExceedTextField.textField.autocorrectionType = .no
         
-        amountNotToExceedDetailsLabel.textColor = .deepGray
+        amountNotToExceedDetailsLabel.textColor = .neutralDark
         amountNotToExceedDetailsLabel.numberOfLines = 0
-        amountNotToExceedDetailsLabel.font = SystemFont.regular.of(textStyle: .caption1)
+        amountNotToExceedDetailsLabel.font = .caption1
         amountNotToExceedDetailsLabel.text = NSLocalizedString("If your bill amount exceeds this threshold, you will be responsible for submitting another one-time payment for the remaining amount.\n\nPlease note that any payments made for less than the total amount due or after the indicated due date may result in collection activity up to and including disconnection of service.", comment: "")
         
-        dueDateHeaderLabel.textColor = .deepGray
+        dueDateHeaderLabel.textColor = .neutralDark
         dueDateHeaderLabel.numberOfLines = 0
-        dueDateHeaderLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        dueDateHeaderLabel.font = .subheadline
         dueDateHeaderLabel.text = NSLocalizedString("When do you want to pay?", comment: "")
         
-        onDueDateDetailsLabel.textColor = .deepGray
+        onDueDateDetailsLabel.textColor = .neutralDark
         onDueDateDetailsLabel.numberOfLines = 0
-        onDueDateDetailsLabel.font = SystemFont.regular.of(textStyle: .caption1)
+        onDueDateDetailsLabel.font = .caption1
         onDueDateDetailsLabel.text = NSLocalizedString("Your payments will process on each bill's due date. An upcoming automatic payment will be created each time a bill is generated to give you the opportunity to view and cancel the payment on the Bill & Payment Activity page, if necessary.", comment: "")
         
-        amountNotToExceedRadioControl.titleLabel.textColor = .deepGray
-        amountNotToExceedRadioControl.titleLabel.font = SystemFont.regular.of(textStyle: .callout)
+        amountNotToExceedRadioControl.titleLabel.textColor = .neutralDark
+        amountNotToExceedRadioControl.titleLabel.font = .callout
         
-        beforeDueDateRadioControl.titleLabel.textColor = .deepGray
-        beforeDueDateRadioControl.titleLabel.font = SystemFont.regular.of(textStyle: .callout)
-        beforeDueDateRadioControl.detailButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .subheadline)
+        beforeDueDateRadioControl.titleLabel.textColor = .neutralDark
+        beforeDueDateRadioControl.titleLabel.font = .callout
+        beforeDueDateRadioControl.detailButton.titleLabel?.font = .subheadlineSemibold
         beforeDueDateRadioControl.detailButtonTitle = NSLocalizedString("Select Days", comment: "")
         
-        onDueDateRadioControl.titleLabel.textColor = .deepGray
-        onDueDateRadioControl.titleLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        onDueDateRadioControl.titleLabel.textColor = .neutralDark
+        onDueDateRadioControl.titleLabel.font = .subheadline
         
-        beforeDueDateDetailsLabel.textColor = .deepGray
+        beforeDueDateDetailsLabel.textColor = .neutralDark
         beforeDueDateDetailsLabel.numberOfLines = 0
-        beforeDueDateDetailsLabel.font = SystemFont.regular.of(textStyle: .caption1)
+        beforeDueDateDetailsLabel.font = .caption1
     }
     
     // manipulate Group 1

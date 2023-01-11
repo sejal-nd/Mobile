@@ -336,8 +336,8 @@ class PaymentAmountSheetViewController: UIViewController {
         
         handleView.layer.cornerRadius = handleView.bounds.height / 2
         
-        titleLabel.textColor = .deepGray
-        titleLabel.font = SystemFont.semibold.of(textStyle: .headline)
+        titleLabel.textColor = .neutralDark
+        titleLabel.font = .headlineSemibold
         titleLabel.text = titleText
     }
     

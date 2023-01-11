@@ -76,8 +76,8 @@ class CalendarViewController: UIViewController {
                     
                     if let selectedDate = self.selectedDate {
                         if self.calendar.isDate(date, inSameDayAs: selectedDate) {
-                            invariantViewProperties.backgroundShapeDrawingConfig.borderColor = .actionBlue
-                            invariantViewProperties.backgroundShapeDrawingConfig.fillColor = .actionBlue
+                            invariantViewProperties.backgroundShapeDrawingConfig.borderColor = .primaryBlue
+                            invariantViewProperties.backgroundShapeDrawingConfig.fillColor = .primaryBlue
                             invariantViewProperties.textColor = .white
                         }
                     }

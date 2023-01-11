@@ -22,15 +22,15 @@ class StateAnimationView: UIView {
     var animationName: String {
         switch status {
             case .reported:
-                return isStormMode ? "SM_ReportedWhite" : "ot_reported"
+                return isStormMode ? "outage_reported_sm" : "outage_reported"
             case .assigned:
-                return isStormMode ? "SM_ot_assigned" : "ot_assigned"
+                return isStormMode ? "outage_assigned_sm" : "outage_assigned"
             case .enRoute:
-                return isStormMode ? "SM_ot_enroute" : "ot_enroute"
+                return isStormMode ? "outage_enroute_sm" : "outage_enroute"
             case .onSite:
-                return isStormMode ? "SM_ot_onsite" : "ot_onsite"
+                return isStormMode ? "outage_onsite_sm" : "outage_onsite"
             case .restored:
-                return isStormMode ? "SM_OnWhite" : "outage_on"
+                return isStormMode ? "outage_on_sm" : "outage_on"
             default:
                 return ""
         }

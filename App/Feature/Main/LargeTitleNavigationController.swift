@@ -25,7 +25,7 @@ class LargeTitleNavigationController: UINavigationController {
     }
     
     private func commonInit() {
-        let backgroundColor: UIColor = StormModeStatus.shared.isOn ? .stormModeBlack : .white
+        let backgroundColor: UIColor = StormModeStatus.shared.isOn ? .stormModeBackground : .white
         let textColor = StormModeStatus.shared.isOn ? UIColor.white : UIColor.blackText
         
         if #available(iOS 13.0, *) {
@@ -34,12 +34,12 @@ class LargeTitleNavigationController: UINavigationController {
             appearance.titleTextAttributes = [.foregroundColor: textColor]
             appearance.largeTitleTextAttributes = [
                 .foregroundColor: textColor,
-                .font: OpenSans.semibold.of(size: 24)
+                .font: UIFont.title2
             ]
             
             appearance.titleTextAttributes = [
                 .foregroundColor: textColor,
-                .font: OpenSans.semibold.of(size: 15)
+                .font: UIFont.subheadlineSemibold
             ]
             
             if StormModeStatus.shared.isOn { // No bottom border in Storm Mode
@@ -62,12 +62,12 @@ class LargeTitleNavigationController: UINavigationController {
             
             navigationBar.largeTitleTextAttributes = [
                 .foregroundColor: textColor,
-                .font: OpenSans.semibold.of(size: 24)
+                .font: UIFont.title2
             ]
             
             navigationBar.titleTextAttributes = [
                 .foregroundColor: textColor,
-                .font: OpenSans.semibold.of(size: 15)
+                .font: UIFont.subheadlineSemibold
             ]
         }
         
@@ -75,7 +75,7 @@ class LargeTitleNavigationController: UINavigationController {
         navigationBar.prefersLargeTitles = true
         
         navigationBar.barTintColor = backgroundColor
-        navigationBar.tintColor = StormModeStatus.shared.isOn ? .white : .actionBlue
+        navigationBar.tintColor = StormModeStatus.shared.isOn ? .white : .primaryBlue
         navigationBar.isTranslucent = false
         
         view.backgroundColor = backgroundColor

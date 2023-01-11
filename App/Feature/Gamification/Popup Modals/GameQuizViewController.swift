@@ -51,17 +51,17 @@ class GameQuizViewController: UIViewController {
         popupView.layer.cornerRadius = 10
         popupView.layer.masksToBounds = true
         
-        closeButton.tintColor = .actionBlue
+        closeButton.tintColor = .actionBrand
         closeButton.addTarget(self, action: #selector(dismiss(_:)), for: .touchUpInside)
         
-        titleLabel.textColor = .deepGray
-        titleLabel.font = SystemFont.regular.of(textStyle: .headline)
+        titleLabel.textColor = .neutralDark
+        titleLabel.font = .headline
         
-        questionLabel.textColor = .deepGray
-        questionLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        questionLabel.textColor = .neutralDark
+        questionLabel.font = .footnote
         
-        answerDescriptionLabel.textColor = .deepGray
-        answerDescriptionLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        answerDescriptionLabel.textColor = .neutralDark
+        answerDescriptionLabel.font = .footnote
         answerDescriptionLabel.isHidden = true
         
         viewTipButton.isHidden = true

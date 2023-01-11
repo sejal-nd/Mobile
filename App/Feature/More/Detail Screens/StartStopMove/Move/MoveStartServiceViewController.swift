@@ -73,9 +73,9 @@ class MoveStartServiceViewController: UIViewController {
     
     private func fontStyling() {
         
-        startServiceAddressStaticLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        serviceProvidedStaticLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        serviceStartStaticLabel.font = SystemFont.regular.of(textStyle: .caption1)
+        startServiceAddressStaticLabel.font = .footnote
+        serviceProvidedStaticLabel.font = .footnote
+        serviceStartStaticLabel.font = .caption1
     }
     
     private func dataBinding() {
