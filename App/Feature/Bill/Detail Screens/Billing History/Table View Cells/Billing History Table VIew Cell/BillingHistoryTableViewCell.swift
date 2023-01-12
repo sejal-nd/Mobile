@@ -42,7 +42,7 @@ class BillingHistoryTableViewCell: UITableViewCell {
                 
         var a11y = ""
         if item.isBillPDF {
-            iconImageView.image = #imageLiteral(resourceName: "ic_bill")
+            iconImageView.image = UIImage(named: "ic_bill")
             let titleText = NSLocalizedString("Bill Issued", comment: "")
             titleLabel.text = titleText
             amountLabel.text = item.totalAmountDue?.currencyString ?? Double(0.00).currencyString
@@ -56,17 +56,17 @@ class BillingHistoryTableViewCell: UITableViewCell {
             switch item.status {
             case .scheduled:
                 let titleText = NSLocalizedString("Scheduled Payment", comment: "")
-                iconImageView.image = #imageLiteral(resourceName: "ic_scheduled")
+                iconImageView.image = UIImage(named: "ic_payment_scheduled")
                 titleLabel.text = titleText
                 a11y = String(format: NSLocalizedString("%@. %@. %@.", comment: ""), titleText, dateString, amountPaid)
             case .pending:
                 let titleText = NSLocalizedString("Pending Payment", comment: "")
-                iconImageView.image = #imageLiteral(resourceName: "ic_pending")
+                iconImageView.image = UIImage(named: "ic_pending")
                 titleLabel.text = titleText
                 dateLabel.isHidden = true
                 a11y = String(format: NSLocalizedString("%@. %@. %@.", comment: ""), titleText, dateString, amountPaid)
             case .success, .unknown:
-                iconImageView.image = #imageLiteral(resourceName: "ic_activity_success")
+                iconImageView.image = UIImage(named: "ic_activity_success")
                 amountLabel.textColor = .successGreenText
                 amountLabel.font = .subheadlineSemibold
                 if let description = item.welcomeDescription {
@@ -81,22 +81,22 @@ class BillingHistoryTableViewCell: UITableViewCell {
             case .failed:
                 let titleText = NSLocalizedString("Failed Payment", comment: "")
                 titleLabel.text = titleText
-                iconImageView.image = #imageLiteral(resourceName: "ic_activity_failed")
+                iconImageView.image = UIImage(named: "ic_activity_failed")
                 a11y = String(format: NSLocalizedString("%@. %@. %@.", comment: ""), titleText, dateString, amountPaid)
             case .canceled:
                 let titleText = NSLocalizedString("Canceled Payment", comment: "")
                 titleLabel.text = titleText
-                iconImageView.image = #imageLiteral(resourceName: "ic_activity_canceled")
+                iconImageView.image = UIImage(named: "ic_activity_canceled")
                 a11y = String(format: NSLocalizedString("%@. %@. %@.", comment: ""), titleText, dateString, amountPaid)
             case .returned:
                 let titleText = NSLocalizedString("Returned Payment", comment: "")
                 titleLabel.text = titleText
-                iconImageView.image = #imageLiteral(resourceName: "ic_activity_failed")
+                iconImageView.image = UIImage(named: "ic_activity_failed")
                 a11y = String(format: NSLocalizedString("%@. %@. %@.", comment: ""), titleText, dateString, amountPaid)
             case .refunded:
                 let titleText = NSLocalizedString("Refunded Payment", comment: "")
                 titleLabel.text = titleText
-                iconImageView.image = #imageLiteral(resourceName: "ic_activity_refunded")
+                iconImageView.image = UIImage(named: "ic_activity_refunded")
                 a11y = String(format: NSLocalizedString("%@. %@. %@.", comment: ""), titleText, dateString, amountPaid)
             }
         }

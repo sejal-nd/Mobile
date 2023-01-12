@@ -551,8 +551,11 @@
                                         <view contentMode="scaleToFill" verticalHuggingPriority="999" verticalCompressionResistancePriority="999" translatesAutoresizingMaskIntoConstraints="NO" id="2uB-Gf-NCG">
                                             <rect key="frame" x="0.0" y="1538" width="380" height="207"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" image="ic_maintenancemode_overall" translatesAutoresizingMaskIntoConstraints="NO" id="hKJ-Ib-Me0">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" image="ic_maintenancemode_lg" translatesAutoresizingMaskIntoConstraints="NO" id="hKJ-Ib-Me0">
                                                     <rect key="frame" x="127.5" y="35" width="125" height="90"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="90" id="FUe-Q3-agR"/>
+                                                    </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" text="Billing is currently unavailable due to maintenance." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Isc-pd-1gW">
                                                     <rect key="frame" x="38.5" y="145" width="303.5" height="36"/>
@@ -678,7 +681,7 @@
         <image name="ic_home_confirmation" width="49" height="48"/>
         <image name="ic_home_pending" width="49" height="48"/>
         <image name="ic_home_scheduled" width="36" height="36"/>
-        <image name="ic_maintenancemode_overall" width="125" height="90"/>
+        <image name="ic_maintenancemode_lg" width="128" height="128"/>
         <image name="ic_tooltip" width="25" height="24"/>
         <namedColor name="exelon_dark_blue">
             <color red="0.090000003576278687" green="0.050999999046325684" blue="0.40400001406669617" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

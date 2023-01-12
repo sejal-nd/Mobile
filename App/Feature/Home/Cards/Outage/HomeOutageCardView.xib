@@ -44,8 +44,11 @@
                                 <view contentMode="scaleToFill" verticalHuggingPriority="999" verticalCompressionResistancePriority="999" translatesAutoresizingMaskIntoConstraints="NO" id="Fpv-XZ-FAa">
                                     <rect key="frame" x="0.0" y="37" width="439" height="204"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" image="ic_maintenancemode_overall" translatesAutoresizingMaskIntoConstraints="NO" id="KaK-en-DcV">
-                                            <rect key="frame" x="157" y="29" width="125" height="90"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" image="ic_maintenancemode_lg" translatesAutoresizingMaskIntoConstraints="NO" id="KaK-en-DcV">
+                                            <rect key="frame" x="155.5" y="29" width="128" height="90"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="90" id="e03-AK-55E"/>
+                                            </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" text="Outage is currently unavailable due to maintenance." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TxT-PB-Te8">
                                             <rect key="frame" x="26" y="139" width="387" height="36"/>
@@ -408,7 +411,7 @@
         <image name="ic_dollar_circle" width="16" height="16"/>
         <image name="ic_gas_only" width="128" height="128"/>
         <image name="ic_lightbulb_on" width="37" height="45"/>
-        <image name="ic_maintenancemode_overall" width="125" height="90"/>
+        <image name="ic_maintenancemode_lg" width="128" height="128"/>
         <namedColor name="primaryBlue">
             <color red="0.090000003576278687" green="0.050999999046325684" blue="0.40400001406669617" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

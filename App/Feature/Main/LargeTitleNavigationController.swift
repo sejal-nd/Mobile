@@ -99,6 +99,6 @@ class LargeTitleNavigationController: UINavigationController {
 
 extension UINavigationController {
     override open var preferredStatusBarStyle : UIStatusBarStyle {
-        return topViewController?.preferredStatusBarStyle ?? .default
+        return StormModeStatus.shared.isOn ? .lightContent : topViewController?.preferredStatusBarStyle ?? .default
     }
 }

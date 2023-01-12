@@ -241,12 +241,12 @@ class AutoPayChangeBankViewController: KeyboardAvoidingStickyFooterViewControlle
 	}
 	
 	func onRoutingNumberQuestionMarkPress() {
-		let infoModal = InfoModalViewController(title: NSLocalizedString("Routing Number", comment: ""), image: #imageLiteral(resourceName: "routing_number_info"), description: NSLocalizedString("This number is used to identify your banking institution. You can find your bank’s nine-digit routing number on the bottom of your paper check.", comment: ""))
+		let infoModal = InfoModalViewController(title: NSLocalizedString("Routing Number", comment: ""), image: UIImage(named: "img_routing")!, description: NSLocalizedString("This number is used to identify your banking institution. You can find your bank’s nine-digit routing number on the bottom of your paper check.", comment: ""))
 		navigationController?.present(infoModal, animated: true, completion: nil)
 	}
 	
 	func onAccountNumberQuestionMarkPress() {
-		let infoModal = InfoModalViewController(title: NSLocalizedString("Account Number", comment: ""), image: #imageLiteral(resourceName: "account_number_info"), description: NSLocalizedString("This number is used to identify your bank account. You can find your checking account number on the bottom of your paper check following the routing number.", comment: ""))
+		let infoModal = InfoModalViewController(title: NSLocalizedString("Account Number", comment: ""), image: UIImage(named: "img_routing")!, description: NSLocalizedString("This number is used to identify your bank account. You can find your checking account number on the bottom of your paper check following the routing number.", comment: ""))
 		navigationController?.present(infoModal, animated: true, completion: nil)
 	}
 
