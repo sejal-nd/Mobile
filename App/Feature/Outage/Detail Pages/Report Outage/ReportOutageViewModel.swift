@@ -20,10 +20,14 @@ class ReportOutageViewModel {
     var phoneExtension = BehaviorRelay(value: "")
     var comments = BehaviorRelay(value: "")
     var reportFormHidden = BehaviorRelay(value: false)
-    var accountDetail: AccountDetail! //Passed from OutageViewController
+    
     required init() {
         
     }
+    
+    lazy var accountDetail: Observable<AccountDetail?> = {
+        return AccountService.rx.fetchAccountDetails().map { return $0 }.asObservable()
+    }()
     
     private(set) lazy var submitEnabled: Driver<Bool> = Driver.combineLatest(self.reportFormHidden.asDriver(),
                                                                              self.phoneNumber.asDriver())

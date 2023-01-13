@@ -99,23 +99,23 @@ final class MedalliaUtility {
         }
     
     //MARK: - Medallia OutageReporting
-    func medalliaOutageReporting( customerID : String ,accountType : String , lowIncomeStatus : Bool , serviceType : String , amountDue : Double ,outageID : String ,outageETR : String){
+    func medalliaOutageReporting( customerID : String ,accountType : String , lowIncomeStatus : Bool , serviceType : String , amountDue : Double ,outageETR : String, customerPhoneNumber : String ){
         MedalliaDigital.setCustomParameter(name: "PageName", value: MedalliaPage.reportOutage.screenName)
         MedalliaDigital.setCustomParameter(name: "CustomerId", value: customerID)
         MedalliaDigital.setCustomParameter(name: "AccountType", value: accountType)
         MedalliaDigital.setCustomParameter(name: "LowIncomeStatus", value: lowIncomeStatus)
         MedalliaDigital.setCustomParameter(name: "ServiceType", value: serviceType)
         MedalliaDigital.setCustomParameter(name: "AmountDue", value: amountDue)
-        MedalliaDigital.setCustomParameter(name: "OutageId", value: outageID)
-        MedalliaDigital.setCustomParameter(name: "OutageETR", value: outageETR)
+        MedalliaDigital.setCustomParameter(name: "OutageEtr", value: outageETR )
+        MedalliaDigital.setCustomParameter(name: "CustomerPhoneNumber", value: customerPhoneNumber)
         }
     
     //MARK: - Medallia OutageReportingAnon
-        func medalliaOutageReportingAnon(customerPhoneNumber : String ,outageID : String ,outageETR : String ){
+        func medalliaOutageReportingAnon(outageETR : String, customerPhoneNumber : String ){
             MedalliaDigital.setCustomParameter(name: "PageName", value: MedalliaPage.reportOutage.screenName)
+            MedalliaDigital.setCustomParameter(name: "OutageEtr", value: outageETR)
             MedalliaDigital.setCustomParameter(name: "CustomerPhoneNumber", value: customerPhoneNumber)
-            MedalliaDigital.setCustomParameter(name: "OutageId", value: outageID)
-            MedalliaDigital.setCustomParameter(name: "OutageETR", value: outageETR)
+            
         }
     
     //MARK: - Medallia Payment

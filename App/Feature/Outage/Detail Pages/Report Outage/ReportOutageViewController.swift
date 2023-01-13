@@ -419,10 +419,10 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
                 guard let self = self else { return }
                 RxNotifications.shared.outageReported.onNext(())
                 self.delegate?.didReportOutage()
+                self.medalliaReportOutageSurvey()
                 self.navigationController?.popViewController(animated: true)
                 }, onError: errorBlock)
             GoogleAnalytics.log(event: .reportAnOutageUnAuthSubmit)
-            medalliaReportOutageSurvey()
         } else {
             viewModel.reportOutage(onSuccess: { [weak self] in
                 FirebaseUtility.logEvent(.reportOutageNetworkComplete)
@@ -434,10 +434,11 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
                 guard let self = self else { return }
                 RxNotifications.shared.outageReported.onNext(())
                 self.delegate?.didReportOutage()
+                self.medalliaReportOutageSurvey()
                 self.navigationController?.popViewController(animated: true)
                 }, onError: errorBlock)
             GoogleAnalytics.log(event: .reportOutageAuthSubmit)
-            medalliaReportOutageSurvey()
+            
         }
         
     }
@@ -445,10 +446,15 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
     func medalliaReportOutageSurvey(){
     
        if(unauthenticatedExperience){
-           MedalliaUtility.shared.medalliaSetCustomParam(pageName: "ReportOutage")
-
+           
+           print("outage UnAuth",viewModel.outageStatus.estimatedRestorationDate?.apiFormatString,viewModel.outageStatus.contactHomeNumber )
+           MedalliaUtility.shared.medalliaOutageReportingAnon(outageETR:viewModel.outageStatus.estimatedRestorationDate?.apiFormatString ?? "", customerPhoneNumber: viewModel.outageStatus.contactHomeNumber ?? "")
        }else{
-           MedalliaUtility.shared.medalliaSetCustomParam(pageName: "ReportOutage")
+           viewModel.accountDetail.asObservable()
+               .subscribe(onNext: { [self] (value) in
+                   MedalliaUtility.shared.medalliaOutageReporting(customerID: AccountsStore.shared.customerIdentifier, accountType: value!.isResidential ? "Residential" : "Commercial", lowIncomeStatus: value!.isLowIncome , serviceType: value!.serviceType ?? "", amountDue: value!.billingInfo.currentDueAmount ?? 0, outageETR: self.viewModel.outageStatus.estimatedRestorationDate?.apiFormatString ?? "", customerPhoneNumber: viewModel.outageStatus.contactHomeNumber ?? "")
+                       })
+                       .disposed(by: disposeBag)
       }
    }
     
