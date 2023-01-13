@@ -1,6 +1,5 @@
 inhibit_all_warnings! # ignore all warnings from all pods
-source 'https://github.com/DecibelInsight/decibel-sdk-ios-spec'
-source 'https://github.com/CocoaPods/Specs.git'
+
 def shared_pods # Shared in both iOS and WatchOS
   pod 'RxSwift', '5.1.0'
   pod 'RxSwiftExt', '5.2.0'
