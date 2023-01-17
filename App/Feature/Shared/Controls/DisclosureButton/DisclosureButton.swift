@@ -31,10 +31,12 @@ class DisclosureButton: UIButton {
     
     var stormTheme = false {
         didSet {
-            view.backgroundColor = .stormModeGray
+            view.backgroundColor = .clear
             descriptionLabel.textColor = .white
             valueLabel.textColor = .white
             caretAccessory.image = #imageLiteral(resourceName: "ic_caret_white.pdf")
+            layer.borderWidth = 0.0
+            layer.borderColor = UIColor.clear.cgColor
         }
     }
     
@@ -88,9 +90,9 @@ class DisclosureButton: UIButton {
     override var isHighlighted: Bool {
         didSet {
             if isHighlighted {
-                view.backgroundColor = stormTheme ? UIColor.stormModeGray.darker(by: 10) : .softGray
+                view.backgroundColor = stormTheme ? .white.withAlphaComponent(0.10) : .softGray
             } else {
-                view.backgroundColor = stormTheme ? .stormModeGray : .white
+                view.backgroundColor = stormTheme ? .clear : .white
             }
         }
     }
@@ -98,13 +100,13 @@ class DisclosureButton: UIButton {
     override var isEnabled: Bool {
         didSet {
             if isEnabled {
-                view.backgroundColor = stormTheme ? .stormModeGray : .white
+                view.backgroundColor = stormTheme ? .white.withAlphaComponent(0.10) : .white
                 descriptionLabel.textColor = .middleGray
                 valueLabel.textColor = .neutralDark
                 caretAccessory.alpha = 1
                 accessibilityTraits = .button
             } else {
-                view.backgroundColor = stormTheme ? UIColor.stormModeGray.darker(by: 10) : .softGray
+                view.backgroundColor = stormTheme ? .clear : .softGray
                 descriptionLabel.textColor = UIColor.middleGray.withAlphaComponent(0.5)
                 valueLabel.textColor = UIColor.neutralDark.withAlphaComponent(0.5)
                 caretAccessory.alpha = 0.5

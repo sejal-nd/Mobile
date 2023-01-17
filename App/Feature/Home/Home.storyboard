@@ -955,19 +955,19 @@
                                                         <rect key="frame" x="0.0" y="312" width="393" height="609"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SVR-2m-y9N">
-                                                                <rect key="frame" x="0.0" y="200.66666666666663" width="393" height="208"/>
+                                                                <rect key="frame" x="0.0" y="199.66666666666663" width="393" height="210"/>
                                                                 <subviews>
-                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_lock_white" translatesAutoresizingMaskIntoConstraints="NO" id="QKQ-gs-etb">
-                                                                        <rect key="frame" x="134" y="0.0" width="125" height="126"/>
+                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_lock" translatesAutoresizingMaskIntoConstraints="NO" id="QKQ-gs-etb">
+                                                                        <rect key="frame" x="132.66666666666666" y="0.0" width="127.99999999999997" height="128"/>
                                                                     </imageView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Account Ineligible" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RTj-42-gKa">
-                                                                        <rect key="frame" x="123.00000000000001" y="160" width="147.33333333333337" height="18"/>
+                                                                        <rect key="frame" x="123.00000000000001" y="162" width="147.33333333333337" height="18"/>
                                                                         <fontDescription key="fontDescription" name="Diodrum-Semibold" family="Open Sans" pointSize="18"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This profile type does not have access to the mobile app. Access your account on our responsive website." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qr4-9G-ITF">
-                                                                        <rect key="frame" x="29" y="180" width="335" height="28"/>
+                                                                        <rect key="frame" x="29" y="182" width="335" height="28"/>
                                                                         <fontDescription key="fontDescription" name="Diodrum" family="Open Sans" pointSize="14"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
@@ -1083,7 +1083,7 @@
     <resources>
         <image name="ic_add" width="16" height="16"/>
         <image name="ic_grip" width="15" height="25"/>
-        <image name="ic_lock_white" width="125" height="126"/>
+        <image name="ic_lock" width="128" height="128"/>
         <image name="ic_savings_caretleft" width="24" height="24"/>
         <image name="ic_savings_caretright" width="24" height="24"/>
         <image name="img_home_afternoon_mobile" width="375" height="446"/>

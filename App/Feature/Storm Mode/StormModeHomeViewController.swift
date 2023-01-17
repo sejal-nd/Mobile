@@ -168,12 +168,7 @@ class StormModeHomeViewController: AccountPickerViewController {
     @IBOutlet private weak var accountDisallowIconImageView: UIImageView! {
         didSet {
             // Apply different colors for ADA contrast compliance (ComEd default color is already compliant)
-            accountDisallowIconImageView.image = UIImage(named: "ic_lock_opco")?.withRenderingMode(.alwaysTemplate)
-            if Configuration.shared.opco == .bge {
-                accountDisallowIconImageView.tintColor = UIColor(red: 102/255, green: 179/255, blue: 96/255, alpha: 1)
-            } else if Configuration.shared.opco == .peco {
-                accountDisallowIconImageView.tintColor = UIColor(red: 0, green: 162/255, blue: 1, alpha: 1)
-            }
+            accountDisallowIconImageView.image = UIImage(named: "ic_lock_sm")
         }
     }
     

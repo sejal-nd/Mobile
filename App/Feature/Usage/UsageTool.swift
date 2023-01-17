@@ -53,7 +53,7 @@ enum UsageTool {
         case .energyWiseRewards:
             return UIImage(named: "ic_thermostat")
         case .peakEnergySavings:
-            return UIImage(named: "ic_peaktimesavings")
+            return UIImage(named: "ic_smartenergy")
         }
     }
 }

@@ -384,7 +384,7 @@ class BGEAutoPayViewController: UIViewController {
     func onLearnMorePress() {
         FirebaseUtility.logEvent(.autoPay(parameters: [.learn_more]))
         
-        let infoModal = InfoModalViewController(title: NSLocalizedString("What is AutoPay?", comment: ""), image: #imageLiteral(resourceName: "img_autopaymodal"), description: viewModel.learnMoreDescriptionText)
+        let infoModal = InfoModalViewController(title: NSLocalizedString("What is AutoPay?", comment: ""), image: UIImage(named: "img_autopaymodal")!.withTintColor(.primaryColor), description: viewModel.learnMoreDescriptionText)
         navigationController?.present(infoModal, animated: true, completion: nil)
     }
     

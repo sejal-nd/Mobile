@@ -28,15 +28,15 @@ class MaintenanceModeView: UIView {
         didSet {
             if isColorBackground {
                 containerView.backgroundColor = .primaryColor
-                maintenanceImageView.image = #imageLiteral(resourceName: "ic_maint_mode_white")
-                reloadImageView.image = #imageLiteral(resourceName: "ic_reload")
+                maintenanceImageView.image = UIImage(named: "ic_maint_mode_white")
+                reloadImageView.image = UIImage(named: "ic_reload")
                 reloadLabel.textColor = .white
                 scheduledMaintenanceLabel.textColor = .white
                 detailLabel.textColor = .white
             } else {
                 containerView.backgroundColor = .softGray
-                maintenanceImageView.image = #imageLiteral(resourceName: "ic_maint_mode")
-                reloadImageView.image = #imageLiteral(resourceName: "ic_reload_blue")
+                maintenanceImageView.image = UIImage(named: "ic_maint_mode")
+                reloadImageView.image = UIImage(named: "ic_reload_blue")
                 reloadLabel.textColor = .primaryBlue
                 scheduledMaintenanceLabel.textColor = .neutralDarker
                 detailLabel.textColor = .blackText

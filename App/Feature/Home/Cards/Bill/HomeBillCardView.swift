@@ -230,11 +230,11 @@ class HomeBillCardView: UIView {
     }
     
     private func styleStormMode() {
-        backgroundColor = .stormModeGray
-        clippingView.backgroundColor = .stormModeGray
+        backgroundColor = .white.withAlphaComponent(0.10)
+        clippingView.backgroundColor = .white.withAlphaComponent(0.10)
         loadingIndicator.isStormMode = true
-        headerView.backgroundColor = .stormModeLightGray
-        assistanceView.backgroundColor = .stormModeGray
+        headerView.backgroundColor = .clear
+        assistanceView.backgroundColor = .clear
         titleAssistanceProgram.textColor = .white
         descriptionAssistanceProgram.textColor = .white
         headerLabel.textColor = .white
@@ -245,17 +245,20 @@ class HomeBillCardView: UIView {
         errorLabel.textColor = .white
         maintenanceModeLabel.textColor = .white
         
-        dueDateTooltip.setImage(#imageLiteral(resourceName: "ic_tooltip_white.pdf"), for: .normal)
+        dueDateTooltip.setImage(UIImage(named: "ic_tooltip_white")?.withTintColor(.secondaryGreen), for: .normal)
         
         scheduledPaymentBox.backgroundColor = UIColor.black.withAlphaComponent(0.1)
         thankYouForSchedulingButton.setTitleColor(.white, for: .normal)
-        scheduledImageView.image = #imageLiteral(resourceName: "ic_scheduled_sm.pdf")
+        scheduledImageView.image = UIImage(named: "ic_home_scheduled")?.withTintColor(.secondaryGreen)
         
         autoPayBox.backgroundColor = UIColor.black.withAlphaComponent(0.1)
         autoPayButtonLabel.textColor = .white
-        autoPayImageView.image = #imageLiteral(resourceName: "ic_autopay_sm.pdf")
+        autoPayImageView.image = UIImage(named: "ic_autopay")?.withTintColor(.secondaryGreen)
         
-        billNotReadyImageView.image = #imageLiteral(resourceName: "ic_home_billnotready_sm.pdf")
+        billNotReadyImageView.image = UIImage(named: "ic_home_billnotready_sm")?.withTintColor(.secondaryGreen)
+
+        layer.borderColor = UIColor.clear.cgColor
+        billCardHeader.isHidden = true
     }
     
     private func bindViewModel() {

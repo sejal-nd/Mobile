@@ -208,7 +208,7 @@ extension UnauthenticatedUserViewController: UITableViewDataSource, UITableViewD
                     cell.configure(image: UIImage(named: "ic_morecontact"), text: NSLocalizedString("Contact Us", comment: ""))
                 }
             case 2:
-                cell.configure(image: UIImage(named: "ic_morevideo.pdf"), text: NSLocalizedString("Billing Videos", comment: ""))
+                cell.configure(image: UIImage(named: "ic_morevideo"), text: NSLocalizedString("Billing Videos", comment: ""))
             case 3:
                 cell.configure(image: UIImage(named: "ic_moretos"), text: NSLocalizedString("Policies and Terms", comment: ""))
             default:
@@ -221,7 +221,7 @@ extension UnauthenticatedUserViewController: UITableViewDataSource, UITableViewD
             case 1:
                 cell.configure(image: UIImage(named: "ic_morecontact"), text: NSLocalizedString("Contact Us", comment: ""))
             case 2:
-                cell.configure(image: UIImage(named: "ic_morevideo.pdf"), text: NSLocalizedString("Billing Videos", comment: ""))
+                cell.configure(image: UIImage(named: "ic_morevideo"), text: NSLocalizedString("Billing Videos", comment: ""))
             case 3:
                 cell.configure(image: UIImage(named: "ic_moretos"), text: NSLocalizedString("Policies and Terms", comment: ""))
             default:

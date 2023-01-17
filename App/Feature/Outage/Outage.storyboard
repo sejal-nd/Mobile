@@ -774,11 +774,11 @@
             <objects>
                 <viewController id="FJs-Ee-VCt" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kzm-Ed-0kH">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="465" height="410"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fHW-6o-rmo" customClass="NoNetworkConnectionView" customModule="Atlantic_City_Electric" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="393" height="603"/>
+                                <rect key="frame" x="0.0" y="0.0" width="465" height="410"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isColorBackground" value="NO"/>
@@ -804,11 +804,11 @@
             <objects>
                 <viewController id="vck-Zw-W0A" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="59S-0y-T1F">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="465" height="410"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o6Y-kt-yEh" customClass="MaintenanceModeView" customModule="Atlantic_City_Electric" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="393" height="603"/>
+                                <rect key="frame" x="0.0" y="0.0" width="465" height="410"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isColorBackground" value="NO"/>
@@ -836,23 +836,23 @@
             <objects>
                 <viewController id="azb-k7-oxC" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" id="b0V-9v-duh">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="465" height="410"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BNN-WE-CFh">
-                                <rect key="frame" x="16" y="190.66666666666663" width="361" height="222"/>
+                                <rect key="frame" x="20" y="100" width="425" height="210"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_lock_opco" translatesAutoresizingMaskIntoConstraints="NO" id="m6t-iu-7NS">
-                                        <rect key="frame" x="118" y="0.0" width="125" height="126"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_lock" translatesAutoresizingMaskIntoConstraints="NO" id="m6t-iu-7NS">
+                                        <rect key="frame" x="148.66666666666666" y="0.0" width="127.99999999999997" height="128"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Account Ineligible" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="prp-Qi-Okn">
-                                        <rect key="frame" x="107.00000000000001" y="160.00000000000003" width="147.33333333333337" height="18"/>
+                                        <rect key="frame" x="139" y="162" width="147.33333333333337" height="18"/>
                                         <fontDescription key="fontDescription" name="Diodrum-Semibold" family="Open Sans" pointSize="18"/>
                                         <color key="textColor" red="0.13725490200000001" green="0.1215686275" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This profile type does not have access to the mobile app. Access your account on our responsive website." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dee-zr-VeD">
-                                        <rect key="frame" x="29" y="180.00000000000003" width="303" height="42"/>
+                                        <rect key="frame" x="29" y="182" width="367" height="28"/>
                                         <fontDescription key="fontDescription" name="Diodrum" family="Open Sans" pointSize="14"/>
                                         <color key="textColor" red="0.13725490200000001" green="0.1215686275" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -888,23 +888,23 @@
             <objects>
                 <viewController id="OGh-C5-F8o" customClass="GasOnlyViewController" customModule="Atlantic_City_Electric" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" id="Sw5-BN-s33">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="465" height="410"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MWj-es-gFP">
-                                <rect key="frame" x="16" y="0.0" width="361" height="603"/>
+                                <rect key="frame" x="20" y="0.0" width="425" height="410"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_gas_only" translatesAutoresizingMaskIntoConstraints="NO" id="HwT-ao-NiN">
-                                        <rect key="frame" x="116.66666666666666" y="70" width="128" height="128"/>
+                                        <rect key="frame" x="148.66666666666666" y="70" width="127.99999999999997" height="128"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gas Only Account" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="vjf-rO-okh">
-                                        <rect key="frame" x="46" y="218" width="269" height="28.666666666666657"/>
+                                        <rect key="frame" x="46" y="218" width="333" height="28.666666666666657"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="24"/>
                                         <color key="textColor" red="0.13725490200000001" green="0.1215686275" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="lorem ipsum" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="SlV-Md-fwM" customClass="ZeroInsetDataDetectorTextView" customModule="Atlantic_City_Electric" customModuleProvider="target">
-                                        <rect key="frame" x="46" y="269.66666666666674" width="269" height="304.33333333333326"/>
+                                        <rect key="frame" x="46" y="269.66666666666669" width="333" height="111.33333333333331"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <color key="textColor" red="0.13725490200000001" green="0.1215686275" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="Diodrum" family="Open Sans" pointSize="14"/>
@@ -952,11 +952,11 @@
             <objects>
                 <viewController id="0Fe-s3-Gze" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HG4-UA-M7Z">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="465" height="410"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="80" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="CJY-Ux-aUH" customClass="LoadingIndicator" customModule="Atlantic_City_Electric" customModuleProvider="target">
-                                <rect key="frame" x="156.66666666666666" y="295.66666666666669" width="80" height="12"/>
+                                <rect key="frame" x="192.66666666666666" y="199" width="79.999999999999972" height="12"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
@@ -992,7 +992,7 @@
         <image name="ic_alerts" width="36" height="36"/>
         <image name="ic_caret" width="16" height="16"/>
         <image name="ic_gas_only" width="128" height="128"/>
-        <image name="ic_lock_opco" width="125" height="126"/>
+        <image name="ic_lock" width="128" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
