@@ -49,9 +49,8 @@ extension UIColor {
 
     // MARK: UI Colors
 
-    /// Action Dark #170D67 (Same as Primary Dark Blue)
     static var actionBrand: UIColor {
-        return primaryBlue
+        return actionPrimary
     }
 
     /// Action Dark #103870
