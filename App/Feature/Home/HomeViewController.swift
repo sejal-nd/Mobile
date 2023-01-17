@@ -15,7 +15,6 @@ import SafariServices
 
 fileprivate let editHomeSegueId = "editHomeSegue"
 fileprivate let colorBackgroundViewHeight: CGFloat = 446
-fileprivate let opcoIdentityViewHeight: CGFloat = 73
 
 class HomeViewController: AccountPickerViewController {
     
@@ -47,8 +46,6 @@ class HomeViewController: AccountPickerViewController {
     var projectedBillCardView: HomeProjectedBillCardView?
     var outageCardView: HomeOutageCardView?
     var topPersonalizeButton: ConversationalButton?
-    var opcoIdentityView: OpcoIdentityCardView!
-    var opcoIdentityViewHeightConstraint: NSLayoutConstraint!
     
     var gameCardView: HomeGameCardView?
     
@@ -151,13 +148,6 @@ class HomeViewController: AccountPickerViewController {
             .disposed(by: bag)
 
         if Configuration.shared.opco.isPHI {
-            // Create Opco Identifier Card
-            opcoIdentityView = .create()
-            contentStackView.insertArrangedSubview(opcoIdentityView, at: 0)
-            opcoIdentityView.leadingAnchor.constraint(equalTo: contentStackView.leadingAnchor).isActive = true
-            opcoIdentityView.trailingAnchor.constraint(equalTo: contentStackView.trailingAnchor).isActive = true
-            opcoIdentityViewHeightConstraint = opcoIdentityView.heightAnchor.constraint(equalToConstant: opcoIdentityViewHeight)
-            opcoIdentityViewHeightConstraint.isActive = true
             // Add a terms & conditions Button at the end of the stack for PHI ocpos
             termsAndConditionsButton = UIButton()
             termsAndConditionsButton.setTitle("Policies & Terms", for: .normal)
@@ -305,7 +295,7 @@ class HomeViewController: AccountPickerViewController {
                     importantUpdateView.configure(withUpdate: update)
                 } else {
                     let importantUpdateView = HomeUpdateView.create(withUpdate: update)
-                    self.contentStackView.insertArrangedSubview(importantUpdateView, at: !Configuration.shared.opco.isPHI ? 0 : 1)
+                    self.contentStackView.insertArrangedSubview(importantUpdateView, at: 0)
 //                    importantUpdateView.addTabletWidthConstraints(horizontalPadding: 16)
                     importantUpdateView.button.rx.touchUpInside.asDriver()
                         .drive(onNext: { [weak self] in
@@ -966,34 +956,6 @@ extension HomeViewController: AccountPickerDelegate {
         // enable refresh control once accounts list loads
         setRefreshControlEnabled(enabled: true)
         viewModel.fetchData.onNext(())
-        
-        if let account = accountPicker.currentAccount {
-            if Configuration.shared.opco.isPHI {
-                if accountPicker.accounts.count > 1 && account.accountNickname?.count == .zero {
-                    opcoIdentityView.reset()
-                    contentStackView.removeArrangedSubview(opcoIdentityView)
-                } else {
-                    if let opcoType = account.opcoType {
-                        contentStackView.insertArrangedSubview(opcoIdentityView, at: 0)
-                        if let accountNickname = account.accountNickname {
-                            var nickname = ""
-                            if accountNickname != account.accountNumber {
-                                nickname = accountNickname
-                            }
-                            if nickname.isEmpty && accountPicker.accounts.count == 1 {
-                                opcoIdentityView.reset()
-                                contentStackView.removeArrangedSubview(opcoIdentityView)
-                            } else {
-                                opcoIdentityView.resetNickname()
-                                opcoIdentityView.configure(nickname: nickname,
-                                                               opco: opcoType,
-                                                hasMultipleAccounts: (accountPicker.accounts.count > 1))
-                            }
-                        }
-                    }
-                }
-            }
-        }
         
         if FeatureFlagUtility.shared.bool(forKey: .isGamificationEnabled) {
             let gameAccountNumber = UserDefaults.standard.string(forKey: UserDefaultKeys.gameAccountNumber)

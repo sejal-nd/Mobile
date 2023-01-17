@@ -91,8 +91,6 @@
 		2FA5D85F1F17D2A300A8B16B /* (null) in Sources */ = {isa = PBXBuildFile; };
 		2FA5D8641F17D88500A8B16B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA5D8631F17D88500A8B16B /* HomeViewController.swift */; };
 		301DE1F624BF0A7300992CA4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06C71E521B3200BBA4ED /* Assets.xcassets */; };
-		30636F0824C82F2F00CCBFAE /* OpcoIdentityCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30636F0724C82F2F00CCBFAE /* OpcoIdentityCardView.swift */; };
-		30636F0E24C82F8500CCBFAE /* OpcoIdentityCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30636F0924C82F4200CCBFAE /* OpcoIdentityCardView.xib */; };
 		3090A643247F9A6900815EA1 /* More.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8B4F4AE1E5C957A0031D934 /* More.storyboard */; };
 		30A1A0D4254004EF00D18EAC /* EditAccountNickNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3090A63E247F8EFA00815EA1 /* EditAccountNickNameViewController.swift */; };
 		30B0F53A25C918430078D2AF /* PeakEnergySavingsHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B0F53825C918420078D2AF /* PeakEnergySavingsHistoryViewController.swift */; };
@@ -1393,8 +1391,6 @@
 		2FA7B9F91F0548F000D660B8 /* OutageMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OutageMapViewController.swift; path = "App/Feature/Outage/Detail Pages/OutageMapViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30353FBF24D1831C0060DE5D /* sm_outage.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sm_outage.json; sourceTree = "<group>"; };
 		30353FC324D292C10060DE5D /* sm_outage_loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sm_outage_loading.json; sourceTree = "<group>"; };
-		30636F0724C82F2F00CCBFAE /* OpcoIdentityCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpcoIdentityCardView.swift; sourceTree = "<group>"; };
-		30636F0924C82F4200CCBFAE /* OpcoIdentityCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OpcoIdentityCardView.xib; sourceTree = "<group>"; };
 		3090A63E247F8EFA00815EA1 /* EditAccountNickNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAccountNickNameViewController.swift; sourceTree = "<group>"; };
 		30B0F53825C918420078D2AF /* PeakEnergySavingsHistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeakEnergySavingsHistoryViewController.swift; sourceTree = "<group>"; };
 		30B0F53925C918430078D2AF /* PeakSavingsHistoryViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeakSavingsHistoryViewModel.swift; sourceTree = "<group>"; };
@@ -3250,15 +3246,6 @@
 			path = Move;
 			sourceTree = "<group>";
 		};
-		30636F0624C82EBD00CCBFAE /* OpcoIdentityCardView */ = {
-			isa = PBXGroup;
-			children = (
-				30636F0724C82F2F00CCBFAE /* OpcoIdentityCardView.swift */,
-				30636F0924C82F4200CCBFAE /* OpcoIdentityCardView.xib */,
-			);
-			path = OpcoIdentityCardView;
-			sourceTree = "<group>";
-		};
 		3090A633247E412E00815EA1 /* PEPCO */ = {
 			isa = PBXGroup;
 			children = (
@@ -3656,7 +3643,6 @@
 				C34D54DF2948E68900E6012B /* Discover */,
 				C3DE17DB291C2A0D0055275D /* HomeCardHeaderView.swift */,
 				C3DE17DD291C2E110055275D /* HomeCardHeaderView.xib */,
-				30636F0624C82EBD00CCBFAE /* OpcoIdentityCardView */,
 				9CC99788237B479200C68300 /* Game */,
 				3559C8A122F9C5F200481A87 /* Updates */,
 				3559C89E22F9C5B200481A87 /* Weather */,
@@ -6110,7 +6096,6 @@
 				C3CD431929412C1000297553 /* wavemotif.json in Resources */,
 				35C9139222E9E9C1009DD71A /* MiniWalletSheet.storyboard in Resources */,
 				C364A87B2375DC7B00C7D51B /* StateView.xib in Resources */,
-				30636F0E24C82F8500CCBFAE /* OpcoIdentityCardView.xib in Resources */,
 				9CD3532722CABC0A00165F87 /* PrepaidCardView.xib in Resources */,
 				67A9869F24F9691600BD46E7 /* GoogleService-Info-BETA-FlavorPECO.plist in Resources */,
 				B0DB2763215ECF5100CD703B /* AccountInfoBarCell.xib in Resources */,
@@ -7229,7 +7214,6 @@
 				82A18E551EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift in Sources */,
 				E893993D1F86AF1600B9184C /* UIViewDashedBorders.swift in Sources */,
 				675F4CE424AB828200A828F9 /* MinimumVersion.swift in Sources */,
-				30636F0824C82F2F00CCBFAE /* OpcoIdentityCardView.swift in Sources */,
 				4AEB19A726F387AA00879046 /* StopServiceFlowData.swift in Sources */,
 				21C66E202791EF7F00DC1A07 /* SurveyView.swift in Sources */,
 				E87C41471FAB72E700448F86 /* UpdatesTableViewCell.swift in Sources */,
