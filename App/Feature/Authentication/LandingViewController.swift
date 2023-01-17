@@ -32,11 +32,6 @@ class LandingViewController: UIViewController {
     @IBOutlet weak var videoView: UIView!
 
     @IBOutlet weak var backgroundImageView: UIImageView!
-    var backgroundAnimationView = AnimationView()
-    
-    private var playerLayer: AVPlayerLayer!
-    private var avPlayer: AVPlayer?
-    private var avPlayerPlaybackTime = CMTime.zero
     
     private var viewDidAppear = false
     
@@ -86,9 +81,6 @@ class LandingViewController: UIViewController {
         let a11yText = NSLocalizedString("%@, an Exelon Company", comment: "")
         logoImageView.accessibilityLabel = String(format: a11yText, Configuration.shared.opco.displayString)
         
-//        backgroundVideoSetup()
-        setUpBackgroundAnimation()
-        
         (UIApplication.shared.delegate as? AppDelegate)?.checkIOSVersion()
     }
     
@@ -97,14 +89,16 @@ class LandingViewController: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: true)
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationItem.largeTitleDisplayMode = .always
-//        backgroundVideoResume(at: avPlayerPlaybackTime)
+
+        NotificationCenter.default.addObserver(self, selector: #selector(willResignActive), name: UIApplication.willResignActiveNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(didBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
+
+        startBackgroundAnimation()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        avPlayer?.play()
-        
+
         if !UserDefaults.standard.bool(forKey: UserDefaultKeys.hasAcceptedTerms) {
             performSegue(withIdentifier: "termsPoliciesModalSegue", sender: self)
         }
@@ -119,13 +113,20 @@ class LandingViewController: UIViewController {
             }
         }
     }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        guard let player = avPlayer else { return }
-        player.pause()
-        avPlayerPlaybackTime = player.currentTime()
-        avPlayer = nil
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        backgroundImageView.layer.removeAllAnimations()
+        NotificationCenter.default.removeObserver(self)
+    }
+
+    @objc private func willResignActive() {
+        backgroundImageView.layer.removeAllAnimations()
+    }
+
+    @objc private func didBecomeActive() {
+        startBackgroundAnimation()
     }
     
     
@@ -283,97 +284,16 @@ class LandingViewController: UIViewController {
     
     
     // MARK: - Helper
-    
-    private func backgroundVideoSetup() {
-        try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: .mixWithOthers)
-        
-        view.sendSubviewToBack(videoView)
-        let movieUrl = URL(fileURLWithPath: Bundle.main.path(forResource: "wavemotif_slower_trimmed", ofType: "mov")!)
-        let asset = AVAsset(url: movieUrl)
-        let avPlayerItem = AVPlayerItem(asset: asset)
-        avPlayer = AVPlayer(playerItem: avPlayerItem)
-        avPlayer?.isMuted = true
-        
-        playerLayer = AVPlayerLayer(player: avPlayer)
-        playerLayer.videoGravity = .resizeAspectFill
-        
-        let videoWidth: CGFloat
-        let videoHeight: CGFloat
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            // On iPad, the video needs to be square to account for screen rotation
-            let widthAndHeight = max(UIScreen.main.bounds.width, UIScreen.main.bounds.height)
-            videoWidth = widthAndHeight
-            videoHeight = widthAndHeight
-        } else {
-            videoWidth = UIScreen.main.bounds.width
-            videoHeight = UIScreen.main.bounds.height
-        }
-        playerLayer.frame = CGRect(x: 0, y: 0, width: videoWidth, height: videoHeight)
-        
-        videoView.layer.addSublayer(playerLayer)
-        
-        avPlayer?.seek(to: .zero)
-        avPlayer?.actionAtItemEnd = .none
-        
-        NotificationCenter.default.rx.notification(.AVPlayerItemDidPlayToEndTime)
-            .asDriver(onErrorDriveWith: .empty())
-            .drive(onNext: {
-                ($0.object as? AVPlayerItem)?.seek(to: .zero, completionHandler: nil)
-            })
-            .disposed(by: disposeBag)
-        
-        NotificationCenter.default.rx.notification(UIApplication.didBecomeActiveNotification)
-            .asDriver(onErrorDriveWith: .empty())
-            .drive(onNext: { [weak self] _ in
-                self?.avPlayer?.play()
-            })
-            .disposed(by: disposeBag)
-    }
-    
-    private func backgroundVideoResume(at playbackTime: CMTime) {
-        let movieUrl = URL(fileURLWithPath: Bundle.main.path(forResource: "wavemotif_slower_trimmed", ofType: "mov")!)
-        let asset = AVAsset(url: movieUrl)
-        let avPlayerItem = AVPlayerItem(asset: asset)
-        avPlayer = AVPlayer(playerItem: avPlayerItem)
-        avPlayer?.isMuted = true
-        avPlayer?.seek(to: playbackTime)
-        avPlayer?.actionAtItemEnd = .none
-        
-        guard let avPlayer = avPlayer else { return }
-        playerLayer.player = avPlayer
-    }
 
-    private func setUpBackgroundAnimation() {
-
+    private func startBackgroundAnimation() {
         let rotationAnimation = CABasicAnimation(keyPath: "transform.rotation")
         rotationAnimation.fromValue = 0.0
         rotationAnimation.toValue = Double.pi * 2 // negative can control direction
         rotationAnimation.duration = 180.0
         rotationAnimation.repeatCount = .infinity
+        
         backgroundImageView.layer.add(rotationAnimation, forKey: nil)
         backgroundImageView.clipsToBounds = false
-
-//        backgroundAnimationView = AnimationView(name: "wavemotif")
-//        backgroundAnimationView.loopMode = .loop
-//        backgroundAnimationView.backgroundBehavior = .pauseAndRestore
-//        backgroundAnimationView.translatesAutoresizingMaskIntoConstraints = false
-//        backgroundAnimationView.contentMode = .scaleAspectFill
-//
-//        backgroundAnimationView.setContentHuggingPriority(.required, for: .horizontal)
-//        backgroundAnimationView.setContentHuggingPriority(.required, for: .vertical)
-//        backgroundAnimationView.setContentCompressionResistancePriority(.required, for: .horizontal)
-//        backgroundAnimationView.setContentCompressionResistancePriority(.required, for: .vertical)
-//
-//        view.addSubview(backgroundAnimationView)
-//
-//        view.addConstraints([
-//            backgroundAnimationView.topAnchor.constraint(equalTo: view.topAnchor),
-//            backgroundAnimationView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-//            backgroundAnimationView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-//            backgroundAnimationView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-//        ])
-//
-//        backgroundAnimationView.play()
     }
     
     // MARK: - Navigation
