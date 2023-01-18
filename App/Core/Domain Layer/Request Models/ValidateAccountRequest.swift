@@ -15,6 +15,7 @@ public struct ValidateAccountRequest: Encodable {
     var accountNumber: String? = nil
     var billDate: String? = nil
     var amountDue: String? = nil
+    var auid: String? = ""
     
     enum CodingKeys: String, CodingKey {
         case identifier = "identifier"
@@ -22,5 +23,6 @@ public struct ValidateAccountRequest: Encodable {
         case accountNumber = "account_num"
         case billDate = "bill_date"
         case amountDue = "amount_due"
+        case auid = "auid"
     }
 }
