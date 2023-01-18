@@ -28,6 +28,7 @@ class HomeOutageCardView: UIView {
     @IBOutlet private weak var outageReportedView: UIView!
     @IBOutlet private weak var outageReportedLabel: UILabel!
     @IBOutlet weak var callToActionButton: UIButton!
+    @IBOutlet weak var homeCardHeaderView: HomeCardHeaderView!
     
     // Custom Error View
     @IBOutlet private weak var customErrorView: UIView!
@@ -52,7 +53,9 @@ class HomeOutageCardView: UIView {
     
     var bag = DisposeBag()
     
-    private(set) lazy var reportOutageTapped: Driver<OutageStatus> = callToActionButton.rx.touchUpInside.asDriver()
+    private(set) lazy var reportOutageTapped: Driver<OutageStatus> = Driver.merge(
+        callToActionButton.rx.touchUpInside.asDriver(),
+        homeCardHeaderView.button.rx.touchUpInside.asDriver())
         .withLatestFrom(viewModel.showReportedOutageTime)
         .filter(!)
         .withLatestFrom(viewModel.currentOutageStatus)
@@ -85,48 +88,48 @@ class HomeOutageCardView: UIView {
         clippingView.layer.masksToBounds = true
         
         // Content View
-        titleLabel.textColor = .deepGray
-        titleLabel.font = OpenSans.regular.of(textStyle: .headline)
+        titleLabel.textColor = .neutralDark
+        titleLabel.font = .headline
         
-        powerStatusTitleLabel.textColor = .deepGray
-        powerStatusTitleLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        powerStatusTitleLabel.textColor = .neutralDark
+        powerStatusTitleLabel.font = .subheadline
         
-        powerStatusLabel.textColor = .deepGray
-        powerStatusLabel.font = OpenSans.semibold.of(textStyle: .title1)
+        powerStatusLabel.textColor = .neutralDarker
+        powerStatusLabel.font = .title1
         
-        restorationStatusLabel.textColor = .deepGray
-        restorationStatusLabel.font = SystemFont.regular.of(textStyle: .caption1)
+        restorationStatusLabel.textColor = .neutralDark
+        restorationStatusLabel.font = .caption1
         
-        restorationStatusLabel.textColor = .deepGray
-        restorationStatusLabel.font = SystemFont.regular.of(textStyle: .caption1)
+        restorationStatusLabel.textColor = .neutralDark
+        restorationStatusLabel.font = .caption1
         
-        outageReportedLabel.textColor = .deepGray
-        outageReportedLabel.font = SystemFont.semibold.of(textStyle: .footnote)
+        outageReportedLabel.textColor = .neutralDark
+        outageReportedLabel.font = .footnoteSemibold
         
-        callToActionButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
+        callToActionButton.titleLabel?.font = .headlineSemibold
         
         // Custom Error View
-        customErrorTitleLabel.textColor = .deepGray
-        customErrorTitleLabel.font = OpenSans.regular.of(textStyle: .headline)
+        customErrorTitleLabel.textColor = .neutralDark
+        customErrorTitleLabel.font = .headline
 
-        gasOnlyLabel.textColor = .deepGray
-        gasOnlyLabel.font = OpenSans.semibold.of(textStyle: .title3)
+        gasOnlyLabel.textColor = .neutralDarker
+        gasOnlyLabel.font = .title3
         
-        gasOnlySublabel.textColor = .deepGray
-        gasOnlySublabel.font = SystemFont.regular.of(textStyle: .caption1)
+        gasOnlySublabel.textColor = .neutralDark
+        gasOnlySublabel.font = .caption1
 
-        nonPayFinaledTextView.tintColor = .actionBlue // For phone numbers
+        nonPayFinaledTextView.tintColor = .actionBrand // For phone numbers
         
         // Maintenance Mode View
-        maintenanceModeLabel.textColor = .deepGray
-        maintenanceModeLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        maintenanceModeLabel.textColor = .neutralDark
+        maintenanceModeLabel.font = .subheadline
         
         // Generic Error View
-        errorTitleLabel.textColor = .deepGray
-        errorTitleLabel.font = OpenSans.regular.of(textStyle: .headline)
+        errorTitleLabel.textColor = .neutralDark
+        errorTitleLabel.font = .headline
         
-        errorLabel.textColor = .deepGray
-        errorLabel.font = SystemFont.regular.of(textStyle: .caption1)
+        errorLabel.textColor = .neutralDark
+        errorLabel.font = .caption1
         errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
     }
     

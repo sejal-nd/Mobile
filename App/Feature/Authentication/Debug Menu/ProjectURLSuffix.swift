@@ -25,6 +25,10 @@ enum ProjectURLSuffix: String, Identifiable, Equatable, CaseIterable {
     case sam = "Smart Assistance Manager"
     case signupmove = "ISUM"
     case maintenance = "Maintenance"
+    
+    case agentis = "Agentis"
+    case cis = "CIS"
+    case advancedNotifications = "Advance Notifications"
 }
 
 // MARK: Convenience
@@ -58,6 +62,12 @@ extension ProjectURLSuffix {
             return "/signupmove"
         case .maintenance:
             return "/maintenance"
+        case .agentis:
+            return "/agentis"
+        case .cis:
+            return "/cis-upgrade"
+        case .advancedNotifications:
+            return "/phiadvnoti"
         }
     }
     

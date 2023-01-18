@@ -15,8 +15,8 @@ class HomeEditEmptyCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         background.layer.cornerRadius = 10
-        label.textColor = .deepGray
-        label.font = SystemFont.regular.of(textStyle: .subheadline)
+        label.textColor = .neutralDark
+        label.font = .subheadline
     }
     
 }

@@ -23,20 +23,20 @@ class UnauthenticatedMoveAccountSelectionViewController: UIViewController {
         title = NSLocalizedString("Select an Account", comment: "")
         addBackButton()
         
-        instructionLabel.textColor = .deepGray
+        instructionLabel.textColor = .neutralDark
         instructionLabel.text = NSLocalizedString("Select the account where you would like to stop your service.", comment: "")
 
-        col1HeaderLabel.textColor = .deepGray
+        col1HeaderLabel.textColor = .neutralDark
         col1HeaderLabel.text = NSLocalizedString("Account #", comment: "")
         col1HeaderLabel.isAccessibilityElement = true
         col1HeaderLabel.accessibilityLabel = NSLocalizedString("Account Number", comment: "")
 
-        col2HeaderLabel.textColor = .deepGray
+        col2HeaderLabel.textColor = .neutralDark
         col2HeaderLabel.text = NSLocalizedString("Street #", comment: "")
         col2HeaderLabel.isAccessibilityElement = true
         col2HeaderLabel.accessibilityLabel = NSLocalizedString("Street Number", comment: "")
 
-        col3HeaderLabel.textColor = .deepGray
+        col3HeaderLabel.textColor = .neutralDark
         col3HeaderLabel.text = NSLocalizedString("Unit #", comment: "")
         col3HeaderLabel.isAccessibilityElement = true
         col3HeaderLabel.accessibilityLabel = NSLocalizedString("Unit Number", comment: "")

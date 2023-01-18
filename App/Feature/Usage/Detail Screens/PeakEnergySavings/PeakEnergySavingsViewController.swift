@@ -62,7 +62,7 @@ final class PeakEnergySavingsViewController: DismissableFormSheetViewController 
             vc.accountDetail = accountDetail
         case let vc as B2CUsageWebViewController:
             vc.accountDetail = accountDetail
-            vc.widget = .pesc
+            vc.viewModel.widget = .pesc
         default:
             break
         }
@@ -74,8 +74,8 @@ extension PeakEnergySavingsViewController {
     
     /// This function customizes the UI Elements
     private func styleViews() {
-        programDetailsLabel.textColor = .deepGray
-        programDetailsLabel.font = SystemFont.regular.of(textStyle: .body)
+        programDetailsLabel.textColor = .neutralDark
+        programDetailsLabel.font = .body
         programDetailsLabel.setLineHeight(lineHeight: 24.0)
         programDetailsLabel.textAlignment = .center
         let helpButton = UIBarButtonItem(image: UIImage(named: "ic_tooltip"), style: .plain, target: self, action: #selector(onLearnMorePress))

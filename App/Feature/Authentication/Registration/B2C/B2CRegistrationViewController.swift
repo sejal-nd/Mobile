@@ -33,10 +33,10 @@ class B2CRegistrationViewController: UIViewController {
         webView.isHidden = true
         
         errorImage.tintColor = .attentionOrange
-        errorTitle.font = SystemFont.semibold.of(textStyle: .title3)
-        errorTitle.textColor = .deepGray
-        errorDescription.font = SystemFont.regular.of(textStyle: .footnote)
-        errorDescription.textColor = .deepGray
+        errorTitle.font = .title3
+        errorTitle.textColor = .neutralDarker
+        errorDescription.font = .footnote
+        errorDescription.textColor = .neutralDark
         errorView.isHidden = true
         
         fetchJWT()

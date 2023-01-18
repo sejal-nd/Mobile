@@ -174,7 +174,7 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
             phoneExtensionContainerView.isHidden = true
         }
         
-        footerTextView.tintColor = .actionBlue // For the phone numbers
+        footerTextView.tintColor = .actionBrand // For the phone numbers
         footerTextView.attributedText = viewModel.footerTextViewText
         footerTextView.linkTapDelegate = self
         
@@ -351,29 +351,29 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
     
     private func style() {
         // Meter Ping
-        meterPingCurrentStatusLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        meterPingCurrentStatusLabel.textColor = .deepGray
+        meterPingCurrentStatusLabel.font = .subheadline
+        meterPingCurrentStatusLabel.textColor = .neutralDark
         
         // Status View
         meterPingStatusBox.layer.borderWidth = 1.0
         meterPingStatusBox.layer.borderColor = UIColor.accentGray.cgColor
-        meterPingStatusTitleLabel.textColor = .deepGray
-        meterPingStatusTitleLabel.font = SystemFont.semibold.of(textStyle: .body)
-        meterPingStatusDescriptionLabel.textColor = .deepGray
-        meterPingStatusDescriptionLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        meterPingStatusTitleLabel.textColor = .neutralDark
+        meterPingStatusTitleLabel.font = .bodyBold
+        meterPingStatusDescriptionLabel.textColor = .neutralDark
+        meterPingStatusDescriptionLabel.font = .subheadline
         
         // Fuse Box
-        meterPingFuseBoxLabel.textColor = .deepGray
-        meterPingFuseBoxLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        meterPingFuseBoxLabel.textColor = .neutralDark
+        meterPingFuseBoxLabel.font = .subheadline
         meterPingFuseBoxLabel.setLineHeight(lineHeight: 25)
         
         // Form
-        areYourLightsOutLabel.textColor = .deepGray
-        areYourLightsOutLabel.font = SystemFont.regular.of(textStyle: .body)
-        howCanWeContactYouLabel.textColor = .deepGray
-        howCanWeContactYouLabel.font = SystemFont.regular.of(textStyle: .body)
-        commentLabel.textColor = .deepGray
-        commentLabel.font = SystemFont.regular.of(textStyle: .body)
+        areYourLightsOutLabel.textColor = .neutralDark
+        areYourLightsOutLabel.font = .body
+        howCanWeContactYouLabel.textColor = .neutralDark
+        howCanWeContactYouLabel.font = .body
+        commentLabel.textColor = .neutralDark
+        commentLabel.font = .body
     }
     
     private func setLottieAnimation(for name: String, shouldLoop: Bool = false) {

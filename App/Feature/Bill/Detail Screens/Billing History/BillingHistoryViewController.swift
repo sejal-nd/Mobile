@@ -49,8 +49,8 @@ class BillingHistoryViewController: UIViewController {
             self.navigationController?.pushViewController(vc, animated: true)
         }).disposed(by: disposeBag)
         
-        emptyStateLabel.textColor = .deepGray
-        emptyStateLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        emptyStateLabel.textColor = .neutralDark
+        emptyStateLabel.font = .subheadline
         var emptyStateText = NSLocalizedString("Once you receive your bill or make a payment, details about those activities can be accessed here.", comment: "")
         if viewModel.shouldShowAutoPayCellDetailLabel {
             emptyStateText += NSLocalizedString(" Automatic payments will be visible once your bill is generated.", comment: "")
@@ -58,7 +58,7 @@ class BillingHistoryViewController: UIViewController {
         }
         emptyStateLabel.text = emptyStateText
         
-        errorLabel.font = SystemFont.regular.of(textStyle: .headline)
+        errorLabel.font = .headline
         errorLabel.textColor = .blackText
         errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
         errorLabel.isHidden = true
@@ -312,8 +312,8 @@ extension BillingHistoryViewController: UITableViewDelegate {
         let button = UIButton(type: .system)
         
         label.text = section == 0 ? NSLocalizedString("UPCOMING", comment: "") : NSLocalizedString("PAST", comment: "")
-        label.font = SystemFont.regular.of(textStyle: .subheadline)
-        label.textColor = .deepGray
+        label.font = .subheadline
+        label.textColor = .neutralDark
         
         var titleText = ""
         if section == 0 {
@@ -334,8 +334,8 @@ extension BillingHistoryViewController: UITableViewDelegate {
         }
         
         button.setTitle(titleText, for: .normal)
-        button.titleLabel?.font = SystemFont.semibold.of(textStyle: .subheadline)
-        button.setTitleColor(.actionBlue, for: .normal)
+        button.titleLabel?.font = .subheadlineSemibold
+        button.setTitleColor(.actionBrand, for: .normal)
         
         let selector = section == 0 ?
             #selector(BillingHistoryViewController.viewAllUpcoming) :
@@ -436,9 +436,9 @@ extension BillingHistoryViewController: UITableViewDataSource {
     private func viewMoreTableViewCell(indexPath: IndexPath) -> UITableViewCell {
         let button = UIButton(type: .system)
         button.contentEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
-        button.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
+        button.titleLabel?.font = .headlineSemibold
         button.setTitle("View More", for: .normal)
-        button.setTitleColor(.actionBlue, for: .normal)
+        button.setTitleColor(.actionBrand, for: .normal)
         button.tag = 1
         button.addTarget(self, action: #selector(viewMorePast(_:)), for:.touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -468,8 +468,8 @@ extension BillingHistoryViewController: UITableViewDataSource {
             .disposed(by: disposeBag)
         
         let titleLabel = UILabel()
-        titleLabel.textColor = .deepGray
-        titleLabel.font = SystemFont.semibold.of(textStyle: .subheadline)
+        titleLabel.textColor = .neutralDark
+        titleLabel.font = .subheadlineSemibold
         let titleText: String
         if viewModel.accountDetail.isAutoPay {
             titleText = NSLocalizedString("You are enrolled in AutoPay", comment: "")
@@ -479,8 +479,8 @@ extension BillingHistoryViewController: UITableViewDataSource {
         titleLabel.text = titleText
         
         let detailLabel = UILabel()
-        detailLabel.textColor = .deepGray
-        detailLabel.font = SystemFont.regular.of(textStyle: .caption1)
+        detailLabel.textColor = .neutralDark
+        detailLabel.font = .caption1
         detailLabel.text = NSLocalizedString("Your upcoming automatic payment will be\nvisible once your next bill is generated.", comment: "")
         detailLabel.numberOfLines = 0
         detailLabel.isHidden = true

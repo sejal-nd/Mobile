@@ -150,54 +150,54 @@ class BGEAutoPayViewController: UIViewController {
     
     private func styleViews() {
         addCustomBackButton()
-        selectBankAccountLabel.textColor = .deepGray
-        selectBankAccountLabel.font = OpenSans.semibold.of(textStyle: .caption2)
+        selectBankAccountLabel.textColor = .neutralDark
+        selectBankAccountLabel.font = .caption2Semibold
         selectBankAccountLabel.text = NSLocalizedString("Bank Account", comment: "")
         
         bankAccountButton.fullyRoundCorners(diameter: 20, borderColor: .accentGray, borderWidth: 1)
         bankAccountButton.backgroundColorOnPress = .softGray
         
-        bankAccountButtonSelectLabel.textColor = .deepGray
-        bankAccountButtonSelectLabel.font = SystemFont.regular.of(textStyle: .callout)
+        bankAccountButtonSelectLabel.textColor = .neutralDark
+        bankAccountButtonSelectLabel.font = .callout
         bankAccountButtonSelectLabel.text = NSLocalizedString("Select Bank Account", comment: "")
         
-        bankAccountButtonAccountNumberLabel.textColor = .deepGray
-        bankAccountButtonAccountNumberLabel.font = SystemFont.regular.of(textStyle: .callout)
+        bankAccountButtonAccountNumberLabel.textColor = .neutralDark
+        bankAccountButtonAccountNumberLabel.font = .callout
         bankAccountButtonNicknameLabel.textColor = .middleGray
-        bankAccountButtonNicknameLabel.font = SystemFont.regular.of(textStyle: .caption1)
+        bankAccountButtonNicknameLabel.font = .caption1
         
         settingsButton.fullyRoundCorners(diameter: 20, borderColor: .accentGray, borderWidth: 1)
         settingsButton.backgroundColorOnPress = .softGray
         
-        termsLabel.textColor = .deepGray
-        termsLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        termsLabel.textColor = .neutralDark
+        termsLabel.font = .subheadline
         termsLabel.setLineHeight(lineHeight: 25)
         termsLabel.isAccessibilityElement = false
-        termsButton.setTitleColor(.actionBlue, for: .normal)
-        termsButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .subheadline)
+        termsButton.setTitleColor(.actionBrand, for: .normal)
+        termsButton.titleLabel?.font = .subheadlineSemibold
         termsSwitch.accessibilityLabel = termsLabel.text
         
-        bottomLabel.textColor = .deepGray
+        bottomLabel.textColor = .neutralDark
         let bottomLabelText = viewModel.bottomLabelText
         bottomLabel.text = bottomLabelText
-        bottomLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        bottomLabel.font = .footnote
         
-        settingsTitleLabel.textColor = .deepGray
-        settingsTitleLabel.font = OpenSans.semibold.of(textStyle: .caption2)
+        settingsTitleLabel.textColor = .neutralDark
+        settingsTitleLabel.font = .caption2Semibold
         
-        settingsLabel.textColor = .deepGray
-        settingsLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        settingsLabel.textColor = .neutralDark
+        settingsLabel.font = .subheadline
         
         settingsDescriptionLabel.textColor = .middleGray
-        settingsDescriptionLabel.font = SystemFont.regular.of(textStyle: .caption1)
+        settingsDescriptionLabel.font = .caption1
         
-        unenrollButtonLabel.textColor = .deepGray
-        unenrollButtonLabel.font = SystemFont.regular.of(textStyle: .callout)
-        unenrollButton.setTitleColor(.actionBlue, for: .normal)
-        unenrollButton.titleLabel?.font = SystemFont.bold.of(textStyle: .callout)
+        unenrollButtonLabel.textColor = .neutralDark
+        unenrollButtonLabel.font = .callout
+        unenrollButton.setTitleColor(.actionBrand, for: .normal)
+        unenrollButton.titleLabel?.font = .callout
         
-        errorLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        errorLabel.textColor = .deepGray
+        errorLabel.font = .subheadline
+        errorLabel.textColor = .neutralDark
         errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
     }
     
@@ -384,7 +384,7 @@ class BGEAutoPayViewController: UIViewController {
     func onLearnMorePress() {
         FirebaseUtility.logEvent(.autoPay(parameters: [.learn_more]))
         
-        let infoModal = InfoModalViewController(title: NSLocalizedString("What is AutoPay?", comment: ""), image: #imageLiteral(resourceName: "img_autopaymodal"), description: viewModel.learnMoreDescriptionText)
+        let infoModal = InfoModalViewController(title: NSLocalizedString("What is AutoPay?", comment: ""), image: UIImage(named: "img_autopaymodal")!.withTintColor(.primaryColor), description: viewModel.learnMoreDescriptionText)
         navigationController?.present(infoModal, animated: true, completion: nil)
     }
     

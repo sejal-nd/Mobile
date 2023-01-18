@@ -109,8 +109,8 @@ class AlertPreferencesViewController: UIViewController {
     }
 
     private func styleViews() {
-        errorLabel.font = OpenSans.regular.of(textStyle: .body)
-        errorLabel.textColor = .deepGray
+        errorLabel.font = .body
+        errorLabel.textColor = .neutralDark
         errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
     }
 
@@ -389,6 +389,8 @@ extension AlertPreferencesViewController: UITableViewDataSource {
             toggleVariable = viewModel.budgetBilling
         case .appointmentTracking:
             toggleVariable = viewModel.appointmentTracking
+        case .advancedNotification:
+            toggleVariable = viewModel.advancedNotification
         case .forYourInformation:
             toggleVariable = viewModel.forYourInfo
         case .energyBuddyUpdates:

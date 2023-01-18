@@ -28,8 +28,8 @@ class ConversationalButton: ButtonControl {
         layer.borderWidth = 1
         layer.borderColor = UIColor.accentGray.cgColor
         
-        titleLabel.font = SystemFont.semibold.of(textStyle: .subheadline)
-        titleLabel.textColor = .actionBlue
+        titleLabel.font = .subheadlineSemibold
+        titleLabel.textColor = .primaryBlue
         titleLabel.numberOfLines = 0
         
         let caretImageView = UIImageView(image: #imageLiteral(resourceName: "ic_caret"))

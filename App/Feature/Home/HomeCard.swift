@@ -10,10 +10,10 @@ import RxSwift
 import RxCocoa
 
 enum HomeCard: Int {
-    case bill, usage, template, projectedBill, outageStatus, prepaidActive, prepaidPending, nothing, game
+    case bill, usage, projectedBill, outageStatus, prepaidActive, prepaidPending, nothing, game, discover
     
     static let editableCards: [HomeCard] = {
-        var cards: [HomeCard] = [.bill, .usage, .template, .outageStatus, .projectedBill]
+        var cards: [HomeCard] = [.bill, .usage, .discover, .outageStatus, .projectedBill]
         
         if Configuration.shared.opco == .bge && FeatureFlagUtility.shared.bool(forKey: .isGamificationEnabled) {
             cards[1] = .game
@@ -31,12 +31,12 @@ enum HomeCard: Int {
     
     var displayString: String {
         switch self {
+        case .discover:
+            return NSLocalizedString("Discover", comment: "")
         case .bill:
             return NSLocalizedString("Bill", comment: "")
         case .usage:
             return NSLocalizedString("Usage", comment: "")
-        case .template:
-            return NSLocalizedString("Tools and Programs", comment: "")
         case .projectedBill:
             return NSLocalizedString("Projected Bill", comment: "")
         case .outageStatus:
@@ -50,12 +50,12 @@ enum HomeCard: Int {
     
     var id: String {
         switch self {
+        case .discover:
+            return "discover"
         case .bill:
             return "bill"
         case .usage:
             return "usage"
-        case .template:
-            return "template"
         case .projectedBill:
             return "projectedBill"
         case .outageStatus:
@@ -73,7 +73,7 @@ enum HomeCard: Int {
     
     var isOptional: Bool {
         switch self {
-        case .bill, .template, .game:
+        case .bill, .game, .discover:
             return false
         default:
             return true
@@ -82,7 +82,7 @@ enum HomeCard: Int {
     
     var isAlwaysAvailable: Bool {
         switch self {
-        case .usage, .projectedBill, .game:
+        case .usage, .projectedBill, .game, .discover:
             return false
         default:
             return true
@@ -127,7 +127,7 @@ final class HomeCardPrefsStore {
     }
         
     static let defaultList: [HomeCard] = {
-        var cards: [HomeCard] = [.bill, .usage, .template]
+        var cards: [HomeCard] = [.bill, .usage, .discover]
         
         if Configuration.shared.opco == .bge && FeatureFlagUtility.shared.bool(forKey: .isGamificationEnabled) {
             cards[1] = .game

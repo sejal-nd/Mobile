@@ -102,7 +102,7 @@ class PaymentusFormViewController: UIViewController {
         loadingIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         loadingIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         
-        errorLabel.font = SystemFont.regular.of(textStyle: .headline)
+        errorLabel.font = .headline
         errorLabel.textColor = .blackText
         errorLabel.numberOfLines = 0
         errorLabel.textAlignment = .center
@@ -133,6 +133,7 @@ class PaymentusFormViewController: UIViewController {
                 ]
                 if let components = urlComponents, let url = components.url {
                     let request = URLRequest(url: url)
+                    self.showLoadingState()
                     self.webView.load(request)
                 } else {
                     self.showError()
@@ -218,12 +219,6 @@ extension PaymentusFormViewController: WKScriptMessageHandler {
                         paymentMethodType = bankOrCard == .bank ? .ach : .unknown("Credit Card")
                     }
                     
-//                    let walletItem = WalletItem(walletItemId: pmDetailsJson["Token"] as? String,
-//                                                maskedAccountNumber: pmDetailsJson["MaskedAccountNumber"] as? String,
-//                                                nickName: nickname,
-//                                                paymentMethodType: paymentMethodType,
-//                                                isDefault: didSetDefault,
-//                                                isTemporary: temporary)
                     let walletItem = WalletItem(walletItemId: pmDetailsJson["Token"] as? String, maskedAccountNumber: pmDetailsJson["MaskedAccountNumber"] as? String, nickName: nickname, paymentMethodType: paymentMethodType, isDefault: didSetDefault, isTemporary: temporary)
                     
                     if walletItemId != nil { // Editing Payment Method
@@ -273,9 +268,6 @@ extension PaymentusFormViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView,
                  decidePolicyFor navigationAction: WKNavigationAction,
                  decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-        if let url = navigationAction.request.url, !url.absoluteString.starts(with: Configuration.shared.paymentusUrl) {
-            showLoadingState()
-        }
         decisionHandler(.allow)
     }
     

@@ -53,7 +53,7 @@ class StatusView: UIView {
             barBottomConstraint.constant = state == .completed ? 3 : 0
             barTopConstraint.constant = state == .inProgress ? 3 : 0
             
-            let textColor = isStormMode ? UIColor.white : UIColor.deepGray
+            let textColor = isStormMode ? UIColor.white : UIColor.neutralDark
             statusTitleLabel.textColor = textColor
             statusDateLabel.textColor = textColor
         }
@@ -62,13 +62,13 @@ class StatusView: UIView {
     private func update(forState state: TrackerState, isPaused: Bool, isLast: Bool) {
         var innerViewConstant: CGFloat = 26.0
         
-        let imageName = isStormMode ? "ic_check_white_2" : "ic_check_white"
+        let imageName = isStormMode ? "ic_check_white_sm" : "ic_check_white"
         checkmarkImageView.image = UIImage(named: imageName)
         
-        statusTitleLabel.font = OpenSans.regular.of(size: 15)
+        statusTitleLabel.font = UIFont.subheadlineSemibold
         
         let emptyColor: UIColor = isStormMode ? .clear : .white
-        let fillColor: UIColor = isStormMode ? .mediumSpringBud : .successGreenText
+        let fillColor: UIColor = isStormMode ? .secondaryGreen : .secondaryBlue
         
         switch state {
             case .notStarted:
@@ -80,14 +80,14 @@ class StatusView: UIView {
                 outerView.backgroundColor = emptyColor
                 outerView.isHidden = false
                 checkmarkImageView.isHidden = true
-                statusTitleLabel.font = OpenSans.bold.of(size: 15)
+                statusTitleLabel.font = UIFont.subheadlineSemibold
                 innerViewConstant = 24
             case .completed:
                 innerView.backgroundColor = fillColor
                 outerView.isHidden = true
                 checkmarkImageView.isHidden = false
                 if isLast {
-                    statusTitleLabel.font = OpenSans.bold.of(size: 15)
+                    statusTitleLabel.font = UIFont.subheadlineSemibold
                 }
         }
         

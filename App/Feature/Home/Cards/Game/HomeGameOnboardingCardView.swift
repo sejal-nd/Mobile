@@ -43,9 +43,9 @@ class HomeGameOnboardingCardView: UIView {
         layer.borderWidth = 1
         clippingView.layer.cornerRadius = 10
         
-        title.textColor = .deepGray
-        label.textColor = .deepGray
-        label.font = SystemFont.regular.of(textStyle: .footnote)
+        title.textColor = .neutralDark
+        label.textColor = .neutralDark
+        label.font = .footnote
         
         var image: UIImage
         switch version {
@@ -64,8 +64,8 @@ class HomeGameOnboardingCardView: UIView {
         imageButton.setImage(image, for: .normal)
         imageButton.heightAnchor.constraint(equalTo: clippingView.widthAnchor, multiplier: aspectRatio, constant: 0.0).isActive = true
         
-        letsGoButton.tintColor = .actionBlue
-        letsGoButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
+        letsGoButton.tintColor = .actionBrand
+        letsGoButton.titleLabel?.font = .headlineSemibold
         letsGoButton.titleLabel?.text = NSLocalizedString("Let's Go!", comment: "")
     }
 }

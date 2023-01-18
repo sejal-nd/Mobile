@@ -37,6 +37,8 @@ class OutageTrackerViewController: UIViewController {
     @IBOutlet weak var outageNotificationBannerTitle: UILabel!
     @IBOutlet weak var outageNotificationBannerDesciption: UILabel!
     @IBOutlet weak var spacerView: UIView!
+    @IBOutlet weak var powerStatusHeader: UILabel!
+    @IBOutlet weak var powerStatusDescription: UILabel!
     
     let disposeBag = DisposeBag()
     var viewModel: OutageTrackerViewModel!
@@ -51,9 +53,9 @@ class OutageTrackerViewController: UIViewController {
         setupUI()
         setupBinding()
         
-        outageNotificationBannerTitle.font = SystemFont.regular.of(textStyle: .caption1)
-        outageNotificationBannerDesciption.font = SystemFont.regular.of(textStyle: .caption2)
-        outageNotificationBannerTitle.textColor = .deepGray
+        outageNotificationBannerTitle.font = .subheadline
+        outageNotificationBannerDesciption.font = .caption1
+        outageNotificationBannerTitle.textColor = .neutralDark
         outageNotificationBannerDesciption.textColor = .gray
         spacerView.backgroundColor = .softGray
         spacerView.isHidden = true
@@ -82,10 +84,10 @@ class OutageTrackerViewController: UIViewController {
     }
     
     private func configureFooterTextView() {
-        footerTextView.font = SystemFont.regular.of(textStyle: .footnote)
+        footerTextView.font = .footnote
         footerTextView.attributedText = viewModel.footerText
         footerTextView.textColor = .blackText
-        footerTextView.tintColor = .actionBlue // For the phone numbers
+        footerTextView.tintColor = .actionBrand // For the phone numbers
     }
     
     private func setupBinding() {
@@ -107,13 +109,17 @@ class OutageTrackerViewController: UIViewController {
         
         etaView.delegate = self
         surveyView.delegate = self
+
+        let isStormMode = StormModeStatus.shared.isOn
+        let borderColor: UIColor = isStormMode ? .clear : .accentGray
         
         let whyViewRadius = whyButtonView.frame.size.height / 2
-        whyButtonView.roundCorners(.allCorners, radius: whyViewRadius, borderColor: .accentGray, borderWidth: 1.0)
-        
-        countView.roundCorners(.allCorners, radius: 10, borderColor: .accentGray, borderWidth: 1.0)
-        
-        hazardView.roundCorners(.allCorners, radius: 10, borderColor: .accentGray, borderWidth: 1.0)
+
+        whyButtonView.roundCorners(.allCorners, radius: whyViewRadius, borderColor: borderColor, borderWidth: 1.0)
+        countView.roundCorners(.allCorners, radius: 10, borderColor: borderColor, borderWidth: 1.0)
+        hazardView.roundCorners(.allCorners, radius: 10, borderColor: borderColor, borderWidth: 1.0)
+
+        countView.backgroundColor = isStormMode ? .white.withAlphaComponent(0.10) : .clear
     }
     
     private func update() {
@@ -121,7 +127,6 @@ class OutageTrackerViewController: UIViewController {
             //show CTA for Outage Alert Preference
             spacerView.isHidden = false
             outageNotificationAlertBannerView.isHidden = false
-            viewModel.hasJustReportedOutage = false
         } else {
             spacerView.isHidden = true
             outageNotificationAlertBannerView.isHidden = true
@@ -151,6 +156,8 @@ class OutageTrackerViewController: UIViewController {
             
             if viewModel.isActiveOutage == false {
                 powerOnContainer.isHidden = false
+                powerStatusHeader.text = NSLocalizedString("Our records indicate", comment: "")
+                powerStatusDescription.text = NSLocalizedString("POWER IS ON", comment: "")
                 progressAnimationView.configure(withStatus: .restored)
             } else {
                 powerOnContainer.isHidden = true
@@ -253,6 +260,7 @@ class OutageTrackerViewController: UIViewController {
     }
     
     private func reportOutage() {
+        FirebaseUtility.logEvent(.authOutage(parameters: [.report_outage]))
         let storyboard = UIStoryboard(name: "Outage", bundle: Bundle.main)
         if let reportOutageVC = storyboard.instantiateViewController(withIdentifier: "ReportOutageViewController") as?  ReportOutageViewController {
             if let outageStatus = viewModel.outageStatus.value {
@@ -265,6 +273,7 @@ class OutageTrackerViewController: UIViewController {
     }
     
     private func openOutageMap(forStreetMap isStreetMap: Bool) {
+        FirebaseUtility.logEvent(.authOutage(parameters: [.map]))
         let storyboard = UIStoryboard(name: "Outage", bundle: Bundle.main)
         if let outageMapVC = storyboard.instantiateViewController(withIdentifier: "OutageMapViewController") as?  OutageMapViewController {
             outageMapVC.hasPressedStreetlightOutageMapButton = isStreetMap
@@ -276,6 +285,17 @@ class OutageTrackerViewController: UIViewController {
         if enabled {
             guard refreshControl == nil else { return }
             
+            // change animation and power status text if user reports an outage
+            if viewModel.hasJustReportedOutage {
+                viewModel.hasJustReportedOutage = false
+                if viewModel.isActiveOutage {
+                    progressAnimationView.setUpProgressAnimation(animName: "ot_reported")
+                } else {
+                    progressAnimationView.setUpProgressAnimation(animName: "outage_reported")
+                    powerStatusHeader.text = NSLocalizedString("Your outage is", comment: "")
+                    powerStatusDescription.text = NSLocalizedString("REPORTED", comment: "")
+                }
+            }
             let rc = UIRefreshControl()
             
             rc.rx.controlEvent(.valueChanged)
@@ -377,9 +397,9 @@ extension OutageTrackerViewController: UITableViewDataSource {
             case 0:
                 cell.configure(image: UIImage(named: "ic_reportoutage"), title: "Report Outage", detail: nil)
             case 1:
-                cell.configure(image: #imageLiteral(resourceName: "ic_streetlightoutage"), title: "Report Streetlight Outage", detail: nil)
+                cell.configure(image: #imageLiteral(resourceName: "ic_reportstreetlightoutage"), title: "Report Streetlight Outage", detail: nil)
             case 2:
-                cell.configure(image: UIImage(named: "ic_mapoutage"), title: "View Outage Map", detail: nil)
+                cell.configure(image: UIImage(named: "ic_outagemap"), title: "View Outage Map", detail: nil)
                 cell.hideSeparator = true
             default:
                 fatalError("Invalid index path.")

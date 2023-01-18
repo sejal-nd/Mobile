@@ -146,8 +146,7 @@ class UsageViewModel {
                showNoUsageDataState,
                showCommercialState)
     
-    private(set) lazy var showMainErrorState: Driver<Void> = Observable
-        .merge(accountDetailEvents.errors(), commercialDataEvents.errors(), commercialErrorTrigger.asObservable())
+    private(set) lazy var showMainErrorState: Driver<Void> = accountDetailEvents.errors()
         .filter {
             ($0 as? NetworkingError) != .noNetwork &&
             ($0 as? NetworkingError) != .blockAccount
@@ -182,9 +181,15 @@ class UsageViewModel {
         .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var showCommercialState: Driver<Void> = commercialDataEvents
-        .elements()
-        .mapTo(())
+    private(set) lazy var showCommercialState: Driver<Void> = accountDetailEvents.elements()
+        .filter { !$0.isResidential }
+        .flatMap { accountDetails -> Observable<Void> in
+            if self.showAgentisWidgets() {
+                return Observable.just(accountDetails).mapTo(())
+            } else {
+                return self.commercialDataEvents.mapTo(())
+            }
+        }
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var showPrepaidState: Driver<Void> = accountDetailEvents
@@ -845,37 +850,37 @@ class UsageViewModel {
     private(set) lazy var noDataLabelFont: Driver<UIFont> = barGraphSelection.asDriver()
         .map { $0 == .noData }
         .distinctUntilChanged()
-        .map { $0 ? SystemFont.bold.of(textStyle: .footnote) : SystemFont.semibold.of(textStyle: .footnote) }
+        .map { $0 ? UIFont.footnoteSemibold : .footnoteSemibold }
     
     private(set) lazy var previousLabelFont: Driver<UIFont> = barGraphSelection.asDriver()
         .map { $0 == .previous }
         .distinctUntilChanged()
-        .map { $0 ? SystemFont.bold.of(textStyle: .footnote) : SystemFont.semibold.of(textStyle: .footnote) }
+        .map { $0 ? UIFont.footnoteSemibold : .footnoteSemibold }
     
     private(set) lazy var previousDollarLabelTextColor: Driver<UIColor> = billComparison.map {
-        guard let compared = $0.comparedBill else { return .deepGray }
-        return compared.charges < 0 ? .successGreenText : .deepGray
+        guard let compared = $0.comparedBill else { return .neutralDark }
+        return compared.charges < 0 ? .successGreenText : .neutralDark
     }
     
     private(set) lazy var currentLabelFont: Driver<UIFont> = barGraphSelection.asDriver()
         .map { $0 == .current }
         .distinctUntilChanged()
-        .map { $0 ? SystemFont.bold.of(textStyle: .footnote) : SystemFont.semibold.of(textStyle: .footnote) }
+        .map { $0 ? UIFont.footnoteSemibold : .footnoteSemibold }
     
     private(set) lazy var currentDollarLabelTextColor: Driver<UIColor> = billComparison.map {
-        guard let reference = $0.referenceBill else { return .deepGray }
-        return reference.charges < 0 ? .successGreenText : .deepGray
+        guard let reference = $0.referenceBill else { return .neutralDark }
+        return reference.charges < 0 ? .successGreenText : .neutralDark
     }
     
     private(set) lazy var projectedLabelFont: Driver<UIFont> = barGraphSelection.asDriver()
         .map { $0 == .projected }
         .distinctUntilChanged()
-        .map { $0 ? OpenSans.bold.of(textStyle: .footnote) : OpenSans.semibold.of(textStyle: .footnote) }
+        .map { $0 ? UIFont.footnoteSemibold : .footnoteSemibold }
     
     private(set) lazy var projectionNotAvailableLabelFont: Driver<UIFont> = barGraphSelection.asDriver()
         .map { $0 == .projectionNotAvailable }
         .distinctUntilChanged()
-        .map { $0 ? OpenSans.bold.of(textStyle: .footnote) : OpenSans.semibold.of(textStyle: .footnote) }
+        .map { $0 ? UIFont.footnoteSemibold : .footnoteSemibold }
     
     // MARK: - Usage Tools
     
@@ -902,9 +907,7 @@ class UsageViewModel {
             case .peco:
                 break
             case .ace, .delmarva, .pepco:
-                if accountDetail.opcoType == .ace {
-                    usageTools.insert(.energyWiseRewards, at: 1)
-                } else if accountDetail.opcoType == .delmarva {
+                if accountDetail.opcoType == .delmarva {
                     if accountDetail.isEnergyWiseRewardsEligible || accountDetail.isEnergyWiseRewardsEnrolled {
                         usageTools.insert(.energyWiseRewards, at: 1)
                     }
@@ -932,6 +935,16 @@ class UsageViewModel {
         }
         // Default to electric
         return false
+    }
+    
+    func showAgentisWidgets() -> Bool {
+        return FeatureFlagUtility.shared.bool(forKey: .isAgentisElectricUsageWidget) ||
+        FeatureFlagUtility.shared.bool(forKey: .isAgentisGasUsageWidget) ||
+        FeatureFlagUtility.shared.bool(forKey: .isAgentisElectricCompareBillsWidget) ||
+        FeatureFlagUtility.shared.bool(forKey: .isAgentisGasCompareBillsWidget) ||
+        FeatureFlagUtility.shared.bool(forKey: .isAgentisElectricTipsWidget) ||
+        FeatureFlagUtility.shared.bool(forKey: .isAgentisGasTipsWidget) ||
+        FeatureFlagUtility.shared.bool(forKey: .isAgentisProjectedUsageWidget)
     }
 }
 

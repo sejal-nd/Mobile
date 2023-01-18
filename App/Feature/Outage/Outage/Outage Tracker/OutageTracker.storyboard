@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="j3V-0d-zjQ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="j3V-0d-zjQ">
     <device id="retina6_1" orientation="landscape" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="OpenSans-Regular.ttf">
-            <string>OpenSans</string>
+        <array key="Diodrum-Regular.ttf">
+            <string>Diodrum</string>
         </array>
-        <array key="OpenSans-Semibold.ttf">
-            <string>OpenSans-Semibold</string>
+        <array key="Diodrum-Semibold.otf">
+            <string>Diodrum-Semibold</string>
         </array>
     </customFonts>
     <scenes>
@@ -49,7 +50,7 @@
                                                         <rect key="frame" x="0.0" y="40" width="415" height="70"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" horizontalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="KQx-tu-wP9">
-                                                                <rect key="frame" x="103" y="15" width="209.5" height="40"/>
+                                                                <rect key="frame" x="106.5" y="15" width="202" height="40"/>
                                                                 <subviews>
                                                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BF5-cf-5D1" userLabel="Alert Animation View">
                                                                         <rect key="frame" x="0.0" y="7" width="26" height="26"/>
@@ -60,8 +61,8 @@
                                                                         </constraints>
                                                                     </view>
                                                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="This is a warning message." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aQ0-tu-Dnd">
-                                                                        <rect key="frame" x="36" y="0.0" width="173.5" height="40"/>
-                                                                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
+                                                                        <rect key="frame" x="36" y="0.0" width="166" height="40"/>
+                                                                        <fontDescription key="fontDescription" name="Diodrum" family="Open Sans" pointSize="14"/>
                                                                         <color key="textColor" red="0.13725490200000001" green="0.1215686275" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
@@ -99,7 +100,7 @@
                                                                     <constraint firstAttribute="height" constant="8" id="MbF-gu-Mgb"/>
                                                                 </constraints>
                                                             </imageView>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AlertBell_Blue" translatesAutoresizingMaskIntoConstraints="NO" id="heF-H2-xeQ">
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_alerts" translatesAutoresizingMaskIntoConstraints="NO" id="heF-H2-xeQ">
                                                                 <rect key="frame" x="15" y="23" width="30" height="30"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <color key="tintColor" systemColor="systemCyanColor"/>
@@ -153,7 +154,7 @@
                                                                     </imageView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BGE is investigating safety hazards reported in your area…" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yzx-s9-Scr">
                                                                         <rect key="frame" x="54" y="0.0" width="291" height="55"/>
-                                                                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
+                                                                        <fontDescription key="fontDescription" name="Diodrum" family="Open Sans" pointSize="12"/>
                                                                         <color key="textColor" red="0.13725490196078433" green="0.12156862745098039" blue="0.12549019607843137" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
@@ -235,7 +236,7 @@
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="38" id="Vrl-Jv-Vqx"/>
                                                                 </constraints>
-                                                                <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="28"/>
+                                                                <fontDescription key="fontDescription" name="Diodrum-Semibold" family="Open Sans" pointSize="28"/>
                                                                 <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
@@ -270,7 +271,7 @@
                                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                                         <state key="normal" title="Why Did This Happen?">
-                                                                            <color key="titleColor" red="0.0" green="0.34901960784313724" blue="0.64313725490196072" alpha="1" colorSpace="calibratedRGB"/>
+                                                                            <color key="titleColor" name="primaryBlue"/>
                                                                         </state>
                                                                         <connections>
                                                                             <action selector="whyButtonPressed:" destination="j3V-0d-zjQ" eventType="touchUpInside" id="zfA-g1-sKt"/>
@@ -300,7 +301,7 @@
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZPR-jk-lhd" customClass="ETAView" customModule="Atlantic_City_Electric" customModuleProvider="target">
                                                                 <rect key="frame" x="16" y="5" width="383" height="86"/>
-                                                                <color key="backgroundColor" red="0.92549019607843142" green="0.97647058823529409" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </view>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -564,6 +565,8 @@
                         <outlet property="outageNotificationBannerDesciption" destination="Qd0-Fk-izj" id="yc2-Sz-aRn"/>
                         <outlet property="outageNotificationBannerTitle" destination="6Kg-D4-7lc" id="b2O-wR-uQ9"/>
                         <outlet property="powerOnContainer" destination="Yyt-U9-0tJ" id="Soj-Cu-pcO"/>
+                        <outlet property="powerStatusDescription" destination="t2R-hi-ue9" id="6Cw-IQ-4QA"/>
+                        <outlet property="powerStatusHeader" destination="dgR-ao-ARO" id="Xx5-2T-6Do"/>
                         <outlet property="progressAnimationView" destination="hhk-NV-joZ" id="n2a-g2-OeF"/>
                         <outlet property="scrollView" destination="FM4-Ab-ESP" id="GE6-71-PIZ"/>
                         <outlet property="spacerView" destination="ysb-84-tMs" id="7Kj-Oz-9vC"/>
@@ -589,11 +592,14 @@
         </scene>
     </scenes>
     <resources>
-        <image name="AlertBell_Blue" width="26" height="30"/>
         <image name="ic_alert_small" width="24" height="24"/>
-        <image name="ic_caret" width="8" height="13"/>
+        <image name="ic_alerts" width="36" height="36"/>
+        <image name="ic_caret" width="16" height="16"/>
+        <namedColor name="primaryBlue">
+            <color red="0.090000003576278687" green="0.050999999046325684" blue="0.40400001406669617" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -297,7 +297,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func setupToastStyles() {
         var globalStyle = ToastStyle()
-        globalStyle.backgroundColor = UIColor.deepGray.withAlphaComponent(0.8)
+        globalStyle.backgroundColor = UIColor.neutralDark.withAlphaComponent(0.8)
         globalStyle.cornerRadius = 17
         globalStyle.messageAlignment = .center
         ToastManager.shared.style = globalStyle
@@ -539,7 +539,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func configureQuickActions(isAuthenticated: Bool) {
-        let reportOutageIcon = UIApplicationShortcutIcon(templateImageName: "ic_quick_outage")
+        let reportOutageIcon = UIApplicationShortcutIcon(templateImageName: "ic_reportoutage")
         let reportOutageShortcut = UIApplicationShortcutItem(type: "ReportOutage", localizedTitle: "Report Outage", localizedSubtitle: nil, icon: reportOutageIcon, userInfo: nil)
         
         guard let accounts = AccountsStore.shared.accounts else {

@@ -59,7 +59,7 @@ class OutageViewController: AccountPickerViewController {
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(loadOutageStatus(sender:)), for: .valueChanged)
-        refreshControl.tintColor = .deepGray
+        refreshControl.tintColor = .neutralDark
         refreshControl.backgroundColor = .softGray
         return refreshControl
     }()
@@ -92,9 +92,9 @@ class OutageViewController: AccountPickerViewController {
         
         updateView()
         
-        outageNotificationBannerTitle.font = SystemFont.regular.of(textStyle: .caption1)
-        outageNotificationBannerDesciption.font = SystemFont.regular.of(textStyle: .caption2)
-        outageNotificationBannerTitle.textColor = .deepGray
+        outageNotificationBannerTitle.font = .subheadline
+        outageNotificationBannerDesciption.font = .caption1
+        outageNotificationBannerTitle.textColor = .neutralDark
         outageNotificationBannerDesciption.textColor = .gray
         spacerView.backgroundColor = .softGray
         spacerView.isHidden = true
@@ -244,10 +244,10 @@ class OutageViewController: AccountPickerViewController {
         outageStatusView.isOutageStatusInactive = viewModel.isOutageStatusInactive
         
         // Footer
-        footerTextView.font = SystemFont.regular.of(textStyle: .footnote)
+        footerTextView.font = .footnote
         footerTextView.attributedText = viewModel.footerTextViewText
         footerTextView.textColor = .blackText
-        footerTextView.tintColor = .actionBlue // For the phone numbers
+        footerTextView.tintColor = .actionBrand // For the phone numbers
         footerTextView.attributedText = viewModel.footerTextViewText
         footerTextView.linkTapDelegate = self
     }
@@ -443,9 +443,9 @@ extension OutageViewController: UITableViewDataSource {
             cell.configure(image: UIImage(named: "ic_reportoutage"), title: "Report Outage", detail: detailText)
         case IndexPath(row: 1, section: 0):
             let title = Configuration.shared.opco.isPHI ? "Report Street Light Problem" : "Report Street Light Outage"
-            cell.configure(image: #imageLiteral(resourceName: "ic_streetlightoutage"), title: title, detail: nil)
+            cell.configure(image: #imageLiteral(resourceName: "ic_reportstreetlightoutage"), title: title, detail: nil)
         case IndexPath(row: 2, section: 0):
-            cell.configure(image: UIImage(named: "ic_mapoutage"), title: "View Outage Map", detail: nil)
+            cell.configure(image: UIImage(named: "ic_outagemap"), title: "View Outage Map", detail: nil)
         default:
             fatalError("Invalid index path.")
         }

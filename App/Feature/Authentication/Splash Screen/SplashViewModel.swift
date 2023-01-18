@@ -128,14 +128,14 @@ struct SplashViewModel{
                 , leaveAreaString, phone1, phone2)
         }
         
-        let attrString = NSMutableAttributedString(string: localizedString, attributes: [.font: OpenSans.regular.of(textStyle: .footnote)])
-        attrString.addAttribute(.font, value: OpenSans.bold.of(textStyle: .footnote), range: (localizedString as NSString).range(of: leaveAreaString))
+        let attrString = NSMutableAttributedString(string: localizedString, attributes: [.font: UIFont.footnote])
+        attrString.addAttribute(.font, value: UIFont.footnoteSemibold, range: (localizedString as NSString).range(of: leaveAreaString))
         
         for phone in phoneNumbers {
             localizedString.ranges(of: phone, options: .regularExpression)
                 .map { NSRange($0, in: localizedString) }
                 .forEach {
-                    attrString.addAttribute(.font, value: OpenSans.bold.of(textStyle: .footnote), range: $0)
+                    attrString.addAttribute(.font, value: UIFont.footnoteSemibold, range: $0)
             }
         }
         
@@ -197,13 +197,13 @@ struct SplashViewModel{
                             ,phone)
         }
             
-        let attrString = NSMutableAttributedString(string: localizedString, attributes: [.font: OpenSans.regular.of(textStyle: .footnote)])
+        let attrString = NSMutableAttributedString(string: localizedString, attributes: [.font: UIFont.footnote])
         
         for phone in phoneNumbers {
             localizedString.ranges(of: phone, options: .regularExpression)
                 .map { NSRange($0, in: localizedString) }
                 .forEach {
-                    attrString.addAttribute(.font, value: OpenSans.bold.of(textStyle: .footnote), range: $0)
+                    attrString.addAttribute(.font, value: UIFont.footnoteSemibold, range: $0)
             }
         }
         

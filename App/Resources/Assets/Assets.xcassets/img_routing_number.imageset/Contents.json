@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "img_routing_number.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

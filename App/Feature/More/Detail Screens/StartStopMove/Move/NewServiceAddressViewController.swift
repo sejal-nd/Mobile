@@ -82,9 +82,9 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
 
     private func setupUIBinding(){
         
-        selectedstreetAddressLabel.textColor = .deepGray
-        selectedAppartmentLabel.textColor = .deepGray
-        zipTextField.textField.textColor = .deepGray
+        selectedstreetAddressLabel.textColor = .neutralDark
+        selectedAppartmentLabel.textColor = .neutralDark
+        zipTextField.textField.textColor = .neutralDark
 
         viewModel.showLoadingState
             .subscribe (onNext: { [weak self] status in
@@ -189,22 +189,22 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
         zipTextField.textField.isShowingAccessory = true
         zipTextField.textField.textContentType = .postalCode
 
-        streetAddressPlaceHolderLabel.font = SystemFont.regular.of(textStyle: .callout)
+        streetAddressPlaceHolderLabel.font = .callout
         streetAddressPlaceHolderLabel.textColor = .middleGray
         streetAddressPlaceHolderLabel.text = NSLocalizedString("Street Address*", comment: "")
 
         streetAddressFloatingLabel.text = NSLocalizedString("Street Address*", comment: "")
-        streetAddressFloatingLabel.font = SystemFont.semibold.of(textStyle: .caption2)
+        streetAddressFloatingLabel.font = .caption2Semibold
         streetAddressFloatingLabel.textColor = .middleGray
         enableStreetColorState(false)
 
 
-        appartmentPlaceHolderLabel.font = SystemFont.regular.of(textStyle: .callout)
+        appartmentPlaceHolderLabel.font = .callout
         appartmentPlaceHolderLabel.textColor = .middleGray
         appartmentPlaceHolderLabel.text = NSLocalizedString("Apt/Unit #* ", comment: "")
         appartmentFloatingLabel.text = NSLocalizedString("Apt/Unit #* ", comment: "")
 
-        appartmentFloatingLabel.font = SystemFont.semibold.of(textStyle: .caption2)
+        appartmentFloatingLabel.font = .caption2Semibold
         appartmentFloatingLabel.textColor = .middleGray
         enableAppartmentColorState(false)
 
@@ -212,7 +212,7 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
 
 
         noteLabel.text = NSLocalizedString("Please note: The address you entered is a commercial address and you’ll be subject to commercial rates. ", comment: "")
-        noteLabel.textColor = .deepGray
+        noteLabel.textColor = .neutralDark
 
     }
     func refreshData() {
@@ -271,14 +271,14 @@ class NewServiceAddressViewController: KeyboardAvoidingStickyFooterViewControlle
     }
     private func setAppartmentError(_ error: String?) {
         if let errMsg = error {
-            appartmentSelectionView.roundCorners(.allCorners, radius: 10.0, borderColor:.errorRed, borderWidth: 1.0)
+            appartmentSelectionView.roundCorners(.allCorners, radius: 10.0, borderColor:.errorPrimary, borderWidth: 1.0)
             appartmentSelectionView.backgroundColor = .white
             appartmentPlaceHolderLabel.text = errMsg
-            appartmentPlaceHolderLabel.textColor = .errorRed
+            appartmentPlaceHolderLabel.textColor = .errorPrimary
         } else {
             appartmentSelectionView.roundCorners(.allCorners, radius: 10.0, borderColor:.accentGray, borderWidth: 1.0)
             appartmentSelectionView.backgroundColor = .white
-            appartmentPlaceHolderLabel.textColor = .deepGray
+            appartmentPlaceHolderLabel.textColor = .neutralDark
         }
     }
     private func setStreetAddress(_ message: String?) {

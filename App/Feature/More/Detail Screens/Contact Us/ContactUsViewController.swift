@@ -81,7 +81,7 @@ class ContactUsViewController: UIViewController {
     
     func emergencySetup() {
         emergencyNumberTextView.text = viewModel.phoneNumber1
-        emergencyNumberTextView.tintColor = .actionBlue // Color of the phone numbers
+        emergencyNumberTextView.tintColor = .actionBrand // Color of the phone numbers
         emergencyNumberTextView.linkTapDelegate = self
         
         if Configuration.shared.opco == .bge {
@@ -110,21 +110,21 @@ class ContactUsViewController: UIViewController {
             bgeOnlyStackView.isHidden = true
         }
         
-        bgeGasNumberLabel.font = OpenSans.regular.of(textStyle: .subheadline)
-        bgeGasNumber1TextView.tintColor = .actionBlue // Color of the phone numbers
+        bgeGasNumberLabel.font = .subheadline
+        bgeGasNumber1TextView.tintColor = .actionBrand // Color of the phone numbers
         bgeGasNumber1TextView.linkTapDelegate = self
         bgeGasNumber2TextView.text = viewModel.bgeGasNumber2
-        bgeGasNumber2TextView.tintColor = .actionBlue // Color of the phone numbers
+        bgeGasNumber2TextView.tintColor = .actionBrand // Color of the phone numbers
         bgeGasNumber2TextView.linkTapDelegate = self
-        bgePowerLineLabel.font = OpenSans.regular.of(textStyle: .subheadline)
+        bgePowerLineLabel.font = .subheadline
         bgePowerLineNumber1TextView.text = viewModel.bgePowerLineNumber1
-        bgePowerLineNumber1TextView.tintColor = .actionBlue // Color of the phone numbers
+        bgePowerLineNumber1TextView.tintColor = .actionBrand // Color of the phone numbers
         bgePowerLineNumber1TextView.linkTapDelegate = self
         bgePowerLineNumber2TextView.text = viewModel.bgePowerLineNumber2
-        bgePowerLineNumber2TextView.tintColor = .actionBlue // Color of the phone numbers
+        bgePowerLineNumber2TextView.tintColor = .actionBrand // Color of the phone numbers
         bgePowerLineNumber2TextView.linkTapDelegate = self
 
-        emergencyDescriptionLabel.font = OpenSans.regular.of(textStyle: .footnote)
+        emergencyDescriptionLabel.font = .footnote
         emergencyDescriptionLabel.attributedText = viewModel.emergencyAttrString
     }
     
@@ -141,23 +141,23 @@ class ContactUsViewController: UIViewController {
             })
             .disposed(by: bag)
         
-        onlineDescriptionLabel.font = OpenSans.regular.of(textStyle: .footnote)
+        onlineDescriptionLabel.font = .footnote
     }
     
     func customerServiceSetup() {
-        firstLabel.font = OpenSans.regular.of(textStyle: .subheadline)
+        firstLabel.font = .subheadline
         firstLabel.text = viewModel.label1
         contactServiceTimingsLabel.text = viewModel.contactServiceTimings
         firstNumberTextView.text = viewModel.phoneNumber2
-        firstNumberTextView.tintColor = .actionBlue // Color of the phone numbers
+        firstNumberTextView.tintColor = .actionBrand // Color of the phone numbers
         firstNumberTextView.linkTapDelegate = self
         
         if let label2 = viewModel.label2,
             let phoneNumber3 = viewModel.phoneNumber3 {
-            secondLabel.font = OpenSans.regular.of(textStyle: .subheadline)
+            secondLabel.font = .subheadline
             secondLabel.text = label2
             secondNumberTextView.text = phoneNumber3
-            secondNumberTextView.tintColor = .actionBlue // Color of the phone numbers
+            secondNumberTextView.tintColor = .actionBrand // Color of the phone numbers
             secondNumberTextView.linkTapDelegate = self
         } else {
             secondStack.isHidden = true
@@ -165,10 +165,10 @@ class ContactUsViewController: UIViewController {
         
         if let label3 = viewModel.label3,
             let phoneNumber4 = viewModel.phoneNumber4 {
-            thirdLabel.font = OpenSans.regular.of(textStyle: .subheadline)
+            thirdLabel.font = .subheadline
             thirdLabel.text = label3
             thirdNumberTextView.text = phoneNumber4
-            thirdNumberTextView.tintColor = .actionBlue // Color of the phone numbers
+            thirdNumberTextView.tintColor = .actionBrand // Color of the phone numbers
             thirdNumberTextView.linkTapDelegate = self
         } else {
             thirdStack.isHidden = true

@@ -19,6 +19,7 @@ class RegistrationViewModel {
     let phoneNumber = BehaviorRelay(value: "")
     let identifierNumber = BehaviorRelay(value: "")
     let accountNumber = BehaviorRelay(value: "")
+    let auid = BehaviorRelay(value: "")
     let totalAmountDue =  BehaviorRelay<Double>(value: 0.00)
     let dueDate = BehaviorRelay<Date?>(value: nil)
     var selectedSegmentIndex = BehaviorRelay(value: 0)
@@ -72,13 +73,17 @@ class RegistrationViewModel {
             accountNumber.accept(self.accountNumber.value)
         }
         
+        if let authId = selectedAccount.value?.auid {
+            auid.accept(authId)
+        }
         
         if selectedSegmentIndex.value == .zero {
             validateAccountRequest = ValidateAccountRequest(identifier: identifierNumber.value,
                                                             phoneNumber: extractDigitsFrom(self.phoneNumber.value),
                                                             accountNumber: self.accountNumber.value,
                                                             billDate: String(self.totalAmountDue.value),
-                                                            amountDue: self.dueDate.value?.yyyyMMddString ?? "")
+                                                            amountDue: self.dueDate.value?.yyyyMMddString ?? "",
+                                                            auid: auid.value)
         } else {
             validateAccountRequest = ValidateAccountRequest(accountNumber: self.accountNumber.value,
                                                             billDate: self.dueDate.value?.yyyyMMddString ?? "",

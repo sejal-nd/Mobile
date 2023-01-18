@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "ic_bill_envelope.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

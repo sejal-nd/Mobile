@@ -28,17 +28,17 @@ class MaintenanceModeView: UIView {
         didSet {
             if isColorBackground {
                 containerView.backgroundColor = .primaryColor
-                maintenanceImageView.image = #imageLiteral(resourceName: "ic_maint_mode_white")
-                reloadImageView.image = #imageLiteral(resourceName: "ic_reload")
+                maintenanceImageView.image = UIImage(named: "ic_maint_mode_white")
+                reloadImageView.image = UIImage(named: "ic_reload")
                 reloadLabel.textColor = .white
                 scheduledMaintenanceLabel.textColor = .white
                 detailLabel.textColor = .white
             } else {
                 containerView.backgroundColor = .softGray
-                maintenanceImageView.image = #imageLiteral(resourceName: "ic_maint_mode")
-                reloadImageView.image = #imageLiteral(resourceName: "ic_reload_blue")
-                reloadLabel.textColor = .actionBlue
-                scheduledMaintenanceLabel.textColor = .blackText
+                maintenanceImageView.image = UIImage(named: "ic_maint_mode")
+                reloadImageView.image = UIImage(named: "ic_reload_blue")
+                reloadLabel.textColor = .primaryBlue
+                scheduledMaintenanceLabel.textColor = .neutralDarker
                 detailLabel.textColor = .blackText
             }
         }
@@ -92,10 +92,10 @@ class MaintenanceModeView: UIView {
     }
     
     func styleViews() {
-        reloadLabel.font = SystemFont.bold.of(textStyle: .headline)
-        scheduledMaintenanceLabel.font = OpenSans.semibold.of(textStyle: .title3)
-        detailLabel.font = OpenSans.regular.of(textStyle: .subheadline)
-        infoTextView.tintColor = .actionBlue
+        reloadLabel.font = .headlineSemibold
+        scheduledMaintenanceLabel.font = .title3
+        detailLabel.font = .subheadline
+        infoTextView.tintColor = .actionBrand
     }
     
     var scheduledMaintenanceText: String {
@@ -169,14 +169,14 @@ class MaintenanceModeView: UIView {
                 , leaveAreaString, phone1, phone2)
         }
         
-        let emergencyAttrString = NSMutableAttributedString(string: localizedString, attributes: [.font: OpenSans.regular.of(textStyle: .footnote)])
-        emergencyAttrString.addAttribute(.font, value: OpenSans.bold.of(textStyle: .footnote), range: (localizedString as NSString).range(of: leaveAreaString))
+        let emergencyAttrString = NSMutableAttributedString(string: localizedString, attributes: [.font: UIFont.footnote])
+        emergencyAttrString.addAttribute(.font, value: UIFont.footnoteSemibold, range: (localizedString as NSString).range(of: leaveAreaString))
         
         for phone in phoneNumbers {
             localizedString.ranges(of: phone, options: .regularExpression)
                 .map { NSRange($0, in: localizedString) }
                 .forEach {
-                    emergencyAttrString.addAttribute(.font, value: OpenSans.bold.of(textStyle: .footnote), range: $0)
+                    emergencyAttrString.addAttribute(.font, value: UIFont.footnoteSemibold, range: $0)
             }
         }
         

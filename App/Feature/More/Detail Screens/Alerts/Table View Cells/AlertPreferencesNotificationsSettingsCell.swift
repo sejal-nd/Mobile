@@ -15,11 +15,11 @@ class AlertPreferencesNotificationsSettingsCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        label.textColor = .deepGray
-        label.font = SystemFont.regular.of(textStyle: .footnote)
+        label.textColor = .neutralDark
+        label.font = .footnote
         label.text = String(format: NSLocalizedString("Your notifications are currently disabled on your device. Please visit your device settings to allow %@ to send notifications.", comment: ""), Configuration.shared.opco.displayString)
-        button.setTitleColor(.actionBlue, for: .normal)
-        button.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
+        button.setTitleColor(.actionBrand, for: .normal)
+        button.titleLabel?.font = .headlineSemibold
         button.titleLabel?.text = NSLocalizedString("Go to Settings", comment: "")
     }
 

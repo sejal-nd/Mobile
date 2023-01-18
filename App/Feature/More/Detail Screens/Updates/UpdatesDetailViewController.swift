@@ -37,11 +37,11 @@ class UpdatesDetailViewController: UIViewController {
     // MARK: - Helper
     
     private func style() {
-        titleLabel.textColor = .deepGray
-        titleLabel.font = OpenSans.semibold.of(textStyle: .title3)
+        titleLabel.textColor = .neutralDarker
+        titleLabel.font = .title3
         
-        detailsTextView.textColor = .deepGray
-        detailsTextView.font = OpenSans.regular.of(textStyle: .body)
+        detailsTextView.textColor = .neutralDark
+        detailsTextView.font = .body
     }
     
     private func setValues() {

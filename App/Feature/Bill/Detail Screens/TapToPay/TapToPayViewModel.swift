@@ -291,7 +291,7 @@ class TapToPayViewModel {
 
         // Paymentus < $5
     var canEditReviewPayment: Bool {
-        return !(FeatureFlagUtility.shared.bool(forKey: .isLowPaymentAllowed) && self.paymentAmount.value < 5.0)
+        return !(FeatureFlagUtility.shared.bool(forKey: .isLowPaymentAllowed) && self.paymentAmount.value < 5.0 && self.paymentAmount.value > 0)
     }
     
     
@@ -378,12 +378,12 @@ class TapToPayViewModel {
     
     private(set) lazy var dueAmountDescriptionText: Driver<NSAttributedString> = accountDetailDriver.map {
         let billingInfo = $0.billingInfo
-        var attributes: [NSAttributedString.Key: Any] = [.font: SystemFont.regular.of(textStyle: .caption1),
-                                                         .foregroundColor: UIColor.deepGray]
+        var attributes: [NSAttributedString.Key: Any] = [.font: UIFont.caption1,
+                                                         .foregroundColor: UIColor.neutralDark]
         let string: String
         guard var dueAmount = billingInfo.netDueAmount else { return NSAttributedString() }
         dueAmount = Configuration.shared.opco.isPHI ? (dueAmount >= .zero ? dueAmount : .zero) : dueAmount
-        attributes[.foregroundColor] = UIColor.deepGray
+        attributes[.foregroundColor] = UIColor.neutralDark
         attributes[.font] = SystemFont.semibold.of(size: 17)
         if self.billingHistoryItem != nil {
             guard let billingHistory = self.billingHistoryItem ,
@@ -393,7 +393,7 @@ class TapToPayViewModel {
             if billingInfo.pastDueAmount > 0 {
                 if billingInfo.pastDueAmount == billingInfo.netDueAmount {
                     string = String.localizedStringWithFormat("You have %@ due immediately", dueAmount.currencyString)
-                    attributes[.foregroundColor] = UIColor.errorRed
+                    attributes[.foregroundColor] = UIColor.errorPrimary
                     attributes[.font] = SystemFont.semibold.of(size: 17)
                 } else {
                     string = String.localizedStringWithFormat("You have %@ due by %@", dueAmount.currencyString, billingInfo.dueByDate?.fullMonthDayAndYearString ?? "--")
@@ -737,7 +737,7 @@ class TapToPayViewModel {
                 let maxPayment = accountDetail.billingInfo.maxPaymentAmount(bankOrCard: .bank)
                 if Configuration.shared.opco == .bge || Configuration.shared.opco.isPHI {
                     if paymentAmount < minPayment {
-                         if (FeatureFlagUtility.shared.bool(forKey: .isLowPaymentAllowed)){
+                        if (FeatureFlagUtility.shared.bool(forKey: .isLowPaymentAllowed)) && (paymentAmount < 5.0) && (paymentAmount > 0) {
                             return nil
                         } else {
                             return NSLocalizedString("Minimum payment allowed is \(minPayment.currencyString)", comment: "")
@@ -747,7 +747,7 @@ class TapToPayViewModel {
                     }
                 } else {
                     if paymentAmount < minPayment {
-                        if (FeatureFlagUtility.shared.bool(forKey: .isLowPaymentAllowed)){
+                        if (FeatureFlagUtility.shared.bool(forKey: .isLowPaymentAllowed)) && (paymentAmount < 5.0) && (paymentAmount > 0) {
                             return nil
                         } else {
                             return NSLocalizedString("Minimum payment allowed is \(minPayment.currencyString)", comment: "")
@@ -763,7 +763,7 @@ class TapToPayViewModel {
                 let maxPayment = accountDetail.billingInfo.maxPaymentAmount(bankOrCard: .card)
                 if Configuration.shared.opco == .bge || Configuration.shared.opco.isPHI {
                     if paymentAmount < minPayment {
-                        if (FeatureFlagUtility.shared.bool(forKey: .isLowPaymentAllowed)){
+                        if (FeatureFlagUtility.shared.bool(forKey: .isLowPaymentAllowed)) && (paymentAmount < 5.0) && (paymentAmount > 0) {
                             return nil
                         } else {
                             return NSLocalizedString("Minimum payment allowed is \(minPayment.currencyString)", comment: "")
@@ -773,7 +773,7 @@ class TapToPayViewModel {
                     }
                 } else {
                     if paymentAmount < minPayment {
-                        if (FeatureFlagUtility.shared.bool(forKey: .isLowPaymentAllowed)){
+                        if (FeatureFlagUtility.shared.bool(forKey: .isLowPaymentAllowed)) && (paymentAmount < 5.0) && (paymentAmount > 0) {
                             return nil
                         } else {
                             return NSLocalizedString("Minimum payment allowed is \(minPayment.currencyString)", comment: "")
@@ -945,9 +945,9 @@ class TapToPayViewModel {
          let localizedText = String.localizedStringWithFormat("%@%@", boldText, bodyText)
          let attributedText = NSMutableAttributedString(string: localizedText,
                                                         attributes: [.foregroundColor: UIColor.blackText,
-                                                                     .font: OpenSans.regular.of(textStyle: .footnote)])
+                                                                     .font: UIFont.footnote])
          attributedText.addAttribute(.font,
-                                     value: OpenSans.bold.of(textStyle: .footnote),
+                                     value: UIFont.footnoteSemibold,
                                      range: NSRange(location: 0, length: boldText.count))
          
          return attributedText

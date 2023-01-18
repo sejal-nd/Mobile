@@ -39,6 +39,7 @@ class AlertPreferencesViewModel {
     let paymentPastDue = BehaviorRelay(value: false)
     let budgetBilling = BehaviorRelay(value: false)
     let appointmentTracking = BehaviorRelay(value: false)
+    let advancedNotification = BehaviorRelay(value: false)
     let forYourInfo = BehaviorRelay(value: false)
     let energyBuddyUpdates = BehaviorRelay(value: false)
     let english = BehaviorRelay(value: true) // Language selection. False = Spanish
@@ -57,7 +58,8 @@ class AlertPreferencesViewModel {
     
     var shouldEnrollPaperlessEBill: Bool {
         if Configuration.shared.opco == .bge { return false }
-        return initialBillReadyValue == false && billReady.value == true
+        // enroll in paperless if not already enrolled and enrolling in "Bill is Ready' alerts
+        return !accountDetail.isEBillEnrollment && (initialBillReadyValue == false && billReady.value == true)
     }
     
     var shouldShowHUABillThreshold: Bool {
@@ -114,7 +116,7 @@ class AlertPreferencesViewModel {
                          [.billIsReady(self.accountDetail)]),
                         (NSLocalizedString("Payment", comment: ""),
                          paymentOptions),
-                        (NSLocalizedString("Customer Appointments", comment: ""),
+                        (NSLocalizedString("Appointments", comment: ""),
                          [.appointmentTracking]),
                         (NSLocalizedString("News", comment: ""),
                          [.forYourInformation])
@@ -197,6 +199,7 @@ class AlertPreferencesViewModel {
                     }
                     
                     self.sections.append((NSLocalizedString("Payment", comment: ""), paymentOptions))
+                    self.sections.append((NSLocalizedString("Customer Appointments", comment: ""), [.appointmentTracking, .advancedNotification]))
                     self.sections.append((NSLocalizedString("News", comment: ""), [.forYourInformation]))
                 case .ace:
                     self.sections = [(NSLocalizedString("Outage", comment: ""),
@@ -214,6 +217,7 @@ class AlertPreferencesViewModel {
                     }
                     
                     self.sections.append((NSLocalizedString("Payment", comment: ""), paymentOptions))
+                    self.sections.append((NSLocalizedString("Customer Appointments", comment: ""), [.appointmentTracking, .advancedNotification]))
                     self.sections.append((NSLocalizedString("News", comment: ""), [.forYourInformation]))
                 case .delmarva:
                     var usageOptions: [AlertPreferencesOptions] = []
@@ -243,6 +247,7 @@ class AlertPreferencesViewModel {
                     }
                     
                     self.sections.append((NSLocalizedString("Payment", comment: ""), paymentOptions))
+                    self.sections.append((NSLocalizedString("Customer Appointments", comment: ""), [.appointmentTracking, .advancedNotification]))
                     self.sections.append((NSLocalizedString("News", comment: ""), [.forYourInformation]))
                 }
                 
@@ -298,6 +303,7 @@ class AlertPreferencesViewModel {
                 self.paymentPastDue.accept(alertPrefs.paymentPastDue)
                 self.budgetBilling.accept(alertPrefs.budgetBilling)
                 self.appointmentTracking.accept(alertPrefs.appointmentTracking)
+                self.advancedNotification.accept(alertPrefs.advancedNotification)
                 self.forYourInfo.accept(alertPrefs.forYourInfo)
                 self.energyBuddyUpdates.accept(UserDefaults.standard.bool(forKey: UserDefaultKeys.gameEnergyBuddyUpdatesAlertPreference))
                 self.grantStatus.accept(alertPrefs.grantStatus)
@@ -365,7 +371,10 @@ class AlertPreferencesViewModel {
                                                               paymentPastDue.asObservable(),
                                                               grantStatus.asObservable()])
     
-    private lazy var appointmentPrefs = Observable.combineLatest([appointmentTracking.asObservable()])
+    private lazy var appointmentPrefs = Observable.combineLatest([
+        appointmentTracking.asObservable(),
+        advancedNotification.asObservable()
+    ])
     
     private lazy var newsPrefs = Observable.combineLatest([forYourInfo.asObservable()])
     
@@ -396,6 +405,7 @@ class AlertPreferencesViewModel {
                                     paymentPastDue: paymentPrefs[2],
                                     budgetBilling: billingPrefs[1],
                                     appointmentTracking: appointmentPrefs[0],
+                                    advancedNotification: appointmentPrefs[1],
                                     forYourInfo: newsPrefs[0],
                                     grantStatus: paymentPrefs[3])
         }
@@ -465,6 +475,7 @@ class AlertPreferencesViewModel {
                                                 paymentPastDue: paymentPastDue.value,
                                                 budgetBilling: budgetBilling.value,
                                                 appointmentTracking: appointmentTracking.value,
+                                                advancedNotification: advancedNotification.value,
                                                 forYourInfo: forYourInfo.value,
                                                 peakTimeSavingsDayAlert: peakSavingsDayAlert.value,
                                                 peakTimeSavingsDayResults: peakSavingsDayResults.value,
@@ -597,6 +608,8 @@ class AlertPreferencesViewModel {
         case paymentDueReminder, paymentPosted, paymentPastDue, budgetBillingReview, grantStatus
         // Customer Appointments
         case appointmentTracking
+        // Advance Notification
+        case advancedNotification
         // News
         case forYourInformation
         // Energy Buddy
@@ -633,7 +646,15 @@ class AlertPreferencesViewModel {
             case .budgetBillingReview:
                 return NSLocalizedString("Budget Billing Review", comment: "")
             case .appointmentTracking:
-                return NSLocalizedString("Appointment Tracking", comment: "")
+                if Configuration.shared.opco == .bge {
+                    return NSLocalizedString("Service Appointments", comment: "")
+                } else if Configuration.shared.opco.isPHI {
+                    return NSLocalizedString("Customer Appointment", comment: "")
+                } else {
+                    return NSLocalizedString("Appointment Tracking", comment: "")
+                }
+            case .advancedNotification:
+                return NSLocalizedString("Advanced Notification", comment: "")
             case .forYourInformation:
                 return Configuration.shared.opco.isPHI ? NSLocalizedString("Updates & General News", comment: "") : NSLocalizedString("For Your Information", comment: "")
             case .energyBuddyUpdates:
@@ -773,7 +794,13 @@ class AlertPreferencesViewModel {
                 
             // Appointment Tracking
             case (.appointmentTracking, _):
+                if Configuration.shared.opco == .bge {
+                return NSLocalizedString("Receive push notifications such as confirmations, reminders, and relevant status updates to track your scheduled service appointments.", comment: "")
+                } else {
                 return NSLocalizedString("Receive notifications such as confirmations, reminders, and relevant status updates for your scheduled service appointment.", comment: "")
+                }
+            case (.advancedNotification, _):
+                return "Receive enroute notification updates for your routine service appointments."
                 
             // For Your Information
             case (.forYourInformation, .bge):

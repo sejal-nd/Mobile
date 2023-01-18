@@ -42,41 +42,41 @@ class TapToPayConfirmationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        xButton.tintColor = .actionBlue
+        xButton.tintColor = .actionBrand
         xButton.accessibilityLabel = NSLocalizedString("Close", comment: "")
 
-        titleLabel.textColor = .deepGray
-        titleLabel.font = OpenSans.semibold.of(textStyle: .title3)
+        titleLabel.textColor = .neutralDarker
+        titleLabel.font = .title3
         
-        confirmationLabel.textColor = .deepGray
-        confirmationLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        confirmationLabel.textColor = .neutralDark
+        confirmationLabel.font = .footnote
         
         paymentInfoView.layer.borderColor = UIColor.accentGray.cgColor
         paymentInfoView.layer.borderWidth = 1
         
-        paymentDateTextLabel.textColor = .deepGray
-        paymentDateTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        paymentDateTextLabel.textColor = .neutralDark
+        paymentDateTextLabel.font = .subheadline
         paymentDateTextLabel.text = NSLocalizedString("Payment Date", comment: "")
-        paymentDateValueLabel.textColor = .deepGray
-        paymentDateValueLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        amountPaidTextLabel.textColor = .deepGray
-        amountPaidTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        paymentDateValueLabel.textColor = .neutralDark
+        paymentDateValueLabel.font = .subheadline
+        amountPaidTextLabel.textColor = .neutralDark
+        amountPaidTextLabel.font = .subheadline
         amountPaidTextLabel.text = NSLocalizedString("Amount Paid", comment: "")
-        amountPaidValueLabel.textColor = .deepGray
-        amountPaidValueLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        confirmationNumberTextLabel.textColor = .deepGray
-        confirmationNumberTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        amountPaidValueLabel.textColor = .neutralDark
+        amountPaidValueLabel.font = .subheadline
+        confirmationNumberTextLabel.textColor = .neutralDark
+        confirmationNumberTextLabel.font = .subheadline
         confirmationNumberTextLabel.text = NSLocalizedString("Confirmation Number", comment: "")
         confirmationNumberValueLabel.textContainerInset = .zero
         confirmationNumberValueLabel.textContainer.lineFragmentPadding = 0
-        confirmationNumberValueLabel.textColor = .deepGray
-        confirmationNumberValueLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        confirmationNumberValueLabel.textColor = .neutralDark
+        confirmationNumberValueLabel.font = .subheadline
         
-        convenienceFeeLabel.textColor = .deepGray
-        convenienceFeeLabel.font = OpenSans.regular.of(textStyle: .caption1)
+        convenienceFeeLabel.textColor = .neutralDark
+        convenienceFeeLabel.font = .caption1
         
-        autoPayLabel.textColor = .deepGray
-        autoPayLabel.font = SystemFont.regular.of(textStyle: .caption1)
+        autoPayLabel.textColor = .neutralDark
+        autoPayLabel.font = .caption1
         autoPayLabel.text = NSLocalizedString("Would you like to set up Automatic Payments?", comment: "")
         
         footerLabel.attributedText = viewModel.confirmationFooterText

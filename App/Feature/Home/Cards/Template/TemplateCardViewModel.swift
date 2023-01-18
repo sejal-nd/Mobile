@@ -55,7 +55,7 @@ class TemplateCardViewModel {
                     case "ECOBEE WIFI"?:
                         return #imageLiteral(resourceName: "PeakRewards-WiFi-TStat")
                     default: // User is not enrolled in PeakRewards
-                        return #imageLiteral(resourceName: "Residential-Unenrolled")
+                        return UIImage(named: "img_card_boomer_assistance")
                     }
                 } else { // Commercial account
                     return #imageLiteral(resourceName: "SmallBusiness")
@@ -94,7 +94,7 @@ class TemplateCardViewModel {
                     case "ACTIVE"?, "ECOBEE WIFI"?:
                         return NSLocalizedString("PeakRewards Program", comment: "")
                     default:
-                        return NSLocalizedString("BGE Bill Credits with PeakRewards", comment: "")
+                        return NSLocalizedString("Looking for Assistance?", comment: "")
                     }
                 } else {
                     return NSLocalizedString("Lower your Business’s energy costs", comment: "")
@@ -166,7 +166,7 @@ class TemplateCardViewModel {
                     case "ECOBEE WIFI"?:
                         return NSLocalizedString("Save energy all year round. Adjust your thermostat from the palm of your hand.", comment: "")
                     default:
-                        return NSLocalizedString("Join PeakRewards and get a smart thermostat or outdoor switch and $100 to $200 in bill credits from Jun—Sept.", comment: "")
+                        return NSLocalizedString("Get personalized recommendations for financial assistance, bill management, and energy savings.", comment: "")
                     }
                 } else {
                     return NSLocalizedString("Save with financial incentives and energy efficiency upgrades.", comment: "")
@@ -256,7 +256,7 @@ class TemplateCardViewModel {
                     case "ECOBEE WIFI"?:
                         return NSLocalizedString("Manage Your Devices", comment: "")
                     default:
-                        return NSLocalizedString("Enroll Now", comment: "")
+                        return NSLocalizedString("Find the Right Help", comment: "")
                     }
                 } else {
                     return NSLocalizedString("Learn More", comment: "")
@@ -297,10 +297,10 @@ class TemplateCardViewModel {
                     case "ECOBEE WIFI":
                         return nil
                     default:
-                        return "https://bgesavings.com/enroll"
+                        return "https://\(Configuration.shared.associatedDomain)/assistance/landing"
                     }
                 } else {
-                    return "https://bgesmartenergy.com/business"
+                    return "https://\(Configuration.shared.associatedDomain)/assistance/landing"
                 }
             case .comEd:
                 if accountDetail.isResidential {

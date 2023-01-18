@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="yf6-8Y-4nw">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="yf6-8Y-4nw">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="OpenSans-Regular.ttf">
-            <string>OpenSans</string>
+        <array key="Diodrum-Regular.ttf">
+            <string>Diodrum</string>
         </array>
-        <array key="OpenSans-Semibold.ttf">
-            <string>OpenSans-Semibold</string>
+        <array key="Diodrum-Semibold.otf">
+            <string>Diodrum-Semibold</string>
         </array>
     </customFonts>
     <scenes>
@@ -22,38 +22,38 @@
             <objects>
                 <viewController id="yf6-8Y-4nw" customClass="OutageViewController" customModule="Atlantic_City_Electric" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="W6a-Rg-J5C">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="2M7-jH-97W">
-                                <rect key="frame" x="0.0" y="44" width="414" height="190"/>
+                                <rect key="frame" x="0.0" y="59" width="393" height="190"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="50" translatesAutoresizingMaskIntoConstraints="NO" id="YW7-Op-Vld" customClass="AccountPicker" customModule="Atlantic_City_Electric" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="50"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="tintWhite" value="NO"/>
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s3d-Cf-EwG" customClass="AccountInfoBar" customModule="Atlantic_City_Electric" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="414" height="50"/>
+                                        <rect key="frame" x="0.0" y="50" width="393" height="50"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="Go8-sy-tOb"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A98-b1-haq">
-                                        <rect key="frame" x="0.0" y="100" width="414" height="20"/>
+                                        <rect key="frame" x="0.0" y="100" width="393" height="20"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="Poi-YS-GwR"/>
                                         </constraints>
                                     </view>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wkh-mF-bVA" customClass="BillAlertBannerView" customModule="Atlantic_City_Electric" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="120" width="414" height="70"/>
+                                        <rect key="frame" x="0.0" y="120" width="393" height="70"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" horizontalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="5H9-UX-exV">
-                                                <rect key="frame" x="102.5" y="15" width="209.5" height="40"/>
+                                                <rect key="frame" x="40" y="15" width="313" height="40"/>
                                                 <subviews>
                                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BNV-RM-vVJ" userLabel="Alert Animation View">
                                                         <rect key="frame" x="0.0" y="7" width="26" height="26"/>
@@ -64,8 +64,8 @@
                                                         </constraints>
                                                     </view>
                                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="This is a warning message." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BS8-4w-s9E">
-                                                        <rect key="frame" x="36" y="0.0" width="173.5" height="40"/>
-                                                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
+                                                        <rect key="frame" x="36" y="0.0" width="277" height="40"/>
+                                                        <fontDescription key="fontDescription" name="Diodrum" family="Open Sans" pointSize="14"/>
                                                         <color key="textColor" red="0.13725490200000001" green="0.1215686275" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
@@ -85,13 +85,13 @@
                                                 </connections>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Get Updates on Your Outage" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NH3-rX-51j">
-                                                <rect key="frame" x="60" y="12" width="334" height="17"/>
+                                                <rect key="frame" x="60" y="12" width="313" height="17"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enroll in outage notifications by visiting Preferences in My Alerts." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Im4-r3-6Jf" userLabel="Enroll in outage notification by visiting">
-                                                <rect key="frame" x="60" y="31" width="326" height="29"/>
+                                                <rect key="frame" x="60" y="31" width="295" height="28.666666666666671"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -103,7 +103,7 @@
                                                     <constraint firstAttribute="height" constant="8" id="fsS-IA-baJ"/>
                                                 </constraints>
                                             </imageView>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AlertBell_Blue" translatesAutoresizingMaskIntoConstraints="NO" id="6cu-hG-cZc">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_alerts" translatesAutoresizingMaskIntoConstraints="NO" id="6cu-hG-cZc">
                                                 <rect key="frame" x="15" y="23" width="30" height="30"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="tintColor" systemColor="systemCyanColor"/>
@@ -124,11 +124,11 @@
                                             <constraint firstItem="NH3-rX-51j" firstAttribute="leading" secondItem="6cu-hG-cZc" secondAttribute="trailing" constant="15" id="Ka2-Z2-TYc"/>
                                             <constraint firstItem="ndK-4h-ke2" firstAttribute="top" secondItem="Wkh-mF-bVA" secondAttribute="top" constant="15" id="PJk-t8-0z6"/>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="70" id="TZN-mb-ufz"/>
-                                            <constraint firstAttribute="trailing" secondItem="ndK-4h-ke2" secondAttribute="trailing" constant="15" id="X2f-3U-wG2"/>
+                                            <constraint firstAttribute="trailing" secondItem="ndK-4h-ke2" secondAttribute="trailing" constant="25" id="X2f-3U-wG2"/>
                                             <constraint firstItem="6cu-hG-cZc" firstAttribute="top" secondItem="Wkh-mF-bVA" secondAttribute="top" constant="23" id="X8Z-q4-Hhc"/>
-                                            <constraint firstItem="5H9-UX-exV" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Wkh-mF-bVA" secondAttribute="leading" constant="15" id="cCv-UH-YWz"/>
+                                            <constraint firstItem="5H9-UX-exV" firstAttribute="leading" secondItem="Wkh-mF-bVA" secondAttribute="leading" constant="40" id="cCv-UH-YWz"/>
                                             <constraint firstAttribute="bottom" secondItem="5H9-UX-exV" secondAttribute="bottom" constant="15" id="eRe-FW-z09"/>
-                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="5H9-UX-exV" secondAttribute="trailing" constant="15" id="g3P-gU-1gh"/>
+                                            <constraint firstAttribute="trailing" secondItem="5H9-UX-exV" secondAttribute="trailing" constant="40" id="g3P-gU-1gh"/>
                                             <constraint firstAttribute="trailing" secondItem="NH3-rX-51j" secondAttribute="trailing" constant="20" id="gfm-dl-Qoy"/>
                                             <constraint firstItem="Im4-r3-6Jf" firstAttribute="leading" secondItem="Wkh-mF-bVA" secondAttribute="leading" constant="60" id="hMi-Kg-JMP"/>
                                             <constraint firstItem="ndK-4h-ke2" firstAttribute="leading" secondItem="Im4-r3-6Jf" secondAttribute="trailing" constant="5" id="k34-t2-ZAI"/>
@@ -149,19 +149,19 @@
                                 </constraints>
                             </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" delaysContentTouches="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="aBU-xp-OAP">
-                                <rect key="frame" x="0.0" y="234" width="414" height="662"/>
+                                <rect key="frame" x="0.0" y="249" width="393" height="603"/>
                                 <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="separatorColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="cSo-uG-Isi">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="350"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="350"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g02-Sk-O1R" customClass="OutageStatusView" customModule="Atlantic_City_Electric" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="350"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="350"/>
                                             <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aYC-zf-UYb">
-                                            <rect key="frame" x="20" y="349" width="394" height="1"/>
+                                            <rect key="frame" x="20" y="349" width="373" height="1"/>
                                             <color key="backgroundColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="1" id="zkl-GT-d6P"/>
@@ -180,20 +180,20 @@
                                     </constraints>
                                 </view>
                                 <view key="tableFooterView" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" id="dh1-oj-yyK">
-                                    <rect key="frame" x="0.0" y="350" width="414" height="124"/>
+                                    <rect key="frame" x="0.0" y="350" width="393" height="124"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="swc-kr-MSb">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="1"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="1"/>
                                             <color key="backgroundColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="1" id="LBq-k6-ocN"/>
                                             </constraints>
                                         </view>
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="To report a gas emergency or a downed or sparking power line, please call 1-800-685-0123" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="waI-lA-BTk" customClass="ZeroInsetDataDetectorTextView" customModule="Atlantic_City_Electric" customModuleProvider="target">
-                                            <rect key="frame" x="16" y="16" width="382" height="92"/>
+                                            <rect key="frame" x="16" y="16" width="361" height="92"/>
                                             <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
-                                            <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
+                                            <fontDescription key="fontDescription" name="Diodrum" family="Open Sans" pointSize="12"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             <dataDetectorType key="dataDetectorTypes" phoneNumber="YES"/>
                                         </textView>
@@ -215,37 +215,37 @@
                                 </connections>
                             </tableView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UoT-gg-gb1">
-                                <rect key="frame" x="0.0" y="234" width="414" height="662"/>
+                                <rect key="frame" x="0.0" y="249" width="393" height="603"/>
                                 <connections>
                                     <segue destination="vck-Zw-W0A" kind="embed" identifier="maintModeEmbed" id="1Wx-JL-0Dy"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kBP-rF-ByC">
-                                <rect key="frame" x="0.0" y="234" width="414" height="662"/>
+                                <rect key="frame" x="0.0" y="249" width="393" height="603"/>
                                 <connections>
                                     <segue destination="FJs-Ee-VCt" kind="embed" identifier="noNetworkEmbed" id="7d6-G5-Yhi"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="haH-7e-9Oh">
-                                <rect key="frame" x="0.0" y="234" width="414" height="662"/>
+                                <rect key="frame" x="0.0" y="249" width="393" height="603"/>
                                 <connections>
                                     <segue destination="OGh-C5-F8o" kind="embed" id="cSb-qH-bpK"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ndp-bw-rV5">
-                                <rect key="frame" x="0.0" y="234" width="414" height="662"/>
+                                <rect key="frame" x="0.0" y="249" width="393" height="603"/>
                                 <connections>
                                     <segue destination="azb-k7-oxC" kind="embed" id="57z-TP-Qxs"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hW1-hm-7uS">
-                                <rect key="frame" x="0.0" y="234" width="414" height="662"/>
+                                <rect key="frame" x="0.0" y="249" width="393" height="603"/>
                                 <connections>
                                     <segue destination="0Fe-s3-Gze" kind="embed" id="1b2-lO-jai"/>
                                 </connections>
                             </containerView>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SR6-kO-7rL">
-                                <rect key="frame" x="0.0" y="234" width="414" height="662"/>
+                            <containerView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SR6-kO-7rL">
+                                <rect key="frame" x="-16" y="249" width="409" height="603"/>
                                 <color key="backgroundColor" systemColor="systemGray2Color"/>
                             </containerView>
                         </subviews>
@@ -259,7 +259,7 @@
                             <constraint firstItem="haH-7e-9Oh" firstAttribute="top" secondItem="2M7-jH-97W" secondAttribute="bottom" id="9Po-UN-rFR"/>
                             <constraint firstAttribute="bottom" secondItem="kBP-rF-ByC" secondAttribute="bottom" id="9qd-dR-ALn"/>
                             <constraint firstItem="kBP-rF-ByC" firstAttribute="top" secondItem="2M7-jH-97W" secondAttribute="bottom" id="B9Y-CA-zOB"/>
-                            <constraint firstItem="hW1-hm-7uS" firstAttribute="leading" secondItem="rLJ-mF-oEY" secondAttribute="leading" id="C8i-at-rVt"/>
+                            <constraint firstItem="hW1-hm-7uS" firstAttribute="leading" secondItem="W6a-Rg-J5C" secondAttribute="leading" id="C8i-at-rVt"/>
                             <constraint firstItem="hW1-hm-7uS" firstAttribute="top" secondItem="2M7-jH-97W" secondAttribute="bottom" id="DRE-T7-X3E"/>
                             <constraint firstItem="2M7-jH-97W" firstAttribute="leading" secondItem="W6a-Rg-J5C" secondAttribute="leading" id="DbY-wj-RQI"/>
                             <constraint firstItem="hW1-hm-7uS" firstAttribute="trailing" secondItem="rLJ-mF-oEY" secondAttribute="trailing" id="Dc6-nT-W9K"/>
@@ -274,7 +274,7 @@
                             <constraint firstItem="aBU-xp-OAP" firstAttribute="leading" secondItem="W6a-Rg-J5C" secondAttribute="leading" id="SS3-5h-Obx"/>
                             <constraint firstAttribute="trailing" secondItem="haH-7e-9Oh" secondAttribute="trailing" id="UzJ-uk-kDh"/>
                             <constraint firstAttribute="trailing" secondItem="Ndp-bw-rV5" secondAttribute="trailing" id="VDm-to-wWS"/>
-                            <constraint firstItem="SR6-kO-7rL" firstAttribute="leading" secondItem="W6a-Rg-J5C" secondAttribute="leading" id="ZbE-IR-ab1"/>
+                            <constraint firstItem="SR6-kO-7rL" firstAttribute="leading" secondItem="W6a-Rg-J5C" secondAttribute="leading" constant="-16" id="ZbE-IR-ab1"/>
                             <constraint firstAttribute="trailing" secondItem="kBP-rF-ByC" secondAttribute="trailing" id="eT7-Le-1ge"/>
                             <constraint firstAttribute="bottom" secondItem="haH-7e-9Oh" secondAttribute="bottom" id="mG8-0D-5U0"/>
                             <constraint firstItem="aBU-xp-OAP" firstAttribute="top" secondItem="2M7-jH-97W" secondAttribute="bottom" id="mMZ-vI-Rk9"/>
@@ -323,11 +323,11 @@
             <objects>
                 <viewController storyboardIdentifier="OutageMapViewController" hidesBottomBarWhenPushed="YES" id="eVa-ie-cL3" customClass="OutageMapViewController" customModule="Atlantic_City_Electric" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="VPU-dC-Rn2">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="613"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="598"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QN3-AZ-dBV">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="613"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="598"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
@@ -335,7 +335,7 @@
                                 </wkWebViewConfiguration>
                             </wkWebView>
                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="RA2-uD-xmP" customClass="LoadingIndicator" customModule="Atlantic_City_Electric" customModuleProvider="target">
-                                <rect key="frame" x="157.5" y="300.5" width="60" height="12"/>
+                                <rect key="frame" x="157.66666666666666" y="293" width="60" height="12"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
@@ -368,11 +368,11 @@
             <objects>
                 <viewController storyboardIdentifier="ReportOutageViewController" extendedLayoutIncludesOpaqueBars="YES" hidesBottomBarWhenPushed="YES" id="ZQH-GI-7Fc" customClass="ReportOutageViewController" customModule="Atlantic_City_Electric" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="obc-d4-nlp">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="1346"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1331"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zz7-Yi-MtH">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="1261"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="1246"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c4y-Cq-6p7" customClass="AccountInfoBar" customModule="Atlantic_City_Electric" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="35"/>
@@ -385,13 +385,13 @@
                                         <rect key="frame" x="0.0" y="35" width="375" height="1237"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="i9X-bI-z1O">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="220.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="220.33333333333334"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dFa-Qw-aDA">
-                                                        <rect key="frame" x="20" y="0.0" width="335" height="78.5"/>
+                                                        <rect key="frame" x="20" y="0.0" width="335" height="78.333333333333329"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7JT-kt-C8S">
-                                                                <rect key="frame" x="0.0" y="26" width="20" height="20"/>
+                                                                <rect key="frame" x="0.0" y="25.666666666666664" width="20" height="20"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="20" id="8Ph-jl-3Bd"/>
@@ -399,7 +399,7 @@
                                                                 </constraints>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Verifying meter has power..." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="afw-hD-sE0">
-                                                                <rect key="frame" x="30" y="26" width="305" height="19.5"/>
+                                                                <rect key="frame" x="30" y="26" width="305" height="19.333333333333329"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -418,26 +418,26 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kQE-3i-eik">
-                                                        <rect key="frame" x="20" y="78.5" width="335" height="142"/>
+                                                        <rect key="frame" x="20" y="78.333333333333314" width="335" height="142"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U2N-zO-4eI">
                                                                 <rect key="frame" x="0.0" y="0.0" width="335" height="112"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g91-Nb-ys4">
-                                                                        <rect key="frame" x="15" y="20" width="305" height="20.5"/>
+                                                                        <rect key="frame" x="15" y="20.000000000000014" width="305" height="20.333333333333329"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yoO-gy-y3R">
-                                                                        <rect key="frame" x="8" y="50.5" width="319" height="1"/>
+                                                                        <rect key="frame" x="8" y="50.333333333333329" width="319" height="1"/>
                                                                         <color key="backgroundColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="1" id="3FY-eL-E0F"/>
                                                                         </constraints>
                                                                     </view>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uEx-Qj-xxd">
-                                                                        <rect key="frame" x="15" y="61.5" width="305" height="40.5"/>
+                                                                        <rect key="frame" x="15" y="61.333333333333329" width="305" height="40.666666666666671"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -477,7 +477,7 @@
                                                 </constraints>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JdA-Bd-NCe">
-                                                <rect key="frame" x="0.0" y="220.5" width="375" height="95.5"/>
+                                                <rect key="frame" x="0.0" y="220.33333333333334" width="375" height="95.666666666666657"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" placeholderIntrinsicWidth="44" placeholderIntrinsicHeight="44" translatesAutoresizingMaskIntoConstraints="NO" id="2Zw-HR-TXz" customClass="Checkbox" customModule="Atlantic_City_Electric" customModuleProvider="target">
                                                         <rect key="frame" x="20" y="0.0" width="44" height="44"/>
@@ -491,8 +491,8 @@
                                                         </connections>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I have checked my circuit breakers or fuse box and I would still like to report an outage." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MsO-JP-Q4X">
-                                                        <rect key="frame" x="72" y="0.0" width="283" height="65.5"/>
-                                                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="16"/>
+                                                        <rect key="frame" x="72" y="0.0" width="283" height="65.666666666666671"/>
+                                                        <fontDescription key="fontDescription" name="Diodrum" family="Open Sans" pointSize="16"/>
                                                         <color key="textColor" red="0.45098039215686275" green="0.45098039215686275" blue="0.45098039215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
@@ -558,13 +558,13 @@
                                                         <rect key="frame" x="0.0" y="152" width="375" height="92"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How can we contact you?" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Frr-Lq-EaC">
-                                                                <rect key="frame" x="20" y="0.0" width="335" height="20.5"/>
+                                                                <rect key="frame" x="20" y="0.0" width="335" height="20.333333333333332"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <color key="textColor" red="0.13725490196078433" green="0.12156862745098039" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bG0-Eg-V4i" customClass="FloatLabelTextField" customModule="Atlantic_City_Electric" customModuleProvider="target">
-                                                                <rect key="frame" x="20" y="31.5" width="335" height="60.5"/>
+                                                                <rect key="frame" x="20" y="31.333333333333368" width="335" height="60.666666666666657"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" priority="250" constant="55" id="KLi-vd-dBt"/>
@@ -647,7 +647,7 @@
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut " textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="doS-PF-4Ay" customClass="DataDetectorTextView" customModule="Atlantic_City_Electric" customModuleProvider="target">
                                                         <rect key="frame" x="20" y="20" width="335" height="253"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
+                                                        <fontDescription key="fontDescription" name="Diodrum" family="Open Sans" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                         <dataDetectorType key="dataDetectorTypes" phoneNumber="YES"/>
                                                     </textView>
@@ -690,7 +690,7 @@
                                 </constraints>
                             </scrollView>
                             <view contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jsB-ay-j4n" customClass="StickyFooterView" customModule="Atlantic_City_Electric" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="1261" width="375" height="85"/>
+                                <rect key="frame" x="0.0" y="1246" width="375" height="85"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cao-Mv-vl9" customClass="PrimaryButton" customModule="Atlantic_City_Electric" customModuleProvider="target">
                                         <rect key="frame" x="28" y="15" width="319" height="55"/>
@@ -774,11 +774,11 @@
             <objects>
                 <viewController id="FJs-Ee-VCt" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kzm-Ed-0kH">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="662"/>
+                        <rect key="frame" x="0.0" y="0.0" width="465" height="410"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fHW-6o-rmo" customClass="NoNetworkConnectionView" customModule="Atlantic_City_Electric" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="662"/>
+                                <rect key="frame" x="0.0" y="0.0" width="465" height="410"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isColorBackground" value="NO"/>
@@ -804,11 +804,11 @@
             <objects>
                 <viewController id="vck-Zw-W0A" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="59S-0y-T1F">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="662"/>
+                        <rect key="frame" x="0.0" y="0.0" width="465" height="410"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o6Y-kt-yEh" customClass="MaintenanceModeView" customModule="Atlantic_City_Electric" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="662"/>
+                                <rect key="frame" x="0.0" y="0.0" width="465" height="410"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isColorBackground" value="NO"/>
@@ -836,24 +836,24 @@
             <objects>
                 <viewController id="azb-k7-oxC" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" id="b0V-9v-duh">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="662"/>
+                        <rect key="frame" x="0.0" y="0.0" width="465" height="410"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BNN-WE-CFh">
-                                <rect key="frame" x="20" y="209" width="374" height="244.5"/>
+                                <rect key="frame" x="20" y="100" width="425" height="210"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_lock_opco" translatesAutoresizingMaskIntoConstraints="NO" id="m6t-iu-7NS">
-                                        <rect key="frame" x="124.5" y="0.0" width="125" height="126"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_lock" translatesAutoresizingMaskIntoConstraints="NO" id="m6t-iu-7NS">
+                                        <rect key="frame" x="148.66666666666666" y="0.0" width="127.99999999999997" height="128"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Account Ineligible" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="prp-Qi-Okn">
-                                        <rect key="frame" x="110" y="160" width="154.5" height="25"/>
-                                        <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="18"/>
+                                        <rect key="frame" x="139" y="162" width="147.33333333333337" height="18"/>
+                                        <fontDescription key="fontDescription" name="Diodrum-Semibold" family="Open Sans" pointSize="18"/>
                                         <color key="textColor" red="0.13725490200000001" green="0.1215686275" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This profile type does not have access to the mobile app. Access your account on our responsive website." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dee-zr-VeD">
-                                        <rect key="frame" x="29" y="187" width="316" height="57.5"/>
-                                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
+                                        <rect key="frame" x="29" y="182" width="367" height="28"/>
+                                        <fontDescription key="fontDescription" name="Diodrum" family="Open Sans" pointSize="14"/>
                                         <color key="textColor" red="0.13725490200000001" green="0.1215686275" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -888,26 +888,26 @@
             <objects>
                 <viewController id="OGh-C5-F8o" customClass="GasOnlyViewController" customModule="Atlantic_City_Electric" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" id="Sw5-BN-s33">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="662"/>
+                        <rect key="frame" x="0.0" y="0.0" width="465" height="410"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MWj-es-gFP">
-                                <rect key="frame" x="20" y="0.0" width="374" height="662"/>
+                                <rect key="frame" x="20" y="0.0" width="425" height="410"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gasonly_graphic" translatesAutoresizingMaskIntoConstraints="NO" id="HwT-ao-NiN">
-                                        <rect key="frame" x="124.5" y="70" width="125" height="126"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_gas_only" translatesAutoresizingMaskIntoConstraints="NO" id="HwT-ao-NiN">
+                                        <rect key="frame" x="148.66666666666666" y="70" width="127.99999999999997" height="128"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gas Only Account" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="vjf-rO-okh">
-                                        <rect key="frame" x="46" y="216" width="282" height="29"/>
+                                        <rect key="frame" x="46" y="218" width="333" height="28.666666666666657"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="24"/>
                                         <color key="textColor" red="0.13725490200000001" green="0.1215686275" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="lorem ipsum" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="SlV-Md-fwM" customClass="ZeroInsetDataDetectorTextView" customModule="Atlantic_City_Electric" customModuleProvider="target">
-                                        <rect key="frame" x="46" y="268" width="282" height="365"/>
+                                        <rect key="frame" x="46" y="269.66666666666669" width="333" height="111.33333333333331"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <color key="textColor" red="0.13725490200000001" green="0.1215686275" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
+                                        <fontDescription key="fontDescription" name="Diodrum" family="Open Sans" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                         <dataDetectorType key="dataDetectorTypes" phoneNumber="YES"/>
                                     </textView>
@@ -952,11 +952,11 @@
             <objects>
                 <viewController id="0Fe-s3-Gze" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HG4-UA-M7Z">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="662"/>
+                        <rect key="frame" x="0.0" y="0.0" width="465" height="410"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="80" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="CJY-Ux-aUH" customClass="LoadingIndicator" customModule="Atlantic_City_Electric" customModuleProvider="target">
-                                <rect key="frame" x="167" y="325" width="80" height="12"/>
+                                <rect key="frame" x="192.66666666666666" y="199" width="79.999999999999972" height="12"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
@@ -977,7 +977,7 @@
             <objects>
                 <viewController id="Bjj-72-eMO" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BSN-pv-EZb">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="xuj-8Q-AcX"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -989,10 +989,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="AlertBell_Blue" width="26" height="30"/>
-        <image name="gasonly_graphic" width="125" height="126"/>
-        <image name="ic_caret" width="8" height="13"/>
-        <image name="ic_lock_opco" width="125" height="126"/>
+        <image name="ic_alerts" width="36" height="36"/>
+        <image name="ic_caret" width="16" height="16"/>
+        <image name="ic_gas_only" width="128" height="128"/>
+        <image name="ic_lock" width="128" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
