@@ -104,7 +104,7 @@ public enum NetworkingLayer {
             if router.path == call.0.path { // TODO ???Implement Router Equatable???
                 let timeSince = call.1.distance(to: now)
                 
-                if timeSince < 2 {
+                if timeSince < 1 {
                     Log.custom("⚠️", "DUPLICATE API CALL --> \(router.path)")
                     NetworkingLayer.history.remove(at: index)
                 }
