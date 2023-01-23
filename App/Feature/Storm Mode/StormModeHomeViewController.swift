@@ -42,13 +42,13 @@ class StormModeHomeViewController: AccountPickerViewController {
     
     @IBOutlet private weak var headerViewTitleLabel: UILabel! {
         didSet {
-            headerViewTitleLabel.font = OpenSans.semibold.of(textStyle: .headline)
+            headerViewTitleLabel.font = .headlineSemibold
         }
     }
     
     @IBOutlet private weak var headerViewDescriptionLabel: UILabel! {
         didSet {
-            headerViewDescriptionLabel.font = OpenSans.regular.of(textStyle: .footnote)
+            headerViewDescriptionLabel.font = .footnote
         }
     }
     
@@ -59,7 +59,7 @@ class StormModeHomeViewController: AccountPickerViewController {
     @IBOutlet weak var contactGroup1StackView: UIStackView!
     @IBOutlet weak var group1Label: UILabel! {
         didSet {
-            group1Label.font = OpenSans.regular.of(textStyle: .subheadline)
+            group1Label.font = .subheadline
         }
     }
     @IBOutlet weak var phone1Button: ButtonControl! {
@@ -84,7 +84,7 @@ class StormModeHomeViewController: AccountPickerViewController {
     }
     @IBOutlet weak var group2Label: UILabel! {
         didSet {
-            group2Label.font = OpenSans.regular.of(textStyle: .subheadline)
+            group2Label.font = .subheadline
         }
     }
     @IBOutlet weak var phone3Button: ButtonControl! {
@@ -105,13 +105,13 @@ class StormModeHomeViewController: AccountPickerViewController {
     @IBOutlet private weak var gasOnlyView: UIView!
     @IBOutlet private weak var gasOnlyTitleLabel: UILabel! {
         didSet {
-            gasOnlyTitleLabel.font = OpenSans.semibold.of(textStyle: .title1)
+            gasOnlyTitleLabel.font = .title1
         }
     }
     
     @IBOutlet private weak var gasOnlyDetailLabel: UILabel! {
         didSet {
-            gasOnlyDetailLabel.font = OpenSans.regular.of(textStyle: .subheadline)
+            gasOnlyDetailLabel.font = .subheadline
             gasOnlyDetailLabel.text = viewModel.gasOnlyMessage
         }
     }
@@ -138,13 +138,13 @@ class StormModeHomeViewController: AccountPickerViewController {
     @IBOutlet private weak var finalPayView: UIView!
     @IBOutlet private weak var finalPayTitleLabel: UILabel! {
         didSet {
-            finalPayTitleLabel.font = OpenSans.semibold.of(textStyle: .title1)
+            finalPayTitleLabel.font = .title1
         }
     }
     
     @IBOutlet private weak var finalPayTextView: ZeroInsetDataDetectorTextView! {
         didSet {
-            finalPayTextView.font = OpenSans.regular.of(textStyle: .subheadline)
+            finalPayTextView.font = .subheadline
             finalPayTextView.tintColor = .white
         }
     }
@@ -160,7 +160,7 @@ class StormModeHomeViewController: AccountPickerViewController {
     
     @IBOutlet private weak var finalPayButtonLabel: UILabel! {
         didSet {
-            finalPayButtonLabel.font = OpenSans.semibold.of(textStyle: .title1)
+            finalPayButtonLabel.font = .title1
         }
     }
     
@@ -168,12 +168,7 @@ class StormModeHomeViewController: AccountPickerViewController {
     @IBOutlet private weak var accountDisallowIconImageView: UIImageView! {
         didSet {
             // Apply different colors for ADA contrast compliance (ComEd default color is already compliant)
-            accountDisallowIconImageView.image = UIImage(named: "ic_lock_opco")?.withRenderingMode(.alwaysTemplate)
-            if Configuration.shared.opco == .bge {
-                accountDisallowIconImageView.tintColor = UIColor(red: 102/255, green: 179/255, blue: 96/255, alpha: 1)
-            } else if Configuration.shared.opco == .peco {
-                accountDisallowIconImageView.tintColor = UIColor(red: 0, green: 162/255, blue: 1, alpha: 1)
-            }
+            accountDisallowIconImageView.image = UIImage(named: "ic_lock_sm")
         }
     }
     
@@ -227,7 +222,7 @@ class StormModeHomeViewController: AccountPickerViewController {
     
     @IBOutlet private weak var moreOptionsLabel: UILabel! {
         didSet {
-            moreOptionsLabel.font = OpenSans.semibold.of(textStyle: .title1)
+            moreOptionsLabel.font = .title1
         }
     }
     
@@ -262,20 +257,20 @@ class StormModeHomeViewController: AccountPickerViewController {
         
         configureFeatureFlags()
         
-        view.backgroundColor = .stormModeBlack
-        
-        let gradientColor: UIColor
-        switch Configuration.shared.opco {
-        case .bge:
-            gradientColor = .bgeGreen
-            setupBinding()
-        case .ace, .comEd, .delmarva, .peco, .pepco:
-            gradientColor = .primaryColor
-        }
-        
+        view.backgroundColor = .stormModeBackground
+
         gradientLayer.colors = [
-            gradientColor.cgColor,
-            gradientColor.withAlphaComponent(0).cgColor
+            UIColor.stormModeBlack.cgColor,
+            UIColor.secondaryBlue.cgColor,
+            UIColor.stormModeGradient.withAlphaComponent(0.85).cgColor,
+            UIColor.stormModeBlack.withAlphaComponent(0).cgColor
+        ]
+
+        gradientLayer.locations = [
+            0,
+            0.75,
+            0.85,
+            1.0
         ]
         
         gradientView.layer.insertSublayer(gradientLayer, at: 0)
@@ -378,6 +373,9 @@ class StormModeHomeViewController: AccountPickerViewController {
     
     
     private func configureOutageTracker() {
+
+        setupBinding()
+
         infoView.frame = self.view.bounds
         self.view.addSubview(infoView)
         self.infoView.delegate = self
@@ -389,10 +387,10 @@ class StormModeHomeViewController: AccountPickerViewController {
         
         let whyViewRadius = whyButtonView.frame.size.height / 2
         whyButtonView.roundCorners(.allCorners, radius: whyViewRadius, borderColor: .white, borderWidth: 1.0)
-        
-        countView.roundCorners(.allCorners, radius: 10, borderColor: .white, borderWidth: 1.0)
-        
+        countView.roundCorners(.allCorners, radius: 10, borderColor: .clear, borderWidth: 1.0)
         hazardView.roundCorners(.allCorners, radius: 10, borderColor: .clear, borderWidth: 1.0)
+
+        countView.backgroundColor = .white.withAlphaComponent(0.10)
     }
     
     private func setupBinding() {

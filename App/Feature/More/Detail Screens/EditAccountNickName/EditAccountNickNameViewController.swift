@@ -105,7 +105,7 @@ extension EditAccountNickNameViewController {
         nickNametextField.textField.delegate = self
         nickNametextField.textField.text = viewModel.accountNickName.value
         resetNicknameButton.setTitleColor(.primaryColorDark, for: .normal)
-        resetNicknameButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .body)
+        resetNicknameButton.titleLabel?.font = .bodyBold
         viewModel.saveNicknameEnabled.asDriver().drive(saveNicknameButton.rx.isEnabled).disposed(by: disposeBag)
 
         if var text = nickNametextField.textField.text {
@@ -165,7 +165,7 @@ extension EditAccountNickNameViewController {
     }
     
     private func enableResetNicknameButton(isEnabled: Bool) {
-        resetNicknameButton.setTitleColor(isEnabled ? .primaryColor : .deepGray, for: .normal)
+        resetNicknameButton.setTitleColor(isEnabled ? .primaryColor : .neutralDark, for: .normal)
         resetNicknameButton.alpha = isEnabled ? 1.0 : 0.4
     }
 }

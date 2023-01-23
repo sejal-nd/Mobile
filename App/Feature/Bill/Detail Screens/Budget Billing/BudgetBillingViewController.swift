@@ -74,8 +74,8 @@ class BudgetBillingViewController: UIViewController {
         infoButton.isAccessibilityElement = true
         infoButton.accessibilityLabel = NSLocalizedString("Tooltip", comment: "")
         
-        descriptionHeaderLabel.textColor = .deepGray
-        descriptionHeaderLabel.font = SystemFont.regular.of(textStyle: .body)
+        descriptionHeaderLabel.textColor = .neutralDark
+        descriptionHeaderLabel.font = .body
         if accountDetail.isBudgetBill {
             descriptionHeaderLabel.text = Configuration.shared.opco.isPHI ? NSLocalizedString("You are currently enrolled in Budget Billing. Your monthly Budget Billing payment is adjusted periodically based on your actual usage.\n\nPlease refer to your full bill for additional details.", comment: "") : NSLocalizedString("You are currently enrolled in Budget Billing. Your monthly Budget Billing payment is adjusted periodically based on your actual usage.", comment: "")
         } else {
@@ -86,14 +86,14 @@ class BudgetBillingViewController: UIViewController {
         paymentAmountView.layer.borderColor = UIColor.accentGray.cgColor
         paymentAmountView.layer.borderWidth = 1
 
-        yourPaymentWouldBeLabel.font = OpenSans.semibold.of(textStyle: .footnote)
-        yourPaymentWouldBeLabel.textColor = .deepGray
+        yourPaymentWouldBeLabel.font = .footnoteSemibold
+        yourPaymentWouldBeLabel.textColor = .neutralDark
         yourPaymentWouldBeLabel.text = NSLocalizedString("Your monthly payment would be", comment: "")
-        paymentAmountLabel.textColor = .deepGray
-        paymentAmountLabel.font = OpenSans.semibold.of(textStyle: .title1)
+        paymentAmountLabel.textColor = .neutralDarker
+        paymentAmountLabel.font = .title1
         
-        footerLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        footerLabel.textColor = .deepGray
+        footerLabel.font = .footnote
+        footerLabel.textColor = .neutralDark
         footerLabel.text = viewModel.footerLabelText
 
         // When BGE user is enrolled they get a series of card views with information
@@ -106,58 +106,58 @@ class BudgetBillingViewController: UIViewController {
                 divider.backgroundColor = .accentGray
             }
             
-            monthlyAmountTitleLabel.font = SystemFont.semibold.of(textStyle: .footnote)
-            monthlyAmountTitleLabel.textColor = .deepGray
+            monthlyAmountTitleLabel.font = .footnoteSemibold
+            monthlyAmountTitleLabel.textColor = .neutralDark
             monthlyAmountTitleLabel.text = NSLocalizedString("Monthly Budget Bill Amount", comment: "")
-            monthlyAmountLabel.font = OpenSans.semibold.of(textStyle: .title3)
-            monthlyAmountLabel.textColor = .deepGray
-            monthlyAmountDescriptionLabel.font = SystemFont.regular.of(textStyle: .caption1)
-            monthlyAmountDescriptionLabel.textColor = .deepGray
+            monthlyAmountLabel.font = .title3
+            monthlyAmountLabel.textColor = .neutralDarker
+            monthlyAmountDescriptionLabel.font = .caption1
+            monthlyAmountDescriptionLabel.textColor = .neutralDark
             monthlyAmountDescriptionLabel.text = NSLocalizedString("The amount that you are billed for BGE gas and/or electric service each month. This charge appears on the first page of your bill under Charges/Adjustments this period.", comment: "")
             
-            lastPaymentDateTitleLabel.font = SystemFont.semibold.of(textStyle: .footnote)
-            lastPaymentDateTitleLabel.textColor = .deepGray
+            lastPaymentDateTitleLabel.font = .footnoteSemibold
+            lastPaymentDateTitleLabel.textColor = .neutralDark
             lastPaymentDateTitleLabel.text = NSLocalizedString("Last Payment Date", comment: "")
-            lastPaymentDateLabel.font = OpenSans.semibold.of(textStyle: .title3)
-            lastPaymentDateLabel.textColor = .deepGray
+            lastPaymentDateLabel.font = .title3
+            lastPaymentDateLabel.textColor = .neutralDarker
             
-            payoffBalanceTitleLabel.font = SystemFont.semibold.of(textStyle: .footnote)
-            payoffBalanceTitleLabel.textColor = .deepGray
+            payoffBalanceTitleLabel.font = .footnoteSemibold
+            payoffBalanceTitleLabel.textColor = .neutralDark
             payoffBalanceTitleLabel.text = NSLocalizedString("Payoff Balance for BGE Service", comment: "")
-            payoffBalanceLabel.font = OpenSans.semibold.of(textStyle: .title3)
-            payoffBalanceLabel.textColor = .deepGray
-            payoffBalanceDescriptionLabel.font = SystemFont.regular.of(textStyle: .caption1)
-            payoffBalanceDescriptionLabel.textColor = .deepGray
+            payoffBalanceLabel.font = .title3
+            payoffBalanceLabel.textColor = .neutralDarker
+            payoffBalanceDescriptionLabel.font = .caption1
+            payoffBalanceDescriptionLabel.textColor = .neutralDark
             payoffBalanceDescriptionLabel.text = NSLocalizedString("Total actual-usage charges for BGE gas and/or electric service after payments and adjustments.", comment: "")
             
-            currentBalanceTitleLabel.font = SystemFont.semibold.of(textStyle: .footnote)
-            currentBalanceTitleLabel.textColor = .deepGray
+            currentBalanceTitleLabel.font = .footnoteSemibold
+            currentBalanceTitleLabel.textColor = .neutralDark
             currentBalanceTitleLabel.text = NSLocalizedString("Current Balance for BGE Service", comment: "")
-            currentBalanceLabel.font = OpenSans.semibold.of(textStyle: .title3)
-            currentBalanceLabel.textColor = .deepGray
-            currentBalanceDescriptionLabel.font = SystemFont.regular.of(textStyle: .caption1)
-            currentBalanceDescriptionLabel.textColor = .deepGray
+            currentBalanceLabel.font = .title3
+            currentBalanceLabel.textColor = .neutralDarker
+            currentBalanceDescriptionLabel.font = .caption1
+            currentBalanceDescriptionLabel.textColor = .neutralDark
             currentBalanceDescriptionLabel.text = NSLocalizedString("Total billed charges for BGE gas and/or electric service after payments and adjustments.", comment: "")
             
-            accDifferenceTitleLabel.font = SystemFont.semibold.of(textStyle: .footnote)
-            accDifferenceTitleLabel.textColor = .deepGray
+            accDifferenceTitleLabel.font = .footnoteSemibold
+            accDifferenceTitleLabel.textColor = .neutralDark
             accDifferenceTitleLabel.text = NSLocalizedString("Accumulated Difference for BGE Service", comment: "")
-            accDifferenceLabel.font = OpenSans.semibold.of(textStyle: .title3)
-            accDifferenceLabel.textColor = .deepGray
-            accDifferenceDescriptionLabel.font = SystemFont.regular.of(textStyle: .caption1)
-            accDifferenceDescriptionLabel.textColor = .deepGray
+            accDifferenceLabel.font = .title3
+            accDifferenceLabel.textColor = .neutralDarker
+            accDifferenceDescriptionLabel.font = .caption1
+            accDifferenceDescriptionLabel.textColor = .neutralDark
             accDifferenceDescriptionLabel.text = NSLocalizedString("The difference between your Payoff Balance and your Current Balance for BGE Service.", comment: "")
         }
         
-        errorLabel.textColor = .deepGray
-        errorLabel.font = SystemFont.regular.of(textStyle: .headline)
+        errorLabel.textColor = .neutralDark
+        errorLabel.font = .headline
         errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
         
-        unenrollButtonLabel.textColor = .deepGray
-        unenrollButtonLabel.font = SystemFont.regular.of(textStyle: .callout)
+        unenrollButtonLabel.textColor = .neutralDark
+        unenrollButtonLabel.font = .callout
         unenrollButtonLabel.text = NSLocalizedString("Looking to end Budget Billing?", comment: "")
-        unenrollButton.setTitleColor(.actionBlue, for: .normal)
-        unenrollButton.titleLabel?.font = SystemFont.bold.of(textStyle: .callout)
+        unenrollButton.setTitleColor(.actionBrand, for: .normal)
+        unenrollButton.titleLabel?.font = .callout
         unenrollButton.setTitle(NSLocalizedString("Unenroll", comment: ""), for: .normal)
         
         if accountDetail.isBudgetBill {

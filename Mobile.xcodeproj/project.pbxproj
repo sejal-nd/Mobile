@@ -19,10 +19,6 @@
 		212629ED27328D85002D3407 /* UnauthenticatedMoveAccountSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212629EC27328D85002D3407 /* UnauthenticatedMoveAccountSelectionViewController.swift */; };
 		212629EF2732A37F002D3407 /* UnauthenticatedMoveAccountSelectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212629EE2732A37F002D3407 /* UnauthenticatedMoveAccountSelectionViewModel.swift */; };
 		214006552762AEE700430C6E /* StatusInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214006542762AEE700430C6E /* StatusInfoView.swift */; };
-		2140065B2767F58E00430C6E /* ot_assigned.json in Resources */ = {isa = PBXBuildFile; fileRef = 214006572767F58C00430C6E /* ot_assigned.json */; };
-		2140065C2767F58E00430C6E /* ot_onsite.json in Resources */ = {isa = PBXBuildFile; fileRef = 214006582767F58D00430C6E /* ot_onsite.json */; };
-		2140065D2767F58E00430C6E /* ot_reported.json in Resources */ = {isa = PBXBuildFile; fileRef = 214006592767F58D00430C6E /* ot_reported.json */; };
-		2140065E2767F58E00430C6E /* ot_enroute.json in Resources */ = {isa = PBXBuildFile; fileRef = 2140065A2767F58E00430C6E /* ot_enroute.json */; };
 		215A1B70270AE9A5003A4EE9 /* StreetAddressResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215A1B6F270AE9A5003A4EE9 /* StreetAddressResponse.swift */; };
 		215A1B73270AE9DA003A4EE9 /* StreetAddressRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215A1B72270AE9DA003A4EE9 /* StreetAddressRequest.swift */; };
 		215A1B74270AE9DA003A4EE9 /* StreetAddressRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215A1B72270AE9DA003A4EE9 /* StreetAddressRequest.swift */; };
@@ -40,12 +36,7 @@
 		215BD78B275ACE4B0011F642 /* TrackerStatusView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 215BD78A275ACE4B0011F642 /* TrackerStatusView.xib */; };
 		215BD78F275FFFD00011F642 /* OutageTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C372B65E275850E600E38F64 /* OutageTracker.swift */; };
 		215BD794276298790011F642 /* StatusInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 215BD793276298790011F642 /* StatusInfoView.xib */; };
-		215D05B227739542009377AC /* SM_ot_enroute.json in Resources */ = {isa = PBXBuildFile; fileRef = 215D05AC27739540009377AC /* SM_ot_enroute.json */; };
 		215D05B327739542009377AC /* SM_alerticon.json in Resources */ = {isa = PBXBuildFile; fileRef = 215D05AD27739540009377AC /* SM_alerticon.json */; };
-		215D05B427739542009377AC /* SM_ot_onsite.json in Resources */ = {isa = PBXBuildFile; fileRef = 215D05AE27739541009377AC /* SM_ot_onsite.json */; };
-		215D05B527739542009377AC /* SM_ot_assigned.json in Resources */ = {isa = PBXBuildFile; fileRef = 215D05AF27739541009377AC /* SM_ot_assigned.json */; };
-		215D05B627739543009377AC /* SM_OnWhite.json in Resources */ = {isa = PBXBuildFile; fileRef = 215D05B027739542009377AC /* SM_OnWhite.json */; };
-		215D05B727739543009377AC /* SM_ReportedWhite.json in Resources */ = {isa = PBXBuildFile; fileRef = 215D05B127739542009377AC /* SM_ReportedWhite.json */; };
 		216AE555278CED760018E220 /* StateAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216AE554278CED760018E220 /* StateAnimationView.swift */; };
 		216AE557278CED8F0018E220 /* StateAnimationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 216AE556278CED8F0018E220 /* StateAnimationView.xib */; };
 		216AE559278E4B3E0018E220 /* StatusTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216AE558278E4B3E0018E220 /* StatusTextView.swift */; };
@@ -100,8 +91,6 @@
 		2FA5D85F1F17D2A300A8B16B /* (null) in Sources */ = {isa = PBXBuildFile; };
 		2FA5D8641F17D88500A8B16B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA5D8631F17D88500A8B16B /* HomeViewController.swift */; };
 		301DE1F624BF0A7300992CA4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06C71E521B3200BBA4ED /* Assets.xcassets */; };
-		30636F0824C82F2F00CCBFAE /* OpcoIdentityCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30636F0724C82F2F00CCBFAE /* OpcoIdentityCardView.swift */; };
-		30636F0E24C82F8500CCBFAE /* OpcoIdentityCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30636F0924C82F4200CCBFAE /* OpcoIdentityCardView.xib */; };
 		3090A643247F9A6900815EA1 /* More.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8B4F4AE1E5C957A0031D934 /* More.storyboard */; };
 		30A1A0D4254004EF00D18EAC /* EditAccountNickNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3090A63E247F8EFA00815EA1 /* EditAccountNickNameViewController.swift */; };
 		30B0F53A25C918430078D2AF /* PeakEnergySavingsHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B0F53825C918420078D2AF /* PeakEnergySavingsHistoryViewController.swift */; };
@@ -141,9 +130,6 @@
 		358DE0A521021471002C544E /* UsageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358DE0A421021471002C544E /* UsageViewModel.swift */; };
 		358DE0A821021B64002C544E /* UnavailableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 358DE0A721021B64002C544E /* UnavailableView.xib */; };
 		358DE0AA21021B7A002C544E /* UnavailableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358DE0A921021B7A002C544E /* UnavailableView.swift */; };
-		359BB2672146F05400FBAD83 /* sm_outage-FlavorBGE.json in Resources */ = {isa = PBXBuildFile; fileRef = 359BB2662146F05400FBAD83 /* sm_outage-FlavorBGE.json */; };
-		359BB2792148349200FBAD83 /* outage-FlavorBGE.json in Resources */ = {isa = PBXBuildFile; fileRef = 359BB2782148349200FBAD83 /* outage-FlavorBGE.json */; };
-		359BB27F2148517F00FBAD83 /* sm_outage_loading-FlavorBGE.json in Resources */ = {isa = PBXBuildFile; fileRef = 359BB27E2148517F00FBAD83 /* sm_outage_loading-FlavorBGE.json */; };
 		359BDB2822D398F0007002B0 /* UIColor+Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB2722D398F0007002B0 /* UIColor+Image.swift */; };
 		359BDB3822D4C699007002B0 /* LargeTitleNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB3722D4C699007002B0 /* LargeTitleNavigationController.swift */; };
 		359BDB4022D50F97007002B0 /* StickyFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB3F22D50F90007002B0 /* StickyFooterView.swift */; };
@@ -155,8 +141,6 @@
 		359BDB6B22D8DCEC007002B0 /* OutageStatusView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 359BDB6A22D8DCEC007002B0 /* OutageStatusView.xib */; };
 		359BDB6F22D8DCF6007002B0 /* OutageStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB6E22D8DCF6007002B0 /* OutageStatusView.swift */; };
 		359BDB7522D8F9B2007002B0 /* outage_off.json in Resources */ = {isa = PBXBuildFile; fileRef = 359BDB7222D8F9B2007002B0 /* outage_off.json */; };
-		359BDB7822D8F9B2007002B0 /* outage_reported.json in Resources */ = {isa = PBXBuildFile; fileRef = 359BDB7322D8F9B2007002B0 /* outage_reported.json */; };
-		359BDB7B22D8F9B2007002B0 /* outage_on.json in Resources */ = {isa = PBXBuildFile; fileRef = 359BDB7422D8F9B2007002B0 /* outage_on.json */; };
 		359BDB7F22DCBAAF007002B0 /* OutageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB7E22DCBAAF007002B0 /* OutageViewModel.swift */; };
 		359BDB8322DCDDCA007002B0 /* GasOnlyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB8222DCDDCA007002B0 /* GasOnlyViewController.swift */; };
 		359BDBA822E09D80007002B0 /* AccountInfoBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDBA722E09D80007002B0 /* AccountInfoBar.swift */; };
@@ -517,8 +501,6 @@
 		679C6EBE24D1EBCA00535DE7 /* AppointmentService+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679C6EBD24D1EBCA00535DE7 /* AppointmentService+Rx.swift */; };
 		679C6ED824D1F0A800535DE7 /* Appointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679C6ED724D1F0A800535DE7 /* Appointment.swift */; };
 		679C6EE524D1FE7B00535DE7 /* WeatherService+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679C6EE424D1FE7B00535DE7 /* WeatherService+Rx.swift */; };
-		679CC72D2500041F00A46BBE /* landing_video-FlavorACE.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 679CC72A2500041E00A46BBE /* landing_video-FlavorACE.mp4 */; };
-		679CC72E2500041F00A46BBE /* landing_video-FlavorDPL.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 679CC72B2500041E00A46BBE /* landing_video-FlavorDPL.mp4 */; };
 		67A18B7324CA0EA100F7A77B /* ApigeeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A18B7224CA0EA100F7A77B /* ApigeeError.swift */; };
 		67A18B9024CB354100F7A77B /* RefreshTokenRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A18B8F24CB354100F7A77B /* RefreshTokenRequest.swift */; };
 		67A482BE26BA09FE00FBB0BB /* WatchAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A482BD26BA09FE00FBB0BB /* WatchAppDelegate.swift */; };
@@ -573,7 +555,6 @@
 		67D5626924EADAA700852551 /* GameSurvery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D5626824EADAA700852551 /* GameSurvery.swift */; };
 		67D5626B24EADAC900852551 /* GameTaskType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D5626A24EADAC900852551 /* GameTaskType.swift */; };
 		67D5631E24ED9F2A00852551 /* Assets-FlavorCOMED.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06CF1E521B8B00BBA4ED /* Assets-FlavorCOMED.xcassets */; };
-		67D5632024EDC14D00852551 /* landing_video-FlavorCOMED.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 825FEE031FDF370B00DC1961 /* landing_video-FlavorCOMED.mp4 */; };
 		67D5632124EDC6F500852551 /* Appt_Canceled-FlavorCOMED.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B083E921710C8500B1C632 /* Appt_Canceled-FlavorCOMED.json */; };
 		67D5632224EDC6F500852551 /* Appt_Complete-FlavorCOMED.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B083ED21710C8900B1C632 /* Appt_Complete-FlavorCOMED.json */; };
 		67D5632324EDC6F500852551 /* Appt_Confirmed-FlavorCOMED.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B083EC21710C8800B1C632 /* Appt_Confirmed-FlavorCOMED.json */; };
@@ -591,8 +572,6 @@
 		67D73AF7246C480500450B63 /* BillingHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D73AF0246C480500450B63 /* BillingHistoryTableViewCell.swift */; };
 		67D73B00246C72F100450B63 /* (null) in Resources */ = {isa = PBXBuildFile; };
 		67DDBDBF24646E38006CD6EB /* Color+OpCo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67DDBDBE24646E38006CD6EB /* Color+OpCo.swift */; };
-		67E78D892509541A001AB1BD /* landing_video-FlavorPEPCO.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 67E78D882509541A001AB1BD /* landing_video-FlavorPEPCO.mp4 */; };
-		67E78D8B25095439001AB1BD /* landing_video-FlavorPECO.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 67E78D8A25095439001AB1BD /* landing_video-FlavorPECO.mp4 */; };
 		67F950FC24BCA111009B5F07 /* RegistrationValidateAccountViewControllerNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F47C224AB6CD200A828F9 /* RegistrationValidateAccountViewControllerNew.swift */; };
 		67F950FD24BCA111009B5F07 /* RegistrationCreateCredentialsViewControllerNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3535363724AC9A3000B428D6 /* RegistrationCreateCredentialsViewControllerNew.swift */; };
 		67F950FE24BCA111009B5F07 /* RegistrationSecurityQuestionsViewControllerNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E1F85724ADA49900574065 /* RegistrationSecurityQuestionsViewControllerNew.swift */; };
@@ -610,7 +589,6 @@
 		824A96691FB5F3480026FA4B /* AdjustThermostatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824A96681FB5F3480026FA4B /* AdjustThermostatViewModel.swift */; };
 		825171A31F1D1D4F0020A6CA /* RadioSelectControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825171A21F1D1D4F0020A6CA /* RadioSelectControl.swift */; };
 		825171B51F1D25130020A6CA /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825171B41F1D25130020A6CA /* HomeViewModel.swift */; };
-		826413791EAEAE5E007F4615 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826413781EAEAE5E007F4615 /* Fonts.swift */; };
 		826773311FB0C38600A8CFAA /* SelectDeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826773301FB0C38600A8CFAA /* SelectDeviceViewController.swift */; };
 		826773351FB0C42F00A8CFAA /* UIViewUsingAutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826773341FB0C42F00A8CFAA /* UIViewUsingAutoLayout.swift */; };
 		8267733D1FB2286200A8CFAA /* SmartThermostatScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8267733C1FB2286200A8CFAA /* SmartThermostatScheduleViewController.swift */; };
@@ -651,7 +629,6 @@
 		82D599421EC2374500DDB380 /* ActivityTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D599411EC2374500DDB380 /* ActivityTracker.swift */; };
 		82D5994B1EC36B5500DDB380 /* NumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D5994A1EC36B5500DDB380 /* NumberFormatter.swift */; };
 		82D599511EC3A00900DDB380 /* alert_icon.json in Resources */ = {isa = PBXBuildFile; fileRef = 82D599501EC3A00900DDB380 /* alert_icon.json */; };
-		82D626181FE1AD8B00B09F00 /* landing_video-FlavorBGE.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 82D626171FE1AD8B00B09F00 /* landing_video-FlavorBGE.mp4 */; };
 		82DE61051FB9F34A00DC25C1 /* OverrideViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82DE61041FB9F34A00DC25C1 /* OverrideViewModel.swift */; };
 		82DE610A1FB9F36D00DC25C1 /* OverrideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82DE61091FB9F36D00DC25C1 /* OverrideViewController.swift */; };
 		82E22B5E1F9FC7CE001F1A1B /* EnergyTipTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E22B5C1F9FC7CE001F1A1B /* EnergyTipTableViewCell.swift */; };
@@ -1003,6 +980,18 @@
 		C336045424D1B85C002CF260 /* EmailRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C336045324D1B85C002CF260 /* EmailRequest.swift */; };
 		C336046124D31EA9002CF260 /* AutoPayEnrollRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C336046024D31EA9002CF260 /* AutoPayEnrollRequest.swift */; };
 		C336047424D32D13002CF260 /* AutoPayUnenrollRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C336047324D32D13002CF260 /* AutoPayUnenrollRequest.swift */; };
+		C337183A2925378D0092F501 /* Diodrum-ExtralightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = C337182E292537860092F501 /* Diodrum-ExtralightItalic.otf */; };
+		C337183B2925378D0092F501 /* Diodrum-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = C337182F292537870092F501 /* Diodrum-Regular.otf */; };
+		C337183C2925378D0092F501 /* Diodrum-LightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = C3371830292537880092F501 /* Diodrum-LightItalic.otf */; };
+		C337183D2925378D0092F501 /* Diodrum-RegularItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = C3371831292537880092F501 /* Diodrum-RegularItalic.otf */; };
+		C337183E2925378D0092F501 /* Diodrum-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = C3371832292537890092F501 /* Diodrum-Semibold.otf */; };
+		C337183F2925378D0092F501 /* Diodrum-BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = C3371833292537890092F501 /* Diodrum-BoldItalic.otf */; };
+		C33718402925378D0092F501 /* Diodrum-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = C33718342925378A0092F501 /* Diodrum-Light.otf */; };
+		C33718412925378D0092F501 /* Diodrum-Extralight.otf in Resources */ = {isa = PBXBuildFile; fileRef = C33718352925378A0092F501 /* Diodrum-Extralight.otf */; };
+		C33718422925378D0092F501 /* Diodrum-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = C33718362925378B0092F501 /* Diodrum-Bold.otf */; };
+		C33718432925378D0092F501 /* Diodrum-SemiboldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = C33718372925378B0092F501 /* Diodrum-SemiboldItalic.otf */; };
+		C33718442925378D0092F501 /* Diodrum-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = C33718382925378C0092F501 /* Diodrum-Medium.otf */; };
+		C33718452925378D0092F501 /* Diodrum-MediumItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = C33718392925378C0092F501 /* Diodrum-MediumItalic.otf */; };
 		C3381A032424060400EA7062 /* SERWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3381A002424060400EA7062 /* SERWebViewController.swift */; };
 		C3381A042424060400EA7062 /* SERWebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3381A012424060400EA7062 /* SERWebViewModel.swift */; };
 		C3381A062424064100EA7062 /* PTRWidget.html in Resources */ = {isa = PBXBuildFile; fileRef = C3381A052424064100EA7062 /* PTRWidget.html */; };
@@ -1019,8 +1008,21 @@
 		C33B5A4827C53D42005500C5 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33B5A4727C53D42005500C5 /* CalendarViewController.swift */; };
 		C33C3385254C9C5300E59CF8 /* LanguageResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33C3384254C9C5200E59CF8 /* LanguageResult.swift */; };
 		C33C3386254C9C5400E59CF8 /* LanguageResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33C3384254C9C5200E59CF8 /* LanguageResult.swift */; };
+		C34459BA2922F015009DEDAF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C34459B92922F014009DEDAF /* LaunchScreen.storyboard */; };
 		C348F97427F3942000A9CC0C /* B2CUsageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C348F97327F3942000A9CC0C /* B2CUsageViewModel.swift */; };
 		C34A7ED42519524200438B7B /* BGEAutoPayInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C336048024D333CB002CF260 /* BGEAutoPayInfo.swift */; };
+		C34D54E12948E6B700E6012B /* HomeDiscoverCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34D54E02948E6B700E6012B /* HomeDiscoverCardView.swift */; };
+		C34D54E32948E6CA00E6012B /* HomeDiscoverCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C34D54E22948E6CA00E6012B /* HomeDiscoverCardView.xib */; };
+		C3639C22292E7F2A00F17619 /* outage_reported.json in Resources */ = {isa = PBXBuildFile; fileRef = C3639C1E292E7F2700F17619 /* outage_reported.json */; };
+		C3639C23292E7F2A00F17619 /* outage_onsite.json in Resources */ = {isa = PBXBuildFile; fileRef = C3639C1F292E7F2800F17619 /* outage_onsite.json */; };
+		C3639C24292E7F2B00F17619 /* outage_enroute.json in Resources */ = {isa = PBXBuildFile; fileRef = C3639C20292E7F2900F17619 /* outage_enroute.json */; };
+		C3639C25292E7F2B00F17619 /* outage_assigned.json in Resources */ = {isa = PBXBuildFile; fileRef = C3639C21292E7F2A00F17619 /* outage_assigned.json */; };
+		C3639C2A292E7FA900F17619 /* outage_onsite_sm.json in Resources */ = {isa = PBXBuildFile; fileRef = C3639C26292E7FA600F17619 /* outage_onsite_sm.json */; };
+		C3639C2B292E7FA900F17619 /* outage_enroute_sm.json in Resources */ = {isa = PBXBuildFile; fileRef = C3639C27292E7FA700F17619 /* outage_enroute_sm.json */; };
+		C3639C2C292E7FA900F17619 /* outage_reported_sm.json in Resources */ = {isa = PBXBuildFile; fileRef = C3639C28292E7FA800F17619 /* outage_reported_sm.json */; };
+		C3639C2D292E7FA900F17619 /* outage_assigned_sm.json in Resources */ = {isa = PBXBuildFile; fileRef = C3639C29292E7FA900F17619 /* outage_assigned_sm.json */; };
+		C3639C2F292E800A00F17619 /* outage_on_sm.json in Resources */ = {isa = PBXBuildFile; fileRef = C3639C2E292E800A00F17619 /* outage_on_sm.json */; };
+		C3639C33292E808B00F17619 /* outage_on.json in Resources */ = {isa = PBXBuildFile; fileRef = C3639C32292E808B00F17619 /* outage_on.json */; };
 		C364A87A2375DC7B00C7D51B /* StateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C364A8782375DC7B00C7D51B /* StateView.swift */; };
 		C364A87B2375DC7B00C7D51B /* StateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C364A8792375DC7B00C7D51B /* StateView.xib */; };
 		C364A87D2375DC9100C7D51B /* EmptyChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C364A87C2375DC9000C7D51B /* EmptyChildViewController.swift */; };
@@ -1061,8 +1063,15 @@
 		C3BCD53E2567238C006F405E /* HomeGameCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BCD53D2567238C006F405E /* HomeGameCardView.swift */; };
 		C3BCD5442567239D006F405E /* HomeGameCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3BCD5432567239D006F405E /* HomeGameCardView.xib */; };
 		C3C5696C256C33F60039C8A4 /* foresee_configuration.json in Resources */ = {isa = PBXBuildFile; fileRef = C3C5696B256C33F60039C8A4 /* foresee_configuration.json */; };
+		C3C8290229649AB200A7E390 /* HomeDiscoverCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C8290129649AB200A7E390 /* HomeDiscoverCardViewModel.swift */; };
+		C3CD431829412C1000297553 /* Exelon_WaveGraphic_B_RGB_2.png in Resources */ = {isa = PBXBuildFile; fileRef = C3CD431629412C0D00297553 /* Exelon_WaveGraphic_B_RGB_2.png */; };
+		C3CD431929412C1000297553 /* wavemotif.json in Resources */ = {isa = PBXBuildFile; fileRef = C3CD431729412C0E00297553 /* wavemotif.json */; };
+		C3CD431B29426ACB00297553 /* wavemotif_slower_trimmed.mov in Resources */ = {isa = PBXBuildFile; fileRef = C3CD431A29426ACB00297553 /* wavemotif_slower_trimmed.mov */; };
+		C3D25406292439090024FF59 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D25405292439090024FF59 /* Fonts.swift */; };
 		C3DC821F251A518B0014D571 /* AccountsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D340901EBA6A8700BA2D42 /* AccountsStore.swift */; };
 		C3DC8224251A525A0014D571 /* AlertsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E835D1C81FB631AA008CE250 /* AlertsStore.swift */; };
+		C3DE17DC291C2A0E0055275D /* HomeCardHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DE17DB291C2A0D0055275D /* HomeCardHeaderView.swift */; };
+		C3DE17DE291C2E110055275D /* HomeCardHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3DE17DD291C2E110055275D /* HomeCardHeaderView.xib */; };
 		C3DF2B9D24CB32D000A6D4EC /* BillService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DF2B9C24CB32D000A6D4EC /* BillService.swift */; };
 		C3DF2BAA24CB42BB00A6D4EC /* BillService+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DF2BA924CB42BB00A6D4EC /* BillService+Rx.swift */; };
 		C3DF2BB724CB42CE00A6D4EC /* PaymentService+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DF2BB624CB42CE00A6D4EC /* PaymentService+Rx.swift */; };
@@ -1076,16 +1085,6 @@
 		E71EBE9D26A6EDFB005AE781 /* B2CTokenRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71EBE9B26A6EDFB005AE781 /* B2CTokenRequest.swift */; };
 		E7F38E0F2760B73700F8711B /* PKCEAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F38E0E2760B73700F8711B /* PKCEAuthenticationService.swift */; };
 		E80043091E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80043071E64DEE2005CF531 /* ChangePasswordViewController.swift */; };
-		E80043261E65FF70005CF531 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E800431C1E65FF70005CF531 /* OpenSans-Bold.ttf */; };
-		E80043291E65FF70005CF531 /* OpenSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E800431D1E65FF70005CF531 /* OpenSans-BoldItalic.ttf */; };
-		E800432C1E65FF70005CF531 /* OpenSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E800431E1E65FF70005CF531 /* OpenSans-ExtraBold.ttf */; };
-		E800432F1E65FF70005CF531 /* OpenSans-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E800431F1E65FF70005CF531 /* OpenSans-ExtraBoldItalic.ttf */; };
-		E80043321E65FF70005CF531 /* OpenSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E80043201E65FF70005CF531 /* OpenSans-Italic.ttf */; };
-		E80043351E65FF70005CF531 /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E80043211E65FF70005CF531 /* OpenSans-Light.ttf */; };
-		E80043381E65FF70005CF531 /* OpenSans-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E80043221E65FF70005CF531 /* OpenSans-LightItalic.ttf */; };
-		E800433B1E65FF70005CF531 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E80043231E65FF70005CF531 /* OpenSans-Regular.ttf */; };
-		E800433E1E65FF70005CF531 /* OpenSans-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E80043241E65FF70005CF531 /* OpenSans-Semibold.ttf */; };
-		E80043411E65FF70005CF531 /* OpenSans-SemiboldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E80043251E65FF70005CF531 /* OpenSans-SemiboldItalic.ttf */; };
 		E800434D1E671FD6005CF531 /* PasswordStrengthMeterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E800434C1E671FD6005CF531 /* PasswordStrengthMeterView.swift */; };
 		E80043561E68CDCB005CF531 /* IndividualBorders.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80043551E68CDCB005CF531 /* IndividualBorders.swift */; };
 		E802AB3F1E85936700981D18 /* LineHeightLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E802AB3E1E85936700981D18 /* LineHeightLabel.swift */; };
@@ -1298,10 +1297,6 @@
 		212629EC27328D85002D3407 /* UnauthenticatedMoveAccountSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnauthenticatedMoveAccountSelectionViewController.swift; sourceTree = "<group>"; };
 		212629EE2732A37F002D3407 /* UnauthenticatedMoveAccountSelectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnauthenticatedMoveAccountSelectionViewModel.swift; sourceTree = "<group>"; };
 		214006542762AEE700430C6E /* StatusInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusInfoView.swift; sourceTree = "<group>"; };
-		214006572767F58C00430C6E /* ot_assigned.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ot_assigned.json; sourceTree = "<group>"; };
-		214006582767F58D00430C6E /* ot_onsite.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ot_onsite.json; sourceTree = "<group>"; };
-		214006592767F58D00430C6E /* ot_reported.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ot_reported.json; sourceTree = "<group>"; };
-		2140065A2767F58E00430C6E /* ot_enroute.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ot_enroute.json; sourceTree = "<group>"; };
 		215A1B6F270AE9A5003A4EE9 /* StreetAddressResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreetAddressResponse.swift; sourceTree = "<group>"; };
 		215A1B72270AE9DA003A4EE9 /* StreetAddressRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreetAddressRequest.swift; sourceTree = "<group>"; };
 		215A1B75270B12DF003A4EE9 /* AppartmentRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppartmentRequest.swift; sourceTree = "<group>"; };
@@ -1313,12 +1308,7 @@
 		215BD788275ACE3A0011F642 /* StatusView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatusView.xib; sourceTree = "<group>"; };
 		215BD78A275ACE4B0011F642 /* TrackerStatusView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrackerStatusView.xib; sourceTree = "<group>"; };
 		215BD793276298790011F642 /* StatusInfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatusInfoView.xib; sourceTree = "<group>"; };
-		215D05AC27739540009377AC /* SM_ot_enroute.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SM_ot_enroute.json; sourceTree = "<group>"; };
 		215D05AD27739540009377AC /* SM_alerticon.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SM_alerticon.json; sourceTree = "<group>"; };
-		215D05AE27739541009377AC /* SM_ot_onsite.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SM_ot_onsite.json; sourceTree = "<group>"; };
-		215D05AF27739541009377AC /* SM_ot_assigned.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SM_ot_assigned.json; sourceTree = "<group>"; };
-		215D05B027739542009377AC /* SM_OnWhite.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SM_OnWhite.json; sourceTree = "<group>"; };
-		215D05B127739542009377AC /* SM_ReportedWhite.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SM_ReportedWhite.json; sourceTree = "<group>"; };
 		216AE554278CED760018E220 /* StateAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateAnimationView.swift; sourceTree = "<group>"; };
 		216AE556278CED8F0018E220 /* StateAnimationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StateAnimationView.xib; sourceTree = "<group>"; };
 		216AE558278E4B3E0018E220 /* StatusTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusTextView.swift; sourceTree = "<group>"; };
@@ -1401,8 +1391,6 @@
 		2FA7B9F91F0548F000D660B8 /* OutageMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OutageMapViewController.swift; path = "App/Feature/Outage/Detail Pages/OutageMapViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30353FBF24D1831C0060DE5D /* sm_outage.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sm_outage.json; sourceTree = "<group>"; };
 		30353FC324D292C10060DE5D /* sm_outage_loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sm_outage_loading.json; sourceTree = "<group>"; };
-		30636F0724C82F2F00CCBFAE /* OpcoIdentityCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpcoIdentityCardView.swift; sourceTree = "<group>"; };
-		30636F0924C82F4200CCBFAE /* OpcoIdentityCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OpcoIdentityCardView.xib; sourceTree = "<group>"; };
 		3090A63E247F8EFA00815EA1 /* EditAccountNickNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAccountNickNameViewController.swift; sourceTree = "<group>"; };
 		30B0F53825C918420078D2AF /* PeakEnergySavingsHistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeakEnergySavingsHistoryViewController.swift; sourceTree = "<group>"; };
 		30B0F53925C918430078D2AF /* PeakSavingsHistoryViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeakSavingsHistoryViewModel.swift; sourceTree = "<group>"; };
@@ -1448,13 +1436,10 @@
 		358DE0A921021B7A002C544E /* UnavailableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnavailableView.swift; sourceTree = "<group>"; };
 		3595B25025328E6E006F7EBC /* PaymentAmountSheetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentAmountSheetViewController.swift; sourceTree = "<group>"; };
 		3595B25125328E6F006F7EBC /* PaymentAmount.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PaymentAmount.storyboard; sourceTree = "<group>"; };
-		359BB2662146F05400FBAD83 /* sm_outage-FlavorBGE.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "sm_outage-FlavorBGE.json"; sourceTree = "<group>"; };
 		359BB2682146F06D00FBAD83 /* sm_outage-FlavorCOMED.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "sm_outage-FlavorCOMED.json"; sourceTree = "<group>"; };
 		359BB26A2146F08200FBAD83 /* sm_outage-FlavorPECO.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "sm_outage-FlavorPECO.json"; sourceTree = "<group>"; };
-		359BB2782148349200FBAD83 /* outage-FlavorBGE.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "outage-FlavorBGE.json"; sourceTree = "<group>"; };
 		359BB27A214834A900FBAD83 /* outage-FlavorCOMED.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "outage-FlavorCOMED.json"; sourceTree = "<group>"; };
 		359BB27C214834BA00FBAD83 /* outage-FlavorPECO.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "outage-FlavorPECO.json"; sourceTree = "<group>"; };
-		359BB27E2148517F00FBAD83 /* sm_outage_loading-FlavorBGE.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "sm_outage_loading-FlavorBGE.json"; sourceTree = "<group>"; };
 		359BB2802148518C00FBAD83 /* sm_outage_loading-FlavorCOMED.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "sm_outage_loading-FlavorCOMED.json"; sourceTree = "<group>"; };
 		359BB2822148519D00FBAD83 /* sm_outage_loading-FlavorPECO.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "sm_outage_loading-FlavorPECO.json"; sourceTree = "<group>"; };
 		359BDB2722D398F0007002B0 /* UIColor+Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Image.swift"; sourceTree = "<group>"; };
@@ -1468,8 +1453,6 @@
 		359BDB6A22D8DCEC007002B0 /* OutageStatusView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OutageStatusView.xib; sourceTree = "<group>"; };
 		359BDB6E22D8DCF6007002B0 /* OutageStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutageStatusView.swift; sourceTree = "<group>"; };
 		359BDB7222D8F9B2007002B0 /* outage_off.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = outage_off.json; sourceTree = "<group>"; };
-		359BDB7322D8F9B2007002B0 /* outage_reported.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = outage_reported.json; sourceTree = "<group>"; };
-		359BDB7422D8F9B2007002B0 /* outage_on.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = outage_on.json; sourceTree = "<group>"; };
 		359BDB7E22DCBAAF007002B0 /* OutageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutageViewModel.swift; sourceTree = "<group>"; };
 		359BDB8222DCDDCA007002B0 /* GasOnlyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GasOnlyViewController.swift; sourceTree = "<group>"; };
 		359BDBA722E09D80007002B0 /* AccountInfoBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInfoBar.swift; sourceTree = "<group>"; };
@@ -1877,8 +1860,6 @@
 		679C6EBD24D1EBCA00535DE7 /* AppointmentService+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppointmentService+Rx.swift"; sourceTree = "<group>"; };
 		679C6ED724D1F0A800535DE7 /* Appointment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appointment.swift; sourceTree = "<group>"; };
 		679C6EE424D1FE7B00535DE7 /* WeatherService+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WeatherService+Rx.swift"; sourceTree = "<group>"; };
-		679CC72A2500041E00A46BBE /* landing_video-FlavorACE.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "landing_video-FlavorACE.mp4"; sourceTree = "<group>"; };
-		679CC72B2500041E00A46BBE /* landing_video-FlavorDPL.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "landing_video-FlavorDPL.mp4"; sourceTree = "<group>"; };
 		67A18B7224CA0EA100F7A77B /* ApigeeError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApigeeError.swift; sourceTree = "<group>"; };
 		67A18B8F24CB354100F7A77B /* RefreshTokenRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshTokenRequest.swift; sourceTree = "<group>"; };
 		67A482BD26BA09FE00FBB0BB /* WatchAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchAppDelegate.swift; sourceTree = "<group>"; };
@@ -1916,8 +1897,6 @@
 		67DDBDB62464632F006CD6EB /* GoogleService-Info-RC-FlavorPEPCO.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-RC-FlavorPEPCO.plist"; sourceTree = "<group>"; };
 		67DDBDBA246463B7006CD6EB /* GoogleService-Info-BETA-FlavorPEPCO.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-BETA-FlavorPEPCO.plist"; sourceTree = "<group>"; };
 		67DDBDBE24646E38006CD6EB /* Color+OpCo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+OpCo.swift"; sourceTree = "<group>"; };
-		67E78D882509541A001AB1BD /* landing_video-FlavorPEPCO.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "landing_video-FlavorPEPCO.mp4"; sourceTree = "<group>"; };
-		67E78D8A25095439001AB1BD /* landing_video-FlavorPECO.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "landing_video-FlavorPECO.mp4"; sourceTree = "<group>"; };
 		680FEAC89543EFDDA1CC1E98 /* Pods-UITests.bge-beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UITests.bge-beta.xcconfig"; path = "Pods/Target Support Files/Pods-UITests/Pods-UITests.bge-beta.xcconfig"; sourceTree = "<group>"; };
 		68A2B01FFCACB64D965D63A2 /* Pods-EUMobile.test-bge.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile.test-bge.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile/Pods-EUMobile.test-bge.xcconfig"; sourceTree = "<group>"; };
 		68D36CE014A99FEBEEC49B46 /* Pods-EUMobileUITests.testing-ace.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobileUITests.testing-ace.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobileUITests/Pods-EUMobileUITests.testing-ace.xcconfig"; sourceTree = "<group>"; };
@@ -1975,8 +1954,6 @@
 		824A96681FB5F3480026FA4B /* AdjustThermostatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdjustThermostatViewModel.swift; sourceTree = "<group>"; };
 		825171A21F1D1D4F0020A6CA /* RadioSelectControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadioSelectControl.swift; sourceTree = "<group>"; };
 		825171B41F1D25130020A6CA /* HomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
-		825FEE031FDF370B00DC1961 /* landing_video-FlavorCOMED.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "landing_video-FlavorCOMED.mp4"; sourceTree = "<group>"; };
-		826413781EAEAE5E007F4615 /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		826773301FB0C38600A8CFAA /* SelectDeviceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDeviceViewController.swift; sourceTree = "<group>"; };
 		826773341FB0C42F00A8CFAA /* UIViewUsingAutoLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewUsingAutoLayout.swift; sourceTree = "<group>"; };
 		8267733C1FB2286200A8CFAA /* SmartThermostatScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartThermostatScheduleViewController.swift; sourceTree = "<group>"; };
@@ -2019,7 +1996,6 @@
 		82D599411EC2374500DDB380 /* ActivityTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityTracker.swift; sourceTree = "<group>"; };
 		82D5994A1EC36B5500DDB380 /* NumberFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberFormatter.swift; sourceTree = "<group>"; };
 		82D599501EC3A00900DDB380 /* alert_icon.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = alert_icon.json; sourceTree = "<group>"; };
-		82D626171FE1AD8B00B09F00 /* landing_video-FlavorBGE.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "landing_video-FlavorBGE.mp4"; sourceTree = "<group>"; };
 		82DE61041FB9F34A00DC25C1 /* OverrideViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverrideViewModel.swift; sourceTree = "<group>"; };
 		82DE61091FB9F36D00DC25C1 /* OverrideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverrideViewController.swift; sourceTree = "<group>"; };
 		82E22B5C1F9FC7CE001F1A1B /* EnergyTipTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyTipTableViewCell.swift; sourceTree = "<group>"; };
@@ -2375,6 +2351,18 @@
 		C336046024D31EA9002CF260 /* AutoPayEnrollRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoPayEnrollRequest.swift; sourceTree = "<group>"; };
 		C336047324D32D13002CF260 /* AutoPayUnenrollRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoPayUnenrollRequest.swift; sourceTree = "<group>"; };
 		C336048024D333CB002CF260 /* BGEAutoPayInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BGEAutoPayInfo.swift; sourceTree = "<group>"; };
+		C337182E292537860092F501 /* Diodrum-ExtralightItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Diodrum-ExtralightItalic.otf"; sourceTree = "<group>"; };
+		C337182F292537870092F501 /* Diodrum-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Diodrum-Regular.otf"; sourceTree = "<group>"; };
+		C3371830292537880092F501 /* Diodrum-LightItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Diodrum-LightItalic.otf"; sourceTree = "<group>"; };
+		C3371831292537880092F501 /* Diodrum-RegularItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Diodrum-RegularItalic.otf"; sourceTree = "<group>"; };
+		C3371832292537890092F501 /* Diodrum-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Diodrum-Semibold.otf"; sourceTree = "<group>"; };
+		C3371833292537890092F501 /* Diodrum-BoldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Diodrum-BoldItalic.otf"; sourceTree = "<group>"; };
+		C33718342925378A0092F501 /* Diodrum-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Diodrum-Light.otf"; sourceTree = "<group>"; };
+		C33718352925378A0092F501 /* Diodrum-Extralight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Diodrum-Extralight.otf"; sourceTree = "<group>"; };
+		C33718362925378B0092F501 /* Diodrum-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Diodrum-Bold.otf"; sourceTree = "<group>"; };
+		C33718372925378B0092F501 /* Diodrum-SemiboldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Diodrum-SemiboldItalic.otf"; sourceTree = "<group>"; };
+		C33718382925378C0092F501 /* Diodrum-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Diodrum-Medium.otf"; sourceTree = "<group>"; };
+		C33718392925378C0092F501 /* Diodrum-MediumItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Diodrum-MediumItalic.otf"; sourceTree = "<group>"; };
 		C3381A002424060400EA7062 /* SERWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SERWebViewController.swift; sourceTree = "<group>"; };
 		C3381A012424060400EA7062 /* SERWebViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SERWebViewModel.swift; sourceTree = "<group>"; };
 		C3381A052424064100EA7062 /* PTRWidget.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = PTRWidget.html; sourceTree = "<group>"; };
@@ -2388,7 +2376,20 @@
 		C338283324E30D6900F133C5 /* PeakRewardsOverridesMock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = PeakRewardsOverridesMock.json; sourceTree = "<group>"; };
 		C33B5A4727C53D42005500C5 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		C33C3384254C9C5200E59CF8 /* LanguageResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageResult.swift; sourceTree = "<group>"; };
+		C34459B92922F014009DEDAF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C348F97327F3942000A9CC0C /* B2CUsageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = B2CUsageViewModel.swift; sourceTree = "<group>"; };
+		C34D54E02948E6B700E6012B /* HomeDiscoverCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDiscoverCardView.swift; sourceTree = "<group>"; };
+		C34D54E22948E6CA00E6012B /* HomeDiscoverCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeDiscoverCardView.xib; sourceTree = "<group>"; };
+		C3639C1E292E7F2700F17619 /* outage_reported.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = outage_reported.json; sourceTree = "<group>"; };
+		C3639C1F292E7F2800F17619 /* outage_onsite.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = outage_onsite.json; sourceTree = "<group>"; };
+		C3639C20292E7F2900F17619 /* outage_enroute.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = outage_enroute.json; sourceTree = "<group>"; };
+		C3639C21292E7F2A00F17619 /* outage_assigned.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = outage_assigned.json; sourceTree = "<group>"; };
+		C3639C26292E7FA600F17619 /* outage_onsite_sm.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = outage_onsite_sm.json; sourceTree = "<group>"; };
+		C3639C27292E7FA700F17619 /* outage_enroute_sm.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = outage_enroute_sm.json; sourceTree = "<group>"; };
+		C3639C28292E7FA800F17619 /* outage_reported_sm.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = outage_reported_sm.json; sourceTree = "<group>"; };
+		C3639C29292E7FA900F17619 /* outage_assigned_sm.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = outage_assigned_sm.json; sourceTree = "<group>"; };
+		C3639C2E292E800A00F17619 /* outage_on_sm.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = outage_on_sm.json; sourceTree = "<group>"; };
+		C3639C32292E808B00F17619 /* outage_on.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = outage_on.json; sourceTree = "<group>"; };
 		C364A8782375DC7B00C7D51B /* StateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateView.swift; sourceTree = "<group>"; };
 		C364A8792375DC7B00C7D51B /* StateView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StateView.xib; sourceTree = "<group>"; };
 		C364A87C2375DC9000C7D51B /* EmptyChildViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyChildViewController.swift; sourceTree = "<group>"; };
@@ -2421,6 +2422,13 @@
 		C3BCD53D2567238C006F405E /* HomeGameCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeGameCardView.swift; sourceTree = "<group>"; };
 		C3BCD5432567239D006F405E /* HomeGameCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeGameCardView.xib; sourceTree = "<group>"; };
 		C3C5696B256C33F60039C8A4 /* foresee_configuration.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = foresee_configuration.json; sourceTree = "<group>"; };
+		C3C8290129649AB200A7E390 /* HomeDiscoverCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDiscoverCardViewModel.swift; sourceTree = "<group>"; };
+		C3CD431629412C0D00297553 /* Exelon_WaveGraphic_B_RGB_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Exelon_WaveGraphic_B_RGB_2.png; sourceTree = "<group>"; };
+		C3CD431729412C0E00297553 /* wavemotif.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = wavemotif.json; sourceTree = "<group>"; };
+		C3CD431A29426ACB00297553 /* wavemotif_slower_trimmed.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = wavemotif_slower_trimmed.mov; sourceTree = "<group>"; };
+		C3D25405292439090024FF59 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
+		C3DE17DB291C2A0D0055275D /* HomeCardHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCardHeaderView.swift; sourceTree = "<group>"; };
+		C3DE17DD291C2E110055275D /* HomeCardHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeCardHeaderView.xib; sourceTree = "<group>"; };
 		C3DF2B9C24CB32D000A6D4EC /* BillService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillService.swift; sourceTree = "<group>"; };
 		C3DF2BA924CB42BB00A6D4EC /* BillService+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BillService+Rx.swift"; sourceTree = "<group>"; };
 		C3DF2BB624CB42CE00A6D4EC /* PaymentService+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PaymentService+Rx.swift"; sourceTree = "<group>"; };
@@ -2495,16 +2503,6 @@
 		E7C92D899B3F95969C91CABF /* Pods-EUMobileUnitTests.prod-comed.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobileUnitTests.prod-comed.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobileUnitTests/Pods-EUMobileUnitTests.prod-comed.xcconfig"; sourceTree = "<group>"; };
 		E7F38E0E2760B73700F8711B /* PKCEAuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKCEAuthenticationService.swift; sourceTree = "<group>"; };
 		E80043071E64DEE2005CF531 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
-		E800431C1E65FF70005CF531 /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
-		E800431D1E65FF70005CF531 /* OpenSans-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-BoldItalic.ttf"; sourceTree = "<group>"; };
-		E800431E1E65FF70005CF531 /* OpenSans-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-ExtraBold.ttf"; sourceTree = "<group>"; };
-		E800431F1E65FF70005CF531 /* OpenSans-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
-		E80043201E65FF70005CF531 /* OpenSans-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Italic.ttf"; sourceTree = "<group>"; };
-		E80043211E65FF70005CF531 /* OpenSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Light.ttf"; sourceTree = "<group>"; };
-		E80043221E65FF70005CF531 /* OpenSans-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-LightItalic.ttf"; sourceTree = "<group>"; };
-		E80043231E65FF70005CF531 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
-		E80043241E65FF70005CF531 /* OpenSans-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Semibold.ttf"; sourceTree = "<group>"; };
-		E80043251E65FF70005CF531 /* OpenSans-SemiboldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiboldItalic.ttf"; sourceTree = "<group>"; };
 		E800434C1E671FD6005CF531 /* PasswordStrengthMeterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordStrengthMeterView.swift; sourceTree = "<group>"; };
 		E80043551E68CDCB005CF531 /* IndividualBorders.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndividualBorders.swift; sourceTree = "<group>"; };
 		E802AB3E1E85936700981D18 /* LineHeightLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineHeightLabel.swift; sourceTree = "<group>"; };
@@ -3135,16 +3133,18 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		214006562767F55F00430C6E /* OutageTracker */ = {
+		214006562767F55F00430C6E /* Outage */ = {
 			isa = PBXGroup;
 			children = (
+				C3639C32292E808B00F17619 /* outage_on.json */,
+				359BDB7222D8F9B2007002B0 /* outage_off.json */,
+				C3639C21292E7F2A00F17619 /* outage_assigned.json */,
+				C3639C20292E7F2900F17619 /* outage_enroute.json */,
+				C3639C1F292E7F2800F17619 /* outage_onsite.json */,
+				C3639C1E292E7F2700F17619 /* outage_reported.json */,
 				215D05AB2773950D009377AC /* SM */,
-				214006572767F58C00430C6E /* ot_assigned.json */,
-				2140065A2767F58E00430C6E /* ot_enroute.json */,
-				214006582767F58D00430C6E /* ot_onsite.json */,
-				214006592767F58D00430C6E /* ot_reported.json */,
 			);
-			path = OutageTracker;
+			path = Outage;
 			sourceTree = "<group>";
 		};
 		215BD783275AC2A70011F642 /* OutageTracker */ = {
@@ -3174,12 +3174,12 @@
 		215D05AB2773950D009377AC /* SM */ = {
 			isa = PBXGroup;
 			children = (
+				C3639C29292E7FA900F17619 /* outage_assigned_sm.json */,
+				C3639C27292E7FA700F17619 /* outage_enroute_sm.json */,
+				C3639C26292E7FA600F17619 /* outage_onsite_sm.json */,
+				C3639C28292E7FA800F17619 /* outage_reported_sm.json */,
+				C3639C2E292E800A00F17619 /* outage_on_sm.json */,
 				215D05AD27739540009377AC /* SM_alerticon.json */,
-				215D05B027739542009377AC /* SM_OnWhite.json */,
-				215D05AF27739541009377AC /* SM_ot_assigned.json */,
-				215D05AC27739540009377AC /* SM_ot_enroute.json */,
-				215D05AE27739541009377AC /* SM_ot_onsite.json */,
-				215D05B127739542009377AC /* SM_ReportedWhite.json */,
 			);
 			path = SM;
 			sourceTree = "<group>";
@@ -3244,15 +3244,6 @@
 				4AC1E07F2726739900740A37 /* MoveGeneralSubmitErrorViewController.swift */,
 			);
 			path = Move;
-			sourceTree = "<group>";
-		};
-		30636F0624C82EBD00CCBFAE /* OpcoIdentityCardView */ = {
-			isa = PBXGroup;
-			children = (
-				30636F0724C82F2F00CCBFAE /* OpcoIdentityCardView.swift */,
-				30636F0924C82F4200CCBFAE /* OpcoIdentityCardView.xib */,
-			);
-			path = OpcoIdentityCardView;
 			sourceTree = "<group>";
 		};
 		3090A633247E412E00815EA1 /* PEPCO */ = {
@@ -3649,7 +3640,9 @@
 		3559C89822F9C51400481A87 /* Cards */ = {
 			isa = PBXGroup;
 			children = (
-				30636F0624C82EBD00CCBFAE /* OpcoIdentityCardView */,
+				C34D54DF2948E68900E6012B /* Discover */,
+				C3DE17DB291C2A0D0055275D /* HomeCardHeaderView.swift */,
+				C3DE17DD291C2E110055275D /* HomeCardHeaderView.xib */,
 				9CC99788237B479200C68300 /* Game */,
 				3559C8A122F9C5F200481A87 /* Updates */,
 				3559C89E22F9C5B200481A87 /* Weather */,
@@ -5150,12 +5143,9 @@
 		82F2BDE51FD6EF9A00612309 /* Landing Video */ = {
 			isa = PBXGroup;
 			children = (
-				825FEE031FDF370B00DC1961 /* landing_video-FlavorCOMED.mp4 */,
-				67E78D8A25095439001AB1BD /* landing_video-FlavorPECO.mp4 */,
-				82D626171FE1AD8B00B09F00 /* landing_video-FlavorBGE.mp4 */,
-				679CC72A2500041E00A46BBE /* landing_video-FlavorACE.mp4 */,
-				679CC72B2500041E00A46BBE /* landing_video-FlavorDPL.mp4 */,
-				67E78D882509541A001AB1BD /* landing_video-FlavorPEPCO.mp4 */,
+				C3CD431629412C0D00297553 /* Exelon_WaveGraphic_B_RGB_2.png */,
+				C3CD431729412C0E00297553 /* wavemotif.json */,
+				C3CD431A29426ACB00297553 /* wavemotif_slower_trimmed.mov */,
 			);
 			path = "Landing Video";
 			sourceTree = "<group>";
@@ -5217,6 +5207,7 @@
 				E8FE30AE1E7875EA009D28B7 /* ComEd */,
 				E8FE30AF1E7875F0009D28B7 /* PECO */,
 				9C0EA5AB237DAD1200D1E18F /* Gamification */,
+				214006562767F55F00430C6E /* Outage */,
 				8FD5AE981E54EAB8003F640D /* checkmark.json */,
 				82D599501EC3A00900DDB380 /* alert_icon.json */,
 				8FD5AE991E54EAB8003F640D /* loading.json */,
@@ -5224,9 +5215,6 @@
 				E8494F371EBBCB2B0047D6BE /* ellipses_loading.json */,
 				35AE569C214AD98500F633D0 /* ellipses_loading_white.json */,
 				B0B0840E217111CE00B1C632 /* appointment_tracker.json */,
-				359BDB7422D8F9B2007002B0 /* outage_on.json */,
-				359BDB7222D8F9B2007002B0 /* outage_off.json */,
-				359BDB7322D8F9B2007002B0 /* outage_reported.json */,
 				359BDBB422E0E6EA007002B0 /* checkmark_blue.json */,
 				359BDBB022E0E6E3007002B0 /* smallcircleload_blue.json */,
 			);
@@ -5244,7 +5232,7 @@
 				82D5994A1EC36B5500DDB380 /* NumberFormatter.swift */,
 				225FF8591EC56B480079010C /* Date.swift */,
 				82BE057E1ED8D14D00BC06EE /* FadeSubviews.swift */,
-				826413781EAEAE5E007F4615 /* Fonts.swift */,
+				C3D25405292439090024FF59 /* Fonts.swift */,
 				E80043551E68CDCB005CF531 /* IndividualBorders.swift */,
 				E802AB3E1E85936700981D18 /* LineHeightLabel.swift */,
 				E80D2E161E721668002626C9 /* MaskedString.swift */,
@@ -5639,6 +5627,7 @@
 		B5AC06C61E521B2600BBA4ED /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C34459B92922F014009DEDAF /* LaunchScreen.storyboard */,
 				67D73B0E246C761900450B63 /* Assets */,
 				8FD5AE971E54EA8C003F640D /* Lottie Animations */,
 				82F2BDE51FD6EF9A00612309 /* Landing Video */,
@@ -5702,6 +5691,16 @@
 			path = "Network Extensions";
 			sourceTree = "<group>";
 		};
+		C34D54DF2948E68900E6012B /* Discover */ = {
+			isa = PBXGroup;
+			children = (
+				C34D54E02948E6B700E6012B /* HomeDiscoverCardView.swift */,
+				C3C8290129649AB200A7E390 /* HomeDiscoverCardViewModel.swift */,
+				C34D54E22948E6CA00E6012B /* HomeDiscoverCardView.xib */,
+			);
+			path = Discover;
+			sourceTree = "<group>";
+		};
 		C364A8772375DC7B00C7D51B /* State View */ = {
 			isa = PBXGroup;
 			children = (
@@ -5749,16 +5748,18 @@
 		E800431B1E65FF4D005CF531 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				E800431C1E65FF70005CF531 /* OpenSans-Bold.ttf */,
-				E800431D1E65FF70005CF531 /* OpenSans-BoldItalic.ttf */,
-				E800431E1E65FF70005CF531 /* OpenSans-ExtraBold.ttf */,
-				E800431F1E65FF70005CF531 /* OpenSans-ExtraBoldItalic.ttf */,
-				E80043201E65FF70005CF531 /* OpenSans-Italic.ttf */,
-				E80043211E65FF70005CF531 /* OpenSans-Light.ttf */,
-				E80043221E65FF70005CF531 /* OpenSans-LightItalic.ttf */,
-				E80043231E65FF70005CF531 /* OpenSans-Regular.ttf */,
-				E80043241E65FF70005CF531 /* OpenSans-Semibold.ttf */,
-				E80043251E65FF70005CF531 /* OpenSans-SemiboldItalic.ttf */,
+				C33718362925378B0092F501 /* Diodrum-Bold.otf */,
+				C3371833292537890092F501 /* Diodrum-BoldItalic.otf */,
+				C33718352925378A0092F501 /* Diodrum-Extralight.otf */,
+				C337182E292537860092F501 /* Diodrum-ExtralightItalic.otf */,
+				C33718342925378A0092F501 /* Diodrum-Light.otf */,
+				C3371830292537880092F501 /* Diodrum-LightItalic.otf */,
+				C33718382925378C0092F501 /* Diodrum-Medium.otf */,
+				C33718392925378C0092F501 /* Diodrum-MediumItalic.otf */,
+				C337182F292537870092F501 /* Diodrum-Regular.otf */,
+				C3371831292537880092F501 /* Diodrum-RegularItalic.otf */,
+				C3371832292537890092F501 /* Diodrum-Semibold.otf */,
+				C33718372925378B0092F501 /* Diodrum-SemiboldItalic.otf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -5814,11 +5815,7 @@
 		E8FE30AD1E7875E5009D28B7 /* BGE */ = {
 			isa = PBXGroup;
 			children = (
-				214006562767F55F00430C6E /* OutageTracker */,
 				B0B083C821710BAE00B1C632 /* Appointments */,
-				359BB2782148349200FBAD83 /* outage-FlavorBGE.json */,
-				359BB27E2148517F00FBAD83 /* sm_outage_loading-FlavorBGE.json */,
-				359BB2662146F05400FBAD83 /* sm_outage-FlavorBGE.json */,
 			);
 			path = BGE;
 			sourceTree = "<group>";
@@ -6082,6 +6079,7 @@
 			files = (
 				67A986A924F9693600BD46E7 /* outage-FlavorPECO.json in Resources */,
 				67A986DB24FD419A00BD46E7 /* GoogleService-Info-RELEASE-FlavorDPL.plist in Resources */,
+				C33718412925378D0092F501 /* Diodrum-Extralight.otf in Resources */,
 				675F47B724AB6C9700A828F9 /* Login.storyboard in Resources */,
 				0D79C6C51F1D3360004793DD /* Maintenance.storyboard in Resources */,
 				22EF559B2170507700070C13 /* AppointmentDetailViewController.xib in Resources */,
@@ -6095,44 +6093,44 @@
 				675F4DC224AB828200A828F9 /* MaintenanceModeMock.json in Resources */,
 				67A986AA24F9693600BD46E7 /* sm_outage_loading-FlavorPECO.json in Resources */,
 				678B622D24D09A1B009F8A6B /* RegistrationQuestionsMock.json in Resources */,
+				C3CD431929412C1000297553 /* wavemotif.json in Resources */,
 				35C9139222E9E9C1009DD71A /* MiniWalletSheet.storyboard in Resources */,
 				C364A87B2375DC7B00C7D51B /* StateView.xib in Resources */,
-				E80043381E65FF70005CF531 /* OpenSans-LightItalic.ttf in Resources */,
-				30636F0E24C82F8500CCBFAE /* OpcoIdentityCardView.xib in Resources */,
 				9CD3532722CABC0A00165F87 /* PrepaidCardView.xib in Resources */,
 				67A9869F24F9691600BD46E7 /* GoogleService-Info-BETA-FlavorPECO.plist in Resources */,
 				B0DB2763215ECF5100CD703B /* AccountInfoBarCell.xib in Resources */,
 				B0B083FB21710CDB00B1C632 /* Appt_Confirmed-FlavorBGE.json in Resources */,
 				356AC13325064E5F000CF867 /* TapToPay.storyboard in Resources */,
 				21D4983027310C3300EAE112 /* AddressLookupResponseMock.json in Resources */,
-				215D05B227739542009377AC /* SM_ot_enroute.json in Resources */,
 				B07E17E92209F0CA00B6E3C7 /* bill_comparison.json in Resources */,
+				C33718402925378D0092F501 /* Diodrum-Light.otf in Resources */,
 				216AE55B278E4B4E0018E220 /* StatusTextView.xib in Resources */,
-				67D5632024EDC14D00852551 /* landing_video-FlavorCOMED.mp4 in Resources */,
 				B089571F2217455200A97965 /* account_lookup.json in Resources */,
 				675F4D5624AB828200A828F9 /* HomeProfileLoadMock.json in Resources */,
-				215D05B527739542009377AC /* SM_ot_assigned.json in Resources */,
 				675F4DCE24AB828200A828F9 /* WalletMock.json in Resources */,
+				C3639C25292E7F2B00F17619 /* outage_assigned.json in Resources */,
 				216AE561278E5A8C0018E220 /* ETAView.xib in Resources */,
 				B0726939212757AA009B2BFF /* HomeUpdateView.xib in Resources */,
+				C3639C23292E7F2A00F17619 /* outage_onsite.json in Resources */,
 				822BBBA41EFC1A01004EBBAB /* WebViewController.xib in Resources */,
 				35C913A922EB6A98009DD71A /* ButtonRow.xib in Resources */,
 				67A9869624F968F200BD46E7 /* Assets-FlavorPECO.xcassets in Resources */,
+				C3DE17DE291C2E110055275D /* HomeCardHeaderView.xib in Resources */,
 				B0DB275A215EBEE600CD703B /* AlertPreferencesLanguageCell.xib in Resources */,
 				674A113925223E1000AF0D38 /* LaunchScreen-FlavorPEPCO.storyboard in Resources */,
 				67D5632424EDC6F500852551 /* Appt_Inprogress-FlavorCOMED.json in Resources */,
 				B039DB75225BD02B00BB5479 /* HomePrepaidCardView.xib in Resources */,
-				E80043261E65FF70005CF531 /* OpenSans-Bold.ttf in Resources */,
 				4A74A0BB27304D6C00F87986 /* ISUMUnauthMove.storyboard in Resources */,
 				35532445253D6B8E0080589F /* PaymentAmount.storyboard in Resources */,
 				21C72A732772527700C31411 /* GasOnlyView.xib in Resources */,
+				C3CD431829412C1000297553 /* Exelon_WaveGraphic_B_RGB_2.png in Resources */,
 				9C62446822C42B4200F14DA0 /* FloatLabelTextView.xib in Resources */,
 				351241EF22B3DB8700E8BD25 /* AccountSheet.storyboard in Resources */,
 				30DD883625498122007C320D /* ItronSSODataMock.json in Resources */,
 				3090A643247F9A6900815EA1 /* More.storyboard in Resources */,
 				67D5632224EDC6F500852551 /* Appt_Complete-FlavorCOMED.json in Resources */,
 				676279EF247DB11100A57FBC /* TermPolicies.html in Resources */,
-				359BDB7822D8F9B2007002B0 /* outage_reported.json in Resources */,
+				C3639C2A292E7FA900F17619 /* outage_onsite_sm.json in Resources */,
 				67A986D524FD419700BD46E7 /* GoogleService-Info-BETA-FlavorACE.plist in Resources */,
 				678C7F242833F5EB006C0FDC /* SeamlessMove.storyboard in Resources */,
 				B0728E49215C149A0007C608 /* AlertPreferencesTableViewCell.xib in Resources */,
@@ -6140,6 +6138,7 @@
 				676DF27E27A2F54000185DB5 /* splash.json in Resources */,
 				4A398A48271EAD4100FA7B89 /* AccountVerification.json in Resources */,
 				67A986DA24FD419A00BD46E7 /* GoogleService-Info-RC-FlavorDPL.plist in Resources */,
+				C3639C2D292E7FA900F17619 /* outage_assigned_sm.json in Resources */,
 				B0B12602221B0D6C00AF4DC4 /* peak_rewards_overrides.json in Resources */,
 				216AE557278CED8F0018E220 /* StateAnimationView.xib in Resources */,
 				B0B0840F217111CE00B1C632 /* appointment_tracker.json in Resources */,
@@ -6150,17 +6149,15 @@
 				82D599511EC3A00900DDB380 /* alert_icon.json in Resources */,
 				67D5632124EDC6F500852551 /* Appt_Canceled-FlavorCOMED.json in Resources */,
 				B01FF0AF221DFC77008CA222 /* autopay_info.json in Resources */,
-				E80043321E65FF70005CF531 /* OpenSans-Italic.ttf in Resources */,
 				67A986A124F9691600BD46E7 /* GoogleService-Info-RC-FlavorPECO.plist in Resources */,
+				C3639C2F292E800A00F17619 /* outage_on_sm.json in Resources */,
 				B0882CA6210B926B00EB756B /* UsageToolCardView.xib in Resources */,
 				675F4DE024AB828200A828F9 /* EnergyTipsMock.json in Resources */,
 				675F4D4A24AB828200A828F9 /* AlertBannerMock.json in Resources */,
-				E80043291E65FF70005CF531 /* OpenSans-BoldItalic.ttf in Resources */,
 				B0B083FC21710CDB00B1C632 /* Appt_Complete-FlavorBGE.json in Resources */,
 				B0EE78EA221353E700F53C56 /* report_outage.json in Resources */,
 				224EFF1C216E4E76008A0E40 /* HomeAppointmentCardView.xib in Resources */,
 				215BD794276298790011F642 /* StatusInfoView.xib in Resources */,
-				E800432F1E65FF70005CF531 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
 				9C34D746239EE92400DF7FE2 /* GameTasks.json in Resources */,
 				67A986A424F9693300BD46E7 /* Appt_Complete-FlavorPECO.json in Resources */,
 				675F4D6E24AB828200A828F9 /* BudgetBillingMock.json in Resources */,
@@ -6168,6 +6165,7 @@
 				67A9869B24F9691300BD46E7 /* GoogleService-Info-RC-FlavorCOMED.plist in Resources */,
 				8FD3C2691E5250AF005FB1BB /* Main.storyboard in Resources */,
 				358DE0A821021B64002C544E /* UnavailableView.xib in Resources */,
+				C3639C2C292E7FA900F17619 /* outage_reported_sm.json in Resources */,
 				9C0E1C972333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.xib in Resources */,
 				B089573B22175FDC00A97965 /* alert_preferences.json in Resources */,
 				35A6C6E0211CC11E00C2A58F /* Updates.storyboard in Resources */,
@@ -6179,27 +6177,28 @@
 				9C97DB1B20EFE2E100FF8E20 /* HomeProjectedBillCardView.xib in Resources */,
 				9CABF6BD239719DB00B07B01 /* QuizAnswerView.xib in Resources */,
 				359BDBB122E0E6E3007002B0 /* smallcircleload_blue.json in Resources */,
-				359BB2792148349200FBAD83 /* outage-FlavorBGE.json in Resources */,
+				C337183C2925378D0092F501 /* Diodrum-LightItalic.otf in Resources */,
 				67A986A224F9691600BD46E7 /* GoogleService-Info-RELEASE-FlavorPECO.plist in Resources */,
 				67D5632324EDC6F500852551 /* Appt_Confirmed-FlavorCOMED.json in Resources */,
 				674A113725223E1000AF0D38 /* LaunchScreen-FlavorCOMED.storyboard in Resources */,
 				E8B4F4B71E5C99A00031D934 /* Outage.storyboard in Resources */,
-				E800432C1E65FF70005CF531 /* OpenSans-ExtraBold.ttf in Resources */,
+				C33718442925378D0092F501 /* Diodrum-Medium.otf in Resources */,
 				4A74A0CD273A6D8200F87986 /* AccountDetailsUnauthMock.json in Resources */,
 				B08957002215F6DC00A97965 /* home_profile.json in Resources */,
 				B0B083FA21710CDB00B1C632 /* Appt_otw-FlavorBGE.json in Resources */,
 				9C62445C22C171C900F14DA0 /* FloatLabelTextField.xib in Resources */,
+				C337183A2925378D0092F501 /* Diodrum-ExtralightItalic.otf in Resources */,
+				C337183B2925378D0092F501 /* Diodrum-Regular.otf in Resources */,
 				C3BCD5442567239D006F405E /* HomeGameCardView.xib in Resources */,
 				215BD789275ACE3A0011F642 /* StatusView.xib in Resources */,
 				67A986A724F9693300BD46E7 /* Appt_otw-FlavorPECO.json in Resources */,
-				E80043411E65FF70005CF531 /* OpenSans-SemiboldItalic.ttf in Resources */,
 				9CEE411D23722A0F005A4AD3 /* DailyInsightCoinView.xib in Resources */,
+				C3639C22292E7F2A00F17619 /* outage_reported.json in Resources */,
 				67D5632524EDC6F500852551 /* Appt_otw-FlavorCOMED.json in Resources */,
 				9CD3533822CABDBA00165F87 /* DisclosureCellButton.xib in Resources */,
 				359BDB6B22D8DCEC007002B0 /* OutageStatusView.xib in Resources */,
 				675F4D6224AB828200A828F9 /* WeatherMock.json in Resources */,
 				B07E17EC2209F0CA00B6E3C7 /* payments.json in Resources */,
-				67E78D892509541A001AB1BD /* landing_video-FlavorPEPCO.mp4 in Resources */,
 				82A18EFC1EBA6A4100BE9F21 /* DisclosureButton.xib in Resources */,
 				B08956F92215D11B00A97965 /* energy_tips.json in Resources */,
 				67A986A524F9693300BD46E7 /* Appt_Confirmed-FlavorPECO.json in Resources */,
@@ -6210,13 +6209,11 @@
 				675F4E2F24B4DB3500A828F9 /* AnonOutageStatusMock.json in Resources */,
 				675F4D2C24AB828200A828F9 /* OutageStatusMock.json in Resources */,
 				4A398A40271E997600FA7B89 /* WorkdaysMock.json in Resources */,
-				359BB2672146F05400FBAD83 /* sm_outage-FlavorBGE.json in Resources */,
 				E841F39F1F02F30E007BFA82 /* UINavigationBackButton.xib in Resources */,
 				675F4DD424AB828200A828F9 /* ScheduledPaymentUNUSEDMock.json in Resources */,
 				675F4D9824AB828200A828F9 /* RecoverUsernameMock.json in Resources */,
 				675F4D7A24AB828200A828F9 /* BillPDFMock.json in Resources */,
 				674A113A25223E1000AF0D38 /* LaunchScreen-FlavorACE.storyboard in Resources */,
-				679CC72D2500041F00A46BBE /* landing_video-FlavorACE.mp4 in Resources */,
 				67A986DE24FD419D00BD46E7 /* GoogleService-Info-RC-FlavorPEPCO.plist in Resources */,
 				B07E17EF220A2EAF00B6E3C7 /* opco_updates.json in Resources */,
 				B0B125FB221B080400AF4DC4 /* peak_rewards_summary.json in Resources */,
@@ -6224,12 +6221,11 @@
 				9CC9978A237B49F500C68300 /* HomeGameOnboardingCardView.xib in Resources */,
 				4A74A0B3272E96B500F87986 /* StopServiceConfirmationMock.json in Resources */,
 				675F4D4424AB828200A828F9 /* AccountLookupMock.json in Resources */,
+				C33718422925378D0092F501 /* Diodrum-Bold.otf in Resources */,
 				4465DE891F1FD07C0014537F /* TemplateCardView.xib in Resources */,
 				675F4DDA24AB828200A828F9 /* AutoPayEnrollMock.json in Resources */,
 				3559C8B62301E4FF00481A87 /* AutoPay.storyboard in Resources */,
 				C3C5696C256C33F60039C8A4 /* foresee_configuration.json in Resources */,
-				2140065B2767F58E00430C6E /* ot_assigned.json in Resources */,
-				2140065D2767F58E00430C6E /* ot_reported.json in Resources */,
 				E87926D61F85580300794CA9 /* BillBreakdownViewController.xib in Resources */,
 				C338283424E30D6900F133C5 /* PeakRewardsOverridesMock.json in Resources */,
 				82E22B611F9FC7CE001F1A1B /* EnergyTipTableViewCell.xib in Resources */,
@@ -6248,15 +6244,15 @@
 				35A5DCC32305D70400A82AA8 /* AutoPayBGE.storyboard in Resources */,
 				E867A8FA1F053B00007F4FD9 /* Wallet.storyboard in Resources */,
 				82AEF2E41F618F560057E7ED /* Settings.bundle in Resources */,
-				82D626181FE1AD8B00B09F00 /* landing_video-FlavorBGE.mp4 in Resources */,
 				B089572D2217596400A97965 /* billing_history.json in Resources */,
 				B066281A2252953B0060A89F /* ser_results.json in Resources */,
 				C3381A062424064100EA7062 /* PTRWidget.html in Resources */,
 				67A986E024FD41A100BD46E7 /* Assets-FlavorPEPCO.xcassets in Resources */,
 				35B9609922B7BC61003BCC97 /* PremiseListRow.xib in Resources */,
+				C33718452925378D0092F501 /* Diodrum-MediumItalic.otf in Resources */,
+				C34459BA2922F015009DEDAF /* LaunchScreen.storyboard in Resources */,
 				282B4F7A26E7490400ACD33C /* ISUMStop.storyboard in Resources */,
 				B08957072215FE7900A97965 /* recover_username.json in Resources */,
-				679CC72E2500041F00A46BBE /* landing_video-FlavorDPL.mp4 in Resources */,
 				C338282724E30B0600F133C5 /* PeakRewardsSummaryMock.json in Resources */,
 				9C0A2C3923A042DC002C4B8E /* message_bubble_tip.json in Resources */,
 				9C0EA5C1237DAD2900D1E18F /* buddy_particles_hearts.json in Resources */,
@@ -6266,7 +6262,6 @@
 				675F4D5024AB828200A828F9 /* TokenMock.json in Resources */,
 				8FD5AE9A1E54EAB8003F640D /* checkmark.json in Resources */,
 				215D05B327739542009377AC /* SM_alerticon.json in Resources */,
-				E800433E1E65FF70005CF531 /* OpenSans-Semibold.ttf in Resources */,
 				9C8775B622A082CE0087F0BA /* FirstFuelWidget.html in Resources */,
 				9C0A2C3C23A042DC002C4B8E /* message_bubble_unique.json in Resources */,
 				675F4DAA24AB828200A828F9 /* SSODataMock.json in Resources */,
@@ -6281,9 +6276,7 @@
 				B07E17EB2209F0CA00B6E3C7 /* maintenance.json in Resources */,
 				359BDBB522E0E6EA007002B0 /* checkmark_blue.json in Resources */,
 				8FD5AE9D1E54EAB8003F640D /* loading.json in Resources */,
-				E80043351E65FF70005CF531 /* OpenSans-Light.ttf in Resources */,
 				9C88942223C39F2B002E46A7 /* confetti.json in Resources */,
-				E800433B1E65FF70005CF531 /* OpenSans-Regular.ttf in Resources */,
 				675F4DC824AB828200A828F9 /* ForecastMonthlyBillMock.json in Resources */,
 				35C9139F22E9EFFB009DD71A /* MiniWalletItemRow.xib in Resources */,
 				674A113B25223E1000AF0D38 /* LaunchScreen-FlavorPECO.storyboard in Resources */,
@@ -6292,6 +6285,7 @@
 				E8494F381EBBCB2B0047D6BE /* full_screen_loading.json in Resources */,
 				E8B8C8481F9E358F005828B0 /* SERPTSGraphView.xib in Resources */,
 				67A986A624F9693300BD46E7 /* Appt_Inprogress-FlavorPECO.json in Resources */,
+				C3639C33292E808B00F17619 /* outage_on.json in Resources */,
 				B07E17EA2209F0CA00B6E3C7 /* bill_forecast.json in Resources */,
 				E8C29C781F630FC100DB73FC /* OutageStatusButton.xib in Resources */,
 				675F4D8624AB828200A828F9 /* EnergyRewardsMock.json in Resources */,
@@ -6304,36 +6298,35 @@
 				675F4D5C24AB828200A828F9 /* PaymentMock.json in Resources */,
 				35ACCB4320EA590D0022907F /* HomeOutageCardView.xib in Resources */,
 				675F4D8C24AB828200A828F9 /* MinVersionMock.json in Resources */,
+				C3CD431B29426ACB00297553 /* wavemotif_slower_trimmed.mov in Resources */,
 				35A6C6FA2121D64100C2A58F /* ToggleTableViewCell.xib in Resources */,
 				67D5632824EDC6F600852551 /* sm_outage_loading-FlavorCOMED.json in Resources */,
-				2140065C2767F58E00430C6E /* ot_onsite.json in Resources */,
 				B5D415781F3A6C6300AC32B2 /* GoogleService-Info-RELEASE-FlavorBGE.plist in Resources */,
 				B0030D0C2097BC9A00327A3D /* MaintenanceModeView.xib in Resources */,
 				54B31A6E1EE065E20002E657 /* Bill.storyboard in Resources */,
-				215D05B427739542009377AC /* SM_ot_onsite.json in Resources */,
 				0E5BEF0D202E2390009D1ADB /* GoogleService-Info-RC-FlavorBGE.plist in Resources */,
 				C372B65B2758416800E38F64 /* OutageTracker.storyboard in Resources */,
 				C30079382436637600A9BEB0 /* BGEStrings.strings in Resources */,
+				C3639C2B292E7FA900F17619 /* outage_enroute_sm.json in Resources */,
 				C3087B0224BDEE8B005AE544 /* EnergyTipMock.json in Resources */,
 				9C0EA5A4237DA45A00D1E18F /* EnergyBuddyView.xib in Resources */,
 				675F4D9E24AB828200A828F9 /* PaymentsMock.json in Resources */,
-				2140065E2767F58E00430C6E /* ot_enroute.json in Resources */,
 				B07E17E82209F0CA00B6E3C7 /* account_details.json in Resources */,
+				C3639C24292E7F2B00F17619 /* outage_enroute.json in Resources */,
 				35AE569D214AD98500F633D0 /* ellipses_loading_white.json in Resources */,
 				9C0A2C3623A042DC002C4B8E /* message_bubble_quiz.json in Resources */,
 				9C0EA5BB237DAD2900D1E18F /* buddy_particles_sparkles.json in Resources */,
 				352B8D98230D72E5007F8CEE /* Unauthenticated.storyboard in Resources */,
-				359BB27F2148517F00FBAD83 /* sm_outage_loading-FlavorBGE.json in Resources */,
 				35A6C6B9211C6CCE00C2A58F /* TitleTableViewHeaderView.xib in Resources */,
 				9C0EA5BE237DAD2900D1E18F /* buddy_face_normal.json in Resources */,
+				C337183F2925378D0092F501 /* Diodrum-BoldItalic.otf in Resources */,
 				B0EE78F12214766700F53C56 /* appointments.json in Resources */,
-				215D05B627739543009377AC /* SM_OnWhite.json in Resources */,
 				B08956F22215C27100A97965 /* sso_data.json in Resources */,
 				358BD21720F8FB2D00DA2012 /* BillImpactView.xib in Resources */,
 				67A986D624FD419700BD46E7 /* GoogleService-Info-RC-FlavorACE.plist in Resources */,
 				9CEE411923722444005A4AD3 /* Game.storyboard in Resources */,
 				B089573422175BFE00A97965 /* budget_billing_info.json in Resources */,
-				215D05B727739543009377AC /* SM_ReportedWhite.json in Resources */,
+				C337183E2925378D0092F501 /* Diodrum-Semibold.otf in Resources */,
 				9C0EA5B8237DAD2900D1E18F /* buddy_face_happy.json in Resources */,
 				E82FF1EE1F97CC7900C50F8F /* HomeUsageCardView.xib in Resources */,
 				B07E17E72209F0CA00B6E3C7 /* accounts.json in Resources */,
@@ -6341,17 +6334,18 @@
 				67A986D924FD419A00BD46E7 /* GoogleService-Info-BETA-FlavorDPL.plist in Resources */,
 				67893AF324DB3825000143D6 /* RegisterForAlertsMock.json in Resources */,
 				359BDB7522D8F9B2007002B0 /* outage_off.json in Resources */,
+				C34D54E32948E6CA00E6012B /* HomeDiscoverCardView.xib in Resources */,
 				675F4D6824AB828200A828F9 /* DasilyUsageMock.json in Resources */,
 				B07D247720C590BE00BD22EB /* HomeWeatherView.xib in Resources */,
 				3575232D22C53A1B00A0AFAC /* AccountListRow.xib in Resources */,
-				359BDB7B22D8F9B2007002B0 /* outage_on.json in Resources */,
 				21C66E222791EF8E00DC1A07 /* SurveyView.xib in Resources */,
 				82AC2A111FAA691000EACB3B /* PeakRewards.storyboard in Resources */,
+				C33718432925378D0092F501 /* Diodrum-SemiboldItalic.otf in Resources */,
 				B0CB1C87227CB4510081F99B /* TabCollectionViewCell.xib in Resources */,
 				675F4D3224AB828200A828F9 /* ReportOutageMock.json in Resources */,
 				9C46B12B221613FB00A5D537 /* wallet.json in Resources */,
+				C337183D2925378D0092F501 /* Diodrum-RegularItalic.otf in Resources */,
 				67A986A324F9693300BD46E7 /* Appt_Canceled-FlavorPECO.json in Resources */,
-				67E78D8B25095439001AB1BD /* landing_video-FlavorPECO.mp4 in Resources */,
 				4A74A0B9272EB4BE00F87986 /* MoveServiceConfirmationMock.json in Resources */,
 				675F4D9224AB828200A828F9 /* CompareBillMock.json in Resources */,
 				675F4D7424AB828200A828F9 /* SharePointAlertMock.json in Resources */,
@@ -6544,6 +6538,7 @@
 				"${BUILT_PRODUCTS_DIR}/RxRelay-iOS/RxRelay.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwiftExt-iOS/RxSwiftExt.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftAlgorithms/Algorithms.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
 				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
@@ -6569,6 +6564,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Algorithms.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XLPagerTabStrip.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lottie.framework",
@@ -6626,6 +6622,7 @@
 				"${BUILT_PRODUCTS_DIR}/RxRelay-iOS/RxRelay.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwiftExt-iOS/RxSwiftExt.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftAlgorithms/Algorithms.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
 				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
@@ -6651,6 +6648,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Algorithms.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XLPagerTabStrip.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lottie.framework",
@@ -6708,6 +6706,7 @@
 				"${BUILT_PRODUCTS_DIR}/RxRelay-iOS/RxRelay.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwiftExt-iOS/RxSwiftExt.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftAlgorithms/Algorithms.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
 				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
@@ -6733,6 +6732,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Algorithms.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XLPagerTabStrip.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lottie.framework",
@@ -7029,6 +7029,7 @@
 				9C62447422C5617D00F14DA0 /* SegmentedControl.swift in Sources */,
 				675F4C4E24AB828100A828F9 /* ForecastBill.swift in Sources */,
 				9CCE3E3F21B865F30008E1AF /* UIAlertController+SaveToWallet.swift in Sources */,
+				C3C8290229649AB200A7E390 /* HomeDiscoverCardViewModel.swift in Sources */,
 				B0DB274B215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.swift in Sources */,
 				358DE0AA21021B7A002C544E /* UnavailableView.swift in Sources */,
 				E8C453231EF4310800F5C781 /* BGEAutoPayViewController.swift in Sources */,
@@ -7165,7 +7166,6 @@
 				B068DB5E20D42E8100930589 /* HomeEditSectionHeaderView.swift in Sources */,
 				B0728E40215AD18C0007C608 /* AlertPreferencesViewController.swift in Sources */,
 				6781BCC5271F5D0100FBCD5F /* SafariContainerView.swift in Sources */,
-				826413791EAEAE5E007F4615 /* Fonts.swift in Sources */,
 				675F4CAE24AB828100A828F9 /* ValidatedAccountResponse.swift in Sources */,
 				826773351FB0C42F00A8CFAA /* UIViewUsingAutoLayout.swift in Sources */,
 				82A18EC41EBA676700BE9F21 /* Switch.swift in Sources */,
@@ -7199,6 +7199,7 @@
 				9CB16EF7219DD4A4008C4871 /* WalletTableViewCell.swift in Sources */,
 				224EFF18216E4E67008A0E40 /* HomeAppointmentCardView.swift in Sources */,
 				678C7F2F2836B699006C0FDC /* TerminateAgreementView.swift in Sources */,
+				C3D25406292439090024FF59 /* Fonts.swift in Sources */,
 				E80D2E271E72FC2C002626C9 /* AccountPicker.swift in Sources */,
 				C336045424D1B85C002CF260 /* EmailRequest.swift in Sources */,
 				C3B6555024ABD9320048C64B /* SERInfo.swift in Sources */,
@@ -7213,7 +7214,6 @@
 				82A18E551EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift in Sources */,
 				E893993D1F86AF1600B9184C /* UIViewDashedBorders.swift in Sources */,
 				675F4CE424AB828200A828F9 /* MinimumVersion.swift in Sources */,
-				30636F0824C82F2F00CCBFAE /* OpcoIdentityCardView.swift in Sources */,
 				4AEB19A726F387AA00879046 /* StopServiceFlowData.swift in Sources */,
 				21C66E202791EF7F00DC1A07 /* SurveyView.swift in Sources */,
 				E87C41471FAB72E700448F86 /* UpdatesTableViewCell.swift in Sources */,
@@ -7395,6 +7395,7 @@
 				21D41E1A2706CDFE00A622F9 /* MoveService+Rx.swift in Sources */,
 				359BDB8322DCDDCA007002B0 /* GasOnlyViewController.swift in Sources */,
 				C3087A8824B63D03005AE544 /* AccountService+Rx.swift in Sources */,
+				C34D54E12948E6B700E6012B /* HomeDiscoverCardView.swift in Sources */,
 				675F4CDE24AB828200A828F9 /* ForgotMaskedUsername.swift in Sources */,
 				C338281A24E2FDE000F133C5 /* WalletItem.swift in Sources */,
 				82A18EF01EBA686500BE9F21 /* PaperlessEBillAccountView.swift in Sources */,
@@ -7509,6 +7510,7 @@
 				B0A830892146F12F00EC3F21 /* StormModeBillViewController.swift in Sources */,
 				E8EEF7451E578BCC006804D4 /* TermsPoliciesViewController.swift in Sources */,
 				675F4BF424AB828100A828F9 /* SchedulePaymentCancelRequest.swift in Sources */,
+				C3DE17DC291C2A0E0055275D /* HomeCardHeaderView.swift in Sources */,
 				E8B674D31E96EB0C00BB0788 /* ForgotUsernameViewController.swift in Sources */,
 				C36C397624ED95A800BA83B6 /* CreditCard.swift in Sources */,
 				9C62445622C1624900F14DA0 /* SecondaryButton.swift in Sources */,
@@ -11830,6 +11832,7 @@
 				ENABLE_BITCODE = NO;
 				ENVIRONMENT_TIER = BETA;
 				EXCLUDED_ARCHS = "";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
@@ -12797,6 +12800,7 @@
 				ENABLE_BITCODE = NO;
 				ENVIRONMENT_TIER = BETA;
 				EXCLUDED_ARCHS = "";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
@@ -13767,6 +13771,7 @@
 				ENABLE_BITCODE = NO;
 				ENVIRONMENT_TIER = BETA;
 				EXCLUDED_ARCHS = "";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
@@ -14737,6 +14742,7 @@
 				ENABLE_BITCODE = NO;
 				ENVIRONMENT_TIER = BETA;
 				EXCLUDED_ARCHS = "";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
@@ -15707,6 +15713,7 @@
 				ENABLE_BITCODE = NO;
 				ENVIRONMENT_TIER = BETA;
 				EXCLUDED_ARCHS = "";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
@@ -16634,6 +16641,7 @@
 				ENABLE_BITCODE = NO;
 				ENVIRONMENT_TIER = BETA;
 				EXCLUDED_ARCHS = "";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;

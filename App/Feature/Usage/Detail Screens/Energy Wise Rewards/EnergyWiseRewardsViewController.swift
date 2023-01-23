@@ -58,8 +58,8 @@ extension EnergyWiseRewardsViewController {
     
     /// This function customizes the UI Elements
     private func styleViews() {
-         energyWiseRewardsInformationLabel.textColor = .deepGray
-         energyWiseRewardsInformationLabel.font = SystemFont.regular.of(textStyle: .body)
+         energyWiseRewardsInformationLabel.textColor = .neutralDark
+         energyWiseRewardsInformationLabel.font = .body
          energyWiseRewardsInformationLabel.setLineHeight(lineHeight: 24.0)
          footerView.isHidden = !viewModel.showAdjustThermostatCTA
     }

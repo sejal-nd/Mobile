@@ -66,25 +66,25 @@ class GameTipViewController: UIViewController {
         popupView.layer.cornerRadius = 10
         popupView.layer.masksToBounds = true
         
-        closeButton.tintColor = .actionBlue
+        closeButton.tintColor = .actionBrand
         closeButton.addTarget(self, action: #selector(dismiss(_:)), for: .touchUpInside)
         
-        titleLabel.textColor = .deepGray
-        titleLabel.font = SystemFont.regular.of(textStyle: .headline)
+        titleLabel.textColor = .neutralDark
+        titleLabel.font = .headline
         titleLabel.text = tip.title
         
-        detailLabel.textColor = .deepGray
-        detailLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        detailLabel.textColor = .neutralDark
+        detailLabel.font = .footnote
         
-        reminderButton.tintColor = .actionBlue
-        reminderButton.setTitleColor(.actionBlue, for: .normal)
-        reminderButton.setTitleColor(UIColor.actionBlue.darker(), for: .highlighted)
-        reminderButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
+        reminderButton.tintColor = .actionBrand
+        reminderButton.setTitleColor(.actionBrand, for: .normal)
+        reminderButton.setTitleColor(UIColor.primaryBlue.darker(), for: .highlighted)
+        reminderButton.titleLabel?.font = .headlineSemibold
         
-        favoriteButton.tintColor = .actionBlue
-        favoriteButton.setTitleColor(.actionBlue, for: .normal)
-        favoriteButton.setTitleColor(UIColor.actionBlue.darker(), for: .highlighted)
-        favoriteButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
+        favoriteButton.tintColor = .actionBrand
+        favoriteButton.setTitleColor(.actionBrand, for: .normal)
+        favoriteButton.setTitleColor(UIColor.primaryBlue.darker(), for: .highlighted)
+        favoriteButton.titleLabel?.font = .headlineSemibold
         
         let hourFromNow = Calendar.current.date(byAdding: .hour, value: 1, to: Date.now)!
         let tomorrow = Calendar.current.date(byAdding: .day, value: 1, to: Date.now)!

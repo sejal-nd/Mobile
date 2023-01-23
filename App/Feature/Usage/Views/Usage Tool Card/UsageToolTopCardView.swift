@@ -41,7 +41,7 @@ class UsageToolTopCardView: ButtonControl {
         layer.borderWidth = 1
         
         // Label
-        titleLabel.textColor = .deepGray
-        titleLabel.font = OpenSans.regular.of(textStyle: .subheadline)
+        titleLabel.textColor = .neutralDark
+        titleLabel.font = .subheadline
     }
 }

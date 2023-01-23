@@ -36,24 +36,24 @@ class WalletTableViewCell: UITableViewCell {
         innerContentView.layer.cornerRadius = 8
         innerContentView.layer.masksToBounds = true
         
-        accountNumberLabel.textColor = .deepGray
-        accountNumberLabel.font = OpenSans.regular.of(textStyle: .subheadline)
+        accountNumberLabel.textColor = .neutralDark
+        accountNumberLabel.font = .subheadline
 
-        nicknameLabel.textColor = .deepGray
-        nicknameLabel.font = SystemFont.regular.of(textStyle: .caption1)
+        nicknameLabel.textColor = .neutralDark
+        nicknameLabel.font = .caption1
         
         // Default
         oneTouchPayLabel.textColor = .successGreenText
-        oneTouchPayLabel.font = SystemFont.regular.of(textStyle: .caption2)
+        oneTouchPayLabel.font = .caption2
 
-        oneTouchPayView.layer.borderColor = UIColor.successGreenText.cgColor
+        oneTouchPayView.layer.borderColor = UIColor.secondaryBlue.cgColor
         oneTouchPayView.layer.borderWidth = 1
         
         // Expired
-        expiredLabel.textColor = .errorRed
-        expiredLabel.font = SystemFont.regular.of(textStyle: .caption2)
+        expiredLabel.textColor = .errorPrimary
+        expiredLabel.font = .caption2
         
-        expiredView.layer.borderColor = UIColor.errorRed.cgColor
+        expiredView.layer.borderColor = UIColor.errorPrimary.cgColor
         expiredView.layer.borderWidth = 1
         
         editButton.accessibilityLabel = NSLocalizedString("Edit payment method", comment: "")

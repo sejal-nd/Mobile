@@ -47,17 +47,17 @@ class TemplateCardView: UIView {
         layer.borderColor = UIColor.accentGray.cgColor
         layer.borderWidth = 1
         clippingView.layer.cornerRadius = 10
-        titleLabel.textColor = .deepGray
-        titleLabel.font = OpenSans.regular.of(textStyle: .headline)
-        bodyLabel.textColor = .deepGray
-        bodyLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        callToActionButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
+        titleLabel.textColor = .neutralDark
+        titleLabel.font = .headline
+        bodyLabel.textColor = .neutralDark
+        bodyLabel.font = .footnote
+        callToActionButton.titleLabel?.font = .headlineSemibold
         
-        errorTitleLabel.textColor = .deepGray
-        errorTitleLabel.font = OpenSans.regular.of(textStyle: .headline)
+        errorTitleLabel.textColor = .neutralDark
+        errorTitleLabel.font = .headline
         
-        errorLabel.textColor = .deepGray
-        errorLabel.font = OpenSans.regular.of(textStyle: .subheadline)
+        errorLabel.textColor = .neutralDark
+        errorLabel.font = .subheadline
         errorLabel.textAlignment = .center
     }
     

@@ -36,7 +36,7 @@ class UsageWebViewController: UIViewController {
         webView.navigationDelegate = self
         webView.isHidden = true
         
-        errorLabel.font = SystemFont.regular.of(textStyle: .headline)
+        errorLabel.font = .headline
         errorLabel.textColor = .blackText
         errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
         

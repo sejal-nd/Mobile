@@ -81,12 +81,12 @@ class FinalReviewMoveServiceViewController: UIViewController {
         newBackButton.accessibilityLabel = NSLocalizedString("Back", comment: "")
         self.navigationItem.leftBarButtonItem = newBackButton
 
-        renterOwnerStaticLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        finalBillAddressStaticLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        ssnTaxIDStaticLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        dlStateIDStaticLabel.font = SystemFont.regular.of(textStyle: .caption1)
-        employementStatusStaticLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        dobStaticLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        renterOwnerStaticLabel.font = .footnote
+        finalBillAddressStaticLabel.font = .footnote
+        ssnTaxIDStaticLabel.font = .footnote
+        dlStateIDStaticLabel.font = .caption1
+        employementStatusStaticLabel.font = .footnote
+        dobStaticLabel.font = .footnote
 
 
         submitBtn.roundCorners(.allCorners, radius: 27.5, borderColor: UIColor(red: 216.0/255.0, green: 216.0/255.0, blue: 216.0/255.0, alpha: 1.0), borderWidth: 1.0)
@@ -263,7 +263,7 @@ class FinalReviewMoveServiceViewController: UIViewController {
         segmentedControl.backgroundColor = .softGray
 
         alertController.setBackgroundColor(color: .white)
-        alertController.setTitle(font: SystemFont.semibold.of(size: 17), color: .deepGray)
+        alertController.setTitle(font: SystemFont.semibold.of(size: 17), color: .neutralDark)
 
 
         alertController.view.addSubview(segmentedControl)

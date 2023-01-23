@@ -31,12 +31,12 @@ class GameOnboardingStep2ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        titleLabel.textColor = .deepGray
-        titleLabel.font = OpenSans.semibold.of(size: 15)
+        titleLabel.textColor = .neutralDark
+        titleLabel.font = .subheadline
         titleLabel.text = NSLocalizedString("Step 2 of 2", comment: "")
         
-        rentOrOwnLabel.textColor = .deepGray
-        rentOrOwnLabel.font = OpenSans.semibold.of(textStyle: .title3)
+        rentOrOwnLabel.textColor = .neutralDarker
+        rentOrOwnLabel.font = .title3
         rentOrOwnLabel.text = NSLocalizedString("Do you rent or own your home?", comment: "")
         
         button1.layer.borderWidth = 1
@@ -47,12 +47,12 @@ class GameOnboardingStep2ViewController: UIViewController {
         button2.layer.borderColor = UIColor.accentGray.cgColor
         button2.layer.cornerRadius = 10
         
-        button1Label.textColor = .deepGray
-        button1Label.font = OpenSans.regular.of(textStyle: .headline)
+        button1Label.textColor = .neutralDark
+        button1Label.font = .headline
         button1Label.text = NSLocalizedString("I own my home.", comment: "")
         
-        button2Label.textColor = .deepGray
-        button2Label.font = OpenSans.regular.of(textStyle: .headline)
+        button2Label.textColor = .neutralDark
+        button2Label.font = .headline
         button2Label.text = NSLocalizedString("I rent my home.", comment: "")
 
         selectedButton.asDriver().isNil().not().drive(doneButton.rx.isEnabled).disposed(by: bag)
@@ -66,11 +66,11 @@ class GameOnboardingStep2ViewController: UIViewController {
         resetAllButtons()
         
         sender.layer.borderWidth = 2
-        sender.layer.borderColor = UIColor.actionBlue.cgColor
+        sender.layer.borderColor = UIColor.primaryBlue.cgColor
         
         let label = sender === button1 ? button1Label : button2Label
-        label?.textColor = .actionBlue
-        label?.font = OpenSans.semibold.of(textStyle: .headline)
+        label?.textColor = .primaryBlue
+        label?.font = .headlineSemibold
         
         selectedButton.accept(sender)
     }
@@ -126,10 +126,10 @@ class GameOnboardingStep2ViewController: UIViewController {
         button1.layer.borderColor = UIColor.accentGray.cgColor
         button2.layer.borderWidth = 1
         button2.layer.borderColor = UIColor.accentGray.cgColor
-        button1Label.textColor = .deepGray
-        button1Label.font = OpenSans.regular.of(textStyle: .headline)
-        button2Label.textColor = .deepGray
-        button2Label.font = OpenSans.regular.of(textStyle: .headline)
+        button1Label.textColor = .neutralDark
+        button1Label.font = .headline
+        button2Label.textColor = .neutralDark
+        button2Label.font = .headline
     }
     
     

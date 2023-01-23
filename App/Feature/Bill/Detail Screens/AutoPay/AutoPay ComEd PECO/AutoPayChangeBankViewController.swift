@@ -65,13 +65,13 @@ class AutoPayChangeBankViewController: KeyboardAvoidingStickyFooterViewControlle
     
 	private func style() {
 		tacLabel.text = NSLocalizedString("Yes, I have read, understand and agree to the terms and conditions below, and by checking this box, I authorize ComEd to regularly debit the bank account provided.\n\nI understand that my bank account will be automatically debited each billing period for the total amount due, that these are variable charges, and that my bill being posted in the ComEd mobile app acts as my notification.\n\nCustomers can see their bill monthly through the ComEd mobile app. Bills are delivered online during each billing cycle. Please note that this will not change your preferred bill delivery method.\n", comment: "")
-        tacLabel.textColor = .deepGray
-		tacLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        tacLabel.textColor = .neutralDark
+		tacLabel.font = .subheadline
 		tacLabel.setLineHeight(lineHeight: 25)
         tacSwitch.accessibilityLabel = "I agree to ComEd’s AutoPay Terms and Conditions"
-		tacButton.titleLabel?.font = SystemFont.bold.of(textStyle: .subheadline)
-        footerLabel.textColor = .deepGray
-        footerLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        tacButton.titleLabel?.font = .subheadlineSemibold
+        footerLabel.textColor = .neutralDark
+        footerLabel.font = .footnote
         footerLabel.setLineHeight(lineHeight: 16)
 	}
 	
@@ -241,12 +241,12 @@ class AutoPayChangeBankViewController: KeyboardAvoidingStickyFooterViewControlle
 	}
 	
 	func onRoutingNumberQuestionMarkPress() {
-		let infoModal = InfoModalViewController(title: NSLocalizedString("Routing Number", comment: ""), image: #imageLiteral(resourceName: "routing_number_info"), description: NSLocalizedString("This number is used to identify your banking institution. You can find your bank’s nine-digit routing number on the bottom of your paper check.", comment: ""))
+		let infoModal = InfoModalViewController(title: NSLocalizedString("Routing Number", comment: ""), image: UIImage(named: "img_routing")!, description: NSLocalizedString("This number is used to identify your banking institution. You can find your bank’s nine-digit routing number on the bottom of your paper check.", comment: ""))
 		navigationController?.present(infoModal, animated: true, completion: nil)
 	}
 	
 	func onAccountNumberQuestionMarkPress() {
-		let infoModal = InfoModalViewController(title: NSLocalizedString("Account Number", comment: ""), image: #imageLiteral(resourceName: "account_number_info"), description: NSLocalizedString("This number is used to identify your bank account. You can find your checking account number on the bottom of your paper check following the routing number.", comment: ""))
+		let infoModal = InfoModalViewController(title: NSLocalizedString("Account Number", comment: ""), image: UIImage(named: "img_routing")!, description: NSLocalizedString("This number is used to identify your bank account. You can find your checking account number on the bottom of your paper check following the routing number.", comment: ""))
 		navigationController?.present(infoModal, animated: true, completion: nil)
 	}
 

@@ -126,41 +126,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         Log.info("*-*-*-*-* \(error.localizedDescription)")
     }
-    
-    /*
-     This delegate method gets called when a notification is received and the app is in the foreground.
-     A push notification banner is not displayed to the user
-     */
-    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
-        Log.info("*-*-*-*-* \(userInfo)")
-        
-        guard let aps = userInfo["aps"] as? [String: Any] else { return }
-        guard let alert = aps["alert"] as? [String: Any] else { return }
-        
-        var accountNumbers: [String]
-        if let accountIds = userInfo["accountIds"] as? [String] {
-            accountNumbers = accountIds
-        } else if let accountId = userInfo["accountId"] as? String {
-            accountNumbers = [accountId]
-        } else {
-            return // Did not get account number or array of account numbers
-        }
-        
-        let notification = PushNotification(accountNumbers: accountNumbers, title: alert["title"] as? String, message: alert["body"] as? String)
-        AlertsStore.shared.savePushNotification(notification)
-        
-        if application.applicationState == .background || application.applicationState == .inactive { // App was in background when PN tapped
-            if UserDefaults.standard.bool(forKey: UserDefaultKeys.inMainApp) || StormModeStatus.shared.isOn {
-                NotificationCenter.default.post(name: .didTapOnPushNotification, object: self)
-            } else {
-                UserDefaults.standard.set(true, forKey: UserDefaultKeys.pushNotificationReceived)
-                UserDefaults.standard.set(Date.now, forKey: UserDefaultKeys.pushNotificationReceivedTimestamp)
-            }
-        } else {
-            // App was in the foreground when notification received - do nothing
-            Log.info("*-*-*-*-* App was in the foreground when notification received - do nothing")
-        }
-    }
         
     /* Gamification reminder notifications. When tapped, store the tip ID in memory (tipIdWaitingToBeShown).
      * If app already alive in background with user logged in, resets the root view controller to Home.
@@ -194,32 +159,45 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
             }
         } else {
+            Log.info("push notification received in userNotificationCenter didReceive")
+
             let userInfo = response.notification.request.content.userInfo
-            guard let aps = userInfo["aps"] as? [String: Any] else { return }
-            guard let alert = aps["alert"] as? [String: Any] else { return }
-            
-            var accountNumbers: [String]
-            if let accountIds = userInfo["accountIds"] as? [String] {
-                accountNumbers = accountIds
-            } else if let accountId = userInfo["accountId"] as? String {
-                accountNumbers = [accountId]
-            } else {
-                completionHandler()
-                return // Did not get account number or array of account numbers
-            }
-            
-            let notification = PushNotification(accountNumbers: accountNumbers, title: alert["title"] as? String, message: alert["body"] as? String)
-            AlertsStore.shared.savePushNotification(notification)
-            
-            if UserDefaults.standard.bool(forKey: UserDefaultKeys.inMainApp) || StormModeStatus.shared.isOn {
-                NotificationCenter.default.post(name: .didTapOnPushNotification, object: self)
-            } else {
-                UserDefaults.standard.set(true, forKey: UserDefaultKeys.pushNotificationReceived)
-                UserDefaults.standard.set(Date.now, forKey: UserDefaultKeys.pushNotificationReceivedTimestamp)
-            }
-            
-            completionHandler()
+            handlePushNotification(userInfo, withCompletionHandler: completionHandler)
         }
+    }
+
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+
+        Log.info("push notification received in userNotificationCenter willPresent")
+        completionHandler([.banner, .list])
+    }
+
+    func handlePushNotification(_ userInfo: [AnyHashable: Any], withCompletionHandler completionHandler: ( () -> Void)? = nil) {
+
+        guard let aps = userInfo["aps"] as? [String: Any] else { return }
+        guard let alert = aps["alert"] as? [String: Any] else { return }
+
+        var accountNumbers: [String]
+        if let accountIds = userInfo["accountIds"] as? [String] {
+            accountNumbers = accountIds
+        } else if let accountId = userInfo["accountId"] as? String {
+            accountNumbers = [accountId]
+        } else {
+            completionHandler?()
+            return // Did not get account number or array of account numbers
+        }
+
+        let notification = PushNotification(accountNumbers: accountNumbers, title: alert["title"] as? String, message: alert["body"] as? String)
+        AlertsStore.shared.savePushNotification(notification)
+
+        if UserDefaults.standard.bool(forKey: UserDefaultKeys.inMainApp) || StormModeStatus.shared.isOn {
+            NotificationCenter.default.post(name: .didTapOnPushNotification, object: self)
+        } else {
+            UserDefaults.standard.set(true, forKey: UserDefaultKeys.pushNotificationReceived)
+            UserDefaults.standard.set(Date.now, forKey: UserDefaultKeys.pushNotificationReceivedTimestamp)
+        }
+
+        completionHandler?()
     }
     
     // MARK: - Deep Links
@@ -297,7 +275,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func setupToastStyles() {
         var globalStyle = ToastStyle()
-        globalStyle.backgroundColor = UIColor.deepGray.withAlphaComponent(0.8)
+        globalStyle.backgroundColor = UIColor.neutralDark.withAlphaComponent(0.8)
         globalStyle.cornerRadius = 17
         globalStyle.messageAlignment = .center
         ToastManager.shared.style = globalStyle
@@ -539,7 +517,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func configureQuickActions(isAuthenticated: Bool) {
-        let reportOutageIcon = UIApplicationShortcutIcon(templateImageName: "ic_quick_outage")
+        let reportOutageIcon = UIApplicationShortcutIcon(templateImageName: "ic_reportoutage")
         let reportOutageShortcut = UIApplicationShortcutItem(type: "ReportOutage", localizedTitle: "Report Outage", localizedSubtitle: nil, icon: reportOutageIcon, userInfo: nil)
         
         guard let accounts = AccountsStore.shared.accounts else {

@@ -35,11 +35,11 @@ class SmartThermostatPeriodCard: ButtonControl {
         layer.cornerRadius = 10
         backgroundColor = .white
         
-        timeLabel.textColor = .deepGray
-        timeLabel.font = SystemFont.regular.of(textStyle: .title3)
+        timeLabel.textColor = .neutralDarker
+        timeLabel.font = .title3
         
-        periodNameLabel.textColor = .deepGray
-        periodNameLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        periodNameLabel.textColor = .neutralDark
+        periodNameLabel.font = .footnote
         
         let timePeriodStack = UIStackView(arrangedSubviews: [timeLabel, periodNameLabel])
         timePeriodStack.axis = .vertical
@@ -48,13 +48,13 @@ class SmartThermostatPeriodCard: ButtonControl {
         timePeriodStack.isUserInteractionEnabled = false
         
         let coolCircle = UIView()
-        coolCircle.backgroundColor = .richElectricBlue
+        coolCircle.backgroundColor = .thermostatCool
         coolCircle.translatesAutoresizingMaskIntoConstraints = false
         coolCircle.heightAnchor.constraint(equalToConstant: 14).isActive = true
         coolCircle.widthAnchor.constraint(equalTo: coolCircle.heightAnchor).isActive = true
         coolCircle.layer.cornerRadius = 7
         
-        coolTempLabel.textColor = .deepGray
+        coolTempLabel.textColor = .neutralDark
         coolTempLabel.font = SystemFont.semibold.of(textStyle: .callout)
         
         let coolStack = UIStackView(arrangedSubviews: [coolCircle, coolTempLabel])
@@ -64,13 +64,13 @@ class SmartThermostatPeriodCard: ButtonControl {
         coolStack.isUserInteractionEnabled = false
         
         let heatCircle = UIView()
-        heatCircle.backgroundColor = .burntSienna
+        heatCircle.backgroundColor = .thermostatHeat
         heatCircle.translatesAutoresizingMaskIntoConstraints = false
         heatCircle.heightAnchor.constraint(equalToConstant: 14).isActive = true
         heatCircle.widthAnchor.constraint(equalTo: heatCircle.heightAnchor).isActive = true
         heatCircle.layer.cornerRadius = 7
         
-        heatTempLabel.textColor = .deepGray
+        heatTempLabel.textColor = .neutralDark
         heatTempLabel.font = SystemFont.semibold.of(textStyle: .callout)
         
         let heatStack = UIStackView(arrangedSubviews: [heatCircle, heatTempLabel])

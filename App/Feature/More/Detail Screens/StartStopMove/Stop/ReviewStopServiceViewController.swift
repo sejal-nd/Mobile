@@ -62,11 +62,11 @@ class ReviewStopServiceViewController: UIViewController {
         newBackButton.accessibilityLabel = "Back"
         self.navigationItem.leftBarButtonItem = newBackButton
         
-        stopServiceAddressStaticLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        serviceProvidedStaticLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        stopServiceDateStaticLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        serviceDisconnectStaticLabel.font = SystemFont.regular.of(textStyle: .caption1)
-        finalBillAddressStaticLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        stopServiceAddressStaticLabel.font = .footnote
+        serviceProvidedStaticLabel.font = .footnote
+        stopServiceDateStaticLabel.font = .footnote
+        serviceDisconnectStaticLabel.font = .caption1
+        finalBillAddressStaticLabel.font = .footnote
         
         changeMailingAddressButton.isHidden = stopFlowData.currentAccountDetail.isEBillEnrollment
 

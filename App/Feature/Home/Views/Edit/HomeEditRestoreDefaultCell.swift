@@ -16,9 +16,9 @@ class HomeEditRestoreDefaultCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        button.setTitleColor(.actionBlue, for: .normal)
+        button.setTitleColor(.actionBrand, for: .normal)
         button.setTitleColor(UIColor(red: 74/255, green: 74/255, blue: 74/255, alpha: 0.4), for: .disabled)
-        button.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
+        button.titleLabel?.font = .headlineSemibold
     }
     
     func configure(isEnabled: Driver<Bool>, isReordering: Driver<Bool>, onTap: @escaping ()->()) {

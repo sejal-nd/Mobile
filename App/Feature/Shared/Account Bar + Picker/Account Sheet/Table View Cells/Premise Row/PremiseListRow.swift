@@ -17,7 +17,7 @@ class PremiseListRow: UITableViewCell {
         super.awakeFromNib()
         
         accountNumber.textColor = .blackText
-        accountNumber.font = SystemFont.regular.of(textStyle: .headline)
+        accountNumber.font = .headline
     }
     
 }

@@ -53,8 +53,8 @@ class AdjustThermostatViewController: UIViewController {
                 
         let permanentHoldLabel = UILabel().usingAutoLayout()
         permanentHoldLabel.numberOfLines = 0
-        permanentHoldLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        permanentHoldLabel.textColor = .deepGray
+        permanentHoldLabel.font = .subheadline
+        permanentHoldLabel.textColor = .neutralDark
         permanentHoldLabel.text = NSLocalizedString("Permanent Hold", comment: "")
         permanentHoldLabel.isAccessibilityElement = false
         permanentHoldLabel.setContentHuggingPriority(UILayoutPriority(rawValue: 1), for: .horizontal)
@@ -75,8 +75,8 @@ class AdjustThermostatViewController: UIViewController {
         permanentHoldStack.bottomAnchor.constraint(equalTo: permanentHoldContainer.bottomAnchor, constant: -20).isActive = true
         
         let modeLabel = UILabel()
-        modeLabel.font = OpenSans.regular.of(textStyle: .headline)
-        modeLabel.textColor = .deepGray
+        modeLabel.font = .headline
+        modeLabel.textColor = .neutralDark
         modeLabel.textAlignment = .center
         modeLabel.text = NSLocalizedString("Mode", comment: "")
         
@@ -94,8 +94,8 @@ class AdjustThermostatViewController: UIViewController {
         modeStack.spacing = 10
         
         let fanLabel = UILabel()
-        fanLabel.font = OpenSans.regular.of(textStyle: .headline)
-        fanLabel.textColor = .deepGray
+        fanLabel.font = .headline
+        fanLabel.textColor = .neutralDark
         fanLabel.textAlignment = .center
         fanLabel.text = NSLocalizedString("Fan", comment: "")
         
@@ -109,13 +109,13 @@ class AdjustThermostatViewController: UIViewController {
         
         let didYouKnowView = UIView().usingAutoLayout()
         let didYouKnowLabel = UILabel().usingAutoLayout()
-        didYouKnowLabel.font = SystemFont.semibold.of(textStyle: .headline)
-        didYouKnowLabel.textColor = .deepGray
+        didYouKnowLabel.font = .headlineSemibold
+        didYouKnowLabel.textColor = .neutralDark
         didYouKnowLabel.text = NSLocalizedString("Did you know?", comment: "")
         
         let didYouKnowDetailLabel = UILabel().usingAutoLayout()
-        didYouKnowDetailLabel.font = SystemFont.regular.of(textStyle: .headline)
-        didYouKnowDetailLabel.textColor = .deepGray
+        didYouKnowDetailLabel.font = .headline
+        didYouKnowDetailLabel.textColor = .neutralDark
         didYouKnowDetailLabel.numberOfLines = 0
         didYouKnowDetailLabel.text = NSLocalizedString("By turning your thermostat back by 7-10°F for eight hours a day, you can save 10% a year on heating and cooling.", comment: "")
         
@@ -165,8 +165,8 @@ class AdjustThermostatViewController: UIViewController {
         mainContentStack.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -30).isActive = true
         
         errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
-        errorLabel.textColor = .deepGray
-        errorLabel.font = SystemFont.regular.of(textStyle: .headline)
+        errorLabel.textColor = .neutralDark
+        errorLabel.font = .headline
         errorLabel.textAlignment = .center
         errorLabel.numberOfLines = 0
         view.addSubview(errorLabel)

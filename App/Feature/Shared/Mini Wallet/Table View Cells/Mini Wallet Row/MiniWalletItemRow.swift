@@ -58,10 +58,10 @@ class MiniWalletItemRow: UITableViewCell {
     // MARK: - Helper
     
     private func style() {
-        titleLabel.textColor = .deepGray
-        titleLabel.font = SystemFont.regular.of(textStyle: .headline)
+        titleLabel.textColor = .neutralDark
+        titleLabel.font = .headline
         subtitleLabel.textColor = .middleGray
-        subtitleLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        subtitleLabel.font = .footnote
         
         // Cell Selection Color
         let backgroundView = UIView()
@@ -69,10 +69,10 @@ class MiniWalletItemRow: UITableViewCell {
         selectedBackgroundView = backgroundView
         
         // Expired
-        expiredLabel.textColor = .errorRed
-        expiredLabel.font = SystemFont.regular.of(textStyle: .caption2)
+        expiredLabel.textColor = .errorPrimary
+        expiredLabel.font = .caption2
         
-        expiredView.layer.borderColor = UIColor.errorRed.cgColor
+        expiredView.layer.borderColor = UIColor.errorPrimary.cgColor
         expiredView.layer.borderWidth = 1
     }
     
