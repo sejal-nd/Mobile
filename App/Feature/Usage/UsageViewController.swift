@@ -278,24 +278,9 @@ class UsageViewController: AccountPickerViewController {
     // MARK: - Style Views
     
     private func styleBarGraph() {
-        switch Configuration.shared.opco {
-        case .bge:
-            projectedBarView.backgroundColor = UIColor(red: 0, green: 110/255, blue: 187/255, alpha: 0.2)
-            projectedBarView.layer.borderColor = UIColor(red: 0, green: 110/255, blue: 187/255, alpha: 0.4).cgColor
-            projectedBarSoFarImageView.tintColor = UIColor(red: 0, green: 110/255, blue: 187/255, alpha: 1)
-        case .comEd:
-            projectedBarView.backgroundColor = UIColor(red: 0, green: 159/255, blue: 194/255, alpha: 0.2)
-            projectedBarView.layer.borderColor = UIColor(red: 0, green: 159/255, blue: 194/255, alpha: 0.4).cgColor
-            projectedBarSoFarImageView.tintColor = UIColor(red: 0, green: 159/255, blue: 194/255, alpha: 1)
-        case .peco:
-            projectedBarView.backgroundColor = UIColor(red: 114/255, green: 184/255, blue: 101/255, alpha: 0.2)
-            projectedBarView.layer.borderColor = UIColor(red: 114/255, green: 184/255, blue: 101/255, alpha: 0.4).cgColor
-            projectedBarSoFarImageView.tintColor = UIColor(red: 114/255, green: 184/255, blue: 101/255, alpha: 1)
-        case .ace, .delmarva, .pepco:
-            projectedBarView.backgroundColor = UIColor(red: 0/255, green: 103/255, blue: 177/255, alpha: 0.2)
-            projectedBarView.layer.borderColor = UIColor(red: 0/255, green: 103/255, blue: 177/255, alpha: 0.4).cgColor
-            projectedBarSoFarImageView.tintColor = UIColor(red: 0/255, green: 103/255, blue: 177/255, alpha: 1)
-        }
+        projectedBarView.backgroundColor = .primaryPurple.withAlphaComponent(0.2)
+        projectedBarView.layer.borderColor = UIColor.primaryPurple.withAlphaComponent(0.4).cgColor
+        projectedBarSoFarImageView.tintColor = .primaryPurple
         
         // Bar Graph Styling
         noDataLabel.textColor = .neutralDark
