@@ -37,7 +37,6 @@ class B2CUsageViewModel {
             // IMPORTANT - adding "accountNumber" header breaks the residential widgets
             if accountDetail.value?.isResidential == false {
                 request.addValue(accountDetail.value?.accountNumber ?? "", forHTTPHeaderField: "accountNumber")
-                //request.addValue("\(accountDetail.value?.isResidential == false)", forHTTPHeaderField: "isCommercial")
             }
 
             return request
