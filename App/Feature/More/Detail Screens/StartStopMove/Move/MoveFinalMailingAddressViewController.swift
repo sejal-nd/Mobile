@@ -86,14 +86,14 @@ class MoveFinalMailingAddressViewController: KeyboardAvoidingStickyFooterViewCon
         zipTextField.placeholder = NSLocalizedString("Zip Code*", comment: "")
         zipTextField.textField.text = viewModel?.zipCode
         
-        statePlaceHolderLabel.font = SystemFont.regular.of(textStyle: .callout)
+        statePlaceHolderLabel.font = .callout
         statePlaceHolderLabel.textColor = .middleGray
         statePlaceHolderLabel.text = NSLocalizedString("State*", comment: "")
         
-        stateFloatingLabel.font = SystemFont.semibold.of(textStyle: .caption2)
+        stateFloatingLabel.font = .caption2Semibold
         stateFloatingLabel.textColor = .middleGray
         
-        selectedStateLabel.font = SystemFont.regular.of(textStyle: .callout)
+        selectedStateLabel.font = .callout
         selectedStateLabel.textColor = .middleGray
         if let state = viewModel?.state {
             selectedStateLabel.text = state.rawValue

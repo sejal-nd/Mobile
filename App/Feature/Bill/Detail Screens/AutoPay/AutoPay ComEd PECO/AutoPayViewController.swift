@@ -119,31 +119,31 @@ class AutoPayViewController: KeyboardAvoidingStickyFooterViewController {
     private func style() {
         if accountDetail.isAutoPay {
             // Enrolled
-            enrolledTopLabel.textColor = .deepGray
-            enrolledTopLabel.font = SystemFont.regular.of(textStyle: .headline)
+            enrolledTopLabel.textColor = .neutralDark
+            enrolledTopLabel.font = .headline
             enrolledTopLabel.setLineHeight(lineHeight: 16)
             
-            unenrollButtonLabel.textColor = .deepGray
-            unenrollButtonLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+            unenrollButtonLabel.textColor = .neutralDark
+            unenrollButtonLabel.font = .subheadline
             
-            unenrollButton.titleLabel?.font = SystemFont.bold.of(textStyle: .subheadline)
+            unenrollButton.titleLabel?.font = .subheadlineSemibold
         } else {
             // Not enrolled
-            topLabel.textColor = .deepGray
-            topLabel.font = SystemFont.regular.of(textStyle: .headline)
+            topLabel.textColor = .neutralDark
+            topLabel.font = .headline
             topLabel.setLineHeight(lineHeight: 24)
             
-            tacLabel.textColor = .deepGray
+            tacLabel.textColor = .neutralDark
             tacLabel.text = viewModel.tacLabelText
-            tacLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+            tacLabel.font = .subheadline
             tacLabel.setLineHeight(lineHeight: 25)
             tacSwitch.accessibilityLabel = viewModel.tacSwitchAccessibilityLabel
-            tacButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .subheadline)
+            tacButton.titleLabel?.font = .subheadlineSemibold
             GoogleAnalytics.log(event: .autoPayEnrollOffer)
         }
 
-        footerLabel.textColor = .deepGray
-        footerLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        footerLabel.textColor = .neutralDark
+        footerLabel.font = .footnote
         footerLabel.setLineHeight(lineHeight: 16)
     }
     
@@ -362,17 +362,17 @@ class AutoPayViewController: KeyboardAvoidingStickyFooterViewController {
 
         let modalDescription = NSLocalizedString("Sign up for AutoPay and you will never have to write another check to pay your bill. With AutoPay, your payment is automatically deducted from your bank account. You will receive a monthly statement notifying you when your payment will be deducted.", comment: "")
         
-        let infoModal = InfoModalViewController(title: NSLocalizedString("What is AutoPay?", comment: ""), image: UIImage(named: "img_autopaymodal")!, description: modalDescription)
+        let infoModal = InfoModalViewController(title: NSLocalizedString("What is AutoPay?", comment: ""), image: UIImage(named: "img_autopaymodal")!.withTintColor(.primaryColor), description: modalDescription)
         navigationController?.present(infoModal, animated: true, completion: nil)
     }
     
     func onRoutingNumberQuestionMarkPress() {
-        let infoModal = InfoModalViewController(title: NSLocalizedString("Routing Number", comment: ""), image: #imageLiteral(resourceName: "routing_number_info"), description: NSLocalizedString("This number is used to identify your banking institution. You can find your bank’s nine-digit routing number on the bottom of your paper check.", comment: ""))
+        let infoModal = InfoModalViewController(title: NSLocalizedString("Routing Number", comment: ""), image: UIImage(named: "img_routing_number")!, description: NSLocalizedString("This number is used to identify your banking institution. You can find your bank’s nine-digit routing number on the bottom of your paper check.", comment: ""))
         navigationController?.present(infoModal, animated: true, completion: nil)
     }
     
     func onAccountNumberQuestionMarkPress() {
-        let infoModal = InfoModalViewController(title: NSLocalizedString("Account Number", comment: ""), image: #imageLiteral(resourceName: "account_number_info"), description: NSLocalizedString("This number is used to identify your bank account. You can find your checking account number on the bottom of your paper check following the routing number.", comment: ""))
+        let infoModal = InfoModalViewController(title: NSLocalizedString("Account Number", comment: ""), image: UIImage(named: "img_account_number")!, description: NSLocalizedString("This number is used to identify your bank account. You can find your checking account number on the bottom of your paper check following the routing number.", comment: ""))
         navigationController?.present(infoModal, animated: true, completion: nil)
     }
 

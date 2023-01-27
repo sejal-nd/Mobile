@@ -14,13 +14,13 @@ class TitleTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel! {
         didSet {
             titleLabel.textColor = .white
-            titleLabel.font = SystemFont.regular.of(textStyle: .callout)
+            titleLabel.font = .callout
         }
     }
     @IBOutlet weak var detailLabel: UILabel! {
         didSet {
             detailLabel.textColor = .white
-            detailLabel.font = SystemFont.regular.of(textStyle: .footnote)
+            detailLabel.font = .footnote
         }
     }
     @IBOutlet weak var disclosureImageView: UIImageView!

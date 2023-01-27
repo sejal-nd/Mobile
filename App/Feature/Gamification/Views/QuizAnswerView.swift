@@ -62,8 +62,8 @@ class QuizAnswerView: UIView {
         answerButton.layer.borderColor = UIColor.accentGray.cgColor
         answerButton.backgroundColorOnPress = .softGray
         
-        answerLabel.textColor = .actionBlue
-        answerLabel.font = OpenSans.semibold.of(size: 12)
+        answerLabel.textColor = .primaryBlue
+        answerLabel.font = .caption1Semibold
     }
     
     @IBAction func onAnswerPress(_ sender: Any) {
@@ -74,7 +74,7 @@ class QuizAnswerView: UIView {
         correctIndicatorImageView.image = correct ? #imageLiteral(resourceName: "ic_trendcheck.pdf") : #imageLiteral(resourceName: "ic_remove.pdf")
         correctIndicatorImageView.isHidden = false
         answerButton.layer.borderWidth = 2
-        answerButton.layer.borderColor = correct ? UIColor.successGreenText.cgColor : UIColor.errorRed.cgColor
+        answerButton.layer.borderColor = correct ? UIColor.successGreenText.cgColor : UIColor.errorPrimary.cgColor
     }
 
 }

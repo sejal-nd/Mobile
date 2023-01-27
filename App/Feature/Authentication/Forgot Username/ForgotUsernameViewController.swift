@@ -54,8 +54,8 @@ class ForgotUsernameViewController: KeyboardAvoidingStickyFooterViewController {
         
         viewModel.continueButtonEnabled.drive(continueButton.rx.isEnabled).disposed(by: disposeBag)
         
-        instructionLabel.textColor = .deepGray
-        instructionLabel.font = SystemFont.regular.of(textStyle: .headline)
+        instructionLabel.textColor = .neutralDark
+        instructionLabel.font = .headline
         instructionLabel.text = NSLocalizedString("Please help us validate your account.", comment: "")
         
         phoneNumberTextField.placeholder = Configuration.shared.opco.isPHI ? NSLocalizedString("Phone Number*", comment: "") : NSLocalizedString("Primary Phone Number*", comment: "")
@@ -84,8 +84,8 @@ class ForgotUsernameViewController: KeyboardAvoidingStickyFooterViewController {
             self?.accessibilityErrorLabel()
         }).disposed(by: disposeBag)
         
-        identifierDescriptionLabel.textColor = .deepGray
-        identifierDescriptionLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        identifierDescriptionLabel.textColor = .neutralDark
+        identifierDescriptionLabel.font = .subheadline
         identifierDescriptionLabel.text = NSLocalizedString("Last 4 Digits of primary account holder’s Social Security Number, Business Tax ID, or BGE PIN", comment: "")
         
         identifierTextField.placeholder = NSLocalizedString("SSN/Business Tax ID/BGE Pin*", comment: "")
@@ -148,8 +148,8 @@ class ForgotUsernameViewController: KeyboardAvoidingStickyFooterViewController {
         accountNumberTooltipButton.accessibilityLabel = NSLocalizedString("Tool Tip", comment: "")
         
         accountLookupToolButton.setTitle(NSLocalizedString("Account Lookup Tool", comment: ""), for: .normal)
-        accountLookupToolButton.setTitleColor(.actionBlue, for: .normal)
-        accountLookupToolButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
+        accountLookupToolButton.setTitleColor(.actionBrand, for: .normal)
+        accountLookupToolButton.titleLabel?.font = .headlineSemibold
         accountLookupToolButton.accessibilityLabel = NSLocalizedString("Account lookup tool", comment: "")        
     }
     

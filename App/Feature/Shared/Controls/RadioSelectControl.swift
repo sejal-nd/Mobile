@@ -76,20 +76,20 @@ class RadioSelectControl: ButtonControl {
 		titleLabel.setContentCompressionResistancePriority(.required, for: .vertical)
 		titleLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
 		titleLabel.setContentHuggingPriority(.required, for: .vertical)
-        titleLabel.font = SystemFont.regular.of(textStyle: .headline)
-        titleLabel.textColor = .deepGray
+        titleLabel.font = .headline
+        titleLabel.textColor = .neutralDark
         titleLabel.numberOfLines = 2
 		
-		detailButton.setTitleColor(.actionBlue, for: .normal)
-		detailButton.titleLabel?.font = OpenSans.semibold.of(textStyle: .headline)
+		detailButton.setTitleColor(.actionBrand, for: .normal)
+		detailButton.titleLabel?.font = .headlineSemibold
         detailButton.titleLabel?.numberOfLines = 2
 		detailButton.setContentCompressionResistancePriority(.required, for: .horizontal)
 		detailButton.setContentCompressionResistancePriority(.required, for: .vertical)
 		detailButton.setContentHuggingPriority(.required, for: .horizontal)
 		detailButton.setContentHuggingPriority(.required, for: .vertical)
         
-        detailLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        detailLabel.textColor = .deepGray
+        detailLabel.font = .footnote
+        detailLabel.textColor = .neutralDark
         
         separatorView.backgroundColor = .accentGray
         

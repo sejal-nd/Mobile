@@ -25,7 +25,7 @@ class AlertsViewController: AccountPickerViewController {
     
     var shortcutToPrefs = false
     
-    override var defaultStatusBarStyle: UIStatusBarStyle { return .lightContent }
+    override var defaultStatusBarStyle: UIStatusBarStyle { return .darkContent }
     
     let viewModel = AlertsViewModel()
     
@@ -81,13 +81,13 @@ class AlertsViewController: AccountPickerViewController {
     // MARK: - Helper
     
     private func styleViews() {
-        preferencesButtonLabel.textColor = .actionBlue
-        preferencesButtonLabel.font = SystemFont.semibold.of(textStyle: .subheadline)
+        preferencesButtonLabel.textColor = .actionBrand
+        preferencesButtonLabel.font = .subheadlineSemibold
         preferencesButtonLabel.text = NSLocalizedString("Preferences", comment: "")
         preferencesButton.accessibilityLabel = preferencesButtonLabel.text
         
         alertsEmptyStateLabel.textColor = .middleGray
-        alertsEmptyStateLabel.font = OpenSans.regular.of(textStyle: .headline)
+        alertsEmptyStateLabel.font = .headline
         alertsEmptyStateLabel.text = NSLocalizedString("You haven't received any\nnotifications yet.", comment: "")
     }
     

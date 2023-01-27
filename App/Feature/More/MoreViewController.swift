@@ -20,7 +20,7 @@ class MoreViewController: UIViewController {
 
     @IBOutlet weak var signOutButton: UIButton! {
         didSet {
-            signOutButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
+            signOutButton.titleLabel?.font = .headlineSemibold
             signOutButton.setTitleColor(.white, for: .normal)
         }
     }
@@ -38,7 +38,7 @@ class MoreViewController: UIViewController {
                 versionLabel.text = nil
             }
             
-            versionLabel.font = OpenSans.regular.of(textStyle: .footnote)
+            versionLabel.font = .footnote
             versionLabel.textColor = .white
         }
     }
@@ -70,7 +70,7 @@ class MoreViewController: UIViewController {
         // for smooth large title nav collapsing. Outside of Storm Mode there is no nav bar, so we
         // constrain to the safe area so that content does not overlap the status bar
         if StormModeStatus.shared.isOn {
-            view.backgroundColor = .stormModeBlack
+            view.backgroundColor = .stormModeBackground
             view.removeConstraint(safeAreaTopConstraint)
             view.addConstraint(superviewTopConstraint)
         } else {
@@ -330,19 +330,19 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
             switch indexPath.row {
             case 0:
                 if FeatureFlagUtility.shared.bool(forKey: .hasAuthenticatedISUM) {
-                    cell.configure(image: #imageLiteral (resourceName: "ic_isummoveservice"), text: NSLocalizedString("Move Service", comment: ""))
+                    cell.configure(image: #imageLiteral (resourceName: "ic_more_isum_move"), text: NSLocalizedString("Move Service", comment: ""))
                 } else {
                     cell.configure(image: #imageLiteral(resourceName: "ic_morecontact"), text: NSLocalizedString("Contact Us", comment: ""))
                 }
             case 1:
                 if FeatureFlagUtility.shared.bool(forKey: .hasAuthenticatedISUM) {
-                    cell.configure(image: #imageLiteral (resourceName: "ic_morestopservice"), text: NSLocalizedString("Stop Service", comment: ""))
+                    cell.configure(image: #imageLiteral (resourceName: "ic_more_isum_stop"), text: NSLocalizedString("Stop Service", comment: ""))
                 } else {
                     cell.configure(image: #imageLiteral(resourceName: "ic_morevideo"), text: NSLocalizedString("Billing Videos", comment: ""))
                 }
             case 2:
                 if FeatureFlagUtility.shared.bool(forKey: .hasAuthenticatedISUM) {
-                    cell.configure(image: #imageLiteral (resourceName: "ic_morestartservice"), text: NSLocalizedString("Start Service", comment: ""))
+                    cell.configure(image: #imageLiteral (resourceName: "ic_more_isum_start"), text: NSLocalizedString("Start Service", comment: ""))
                 } else {
                     cell.configure(image: #imageLiteral(resourceName: "ic_moretos"), text: NSLocalizedString("Policies and Terms", comment: ""))
                 }
@@ -508,7 +508,7 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
         }
         
         if StormModeStatus.shared.isOn {
-            headerView.colorView.backgroundColor = .stormModeBlack
+            headerView.colorView.backgroundColor = .stormModeBackground
         }
         return headerView
     }

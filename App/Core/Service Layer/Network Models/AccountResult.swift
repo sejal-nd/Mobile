@@ -9,15 +9,27 @@
 import Foundation
 
 struct AccountResult: Decodable {
-    let accountNumber: String?
+    let maskedAccountNumber: String?
+    let fullAccountNumber: String?
     let customerID: String?
     let streetNumber: String?
     let unitNumber: String?
+    let auid: String?
+    
+    var accountNumber: String? {
+        if fullAccountNumber?.isEmpty == false {
+            return fullAccountNumber
+        } else {
+            return maskedAccountNumber
+        }
+    }
     
     enum CodingKeys: String, CodingKey {
-        case accountNumber = "fullAccountNumber"
+        case maskedAccountNumber = "accountNumber"
+        case fullAccountNumber = "fullAccountNumber"
         case customerID = "customerID"
         case streetNumber = "street"
         case unitNumber = "unit"
+        case auid = "auid"
     }
 }

@@ -9,8 +9,12 @@
 import SwiftUI
 
 extension Color {
-    @nonobjc static var actionBlue = Color(red: 0/255, green: 89/255, blue: 164/255)
-    @nonobjc static var deepGray = Color(red: 74/255, green: 74/255, blue: 74/255)
+    static var primaryDarkBlue: Color {
+        return Color("primaryBlue")
+    }
+    @nonobjc static var neutralDark: Color {
+        return Color("neutral_dark")
+    }
 }
 
 struct CheckBoxView: View {
@@ -25,10 +29,10 @@ struct CheckBoxView: View {
             Button(action: didSelectCheckbox) {
                 HStack {
                     Image(systemName: isSelected ? "checkmark.square.fill" : "square")
-                        .foregroundColor(.actionBlue)
+                        .foregroundColor(.primaryDarkBlue)
                         .font(Font.headline.weight(.semibold))
                     Text(text)
-                        .foregroundColor(.deepGray)
+                        .foregroundColor(.neutralDark)
                         .multilineTextAlignment(.leading)
                 }
             }

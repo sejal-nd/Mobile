@@ -39,10 +39,10 @@ class AccountInfoBar: UIView {
     }
     
     private func style() {
-        accountNumberLabel.textColor = .deepGray
-        accountNumberLabel.font = SystemFont.semibold.of(textStyle: .footnote)
-        addressLabel.textColor = .deepGray
-        addressLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        accountNumberLabel.textColor = .neutralDark
+        accountNumberLabel.font = .footnoteSemibold
+        addressLabel.textColor = .neutralDark
+        addressLabel.font = .footnote
     }
 }
 

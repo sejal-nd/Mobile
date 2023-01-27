@@ -68,7 +68,7 @@ class SERPTSViewController: UIViewController {
             NSLocalizedString("Smart Energy Rewards", comment: "")
         
         smartEnergyRewardsSeasonLabel.textColor = .deepGray
-        smartEnergyRewardsSeasonLabel.font = OpenSans.regular.of(textStyle: .headline)
+        smartEnergyRewardsSeasonLabel.font = Diodrum.regular.of(textStyle: .headline)
         
         smartEnergyRewardsViewAllSavingsButton.setTitleColor(.actionBlue, for: .normal)
         smartEnergyRewardsViewAllSavingsButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
@@ -77,7 +77,7 @@ class SERPTSViewController: UIViewController {
         smartEnergyRewardsFooterLabel.textColor = .deepGray
         smartEnergyRewardsFooterLabel.font = SystemFont.regular.of(textStyle: .caption1)
         
-        smartEnergyRewardsEmptyStateLabel.font = OpenSans.regular.of(textStyle: .headline)
+        smartEnergyRewardsEmptyStateLabel.font = Diodrum.regular.of(textStyle: .headline)
         smartEnergyRewardsEmptyStateLabel.textAlignment = .center
         smartEnergyRewardsEmptyStateLabel.textColor = .deepGray
         smartEnergyRewardsEmptyStateLabel.text = NSLocalizedString("Your energy savings data will be available here once we have more data.", comment: "")

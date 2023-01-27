@@ -31,7 +31,9 @@ class B2CUsageWebViewController: UIViewController {
         }
         set {
             viewModel.accountDetail.accept(newValue)
-            viewModel.refreshCommercialWidgets()
+            if viewModel.accountDetail.value?.isResidential == false {
+                viewModel.refreshCommercialWidgets()
+            }
         }
     }
     
@@ -46,10 +48,10 @@ class B2CUsageWebViewController: UIViewController {
         webView.configuration.defaultWebpagePreferences.allowsContentJavaScript = true
         
         errorImage.tintColor = .attentionOrange
-        errorTitle.font = SystemFont.semibold.of(textStyle: .title3)
-        errorTitle.textColor = .deepGray
-        errorDescription.font = SystemFont.regular.of(textStyle: .footnote)
-        errorDescription.textColor = .deepGray
+        errorTitle.font = .title3
+        errorTitle.textColor = .neutralDarker
+        errorDescription.font = .footnote
+        errorDescription.textColor = .neutralDark
         errorView.isHidden = true
 
         if viewModel.accountDetail.value?.isResidential == false {
@@ -133,7 +135,9 @@ class B2CUsageWebViewController: UIViewController {
     }
     
     func refresh() {
-        viewModel.refreshCommercialWidgets()
+        if viewModel.accountDetail.value?.isResidential == false {
+            viewModel.refreshCommercialWidgets()
+        }
         viewModel.fetchJWT()
     }
     

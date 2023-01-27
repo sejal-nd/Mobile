@@ -37,12 +37,12 @@ class OutageStatusButton: UIView {
     @IBOutlet weak var statusImageView: UIImageView!
     @IBOutlet weak var statusTitleLabel: UILabel! {
         didSet {
-            statusTitleLabel.font = OpenSans.regular.of(size: 14)
+            statusTitleLabel.font = .subheadlineSemibold
         }
     }
     @IBOutlet weak var statusDetailLabel: UILabel! {
         didSet {
-            statusDetailLabel.font = OpenSans.bold.of(size: 22)
+            statusDetailLabel.font = .title2
         }
     }
 
@@ -50,22 +50,22 @@ class OutageStatusButton: UIView {
     @IBOutlet weak var statusETRImageView: UIImageView!
     @IBOutlet weak var statusETRLabel: UILabel! {
         didSet {
-            statusETRLabel.font = OpenSans.regular.of(size: 14)
+            statusETRLabel.font = .subheadlineSemibold
         }
     }
     @IBOutlet weak var reportedDetailLabel: UILabel! {
         didSet {
-            reportedDetailLabel.font = OpenSans.bold.of(size: 22)
+            reportedDetailLabel.font = .title2
         }
     }
     @IBOutlet weak var reportedETRTitleLabel: UILabel! {
         didSet {
-            reportedETRTitleLabel.font = OpenSans.regular.of(size: 12)
+            reportedETRTitleLabel.font = .caption1
         }
     }
     @IBOutlet weak var reportedETRLabel: UILabel! {
         didSet {
-            reportedETRLabel.font = OpenSans.bold.of(size: 14)
+            reportedETRLabel.font = .footnoteSemibold
             reportedETRLabel.adjustsFontSizeToFitWidth = true
             reportedETRLabel.minimumScaleFactor = 0.5
         }
@@ -75,7 +75,7 @@ class OutageStatusButton: UIView {
         let color: UIColor
         switch Configuration.shared.opco {
         case .bge:
-            color = .bgeGreen
+            color = .primaryColor
         case .comEd:
             color = .primaryColor
         case .peco:
@@ -118,13 +118,13 @@ class OutageStatusButton: UIView {
                 
                 outerCircleView.isHidden = false
                 
-                statusTitleLabel.textColor = .actionBlue
-                statusDetailLabel.textColor = .actionBlue
+                statusTitleLabel.textColor = .primaryBlue
+                statusDetailLabel.textColor = .primaryBlue
                 
-                statusETRLabel.textColor = .actionBlue
-                reportedDetailLabel.textColor = .actionBlue
-                reportedETRTitleLabel.textColor = .deepGray
-                reportedETRLabel.textColor = .deepGray
+                statusETRLabel.textColor = .primaryBlue
+                reportedDetailLabel.textColor = .primaryBlue
+                reportedETRTitleLabel.textColor = .neutralDark
+                reportedETRLabel.textColor = .neutralDark
             }
             
             onLottieAnimation?.frame = CGRect(x: 0, y: 1, width: animationView.frame.size.width, height: animationView.frame.size.height)

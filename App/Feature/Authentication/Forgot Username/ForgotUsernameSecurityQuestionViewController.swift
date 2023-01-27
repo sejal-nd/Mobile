@@ -38,12 +38,12 @@ class ForgotUsernameSecurityQuestionViewController: KeyboardAvoidingStickyFooter
         
         viewModel.securityQuestionAnswerNotEmpty.drive(submitButton.rx.isEnabled).disposed(by: disposeBag)
         
-        instructionLabel.textColor = .deepGray
+        instructionLabel.textColor = .neutralDark
         instructionLabel.text = NSLocalizedString("Please answer the security question.", comment: "")
-        instructionLabel.font = SystemFont.regular.of(textStyle: .headline)
+        instructionLabel.font = .headline
         
-        questionLabel.textColor = .deepGray
-        questionLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        questionLabel.textColor = .neutralDark
+        questionLabel.font = .subheadline
         questionLabel.text = viewModel.getSecurityQuestion()
         
         answerTextField.placeholder = NSLocalizedString("Your Answer*", comment: "")

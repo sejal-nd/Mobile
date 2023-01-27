@@ -53,13 +53,13 @@ struct TerminateAgreementView: View {
                     .fontWeight(.medium)
                     .multilineTextAlignment(.leading)
                     .padding(.vertical, 6)
-                    .foregroundColor(.deepGray)
+                    .foregroundColor(.neutralDark)
             }
             
             Text(transferEligibility.text)
                 .multilineTextAlignment(.leading)
                 .padding(.bottom, 6)
-                .foregroundColor(.deepGray)
+                .foregroundColor(.neutralDark)
             CheckBoxView(isSelected: $isSelected,
                          text: transferEligibility.checkboxText) {
                 didSelectCheckbox(isSelected)
@@ -67,7 +67,7 @@ struct TerminateAgreementView: View {
             Spacer()
         }
         .padding()
-        .foregroundColor(.deepGray)
+        .foregroundColor(.neutralDark)
     }
 }
 

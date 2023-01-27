@@ -32,7 +32,7 @@ class MaintenanceModeViewController: UIViewController {
     @IBOutlet weak var continueAsGuestButton: PrimaryButton!
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
+        return StormModeStatus.shared.isOn ? .lightContent : .default
     }
         
     override func viewDidLoad() {
@@ -45,7 +45,7 @@ class MaintenanceModeViewController: UIViewController {
         reloadButton.isAccessibilityElement = true
         reloadButton.accessibilityLabel = NSLocalizedString("Reload", comment: "")
         
-        reloadLabel.font = SystemFont.bold.of(textStyle: .headline)
+        reloadLabel.font = .headlineSemibold
         
         reloadButton.rx.touchUpInside.asDriver()
             .drive(onNext: { [weak self] in self?.onReloadPress() })
@@ -55,18 +55,18 @@ class MaintenanceModeViewController: UIViewController {
         maintenanceModeBody.layer.cornerRadius = 10
         
         headerLabel.text = viewModel.headerLabelText
-        headerLabel.textColor = .deepGray
-        headerLabel.font = SystemFont.bold.of(textStyle: .subheadline)
+        headerLabel.textColor = .neutralDark
+        headerLabel.font = .subheadlineSemibold
         
-        bodyTextView.font = OpenSans.regular.of(textStyle: .footnote)
+        bodyTextView.font = .footnote
         bodyTextView.attributedText = viewModel.labelBody
         bodyTextView.accessibilityLabel = viewModel.labelBody.string
         
         bodyTextView.textColor = .blackText
-        bodyTextView.tintColor = .actionBlue // Color of the phone numbers
+        bodyTextView.tintColor = .actionBrand // Color of the phone numbers
         
-        footerTextView.font = OpenSans.regular.of(textStyle: .footnote)
-        footerTextView.tintColor = .actionBlue
+        footerTextView.font = .footnote
+        footerTextView.tintColor = .actionBrand
         footerTextView.attributedText = viewModel.footerLabelText
         
         view.backgroundColor = .primaryColor

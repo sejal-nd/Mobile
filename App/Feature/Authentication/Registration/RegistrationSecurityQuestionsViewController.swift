@@ -62,14 +62,14 @@ class RegistrationSecurityQuestionsViewController: KeyboardAvoidingStickyFooterV
         
         title = NSLocalizedString("Register", comment: "")
         
-        instructionLabel.textColor = .deepGray
+        instructionLabel.textColor = .neutralDark
         instructionLabel.text = NSLocalizedString("Please select your security questions and enter each corresponding answer. All security answers are case insensitive.", comment: "")
-        instructionLabel.font = SystemFont.regular.of(textStyle: .headline)
+        instructionLabel.font = .headline
         instructionLabel.setLineHeight(lineHeight: 24)
         
-        eBillEnrollInstructions.textColor = .deepGray
+        eBillEnrollInstructions.textColor = .neutralDark
         eBillEnrollInstructions.text = NSLocalizedString("I would like to enroll in Paperless eBill - a fast, easy, and secure way to receive and pay for bills online.", comment: "")
-        eBillEnrollInstructions.font = SystemFont.regular.of(textStyle: .headline)
+        eBillEnrollInstructions.font = .headline
         
         populateAccountListingLabels()
         
@@ -112,13 +112,13 @@ class RegistrationSecurityQuestionsViewController: KeyboardAvoidingStickyFooterV
                     self.eBillEnrollView.isHidden = true
                     self.eBillAutoEnrollView.isHidden = false
                     self.eBillEnrollCheckbox.isChecked = true
-                    self.eBillAutoEnrollDescriptionTextField.font = SystemFont.regular.of(textStyle: .callout)
-                    self.eBillAutoEnrollDescriptionTextField.textColor = .deepGray
+                    self.eBillAutoEnrollDescriptionTextField.font = .callout
+                    self.eBillAutoEnrollDescriptionTextField.textColor = .neutralDark
                     self.eBillAutoEnrollDescriptionTextField.setLineHeight(lineHeight: 16)
                     self.eBillAutoEnrollDescriptionTextField.text = NSLocalizedString("By creating a My Account, you'll be automatically enrolled in Paperless eBill. When your bill is ready, you'll receive an email notification rather than a paper bill.", comment: "")
                     
-                    self.eBillUnEnrollTextField.font = SystemFont.regular.of(textStyle: .callout)
-                    self.eBillUnEnrollTextField.textColor = .deepGray
+                    self.eBillUnEnrollTextField.font = .callout
+                    self.eBillUnEnrollTextField.textColor = .neutralDark
                     self.eBillUnEnrollTextField.setLineHeight(lineHeight: 16)
                     self.eBillUnEnrollTextField.text = NSLocalizedString("Want to receive a paper bill? Unenroll in Paperless eBill by navigating to the Bill tab and updating your Billing Options.", comment: "")
                     
@@ -179,21 +179,21 @@ class RegistrationSecurityQuestionsViewController: KeyboardAvoidingStickyFooterV
     }
     
     func populateAccountListingLabels() {
-        accountListInstructionsLabel.textColor = .deepGray
+        accountListInstructionsLabel.textColor = .neutralDark
         accountListInstructionsLabel.text = NSLocalizedString("The following accounts will be enrolled for Paperless eBill.", comment:"")
-        accountListInstructionsLabel.font = SystemFont.regular.of(textStyle: .headline)
+        accountListInstructionsLabel.font = .headline
         
-        accountNumColHeaderLabel.textColor = .deepGray
+        accountNumColHeaderLabel.textColor = .neutralDark
         accountNumColHeaderLabel.text = NSLocalizedString("Account #", comment: "")
-        accountNumColHeaderLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        accountNumColHeaderLabel.font = .footnote
         
-        streetNumColHeaderLabel.textColor = .deepGray
+        streetNumColHeaderLabel.textColor = .neutralDark
         streetNumColHeaderLabel.text = NSLocalizedString("Street #", comment: "")
-        streetNumColHeaderLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        streetNumColHeaderLabel.font = .footnote
         
-        unitNumColHeaderLabel.textColor = .deepGray
+        unitNumColHeaderLabel.textColor = .neutralDark
         unitNumColHeaderLabel.text = NSLocalizedString("Unit #", comment: "")
-        unitNumColHeaderLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        unitNumColHeaderLabel.font = .footnote
     }
 
     func bindViewModel() {

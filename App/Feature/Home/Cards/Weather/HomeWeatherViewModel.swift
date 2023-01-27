@@ -135,7 +135,7 @@ class HomeWeatherViewModel {
                        temperatureTipText.asObservable().unwrap(),
                        weatherEvents.elements())
         { temperatureTip, title, weatherItem in
-            let image = weatherItem.isHighTemperature ? #imageLiteral(resourceName: "img_hightemp") : #imageLiteral(resourceName: "img_lowtemp")
+            let image = weatherItem.isHighTemperature ? UIImage(named: "img_hightemp")!.withTintColor(.primaryColor) : UIImage(named: "img_lowtemp")!.withTintColor(.primaryColor)
             return (title, image, temperatureTip, nil, nil, nil)
         }
         .asDriver(onErrorDriveWith: .empty())

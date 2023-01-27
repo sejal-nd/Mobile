@@ -114,36 +114,36 @@ class WalletViewController: UIViewController {
     
     private func style() {
         // Empty state stuff
-        choosePaymentMethodLabel.textColor = .deepGray
-        choosePaymentMethodLabel.font = OpenSans.regular.of(textStyle: .headline)
+        choosePaymentMethodLabel.textColor = .neutralDark
+        choosePaymentMethodLabel.font = .headline
         choosePaymentMethodLabel.text = NSLocalizedString("Choose a payment method", comment: "")
         
         bankButton.layer.borderColor = UIColor.accentGray.cgColor
         bankButton.layer.borderWidth = 1
         bankButton.layer.cornerRadius = 10
-        bankButtonLabel.textColor = .deepGray
-        bankButtonLabel.font = OpenSans.regular.of(textStyle: .subheadline)
+        bankButtonLabel.textColor = .neutralDark
+        bankButtonLabel.font = .subheadline
         bankButtonLabel.text = NSLocalizedString("Bank Account", comment: "")
         
         creditCardButton.layer.borderColor = UIColor.accentGray.cgColor
         creditCardButton.layer.borderWidth = 1
         creditCardButton.layer.cornerRadius = 10
-        creditCardButtonLabel.textColor = .deepGray
-        creditCardButtonLabel.font = OpenSans.regular.of(textStyle: .subheadline)
+        creditCardButtonLabel.textColor = .neutralDark
+        creditCardButtonLabel.font = .subheadline
         creditCardButtonLabel.text = NSLocalizedString("Credit/Debit Card", comment: "")
         
-        emptyStateFooter.textColor = .deepGray
+        emptyStateFooter.textColor = .neutralDark
         emptyStateFooter.text = viewModel.emptyFooterLabelString
-        emptyStateFooter.font = SystemFont.regular.of(textStyle: .caption1)
+        emptyStateFooter.font = .caption1
         emptyStateFooter.setLineHeight(lineHeight: 17)
         
         // Non-empty state stuff
         tableView.backgroundColor = .white
         tableView.contentInset = UIEdgeInsets(top: 15, left: 0, bottom: 15, right: 0)
         
-        addPaymentAccountLabel.textColor = .deepGray
+        addPaymentAccountLabel.textColor = .neutralDark
         addPaymentAccountLabel.text = NSLocalizedString("Add Payment Method", comment: "")
-        addPaymentAccountLabel.font = OpenSans.regular.of(textStyle: .subheadline)
+        addPaymentAccountLabel.font = .subheadline
         
         miniCreditCardButton.layer.borderColor = UIColor.accentGray.cgColor
         miniCreditCardButton.layer.borderWidth = 1
@@ -154,15 +154,15 @@ class WalletViewController: UIViewController {
         miniBankButton.layer.cornerRadius = 8
         
         tableViewFooter.text = viewModel.footerLabelString
-        tableViewFooter.textColor = .deepGray
-        tableViewFooter.font = SystemFont.regular.of(textStyle: .caption2)
+        tableViewFooter.textColor = .neutralDark
+        tableViewFooter.font = .caption2
         
         emptyStateScrollView.isHidden = true
         nonEmptyStateView.isHidden = true
         
         // Cash only stuff
-        emptyStateCashOnlyLabel.font = SystemFont.regular.of(textStyle: .headline)
-        emptyStateCashOnlyLabel.textColor = .deepGray
+        emptyStateCashOnlyLabel.font = .headline
+        emptyStateCashOnlyLabel.textColor = .neutralDark
         if viewModel.accountDetail.isCashOnly {
             emptyStateCashOnlyLabel.text = NSLocalizedString("Bank account payments are not available for this account.", comment: "")
         } else {
@@ -170,13 +170,13 @@ class WalletViewController: UIViewController {
             emptyStateCashOnlyTopConstraint.constant = 0
         }
         
-        cashOnlyTableHeaderLabel.font = SystemFont.regular.of(textStyle: .headline)
-        cashOnlyTableHeaderLabel.textColor = .deepGray
+        cashOnlyTableHeaderLabel.font = .headline
+        cashOnlyTableHeaderLabel.textColor = .neutralDark
         cashOnlyTableHeaderLabel.text = NSLocalizedString("Bank account payments are not available for this account.", comment: "")
         cashOnlyTableHeaderLabel.isHidden = !viewModel.accountDetail.isCashOnly
         
-        errorLabel.font = SystemFont.regular.of(textStyle: .headline)
-        errorLabel.textColor = .deepGray
+        errorLabel.font = .headline
+        errorLabel.textColor = .neutralDark
         errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
     }
     

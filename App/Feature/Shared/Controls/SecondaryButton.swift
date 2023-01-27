@@ -28,11 +28,11 @@ class SecondaryButton: UIButton {
             let condensation = SecondaryButtonCondensation(rawValue: condensationValue) ?? .none
             switch condensation {
             case .none:
-                titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
+                titleLabel?.font = .headlineSemibold
             case .condensed:
-                titleLabel?.font = SystemFont.semibold.of(textStyle: .subheadline)
+                titleLabel?.font = .subheadlineSemibold
             case .supercondensed:
-                titleLabel?.font = SystemFont.semibold.of(textStyle: .caption1)
+                titleLabel?.font = .caption1Semibold
             }
         }
     }
@@ -50,7 +50,7 @@ class SecondaryButton: UIButton {
     }
     
     func commonInit() {
-        titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
+        titleLabel?.font = .headlineSemibold
         layer.borderWidth = 1
         
         updateTitleColors()
@@ -86,9 +86,9 @@ class SecondaryButton: UIButton {
             highlightColor = .white
             disabledColor = UIColor.white.withAlphaComponent(0.5)
         } else {
-            titleColor = .actionBlue
-            highlightColor = .actionBlue
-            disabledColor = UIColor.deepGray.withAlphaComponent(0.4)
+            titleColor = .primaryBlue
+            highlightColor = .primaryBlue
+            disabledColor = UIColor.neutralDark.withAlphaComponent(0.4)
         }
         
         setTitleColor(titleColor, for: .normal)

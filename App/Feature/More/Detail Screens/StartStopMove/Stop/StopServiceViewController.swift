@@ -72,9 +72,9 @@ class StopServiceViewController: UIViewController {
         self.navigationItem.leftBarButtonItem = newBackButton
         self.scrollView.isHidden = true
         
-        stopServiceAddressStaticLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        serviceProvidedStaticLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        serviceDisconnectStaticLabel.font = SystemFont.regular.of(textStyle: .caption1)
+        stopServiceAddressStaticLabel.font = .footnote
+        serviceProvidedStaticLabel.font = .footnote
+        serviceDisconnectStaticLabel.font = .caption1
 
         
         viewModel.showLoadingState

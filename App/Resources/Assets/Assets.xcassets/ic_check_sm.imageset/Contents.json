@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "ic_check_sm.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

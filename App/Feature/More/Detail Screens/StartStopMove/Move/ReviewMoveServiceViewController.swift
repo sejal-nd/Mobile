@@ -81,15 +81,15 @@ class ReviewMoveServiceViewController: UIViewController {
         self.navigationItem.leftBarButtonItem = newBackButton
 
 
-        stopCurrentServiceAddressStaticLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        stopCurrentServiceProvidedStaticLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        stopCurrentServiceDateStaticLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        stopCurrentServiceDisconnectStaticLabel.font = SystemFont.regular.of(textStyle: .caption1)
+        stopCurrentServiceAddressStaticLabel.font = .footnote
+        stopCurrentServiceProvidedStaticLabel.font = .footnote
+        stopCurrentServiceDateStaticLabel.font = .footnote
+        stopCurrentServiceDisconnectStaticLabel.font = .caption1
 
-        startNewServiceAddressStaticLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        startNewServiceProvidedStaticLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        startNewServiceDateStaticLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        startNewServiceConnectStaticLabel.font = SystemFont.regular.of(textStyle: .caption1)
+        startNewServiceAddressStaticLabel.font = .footnote
+        startNewServiceProvidedStaticLabel.font = .footnote
+        startNewServiceDateStaticLabel.font = .footnote
+        startNewServiceConnectStaticLabel.font = .caption1
 
 
         changeStopServiceDateButton.rx.tap

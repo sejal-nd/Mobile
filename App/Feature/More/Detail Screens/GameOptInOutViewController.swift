@@ -40,8 +40,8 @@ class GameOptInOutViewController: UIViewController {
         }
         
         for label in labels {
-            label.textColor = .deepGray
-            label.font = SystemFont.regular.of(textStyle: .body)
+            label.textColor = .neutralDark
+            label.font = .body
         }
         
         scrollView.isHidden = true

@@ -66,23 +66,23 @@ class SERPTSViewController: UIViewController {
         title = Configuration.shared.opco == .comEd ? NSLocalizedString("Peak Time Savings", comment: "") :
             NSLocalizedString("Smart Energy Rewards", comment: "")
         
-        smartEnergyRewardsSeasonLabel.textColor = .deepGray
-        smartEnergyRewardsSeasonLabel.font = OpenSans.regular.of(textStyle: .headline)
+        smartEnergyRewardsSeasonLabel.textColor = .neutralDark
+        smartEnergyRewardsSeasonLabel.font = .headline
         
-        smartEnergyRewardsViewAllSavingsButton.setTitleColor(.actionBlue, for: .normal)
-        smartEnergyRewardsViewAllSavingsButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
+        smartEnergyRewardsViewAllSavingsButton.setTitleColor(.actionBrand, for: .normal)
+        smartEnergyRewardsViewAllSavingsButton.titleLabel?.font = .headlineSemibold
         smartEnergyRewardsViewAllSavingsButton.titleLabel?.text = NSLocalizedString("View All Savings", comment: "")
         
-        smartEnergyRewardsFooterLabel.textColor = .deepGray
-        smartEnergyRewardsFooterLabel.font = SystemFont.regular.of(textStyle: .caption1)
+        smartEnergyRewardsFooterLabel.textColor = .neutralDark
+        smartEnergyRewardsFooterLabel.font = .caption1
         
-        smartEnergyRewardsEmptyStateLabel.font = OpenSans.regular.of(textStyle: .headline)
+        smartEnergyRewardsEmptyStateLabel.font = .headline
         smartEnergyRewardsEmptyStateLabel.textAlignment = .center
-        smartEnergyRewardsEmptyStateLabel.textColor = .deepGray
+        smartEnergyRewardsEmptyStateLabel.textColor = .neutralDark
         smartEnergyRewardsEmptyStateLabel.text = NSLocalizedString("Your energy savings data will be available here once we have more data.", comment: "")
         
-        errorLabel.textColor = .deepGray
-        errorLabel.font = SystemFont.regular.of(textStyle: .headline)
+        errorLabel.textColor = .neutralDark
+        errorLabel.font = .headline
     }
     
     private func buttonTapSetup() {

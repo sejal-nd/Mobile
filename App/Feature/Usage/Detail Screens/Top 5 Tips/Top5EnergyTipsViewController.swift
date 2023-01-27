@@ -29,7 +29,7 @@ class Top5EnergyTipsViewController: DismissableFormSheetViewController {
         let residentialAMIString = String(format: "%@%@", accountDetail.isResidential ? "Residential/" : "Commercial/", accountDetail.isAMIAccount ? "AMI" : "Non-AMI")
         GoogleAnalytics.log(event: .viewTopTips, dimensions: [.residentialAMI: residentialAMIString])
         
-        errorLabel.textColor = .deepGray
+        errorLabel.textColor = .neutralDark
         
         tableView.register(UINib(nibName: EnergyTipTableViewCell.className, bundle: nil),
                            forCellReuseIdentifier: EnergyTipTableViewCell.className)

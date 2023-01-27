@@ -214,37 +214,37 @@ public enum PaymentMethodType {
         }
     }
     
-    var imageLarge: UIImage { // TODO: should probably move UIKit elements somewhere else?
+    var imageLarge: UIImage? { // TODO: should probably move UIKit elements somewhere else?
         switch self {
         case .visa:
-            return #imageLiteral(resourceName: "ic_visa_large")
+            return UIImage(named: "ic_visa_large")
         case .mastercard:
-            return #imageLiteral(resourceName: "ic_mastercard_large")
+            return UIImage(named: "ic_mastercard_large")
         case .amex:
-            return #imageLiteral(resourceName: "ic_amex_large")
+            return UIImage(named: "ic_amex_large")
         case .discover:
-            return #imageLiteral(resourceName: "ic_discover_large")
+            return UIImage(named: "ic_discover_large")
         case .ach:
-            return #imageLiteral(resourceName: "opco_bank")
+            return UIImage(named: "ic_generic_bank")
         case .unknown(_):
-            return #imageLiteral(resourceName: "opco_credit_card")
+            return UIImage(named: "ic_generic_card")
         }
     }
     
-    var imageMini: UIImage { // TODO: should probably move UIKit elements somewhere else?
+    var imageMini: UIImage? { // TODO: should probably move UIKit elements somewhere else?
         switch self {
         case .visa:
-            return #imageLiteral(resourceName: "ic_visa_mini")
+            return UIImage(named: "ic_visa_mini")
         case .mastercard:
-            return #imageLiteral(resourceName: "ic_mastercard_mini")
+            return UIImage(named: "ic_mastercard_mini")
         case .amex:
-            return #imageLiteral(resourceName: "ic_amex_mini")
+            return UIImage(named: "ic_amex_mini")
         case .discover:
-            return #imageLiteral(resourceName: "ic_discover_mini")
+            return UIImage(named: "ic_discover_mini")
         case .ach:
-            return #imageLiteral(resourceName: "opco_bank_mini")
+            return UIImage(named: "ic_generic_bank_mini")
         case .unknown(_):
-            return #imageLiteral(resourceName: "credit_card_mini")
+            return UIImage(named: "ic_generic_card_mini")
         }
     }
 

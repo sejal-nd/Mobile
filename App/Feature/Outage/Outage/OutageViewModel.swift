@@ -184,12 +184,12 @@ class OutageViewModel {
                 """, phone1, phone2)
         }
         
-        let attributedText = NSMutableAttributedString(string: localizedString, attributes: [.font: SystemFont.regular.of(textStyle: .caption1)])
+        let attributedText = NSMutableAttributedString(string: localizedString, attributes: [.font: UIFont.caption1])
         for phone in phoneNumbers {
             localizedString.ranges(of: phone, options: .regularExpression)
                 .map { NSRange($0, in: localizedString) }
                 .forEach {
-                    attributedText.addAttribute(.font, value: SystemFont.semibold.of(textStyle: .caption1), range: $0)
+                    attributedText.addAttribute(.font, value: UIFont.caption1Semibold, range: $0)
             }
         }
         return attributedText
