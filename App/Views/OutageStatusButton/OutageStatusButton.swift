@@ -102,7 +102,7 @@ class OutageStatusButton: UIView {
             onLottieAnimation?.removeFromSuperview()
             
             if isStormMode {
-                onLottieAnimation = AnimationView(name: "sm_outage-Flavor\(Configuration.shared.opco.rawValue)")
+                onLottieAnimation = AnimationView(name: "outage_power_on")
                 
                 outerCircleView.isHidden = true
                 
@@ -114,7 +114,7 @@ class OutageStatusButton: UIView {
                 reportedETRTitleLabel.textColor = .white
                 reportedETRLabel.textColor = .white
             } else {
-                onLottieAnimation = AnimationView(name: "outage-Flavor\(Configuration.shared.opco.rawValue)")
+                onLottieAnimation = AnimationView(name: "outage_power_on")
                 
                 outerCircleView.isHidden = false
                 
@@ -218,12 +218,12 @@ class OutageStatusButton: UIView {
         if isStormMode {
             setStateColors(innerBackground: UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.1),
                            innerStroke: UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0,  alpha: 0.3))
-            statusETRImageView.image = #imageLiteral(resourceName: "ic_outagestatus_out_white")
+            statusETRImageView.image = UIImage(named: "ic_outagestatus_out_white")
         } else {
             setStateColors(innerBackground: .white,
                            innerStroke: .middleGray,
                            outerStroke: UIColor(red: 216/255, green: 216/255, blue: 216/255,  alpha: 1))
-            statusETRImageView.image = #imageLiteral(resourceName: "ic_outagestatus_out")
+            statusETRImageView.image = UIImage(named: "ic_outagestatus_out")
         }
         
         // Set Values
@@ -246,11 +246,12 @@ class OutageStatusButton: UIView {
         // Styling
         
         innerCircleView.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 4), radius: 5)
-        
+
         if isStormMode {
-            setStateColors(innerBackground: UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.1),
-                           innerStroke: UIColor.clear)
-            statusImageView.image = #imageLiteral(resourceName: "ic_lightbulb_on_white")
+            setStateColors(innerBackground: .clear,
+                           innerStroke: .clear,
+                           outerStroke: .clear)
+            statusImageView.image = UIImage(named: "ic_lightbulb_on_white")
         } else {
             setStateColors(innerBackground: .white,
                            innerStroke: .white,
