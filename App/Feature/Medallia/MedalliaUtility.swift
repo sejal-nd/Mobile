@@ -107,7 +107,6 @@ final class MedalliaUtility {
         MedalliaDigital.setCustomParameter(name: "ServiceType", value: serviceType)
         MedalliaDigital.setCustomParameter(name: "AmountDue", value: amountDue)
         MedalliaDigital.setCustomParameter(name: "OutageEtr", value: outageETR )
-        MedalliaDigital.setCustomParameter(name: "CustomerPhoneNumber", value: customerPhoneNumber)
         }
     
     //MARK: - Medallia OutageReportingAnon
