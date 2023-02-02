@@ -48,6 +48,7 @@ class MainTabBarController: UITabBarController {
     private func style() {
         tabBar.barTintColor = .white
         tabBar.tintColor = .primaryColor
+        tabBar.unselectedItemTintColor = .neutralDark
         tabBar.isTranslucent = false
     }
     

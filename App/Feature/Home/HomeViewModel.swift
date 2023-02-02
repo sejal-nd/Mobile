@@ -116,7 +116,7 @@ class HomeViewModel {
             return AccountService.rx.fetchAccountDetails()
             // todo account details
         })
-        .share(replay: 1, scope: .forever)
+        .share(scope: .forever)
     
     private(set) lazy var scheduledPaymentEvents: Observable<Event<PaymentItem?>> = Observable
         .merge(fetchDataMMEvents, recentPaymentsUpdatedMMEvents)
