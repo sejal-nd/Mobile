@@ -34,7 +34,7 @@
         <scene sceneID="f2e-QZ-YFW">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="860-AT-jXi" customClass="LargeTitleNavigationController" customModule="Atlantic_City_Electric" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" tag="1" title="Home" image="ic_nav_home" selectedImage="ic_home_selected" id="v6H-gB-TMz"/>
+                    <tabBarItem key="tabBarItem" tag="1" title="Home" image="ic_nav_home" selectedImage="ic_nav_home_selected" id="v6H-gB-TMz"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="lcz-28-eLx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -53,7 +53,7 @@
         <scene sceneID="q78-Wg-4VI">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="4hR-iJ-D1w" customClass="LargeTitleNavigationController" customModule="Atlantic_City_Electric" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" tag="2" title="Bill" image="ic_nav_bill" selectedImage="ic_bill_selected" id="c1S-Sq-ZJ5"/>
+                    <tabBarItem key="tabBarItem" tag="2" title="Bill" image="ic_nav_bill" selectedImage="ic_nav_bill_selected" id="c1S-Sq-ZJ5"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ABC-PP-DNT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -72,7 +72,7 @@
         <scene sceneID="DmR-1M-Rt9">
             <objects>
                 <navigationController id="uQF-ze-ffY" customClass="LargeTitleNavigationController" customModule="Atlantic_City_Electric" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" tag="5" title="More" image="ic_nav_more" selectedImage="ic_more_selected" id="0Wk-9T-mXr"/>
+                    <tabBarItem key="tabBarItem" tag="5" title="More" image="ic_nav_more" selectedImage="ic_nav_more_selected" id="0Wk-9T-mXr"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Sm4-4A-KSA">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -129,7 +129,7 @@
         <scene sceneID="hUx-td-Zrv">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bdC-Bo-rcI" customClass="LargeTitleNavigationController" customModule="Atlantic_City_Electric" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" tag="3" title="Outage" image="ic_nav_outage" selectedImage="ic_outage_selected" id="vXF-ge-4jE"/>
+                    <tabBarItem key="tabBarItem" tag="3" title="Outage" image="ic_nav_outage" selectedImage="ic_nav_outage_selected" id="vXF-ge-4jE"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Tph-83-2fc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -148,7 +148,7 @@
         <scene sceneID="70j-Ia-4jH">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="oCk-0Q-geV" customClass="LargeTitleNavigationController" customModule="Atlantic_City_Electric" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" tag="4" title="Usage" image="ic_nav_usage" selectedImage="ic_usage_selected" id="Otb-cD-p9W"/>
+                    <tabBarItem key="tabBarItem" tag="4" title="Usage" image="ic_nav_usage" selectedImage="ic_nav_usage_selected" id="Otb-cD-p9W"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="NOb-8y-go0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -175,15 +175,15 @@
         </scene>
     </scenes>
     <resources>
-        <image name="ic_bill_selected" width="30" height="30"/>
-        <image name="ic_home_selected" width="30" height="30"/>
-        <image name="ic_more_selected" width="30" height="30"/>
         <image name="ic_nav_bill" width="24" height="24"/>
-        <image name="ic_nav_home" width="24" height="24"/>
-        <image name="ic_nav_more" width="24" height="24"/>
-        <image name="ic_nav_outage" width="24" height="24"/>
-        <image name="ic_nav_usage" width="24" height="24"/>
-        <image name="ic_outage_selected" width="30" height="30"/>
-        <image name="ic_usage_selected" width="30" height="30"/>
+        <image name="ic_nav_bill_selected" width="30" height="30"/>
+        <image name="ic_nav_home" width="30" height="30"/>
+        <image name="ic_nav_home_selected" width="30" height="30"/>
+        <image name="ic_nav_more" width="30" height="30"/>
+        <image name="ic_nav_more_selected" width="30" height="30"/>
+        <image name="ic_nav_outage" width="30" height="30"/>
+        <image name="ic_nav_outage_selected" width="30" height="30"/>
+        <image name="ic_nav_usage" width="30" height="30"/>
+        <image name="ic_nav_usage_selected" width="30" height="30"/>
     </resources>
 </document>
