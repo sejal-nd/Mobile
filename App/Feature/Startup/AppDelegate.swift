@@ -14,6 +14,7 @@ import RxSwift
 import UserNotifications
 import CoreData
 import ForeSee
+import DecibelCore
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -96,6 +97,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             .disposed(by: disposeBag)
         
         ForeSee.start()
+        
+        //Decibel SDK
+//        if let decibalAccount = Configuration.shared.decibelTokens["Account"], let decibalPropertyID = Configuration.shared.decibelTokens["Property ID"] {
+//            DecibelSDK.shared.initialize(account: decibalAccount, property: decibalPropertyID)
+//            DecibelSDK.shared.setLogLevel(.info)
+//            
+////            DecibelSDK.shared.setAutomaticMask(.labels)
+////            DecibelSDK.shared.setAutomaticMask(.inputs)
+//            DecibelSDK.shared.enabledSessionReplay(true)
+//        }
         
         //Medallia SDK
         MedalliaUtility.shared.medalliaSDKInit()

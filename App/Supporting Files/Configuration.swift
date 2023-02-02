@@ -500,5 +500,22 @@ struct Configuration {
             return ""
         }
     }
+    
+    var decibelTokens: [String: String] {
+        switch Configuration.shared.opco {
+        case .bge:
+            return ["Account": "14081", "Property ID": "1238896"]
+        case .comEd:
+            return ["Account": "14081", "Property ID": "1249150"]
+        case .peco:
+            return ["Account": "14081", "Property ID": "1249170"]
+        case .pepco:
+            return ["Account": "14081", "Property ID": "1249180"]
+        case .ace:
+            return ["Account": "14081", "Property ID": "1244558"]
+        case .delmarva:
+            return ["Account": "14081", "Property ID": "1249160"]
+        }
+    }
 
 }

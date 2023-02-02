@@ -216,6 +216,8 @@ class AccountPicker: UIControl {
     private func setAccountNumberText(_ text: String, accessibilityLabel: String) {
         for label in accountNumberLabels {
             label.text = text
+            // Avinash
+//            label.diMasking = .mask
             label.accessibilityLabel = accessibilityLabel
         }
     }
@@ -223,6 +225,8 @@ class AccountPicker: UIControl {
     private func setAddressText(_ text: String, accessibilityLabel: String) {
         for label in addressLabels {
             label.text = text
+            // Avinash
+//            label.diMasking = .mask
             label.accessibilityLabel = accessibilityLabel
         }
     }

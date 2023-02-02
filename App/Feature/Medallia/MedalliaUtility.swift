@@ -9,7 +9,7 @@
 import Foundation
 import MedalliaDigitalSDK
 import SwiftUI
-
+import DecibelCore
 
 enum MedalliaPage {
     // iOS
@@ -55,6 +55,16 @@ final class MedalliaUtility {
         MedalliaDigital.sdkInit(token:Configuration.shared.medalliaAPITocken, success: {
             Log.info("Medallia Init Success")
             MedalliaDigital.setLogLevel(MDLogLevel.debug)
+            //Decibel SDK
+            if let decibalAccount = Configuration.shared.decibelTokens["Account"], let decibalPropertyID = Configuration.shared.decibelTokens["Property ID"] {
+                DecibelSDK.shared.initialize(account: decibalAccount, property: decibalPropertyID)
+                DecibelSDK.shared.setLogLevel(.info)
+                DecibelSDK.shared.send(dimension: "isProd", withBool: self.isProdForMedallia)
+    //            DecibelSDK.shared.setAutomaticMask(.labels)
+    //            DecibelSDK.shared.setAutomaticMask(.inputs)
+                DecibelSDK.shared.enabledSessionReplay(true)
+            }
+            
             MedalliaDigital.setCustomParameter(name: "isProd", value: self.isProdForMedallia.description.uppercased())
         }) { (error) in
             Log.error("Medallia Init Failure")
