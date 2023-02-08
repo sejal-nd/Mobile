@@ -101,7 +101,7 @@ class SplashViewController: UIViewController{
         checkAppVersion { [weak self] in
             self?.doLoginLogic()
         }
-        DecibelSDK.shared.send(dimension: "isProd", withBool: false)
+        DecibelSDK.shared.send(dimension: "isProd", withBool: MedalliaPlusDecibelUtility.shared.isProdForMedallia)
     }
 
     override func viewDidLayoutSubviews() {
