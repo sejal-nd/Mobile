@@ -98,18 +98,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         ForeSee.start()
         
-        //Decibel SDK
-//        if let decibalAccount = Configuration.shared.decibelTokens["Account"], let decibalPropertyID = Configuration.shared.decibelTokens["Property ID"] {
-//            DecibelSDK.shared.initialize(account: decibalAccount, property: decibalPropertyID)
-//            DecibelSDK.shared.setLogLevel(.info)
-//            
-////            DecibelSDK.shared.setAutomaticMask(.labels)
-////            DecibelSDK.shared.setAutomaticMask(.inputs)
-//            DecibelSDK.shared.enabledSessionReplay(true)
-//        }
-        
         //Medallia SDK
-        MedalliaUtility.shared.medalliaSDKInit()
+        MedalliaPlusDecibelUtility.shared.medalliaSDKInit()
+        
+        //Decibel SDK
+        MedalliaPlusDecibelUtility.shared.decibelSDKInit()
         
         return true
     }

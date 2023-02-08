@@ -1072,7 +1072,7 @@
 		C3E377A927696385000D557D /* AccountSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E377A727696385000D557D /* AccountSummary.swift */; };
 		C3E7AE8E298305E70044194E /* outage_power_on.json in Resources */ = {isa = PBXBuildFile; fileRef = C3E7AE8D298305E70044194E /* outage_power_on.json */; };
 		C8F95FB76F50334BC5162649 /* Pods_EUMobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F3FDD6CD872BFB6C5171060 /* Pods_EUMobile.framework */; };
-		CC6BC820296D6F43000A250C /* MedalliaUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6BC81F296D6F42000A250C /* MedalliaUtility.swift */; };
+		CC6BC820296D6F43000A250C /* MedalliaPlusDecibelUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6BC81F296D6F42000A250C /* MedalliaPlusDecibelUtility.swift */; };
 		CEA2151D1F79005600689422 /* HomeBillCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2151C1F79005600689422 /* HomeBillCardViewModel.swift */; };
 		CEA215221F7900CC00689422 /* HomeBillCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA215201F7900CC00689422 /* HomeBillCardView.swift */; };
 		CEA215251F7900CC00689422 /* HomeBillCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEA215211F7900CC00689422 /* HomeBillCardView.xib */; };
@@ -2441,7 +2441,7 @@
 		CA1B021215C985B2999AACA4 /* Pods-EUMobile-Watch.prod-comed.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch.prod-comed.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch/Pods-EUMobile-Watch.prod-comed.xcconfig"; sourceTree = "<group>"; };
 		CA7C927F43DA322FC8B20D4F /* Pods-EUMobileUnitTests.production beta-dpl.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobileUnitTests.production beta-dpl.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobileUnitTests/Pods-EUMobileUnitTests.production beta-dpl.xcconfig"; sourceTree = "<group>"; };
 		CA886746F7E4635710E6D462 /* Pods-EUMobileUITests.ace-aut.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobileUITests.ace-aut.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobileUITests/Pods-EUMobileUITests.ace-aut.xcconfig"; sourceTree = "<group>"; };
-		CC6BC81F296D6F42000A250C /* MedalliaUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MedalliaUtility.swift; sourceTree = "<group>"; };
+		CC6BC81F296D6F42000A250C /* MedalliaPlusDecibelUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MedalliaPlusDecibelUtility.swift; sourceTree = "<group>"; };
 		CD69C7B6AE1C0C5003D1EE99 /* Pods-EUMobile.production beta-dpl.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile.production beta-dpl.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile/Pods-EUMobile.production beta-dpl.xcconfig"; sourceTree = "<group>"; };
 		CDCE1DDE46AAD173AA694992 /* Pods-EUMobileUITests.automation-peco.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobileUITests.automation-peco.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobileUITests/Pods-EUMobileUITests.automation-peco.xcconfig"; sourceTree = "<group>"; };
 		CEA2151C1F79005600689422 /* HomeBillCardViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeBillCardViewModel.swift; sourceTree = "<group>"; };
@@ -5729,7 +5729,7 @@
 		CC6BC81E296D6F42000A250C /* Medallia */ = {
 			isa = PBXGroup;
 			children = (
-				CC6BC81F296D6F42000A250C /* MedalliaUtility.swift */,
+				CC6BC81F296D6F42000A250C /* MedalliaPlusDecibelUtility.swift */,
 			);
 			path = Medallia;
 			sourceTree = "<group>";
@@ -7196,7 +7196,7 @@
 				54DF4BCC1EE848F3008CF7AD /* ForgotUsernameSecurityQuestionViewController.swift in Sources */,
 				E87C320F1E9ECF0400E5F6FD /* AccountLookupToolResultViewController.swift in Sources */,
 				21E45FC7272B367C0009E25E /* MoveFinalMailingAddressViewController.swift in Sources */,
-				CC6BC820296D6F43000A250C /* MedalliaUtility.swift in Sources */,
+				CC6BC820296D6F43000A250C /* MedalliaPlusDecibelUtility.swift in Sources */,
 				82A18E551EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift in Sources */,
 				E893993D1F86AF1600B9184C /* UIViewDashedBorders.swift in Sources */,
 				675F4CE424AB828200A828F9 /* MinimumVersion.swift in Sources */,

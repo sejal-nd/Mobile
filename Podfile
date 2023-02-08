@@ -5,6 +5,9 @@ def shared_pods # Shared in both iOS and WatchOS
   pod 'RxSwiftExt', '5.2.0'
 end
 
+source 'https://github.com/DecibelInsight/decibel-sdk-ios-spec'
+source 'https://github.com/CocoaPods/Specs.git'
+
 def iOS_pods
   pod 'lottie-ios', '3.1.5'
   pod 'Toast-Swift', '5.0.0'
@@ -20,6 +23,7 @@ def iOS_pods
   pod 'ForeSee/Core', '6.0.4'
   pod 'ForeSee/ForeSeeFeedback', '6.0.4'
   pod 'MedalliaDigitalSDK', :http => 'https://repository.medallia.com/digital-generic/ios-sdk/4.1.0/ios-sdk-4.1.0.zip' #MedalliaSDK
+  pod 'DecibelSDK'
 end
 
 def iOS_UnitTestPods

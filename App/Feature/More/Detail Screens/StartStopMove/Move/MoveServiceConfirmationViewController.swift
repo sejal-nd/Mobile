@@ -70,7 +70,7 @@ class MoveServiceConfirmationViewController: UIViewController {
     }
     
     func medalliaMoveServiceSurveyForUnAuthUser(){
-        MedalliaUtility.shared.medalliaMoveServiceAnon(customerPhoneNumber:self.viewModel.unAuthAccountDetail.customerInfo.primaryPhoneNumber ?? "" )
+        MedalliaPlusDecibelUtility.shared.medalliaMoveServiceAnon(customerPhoneNumber:self.viewModel.unAuthAccountDetail.customerInfo.primaryPhoneNumber ?? "" )
     }
     
     private func intialSetup() {

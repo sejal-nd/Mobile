@@ -448,7 +448,7 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
        if(unauthenticatedExperience){
            
            print("outage UnAuth",viewModel.outageStatus.estimatedRestorationDate?.apiFormatString,viewModel.outageStatus.contactHomeNumber )
-           MedalliaUtility.shared.medalliaOutageReportingAnon(outageETR:viewModel.outageStatus.estimatedRestorationDate?.apiFormatString ?? "", customerPhoneNumber: viewModel.outageStatus.contactHomeNumber ?? "")
+           MedalliaPlusDecibelUtility.shared.medalliaOutageReportingAnon(outageETR:viewModel.outageStatus.estimatedRestorationDate?.apiFormatString ?? "", customerPhoneNumber: viewModel.outageStatus.contactHomeNumber ?? "")
        }else{
            viewModel.accountDetail.asObservable()
                .subscribe(onNext: { [self] (value) in
