@@ -73,23 +73,25 @@ final class MedalliaUtility {
     }
     
     //MARK: - Medallia StopService
-    func medalliaStopService(customerID : String ,accountType : String , lowIncomeStatus : Bool , serviceType : String , amountDue : Double ){
+    func medalliaStopService(customerID : String ,accountType : String , lowIncomeStatus : Bool , serviceType : String , currentAmountDue : Double, netAmountDue : Double){
         MedalliaDigital.setCustomParameter(name: "PageName", value: MedalliaPage.stopService.screenName)
         MedalliaDigital.setCustomParameter(name: "CustomerId", value: customerID)
         MedalliaDigital.setCustomParameter(name: "AccountType", value: accountType)
         MedalliaDigital.setCustomParameter(name: "LowIncomeStatus", value: lowIncomeStatus)
         MedalliaDigital.setCustomParameter(name: "ServiceType", value: serviceType)
-        MedalliaDigital.setCustomParameter(name: "AmountDue", value: amountDue)
+        MedalliaDigital.setCustomParameter(name: "CurrentAmountDue", value: currentAmountDue)
+        MedalliaDigital.setCustomParameter(name: "NetAmountDue", value: netAmountDue)
     }
         
     //MARK: - Medallia MoveService
-        func medalliaMoveService( customerID : String ,accountType : String , lowIncomeStatus : Bool , serviceType : String , amountDue : Double ){
+        func medalliaMoveService( customerID : String ,accountType : String , lowIncomeStatus : Bool , serviceType : String , currentAmountDue : Double, netAmountDue : Double){
             MedalliaDigital.setCustomParameter(name: "PageName", value: MedalliaPage.moveService.screenName)
             MedalliaDigital.setCustomParameter(name: "CustomerId", value: customerID)
             MedalliaDigital.setCustomParameter(name: "AccountType", value: accountType)
             MedalliaDigital.setCustomParameter(name: "LowIncomeStatus", value: lowIncomeStatus)
             MedalliaDigital.setCustomParameter(name: "ServiceType", value: serviceType)
-            MedalliaDigital.setCustomParameter(name: "AmountDue", value: amountDue)
+            MedalliaDigital.setCustomParameter(name: "CurrentAmountDue", value: currentAmountDue)
+            MedalliaDigital.setCustomParameter(name: "NetAmountDue", value: netAmountDue)
         }
     
     //MARK: - Medallia MoveServiceAnon
@@ -99,13 +101,14 @@ final class MedalliaUtility {
         }
     
     //MARK: - Medallia OutageReporting
-    func medalliaOutageReporting( customerID : String ,accountType : String , lowIncomeStatus : Bool , serviceType : String , amountDue : Double ,outageETR : String, customerPhoneNumber : String ){
+    func medalliaOutageReporting( customerID : String ,accountType : String , lowIncomeStatus : Bool , serviceType : String , currentAmountDue : Double, netAmountDue : Double, outageETR : String, customerPhoneNumber : String ){
         MedalliaDigital.setCustomParameter(name: "PageName", value: MedalliaPage.reportOutage.screenName)
         MedalliaDigital.setCustomParameter(name: "CustomerId", value: customerID)
         MedalliaDigital.setCustomParameter(name: "AccountType", value: accountType)
         MedalliaDigital.setCustomParameter(name: "LowIncomeStatus", value: lowIncomeStatus)
         MedalliaDigital.setCustomParameter(name: "ServiceType", value: serviceType)
-        MedalliaDigital.setCustomParameter(name: "AmountDue", value: amountDue)
+        MedalliaDigital.setCustomParameter(name: "CurrentAmountDue", value: currentAmountDue)
+        MedalliaDigital.setCustomParameter(name: "NetAmountDue", value: netAmountDue)
         MedalliaDigital.setCustomParameter(name: "OutageEtr", value: outageETR )
         }
     
@@ -118,12 +121,13 @@ final class MedalliaUtility {
         }
     
     //MARK: - Medallia Payment
-    func medalliaPayment(customerID : String ,accountType : String , lowIncomeStatus : Bool , serviceType : String , amountDue : Double ){
+    func medalliaPayment(customerID : String ,accountType : String , lowIncomeStatus : Bool , serviceType : String , currentAmountDue : Double, netAmountDue : Double){
         MedalliaDigital.setCustomParameter(name: "PageName", value: MedalliaPage.payment.screenName)
         MedalliaDigital.setCustomParameter(name: "CustomerId", value: customerID)
         MedalliaDigital.setCustomParameter(name: "AccountType", value: accountType)
         MedalliaDigital.setCustomParameter(name: "LowIncomeStatus", value: lowIncomeStatus)
         MedalliaDigital.setCustomParameter(name: "ServiceType", value: serviceType)
-        MedalliaDigital.setCustomParameter(name: "AmountDue", value: amountDue)
+        MedalliaDigital.setCustomParameter(name: "CurrentAmountDue", value: currentAmountDue)
+        MedalliaDigital.setCustomParameter(name: "NetAmountDue", value: netAmountDue)
     }
 }

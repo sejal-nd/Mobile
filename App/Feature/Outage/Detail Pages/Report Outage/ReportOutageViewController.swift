@@ -452,7 +452,7 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
        }else{
            viewModel.accountDetail.asObservable()
                .subscribe(onNext: { [self] (value) in
-                   MedalliaUtility.shared.medalliaOutageReporting(customerID: AccountsStore.shared.customerIdentifier, accountType: value!.isResidential ? "Residential" : "Commercial", lowIncomeStatus: value!.isLowIncome , serviceType: value!.serviceType ?? "", amountDue: value!.billingInfo.currentDueAmount ?? 0, outageETR: self.viewModel.outageStatus.estimatedRestorationDate?.apiFormatString ?? "", customerPhoneNumber: viewModel.outageStatus.contactHomeNumber ?? "")
+                   MedalliaUtility.shared.medalliaOutageReporting(customerID: AccountsStore.shared.customerIdentifier, accountType: value!.isResidential ? "Residential" : "Commercial", lowIncomeStatus: value!.isLowIncome , serviceType: value!.serviceType ?? "", currentAmountDue: value!.billingInfo.currentDueAmount ?? 0, netAmountDue: value!.billingInfo.netDueAmount ?? 0, outageETR: self.viewModel.outageStatus.estimatedRestorationDate?.apiFormatString ?? "", customerPhoneNumber: viewModel.outageStatus.contactHomeNumber ?? "")
                        })
                        .disposed(by: disposeBag)
       }
