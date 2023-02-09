@@ -37,6 +37,9 @@ class HomeViewModel {
     private(set) lazy var weatherViewModel =
         HomeWeatherViewModel(accountDetailEvents: accountDetailEvents,
                              accountDetailTracker: accountDetailTracker)
+
+    private(set) lazy var discoverCardViewModel =
+        HomeDiscoverCardViewModel(accountDetailEvents: accountDetailEvents)
     
     private(set) lazy var billCardViewModel =
         HomeBillCardViewModel(fetchData: fetchDataObservable,
@@ -50,13 +53,6 @@ class HomeViewModel {
                                maintenanceModeEvents: maintenanceModeEvents,
                                accountDetailEvents: accountDetailEvents,
                                fetchTracker: usageTracker)
-    
-    private(set) lazy var templateCardViewModel =
-        TemplateCardViewModel(accountDetailEvents: accountDetailEvents,
-                              showLoadingState: accountDetailTracker.asDriver()
-                                .filter { $0 }
-                                .mapTo(())
-                                .startWith(()))
     
     private(set) lazy var projectedBillCardViewModel =
         HomeProjectedBillCardViewModel(fetchData: fetchDataObservable,
@@ -120,7 +116,7 @@ class HomeViewModel {
             return AccountService.rx.fetchAccountDetails()
             // todo account details
         })
-        .share(replay: 1, scope: .forever)
+        .share(scope: .forever)
     
     private(set) lazy var scheduledPaymentEvents: Observable<Event<PaymentItem?>> = Observable
         .merge(fetchDataMMEvents, recentPaymentsUpdatedMMEvents)
@@ -379,4 +375,51 @@ class HomeViewModel {
             return ""
         }
     }
+
+    var backgroundImage: UIImage? {
+        let components = Calendar.current.dateComponents([.hour], from: .now)
+        guard let hour = components.hour else { return UIImage(named: "img_home_afternoon_mobile") }
+
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            if 4 ... 11 ~= hour {
+                return UIImage(named: "img_home_morning_tablet_portrait")
+            } else if 11 ... 15 ~= hour {
+                return UIImage(named: "img_home_afternoon_tablet_portrait")
+            } else {
+                return UIImage(named: "img_home_evening_tablet_portrait")
+            }
+        } else {
+            if 4 ... 11 ~= hour {
+                return UIImage(named: "img_home_morning_mobile")
+            } else if 11 ... 15 ~= hour {
+                return UIImage(named: "img_home_afternoon_mobile")
+            } else {
+                return UIImage(named: "img_home_evening_mobile")
+            }
+        }
+    }
+
+    private(set) lazy var backgroundImageDriver: Driver<UIImage?> = Observable<Int>
+        .interval(.seconds(60), scheduler: MainScheduler.instance)
+        .mapTo(())
+        .startWith(())
+        .map { self.backgroundImage }
+        .startWith(nil)
+        .asDriver(onErrorDriveWith: .empty())
+
+    private(set) lazy var greetingDriver: Driver<String?> = Observable<Int>
+        .interval(.seconds(60), scheduler: MainScheduler.instance)
+        .mapTo(())
+        .startWith(())
+        .map { Date.now.localizedGreeting }
+        .startWith(nil)
+        .asDriver(onErrorDriveWith: .empty())
+
+    private(set) lazy var greetingDateDriver: Driver<String?> = Observable<Int>
+        .interval(.seconds(60), scheduler: MainScheduler.instance)
+        .mapTo(())
+        .startWith(())
+        .map { NSLocalizedString("It's \(DateFormatter.dayMonthDayYearFormatter.string(from: Date.now))", comment: "") }
+        .startWith(nil)
+        .asDriver(onErrorDriveWith: .empty())
 }

@@ -26,14 +26,14 @@ class AccountLookupToolResultCell: UITableViewCell {
         selectionStyle = .none
         accessibilityTraits = .button
         
-        accountNumberLabel.textColor = .deepGray
-        accountNumberLabel.font = SystemFont.semibold.of(textStyle: .headline)
+        accountNumberLabel.textColor = .neutralDark
+        accountNumberLabel.font = .headlineSemibold
         
-        streetNumberLabel.textColor = .deepGray
-        streetNumberLabel.font = SystemFont.regular.of(textStyle: .headline)
+        streetNumberLabel.textColor = .neutralDark
+        streetNumberLabel.font = .headline
         
-        unitNumberLabel.textColor = .deepGray
-        unitNumberLabel.font = SystemFont.regular.of(textStyle: .headline)
+        unitNumberLabel.textColor = .neutralDark
+        unitNumberLabel.font = .headline
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -72,7 +72,7 @@ extension iTronSmartThermostatViewController {
         webView.isHidden = true
         webView.customUserAgent = "Mobile"
         
-        errorLabel.font = SystemFont.regular.of(textStyle: .headline)
+        errorLabel.font = .headline
         errorLabel.textColor = .blackText
         errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
         addCustomBackButton()

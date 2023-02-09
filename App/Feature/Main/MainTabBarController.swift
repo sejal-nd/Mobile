@@ -14,14 +14,14 @@ class MainTabBarController: UITabBarController {
     
     let disposeBag = DisposeBag()
     
-    let normalTitleFont = SystemFont.regular.of(textStyle: .caption2)
-    let selectedTitleFont = SystemFont.bold.of(textStyle: .caption2)
+    let normalTitleFont = UIFont.caption2
+    let selectedTitleFont = UIFont.caption2Semibold
     
-    let normalTitleColor = UIColor.middleGray
+    let normalTitleColor = UIColor.neutralDark
     let selectedTitleColor = UIColor.primaryColor
         
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
+        return .darkContent
     }
     
     // MARK: - View Life Cycle
@@ -48,6 +48,7 @@ class MainTabBarController: UITabBarController {
     private func style() {
         tabBar.barTintColor = .white
         tabBar.tintColor = .primaryColor
+        tabBar.unselectedItemTintColor = .neutralDark
         tabBar.isTranslucent = false
     }
     

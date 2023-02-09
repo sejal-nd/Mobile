@@ -82,52 +82,52 @@ class BillingHistoryDetailsViewController: UIViewController {
     }
     
     func styleViews() {
-        paymentMethodLabel.textColor = .deepGray
-        paymentMethodLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        paymentMethodDetailsLabel.textColor = .deepGray
-        paymentMethodDetailsLabel.font = SystemFont.regular.of(textStyle: .callout)
+        paymentMethodLabel.textColor = .neutralDark
+        paymentMethodLabel.font = .footnote
+        paymentMethodDetailsLabel.textColor = .neutralDark
+        paymentMethodDetailsLabel.font = .callout
         
-        paymentTypeLabel.textColor = .deepGray
-        paymentTypeLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        paymentTypeDetailsLabel.textColor = .deepGray
-        paymentTypeDetailsLabel.font = SystemFont.regular.of(textStyle: .callout)
+        paymentTypeLabel.textColor = .neutralDark
+        paymentTypeLabel.font = .footnote
+        paymentTypeDetailsLabel.textColor = .neutralDark
+        paymentTypeDetailsLabel.font = .callout
         
-        paymentAmountLabel.textColor = .deepGray
-        paymentAmountLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        paymentAmountDetailsLabel.textColor = .deepGray
-        paymentAmountDetailsLabel.font = SystemFont.regular.of(textStyle: .callout)
+        paymentAmountLabel.textColor = .neutralDark
+        paymentAmountLabel.font = .footnote
+        paymentAmountDetailsLabel.textColor = .neutralDark
+        paymentAmountDetailsLabel.font = .callout
         
-        convenienceFeeLabel.textColor = .deepGray
-        convenienceFeeLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        convenienceFeeDetailsLabel.textColor = .deepGray
-        convenienceFeeDetailsLabel.font = SystemFont.regular.of(textStyle: .callout)
+        convenienceFeeLabel.textColor = .neutralDark
+        convenienceFeeLabel.font = .footnote
+        convenienceFeeDetailsLabel.textColor = .neutralDark
+        convenienceFeeDetailsLabel.font = .callout
         
-        totalAmountPaidLabel.textColor = .deepGray
-        totalAmountPaidLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        totalAmountPaidDetailsLabel.textColor = .deepGray
-        totalAmountPaidDetailsLabel.font = SystemFont.regular.of(textStyle: .callout)
+        totalAmountPaidLabel.textColor = .neutralDark
+        totalAmountPaidLabel.font = .footnote
+        totalAmountPaidDetailsLabel.textColor = .neutralDark
+        totalAmountPaidDetailsLabel.font = .callout
         
-        paymentDateLabel.textColor = .deepGray
-        paymentDateLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        paymentDateDetailsLabel.textColor = .deepGray
-        paymentDateDetailsLabel.font = SystemFont.regular.of(textStyle: .callout)
+        paymentDateLabel.textColor = .neutralDark
+        paymentDateLabel.font = .footnote
+        paymentDateDetailsLabel.textColor = .neutralDark
+        paymentDateDetailsLabel.font = .callout
         
-        paymentStatusLabel.textColor = .deepGray
-        paymentStatusLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        paymentStatusDetailsLabel.textColor = .deepGray
-        paymentStatusDetailsLabel.font = SystemFont.regular.of(textStyle: .callout)
+        paymentStatusLabel.textColor = .neutralDark
+        paymentStatusLabel.font = .footnote
+        paymentStatusDetailsLabel.textColor = .neutralDark
+        paymentStatusDetailsLabel.font = .callout
         
-        confirmationNumberLabel.textColor = .deepGray
-        confirmationNumberLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        confirmationNumberDetailTextView.textColor = .deepGray
-        confirmationNumberDetailTextView.font = SystemFont.regular.of(textStyle: .callout)
+        confirmationNumberLabel.textColor = .neutralDark
+        confirmationNumberLabel.font = .footnote
+        confirmationNumberDetailTextView.textColor = .neutralDark
+        confirmationNumberDetailTextView.font = .callout
         confirmationNumberDetailTextView.dataDetectorTypes.remove(.all)
         
         let cancelPaymentText = NSLocalizedString("Cancel Payment", comment: "")
         cancelPaymentButton.accessibilityLabel = cancelPaymentText
         cancelPaymentLabel.text = cancelPaymentText
-        cancelPaymentLabel.font = SystemFont.regular.of(textStyle: .headline)
-        cancelPaymentLabel.textColor = .actionBlue
+        cancelPaymentLabel.font = .headline
+        cancelPaymentLabel.textColor = .actionBrand
         
         for line in dividerLines {
             line.backgroundColor = .accentGray

@@ -25,21 +25,21 @@ struct SeamlessMoveWarningView: View {
             Text("Our records indicate that you have an active Third Party Electric Supplier on your electric account at:")
                 .multilineTextAlignment(.leading)
                 .padding(.bottom, 12)
-                .foregroundColor(.deepGray)
+                .foregroundColor(.neutralDark)
             
             Group {
                 Text("Stop Service Address")
                     .font(.subheadline)
                     .multilineTextAlignment(.leading)
-                    .foregroundColor(.deepGray)
+                    .foregroundColor(.neutralDark)
                 Text(stopServiceAddress)
                     .fontWeight(.medium)
                     .multilineTextAlignment(.leading)
-                    .foregroundColor(.deepGray)
+                    .foregroundColor(.neutralDark)
                 Text(stopServiceCountyStateZip)
                     .fontWeight(.medium)
                     .multilineTextAlignment(.leading)
-                    .foregroundColor(.deepGray)
+                    .foregroundColor(.neutralDark)
             }
             
             Divider()
@@ -50,21 +50,21 @@ struct SeamlessMoveWarningView: View {
             Text("For your convenience, we will transfer your Third Party Electric Supplier for you, to your new address at:")
                 .multilineTextAlignment(.leading)
                 .padding(.bottom, 12)
-                .foregroundColor(.deepGray)
+                .foregroundColor(.neutralDark)
             
             Group {
                 Text("Start Service Address")
                     .font(.subheadline)
                     .multilineTextAlignment(.leading)
-                    .foregroundColor(.deepGray)
+                    .foregroundColor(.neutralDark)
                 Text(startServiceAddress)
                     .fontWeight(.medium)
                     .multilineTextAlignment(.leading)
-                    .foregroundColor(.deepGray)
+                    .foregroundColor(.neutralDark)
                 Text(startServiceCountyStateZip)
                     .fontWeight(.medium)
                     .multilineTextAlignment(.leading)
-                    .foregroundColor(.deepGray)
+                    .foregroundColor(.neutralDark)
             }
             
             Spacer()
@@ -72,7 +72,7 @@ struct SeamlessMoveWarningView: View {
             Text("Select Option")
                 .fontWeight(.semibold)
                 .multilineTextAlignment(.leading)
-                .foregroundColor(.deepGray)
+                .foregroundColor(.neutralDark)
             
             // User Options
             ForEach(TransferServiceOption.allCases) { option in

@@ -93,30 +93,30 @@ class AppointmentDetailViewController: UIViewController, IndicatorInfoProvider {
     func styleViews() {
         appointmentDescriptionTextView.textContainerInset = UIEdgeInsets(top: 14, left: 0, bottom: 8, right: 0) // top/bottom padding
         appointmentDescriptionTextView.textColor = .blackText
-        appointmentDescriptionTextView.tintColor = .actionBlue // Color of the phone numbers
-        appointmentDescriptionTextView.font = OpenSans.regular.of(textStyle: .headline)
+        appointmentDescriptionTextView.tintColor = .actionBrand // Color of the phone numbers
+        appointmentDescriptionTextView.font = .headline
         
-        addToCalendarLabel.textColor = .actionBlue
-        addToCalendarLabel.font = OpenSans.semibold.of(textStyle: .subheadline)
+        addToCalendarLabel.textColor = .primaryBlue
+        addToCalendarLabel.font = .subheadlineSemibold
         addToCalendarButton.accessibilityLabel = addToCalendarLabel.text
         
-        confirmedLabel.textColor = .deepGray
-        onOurWayLabel.textColor = .deepGray
-        inProgressLabel.textColor = .deepGray
-        completeLabel.textColor = .deepGray
+        confirmedLabel.textColor = .neutralDark
+        onOurWayLabel.textColor = .neutralDark
+        inProgressLabel.textColor = .neutralDark
+        completeLabel.textColor = .neutralDark
         
         wantNotificationsLabel.textColor = .blackText
-        wantNotificationsLabel.font = OpenSans.regular.of(textStyle: .headline)
+        wantNotificationsLabel.font = .headline
         
-        adjustAlertPreferencesButton.setTitleColor(.actionBlue, for: .normal)
-        adjustAlertPreferencesButton.titleLabel?.font = OpenSans.bold.of(textStyle: .headline)
+        adjustAlertPreferencesButton.setTitleColor(.actionBrand, for: .normal)
+        adjustAlertPreferencesButton.titleLabel?.font = .headlineSemibold
     }
     
     func bindViewModel() {
         progressView.isHidden = !viewModel.showProgressView
         
-        let regular = OpenSans.regular.of(textStyle: .headline)
-        let bold = OpenSans.bold.of(textStyle: .headline)
+        let regular = UIFont.headline
+        let bold = UIFont.headlineSemibold
         
         confirmedLabel.font = viewModel.status == .scheduled ? bold : regular
         onOurWayLabel.font = viewModel.status == .onOurWay || viewModel.status == .enRoute ? bold : regular

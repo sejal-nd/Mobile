@@ -29,20 +29,20 @@ class PaperlessEBillCommercialViewController: DismissableFormSheetViewController
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        xButton.tintColor = .actionBlue
+        xButton.tintColor = .actionBrand
         
         titleLabel.textColor = .blackText
         titleLabel.text = NSLocalizedString("Paperless eBill", comment: "")
         
-        descriptionLabel.font = OpenSans.regular.of(textStyle: .body)
-        descriptionLabel.textColor = .deepGray
+        descriptionLabel.font = .body
+        descriptionLabel.textColor = .neutralDark
         descriptionLabel.setLineHeight(lineHeight: 25)
         descriptionLabel.text = NSLocalizedString("Eliminate your paper bill and receive an email notification when your bill is ready to view online. Your online bill is identical to your current paper bill and is available to view, download, or print at any time. Your preference will be updated with your next month’s bill.", comment: "")
         
         linkButton.shouldFadeSubviewsOnPress = true
-        buttonLabel.font = OpenSans.semibold.of(textStyle: .body)
+        buttonLabel.font = .bodyBold
         buttonLabel.setLineHeight(lineHeight: 25)
-        buttonLabel.textColor = .actionBlue
+        buttonLabel.textColor = .actionBrand
         buttonLabel.text = NSLocalizedString("Business customers can create an online account and enroll in Paperless eBill here.", comment: "")
     }
     

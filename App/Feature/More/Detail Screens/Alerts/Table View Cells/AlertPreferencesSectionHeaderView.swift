@@ -31,7 +31,7 @@ class AlertPreferencesSectionHeaderView: UIView {
     
     private func createView() {
         backgroundColor = .white
-        label.textColor = .deepGray
+        label.textColor = .neutralDark
         label.font = SystemFont.medium.of(textStyle: .callout)
         
         let contentView = UIView().usingAutoLayout()

@@ -52,7 +52,7 @@ class RegistrationCreateCredentialsViewController: KeyboardAvoidingStickyFooterV
         let items = [suggestPasswordButton, space]
         toolbar.setItems(items, animated: false)
         toolbar.sizeToFit()
-        toolbar.tintColor = .actionBlue
+        toolbar.tintColor = .actionBrand
         return toolbar
     }()
     
@@ -63,18 +63,18 @@ class RegistrationCreateCredentialsViewController: KeyboardAvoidingStickyFooterV
         
         title = NSLocalizedString("Register", comment: "")
         
-        instructionLabel.textColor = .deepGray
+        instructionLabel.textColor = .neutralDark
         instructionLabel.text = NSLocalizedString("Please create your sign in credentials", comment: "")
-        instructionLabel.font = SystemFont.regular.of(textStyle: .headline)
+        instructionLabel.font = .headline
         
-        passwordStrengthLabel.textColor = .deepGray
-        passwordStrengthLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        mustAlsoContainLabel.textColor = .deepGray
-        mustAlsoContainLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        passwordStrengthLabel.textColor = .neutralDark
+        passwordStrengthLabel.font = .subheadline
+        mustAlsoContainLabel.textColor = .neutralDark
+        mustAlsoContainLabel.font = .subheadline
         
         for label in passwordRequirementLabels {
-            label.textColor = .deepGray
-            label.font = SystemFont.regular.of(textStyle: .subheadline)
+            label.textColor = .neutralDark
+            label.font = .subheadline
         }
         
         setupValidation()
@@ -86,8 +86,8 @@ class RegistrationCreateCredentialsViewController: KeyboardAvoidingStickyFooterV
             primaryProfileSwitchView.isHidden = true
         }
         
-        primaryProfileLabel.textColor = .deepGray
-        primaryProfileLabel.font = SystemFont.regular.of(textStyle: .headline)
+        primaryProfileLabel.textColor = .neutralDark
+        primaryProfileLabel.font = .headline
         
         primaryProfileCheckbox.rx.isChecked.bind(to: viewModel.primaryProfile).disposed(by: disposeBag)
         

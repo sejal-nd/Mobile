@@ -35,23 +35,23 @@ class UnauthenticatedOutageValidateAccountResultViewController: UIViewController
         
         title = singleMultipremiseAccount ? NSLocalizedString("Select an Address", comment: "") : NSLocalizedString("Select an Account", comment: "")
         
-        instructionLabel.textColor = .deepGray
+        instructionLabel.textColor = .neutralDark
         instructionLabel.text = NSLocalizedString("Please select your account.", comment: "")
-        instructionLabel.font = SystemFont.regular.of(textStyle: .headline)
+        instructionLabel.font = .headline
         
-        col1HeaderLabel.textColor = .deepGray
-        col1HeaderLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        col1HeaderLabel.textColor = .neutralDark
+        col1HeaderLabel.font = .footnote
         col1HeaderLabel.text = NSLocalizedString("Account #", comment: "")
         if singleMultipremiseAccount {
             col1HeaderLabel.text = nil
         }
         
-        col2HeaderLabel.textColor = .deepGray
-        col2HeaderLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        col2HeaderLabel.textColor = .neutralDark
+        col2HeaderLabel.font = .footnote
         col2HeaderLabel.text = NSLocalizedString("Street #", comment: "")
         
-        col3HeaderLabel.textColor = .deepGray
-        col3HeaderLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        col3HeaderLabel.textColor = .neutralDark
+        col3HeaderLabel.font = .footnote
         col3HeaderLabel.text = NSLocalizedString("Unit #", comment: "")
         
         firstSeparatorView.backgroundColor = tableView.separatorColor

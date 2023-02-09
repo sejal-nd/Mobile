@@ -34,26 +34,26 @@ enum UsageTool {
         }
     }
     
-    var icon: UIImage {
+    var icon: UIImage? {
         switch self {
         case .usageData:
-            return #imageLiteral(resourceName: "ic_usagedata")
+            return UIImage(named: "ic_usagedata")
         case .energyTips:
-            return #imageLiteral(resourceName: "ic_Top5")
+            return UIImage(named: "ic_top5tips")
         case .homeProfile:
-            return #imageLiteral(resourceName: "ic_house")
+            return UIImage(named: "ic_homeprofile")
         case .peakRewards:
-            return #imageLiteral(resourceName: "ic_thermostat")
+            return UIImage(named: "ic_thermostat")
         case .smartEnergyRewards:
-            return #imageLiteral(resourceName: "ic_smartenergy")
+            return UIImage(named: "ic_smartenergy")
         case .hourlyPricing:
-            return #imageLiteral(resourceName: "ic_hourlypricing")
+            return UIImage(named: "ic_hourlypricing")
         case .peakTimeSavings:
-            return #imageLiteral(resourceName: "ic_smartenergy")
+            return UIImage(named: "ic_smartenergy")
         case .energyWiseRewards:
-            return #imageLiteral(resourceName: "ic_phi_thermostat")
+            return UIImage(named: "ic_thermostat")
         case .peakEnergySavings:
-            return #imageLiteral(resourceName: "ic_peaktimesavings")
+            return UIImage(named: "ic_smartenergy")
         }
     }
 }

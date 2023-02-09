@@ -64,18 +64,18 @@ class RegistrationCreateCredentialsViewControllerNew: KeyboardAvoidingStickyFoot
         
         title = NSLocalizedString("Register", comment: "")
         
-        instructionLabel.textColor = .deepGray
+        instructionLabel.textColor = .neutralDark
         instructionLabel.text = NSLocalizedString("Then, set up your profile.", comment: "")
-        instructionLabel.font = SystemFont.regular.of(textStyle: .headline)
+        instructionLabel.font = .headline
         
-        passwordStrengthLabel.textColor = .deepGray
-        passwordStrengthLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        mustAlsoContainLabel.textColor = .deepGray
-        mustAlsoContainLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        passwordStrengthLabel.textColor = .neutralDark
+        passwordStrengthLabel.font = .subheadline
+        mustAlsoContainLabel.textColor = .neutralDark
+        mustAlsoContainLabel.font = .subheadline
         
         for label in passwordRequirementLabels {
-            label.textColor = .deepGray
-            label.font = SystemFont.regular.of(textStyle: .subheadline)
+            label.textColor = .neutralDark
+            label.font = .subheadline
         }
         
         setupValidation()
@@ -97,12 +97,12 @@ class RegistrationCreateCredentialsViewControllerNew: KeyboardAvoidingStickyFoot
             eBillEnrollView.isHidden = true
         }
         
-        eBillEnrollInstructions.textColor = .deepGray
+        eBillEnrollInstructions.textColor = .neutralDark
         eBillEnrollInstructions.text = NSLocalizedString("Enroll me in Paperless eBill - an easy, convenient, simple, and secure way to receive your bill online instead of in the mail.", comment: "")
-        eBillEnrollInstructions.font = SystemFont.regular.of(textStyle: .headline)
+        eBillEnrollInstructions.font = .headline
         
-        primaryProfileLabel.textColor = .deepGray
-        primaryProfileLabel.font = SystemFont.regular.of(textStyle: .headline)
+        primaryProfileLabel.textColor = .neutralDark
+        primaryProfileLabel.font = .headline
         primaryProfileLabel.text = NSLocalizedString("Set as primary profile for this account", comment: "")
         
         primaryProfileCheckbox.rx.isChecked.bind(to: viewModel.primaryProfile).disposed(by: disposeBag)

@@ -55,7 +55,7 @@ class SurveyView: UIView {
             buttonBottomConstraint.constant = 30
         } else {
             feedbackLabel.textColor = .blackText
-            surveyButton.setTitleColor(.actionBlue, for: .normal)
+            surveyButton.setTitleColor(.actionBrand, for: .normal)
             topBarView.backgroundColor = .accentGray
             bottomBarView.backgroundColor = .clear
             buttonBottomConstraint.constant = 10

@@ -7,9 +7,10 @@ PODS:
   - AppCenter/Core (1.14.0)
   - AppCenter/Crashes (1.14.0):
     - AppCenter/Core
-  - Charts (3.3.0):
-    - Charts/Core (= 3.3.0)
-  - Charts/Core (3.3.0)
+  - Charts (4.1.0):
+    - Charts/Core (= 4.1.0)
+  - Charts/Core (4.1.0):
+    - SwiftAlgorithms (~> 1.0)
   - Firebase/Core (7.11.0):
     - Firebase/CoreOnly
     - FirebaseAnalytics (~> 7.11.0)
@@ -112,13 +113,14 @@ PODS:
   - RxSwiftExt/RxCocoa (5.2.0):
     - RxCocoa (~> 5.0)
     - RxSwiftExt/Core
+  - SwiftAlgorithms (1.0.0)
   - Toast-Swift (5.0.0)
   - XLPagerTabStrip (9.0.0)
   - zxcvbn-ios (1.0.4)
 
 DEPENDENCIES:
   - AppCenter (= 1.14)
-  - Charts (= 3.3)
+  - Charts (= 4.1.0)
   - Firebase/Core (= 7.11.0)
   - ForeSee/Core (= 6.0.4)
   - ForeSee/ForeSeeFeedback (= 6.0.4)
@@ -156,13 +158,14 @@ SPEC REPOS:
     - RxRelay
     - RxSwift
     - RxSwiftExt
+    - SwiftAlgorithms
     - Toast-Swift
     - XLPagerTabStrip
     - zxcvbn-ios
 
 SPEC CHECKSUMS:
   AppCenter: 02c5efe08d3bbab5421ae41d5f7aa7238906b817
-  Charts: e0dd4cd8f257bccf98407b58183ddca8e8d5b578
+  Charts: 354f86803d11d9c35de280587fef50d1af063978
   Firebase: c121feb35e4126c0b355e3313fa9b487d47319fd
   FirebaseAnalytics: cd3bd84d722a24a8923918af8af8e5236f615d77
   FirebaseCore: 907447d8917a4d3eb0cce2829c5a0ad21d90b432
@@ -182,10 +185,11 @@ SPEC CHECKSUMS:
   RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
   RxSwift: ad5874f24bb0dbffd1e9bb8443604e3578796c7a
   RxSwiftExt: 4ca80336f43c28f11a2825cdd2fc61dd6c044697
+  SwiftAlgorithms: 38dda4731d19027fdeee1125f973111bf3386b53
   Toast-Swift: 36f4720243c8582c2be243a60a51e193c761f541
   XLPagerTabStrip: 61c57fd61f611ee5f01ff1495ad6fbee8bf496c5
   zxcvbn-ios: fef98b7c80f1512ff0eec47ac1fa399fc00f7e3c
 
-PODFILE CHECKSUM: b62e0eb189c7261dc0a8eea181c3c769b09df445
+PODFILE CHECKSUM: d12a4fc12eac6c457ff2dbcf61163844a94e3fea
 
-COCOAPODS: 1.11.2
+COCOAPODS: 1.11.3

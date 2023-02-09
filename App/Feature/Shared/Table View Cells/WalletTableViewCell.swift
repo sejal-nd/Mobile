@@ -46,11 +46,11 @@ class WalletTableViewCell: UITableViewCell {
         gradientView.layer.insertSublayer(gradientLayer, at: 0)
         
         accountNumberLabel.textColor = .blackText
-        accountNumberLabel.font = OpenSans.regular.of(textStyle: .title1)
+        accountNumberLabel.font = Diodrum.regular.of(textStyle: .title1)
         oneTouchPayLabel.textColor = .blackText
-        oneTouchPayLabel.font = OpenSans.regular.of(textStyle: .footnote)
+        oneTouchPayLabel.font = Diodrum.regular.of(textStyle: .footnote)
         nicknameLabel.textColor = .blackText
-        nicknameLabel.font = OpenSans.semibold.of(textStyle: .footnote)
+        nicknameLabel.font = Diodrum.semibold.of(textStyle: .footnote)
         
         bottomBarShadowView.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
         

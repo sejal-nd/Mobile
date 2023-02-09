@@ -19,7 +19,7 @@ class HomeContentViewController: UIViewController {
     let bag = DisposeBag()
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return inGame ? .default : .lightContent
+        return inGame ? .default : .darkContent
     }
 
     override func viewDidLoad() {

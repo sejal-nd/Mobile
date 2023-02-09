@@ -50,7 +50,7 @@ class StatusTextView: UIView {
             detailTrailingConstraint.constant = 40
         }
         
-        let textColor = isStormMode ? UIColor.white : UIColor.deepGray
+        let textColor = isStormMode ? UIColor.white : UIColor.neutralDark
         statusTitleLabel.textColor = textColor
         statusDetailLabel.textColor = textColor
     }

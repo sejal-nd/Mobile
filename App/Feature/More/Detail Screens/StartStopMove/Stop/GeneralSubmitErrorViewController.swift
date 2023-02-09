@@ -31,8 +31,9 @@ class GeneralSubmitErrorViewController: UIViewController, UITextViewDelegate {
     
     private func fontStyle() {
         
-        statusLabel.font = SystemFont.semibold.of(textStyle: .title3)
-        helplineDescriptionTextView.font = SystemFont.regular.of(textStyle: .subheadline)
+        statusLabel.font = .title3
+        statusLabel.textColor = .neutralDarker
+        helplineDescriptionTextView.font = .subheadline
     }
     
     private func navigationSetup() {
@@ -46,8 +47,8 @@ class GeneralSubmitErrorViewController: UIViewController, UITextViewDelegate {
         
         let range = (helplineDescription as NSString).range(of: contactNumber)
         let attributedString = NSMutableAttributedString(string: helplineDescription)
-        attributedString.addAttributes([ NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15, weight: .regular), NSAttributedString.Key.foregroundColor: UIColor.deepGray], range: NSRange(location: 0, length: helplineDescription.count))
-        attributedString.addAttributes([ NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15, weight: .semibold), NSAttributedString.Key.foregroundColor: UIColor.actionBlue], range: range)
+        attributedString.addAttributes([ NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15, weight: .regular), NSAttributedString.Key.foregroundColor: UIColor.neutralDark], range: NSRange(location: 0, length: helplineDescription.count))
+        attributedString.addAttributes([ NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15, weight: .semibold), NSAttributedString.Key.foregroundColor: UIColor.primaryBlue], range: range)
         helplineDescriptionTextView.attributedText = attributedString
         helplineDescriptionTextView.isUserInteractionEnabled = true
         helplineDescriptionTextView.delegate = self

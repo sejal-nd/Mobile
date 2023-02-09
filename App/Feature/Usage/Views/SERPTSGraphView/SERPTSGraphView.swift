@@ -96,36 +96,36 @@ class SERPTSGraphView: UIView {
         bar3BarView.backgroundColor = .primaryColor
         
         // Bar Graph Text Colors
-        bar1DollarLabel.textColor = .deepGray
-        bar1DateLabel.textColor = .deepGray
-        bar2DollarLabel.textColor = .deepGray
-        bar2DateLabel.textColor = .deepGray
-        bar3DollarLabel.textColor = .deepGray
-        bar3DateLabel.textColor = .deepGray
+        bar1DollarLabel.textColor = .neutralDark
+        bar1DateLabel.textColor = .neutralDark
+        bar2DollarLabel.textColor = .neutralDark
+        bar2DateLabel.textColor = .neutralDark
+        bar3DollarLabel.textColor = .neutralDark
+        bar3DateLabel.textColor = .neutralDark
         
         barDescriptionView.layer.cornerRadius = 10
         barDescriptionView.layer.borderColor = UIColor.accentGray.cgColor
         barDescriptionView.layer.borderWidth = 1
-        barDescriptionDateLabel.textColor = .deepGray
-        barDescriptionDateLabel.font = SystemFont.semibold.of(textStyle: .caption1)
-        barDescriptionPeakHoursLabel.textColor = .deepGray
-        barDescriptionPeakHoursLabel.font = SystemFont.semibold.of(textStyle: .caption1)
-        barDescriptionTypicalUseTitleLabel.textColor = .deepGray
-        barDescriptionTypicalUseTitleLabel.font = SystemFont.semibold.of(textStyle: .caption1)
-        barDescriptionTypicalUseValueLabel.textColor = .deepGray
-        barDescriptionTypicalUseValueLabel.font = SystemFont.regular.of(textStyle: .caption1)
-        barDescriptionActualUseTitleLabel.textColor = .deepGray
-        barDescriptionActualUseTitleLabel.font = SystemFont.semibold.of(textStyle: .caption1)
-        barDescriptionActualUseValueLabel.textColor = .deepGray
-        barDescriptionActualUseValueLabel.font = SystemFont.regular.of(textStyle: .caption1)
-        barDescriptionEnergySavingsTitleLabel.textColor = .deepGray
-        barDescriptionEnergySavingsTitleLabel.font = SystemFont.semibold.of(textStyle: .caption1)
-        barDescriptionEnergySavingsValueLabel.textColor = .deepGray
-        barDescriptionEnergySavingsValueLabel.font = SystemFont.regular.of(textStyle: .caption1)
-        barDescriptionBillCreditTitleLabel.textColor = .deepGray
-        barDescriptionBillCreditTitleLabel.font = SystemFont.semibold.of(textStyle: .caption1)
-        barDescriptionBillCreditValueLabel.textColor = .deepGray
-        barDescriptionBillCreditValueLabel.font = SystemFont.regular.of(textStyle: .caption1)
+        barDescriptionDateLabel.textColor = .neutralDark
+        barDescriptionDateLabel.font = .caption1Semibold
+        barDescriptionPeakHoursLabel.textColor = .neutralDark
+        barDescriptionPeakHoursLabel.font = .caption1Semibold
+        barDescriptionTypicalUseTitleLabel.textColor = .neutralDark
+        barDescriptionTypicalUseTitleLabel.font = .caption1Semibold
+        barDescriptionTypicalUseValueLabel.textColor = .neutralDark
+        barDescriptionTypicalUseValueLabel.font = .caption1
+        barDescriptionActualUseTitleLabel.textColor = .neutralDark
+        barDescriptionActualUseTitleLabel.font = .caption1Semibold
+        barDescriptionActualUseValueLabel.textColor = .neutralDark
+        barDescriptionActualUseValueLabel.font = .caption1
+        barDescriptionEnergySavingsTitleLabel.textColor = .neutralDark
+        barDescriptionEnergySavingsTitleLabel.font = .caption1Semibold
+        barDescriptionEnergySavingsValueLabel.textColor = .neutralDark
+        barDescriptionEnergySavingsValueLabel.font = .caption1
+        barDescriptionBillCreditTitleLabel.textColor = .neutralDark
+        barDescriptionBillCreditTitleLabel.font = .caption1Semibold
+        barDescriptionBillCreditValueLabel.textColor = .neutralDark
+        barDescriptionBillCreditValueLabel.font = .caption1
     }
     
     private func bindViewModel() {
@@ -205,15 +205,15 @@ class SERPTSGraphView: UIView {
     
     // MARK: Bill Comparison Bar Graph Drivers
     private(set) lazy var bar1LabelFont: Driver<UIFont> = self.viewModel.barGraphSelectionStates.value[0].asDriver().map {
-        $0 ? SystemFont.bold.of(textStyle: .caption1) : SystemFont.regular.of(textStyle: .caption1)
+        $0 ? .caption1Semibold : .caption1
     }
     
     private(set) lazy var bar2LabelFont: Driver<UIFont> = self.viewModel.barGraphSelectionStates.value[1].asDriver().map {
-        $0 ? SystemFont.bold.of(textStyle: .caption1) : SystemFont.regular.of(textStyle: .caption1)
+        $0 ? .caption1Semibold : .caption1
     }
     
     private(set) lazy var bar3LabelFont: Driver<UIFont> = self.viewModel.barGraphSelectionStates.value[2].asDriver().map {
-        $0 ? SystemFont.bold.of(textStyle: .caption1) : SystemFont.regular.of(textStyle: .caption1)
+        $0 ? .caption1Semibold : .caption1
     }
 
 }

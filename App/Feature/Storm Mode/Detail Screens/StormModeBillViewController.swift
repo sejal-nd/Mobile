@@ -37,7 +37,7 @@ class StormModeBillViewController: AccountPickerViewController {
         
         navigationItem.largeTitleDisplayMode = .never // Large title doesn't play well with UIRefreshControl
         
-        view.backgroundColor = .stormModeBlack
+        view.backgroundColor = .stormModeBackground
         
         accountPicker.delegate = self
         accountPicker.parentViewController = self

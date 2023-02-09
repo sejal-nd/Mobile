@@ -102,7 +102,7 @@ class PaymentusFormViewController: UIViewController {
         loadingIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         loadingIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         
-        errorLabel.font = SystemFont.regular.of(textStyle: .headline)
+        errorLabel.font = .headline
         errorLabel.textColor = .blackText
         errorLabel.numberOfLines = 0
         errorLabel.textAlignment = .center

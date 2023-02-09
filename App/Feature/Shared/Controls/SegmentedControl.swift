@@ -51,7 +51,7 @@ class SegmentedControl: UIControl {
             views.append(view)
             
             let label = UILabel(frame: .zero)
-            label.textColor = .actionBlue
+            label.textColor = .primaryBlue
             label.numberOfLines = 0
             label.textAlignment = .center
             label.isAccessibilityElement = false
@@ -98,9 +98,9 @@ class SegmentedControl: UIControl {
                 let label = labels[index]
                 label.text = item
                 if index == selectedIndex.value {
-                    label.font = OpenSans.semibold.of(textStyle: .subheadline)
+                    label.font = .subheadlineSemibold
                 } else {
-                    label.font = OpenSans.regular.of(textStyle: .subheadline)
+                    label.font = .subheadline
                 }
                 label.frame.size = CGSize(width: view.bounds.size.width, height: view.bounds.size.height)
                 label.center = CGPoint(x: view.bounds.size.width / 2, y: view.bounds.size.height / 2)

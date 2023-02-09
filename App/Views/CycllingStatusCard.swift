@@ -21,7 +21,7 @@ class PeakRewardsProgramCard: UIView {
         titleLabel.text = program.displayName
         titleLabel.numberOfLines = 0
         titleLabel.textColor = .blackText
-        titleLabel.font = OpenSans.bold.of(size: 12)
+        titleLabel.font = Diodrum.bold.of(size: 12)
         
         let separator = UIView()
         separator.backgroundColor = .primaryColor

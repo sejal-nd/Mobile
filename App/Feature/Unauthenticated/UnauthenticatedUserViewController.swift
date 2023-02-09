@@ -42,14 +42,14 @@ class UnauthenticatedUserViewController: UIViewController, UIGestureRecognizerDe
     
     @IBOutlet weak var headerViewTitleLabel: UILabel! {
         didSet {
-            headerViewTitleLabel.font = OpenSans.semibold.of(textStyle: .callout)
-            headerViewTitleLabel.textColor = .actionBlue
+            headerViewTitleLabel.font = SystemFont.semibold.of(textStyle: .callout)
+            headerViewTitleLabel.textColor = .primaryBlue
         }
     }
     
     @IBOutlet weak var headerViewDescriptionLabel: UILabel! {
         didSet {
-            headerViewDescriptionLabel.font = OpenSans.regular.of(textStyle: .caption1)
+            headerViewDescriptionLabel.font = .caption1
             headerViewDescriptionLabel.textColor = .blackText
         }
     }
@@ -184,12 +184,12 @@ extension UnauthenticatedUserViewController: UITableViewDataSource, UITableViewD
             case 0:
                 cell.configure(image: UIImage(named: "ic_reportoutagewhite"), text: NSLocalizedString("Report Outage", comment: ""))
             case 1:
-                cell.configure(image: #imageLiteral(resourceName: "ic_checkoutage"), text: NSLocalizedString("Check My Outage Status", comment: ""))
+                cell.configure(image: UIImage(named: "ic_checkoutage"), text: NSLocalizedString("Check My Outage Status", comment: ""))
             case 2:
                 cell.configure(image: UIImage(named: "ic_mapoutagewhite"), text: NSLocalizedString("View Outage Map", comment: ""))
             case 3:
                 let text = Configuration.shared.opco.isPHI ? NSLocalizedString("Report Street Light Problem", comment: "") : NSLocalizedString("Report Street Light Outage", comment: "")
-                cell.configure(image: #imageLiteral(resourceName: "ic_streetlightoutage_white"), text: text)
+                cell.configure(image: UIImage(named: "ic_streetlightoutage_white"), text: text)
             default:
                 return UITableViewCell()
             }
@@ -197,33 +197,33 @@ extension UnauthenticatedUserViewController: UITableViewDataSource, UITableViewD
             switch indexPath.row {
             case 0:
                 if FeatureFlagUtility.shared.bool(forKey: .hasUnauthenticatedISUM) {
-                    cell.configure(image: #imageLiteral (resourceName: "ic_morestartservice"), text: NSLocalizedString("Start Service", comment: ""))
+                    cell.configure(image: UIImage(named: "ic_more_isum_start"), text: NSLocalizedString("Start Service", comment: ""))
                 } else {
-                    cell.configure(image: #imageLiteral(resourceName: "ic_moreupdates"), text: NSLocalizedString("News and Updates", comment: ""))
+                    cell.configure(image: UIImage(named: "ic_moreupdates"), text: NSLocalizedString("News and Updates", comment: ""))
                 }
             case 1:
                 if FeatureFlagUtility.shared.bool(forKey: .hasUnauthenticatedISUM) {
-                    cell.configure(image: #imageLiteral (resourceName: "ic_isummoveservice"), text: NSLocalizedString("Move Service", comment: ""))
+                    cell.configure(image: UIImage(named: "ic_more_isum_move"), text: NSLocalizedString("Move Service", comment: ""))
                 } else {
-                    cell.configure(image: #imageLiteral(resourceName: "ic_morecontact"), text: NSLocalizedString("Contact Us", comment: ""))
+                    cell.configure(image: UIImage(named: "ic_morecontact"), text: NSLocalizedString("Contact Us", comment: ""))
                 }
             case 2:
-                cell.configure(image: #imageLiteral(resourceName: "ic_morevideo.pdf"), text: NSLocalizedString("Billing Videos", comment: ""))
+                cell.configure(image: UIImage(named: "ic_morevideo"), text: NSLocalizedString("Billing Videos", comment: ""))
             case 3:
-                cell.configure(image: #imageLiteral(resourceName: "ic_moretos"), text: NSLocalizedString("Policies and Terms", comment: ""))
+                cell.configure(image: UIImage(named: "ic_moretos"), text: NSLocalizedString("Policies and Terms", comment: ""))
             default:
                 return UITableViewCell()
             }
         case 2:
             switch indexPath.row {
             case 0:
-                cell.configure(image: #imageLiteral(resourceName: "ic_moreupdates"), text: NSLocalizedString("News and Updates", comment: ""))
+                cell.configure(image: UIImage(named: "ic_moreupdates"), text: NSLocalizedString("News and Updates", comment: ""))
             case 1:
-                cell.configure(image: #imageLiteral(resourceName: "ic_morecontact"), text: NSLocalizedString("Contact Us", comment: ""))
+                cell.configure(image: UIImage(named: "ic_morecontact"), text: NSLocalizedString("Contact Us", comment: ""))
             case 2:
-                cell.configure(image: #imageLiteral(resourceName: "ic_morevideo.pdf"), text: NSLocalizedString("Billing Videos", comment: ""))
+                cell.configure(image: UIImage(named: "ic_morevideo"), text: NSLocalizedString("Billing Videos", comment: ""))
             case 3:
-                cell.configure(image: #imageLiteral(resourceName: "ic_moretos"), text: NSLocalizedString("Policies and Terms", comment: ""))
+                cell.configure(image: UIImage(named: "ic_moretos"), text: NSLocalizedString("Policies and Terms", comment: ""))
             default:
                 return UITableViewCell()
             }

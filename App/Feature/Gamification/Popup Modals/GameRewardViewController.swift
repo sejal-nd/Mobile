@@ -50,15 +50,15 @@ class GameRewardViewController: UIViewController {
         popupView.layer.cornerRadius = 10
         popupView.layer.masksToBounds = true
         
-        closeButton.tintColor = .actionBlue
+        closeButton.tintColor = .actionBrand
         closeButton.addTarget(self, action: #selector(dismiss(_:)), for: .touchUpInside)
         closeButton.isHidden = true
         
-        titleLabel.textColor = .deepGray
+        titleLabel.textColor = .neutralDark
         
         if isWelcomeGift {
             let attributedText = NSMutableAttributedString()
-            let attributedTitle = NSAttributedString(string: NSLocalizedString("Here’s a welcome gift!\n\n", comment: ""), attributes: [NSAttributedString.Key.font: SystemFont.regular.of(textStyle: .headline)])
+            let attributedTitle = NSAttributedString(string: NSLocalizedString("Here’s a welcome gift!\n\n", comment: ""), attributes: [NSAttributedString.Key.font: UIFont.headline])
             let attributedSubtitle = NSAttributedString(string: NSLocalizedString("Unlock more by earning points!", comment: ""), attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12.0)])
             
             attributedText.append(attributedTitle)
@@ -67,7 +67,7 @@ class GameRewardViewController: UIViewController {
             titleLabel.attributedText = attributedText
         }
         else {
-            titleLabel.font = SystemFont.regular.of(textStyle: .headline)
+            titleLabel.font = .headline
             titleLabel.text = NSLocalizedString("Here’s a gift for your hard work!", comment: "")
         }
     }

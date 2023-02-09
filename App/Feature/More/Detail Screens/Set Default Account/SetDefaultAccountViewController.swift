@@ -52,7 +52,7 @@ class SetDefaultAccountViewController: UIViewController {
     
     @objc func infoButtonPressed() {
         let infoModal = InfoModalViewController(title: NSLocalizedString("Set Default Account", comment: ""),
-                                                image: #imageLiteral(resourceName: "bge_account_picker"),
+                                                image: UIImage(named: "account_picker")!,
                                                 description: NSLocalizedString("Your default account will display automatically when you sign in. You can change your default account at any time.", comment: ""))
         navigationController?.present(infoModal, animated: true, completion: nil)
         FirebaseUtility.logEvent(.more(parameters: [.default_account_help]))

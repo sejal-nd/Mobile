@@ -21,12 +21,12 @@ class OutageStatusButton: UIView {
     @IBOutlet weak private var animationView: UIView!
     @IBOutlet weak private var outerCircleView: UIView! {
         didSet {
-            outerCircleView.layer.borderWidth = 6
+            outerCircleView.layer.borderWidth = 2
         }
     }
     @IBOutlet weak private var innerCircleView: UIView! {
         didSet {
-            innerCircleView.layer.borderWidth = 6
+            innerCircleView.layer.borderWidth = 2
             innerCircleView.isAccessibilityElement = true
             innerCircleView.accessibilityTraits = .button
             innerCircleView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onBigButtonTap)))
@@ -37,12 +37,12 @@ class OutageStatusButton: UIView {
     @IBOutlet weak var statusImageView: UIImageView!
     @IBOutlet weak var statusTitleLabel: UILabel! {
         didSet {
-            statusTitleLabel.font = OpenSans.regular.of(size: 14)
+            statusTitleLabel.font = .subheadlineSemibold
         }
     }
     @IBOutlet weak var statusDetailLabel: UILabel! {
         didSet {
-            statusDetailLabel.font = OpenSans.bold.of(size: 22)
+            statusDetailLabel.font = .title2
         }
     }
 
@@ -50,44 +50,29 @@ class OutageStatusButton: UIView {
     @IBOutlet weak var statusETRImageView: UIImageView!
     @IBOutlet weak var statusETRLabel: UILabel! {
         didSet {
-            statusETRLabel.font = OpenSans.regular.of(size: 14)
+            statusETRLabel.font = .subheadlineSemibold
         }
     }
     @IBOutlet weak var reportedDetailLabel: UILabel! {
         didSet {
-            reportedDetailLabel.font = OpenSans.bold.of(size: 22)
+            reportedDetailLabel.font = .title2
         }
     }
     @IBOutlet weak var reportedETRTitleLabel: UILabel! {
         didSet {
-            reportedETRTitleLabel.font = OpenSans.regular.of(size: 12)
+            reportedETRTitleLabel.font = .caption1
         }
     }
     @IBOutlet weak var reportedETRLabel: UILabel! {
         didSet {
-            reportedETRLabel.font = OpenSans.bold.of(size: 14)
+            reportedETRLabel.font = .footnoteSemibold
             reportedETRLabel.adjustsFontSizeToFitWidth = true
             reportedETRLabel.minimumScaleFactor = 0.5
         }
     }
 
     private var innerBorderColor: UIColor {
-        let color: UIColor
-        switch Configuration.shared.opco {
-        case .bge:
-            color = .bgeGreen
-        case .comEd:
-            color = .primaryColor
-        case .peco:
-            color = isStormMode ? .stormPrimaryColor : .primaryColor
-        case .pepco:
-            color = .primaryColor
-        case .ace:
-            color = .primaryColor
-        case .delmarva:
-            color = .primaryColor
-        }
-        return color
+        return isStormMode ? .secondaryGreen : .primaryColor
     }
     
     private var outterBorderColor: UIColor {
@@ -102,7 +87,7 @@ class OutageStatusButton: UIView {
             onLottieAnimation?.removeFromSuperview()
             
             if isStormMode {
-                onLottieAnimation = AnimationView(name: "sm_outage-Flavor\(Configuration.shared.opco.rawValue)")
+                onLottieAnimation = AnimationView(name: "outage_power_on")
                 
                 outerCircleView.isHidden = true
                 
@@ -114,17 +99,17 @@ class OutageStatusButton: UIView {
                 reportedETRTitleLabel.textColor = .white
                 reportedETRLabel.textColor = .white
             } else {
-                onLottieAnimation = AnimationView(name: "outage-Flavor\(Configuration.shared.opco.rawValue)")
+                onLottieAnimation = AnimationView(name: "outage_power_on")
                 
                 outerCircleView.isHidden = false
                 
-                statusTitleLabel.textColor = .actionBlue
-                statusDetailLabel.textColor = .actionBlue
+                statusTitleLabel.textColor = .primaryBlue
+                statusDetailLabel.textColor = .primaryBlue
                 
-                statusETRLabel.textColor = .actionBlue
-                reportedDetailLabel.textColor = .actionBlue
-                reportedETRTitleLabel.textColor = .deepGray
-                reportedETRLabel.textColor = .deepGray
+                statusETRLabel.textColor = .primaryBlue
+                reportedDetailLabel.textColor = .primaryBlue
+                reportedETRTitleLabel.textColor = .neutralDark
+                reportedETRLabel.textColor = .neutralDark
             }
             
             onLottieAnimation?.frame = CGRect(x: 0, y: 1, width: animationView.frame.size.width, height: animationView.frame.size.height)
@@ -184,14 +169,14 @@ class OutageStatusButton: UIView {
         innerCircleView.removeShadow()
         
         if isStormMode {
-            statusETRImageView.image = #imageLiteral(resourceName: "ic_reportoutage")
-            setStateColors(innerBackground: UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.1),
+            statusETRImageView.image = UIImage(named: "ic_reportoutagewhite")
+            setStateColors(innerBackground: .clear,
                            innerStroke: innerBorderColor)
         } else {
             setStateColors(innerBackground: .white,
                            innerStroke: innerBorderColor,
                            outerStroke: outterBorderColor)
-            statusETRImageView.image = #imageLiteral(resourceName: "ic_outagestatus_reported")
+            statusETRImageView.image = UIImage(named: "ic_reportoutage")
         }
         
         // Set Values
@@ -216,19 +201,19 @@ class OutageStatusButton: UIView {
         innerCircleView.removeShadow()
         
         if isStormMode {
-            setStateColors(innerBackground: UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.1),
-                           innerStroke: UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0,  alpha: 0.3))
-            statusETRImageView.image = #imageLiteral(resourceName: "ic_outagestatus_out_white")
+            setStateColors(innerBackground: .clear,
+                           innerStroke: .white.withAlphaComponent(0.5))
+            statusETRImageView.image = UIImage(named: "ic_outagestatus_out_white")
         } else {
             setStateColors(innerBackground: .white,
                            innerStroke: .middleGray,
                            outerStroke: UIColor(red: 216/255, green: 216/255, blue: 216/255,  alpha: 1))
-            statusETRImageView.image = #imageLiteral(resourceName: "ic_outagestatus_out")
+            statusETRImageView.image = UIImage(named: "ic_outagestatus_out")
         }
         
         // Set Values
         
-        statusETRLabel.text = NSLocalizedString("Our records indicate your", comment: "")
+        statusETRLabel.text = NSLocalizedString("Our records indicate", comment: "")
         reportedDetailLabel.text = NSLocalizedString("POWER IS OUT", comment: "")
         reportedETRTitleLabel.text = NSLocalizedString("Estimated Restoration", comment: "")
         reportedETRLabel.text = estimatedRestorationDateString
@@ -246,16 +231,17 @@ class OutageStatusButton: UIView {
         // Styling
         
         innerCircleView.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 4), radius: 5)
-        
+
         if isStormMode {
-            setStateColors(innerBackground: UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.1),
-                           innerStroke: UIColor.clear)
-            statusImageView.image = #imageLiteral(resourceName: "ic_lightbulb_on_white")
+            setStateColors(innerBackground: .clear,
+                           innerStroke: .clear,
+                           outerStroke: .clear)
+            statusImageView.image = UIImage(named: "ic_lightbulb_on_white")
         } else {
             setStateColors(innerBackground: .white,
                            innerStroke: .white,
                            outerStroke: .clear)
-            statusImageView.image = #imageLiteral(resourceName: "ic_lightbulb_on")
+            statusImageView.image = UIImage(named: "ic_lightbulb_on")
         }
         
         // Set Values

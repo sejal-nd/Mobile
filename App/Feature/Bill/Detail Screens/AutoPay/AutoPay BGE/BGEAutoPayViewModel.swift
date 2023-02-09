@@ -239,11 +239,11 @@ class BGEAutoPayViewModel {
         return $0 != nil
     }
     
-    private(set) lazy var bankAccountButtonImage: Driver<UIImage> = self.selectedWalletItem.asDriver().map {
+    private(set) lazy var bankAccountButtonImage: Driver<UIImage?> = self.selectedWalletItem.asDriver().map {
             if let walletItem = $0 {
                 return walletItem.paymentMethodType.imageMini
             } else {
-                return #imageLiteral(resourceName: "bank_building_mini")
+                return UIImage(named: "bank_building_mini")
             }
         }
     
