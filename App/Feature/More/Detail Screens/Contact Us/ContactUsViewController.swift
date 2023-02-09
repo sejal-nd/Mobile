@@ -192,11 +192,17 @@ class ContactUsViewController: UIViewController {
                 return button
         }
         
-        let rowCount = 5
+        let rowCount: Int
+        
+        if Configuration.shared.opco == .bge || Configuration.shared.opco == .comEd {
+             rowCount = 5
+        } else {
+             rowCount = 4
+        }
         
         // add spacer buttons to fill the last row
         // PHI has a different design hence not adding spacerButtons to the main stack
-          while buttons.count % rowCount != 0 && Configuration.shared.opco == .bge {
+        while buttons.count % rowCount != 0 && !Configuration.shared.opco.isPHI {
             let spacerButton = UIButton(type: .custom)
             spacerButton.isAccessibilityElement = false
             buttons.append(spacerButton)
