@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "Apple-Watch-AppIcon.png",
+      "filename" : "AppIcon-RELEASE.png",
       "idiom" : "universal",
       "platform" : "watchos",
       "size" : "1024x1024"
