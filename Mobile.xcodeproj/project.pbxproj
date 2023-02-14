@@ -542,12 +542,6 @@
 		67A9873324FD4C5F00BD46E7 /* (null) in Resources */ = {isa = PBXBuildFile; };
 		67AE888225BF5274008519B4 /* ProjectTier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AE888125BF5274008519B4 /* ProjectTier.swift */; };
 		67AE888B25BF5C8D008519B4 /* ProjectTier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AE888125BF5274008519B4 /* ProjectTier.swift */; };
-		67D08A962539E41D0047E4C5 /* Assets-FlavorACE.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67D08A922539E4170047E4C5 /* Assets-FlavorACE.xcassets */; };
-		67D08A972539E41D0047E4C5 /* Assets-FlavorACE.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67D08A922539E4170047E4C5 /* Assets-FlavorACE.xcassets */; };
-		67D08A9B2539E4C30047E4C5 /* Assets-FlavorDPL.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67D08A9A2539E4C30047E4C5 /* Assets-FlavorDPL.xcassets */; };
-		67D08A9C2539E4C30047E4C5 /* Assets-FlavorDPL.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67D08A9A2539E4C30047E4C5 /* Assets-FlavorDPL.xcassets */; };
-		67D08AA22539E4D10047E4C5 /* Assets-FlavorPEPCO.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67D08AA12539E4D10047E4C5 /* Assets-FlavorPEPCO.xcassets */; };
-		67D08AA32539E4D10047E4C5 /* Assets-FlavorPEPCO.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67D08AA12539E4D10047E4C5 /* Assets-FlavorPEPCO.xcassets */; };
 		67D5626324EADA7E00852551 /* GameTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D5626224EADA7E00852551 /* GameTip.swift */; };
 		67D5626724EADA9700852551 /* GameQuiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D5626624EADA9600852551 /* GameQuiz.swift */; };
 		67D5626924EADAA700852551 /* GameSurvery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D5626824EADAA700852551 /* GameSurvery.swift */; };
@@ -1860,9 +1854,6 @@
 		67A4832526C57C6C00FBB0BB /* AzureB2CError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AzureB2CError.swift; sourceTree = "<group>"; };
 		67A732A924D35E0F00D0BF32 /* GovWeatherErrorTodo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GovWeatherErrorTodo.swift; sourceTree = "<group>"; };
 		67AE888125BF5274008519B4 /* ProjectTier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectTier.swift; sourceTree = "<group>"; };
-		67D08A922539E4170047E4C5 /* Assets-FlavorACE.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Assets-FlavorACE.xcassets"; sourceTree = "<group>"; };
-		67D08A9A2539E4C30047E4C5 /* Assets-FlavorDPL.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Assets-FlavorDPL.xcassets"; sourceTree = "<group>"; };
-		67D08AA12539E4D10047E4C5 /* Assets-FlavorPEPCO.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Assets-FlavorPEPCO.xcassets"; sourceTree = "<group>"; };
 		67D5626224EADA7E00852551 /* GameTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTip.swift; sourceTree = "<group>"; };
 		67D5626624EADA9600852551 /* GameQuiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameQuiz.swift; sourceTree = "<group>"; };
 		67D5626824EADAA700852551 /* GameSurvery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSurvery.swift; sourceTree = "<group>"; };
@@ -4221,9 +4212,6 @@
 				35F9DD5B2333C45300AAA2B2 /* Assets-FlavorBGE.xcassets */,
 				35F9DDF3233539B400AAA2B2 /* Assets-FlavorCOMED.xcassets */,
 				35F9DD692333C87A00AAA2B2 /* Assets-FlavorPECO.xcassets */,
-				67D08A922539E4170047E4C5 /* Assets-FlavorACE.xcassets */,
-				67D08A9A2539E4C30047E4C5 /* Assets-FlavorDPL.xcassets */,
-				67D08AA12539E4D10047E4C5 /* Assets-FlavorPEPCO.xcassets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -6000,13 +5988,10 @@
 			files = (
 				67D5633524EEFAA600852551 /* Assets-FlavorCOMED.xcassets in Resources */,
 				67A986AD24F96CF600BD46E7 /* Assets-FlavorPECO.xcassets in Resources */,
-				67D08A9B2539E4C30047E4C5 /* Assets-FlavorDPL.xcassets in Resources */,
 				67A9873324FD4C5F00BD46E7 /* (null) in Resources */,
-				67D08A962539E41D0047E4C5 /* Assets-FlavorACE.xcassets in Resources */,
 				35F9DD672333C85B00AAA2B2 /* README.md in Resources */,
 				35F9DD5C2333C45300AAA2B2 /* Assets-FlavorBGE.xcassets in Resources */,
 				35F9DD6C2333C8A000AAA2B2 /* Assets.xcassets in Resources */,
-				67D08AA22539E4D10047E4C5 /* Assets-FlavorPEPCO.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6023,12 +6008,9 @@
 				C338283524E30D6900F133C5 /* PeakRewardsOverridesMock.json in Resources */,
 				67D5633624EEFAA600852551 /* Assets-FlavorCOMED.xcassets in Resources */,
 				678B621A24CF6AD2009F8A6B /* ValidateRegistrationMock.json in Resources */,
-				67D08A972539E41D0047E4C5 /* Assets-FlavorACE.xcassets in Resources */,
-				67D08AA32539E4D10047E4C5 /* Assets-FlavorPEPCO.xcassets in Resources */,
 				35F9DD6D2333C8A100AAA2B2 /* Assets.xcassets in Resources */,
 				35F9DD5D2333C45900AAA2B2 /* Assets-FlavorBGE.xcassets in Resources */,
 				C338282824E30B0600F133C5 /* PeakRewardsSummaryMock.json in Resources */,
-				67D08A9C2539E4C30047E4C5 /* Assets-FlavorDPL.xcassets in Resources */,
 				67D73B00246C72F100450B63 /* (null) in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
