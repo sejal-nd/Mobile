@@ -179,8 +179,6 @@
 		35C913AD22EB6AA3009DD71A /* ButtonRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C913AC22EB6AA3009DD71A /* ButtonRow.swift */; };
 		35D6B62B231424E900DCD588 /* AlertRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D6B62A231424E900DCD588 /* AlertRow.swift */; };
 		35F9DD3D2333C34200AAA2B2 /* EUMobile-Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 35F9DD232333C33F00AAA2B2 /* EUMobile-Watch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		35F9DD5C2333C45300AAA2B2 /* Assets-FlavorBGE.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35F9DD5B2333C45300AAA2B2 /* Assets-FlavorBGE.xcassets */; };
-		35F9DD5D2333C45900AAA2B2 /* Assets-FlavorBGE.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35F9DD5B2333C45300AAA2B2 /* Assets-FlavorBGE.xcassets */; };
 		35F9DD672333C85B00AAA2B2 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7BE21907F2E00BA13C6 /* README.md */; };
 		35F9DD682333C85C00AAA2B2 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7BE21907F2E00BA13C6 /* README.md */; };
 		35F9DD6C2333C8A000AAA2B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7BD21907F2E00BA13C6 /* Assets.xcassets */; };
@@ -525,8 +523,6 @@
 		67A986A624F9693300BD46E7 /* Appt_Inprogress-FlavorPECO.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B083FE21710D1100B1C632 /* Appt_Inprogress-FlavorPECO.json */; };
 		67A986A724F9693300BD46E7 /* Appt_otw-FlavorPECO.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B083FF21710D1200B1C632 /* Appt_otw-FlavorPECO.json */; };
 		67A986AA24F9693600BD46E7 /* sm_outage_loading-FlavorPECO.json in Resources */ = {isa = PBXBuildFile; fileRef = 359BB2822148519D00FBAD83 /* sm_outage_loading-FlavorPECO.json */; };
-		67A986AD24F96CF600BD46E7 /* Assets-FlavorPECO.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35F9DD692333C87A00AAA2B2 /* Assets-FlavorPECO.xcassets */; };
-		67A986AE24F96CF700BD46E7 /* Assets-FlavorPECO.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35F9DD692333C87A00AAA2B2 /* Assets-FlavorPECO.xcassets */; };
 		67A986D524FD419700BD46E7 /* GoogleService-Info-BETA-FlavorACE.plist in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBD9F24630D41006CD6EB /* GoogleService-Info-BETA-FlavorACE.plist */; };
 		67A986D624FD419700BD46E7 /* GoogleService-Info-RC-FlavorACE.plist in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBD9D24630D07006CD6EB /* GoogleService-Info-RC-FlavorACE.plist */; };
 		67A986D724FD419700BD46E7 /* GoogleService-Info-RELEASE-FlavorACE.plist in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBD9724630B85006CD6EB /* GoogleService-Info-RELEASE-FlavorACE.plist */; };
@@ -553,8 +549,6 @@
 		67D5632424EDC6F500852551 /* Appt_Inprogress-FlavorCOMED.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B083EA21710C8600B1C632 /* Appt_Inprogress-FlavorCOMED.json */; };
 		67D5632524EDC6F500852551 /* Appt_otw-FlavorCOMED.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B083EB21710C8700B1C632 /* Appt_otw-FlavorCOMED.json */; };
 		67D5632824EDC6F600852551 /* sm_outage_loading-FlavorCOMED.json in Resources */ = {isa = PBXBuildFile; fileRef = 359BB2802148518C00FBAD83 /* sm_outage_loading-FlavorCOMED.json */; };
-		67D5633524EEFAA600852551 /* Assets-FlavorCOMED.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35F9DDF3233539B400AAA2B2 /* Assets-FlavorCOMED.xcassets */; };
-		67D5633624EEFAA600852551 /* Assets-FlavorCOMED.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35F9DDF3233539B400AAA2B2 /* Assets-FlavorCOMED.xcassets */; };
 		67D73ADE246C460400450B63 /* OutageMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA7B9F91F0548F000D660B8 /* OutageMapViewController.swift */; };
 		67D73AE2246C47EF00450B63 /* NoNetworkConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D73AE0246C47EF00450B63 /* NoNetworkConnectionView.swift */; };
 		67D73AE8246C47EF00450B63 /* NoNetworkConnectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67D73AE1246C47EF00450B63 /* NoNetworkConnectionView.xib */; };
@@ -1481,11 +1475,8 @@
 		35E7C7EB2190804E00BA13C6 /* Date+DueBy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+DueBy.swift"; sourceTree = "<group>"; };
 		35F9DD232333C33F00AAA2B2 /* EUMobile-Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EUMobile-Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		35F9DD2F2333C34100AAA2B2 /* EUMobile-Watch Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "EUMobile-Watch Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
-		35F9DD5B2333C45300AAA2B2 /* Assets-FlavorBGE.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Assets-FlavorBGE.xcassets"; sourceTree = "<group>"; };
 		35F9DD5F2333C49600AAA2B2 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		35F9DD612333C74100AAA2B2 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		35F9DD692333C87A00AAA2B2 /* Assets-FlavorPECO.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Assets-FlavorPECO.xcassets"; sourceTree = "<group>"; };
-		35F9DDF3233539B400AAA2B2 /* Assets-FlavorCOMED.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Assets-FlavorCOMED.xcassets"; sourceTree = "<group>"; };
 		35F9DE50233A583700AAA2B2 /* AnalyticController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticController.swift; sourceTree = "<group>"; };
 		35FB4814A68B1B65B3BE45C8 /* Pods-EUMobileUITests.test-dpl.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobileUITests.test-dpl.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobileUITests/Pods-EUMobileUITests.test-dpl.xcconfig"; sourceTree = "<group>"; };
 		367B540DAE6087D02BBFDD5E /* Pods-EUMobileUnitTests.stage-comed.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobileUnitTests.stage-comed.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobileUnitTests/Pods-EUMobileUnitTests.stage-comed.xcconfig"; sourceTree = "<group>"; };
@@ -4209,9 +4200,6 @@
 			children = (
 				35E7C7BE21907F2E00BA13C6 /* README.md */,
 				35E7C7BD21907F2E00BA13C6 /* Assets.xcassets */,
-				35F9DD5B2333C45300AAA2B2 /* Assets-FlavorBGE.xcassets */,
-				35F9DDF3233539B400AAA2B2 /* Assets-FlavorCOMED.xcassets */,
-				35F9DD692333C87A00AAA2B2 /* Assets-FlavorPECO.xcassets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -5986,11 +5974,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				67D5633524EEFAA600852551 /* Assets-FlavorCOMED.xcassets in Resources */,
-				67A986AD24F96CF600BD46E7 /* Assets-FlavorPECO.xcassets in Resources */,
 				67A9873324FD4C5F00BD46E7 /* (null) in Resources */,
 				35F9DD672333C85B00AAA2B2 /* README.md in Resources */,
-				35F9DD5C2333C45300AAA2B2 /* Assets-FlavorBGE.xcassets in Resources */,
 				35F9DD6C2333C8A000AAA2B2 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -6001,15 +5986,12 @@
 			files = (
 				4A398A49271EAD4100FA7B89 /* AccountVerification.json in Resources */,
 				35F9DD682333C85C00AAA2B2 /* README.md in Resources */,
-				67A986AE24F96CF700BD46E7 /* Assets-FlavorPECO.xcassets in Resources */,
 				C3087B0324BDEE8B005AE544 /* EnergyTipMock.json in Resources */,
 				678B622E24D09A1C009F8A6B /* RegistrationQuestionsMock.json in Resources */,
 				4A398A41271E997600FA7B89 /* WorkdaysMock.json in Resources */,
 				C338283524E30D6900F133C5 /* PeakRewardsOverridesMock.json in Resources */,
-				67D5633624EEFAA600852551 /* Assets-FlavorCOMED.xcassets in Resources */,
 				678B621A24CF6AD2009F8A6B /* ValidateRegistrationMock.json in Resources */,
 				35F9DD6D2333C8A100AAA2B2 /* Assets.xcassets in Resources */,
-				35F9DD5D2333C45900AAA2B2 /* Assets-FlavorBGE.xcassets in Resources */,
 				C338282824E30B0600F133C5 /* PeakRewardsSummaryMock.json in Resources */,
 				67D73B00246C72F100450B63 /* (null) in Resources */,
 			);
