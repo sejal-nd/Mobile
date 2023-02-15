@@ -237,9 +237,9 @@ struct Configuration {
     
     var b2cPolicy: String {
         if FeatureFlagUtility.shared.bool(forKey: .isPkceAuthentication) {
-            return "B2C_1A_SIGNIN_MOBILE"
+            return "B2C_1A_CIS_SignIn_Mobile"
         } else {
-            return "B2C_1A_Signin_ROPC"
+            return "B2C_1A_CIS_SignIn_ROPC"
         }
     }
     
@@ -463,14 +463,17 @@ struct Configuration {
                 let projectTier = ProjectTier(rawValue: projectTierRawValue) ?? .stage
                 switch projectTier {
                 case .dev:
-//                    baseUrl = "xzc-e-n-eudapi-\(operatingCompany.rawValue.lowercased())-d-ams-01.azure-api.net"
                     baseUrl = "eudapi-dev.\(operatingCompany.urlDisplayString).com"
                     oAuthEndpoint = "api-development.exeloncorp.com"
                 case .test:
                     baseUrl = "eudapi-test.\(operatingCompany.urlDisplayString).com"
                     oAuthEndpoint = "api-development.exeloncorp.com"
                 case .stage:
-                    baseUrl = "eudapi-stage.\(operatingCompany.urlDisplayString).com"
+                    if let projectURLRawValue = UserDefaults.standard.string(forKey: "selectedProjectURL"), let projectURLSuffix = ProjectURLSuffix(rawValue: projectURLRawValue), projectURLSuffix == .cis {
+                        baseUrl = "xzc-e-n-eudapi-\(operatingCompany.urlDisplayString)-s-ams-01.azure-api.net"
+                    } else {
+                        baseUrl = "eudapi-stage.\(operatingCompany.urlDisplayString).com"
+                    }
                     oAuthEndpoint = "api-stage.exeloncorp.com"
                 }
             } else {
