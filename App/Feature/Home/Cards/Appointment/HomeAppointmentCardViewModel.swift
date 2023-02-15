@@ -43,22 +43,22 @@ class HomeAppointmentCardViewModel {
     private(set) lazy var icon: Driver<UIImage?> = appointments
         .map { appointments -> UIImage? in
             guard appointments.count == 1 else {
-                return UIImage(named: "ic_appt_confirmed")?.withTintColor(.primaryBlue, renderingMode: .alwaysTemplate)
+                return UIImage(named: "ic_appt_confirmed")
             }
             
             switch appointments[0].statusType {
             case .scheduled:
-                return UIImage(named: "ic_appt_confirmed")?.withTintColor(.primaryBlue, renderingMode: .alwaysTemplate)
+                return UIImage(named: "ic_appt_confirmed")
             case .onOurWay:
                 fallthrough
             case .enRoute:
-                return UIImage(named: "ic_appt_otw")?.withTintColor(.primaryBlue, renderingMode: .alwaysTemplate)
+                return UIImage(named: "ic_appt_otw")
             case .inProgress:
-                return UIImage(named: "ic_appt_inprogress")?.withTintColor(.primaryBlue, renderingMode: .alwaysTemplate)
+                return UIImage(named: "ic_appt_inprogress")
             case .complete:
-                return UIImage(named: "ic_appt_complete")?.withTintColor(.primaryBlue, renderingMode: .alwaysTemplate)
+                return UIImage(named: "ic_appt_complete")
             case .canceled:
-                return UIImage(named: "ic_appt_canceled")?.withTintColor(.primaryBlue, renderingMode: .alwaysTemplate)
+                return UIImage(named: "ic_appt_canceled")
             case .none:
                 return UIImage()
             }
