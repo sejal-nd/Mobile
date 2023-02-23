@@ -280,7 +280,9 @@ class TapToPayViewModel {
         // If not one of the above precarious states...
         if Configuration.shared.opco == .bge { // BGE can always future date
             return true
-        } else { // ComEd/PECO can only future date if the due date has not passed
+        } else if Configuration.shared.opco.isPHI && billingInfo.pastDueAmount == 0 {// added PHI for future date
+            return true
+        }else { // ComEd/PECO can only future date if the due date has not passed
             return isDueDateInTheFuture
         }
     }
