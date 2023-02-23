@@ -98,10 +98,10 @@ class TapToPayConfirmationViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        medalliaPaymentSurvay()
+        medalliaPaymentSurvey()
     }
     
-    func medalliaPaymentSurvay(){
+    func medalliaPaymentSurvey(){
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(5000), execute: {
             let accountDetail = self.viewModel.accountDetail.value
             MedalliaPlusDecibelUtility.shared.medalliaPayment(customerID:AccountsStore.shared.customerIdentifier, accountType:accountDetail.isResidential ? "Residential" : "Commercial",  lowIncomeStatus: accountDetail.isLowIncome, serviceType: accountDetail.serviceType ?? "", currentAmountDue: accountDetail.billingInfo.currentDueAmount ?? 0, netAmountDue: accountDetail.billingInfo.netDueAmount ?? 0)

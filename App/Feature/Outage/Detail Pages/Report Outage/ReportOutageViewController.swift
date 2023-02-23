@@ -458,28 +458,21 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
       }
    }
     
+    /// Function to format ETR for Medallai based on OPCO's timezone
+    /// - Parameter date: Date
+    /// - Returns: Date in string format
     func formatETRForMedallia(date: Date?) -> String {
         guard let date = date else {
             return ""
         }
         // Create a date formatter with the OPCO time zone
-        let dateFormatter = DateFormatter()
+        var outputDateString = ""
         switch Configuration.shared.opco {
         case .ace, .bge, .delmarva, .peco, .pepco :
-            dateFormatter.timeZone = TimeZone(identifier: "America/New_York")
+            outputDateString = DateFormatter.estTimeFormatter.string(from: date)
         case .comEd:
-            dateFormatter.timeZone =  TimeZone(identifier: "America/Chicago")!
+            outputDateString = DateFormatter.cstTimeFormatter.string(from: date)
         }
-
-        // Set the input time zone of the date to be converted
-        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z" // This is an example format, you may need to adjust it to match your input format
-
-        // Set the output format to display the date and time in EST
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-
-        let outputDateString = dateFormatter.string(from: date)
-        debugPrint("Output date string in EST: \(outputDateString)")
         return outputDateString
     }
     
