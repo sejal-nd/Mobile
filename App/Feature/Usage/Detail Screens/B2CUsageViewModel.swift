@@ -32,6 +32,9 @@ class B2CUsageViewModel {
             request.addValue(widget.identifier, forHTTPHeaderField: "opowerWidgetId")
             request.addValue(accountDetail.value?.utilityCode ?? Configuration.shared.opco.rawValue, forHTTPHeaderField: "opco")
             request.addValue(accountDetail.value?.state ?? "MD", forHTTPHeaderField: "state")
+            if Configuration.shared.opco == .pepco || Configuration.shared.opco == .delmarva { //View Usage for active accounts located outside the state of MD _Pepco and DPL
+            request.addValue("\(accountDetail.value?.isResidential == false)", forHTTPHeaderField: "isCommercial")
+            }
 
             // IMPORTANT - adding "accountNumber" header breaks the residential widgets
             if accountDetail.value?.isResidential == false {
