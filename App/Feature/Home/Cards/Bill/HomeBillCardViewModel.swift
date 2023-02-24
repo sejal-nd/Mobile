@@ -242,7 +242,7 @@ class HomeBillCardViewModel {
     //MARK: - Loaded States
     
     private lazy var accountDetailDriver: Driver<AccountDetail> =
-    accountDetailEvents.elements().asDriver(onErrorDriveWith: .empty())
+    accountDetailEvents.take(1).elements().asDriver(onErrorDriveWith: .empty())
     
     private lazy var scheduledPaymentDriver: Driver<PaymentItem?> =
     scheduledPaymentEvents.elements().asDriver(onErrorDriveWith: .empty())
