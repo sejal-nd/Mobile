@@ -90,7 +90,7 @@ final class MedalliaPlusDecibelUtility: DecibelDelegate {
     }
     
     //MARK: - Medallia StopService
-    func medalliaStopService(customerID : String ,accountType : String , lowIncomeStatus : Bool , serviceType : String , currentAmountDue : Double, netAmountDue : Double){
+    func medalliaStopService(customerID: String, accountType: String, lowIncomeStatus: Bool, serviceType: String, currentAmountDue: Double, netAmountDue: Double) {
         MedalliaDigital.setCustomParameter(name: "PageName", value: MedalliaPage.stopService.screenName)
         MedalliaDigital.setCustomParameter(name: "CustomerId", value: customerID)
         MedalliaDigital.setCustomParameter(name: "AccountType", value: accountType)
@@ -101,7 +101,7 @@ final class MedalliaPlusDecibelUtility: DecibelDelegate {
     }
         
     //MARK: - Medallia MoveService
-        func medalliaMoveService( customerID : String ,accountType : String , lowIncomeStatus : Bool , serviceType : String , currentAmountDue : Double, netAmountDue : Double){
+        func medalliaMoveService(customerID: String, accountType: String, lowIncomeStatus: Bool, serviceType: String, currentAmountDue: Double, netAmountDue: Double) {
             MedalliaDigital.setCustomParameter(name: "PageName", value: MedalliaPage.moveService.screenName)
             MedalliaDigital.setCustomParameter(name: "CustomerId", value: customerID)
             MedalliaDigital.setCustomParameter(name: "AccountType", value: accountType)
@@ -118,7 +118,7 @@ final class MedalliaPlusDecibelUtility: DecibelDelegate {
         }
     
     //MARK: - Medallia OutageReporting
-    func medalliaOutageReporting( customerID : String ,accountType : String , lowIncomeStatus : Bool , serviceType : String , currentAmountDue : Double, netAmountDue : Double, outageETR : String, customerPhoneNumber : String ){
+    func medalliaOutageReporting(customerID: String, accountType: String, lowIncomeStatus: Bool, serviceType: String, currentAmountDue: Double, netAmountDue: Double, outageETR: String, customerPhoneNumber: String) {
         MedalliaDigital.setCustomParameter(name: "PageName", value: MedalliaPage.reportOutage.screenName)
         MedalliaDigital.setCustomParameter(name: "CustomerId", value: customerID)
         MedalliaDigital.setCustomParameter(name: "AccountType", value: accountType)
@@ -130,7 +130,7 @@ final class MedalliaPlusDecibelUtility: DecibelDelegate {
         }
     
     //MARK: - Medallia OutageReportingAnon
-        func medalliaOutageReportingAnon(outageETR : String, customerPhoneNumber : String ){
+        func medalliaOutageReportingAnon(outageETR : String, customerPhoneNumber : String ) {
             MedalliaDigital.setCustomParameter(name: "PageName", value: MedalliaPage.reportOutage.screenName)
             MedalliaDigital.setCustomParameter(name: "OutageEtr", value: outageETR)
             MedalliaDigital.setCustomParameter(name: "CustomerPhoneNumber", value: customerPhoneNumber)
@@ -138,7 +138,7 @@ final class MedalliaPlusDecibelUtility: DecibelDelegate {
         }
     
     //MARK: - Medallia Payment
-    func medalliaPayment(customerID : String ,accountType : String , lowIncomeStatus : Bool , serviceType : String , currentAmountDue : Double, netAmountDue : Double){
+    func medalliaPayment(customerID: String, accountType: String, lowIncomeStatus: Bool, serviceType : String, currentAmountDue: Double, netAmountDue: Double) {
         MedalliaDigital.setCustomParameter(name: "PageName", value: MedalliaPage.payment.screenName)
         MedalliaDigital.setCustomParameter(name: "CustomerId", value: customerID)
         MedalliaDigital.setCustomParameter(name: "AccountType", value: accountType)
