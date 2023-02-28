@@ -419,6 +419,7 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
                 guard let self = self else { return }
                 RxNotifications.shared.outageReported.onNext(())
                 self.delegate?.didReportOutage()
+                self.medalliaReportOutageSurvey()
                 self.navigationController?.popViewController(animated: true)
                 }, onError: errorBlock)
             GoogleAnalytics.log(event: .reportAnOutageUnAuthSubmit)
@@ -433,11 +434,46 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
                 guard let self = self else { return }
                 RxNotifications.shared.outageReported.onNext(())
                 self.delegate?.didReportOutage()
+                self.medalliaReportOutageSurvey()
                 self.navigationController?.popViewController(animated: true)
                 }, onError: errorBlock)
             GoogleAnalytics.log(event: .reportOutageAuthSubmit)
+            
         }
         
+    }
+    
+    func medalliaReportOutageSurvey(){
+    
+       if(unauthenticatedExperience){
+           
+           print("outage UnAuth",viewModel.outageStatus.estimatedRestorationDate?.apiFormatString,viewModel.outageStatus.contactHomeNumber )
+           MedalliaPlusDecibelUtility.shared.medalliaOutageReportingAnon(outageETR:self.viewModel.outageStatus.estimatedRestorationDate != nil ? formatETRForMedallia(date: self.viewModel.outageStatus.estimatedRestorationDate) : "", customerPhoneNumber: viewModel.outageStatus.contactHomeNumber ?? "")
+       }else{
+           viewModel.accountDetail.asObservable()
+               .subscribe(onNext: { [self] (value) in
+                   MedalliaPlusDecibelUtility.shared.medalliaOutageReporting(customerID: AccountsStore.shared.customerIdentifier, accountType: value!.isResidential ? "Residential" : "Commercial", lowIncomeStatus: value!.isLowIncome , serviceType: value!.serviceType ?? "", currentAmountDue: value!.billingInfo.currentDueAmount ?? 0, netAmountDue: value!.billingInfo.netDueAmount ?? 0, outageETR: self.viewModel.outageStatus.estimatedRestorationDate != nil ? formatETRForMedallia(date: self.viewModel.outageStatus.estimatedRestorationDate) : "", customerPhoneNumber: viewModel.outageStatus.contactHomeNumber ?? "")
+                       })
+                       .disposed(by: disposeBag)
+      }
+   }
+    
+    /// Function to format ETR for Medallai based on OPCO's timezone
+    /// - Parameter date: Date
+    /// - Returns: Date in string format
+    func formatETRForMedallia(date: Date?) -> String {
+        guard let date = date else {
+            return ""
+        }
+        // Create a date formatter with the OPCO time zone
+        var outputDateString = ""
+        switch Configuration.shared.opco {
+        case .ace, .bge, .delmarva, .peco, .pepco :
+            outputDateString = DateFormatter.estTimeFormatter.string(from: date)
+        case .comEd:
+            outputDateString = DateFormatter.cstTimeFormatter.string(from: date)
+        }
+        return outputDateString
     }
     
     @IBAction func checkboxToggled() {

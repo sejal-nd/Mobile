@@ -129,6 +129,7 @@ class ReviewStopServiceViewController: UIViewController {
                 let stopConfirmationScreenViewController = storyboard.instantiateViewController(withIdentifier: "StopConfirmationScreenViewController") as! StopConfirmationScreenViewController
                 stopConfirmationScreenViewController.viewModel = StopConfirmationScreenViewModel(stopServiceResponse: response)
                 stopConfirmationScreenViewController.viewModel.stopServiceResponse.isEBillEnrollment = self.stopFlowData.currentAccountDetail.isEBillEnrollment ?? false
+                stopConfirmationScreenViewController.viewModel.accountDetail = self.stopFlowData.currentAccountDetail
                 self.navigationController?.pushViewController(stopConfirmationScreenViewController, animated: true)
                 
             }).disposed(by: disposeBag)

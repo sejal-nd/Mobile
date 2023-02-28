@@ -36,6 +36,13 @@ class StopConfirmationScreenViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         FirebaseUtility.logScreenView(.stopConfirmationView(className: self.className))
+        medalliaStopServiceSurvey()
+    }
+    
+    func medalliaStopServiceSurvey(){
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(5000), execute: {
+            MedalliaPlusDecibelUtility.shared.medalliaStopService(customerID: AccountsStore.shared.customerIdentifier, accountType: self.viewModel.accountDetail.isResidential ? "Residential" : "Commercial", lowIncomeStatus: self.viewModel.accountDetail.isLowIncome, serviceType: self.viewModel.accountDetail.serviceType ?? "", currentAmountDue: self.viewModel.accountDetail.billingInfo.currentDueAmount ?? 0, netAmountDue: self.viewModel.accountDetail.billingInfo.netDueAmount ?? 0)
+        })
     }
     
     private func intialUISetup() {

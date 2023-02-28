@@ -14,6 +14,7 @@ import RxSwift
 import UserNotifications
 import CoreData
 import ForeSee
+import DecibelCore
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -96,6 +97,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             .disposed(by: disposeBag)
         
         ForeSee.start()
+        
+        //Medallia SDK
+        MedalliaPlusDecibelUtility.shared.medalliaSDKInit()
+        
+        //Decibel SDK
+        MedalliaPlusDecibelUtility.shared.decibelSDKInit()
         
         return true
     }
