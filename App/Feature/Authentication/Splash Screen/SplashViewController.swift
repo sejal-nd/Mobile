@@ -10,6 +10,7 @@ import UIKit
 import RxCocoa
 import RxSwift
 import Lottie
+import DecibelCore
 
 #if canImport(SwiftUI)
 import SwiftUI
@@ -100,6 +101,7 @@ class SplashViewController: UIViewController{
         checkAppVersion { [weak self] in
             self?.doLoginLogic()
         }
+        DecibelSDK.shared.send(dimension: "isProd", withBool: MedalliaPlusDecibelUtility.shared.isProdForMedallia)
     }
 
     override func viewDidLayoutSubviews() {

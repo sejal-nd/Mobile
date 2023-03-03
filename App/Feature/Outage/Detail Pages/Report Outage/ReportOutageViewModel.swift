@@ -25,6 +25,10 @@ class ReportOutageViewModel {
         
     }
     
+    lazy var accountDetail: Observable<AccountDetail?> = {
+        return AccountService.rx.fetchAccountDetails().map { return $0 }.asObservable()
+    }()
+    
     private(set) lazy var submitEnabled: Driver<Bool> = Driver.combineLatest(self.reportFormHidden.asDriver(),
                                                                              self.phoneNumber.asDriver())
     { [weak self] in

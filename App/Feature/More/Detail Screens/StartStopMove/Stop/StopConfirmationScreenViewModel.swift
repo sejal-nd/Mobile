@@ -11,9 +11,14 @@ import Foundation
 class StopConfirmationScreenViewModel {
     
     var stopServiceResponse: StopServiceResponse!
+    var accountDetail : AccountDetail!
     
     init(stopServiceResponse: StopServiceResponse) {
         self.stopServiceResponse = stopServiceResponse
+    }
+    
+    required init(accountDetail: AccountDetail) {
+        self.accountDetail = accountDetail
     }
     
     func getStopServiceDate()-> String {
