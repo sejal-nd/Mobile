@@ -70,7 +70,7 @@ class BillViewModel {
             let scheduledPayment = AccountService.rx.fetchScheduledPayments(accountNumber: account.accountNumber).map { $0.last }
                 .do(onError: { _ in
                     FirebaseUtility.logEvent(.bill(parameters: [.bill_not_available]))
-                })
+                }).catchErrorJustComplete()
             return Observable.zip(accountDetail, scheduledPayment)
         })
         .do(onNext: { _ in UIAccessibility.post(notification: .screenChanged, argument: nil) })
