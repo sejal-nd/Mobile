@@ -115,38 +115,32 @@ class HomeDiscoverCardView: UIView {
         .withLatestFrom(self.viewModel.energySavingsUrl)
         .map(SFSafariViewController.createWithCustomStyle)
 
-    private lazy var hourlyPricingViewController: Driver<UIViewController> = self.row3Button.rx.tap.asDriver()
-        .withLatestFrom(self.viewModel.isHourlyPricing)
-        .filter { $0 }
-        .withLatestFrom(self.viewModel.accountDetailEvents.elements().asDriver(onErrorDriveWith: .empty()))
+    private(set) lazy var hourlyPricingViewController: Driver<UIViewController> = self.row3Button.rx.tap
+        .withLatestFrom(self.viewModel.accountDetailEvents.elements())
         .map {
             let hourlyPricingVC = UIStoryboard(name: "Usage", bundle: nil)
                 .instantiateViewController(withIdentifier: "hourlyPricingViewController") as! HourlyPricingViewController
             hourlyPricingVC.accountDetail = $0
             return hourlyPricingVC
-    }
+    }.asDriver(onErrorDriveWith: .empty())
 
-    private lazy var itronSmartThermostatViewController: Driver<UIViewController> = self.row6Button.rx.touchUpInside.asDriver()
-        .withLatestFrom(self.viewModel.isEnergyWiseRewardsEnrolled) 
-        .filter { $0 }
-        .withLatestFrom(self.viewModel.accountDetailEvents.elements().asDriver(onErrorDriveWith: .empty()))
+    private(set) lazy var itronSmartThermostatViewController: Driver<UIViewController> = self.row6Button.rx.touchUpInside
+        .withLatestFrom(self.viewModel.accountDetailEvents.elements())
         .map {
             let vc = UIStoryboard(name: "Usage", bundle: nil)
                 .instantiateViewController(withIdentifier: "iTronSmartThermostatViewController") as! iTronSmartThermostatViewController
             vc.accountDetail = $0
             return vc
-    }
+    }.asDriver(onErrorDriveWith: .empty())
 
-    private lazy var peakRewardsViewController: Driver<UIViewController> = self.row5Button.rx.touchUpInside.asDriver()
-        .withLatestFrom(self.viewModel.linkToPeakRewards)
-        .filter { $0 }
-        .withLatestFrom(self.viewModel.accountDetailEvents.elements().asDriver(onErrorDriveWith: .empty()))
+    private(set) lazy var peakRewardsViewController: Driver<UIViewController> = self.row5Button.rx.touchUpInside
+        .withLatestFrom(self.viewModel.accountDetailEvents.elements())
         .map {
             let peakRewardsVC = UIStoryboard(name: "PeakRewards", bundle: nil)
                 .instantiateInitialViewController() as! PeakRewardsViewController
             peakRewardsVC.accountDetail = $0
             return peakRewardsVC
-        }
+        }.asDriver(onErrorDriveWith: .empty())
         .do(onNext: { _ in
             GoogleAnalytics.log(event: .homePromoCard,
                                  dimensions: [.link: "https://secure.bge.com/Peakrewards/Pages/default.aspx"])
@@ -165,7 +159,9 @@ class HomeDiscoverCardView: UIView {
             .withLatestFrom(self.viewModel.homeEnergyCheckupUrl)
             .map(SFSafariViewController.createWithCustomStyle)
 
-    private(set) lazy var pushedViewControllers: Driver<UIViewController> = Driver.merge(self.hourlyPricingViewController,
-                                                                                         self.peakRewardsViewController,
-                                                                                         self.itronSmartThermostatViewController)
+    private(set) lazy var pushedViewControllers: Driver<UIViewController> = Driver.merge(
+        self.hourlyPricingViewController,
+        self.peakRewardsViewController,
+        self.itronSmartThermostatViewController
+    )
 }
