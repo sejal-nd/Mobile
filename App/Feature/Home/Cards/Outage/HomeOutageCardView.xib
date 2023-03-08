@@ -37,8 +37,8 @@
                                         <constraint firstAttribute="height" constant="37" id="K5b-1n-8c4"/>
                                     </constraints>
                                     <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="string" keyPath="title" value="Bill"/>
-                                        <userDefinedRuntimeAttribute type="image" keyPath="image" value="ic_dollar_circle"/>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="title" value="Outage"/>
+                                        <userDefinedRuntimeAttribute type="image" keyPath="image" value="ic_outagestatus_on"/>
                                     </userDefinedRuntimeAttributes>
                                 </view>
                                 <view contentMode="scaleToFill" verticalHuggingPriority="999" verticalCompressionResistancePriority="999" translatesAutoresizingMaskIntoConstraints="NO" id="Fpv-XZ-FAa">
@@ -408,10 +408,10 @@
     <resources>
         <image name="ic_alert" width="36" height="36"/>
         <image name="ic_default_check" width="24" height="24"/>
-        <image name="ic_dollar_circle" width="16" height="16"/>
         <image name="ic_gas_only" width="128" height="128"/>
         <image name="ic_lightbulb_on" width="37" height="45"/>
         <image name="ic_maintenancemode_lg" width="128" height="128"/>
+        <image name="ic_outagestatus_on" width="48" height="48"/>
         <namedColor name="primaryBlue">
             <color red="0.090000003576278687" green="0.050999999046325684" blue="0.40400001406669617" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

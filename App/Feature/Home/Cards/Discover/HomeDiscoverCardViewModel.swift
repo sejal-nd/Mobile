@@ -194,11 +194,21 @@ class HomeDiscoverCardViewModel {
 
     private(set) lazy var homeEnergyCheckupUrl: Driver<URL> = self.accountDetailEvents.elements()
         .map { accountDetail -> String? in
-            if accountDetail.isResidential {
-                return "https://\(Configuration.shared.associatedDomain)/assistance/landing"
+            let opco = accountDetail.opcoType ?? Configuration.shared.opco
+            switch opco {
+            case .bge:
+                return "https://bgesmartenergy.com/residential/help-me-save/home-performance"
+            case .comEd:
+                return "https://www.comed.com/WaysToSave/ForYourHome/Pages/SingleFamily.aspx"
+            case .peco:
+                return "https://www.peco.com/WaysToSave/ForYourHome/Pages/EnergyAssessment.aspx"
+            case .pepco:
+                return "https://homeenergysavings.pepco.com/md/residential/quick-home-energy-check-up-program"
+            case .ace:
+                return "https://homeenergysavings.atlanticcityelectric.com/residential/energy-assessments/quick-home-energy-check-up-program"
+            case .delmarva:
+                return "https://homeenergysavings.delmarva.com/md/residential/quick-home-energy-check-up-program"
             }
-
-            return nil
         }
         .unwrap()
         .map { URL(string: $0) }.unwrap()

@@ -108,11 +108,11 @@ class HomeDiscoverCardView: UIView {
         .map(SFSafariViewController.createWithCustomStyle)
 
     private(set) lazy var energyWiseRewardsOfferViewController: Driver<SFSafariViewController> = self.row7Button.rx.touchUpInside.asDriver()
-        .withLatestFrom(self.viewModel.energySavingsUrl)
+        .withLatestFrom(self.viewModel.energyWiseRewardsOfferUrl)
         .map(SFSafariViewController.createWithCustomStyle)
 
     private(set) lazy var commercialViewController: Driver<SFSafariViewController> = self.row8Button.rx.touchUpInside.asDriver()
-        .withLatestFrom(self.viewModel.energySavingsUrl)
+        .withLatestFrom(self.viewModel.commercialUrl)
         .map(SFSafariViewController.createWithCustomStyle)
 
     private(set) lazy var hourlyPricingViewController: Driver<UIViewController> = self.row3Button.rx.tap
