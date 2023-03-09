@@ -105,7 +105,7 @@ class HomeProjectedBillCardView: UIView {
         callToActionButton.titleLabel?.font = .headlineSemibold
 
         homeCardHeaderView.title = NSLocalizedString("Projected Bill", comment: "")
-        homeCardHeaderView.image = UIImage(named: "ic_dollar_circle")
+        homeCardHeaderView.image = UIImage(named: "ic_bar_chart")
     }
     
     private func showContent() {
