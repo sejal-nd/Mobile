@@ -131,6 +131,9 @@ class HomeOutageCardView: UIView {
         errorLabel.textColor = .neutralDark
         errorLabel.font = .caption1
         errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
+
+        homeCardHeaderView.title = NSLocalizedString("Outage", comment: "")
+        homeCardHeaderView.image = UIImage(named: "ic_electric")
     }
     
     private func showLoadingState() {

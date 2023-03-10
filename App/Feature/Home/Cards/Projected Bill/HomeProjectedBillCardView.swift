@@ -103,6 +103,9 @@ class HomeProjectedBillCardView: UIView {
         projectionFooterLabel.font = .footnote
         
         callToActionButton.titleLabel?.font = .headlineSemibold
+
+        homeCardHeaderView.title = NSLocalizedString("Projected Bill", comment: "")
+        homeCardHeaderView.image = UIImage(named: "ic_bar_chart")
     }
     
     private func showContent() {
