@@ -44,7 +44,7 @@ class HomeViewModel {
     private(set) lazy var billCardViewModel =
         HomeBillCardViewModel(fetchData: fetchDataObservable,
                               fetchDataMMEvents: fetchDataMMEvents,
-                              accountDetailEvents: accountDetailEvents,
+                              accountDetailEvents: accountDetailEvents.share(scope: .forever),
                               scheduledPaymentEvents: scheduledPaymentEvents,
                                           fetchTracker: billTracker)
     
