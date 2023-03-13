@@ -67,7 +67,7 @@ extension ProjectURLSuffix {
         case .agentis:
             return "/agentis"
         case .cis:
-            return "/cis-phase-2"
+            return "/cis"
         case .advancedNotifications:
             return "/phiadvnoti"
         case .ace:

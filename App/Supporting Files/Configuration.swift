@@ -469,11 +469,7 @@ struct Configuration {
                     baseUrl = "eudapi-test.\(operatingCompany.urlDisplayString).com"
                     oAuthEndpoint = "api-development.exeloncorp.com"
                 case .stage:
-                    if let projectURLRawValue = UserDefaults.standard.string(forKey: "selectedProjectURL"), let projectURLSuffix = ProjectURLSuffix(rawValue: projectURLRawValue), projectURLSuffix == .cis {
-                        baseUrl = "xzc-e-n-eudapi-\(operatingCompany.urlDisplayString)-s-ams-01.azure-api.net"
-                    } else {
-                        baseUrl = "eudapi-stage.\(operatingCompany.urlDisplayString).com"
-                    }
+                    baseUrl = "eudapi-stage.\(operatingCompany.urlDisplayString).com"
                     oAuthEndpoint = "api-stage.exeloncorp.com"
                 }
             } else {
