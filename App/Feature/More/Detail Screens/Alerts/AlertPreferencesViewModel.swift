@@ -202,6 +202,10 @@ class AlertPreferencesViewModel {
                     self.sections.append((NSLocalizedString("Customer Appointments", comment: ""), [.appointmentTracking, .advancedNotification]))
                     self.sections.append((NSLocalizedString("News", comment: ""), [.forYourInformation]))
                 case .ace:
+                    var usageOptions: [AlertPreferencesOptions] = []
+                    if self.isHUAEligible && FeatureFlagUtility.shared.bool(forKey: .isACEAMI) {
+                        usageOptions.append(.highUsage)
+                    }
                     self.sections = [(NSLocalizedString("Outage", comment: ""),
                          [.outage, .severeWeather])]
                    
