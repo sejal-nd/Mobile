@@ -158,6 +158,9 @@ class HomeUsageCardView: UIView {
         errorLabel.textColor = .neutralDark
         errorLabel.font = .subheadline
         errorLabel.textAlignment = .center
+
+        homeCardHeaderView.title = NSLocalizedString("Usage", comment: "")
+        homeCardHeaderView.image = UIImage(named: "ic_bar_chart")
     }
     
     func superviewDidLayoutSubviews() {

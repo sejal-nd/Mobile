@@ -93,6 +93,23 @@ class HomeDiscoverCardView: UIView {
         viewModel.isCommercial.not().drive(row8.rx.isHidden).disposed(by: disposeBag)
         viewModel.isSignUpForAlerts.not().drive(row9.rx.isHidden).disposed(by: disposeBag)
         viewModel.isHomeEnergyCheckup.not().drive(row10.rx.isHidden).disposed(by: disposeBag)
+
+        row5Button.rx.touchUpInside.asObservable()
+            .withLatestFrom(viewModel.linkToEcobee)
+            .filter { $0 }
+            .subscribe(onNext: { _ in
+                let appLinkUrl = URL(string: "ecobee://")!
+                let appStoreUrl = URL(string:"https://itunes.apple.com/us/app/ecobee/id916985674?mt=8")!
+
+                if UIApplication.shared.canOpenURL(appLinkUrl) {
+                    GoogleAnalytics.log(event: .homePromoCard, dimensions: [.link: appLinkUrl.absoluteString])
+                    UIApplication.shared.open(appLinkUrl)
+                } else if UIApplication.shared.canOpenURL(appStoreUrl) {
+                    GoogleAnalytics.log(event: .homePromoCard, dimensions: [.link: appStoreUrl.absoluteString])
+                    UIApplication.shared.open(appStoreUrl)
+                }
+            })
+            .disposed(by: disposeBag)
     }
 
     private(set) lazy var helpViewController: Driver<SFSafariViewController> = self.row1Button.rx.touchUpInside.asDriver()
@@ -108,11 +125,11 @@ class HomeDiscoverCardView: UIView {
         .map(SFSafariViewController.createWithCustomStyle)
 
     private(set) lazy var energyWiseRewardsOfferViewController: Driver<SFSafariViewController> = self.row7Button.rx.touchUpInside.asDriver()
-        .withLatestFrom(self.viewModel.energySavingsUrl)
+        .withLatestFrom(self.viewModel.energyWiseRewardsOfferUrl)
         .map(SFSafariViewController.createWithCustomStyle)
 
     private(set) lazy var commercialViewController: Driver<SFSafariViewController> = self.row8Button.rx.touchUpInside.asDriver()
-        .withLatestFrom(self.viewModel.energySavingsUrl)
+        .withLatestFrom(self.viewModel.commercialUrl)
         .map(SFSafariViewController.createWithCustomStyle)
 
     private(set) lazy var hourlyPricingViewController: Driver<UIViewController> = self.row3Button.rx.tap
@@ -134,6 +151,8 @@ class HomeDiscoverCardView: UIView {
     }.asDriver(onErrorDriveWith: .empty())
 
     private(set) lazy var peakRewardsViewController: Driver<UIViewController> = self.row5Button.rx.touchUpInside
+        .withLatestFrom(self.viewModel.linkToPeakRewards)
+        .filter {$0 }
         .withLatestFrom(self.viewModel.accountDetailEvents.elements())
         .map {
             let peakRewardsVC = UIStoryboard(name: "PeakRewards", bundle: nil)
