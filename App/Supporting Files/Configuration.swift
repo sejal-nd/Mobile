@@ -452,7 +452,15 @@ struct Configuration {
             
             let operatingCompany = OpCo(rawValue: infoPlist.buildFlavor)!
             opco = operatingCompany
-            paymentusUrl = infoPlist.paymentURL
+
+            if opco == .comEd {
+                paymentusUrl = "https://comd-sit-6893.paymentus.io/xotp/pm/comd"
+            } else if opco == .peco {
+                paymentusUrl = "https://peco-sit-6917.paymentus.io/xotp/pm/peco"
+            } else {
+                paymentusUrl = infoPlist.paymentURL
+            }
+
             myAccountUrl = infoPlist.accountURL
             gaTrackingId = infoPlist.googleAnalyticID
             associatedDomain = infoPlist.associatedDomain
