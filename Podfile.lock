@@ -11,6 +11,7 @@ PODS:
     - Charts/Core (= 4.1.0)
   - Charts/Core (4.1.0):
     - SwiftAlgorithms (~> 1.0)
+  - DecibelSDK (2.1.1)
   - Firebase/Core (7.11.0):
     - Firebase/CoreOnly
     - FirebaseAnalytics (~> 7.11.0)
@@ -92,6 +93,7 @@ PODS:
     - GoogleUtilities/Logger
   - HorizonCalendar (1.13.3)
   - lottie-ios (3.1.5)
+  - MedalliaDigitalSDK (4.1.0)
   - nanopb (2.30908.0):
     - nanopb/decode (= 2.30908.0)
     - nanopb/encode (= 2.30908.0)
@@ -121,12 +123,14 @@ PODS:
 DEPENDENCIES:
   - AppCenter (= 1.14)
   - Charts (= 4.1.0)
+  - DecibelSDK
   - Firebase/Core (= 7.11.0)
   - ForeSee/Core (= 6.0.4)
   - ForeSee/ForeSeeFeedback (= 6.0.4)
   - GoogleAnalytics (= 3.17.0)
   - HorizonCalendar (= 1.13.3)
   - lottie-ios (= 3.1.5)
+  - "MedalliaDigitalSDK (from `{:http=>\"https://repository.medallia.com/digital-generic/ios-sdk/4.1.0/ios-sdk-4.1.0.zip\"}`)"
   - ReachabilitySwift (= 4.3.1)
   - RxSwift (= 5.1.0)
   - RxSwiftExt (= 5.2.0)
@@ -136,6 +140,8 @@ DEPENDENCIES:
   - zxcvbn-ios (= 1.0.4)
 
 SPEC REPOS:
+  https://github.com/DecibelInsight/decibel-sdk-ios-spec:
+    - DecibelSDK
   trunk:
     - AppCenter
     - Charts
@@ -163,9 +169,18 @@ SPEC REPOS:
     - XLPagerTabStrip
     - zxcvbn-ios
 
+EXTERNAL SOURCES:
+  MedalliaDigitalSDK:
+    :http: https://repository.medallia.com/digital-generic/ios-sdk/4.1.0/ios-sdk-4.1.0.zip
+
+CHECKOUT OPTIONS:
+  MedalliaDigitalSDK:
+    :http: https://repository.medallia.com/digital-generic/ios-sdk/4.1.0/ios-sdk-4.1.0.zip
+
 SPEC CHECKSUMS:
   AppCenter: 02c5efe08d3bbab5421ae41d5f7aa7238906b817
   Charts: 354f86803d11d9c35de280587fef50d1af063978
+  DecibelSDK: 9a7892ac6fe1e3882fe9cea14044bb6abcf40f3c
   Firebase: c121feb35e4126c0b355e3313fa9b487d47319fd
   FirebaseAnalytics: cd3bd84d722a24a8923918af8af8e5236f615d77
   FirebaseCore: 907447d8917a4d3eb0cce2829c5a0ad21d90b432
@@ -178,6 +193,7 @@ SPEC CHECKSUMS:
   GoogleUtilities: eea970f4a389963963bffe8d8fabe43540678b9c
   HorizonCalendar: d1c69852fa0fd57166fc9f338936237b9bd0b86e
   lottie-ios: 32bf84389337d86fbc8b12266e88452e0abf1dee
+  MedalliaDigitalSDK: aa0aadd32bbb238cbb11d956c5035f5b0fde584e
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   ReachabilitySwift: 4032e2f59586e11e3b0ebe15b167abdd587a388b
@@ -190,6 +206,6 @@ SPEC CHECKSUMS:
   XLPagerTabStrip: 61c57fd61f611ee5f01ff1495ad6fbee8bf496c5
   zxcvbn-ios: fef98b7c80f1512ff0eec47ac1fa399fc00f7e3c
 
-PODFILE CHECKSUM: d12a4fc12eac6c457ff2dbcf61163844a94e3fea
+PODFILE CHECKSUM: 9e05e19b9ef81e5fa7c2770ee22717a8288d39e1
 
 COCOAPODS: 1.11.3

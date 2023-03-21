@@ -56,7 +56,6 @@ class UnauthenticatedOutageValidateAccountViewController: KeyboardAvoidingSticky
         footerTextView.textColor = .neutralDark
         footerTextView.tintColor = .actionBrand // For the phone numbers
         footerTextView.linkTapDelegate = self
-        
         maintenanceModeView.isHidden = true
         
         bindViewModel()

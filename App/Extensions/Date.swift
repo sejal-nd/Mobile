@@ -394,6 +394,19 @@ extension DateFormatter {
         return dateFormatter
     }()
     
+    static let estTimeFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        formatter.timeZone = TimeZone(abbreviation: "EST")
+        return formatter
+    }()
+    
+    static let cstTimeFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        formatter.timeZone = TimeZone(abbreviation: "CST")
+        return formatter
+    }()
 }
 
 extension String {

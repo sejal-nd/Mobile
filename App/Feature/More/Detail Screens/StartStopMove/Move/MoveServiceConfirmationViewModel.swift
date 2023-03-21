@@ -17,6 +17,9 @@ class MoveServiceConfirmationViewModel {
     var shouldShowSeamlessMove = false
     var transferEligibility: TransferEligibility = .ineligible
     var transferOption: TransferServiceOption = .transfer
+    var accountDetail : AccountDetail!
+    var unAuthAccountDetail : UnAuthAccountDetails!
+    var outageStatus: OutageStatus!
     
     init(moveServiceResponse: MoveServiceResponse,
          isUnauth: Bool = false,
@@ -28,6 +31,11 @@ class MoveServiceConfirmationViewModel {
         self.shouldShowSeamlessMove = shouldShowSeamlessMove
         self.transferEligibility = transferEligibility
         self.transferOption = transferOption
+    }
+    
+    required init (accountDetail :  AccountDetail,unAuthAccountDetail : UnAuthAccountDetails){
+        self.accountDetail = accountDetail
+        self.unAuthAccountDetail = unAuthAccountDetail
     }
 
     func getBillingDescription()-> String {

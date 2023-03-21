@@ -300,7 +300,7 @@ class ContactUsViewModel {
     var flickrURL: String {
         switch opco {
         case .bge: return "https://www.flickr.com/photos/mybge"
-        case .peco: return "https://www.flickr.com/pecoconnect"
+        case .peco: return ""
         case .comEd: return "https://www.flickr.com/photos/commonwealthedison"
         case .pepco: return ""
         case .ace: return ""
@@ -318,12 +318,17 @@ class ContactUsViewModel {
                     (instagramURL, #imageLiteral(resourceName: "ic_instagram"), "Instagram", .instagram),
                     (pinterestURL, #imageLiteral(resourceName: "ic_pinterest"), "Pinterest", .pinterest),
                     (flickrURL, #imageLiteral(resourceName: "ic_flickr"), "Flicker", .flickr)]
-        case .bge, .peco:
+        case .bge:
             return [(facebookURL, #imageLiteral(resourceName: "ic_facebook"), "Facebook", .facebook),
                     (twitterURL, #imageLiteral(resourceName: "ic_twitter"), "Twitter", .twitter),
                     (youtubeURL, #imageLiteral(resourceName: "ic_youtube"), "YouTube", .youtube),
                     (linkedinURL, #imageLiteral(resourceName: "ic_linkedin"), "LinkedIn", .linkedin),
                     (flickrURL, #imageLiteral(resourceName: "ic_flickr"), "Flicker", .flickr)]
+        case .peco:
+            return [(facebookURL, #imageLiteral(resourceName: "ic_facebook"), "Facebook", .facebook),
+                    (twitterURL, #imageLiteral(resourceName: "ic_twitter"), "Twitter", .twitter),
+                    (youtubeURL, #imageLiteral(resourceName: "ic_youtube"), "YouTube", .youtube),
+                    (linkedinURL, #imageLiteral(resourceName: "ic_linkedin"), "LinkedIn", .linkedin)]    
         case .pepco:
             return [(facebookURL, #imageLiteral(resourceName: "ic_facebook"), "Facebook", .facebook),
                     (twitterURL, #imageLiteral(resourceName: "ic_twitter"), "Twitter", .twitter),

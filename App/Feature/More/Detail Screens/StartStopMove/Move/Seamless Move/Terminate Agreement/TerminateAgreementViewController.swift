@@ -85,6 +85,7 @@ class TerminateAgreementViewController: UIViewController {
                                                                                                            shouldShowSeamlessMove: true,
                                                                                                            transferEligibility: self.transferEligibility,
                                                                                                            transferOption: .doNotTransfer)
+                        moveServiceConfirmationViewController.viewModel.unAuthAccountDetail = self.moveFlowData.unauthMoveData?.accountDetails
                         self.navigationController?.pushViewController(moveServiceConfirmationViewController, animated: true)
                     case .failure(let error):
                         FirebaseUtility.logEvent(.authMoveService(parameters: [.complete_unresolved]))
@@ -111,6 +112,7 @@ class TerminateAgreementViewController: UIViewController {
                                                                                                            shouldShowSeamlessMove: true,
                                                                                                            transferEligibility: self.transferEligibility,
                                                                                                            transferOption: .doNotTransfer)
+                        moveServiceConfirmationViewController.viewModel.accountDetail = self.moveFlowData.currentAccountDetail
                         self.navigationController?.pushViewController(moveServiceConfirmationViewController, animated: true)
                     case .failure(let error):
                         FirebaseUtility.logEvent(.authMoveService(parameters: [.complete_unresolved]))
