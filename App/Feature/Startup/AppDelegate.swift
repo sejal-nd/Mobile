@@ -294,7 +294,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         _ = gai?.tracker(withTrackingId: Configuration.shared.gaTrackingId)
         
         FirebaseUtility.configure()
-        
+
+        if let username = AuthenticationService.getStoredUsername() {
+            FirebaseUtility.setUsername(username)
+        }
+
         FirebaseUtility.setUserProperty(.isScreenReaderEnabled, value: UIAccessibility.isVoiceOverRunning.description)
         FirebaseUtility.setUserProperty(.isSwitchAccessEnabled, value: UIAccessibility.isSwitchControlRunning.description)
         FirebaseUtility.setUserProperty(.fontScale, value: UIApplication.shared.preferredContentSizeCategory.rawValue)

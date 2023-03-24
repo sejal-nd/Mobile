@@ -80,6 +80,7 @@ public enum AuthenticationService {
         NetworkingLayer.cancelAllTasks()
 
         UserSession.deleteSession()
+        clearStoredUsername()
         
         // We may not even use accounts store anymore.
         AccountsStore.shared.accounts = nil
@@ -162,6 +163,8 @@ extension AuthenticationService {
                 RxNotifications.shared.mfaJustEnabled.accept(tokenResponse.isMfaJustEnabled)
                 RxNotifications.shared.mfaBypass.accept(tokenResponse.isMfaBypass)
                 RxNotifications.shared.profileEditAction.accept(tokenResponse.profileEditAction)
+
+                setStoredUsername(username: tokenResponse.username)
                 
                 // Handle Temp Password
                 if tokenResponse.profileStatus?.tempPassword ?? false {
@@ -279,6 +282,21 @@ extension AuthenticationService {
                 completion(.failure(error))
             }
         }
+    }
+
+    static func getStoredUsername() -> String? {
+        return UserDefaults.standard.string(forKey: UserDefaultKeys.loggedInUsername)
+    }
+
+    static func setStoredUsername(username: String?) {
+        UserDefaults.standard.set(username, forKey: UserDefaultKeys.loggedInUsername)
+        #if os(iOS)
+            FirebaseUtility.setUsername(username)
+        #endif
+    }
+
+    static func clearStoredUsername() {
+        setStoredUsername(username: nil)
     }
 }
 
