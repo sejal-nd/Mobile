@@ -453,14 +453,17 @@ struct Configuration {
             let operatingCompany = OpCo(rawValue: infoPlist.buildFlavor)!
             opco = operatingCompany
 
-            if opco == .comEd {
-                paymentusUrl = "https://comd-sit-6893.paymentus.io/xotp/pm/comd"
-            } else if opco == .peco {
-                paymentusUrl = "https://peco-sit-6917.paymentus.io/xotp/pm/peco"
-            } else {
-                paymentusUrl = infoPlist.paymentURL
+            if let projectURLRawValue = UserDefaults.standard.string(forKey: "selectedProjectURL"), let projectURLSuffix = ProjectURLSuffix(rawValue: projectURLRawValue), projectURLSuffix == .cis || projectURLSuffix == .cisProject {
+                if opco == .comEd {
+                    paymentusUrl = "https://comd-sit-6893.paymentus.io/xotp/pm/comd"
+                } else if opco == .peco {
+                    paymentusUrl = "https://peco-sit-6917.paymentus.io/xotp/pm/peco"
+                } else {
+                    paymentusUrl = infoPlist.paymentURL
+                }
             }
 
+//            paymentusUrl = infoPlist.paymentURL
             myAccountUrl = infoPlist.accountURL
             gaTrackingId = infoPlist.googleAnalyticID
             associatedDomain = infoPlist.associatedDomain
@@ -477,7 +480,11 @@ struct Configuration {
                     baseUrl = "eudapi-test.\(operatingCompany.urlDisplayString).com"
                     oAuthEndpoint = "api-development.exeloncorp.com"
                 case .stage:
-                    baseUrl = "eudapi-stage.\(operatingCompany.urlDisplayString).com"
+                    if let projectURLRawValue = UserDefaults.standard.string(forKey: "selectedProjectURL"), let projectURLSuffix = ProjectURLSuffix(rawValue: projectURLRawValue), projectURLSuffix == .cisProject {
+                        baseUrl = "xzc-e-n-eudapi-\(operatingCompany.urlDisplayString)-s-ams-01.azure-api.net"
+                    } else {
+                        baseUrl = "eudapi-stage.\(operatingCompany.urlDisplayString).com"
+                    }
                     oAuthEndpoint = "api-stage.exeloncorp.com"
                 }
             } else {
