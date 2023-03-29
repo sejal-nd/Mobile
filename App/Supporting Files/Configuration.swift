@@ -461,6 +461,8 @@ struct Configuration {
                 } else {
                     paymentusUrl = infoPlist.paymentURL
                 }
+            } else {
+                paymentusUrl = infoPlist.paymentURL
             }
 
 //            paymentusUrl = infoPlist.paymentURL
