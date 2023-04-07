@@ -208,6 +208,10 @@ class AlertPreferencesViewModel {
                     }
                     self.sections = [(NSLocalizedString("Outage", comment: ""),
                          [.outage, .severeWeather])]
+                    
+                    if !usageOptions.isEmpty {
+                        self.sections.insert((NSLocalizedString("Usage", comment: ""), usageOptions), at: 0)
+                    }
                    
                     if !self.accountDetail.isFinaled &&
                         (self.accountDetail.isEBillEligible || self.accountDetail.isEBillEnrollment) {
@@ -529,9 +533,9 @@ class AlertPreferencesViewModel {
     
     var isHUAEligible: Bool {
         switch Configuration.shared.opco {
-        case .bge, .comEd, .pepco, .delmarva:
+        case .bge, .comEd, .pepco, .delmarva, .ace:
             return self.accountDetail.isHUAEligible ?? false
-        case .peco, .ace:
+        case .peco:
             return false
         
         }
