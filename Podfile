@@ -69,12 +69,21 @@ target 'EUMobile-Watch Extension' do
   shared_pods
 end
 
-# Removes the project warnings after a `pod install`
 post_install do |installer|
-    installer.pods_project.build_configurations.each do |config|
-        # Force the main pods frameworks to Swift 5.0
-        config.build_settings['SWIFT_VERSION'] = '5.0'
-        # Fix localization warning in Xcode 10.2
-        config.build_settings['CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED'] = 'YES'
+  # Removes the project warnings after a `pod install`
+  installer.pods_project.build_configurations.each do |config|
+    # Force the main pods frameworks to Swift 5.0
+    config.build_settings['SWIFT_VERSION'] = '5.0'
+    # Fix localization warning in Xcode 10.2
+    config.build_settings['CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED'] = 'YES'
+  end
+
+  # Set IPHONEOS_DEPLOYMENT_TARGET to 11.0 for all pod projects
+  installer.generated_projects.each do |project|
+    project.targets.each do |target|
+      target.build_configurations.each do |config|
+        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '11.0'
+      end
     end
+  end
 end
