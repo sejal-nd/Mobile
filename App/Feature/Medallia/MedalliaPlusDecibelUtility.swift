@@ -148,13 +148,21 @@ final class MedalliaPlusDecibelUtility: DecibelDelegate {
         MedalliaDigital.setCustomParameter(name: "NetAmountDue", value: netAmountDue)
     }
 
-    func showOutageTrackerSurvey() {
-        // TODO set custom parameters
+    func showOutageTrackerSurvey(for outage: OutageTracker) {
+        MedalliaDigital.setCustomParameters([
+            "CustomerID": AccountsStore.shared.customerIdentifier ?? "",
+            "ETR": outage.etr ?? "",
+            "ETR Type": outage.etrType ?? "",
+            "Outage Cause": outage.cause ?? "",
+            "Outage ID": outage.outageID ?? "",
+            "Tracker Status": outage.trackerStatus ?? "",
+            "Outage Valid": outage.isOutageValid
+        ])
+        
         MedalliaDigital.showForm("988") {
             Log.info("Outage Tracker Survey Displayed Successfully")
         } failure: { error in
             Log.error("Error displaying Outage Tracker Survey: \(error)")
         }
-
     }
 }
