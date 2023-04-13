@@ -313,7 +313,7 @@ extension AlertPreferencesViewController: UITableViewDataSource {
         case .highUsage:
             toggleVariable = viewModel.highUsage
             
-            if viewModel.shouldShowHUABillThreshold {
+            if viewModel.shouldShowHUABillThreshold && Configuration.shared.opco != .ace {
                 var thresholdStr: String? = nil
                 if let thresholdValue = viewModel.billThreshold.value,
                    !thresholdValue.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
