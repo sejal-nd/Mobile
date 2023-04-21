@@ -468,43 +468,22 @@ public enum Router {
         switch self {
         case .outageStatus(_, let summaryQueryItem):
             var queryItems = [URLQueryItem(name: "meterPing", value: "false")]
-            if FeatureFlagUtility.shared.bool(forKey: .isACEAMI) {
-                queryItems.append(contentsOf: [URLQueryItem(name: "forceLegacyConnector", value: "true")])
-            }
             if let summaryQueryItem = summaryQueryItem {
                 queryItems.append(summaryQueryItem)
             }
             return queryItems
         case .outageStatusAnon(_, let summaryQueryItem):
             var queryItems = [URLQueryItem(name: "meterPing", value: "false")]
-            if FeatureFlagUtility.shared.bool(forKey: .isACEAMI) {
-                queryItems.append(contentsOf: [URLQueryItem(name: "forceLegacyConnector", value: "true")])
-            }
             if let summaryQueryItem = summaryQueryItem {
                 queryItems.append(summaryQueryItem)
             }
             return queryItems
-        case .meterPing (_,_, let summaryQueryItem):
+        case .meterPing (_,_, let summaryQueryItem), .meterPingAnon(_, let summaryQueryItem):
             var queryItems = [URLQueryItem(name: "", value: "")]
-            if FeatureFlagUtility.shared.bool(forKey: .isACEAMI) {
-                queryItems.append(contentsOf: [URLQueryItem(name: "forceLegacyConnector", value: "true")])
-            }
             if let summaryQueryItem = summaryQueryItem {
                 queryItems.append(summaryQueryItem)
-              }
-            
-            return queryItems
-        case .meterPingAnon(_, let summaryQueryItem):
-            var queryItems = [URLQueryItem(name: "", value: "")]
-            if FeatureFlagUtility.shared.bool(forKey: .isACEAMI) {
-                queryItems.append(contentsOf: [URLQueryItem(name: "forceLegacyConnector", value: "true")])
             }
-            if let summaryQueryItem = summaryQueryItem {
-                queryItems.append(summaryQueryItem)
-              }
-            
             return queryItems
-        
         case .accountDetails(_, let queryItems):
             return queryItems
         default:
