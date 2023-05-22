@@ -404,7 +404,9 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
                                     FirebaseUtility.logEvent(.more(parameters: [.change_password_complete]))
                                 } else {
                                     self.view.showToast("Two-Step Verification settings updated")
-                                }
+                                } 
+                            } else {
+                                self.view.showToast("Two-Step Verification settings updated")
                             }
                         case .failure(let error):
                             let sessionError = ASWebAuthenticationSessionError.Code(rawValue: (error as NSError).code)
