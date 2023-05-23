@@ -202,9 +202,17 @@ class AlertPreferencesViewModel {
                     self.sections.append((NSLocalizedString("Customer Appointments", comment: ""), [.appointmentTracking, .advancedNotification]))
                     self.sections.append((NSLocalizedString("News", comment: ""), [.forYourInformation]))
                 case .ace:
+                    var usageOptions: [AlertPreferencesOptions] = []
+                    if self.isHUAEligible && FeatureFlagUtility.shared.bool(forKey: .isACEAMI) {
+                        usageOptions.append(.highUsage)
+                    }
                     self.sections = [(NSLocalizedString("Outage", comment: ""),
                          [.outage, .severeWeather])]
-                   
+                    
+                    if !usageOptions.isEmpty {
+                        self.sections.insert((NSLocalizedString("Usage", comment: ""), usageOptions), at: 0)
+                    }
+                    
                     if !self.accountDetail.isFinaled &&
                         (self.accountDetail.isEBillEligible || self.accountDetail.isEBillEnrollment) {
                         self.sections.append((NSLocalizedString("Billing", comment: ""),
@@ -525,9 +533,9 @@ class AlertPreferencesViewModel {
     
     var isHUAEligible: Bool {
         switch Configuration.shared.opco {
-        case .bge, .comEd, .pepco, .delmarva:
+        case .bge, .comEd, .pepco, .delmarva, .ace:
             return self.accountDetail.isHUAEligible ?? false
-        case .peco, .ace:
+        case .peco:
             return false
         
         }
@@ -670,6 +678,8 @@ class AlertPreferencesViewModel {
                 // High Usage
             case (.highUsage, .bge): fallthrough
             case (.highUsage, .peco): fallthrough
+            case (.highUsage, .ace):
+                return NSLocalizedString("Receive an alert when we notice your usage is trending higher than normal. You remain responsible for your actual energy use whether or not you receive an alert.", comment: "")
             case (.highUsage, .comEd):
                 return NSLocalizedString("Receive an alert if you are headed towards a bill that is higher than usual. This alert gives you time to reduce your usage before your next bill and helps to prevent billing surprises.", comment: "")
             
