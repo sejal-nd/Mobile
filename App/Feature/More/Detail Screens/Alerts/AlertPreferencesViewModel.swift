@@ -188,15 +188,19 @@ class AlertPreferencesViewModel {
                         self.sections.insert((NSLocalizedString("Usage", comment: ""), usageOptions), at: 0)
                     }
                     
+                    var billingOptions: [AlertPreferencesOptions] = []
                     if !self.accountDetail.isFinaled &&
                         (self.accountDetail.isEBillEligible || self.accountDetail.isEBillEnrollment) {
-                        self.sections.append((NSLocalizedString("Billing", comment: ""),
-                                              [.billIsReady(self.accountDetail)]))
+                        billingOptions.append(.billIsReady(self.accountDetail))
+                        if self.accountDetail.isBudgetBill && self.accountDetail.isResidential {
+                            billingOptions.append(.budgetBillingReview)
+                        }
+                        self.sections.append((NSLocalizedString("Billing", comment: ""), billingOptions))
+                        
                     }
+                   
+                    
                     var paymentOptions: [AlertPreferencesOptions] = [.paymentPosted, .paymentPastDue]
-                    if self.accountDetail.isBudgetBill && self.accountDetail.isResidential {
-                        paymentOptions.append(.budgetBillingReview)
-                    }
                     
                     self.sections.append((NSLocalizedString("Payment", comment: ""), paymentOptions))
                     self.sections.append((NSLocalizedString("Customer Appointments", comment: ""), [.appointmentTracking, .advancedNotification]))
@@ -213,16 +217,19 @@ class AlertPreferencesViewModel {
                         self.sections.insert((NSLocalizedString("Usage", comment: ""), usageOptions), at: 0)
                     }
                     
+                    var billingOptions: [AlertPreferencesOptions] = []
                     if !self.accountDetail.isFinaled &&
                         (self.accountDetail.isEBillEligible || self.accountDetail.isEBillEnrollment) {
-                        self.sections.append((NSLocalizedString("Billing", comment: ""),
-                                              [.billIsReady(self.accountDetail)]))
+                        billingOptions.append(.billIsReady(self.accountDetail))
+                        if self.accountDetail.isBudgetBill && self.accountDetail.isResidential {
+                            billingOptions.append(.budgetBillingReview)
+                        }
+                        self.sections.append((NSLocalizedString("Billing", comment: ""), billingOptions))
+                        
                     }
+                   
                     
                     var paymentOptions: [AlertPreferencesOptions] = [.paymentPosted, .paymentPastDue]
-                    if self.accountDetail.isBudgetBill && self.accountDetail.isResidential {
-                        paymentOptions.append(.budgetBillingReview)
-                    }
                     
                     self.sections.append((NSLocalizedString("Payment", comment: ""), paymentOptions))
                     self.sections.append((NSLocalizedString("Customer Appointments", comment: ""), [.appointmentTracking, .advancedNotification]))
@@ -243,16 +250,18 @@ class AlertPreferencesViewModel {
                         self.sections.insert((NSLocalizedString("Usage", comment: ""), usageOptions), at: 0)
                     }
 
+                    var billingOptions: [AlertPreferencesOptions] = []
                     if !self.accountDetail.isFinaled &&
                         (self.accountDetail.isEBillEligible || self.accountDetail.isEBillEnrollment) {
-                        self.sections.append((NSLocalizedString("Billing", comment: ""),
-                                              [.billIsReady(self.accountDetail)]))
+                        billingOptions.append(.billIsReady(self.accountDetail))
+                        if self.accountDetail.isBudgetBill && self.accountDetail.isResidential {
+                            billingOptions.append(.budgetBillingReview)
+                        }
+                        self.sections.append((NSLocalizedString("Billing", comment: ""), billingOptions))
+                        
                     }
-                    
+                   
                     var paymentOptions: [AlertPreferencesOptions] = [.paymentPosted, .paymentPastDue]
-                    if self.accountDetail.isBudgetBill && self.accountDetail.isResidential {
-                        paymentOptions.append(.budgetBillingReview)
-                    }
                     
                     self.sections.append((NSLocalizedString("Payment", comment: ""), paymentOptions))
                     self.sections.append((NSLocalizedString("Customer Appointments", comment: ""), [.appointmentTracking, .advancedNotification]))
@@ -611,9 +620,9 @@ class AlertPreferencesViewModel {
         // Outage
         case outage, scheduledMaintenanceOutage, severeWeather
         // Billing
-        case billIsReady(AccountDetail)
+        case billIsReady(AccountDetail), budgetBillingReview
         // Payment
-        case paymentDueReminder, paymentPosted, paymentPastDue, budgetBillingReview, grantStatus
+        case paymentDueReminder, paymentPosted, paymentPastDue, grantStatus
         // Customer Appointments
         case appointmentTracking
         // Advance Notification
