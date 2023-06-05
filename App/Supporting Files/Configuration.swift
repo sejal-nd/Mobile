@@ -470,7 +470,8 @@ struct Configuration {
                     baseUrl = "eudapi-test.\(operatingCompany.urlDisplayString).com"
                     oAuthEndpoint = "api-development.exeloncorp.com"
                 case .stage:
-                    baseUrl = "eudapi-stage.\(operatingCompany.urlDisplayString).com"
+                    baseUrl = "d-c-mma-all-api-01.azurewebsites.net"
+                    //baseUrl = "eudapi-stage.\(operatingCompany.urlDisplayString).com"
                     oAuthEndpoint = "api-stage.exeloncorp.com"
                 }
             } else {

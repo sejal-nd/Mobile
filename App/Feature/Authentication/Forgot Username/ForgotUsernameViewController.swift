@@ -31,7 +31,6 @@ class ForgotUsernameViewController: KeyboardAvoidingStickyFooterViewController {
    
     let viewModel = ForgotUsernameViewModel()
     weak var delegate: ForgotUsernameResultViewControllerDelegate?
-    
     let disposeBag = DisposeBag()
 
     override func viewDidLoad() {
@@ -290,7 +289,7 @@ class ForgotUsernameViewController: KeyboardAvoidingStickyFooterViewController {
             vc.viewModel.phoneNumber.accept(viewModel.phoneNumber.value)
         } else if let vc = segue.destination as? ForgotUsernameResultViewController {
             vc.viewModel = viewModel
-        }
+        } 
     }
     
 }
