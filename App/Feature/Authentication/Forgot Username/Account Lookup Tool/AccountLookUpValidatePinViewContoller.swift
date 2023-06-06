@@ -59,6 +59,9 @@ class AccountLookUpValidatePinViewController: KeyboardAvoidingStickyFooterViewCo
             self.startTimer()
         }, onError: { [weak self] title, message in
             LoadingView.hide()
+            let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+            self?.present(alertController, animated: true, completion: nil)
         })
     }
     
@@ -78,7 +81,7 @@ class AccountLookUpValidatePinViewController: KeyboardAvoidingStickyFooterViewCo
                     self.delegateValidatePin?.accountLookUpValidatePinViewController(self, didUnmaskUsername:(self.viewModel.validatePinResult.usernames?[0].email ?? ""))
                 }
                 self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
-            } else {
+            } else if self.viewModel.validatePinResult.accounts?.count > 0 {
                 self.performSegue(withIdentifier: "accountLookupToolResultSegue", sender: self)
             }
         
