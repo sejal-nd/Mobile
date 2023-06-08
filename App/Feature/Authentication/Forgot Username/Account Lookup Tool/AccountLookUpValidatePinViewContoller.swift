@@ -49,6 +49,7 @@ class AccountLookUpValidatePinViewController: KeyboardAvoidingStickyFooterViewCo
     
     @IBAction func onResendCodePress(_ sender: Any) {
         secondsRemaining = 25
+        FirebaseUtility.logEvent(.forgotUsername(parameters: [.resend_code_cta]))
         self.resendCodePress.titleLabel?.textColor = .neutralLight
         LoadingView.show()
         viewModel.sendSixDigitCode(onSuccess: { [weak self] in
@@ -67,6 +68,7 @@ class AccountLookUpValidatePinViewController: KeyboardAvoidingStickyFooterViewCo
     
     @IBAction func continueButton(_ sender: Any) {
         LoadingView.show()
+        FirebaseUtility.logEvent(.forgotUsername(parameters: [.send_code_validated]))
         viewModel.validateSixDigitCode(onSuccess: { [weak self] in
             LoadingView.hide()
             guard let self = self else { return }

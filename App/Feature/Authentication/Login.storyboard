@@ -1504,69 +1504,89 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BRu-ra-TFH" userLabel="Tablet View">
                                                 <rect key="frame" x="29" y="0.0" width="370" height="350.33333333333331"/>
                                                 <subviews>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mQk-Ow-uU4" userLabel="Segmented Container">
-                                                        <rect key="frame" x="0.0" y="30" width="370" height="40"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="cy4-Rg-rwh">
+                                                        <rect key="frame" x="16" y="30" width="338" height="312.66666666666669"/>
                                                         <subviews>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="013-cc-QIX" customClass="SegmentedControl" customModule="Atlantic_City_Electric" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="370" height="45"/>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mQk-Ow-uU4" userLabel="Segmented Container">
+                                                                <rect key="frame" x="0.0" y="0.0" width="338" height="40"/>
+                                                                <subviews>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="013-cc-QIX" customClass="SegmentedControl" customModule="Atlantic_City_Electric" customModuleProvider="target">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="338" height="45"/>
+                                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="45" id="FgU-NL-frO"/>
+                                                                        </constraints>
+                                                                        <connections>
+                                                                            <action selector="didSegmentChangedWithSender:" destination="ZP7-Zq-dNg" eventType="valueChanged" id="LgK-9N-L9k"/>
+                                                                        </connections>
+                                                                    </view>
+                                                                </subviews>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="height" constant="45" id="FgU-NL-frO"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="013-cc-QIX" secondAttribute="trailing" id="CkN-Ew-6Dj"/>
+                                                                    <constraint firstItem="013-cc-QIX" firstAttribute="leading" secondItem="mQk-Ow-uU4" secondAttribute="leading" id="Xqf-us-zJL"/>
+                                                                    <constraint firstItem="013-cc-QIX" firstAttribute="top" secondItem="mQk-Ow-uU4" secondAttribute="top" id="efZ-ge-aJk"/>
+                                                                    <constraint firstAttribute="height" constant="40" id="pTW-wy-dzX"/>
                                                                 </constraints>
-                                                                <connections>
-                                                                    <action selector="didSegmentChangedWithSender:" destination="ZP7-Zq-dNg" eventType="valueChanged" id="LgK-9N-L9k"/>
-                                                                </connections>
                                                             </view>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="hat-1u-dOr">
+                                                                <rect key="frame" x="0.0" y="56" width="338" height="256.66666666666669"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A security code will be sent to your phone number to verify your identity. Data and messaging rates may apply." lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TY6-88-Fmf">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="338" height="54"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                                        <color key="textColor" name="neutralDark"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="55" translatesAutoresizingMaskIntoConstraints="NO" id="959-0h-wAH" customClass="FloatLabelTextField" customModule="Atlantic_City_Electric" customModuleProvider="target">
+                                                                        <rect key="frame" x="0.0" y="70" width="338" height="55"/>
+                                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                    </view>
+                                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="eex-WY-Ve5">
+                                                                        <rect key="frame" x="0.0" y="141" width="338" height="14.333333333333343"/>
+                                                                        <subviews>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The phone number associated with your account." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bXC-Iy-bYd">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="338" height="14.333333333333334"/>
+                                                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                                                <color key="textColor" name="neutralDarker"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                        </subviews>
+                                                                        <constraints>
+                                                                            <constraint firstItem="bXC-Iy-bYd" firstAttribute="top" secondItem="eex-WY-Ve5" secondAttribute="top" id="730-OS-Udj"/>
+                                                                        </constraints>
+                                                                    </stackView>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last 4 Digits of blah blah blah" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RI2-Y2-7G4">
+                                                                        <rect key="frame" x="0.0" y="171.33333333333331" width="338" height="14.333333333333343"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="55" translatesAutoresizingMaskIntoConstraints="NO" id="gdq-tl-VsL" customClass="FloatLabelTextField" customModule="Atlantic_City_Electric" customModuleProvider="target">
+                                                                        <rect key="frame" x="0.0" y="201.66666666666669" width="338" height="55"/>
+                                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                    </view>
+                                                                </subviews>
+                                                                <constraints>
+                                                                    <constraint firstItem="eex-WY-Ve5" firstAttribute="leading" secondItem="hat-1u-dOr" secondAttribute="leading" id="Jbs-4n-VUW"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="eex-WY-Ve5" secondAttribute="trailing" id="Z2N-3g-jGI"/>
+                                                                </constraints>
+                                                            </stackView>
                                                         </subviews>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="trailing" secondItem="013-cc-QIX" secondAttribute="trailing" id="CkN-Ew-6Dj"/>
-                                                            <constraint firstItem="013-cc-QIX" firstAttribute="leading" secondItem="mQk-Ow-uU4" secondAttribute="leading" id="Xqf-us-zJL"/>
-                                                            <constraint firstItem="013-cc-QIX" firstAttribute="top" secondItem="mQk-Ow-uU4" secondAttribute="top" id="efZ-ge-aJk"/>
-                                                            <constraint firstAttribute="height" constant="40" id="pTW-wy-dzX"/>
+                                                            <constraint firstItem="hat-1u-dOr" firstAttribute="leading" secondItem="cy4-Rg-rwh" secondAttribute="leading" id="Wfs-rH-IL6"/>
+                                                            <constraint firstAttribute="trailing" secondItem="hat-1u-dOr" secondAttribute="trailing" id="bDR-qO-9yn"/>
+                                                            <constraint firstItem="hat-1u-dOr" firstAttribute="top" secondItem="mQk-Ow-uU4" secondAttribute="bottom" constant="16" id="mYW-OY-BSb"/>
                                                         </constraints>
-                                                    </view>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="hat-1u-dOr">
-                                                        <rect key="frame" x="0.0" y="86" width="370" height="256.66666666666669"/>
-                                                        <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A security code will be sent to your phone number to verify your identity. Data and messaging rates may apply." lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TY6-88-Fmf">
-                                                                <rect key="frame" x="0.0" y="0.0" width="370" height="54"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                                <color key="textColor" name="neutralDark"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="55" translatesAutoresizingMaskIntoConstraints="NO" id="959-0h-wAH" customClass="FloatLabelTextField" customModule="Atlantic_City_Electric" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="70" width="370" height="55"/>
-                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                            </view>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The phone number associated with your account." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bXC-Iy-bYd">
-                                                                <rect key="frame" x="0.0" y="141" width="370" height="14.333333333333343"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last 4 Digits of blah blah blah" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RI2-Y2-7G4">
-                                                                <rect key="frame" x="0.0" y="171.33333333333331" width="370" height="14.333333333333343"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="55" translatesAutoresizingMaskIntoConstraints="NO" id="gdq-tl-VsL" customClass="FloatLabelTextField" customModule="Atlantic_City_Electric" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="201.66666666666669" width="370" height="55"/>
-                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                            </view>
-                                                        </subviews>
                                                     </stackView>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="4xV-4q-j1G"/>
-                                                    <constraint firstItem="mQk-Ow-uU4" firstAttribute="top" secondItem="BRu-ra-TFH" secondAttribute="top" constant="30" id="LFC-ax-JPy"/>
-                                                    <constraint firstAttribute="trailing" secondItem="mQk-Ow-uU4" secondAttribute="trailing" id="XEh-Zc-4m9"/>
-                                                    <constraint firstAttribute="trailing" secondItem="hat-1u-dOr" secondAttribute="trailing" id="ret-Gp-WEu"/>
-                                                    <constraint firstItem="hat-1u-dOr" firstAttribute="leading" secondItem="BRu-ra-TFH" secondAttribute="leading" id="te2-tk-hsV"/>
-                                                    <constraint firstItem="hat-1u-dOr" firstAttribute="top" secondItem="mQk-Ow-uU4" secondAttribute="bottom" constant="16" id="zWK-Uy-MPW"/>
-                                                    <constraint firstItem="mQk-Ow-uU4" firstAttribute="leading" secondItem="BRu-ra-TFH" secondAttribute="leading" id="zhU-Ec-at7"/>
+                                                    <constraint firstItem="cy4-Rg-rwh" firstAttribute="leading" secondItem="BRu-ra-TFH" secondAttribute="leading" constant="16" id="L1f-AT-rFO"/>
+                                                    <constraint firstAttribute="trailing" secondItem="cy4-Rg-rwh" secondAttribute="trailing" constant="16" id="LBs-l0-ZSf"/>
+                                                    <constraint firstItem="cy4-Rg-rwh" firstAttribute="top" secondItem="BRu-ra-TFH" secondAttribute="top" constant="30" id="cOA-YV-uom"/>
+                                                    <constraint firstItem="cy4-Rg-rwh" firstAttribute="top" secondItem="BRu-ra-TFH" secondAttribute="top" constant="30" id="rMY-ce-sfz"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
@@ -1637,11 +1657,13 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                         <outlet property="dataChargesDisclaimer" destination="TY6-88-Fmf" id="qjG-TG-yOG"/>
                         <outlet property="identifierDescriptionLabel" destination="RI2-Y2-7G4" id="cN1-xW-R24"/>
                         <outlet property="identifierTextField" destination="gdq-tl-VsL" id="41G-yl-Ree"/>
+                        <outlet property="phoneNumDescTextLabel" destination="bXC-Iy-bYd" id="Seo-HG-gQV"/>
                         <outlet property="phoneNumberTextField" destination="959-0h-wAH" id="U0G-S7-m12"/>
                         <outlet property="scrollView" destination="qsZ-KD-2dd" id="yym-s0-iF0"/>
                         <outlet property="searchButton" destination="XsC-fE-eFL" id="cLE-5F-hHv"/>
                         <outlet property="segmentContainer" destination="mQk-Ow-uU4" id="0e4-Bc-Ed3"/>
                         <outlet property="segmentController" destination="013-cc-QIX" id="vbT-xq-GrK"/>
+                        <outlet property="stackViewLayout" destination="hat-1u-dOr" id="AtI-n2-V4i"/>
                         <outlet property="stickyFooterBottomConstraint" destination="lzc-Wj-Iwu" id="Bjt-Yv-Q2b"/>
                         <segue destination="2Td-2q-g6V" kind="show" identifier="accountLookupToolResultSegue" id="XCS-cx-2gD"/>
                         <segue destination="GPz-Um-4zN" kind="show" identifier="accountLookUpValidatePinSegue" id="lTL-JL-YuR"/>
@@ -4952,7 +4974,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unable to Process Your Request" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UJQ-y4-8vS">
-                                                <rect key="frame" x="66.000000000000014" y="107.99999999999994" width="244.33333333333337" height="24"/>
+                                                <rect key="frame" x="66" y="107.99999999999994" width="244.33333333333337" height="24"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="24" id="opJ-bd-g2v"/>
                                                 </constraints>
@@ -5018,11 +5040,11 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
         <segue reference="BgF-Jk-rXb"/>
         <segue reference="9by-S4-ujE"/>
         <segue reference="m8m-Zs-f6g"/>
-        <segue reference="pGh-7G-0Rj"/>
+        <segue reference="XCS-cx-2gD"/>
         <segue reference="TQv-BD-6Dx"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="error" width="120" height="120"/>
+        <image name="error" width="48" height="48"/>
         <image name="ic_at_sign" width="34" height="34"/>
         <image name="ic_bill_details" width="34" height="34"/>
         <image name="ic_bill_envelope" width="112" height="112"/>
@@ -5041,6 +5063,9 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
         <image name="img_logo_white" width="250" height="100"/>
         <namedColor name="neutralDark">
             <color red="0.35294117647058826" green="0.3843137254901961" blue="0.42745098039215684" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="neutralDarker">
+            <color red="0.058823529411764705" green="0.10196078431372549" blue="0.16470588235294117" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="neutralLight">
             <color red="0.75294117647058822" green="0.76470588235294112" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

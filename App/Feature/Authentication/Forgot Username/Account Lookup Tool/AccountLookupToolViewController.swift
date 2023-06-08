@@ -28,9 +28,11 @@ class AccountLookupToolViewController: KeyboardAvoidingStickyFooterViewControlle
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var phoneNumberTextField: FloatLabelTextField!
     @IBOutlet weak var identifierDescriptionLabel: UILabel!
+    @IBOutlet weak var phoneNumDescTextLabel: UILabel!
     @IBOutlet weak var identifierTextField: FloatLabelTextField!
     @IBOutlet weak var searchButton: PrimaryButton!
     @IBOutlet weak var dataChargesDisclaimer: UILabel!
+    @IBOutlet weak var stackViewLayout: UIStackView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,6 +67,11 @@ class AccountLookupToolViewController: KeyboardAvoidingStickyFooterViewControlle
             self?.accessibilityErrorLabel()
         }).disposed(by: disposeBag)
         
+        if !Configuration.shared.opco.isPHI {
+           segmentContainer.isHidden = true
+           phoneNumDescTextLabel.isHidden = true
+        }
+        stackViewLayout.setCustomSpacing(8, after: phoneNumberTextField)
         segmentController.items = [NSLocalizedString("SSN/Tax ID", comment: ""),
                                   NSLocalizedString("Send Code", comment: "")]
         segmentController.selectedIndex.accept(.zero)
@@ -112,12 +119,14 @@ class AccountLookupToolViewController: KeyboardAvoidingStickyFooterViewControlle
             identifierDescriptionLabel.isHidden = false
             dataChargesDisclaimer.isHidden = true
             searchButton.setTitle("Search", for: .normal)
+            phoneNumDescTextLabel.isHidden = true
             viewModel.searchButtonEnabled.drive(searchButton.rx.isEnabled).disposed(by: disposeBag)
         } else {
             selectedLookUpType = LookUpType.phone
             identifierTextField.isHidden = true
             identifierDescriptionLabel.isHidden = true
             dataChargesDisclaimer.isHidden = false
+            phoneNumDescTextLabel.isHidden = false
             searchButton.setTitle("Continue", for: .normal)
             viewModel.continueButtonEnabled.drive(searchButton.rx.isEnabled).disposed(by: disposeBag)
         }
@@ -146,6 +155,7 @@ class AccountLookupToolViewController: KeyboardAvoidingStickyFooterViewControlle
             })
         } else if (selectedLookUpType == LookUpType.phone) {
             LoadingView.show()
+            FirebaseUtility.logEvent(.forgotUsername(parameters: [.send_code_cta]))
             viewModel.sendSixDigitCode(onSuccess: { [weak self] in
                 LoadingView.hide()
                 guard let self = self else { return }

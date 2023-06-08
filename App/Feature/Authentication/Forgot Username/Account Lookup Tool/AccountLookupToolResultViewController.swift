@@ -33,7 +33,7 @@ class AccountLookupToolResultViewController: UIViewController {
         super.viewDidLoad()
         
         title = NSLocalizedString("Account Lookup Tool", comment: "")
-        
+        addCloseButton()
         instructionLabel.textColor = .neutralDark
         instructionLabel.text = NSLocalizedString("Please select your account.", comment: "")
         instructionLabel.font = .headline
@@ -91,6 +91,7 @@ class AccountLookupToolResultViewController: UIViewController {
     }
     
     @IBAction func onSelectAccountPress() {
+        FirebaseUtility.logEvent(.forgotUsername(parameters: [.account_selected_cta]))
         if let selectedAccount = viewModel.selectedAccount.value {
             delegate?.accountLookupToolDidSelectAccount(accountNumber: selectedAccount.accountNumber!, phoneNumber: viewModel.phoneNumber.value)
             dismiss(animated: true, completion: nil)
