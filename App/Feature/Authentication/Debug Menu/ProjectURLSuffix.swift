@@ -28,6 +28,7 @@ enum ProjectURLSuffix: String, Identifiable, Equatable, CaseIterable {
     
     case agentis = "Agentis"
     case cis = "CIS"
+    case cisUCD = "CIS UCD"
     case advancedNotifications = "Advance Notifications"
     
     case ace = "ACE NJ AMI"
@@ -68,6 +69,8 @@ extension ProjectURLSuffix {
             return "/agentis"
         case .cis:
             return "/cis-upgrade"
+        case .cisUCD:
+            return "/cis"
         case .advancedNotifications:
             return "/phiadvnoti"
         case .ace:
