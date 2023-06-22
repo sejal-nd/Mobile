@@ -20,29 +20,29 @@ public struct ValidatePinResult : Decodable {
     }
 }
     
-    // MARK: - Account
-    struct AccountDetails: Decodable {
-        public  var accountNumber: String?
-        public  var streetNumber: String?
-        public  var unitNumber: String?
-        
-        enum CodingKeys: String, CodingKey {
-            case accountNumber = "account_number"
-            case streetNumber = "street"
-            case unitNumber = "unit"
-        }
-        
-        public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            self.accountNumber = try container.decodeIfPresent(String.self,forKey: .accountNumber)
-            self.streetNumber = try container.decodeIfPresent(String.self,forKey: .streetNumber)
-            self.unitNumber = try container.decodeIfPresent(String.self,forKey: .unitNumber)
-        }
+// MARK: - Account
+struct AccountDetails: Decodable {
+    public  var accountNumber: String?
+    public  var streetNumber: String?
+    public  var unitNumber: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case accountNumber = "account_number"
+        case streetNumber = "street"
+        case unitNumber = "unit"
     }
     
-    // MARK: - Username
-    struct Username: Decodable {
-        var email: String?
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        self.accountNumber = try container.decodeIfPresent(String.self,forKey: .accountNumber)
+        self.streetNumber = try container.decodeIfPresent(String.self,forKey: .streetNumber)
+        self.unitNumber = try container.decodeIfPresent(String.self,forKey: .unitNumber)
     }
+}
+
+// MARK: - Username
+struct Username: Decodable {
+    var email: String?
+}
 

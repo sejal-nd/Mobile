@@ -23,16 +23,16 @@ class AccountLookupToolViewController: KeyboardAvoidingStickyFooterViewControlle
     
     var selectedLookUpType: LookUpType?
     
-    @IBOutlet weak var segmentController: SegmentedControl!
-    @IBOutlet weak var segmentContainer: UIView!
+    @IBOutlet var segmentController: SegmentedControl!
+    @IBOutlet var segmentContainer: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var phoneNumberTextField: FloatLabelTextField!
     @IBOutlet weak var identifierDescriptionLabel: UILabel!
-    @IBOutlet weak var phoneNumDescTextLabel: UILabel!
+    @IBOutlet var phoneNumDescTextLabel: UILabel!
     @IBOutlet weak var identifierTextField: FloatLabelTextField!
     @IBOutlet weak var searchButton: PrimaryButton!
-    @IBOutlet weak var dataChargesDisclaimer: UILabel!
-    @IBOutlet weak var stackViewLayout: UIStackView!
+    @IBOutlet var dataChargesDisclaimer: UILabel!
+    @IBOutlet var stackViewLayout: UIStackView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -113,23 +113,17 @@ class AccountLookupToolViewController: KeyboardAvoidingStickyFooterViewControlle
     }
 
     @IBAction func didSegmentChanged(sender: SegmentedControl) {
-        if sender.selectedIndex.value == .zero {
-            selectedLookUpType = LookUpType.lastFour
-            identifierTextField.isHidden = false
-            identifierDescriptionLabel.isHidden = false
-            dataChargesDisclaimer.isHidden = true
-            searchButton.setTitle("Search", for: .normal)
-            phoneNumDescTextLabel.isHidden = true
-            viewModel.searchButtonEnabled.drive(searchButton.rx.isEnabled).disposed(by: disposeBag)
-        } else {
-            selectedLookUpType = LookUpType.phone
-            identifierTextField.isHidden = true
-            identifierDescriptionLabel.isHidden = true
-            dataChargesDisclaimer.isHidden = false
-            phoneNumDescTextLabel.isHidden = false
-            searchButton.setTitle("Continue", for: .normal)
-            viewModel.continueButtonEnabled.drive(searchButton.rx.isEnabled).disposed(by: disposeBag)
-        }
+        let isEnabled = sender.selectedIndex.value == .zero
+        let title = isEnabled ? "Search" : "Continue"
+        let lookUpType = isEnabled ? LookUpType.lastFour : LookUpType.phone
+        let controlEnabled = isEnabled ? viewModel.searchButtonEnabled : viewModel.continueButtonEnabled
+        
+        selectedLookUpType = lookUpType
+        identifierTextField.isHidden = !isEnabled
+        identifierDescriptionLabel.isHidden = !isEnabled
+        dataChargesDisclaimer.isHidden = isEnabled
+        searchButton.setTitle(title, for: .normal)
+        controlEnabled.drive(searchButton.rx.isEnabled).disposed(by: disposeBag)
     }
     
     @IBAction func onSearchPress() {

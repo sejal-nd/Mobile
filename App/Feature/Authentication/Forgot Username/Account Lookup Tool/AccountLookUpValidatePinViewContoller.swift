@@ -15,12 +15,12 @@ protocol AccountLookUpValidatePinViewControllerDelegate: class {
 
 class AccountLookUpValidatePinViewController: KeyboardAvoidingStickyFooterViewController {
 
-    @IBOutlet weak var resendCodeTextField: FloatLabelTextField!
-    @IBOutlet weak var resendCodeDescription: UILabel!
-    @IBOutlet weak var resendCodePress: UIButton!
-    @IBOutlet weak var continueButton: PrimaryButton!
-    @IBOutlet weak var imgCodeSent: UIImageView!
-    @IBOutlet weak var codeSentText: UILabel!
+    @IBOutlet var resendCodeTextField: FloatLabelTextField!
+    @IBOutlet var resendCodeDescription: UILabel!
+    @IBOutlet var resendCodePress: UIButton!
+    @IBOutlet var continueButton: PrimaryButton!
+    @IBOutlet var imgCodeSent: UIImageView!
+    @IBOutlet var codeSentText: UILabel!
     
     let disposeBag = DisposeBag()
     
