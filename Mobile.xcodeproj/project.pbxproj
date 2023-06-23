@@ -11407,7 +11407,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ANON_ASSOCIATED_DOMAIN = azstage.peco.com;
 				APP_CENTER_ID = "5396a42c-0b16-4984-af32-ee9957764960";
-				ASSOCIATED_DOMAIN = "azstg-secure.peco.com";
+				ASSOCIATED_DOMAIN = "s-secure.peco.com";
 				BASE_URL = "eudapi-test.peco.com";
 				BUILD_DISPLAY_NAME = PECO;
 				BUILD_FLAVOR = PECO;
@@ -11712,7 +11712,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ANON_ASSOCIATED_DOMAIN = azstage.peco.com;
 				APP_CENTER_ID = "432a1a21-ccbb-4ee9-b3e3-2480090618f5";
-				ASSOCIATED_DOMAIN = "azstg-secure.peco.com";
+				ASSOCIATED_DOMAIN = "s-secure.peco.com";
 				BASE_URL = "eudapi-stage.peco.com";
 				BUILD_DISPLAY_NAME = PECO;
 				BUILD_FLAVOR = PECO;
@@ -15288,7 +15288,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ANON_ASSOCIATED_DOMAIN = azstage.comed.com;
 				APP_CENTER_ID = "10cbbd03-c59b-4a65-ad28-bd1f289cd329";
-				ASSOCIATED_DOMAIN = "azstg-secure.comed.com";
+				ASSOCIATED_DOMAIN = "s-secure.comed.com";
 				BASE_URL = "eudapi-test.comed.com";
 				BUILD_DISPLAY_NAME = ComEd;
 				BUILD_FLAVOR = COMED;
@@ -15593,7 +15593,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ANON_ASSOCIATED_DOMAIN = azstage.comed.com;
 				APP_CENTER_ID = "bf4bfe55-3dfd-423b-acfa-32ef84b3776c";
-				ASSOCIATED_DOMAIN = "azstg-secure.comed.com";
+				ASSOCIATED_DOMAIN = "s-secure.comed.com";
 				BASE_URL = "eudapi-stage.comed.com";
 				BUILD_DISPLAY_NAME = ComEd;
 				BUILD_FLAVOR = COMED;
