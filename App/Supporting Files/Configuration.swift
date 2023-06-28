@@ -431,7 +431,7 @@ struct Configuration {
                         oPowerURLString = "https://s-c-\(projectURLSuffix.projectURLString)-\(accountOpCo.urlString)-ui-01.azurewebsites.net/pages/mobileopower.aspx"
                     }
                 } else {
-                    oPowerURLString = "https://s-secure.\(accountOpCo.urlDisplayString).com/pages/mobileopower.aspx"
+                    oPowerURLString = "https://azstg-secure.\(accountOpCo.urlDisplayString).com/pages/mobileopower.aspx"
                 }
             }
         }
