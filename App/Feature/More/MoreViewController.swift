@@ -405,8 +405,6 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
                                 } else {
                                     self.view.showToast("Two-Step Verification settings updated")
                                 }
-                            } else {
-                                self.view.showToast("Two-Step Verification settings updated")
                             }
                         case .failure(let error):
                             let sessionError = ASWebAuthenticationSessionError.Code(rawValue: (error as NSError).code)
