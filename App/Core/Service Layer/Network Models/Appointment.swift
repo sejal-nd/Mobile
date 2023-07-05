@@ -27,11 +27,11 @@ public struct Appointment: Decodable {
 extension Appointment {
     enum Status: String {
         case scheduled = "confirmed"
-        case onOurWay = "On Our Way"
-        case enRoute = "En Route"
-        case inProgress = "In Progress"
-        case complete = "Complete"
-        case canceled = "Cancelled"
+        case onOurWay = "on our way"
+        case enRoute = "en route"
+        case inProgress = "in progress"
+        case complete = "complete"
+        case canceled = "cancelled"
         case none
     }
     
