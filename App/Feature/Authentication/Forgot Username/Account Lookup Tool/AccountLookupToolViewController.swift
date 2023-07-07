@@ -69,8 +69,8 @@ class AccountLookupToolViewController: KeyboardAvoidingStickyFooterViewControlle
         
         if !Configuration.shared.opco.isPHI {
            segmentContainer.isHidden = true
-           phoneNumDescTextLabel.isHidden = true
         }
+        phoneNumDescTextLabel.isHidden = true
         stackViewLayout.setCustomSpacing(8, after: phoneNumberTextField)
         segmentController.items = [NSLocalizedString("SSN/Tax ID", comment: ""),
                                   NSLocalizedString("Send Code", comment: "")]
@@ -123,6 +123,7 @@ class AccountLookupToolViewController: KeyboardAvoidingStickyFooterViewControlle
         identifierDescriptionLabel.isHidden = !isEnabled
         dataChargesDisclaimer.isHidden = isEnabled
         searchButton.setTitle(title, for: .normal)
+        phoneNumDescTextLabel.isHidden = isEnabled
         controlEnabled.drive(searchButton.rx.isEnabled).disposed(by: disposeBag)
     }
     

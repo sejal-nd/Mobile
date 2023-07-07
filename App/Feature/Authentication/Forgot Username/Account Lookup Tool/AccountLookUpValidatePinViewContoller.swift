@@ -28,7 +28,6 @@ class AccountLookUpValidatePinViewController: KeyboardAvoidingStickyFooterViewCo
     
     weak var delegate: AccountLookupToolResultViewControllerDelegate?
     weak var delegateValidatePin: AccountLookUpValidatePinViewControllerDelegate?
-    var secondsRemaining = 25
     
     override func viewDidLoad() {
         
@@ -44,19 +43,22 @@ class AccountLookUpValidatePinViewController: KeyboardAvoidingStickyFooterViewCo
         viewModel.continuePinButtonEnabled.drive(continueButton.rx.isEnabled).disposed(by: disposeBag)
         self.imgCodeSent.isHidden = true
         self.codeSentText.isHidden = true
+        self.resendCodePress.isEnabled = false
         startTimer()
     }
     
     @IBAction func onResendCodePress(_ sender: Any) {
-        secondsRemaining = 25
         FirebaseUtility.logEvent(.forgotUsername(parameters: [.resend_code_cta]))
-        self.resendCodePress.titleLabel?.textColor = .neutralLight
         LoadingView.show()
+        resendCodeTextField.textField.text = ""
+        continueButton.isEnabled = false
         viewModel.sendSixDigitCode(onSuccess: { [weak self] in
             LoadingView.hide()
             guard let self = self else { return }
             self.imgCodeSent.isHidden = false
             self.codeSentText.isHidden = false
+            self.resendCodePress.isEnabled = false
+            self.resendCodePress.setTitleColor(.neutralLight, for: .normal)
             self.startTimer()
         }, onError: { [weak self] title, message in
             LoadingView.hide()
@@ -97,13 +99,15 @@ class AccountLookUpValidatePinViewController: KeyboardAvoidingStickyFooterViewCo
     }
     
     func startTimer() {
-        Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { (Timer) in
-               if self.secondsRemaining > 0 {
-                   self.secondsRemaining -= 1
+        var secondsRemaining = 25
+        Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) {(Timer) in
+               if  secondsRemaining > 0 {
+                   secondsRemaining -= 1
                } else {
-                   self.resendCodePress.titleLabel?.textColor = .actionPrimary
                    self.imgCodeSent.isHidden = true
                    self.codeSentText.isHidden = true
+                   self.resendCodePress.isEnabled = true
+                   self.resendCodePress.setTitleColor(.actionDark, for: .normal)
                    Timer.invalidate()
                }
            }
