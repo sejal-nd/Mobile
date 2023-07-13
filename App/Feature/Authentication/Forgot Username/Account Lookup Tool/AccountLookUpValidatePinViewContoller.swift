@@ -99,7 +99,7 @@ class AccountLookUpValidatePinViewController: KeyboardAvoidingStickyFooterViewCo
     }
     
     func startTimer() {
-        var secondsRemaining = 25
+        var secondsRemaining = 30
         Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) {(Timer) in
                if  secondsRemaining > 0 {
                    secondsRemaining -= 1
