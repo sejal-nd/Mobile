@@ -107,7 +107,7 @@ class AccountLookUpValidatePinViewController: KeyboardAvoidingStickyFooterViewCo
                    self.imgCodeSent.isHidden = true
                    self.codeSentText.isHidden = true
                    self.resendCodePress.isEnabled = true
-                   self.resendCodePress.setTitleColor(.actionDark, for: .normal)
+                   self.resendCodePress.setTitleColor(.primaryBlue, for: .normal)
                    Timer.invalidate()
                }
            }
