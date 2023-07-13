@@ -54,6 +54,14 @@ enum AnonymousService {
         NetworkingLayer.request(router: .accountLookup(request: request), completion: completion)
     }
     
+    static func sendCodeAnon(request: SendCodeRequest, completion: @escaping (Result<SendPinResult, NetworkingError>) -> ()) {
+        NetworkingLayer.request(router: .sendCodeLookup(request: request), completion: completion)
+    }
+    
+    static func validateCodeAnon(request: ValidateCodeRequest, completion: @escaping (Result<ValidatePinResult, NetworkingError>) -> ()) {
+        NetworkingLayer.request(router: .validateCodeAnon(request: request), completion: completion)
+    }
+    
     static func accountDetailsAnon(request: AccountDetailsAnonRequest, completion: @escaping (Result<UnAuthAccountDetails, NetworkingError>) -> ()) {
         
         NetworkingLayer.request(router: .accountDetailsAnon(request: request), completion: completion)
