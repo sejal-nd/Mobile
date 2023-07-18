@@ -345,3 +345,14 @@ extension LandingViewController: ForgotUsernameResultViewControllerDelegate {
         }
     }
 }
+
+extension LandingViewController: AccountLookUpValidatePinViewControllerDelegate {
+    func accountLookUpValidatePinViewController(_ accountLookUpValidatePinViewController: UIViewController, didUnmaskUsername username: String) {
+        Log.info("unmasked email is \(username)")
+        GoogleAnalytics.log(event: .forgotUsernameCompleteAutoPopup)
+        
+        DispatchQueue.main.async {
+            self.showFindEmailAlert(foundEmail: username)
+        }
+    }
+}

@@ -52,6 +52,8 @@ public enum NetworkingError: Error, Equatable {
     case failed // ComEd/PECO /payments endpoint with no scheduled payments
     case noEventResults // BGE /programs endpoint with no eventResults
     case failedLogin //
+    case mfaInvalidPin
+    case mfaPinExpired
     
     // Paymentus Errors
     case blockedPaymentMethod
@@ -151,6 +153,10 @@ public enum NetworkingError: Error, Equatable {
             self = .walletItemIdTimeout
         case "FN_ACCT_PWD_EXPIRED":
             self = .temporaryPasswordExpired
+        case "FN-MFA-PIN-INVALID":
+            self = .mfaInvalidPin
+        case "FN-MFA-PIN-EXPIRED":
+            self = .mfaPinExpired
         default:
             self = .generic
         }
@@ -248,6 +254,10 @@ extension NetworkingError: LocalizedError {
             return NSLocalizedString("Invalid Information", comment: "Error title")
         case .temporaryPasswordExpired:
             return NSLocalizedString("", comment: "Error title")
+        case .mfaInvalidPin:
+            return NSLocalizedString("We’re Sorry", comment: "Error title")
+        case .mfaPinExpired:
+            return NSLocalizedString("Verify your phone number.", comment: "Error title")
         }
     }
     
@@ -272,6 +282,10 @@ extension NetworkingError: LocalizedError {
     
     public var description: String {
         switch self {
+        case .mfaInvalidPin:
+            return NSLocalizedString("We're sorry, the code you entered doesn't match the one we sent you. Please try again.", comment: "Error description")
+        case .mfaPinExpired:
+            return NSLocalizedString("Your verification code has expired. You can request the code again.", comment: "Error description")
         case .inactive:
             return accountNotFoundMessage
         case .notCustomer, .invalidUser:

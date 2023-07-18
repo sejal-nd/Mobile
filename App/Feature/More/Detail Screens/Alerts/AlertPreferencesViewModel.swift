@@ -212,7 +212,7 @@ class AlertPreferencesViewModel {
                     if !usageOptions.isEmpty {
                         self.sections.insert((NSLocalizedString("Usage", comment: ""), usageOptions), at: 0)
                     }
-                   
+                    
                     if !self.accountDetail.isFinaled &&
                         (self.accountDetail.isEBillEligible || self.accountDetail.isEBillEnrollment) {
                         self.sections.append((NSLocalizedString("Billing", comment: ""),

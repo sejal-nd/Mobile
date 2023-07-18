@@ -101,12 +101,21 @@ class ReportOutageViewModel {
     }
     
     lazy var shouldPingMeter: Bool = {
+        if Configuration.shared.opco == .ace {
+            return outageStatus.isActiveOutage == false &&
+                outageStatus.isSmartMeter && shouldPingMeterinACE
+        }
         return outageStatus.isActiveOutage == false &&
             outageStatus.isSmartMeter == true
     }()
     
+    
+    lazy var shouldPingMeterinACE: Bool = {
+        return FeatureFlagUtility.shared.bool(forKey: .isACEAMI)
+    }()
+    
     lazy var shouldPingPHIMeter: Bool = {
-        return shouldPingMeter && (Configuration.shared.opco == .pepco || Configuration.shared.opco == .delmarva)
+        return shouldPingMeter && (Configuration.shared.opco == .ace || Configuration.shared.opco == .pepco || Configuration.shared.opco == .delmarva)
     }()
     
     func reportOutage(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {

@@ -17,11 +17,22 @@ class AccountLookupToolViewController: KeyboardAvoidingStickyFooterViewControlle
     
     weak var delegate: AccountLookupToolResultViewControllerDelegate?
     
+    enum LookUpType {
+      case lastFour, phone
+    }
+    
+    var selectedLookUpType: LookUpType?
+    
+    @IBOutlet var segmentController: SegmentedControl!
+    @IBOutlet var segmentContainer: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var phoneNumberTextField: FloatLabelTextField!
     @IBOutlet weak var identifierDescriptionLabel: UILabel!
+    @IBOutlet var phoneNumDescTextLabel: UILabel!
     @IBOutlet weak var identifierTextField: FloatLabelTextField!
     @IBOutlet weak var searchButton: PrimaryButton!
+    @IBOutlet var dataChargesDisclaimer: UILabel!
+    @IBOutlet var stackViewLayout: UIStackView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,9 +40,6 @@ class AccountLookupToolViewController: KeyboardAvoidingStickyFooterViewControlle
         addCloseButton()
         
         title = NSLocalizedString("Account Lookup Tool", comment: "")
-        
-        viewModel.searchButtonEnabled.drive(searchButton.rx.isEnabled).disposed(by: disposeBag)
-        
         identifierDescriptionLabel.textColor = .neutralDark
         identifierDescriptionLabel.font = .subheadline
         identifierDescriptionLabel.text = NSLocalizedString("Last 4 Digits of primary account holder’s Social Security Number, or Business Tax ID", comment: "")
@@ -58,6 +66,15 @@ class AccountLookupToolViewController: KeyboardAvoidingStickyFooterViewControlle
             self?.phoneNumberTextField.setError(nil)
             self?.accessibilityErrorLabel()
         }).disposed(by: disposeBag)
+        
+        if !Configuration.shared.opco.isPHI {
+           segmentContainer.isHidden = true
+        }
+        phoneNumDescTextLabel.isHidden = true
+        stackViewLayout.setCustomSpacing(8, after: phoneNumberTextField)
+        segmentController.items = [NSLocalizedString("SSN/Tax ID", comment: ""),
+                                  NSLocalizedString("Send Code", comment: "")]
+        segmentController.selectedIndex.accept(.zero)
         
         phoneNumberTextField.textField.sendActions(for: .editingDidEnd) // Load the passed phone number from view model
         
@@ -94,27 +111,58 @@ class AccountLookupToolViewController: KeyboardAvoidingStickyFooterViewControlle
             searchButton.accessibilityLabel = NSLocalizedString(errorStr + " Search", comment: "")
         }
     }
+
+    @IBAction func didSegmentChanged(sender: SegmentedControl) {
+        let isEnabled = sender.selectedIndex.value == .zero
+        let title = isEnabled ? "Search" : "Continue"
+        let lookUpType = isEnabled ? LookUpType.lastFour : LookUpType.phone
+        let controlEnabled = isEnabled ? viewModel.searchButtonEnabled : viewModel.continueButtonEnabled
+        
+        selectedLookUpType = lookUpType
+        identifierTextField.isHidden = !isEnabled
+        identifierDescriptionLabel.isHidden = !isEnabled
+        dataChargesDisclaimer.isHidden = isEnabled
+        searchButton.setTitle(title, for: .normal)
+        phoneNumDescTextLabel.isHidden = isEnabled
+        controlEnabled.drive(searchButton.rx.isEnabled).disposed(by: disposeBag)
+    }
     
     @IBAction func onSearchPress() {
         view.endEditing(true)
         
-        LoadingView.show()
-        viewModel.performSearch(onSuccess: { [weak self] in
-            LoadingView.hide()
-            guard let self = self else { return }
-            if self.viewModel.accountLookupResults.count == 1 {
-                let selectedAccount = self.viewModel.accountLookupResults.first!
-                self.delegate?.accountLookupToolDidSelectAccount(accountNumber: selectedAccount.accountNumber!, phoneNumber: self.viewModel.phoneNumber.value)
-                self.dismiss(animated: true, completion: nil)
-            } else {
-                self.performSegue(withIdentifier: "accountLookupToolResultSegue", sender: self)
-            }
-        }, onError: { [weak self] title, message in
-            LoadingView.hide()
-            let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-            self?.present(alertController, animated: true, completion: nil)
-        })
+        if (selectedLookUpType == LookUpType.lastFour) {
+            LoadingView.show()
+            viewModel.performSearch(onSuccess: { [weak self] in
+                LoadingView.hide()
+                guard let self = self else { return }
+                if self.viewModel.accountLookupResults.count == 1 {
+                    let selectedAccount = self.viewModel.accountLookupResults.first!
+                    self.delegate?.accountLookupToolDidSelectAccount(accountNumber: selectedAccount.accountNumber!, phoneNumber: self.viewModel.phoneNumber.value)
+                    self.dismiss(animated: true, completion: nil)
+                } else {
+                    self.performSegue(withIdentifier: "accountLookupToolResultSegue", sender: self)
+                }
+            }, onError: { [weak self] title, message in
+                LoadingView.hide()
+                let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                self?.present(alertController, animated: true, completion: nil)
+            })
+        } else if (selectedLookUpType == LookUpType.phone) {
+            LoadingView.show()
+            FirebaseUtility.logEvent(.forgotUsername(parameters: [.send_code_cta]))
+            viewModel.sendSixDigitCode(onSuccess: { [weak self] in
+                LoadingView.hide()
+                guard let self = self else { return }
+                self.performSegue(withIdentifier: "accountLookUpValidatePinSegue", sender: self)
+            }, onError: { [weak self] title, message in
+                LoadingView.hide()
+                let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                self?.present(alertController, animated: true, completion: nil)
+            })
+        }
+
     }
     
     @objc func onIndentifierKeyboardDonePress() {
@@ -134,6 +182,10 @@ class AccountLookupToolViewController: KeyboardAvoidingStickyFooterViewControlle
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? AccountLookupToolResultViewController {
+            vc.viewModel = viewModel
+            vc.delegate = delegate
+        }
+        else if let vc = segue.destination as? AccountLookUpValidatePinViewController {
             vc.viewModel = viewModel
             vc.delegate = delegate
         }
