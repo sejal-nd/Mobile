@@ -9,7 +9,7 @@
 import UIKit
 
 protocol SurveyViewDelegate: AnyObject {
-    func surveySelected(url: URL)
+    func surveySelected()
 }
 
 class SurveyView: UIView {
@@ -25,24 +25,6 @@ class SurveyView: UIView {
     
     var isStormMode: Bool {
         return StormModeStatus.shared.isOn
-    }
-    
-    var surveyURL: String {
-        guard let status = self.status else { return "" }
-        switch status {
-            case .reported:
-                return "https://www.surveymonkey.com/r/HHCD7YP"
-            case .assigned:
-                return "https://www.surveymonkey.com/r/HPSN8XX"
-            case .enRoute:
-                return "https://www.surveymonkey.com/r/HPTDG6T"
-            case .onSite:
-                return "https://www.surveymonkey.com/r/HPXXPCW"
-            case .restored:
-                return "https://www.surveymonkey.com/r/HPXZBBD"
-            default:
-                return ""
-        }
     }
     
     func configure(status: OutageTracker.Status) {
@@ -63,9 +45,8 @@ class SurveyView: UIView {
     }
 
     @IBAction func surveyButtonPressed(_ sender: Any) {
-        guard let url = URL(string: surveyURL) else { return }
         guard let delegate = delegate else { return }
-        delegate.surveySelected(url: url)
+        delegate.surveySelected()
     }
     
     // MARK: Init
