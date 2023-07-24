@@ -112,7 +112,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         let token = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
         Log.info("APNS Device Token: \(token)")
-        let hasRegisteredForPushNotifications = UserDefaults.standard.bool(forKey: UserDefaultKeys.hasRegisteredForPushNotifications)
+        let firstAccountNumber: String = AccountsStore.shared.accounts.first?.accountNumber ?? UserDefaultKeys.hasRegisteredForPushNotifications
+        let hasRegisteredForPushNotifications = UserDefaults.standard.bool(forKey: firstAccountNumber)
         
         let alertRegistrationRequest = AlertRegistrationRequest(notificationToken: token,
                                                                 notificationProvider: "APNS",
@@ -123,7 +124,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             switch result {
             case .success:
                 Log.info("Registered APNS token")
-                UserDefaults.standard.set(true, forKey: UserDefaultKeys.hasRegisteredForPushNotifications)
+                UserDefaults.standard.set(true, forKey: firstAccountNumber)
             case .failure(let error):
                 Log.error("Failed to register APNS token with error: \(error.localizedDescription)")
             }
