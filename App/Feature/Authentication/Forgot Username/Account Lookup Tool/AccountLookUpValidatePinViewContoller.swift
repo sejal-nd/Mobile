@@ -99,7 +99,7 @@ class AccountLookUpValidatePinViewController: KeyboardAvoidingStickyFooterViewCo
     }
     
     func startTimer() {
-        var secondsRemaining = 25
+        var secondsRemaining = 30
         Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) {(Timer) in
                if  secondsRemaining > 0 {
                    secondsRemaining -= 1
@@ -107,7 +107,7 @@ class AccountLookUpValidatePinViewController: KeyboardAvoidingStickyFooterViewCo
                    self.imgCodeSent.isHidden = true
                    self.codeSentText.isHidden = true
                    self.resendCodePress.isEnabled = true
-                   self.resendCodePress.setTitleColor(.actionDark, for: .normal)
+                   self.resendCodePress.setTitleColor(.primaryBlue, for: .normal)
                    Timer.invalidate()
                }
            }

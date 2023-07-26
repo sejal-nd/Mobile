@@ -311,8 +311,8 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                                                     <constraint firstAttribute="height" constant="22" id="T0A-1D-dXM"/>
                                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="108" id="zDh-bv-aTt"/>
                                                                 </constraints>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                <state key="normal" title="Resend Code">
+                                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                                <state key="normal" title="Resend code">
                                                                     <color key="titleColor" name="neutralLight"/>
                                                                 </state>
                                                                 <connections>
@@ -338,7 +338,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A new code has been sent." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DVQ-lG-ZgU">
                                                                 <rect key="frame" x="27" y="0.0" width="238" height="20.333333333333332"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                <nil key="textColor"/>
+                                                                <color key="textColor" name="neutralMedium"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
@@ -2025,6 +2025,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3M8-s0-5mg" customClass="PrimaryButton" customModule="Atlantic_City_Electric" customModuleProvider="target">
                                         <rect key="frame" x="20" y="15" width="388" height="55"/>
+                                        <color key="backgroundColor" red="0.89803921568627454" green="0.90196078431372551" blue="0.90980392156862744" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <accessibility key="accessibilityConfiguration" label="Continue"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="55" id="i4b-EN-QK8"/>
@@ -5039,12 +5040,12 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
         <segue reference="PqP-gN-czM"/>
         <segue reference="BgF-Jk-rXb"/>
         <segue reference="9by-S4-ujE"/>
-        <segue reference="m8m-Zs-f6g"/>
-        <segue reference="XCS-cx-2gD"/>
+        <segue reference="6eI-mv-PAf"/>
+        <segue reference="pGh-7G-0Rj"/>
         <segue reference="TQv-BD-6Dx"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="error" width="48" height="48"/>
+        <image name="error" width="120" height="120"/>
         <image name="ic_at_sign" width="34" height="34"/>
         <image name="ic_bill_details" width="34" height="34"/>
         <image name="ic_bill_envelope" width="112" height="112"/>
@@ -5066,6 +5067,9 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
         </namedColor>
         <namedColor name="neutralLight">
             <color red="0.75294117647058822" green="0.76470588235294112" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="neutralMedium">
+            <color red="0.55294117647058827" green="0.5725490196078431" blue="0.60392156862745094" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="primaryBlue">
             <color red="0.090000003576278687" green="0.050999999046325684" blue="0.40400001406669617" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
