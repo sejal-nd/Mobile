@@ -80,7 +80,7 @@ public enum AuthenticationService {
         NetworkingLayer.cancelAllTasks()
 
         UserSession.deleteSession()
-        clearStoredUsername()
+        clearTokenSubject()
         
         // We may not even use accounts store anymore.
         AccountsStore.shared.accounts = nil
@@ -164,7 +164,7 @@ extension AuthenticationService {
                 RxNotifications.shared.mfaBypass.accept(tokenResponse.isMfaBypass)
                 RxNotifications.shared.profileEditAction.accept(tokenResponse.profileEditAction)
 
-                setStoredUsername(username: tokenResponse.username)
+                setTokenSubject(subject: tokenResponse.subject)
                 
                 // Handle Temp Password
                 if tokenResponse.profileStatus?.tempPassword ?? false {
@@ -284,19 +284,19 @@ extension AuthenticationService {
         }
     }
 
-    static func getStoredUsername() -> String? {
-        return UserDefaults.standard.string(forKey: UserDefaultKeys.loggedInUsername)
+    static func getTokenSubject() -> String? {
+        return UserDefaults.standard.string(forKey: UserDefaultKeys.tokenSubject)
     }
 
-    static func setStoredUsername(username: String?) {
-        UserDefaults.standard.set(username, forKey: UserDefaultKeys.loggedInUsername)
+    static func setTokenSubject(subject: String?) {
+        UserDefaults.standard.set(subject, forKey: UserDefaultKeys.tokenSubject)
         #if os(iOS)
-            FirebaseUtility.setUsername(username)
+            FirebaseUtility.setUsername(subject)
         #endif
     }
 
-    static func clearStoredUsername() {
-        setStoredUsername(username: nil)
+    static func clearTokenSubject() {
+        setTokenSubject(subject: nil)
     }
 }
 

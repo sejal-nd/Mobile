@@ -295,8 +295,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FirebaseUtility.configure()
 
-        if let username = AuthenticationService.getStoredUsername() {
-            FirebaseUtility.setUsername(username)
+        if let subject = AuthenticationService.getTokenSubject() {
+            FirebaseUtility.setUsername(subject)
         }
 
         FirebaseUtility.setUserProperty(.isScreenReaderEnabled, value: UIAccessibility.isVoiceOverRunning.description)

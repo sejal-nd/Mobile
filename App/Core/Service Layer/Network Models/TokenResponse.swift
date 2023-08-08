@@ -22,6 +22,7 @@ public struct TokenResponse: Decodable {
     public var mfaSignUpSelection: String?
     public var profileEditAction: String?
     public var username: String?
+    public var subject: String?
     
     public var isMfaBypass: Bool {
         return mfaSignUpSelection == "Bypass"
@@ -36,6 +37,7 @@ public struct TokenResponse: Decodable {
         case refreshTokenExpiresIn = "refresh_token_expires_in"
         case refreshTokenIssuedAt = "refresh_token_issued_at"
         case username = "user"
+        case subject = "sub"
     }
     
     public init(from decoder: Decoder) throws {
@@ -90,6 +92,7 @@ public struct TokenResponse: Decodable {
                 self.mfaSignUpSelection = json["mfaSignupSelection"] as? String
                 self.profileEditAction = json["profileEditActionTaken"] as? String
                 self.username = json["user"] as? String
+                self.subject = json["sub"] as? String
             }
         } else {
             // Profile Status
