@@ -260,22 +260,7 @@ class StormModeHomeViewModel {
             return NSLocalizedString("Why Did This Happen?", comment: "")
         }
     }
-    var surveyURL: String {
-        switch status {
-            case .reported:
-                return "https://www.surveymonkey.com/r/HHCD7YP"
-            case .assigned:
-                return "https://www.surveymonkey.com/r/HPSN8XX"
-            case .enRoute:
-                return "https://www.surveymonkey.com/r/HPTDG6T"
-            case .onSite:
-                return "https://www.surveymonkey.com/r/HPXXPCW"
-            case .restored:
-                return "https://www.surveymonkey.com/r/HPXZBBD"
-            default:
-                return ""
-        }
-    }
+    
     var headerContentText: String {
         var text = "Due to severe weather, the most relevant features are optimized to allow us to better serve you."
         

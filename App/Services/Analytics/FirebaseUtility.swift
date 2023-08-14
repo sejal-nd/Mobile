@@ -315,6 +315,10 @@ enum ForgotUsernameParameter: String, EventParameter {
     case answer_question_complete
     case return_to_signin
     case network_submit_error
+    case send_code_cta
+    case send_code_validated
+    case resend_code_cta
+    case account_selected_cta
 }
 
 enum BillParameter: String, EventParameter {

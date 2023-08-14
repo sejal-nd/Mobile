@@ -147,4 +147,22 @@ final class MedalliaPlusDecibelUtility: DecibelDelegate {
         MedalliaDigital.setCustomParameter(name: "CurrentAmountDue", value: currentAmountDue)
         MedalliaDigital.setCustomParameter(name: "NetAmountDue", value: netAmountDue)
     }
+
+    func showOutageTrackerSurvey(for outage: OutageTracker) {
+        MedalliaDigital.setCustomParameters([
+            "CustomerId": AccountsStore.shared.customerIdentifier ?? "",
+            "OutageEtr": outage.etr ?? "",
+            "OutageEtrType": outage.etrType ?? "",
+            "OutageCause": outage.cause ?? "",
+            "OutageId": outage.outageID ?? "",
+            "TrackerStatus": outage.trackerStatus ?? "",
+            "OutageValid": outage.isOutageValid
+        ])
+        
+        MedalliaDigital.showForm("988") {
+            Log.info("Outage Tracker Survey Displayed Successfully")
+        } failure: { error in
+            Log.error("Error displaying Outage Tracker Survey: \(error)")
+        }
+    }
 }

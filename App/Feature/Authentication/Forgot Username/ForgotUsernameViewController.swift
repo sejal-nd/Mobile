@@ -31,7 +31,6 @@ class ForgotUsernameViewController: KeyboardAvoidingStickyFooterViewController {
    
     let viewModel = ForgotUsernameViewModel()
     weak var delegate: ForgotUsernameResultViewControllerDelegate?
-    
     let disposeBag = DisposeBag()
 
     override func viewDidLoad() {
@@ -148,7 +147,7 @@ class ForgotUsernameViewController: KeyboardAvoidingStickyFooterViewController {
         accountNumberTooltipButton.accessibilityLabel = NSLocalizedString("Tool Tip", comment: "")
         
         accountLookupToolButton.setTitle(NSLocalizedString("Account Lookup Tool", comment: ""), for: .normal)
-        accountLookupToolButton.setTitleColor(.actionBrand, for: .normal)
+        accountLookupToolButton.setTitleColor(.primaryBlue, for: .normal)
         accountLookupToolButton.titleLabel?.font = .headlineSemibold
         accountLookupToolButton.accessibilityLabel = NSLocalizedString("Account lookup tool", comment: "")        
     }
@@ -290,7 +289,7 @@ class ForgotUsernameViewController: KeyboardAvoidingStickyFooterViewController {
             vc.viewModel.phoneNumber.accept(viewModel.phoneNumber.value)
         } else if let vc = segue.destination as? ForgotUsernameResultViewController {
             vc.viewModel = viewModel
-        }
+        } 
     }
     
 }

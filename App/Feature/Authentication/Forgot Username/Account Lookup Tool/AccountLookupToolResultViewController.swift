@@ -33,7 +33,7 @@ class AccountLookupToolResultViewController: UIViewController {
         super.viewDidLoad()
         
         title = NSLocalizedString("Account Lookup Tool", comment: "")
-        
+        addCloseButton()
         instructionLabel.textColor = .neutralDark
         instructionLabel.text = NSLocalizedString("Please select your account.", comment: "")
         instructionLabel.font = .headline
@@ -56,6 +56,7 @@ class AccountLookupToolResultViewController: UIViewController {
         tableView.tableFooterView = UIView() // Hides extra separators
         
         viewModel.selectAccountButtonEnabled.drive(selectAccountButton.rx.isEnabled).disposed(by: disposeBag)
+        viewModel.selectValidatedAccountButtonEnabled.drive(selectAccountButton.rx.isEnabled).disposed(by: disposeBag)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -90,12 +91,15 @@ class AccountLookupToolResultViewController: UIViewController {
     }
     
     @IBAction func onSelectAccountPress() {
+        FirebaseUtility.logEvent(.forgotUsername(parameters: [.account_selected_cta]))
         if let selectedAccount = viewModel.selectedAccount.value {
             delegate?.accountLookupToolDidSelectAccount(accountNumber: selectedAccount.accountNumber!, phoneNumber: viewModel.phoneNumber.value)
             dismiss(animated: true, completion: nil)
+        } else if (viewModel.selectedValidatedPinAccount.value != nil) {
+                delegate?.accountLookupToolDidSelectAccount(accountNumber: viewModel.selectedValidatedPinAccount.value?.accountNumber ?? "", phoneNumber: viewModel.phoneNumber.value)
+                dismiss(animated: true, completion: nil)
+            }
         }
-    }
-    
 }
 
 extension AccountLookupToolResultViewController: UITableViewDelegate {
@@ -104,31 +108,55 @@ extension AccountLookupToolResultViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.accountLookupResults.count
+        if (viewModel.accountLookupResults.count > 0) {
+            return viewModel.accountLookupResults.count
+        } else {
+            return viewModel.validatePinResult.accounts?.count ?? 0
+        }
     }
 }
 
 extension AccountLookupToolResultViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "LookupToolResultCell", for: indexPath) as! AccountLookupToolResultCell
-        
-        let account = viewModel.accountLookupResults[indexPath.row]
-        cell.accountNumberLabel.text = account.accountNumber?.maskAllButLast4Digits()
-        cell.streetNumberLabel.text = account.streetNumber
-        cell.unitNumberLabel.text = account.unitNumber
-        
         var a11yLabel = ""
-        if let accountNumber = account.accountNumber, !accountNumber.isEmpty {
-            a11yLabel += String(format: NSLocalizedString("Account number ending in %@,", comment: ""), accountNumber.maskAllButLast4Digits().replacingOccurrences(of: "*", with: ""))
+        
+        if (viewModel.accountLookupResults.count > 0) {
+            let account = viewModel.accountLookupResults[indexPath.row]
+            
+            cell.accountNumberLabel.text = account.accountNumber?.maskAllButLast4Digits()
+            cell.streetNumberLabel.text = account.streetNumber
+            cell.unitNumberLabel.text = account.unitNumber
+            
+        
+            if let accountNumber = account.accountNumber, !accountNumber.isEmpty {
+                a11yLabel += String(format: NSLocalizedString("Account number ending in %@,", comment: ""), accountNumber.maskAllButLast4Digits().replacingOccurrences(of: "*", with: ""))
+            }
+            if let streetNumber = account.streetNumber, !streetNumber.isEmpty {
+                a11yLabel += String(format: NSLocalizedString("Street number: %@,", comment: ""), streetNumber)
+            }
+            if let unitNumber = account.unitNumber, !unitNumber.isEmpty {
+                a11yLabel += String(format: NSLocalizedString("Unit number: %@", comment: ""), unitNumber)
+            }
+            cell.accessibilityLabel = a11yLabel
+        } else if (viewModel.validatePinResult.accounts?.count > 0) {
+            let account = viewModel.validatePinResult.accounts?[indexPath.row]
+            
+            cell.accountNumberLabel.text = account?.accountNumber?.maskAllButLast4Digits()
+            cell.streetNumberLabel.text = account?.streetNumber
+            cell.unitNumberLabel.text = account?.unitNumber
+            
+            if let accountNumber = account?.accountNumber, !accountNumber.isEmpty {
+                a11yLabel += String(format: NSLocalizedString("Account number ending in %@,", comment: ""), accountNumber.maskAllButLast4Digits().replacingOccurrences(of: "*", with: ""))
+            }
+            if let streetNumber = account?.streetNumber, !streetNumber.isEmpty {
+                a11yLabel += String(format: NSLocalizedString("Street number: %@,", comment: ""), streetNumber)
+            }
+            if let unitNumber = account?.unitNumber, !unitNumber.isEmpty {
+                a11yLabel += String(format: NSLocalizedString("Unit number: %@", comment: ""), unitNumber)
+            }
+            cell.accessibilityLabel = a11yLabel
         }
-        if let streetNumber = account.streetNumber, !streetNumber.isEmpty {
-            a11yLabel += String(format: NSLocalizedString("Street number: %@,", comment: ""), streetNumber)
-        }
-        if let unitNumber = account.unitNumber, !unitNumber.isEmpty {
-            a11yLabel += String(format: NSLocalizedString("Unit number: %@", comment: ""), unitNumber)
-        }
-        cell.accessibilityLabel = a11yLabel
-
         cell.accountNumberLabelWidthConstraint.constant = accountNumberHeaderLabel.frame.size.width
         cell.streetNumberLabelWidthConstraint.constant = streetNumberHeaderLabel.frame.size.width
         cell.unitNumberLabelWidthConstraint.constant = unitNumberHeaderLabel.frame.size.width
@@ -137,6 +165,10 @@ extension AccountLookupToolResultViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        viewModel.selectedAccount.accept(viewModel.accountLookupResults[indexPath.row])
+        if viewModel.accountLookupResults.count > 0 {
+            viewModel.selectedAccount.accept(viewModel.accountLookupResults[indexPath.row])
+        } else {
+            viewModel.selectedValidatedPinAccount.accept(viewModel.validatePinResult.accounts?[indexPath.row])
+        }
     }
 }

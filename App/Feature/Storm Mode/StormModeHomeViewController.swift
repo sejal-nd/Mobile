@@ -943,9 +943,9 @@ extension StormModeHomeViewController: ETAViewDelegate {
 }
 
 extension StormModeHomeViewController: SurveyViewDelegate {
-    func surveySelected(url: URL) {
-        let survey = WebViewController(title: NSLocalizedString("", comment: ""),
-                                       url: url)
-        navigationController?.present(survey, animated: true, completion: nil)
+    func surveySelected() {
+        if let outageTracker = viewModel.outageTracker.value {
+            MedalliaPlusDecibelUtility.shared.showOutageTrackerSurvey(for: outageTracker)
+        }
     }
 }
