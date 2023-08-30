@@ -15,6 +15,7 @@ struct AccountResult: Decodable {
     let streetNumber: String?
     let unitNumber: String?
     let auid: String?
+    var isResidential: Bool?
     
     var accountNumber: String? {
         if fullAccountNumber?.isEmpty == false {
@@ -31,5 +32,6 @@ struct AccountResult: Decodable {
         case streetNumber = "street"
         case unitNumber = "unit"
         case auid = "auid"
+        case isResidential = "isResidential"
     }
 }

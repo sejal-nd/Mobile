@@ -217,6 +217,31 @@ class RegistrationViewModel {
     private(set) lazy var shouldShowFirstAndLastName: Bool = Configuration.shared.opco.isPHI
     
     private(set) lazy var shouldShowAccountNickname: Bool = Configuration.shared.opco.isPHI
+    
+   //For Mixed Accounts (ComEd and PECO)
+    func isMixedAccounts() -> Bool {
+           
+            if !(Configuration.shared.opco == .comEd || Configuration.shared.opco == .peco) {
+            return false
+            }
+            
+            let resAccounts = validatedAccountResponse?.accounts.filter {
+                $0.isResidential == true
+            }
+            
+            let comAccounts = validatedAccountResponse?.accounts.filter {
+                $0.isResidential == false
+            }
+                    
+            var resCount = 0
+            var comCount = 0
+            
+        resCount = resAccounts?.count ?? 0
+        comCount = comAccounts?.count ?? 0
+            
+            return (resCount != 0) && (comCount != 0)
+                    
+        }
 
     func checkForMaintenance() {
         AnonymousService.rx.getMaintenanceMode(shouldPostNotification: true)

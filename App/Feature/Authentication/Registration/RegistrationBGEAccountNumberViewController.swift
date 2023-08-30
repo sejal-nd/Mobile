@@ -21,6 +21,7 @@ class RegistrationBGEAccountNumberViewController: KeyboardAvoidingStickyFooterVi
     @IBOutlet weak var continueButton: PrimaryButton!
 
     var viewModel: RegistrationViewModel!
+    weak var delegate: RegistrationViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -91,7 +92,8 @@ class RegistrationBGEAccountNumberViewController: KeyboardAvoidingStickyFooterVi
             if Configuration.shared.opco.isPHI {
                 self.performSegue(withIdentifier: "phiCreateCredentialsSegue", sender: self)
             } else {
-                self.performSegue(withIdentifier: "createCredentialsSegue", sender: self)
+                let segueIdentifier = FeatureFlagUtility.shared.bool(forKey: .isB2CAuthentication) ? "createCredentialsB2cSegue" : "createCredentialsSegue"
+                self.performSegue(withIdentifier: segueIdentifier, sender: self)
             }
         }, onMultipleAccounts:  { // should never happen
             LoadingView.hide()
@@ -111,6 +113,9 @@ class RegistrationBGEAccountNumberViewController: KeyboardAvoidingStickyFooterVi
         
         if let vc = segue.destination as? RegistrationCreateCredentialsViewController {
             vc.viewModel = viewModel
+        } else if let vc = segue.destination as? B2CRegistrationViewController {
+                vc.validatedAccount = viewModel.validatedAccountResponse
+                vc.delegate = delegate
         }
         if let vc = segue.destination as? RegistrationCreateCredentialsViewControllerNew {
             vc.viewModel = viewModel
