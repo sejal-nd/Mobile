@@ -30,6 +30,7 @@ public struct FeatureFlags: Decodable {
     public var outageMapUrl: String = ""
     public var streetlightMapUrl: String = ""
     public var billingVideoUrl: String = ""
+    public var ebillCommercialURL: String = ""
     public var hasDefaultAccount: Bool = false
     public var hasForgotPasswordLink: Bool = false
     public var paymentProgramAds: Bool = false
@@ -55,6 +56,7 @@ public struct FeatureFlags: Decodable {
         case outageMapUrl = "outageMapURL"
         case streetlightMapUrl = "streetlightMapURL"
         case billingVideoUrl = "billingVideoURL"
+        case ebillCommercialURL
         case hasDefaultAccount
         case hasForgotPasswordLink
         case paymentProgramAds
@@ -87,6 +89,7 @@ public struct FeatureFlags: Decodable {
         outageMapUrl = try container.decodeIfPresent(String.self, forKey: .outageMapUrl) ?? ""
         streetlightMapUrl = try container.decodeIfPresent(String.self, forKey: .streetlightMapUrl) ?? ""
         billingVideoUrl = try container.decodeIfPresent(String.self, forKey: .billingVideoUrl) ?? ""
+        ebillCommercialURL = try container.decodeIfPresent(String.self, forKey: .ebillCommercialURL) ?? ""
         hasDefaultAccount = try container.decodeIfPresent(Bool.self, forKey: .hasDefaultAccount) ?? false
         hasForgotPasswordLink = try container.decodeIfPresent(Bool.self, forKey: .hasForgotPasswordLink) ?? false
         paymentProgramAds = try container.decodeIfPresent(Bool.self, forKey: .paymentProgramAds) ?? false
