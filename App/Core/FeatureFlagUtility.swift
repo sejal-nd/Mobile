@@ -13,6 +13,7 @@ final class FeatureFlagUtility {
         case outageMapURL
         case streetlightMapURL
         case billingVideoURL
+        case ebillCommercialURL
         case hasDefaultAccount
         case hasForgotPasswordLink
         case paymentProgramAds
@@ -51,6 +52,7 @@ final class FeatureFlagUtility {
             FeatureFlagKey.outageMapURL.rawValue : "",
             FeatureFlagKey.streetlightMapURL.rawValue : "",
             FeatureFlagKey.billingVideoURL.rawValue : "",
+            FeatureFlagKey.ebillCommercialURL.rawValue : "",
             FeatureFlagKey.hasDefaultAccount.rawValue : false,
             FeatureFlagKey.hasForgotPasswordLink.rawValue : false,
             FeatureFlagKey.paymentProgramAds.rawValue : false,
@@ -92,6 +94,7 @@ final class FeatureFlagUtility {
                     FeatureFlagKey.outageMapURL.rawValue : featureFlags.outageMapUrl,
                     FeatureFlagKey.streetlightMapURL.rawValue : featureFlags.streetlightMapUrl,
                     FeatureFlagKey.billingVideoURL.rawValue : featureFlags.billingVideoUrl,
+                    FeatureFlagKey.ebillCommercialURL.rawValue : featureFlags.ebillCommercialURL,
                     FeatureFlagKey.hasDefaultAccount.rawValue : featureFlags.hasDefaultAccount,
                     FeatureFlagKey.hasForgotPasswordLink.rawValue : featureFlags.hasForgotPasswordLink,
                     FeatureFlagKey.paymentProgramAds.rawValue : featureFlags.paymentProgramAds,

@@ -16,14 +16,7 @@ class PaperlessEBillCommercialViewController: DismissableFormSheetViewController
     @IBOutlet weak var buttonLabel: UILabel!
     
     private var url: URL? {
-        switch Configuration.shared.opco {
-        case .comEd:
-            return URL(string: "https://mydetail.getbills.com/BDComEd/index.jsp")
-        case .peco:
-            return URL(string: "https://mydetail.getbills.com/BDPeco/index.jsp")
-        case .ace, .bge, .delmarva, .pepco:
-            return nil
-        }
+        return URL(string: FeatureFlagUtility.shared.string(forKey: .ebillCommercialURL))
     }
 
     override func viewDidLoad() {
