@@ -18,6 +18,7 @@ struct UserDefaultKeys {
     static let isBiometricsEnabled = "kBiometricsEnabled"
     static let shouldPromptToEnableBiometrics = "kShouldPromptToEnableBiometrics" // Should we prompt the user to enable Touch/Face ID after a successful login?
     static let loggedInUsername = "kLoggedInUsername" // The username of the currently logged in user
+    static let tokenSubject = "kTokenSubject" // The username of the currently logged in user
     
     static let customerIdentifier = "kCustomerIdentifier" // Persist Customer Identifer (from login) to disk
     static let reportedOutageTime = "kReportedOutageTime" // Persists Reported Outage

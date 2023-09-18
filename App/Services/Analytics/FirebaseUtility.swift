@@ -990,6 +990,10 @@ struct FirebaseUtility {
     public static func logScreenView(_ screen: Screen) {
         FirebaseUtility.logEvent(.screenView(screen))
     }
+
+    public static func setUsername(_ username: String?) {
+        Analytics.setUserID(username)
+    }
 }
 
 // MARK: - Watch Analytics
