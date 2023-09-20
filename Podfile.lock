@@ -140,9 +140,7 @@ DEPENDENCIES:
   - zxcvbn-ios (= 1.0.4)
 
 SPEC REPOS:
-  https://github.com/DecibelInsight/decibel-sdk-ios-spec:
-    - DecibelSDK
-  trunk:
+  https://github.com/CocoaPods/Specs.git:
     - AppCenter
     - Charts
     - Firebase
@@ -168,6 +166,8 @@ SPEC REPOS:
     - Toast-Swift
     - XLPagerTabStrip
     - zxcvbn-ios
+  https://github.com/DecibelInsight/decibel-sdk-ios-spec:
+    - DecibelSDK
 
 EXTERNAL SOURCES:
   MedalliaDigitalSDK:
@@ -179,7 +179,7 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   AppCenter: 02c5efe08d3bbab5421ae41d5f7aa7238906b817
-  Charts: 354f86803d11d9c35de280587fef50d1af063978
+  Charts: ce0768268078eee0336f122c3c4ca248e4e204c5
   DecibelSDK: 9a7892ac6fe1e3882fe9cea14044bb6abcf40f3c
   Firebase: c121feb35e4126c0b355e3313fa9b487d47319fd
   FirebaseAnalytics: cd3bd84d722a24a8923918af8af8e5236f615d77
@@ -208,4 +208,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 501d3a2b542c873d9173a27da2bf6d18bda3a9a3
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.12.1
