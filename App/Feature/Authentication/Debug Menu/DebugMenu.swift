@@ -90,6 +90,12 @@ struct DebugMenu: View {
                     Button("Reset", action: reset)
                 }
             }
+            .onChange(of: selectedProjectTier) { value in
+                sendMessageToWatchSession(projectTier: value, projectURLSuffix: selectedProjectURL)
+            }
+            .onChange(of: selectedProjectURL) { value in
+                sendMessageToWatchSession(projectTier: selectedProjectTier, projectURLSuffix: value)
+            }
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }
@@ -97,6 +103,8 @@ struct DebugMenu: View {
     private func reset() {
         selectedProjectTier = .stage
         selectedProjectURL = .none
+
+        sendMessageToWatchSession(projectTier: selectedProjectTier, projectURLSuffix: selectedProjectURL)
     }
     
     private func restartApp() {
@@ -105,6 +113,13 @@ struct DebugMenu: View {
     
     private func launchPKCESignIn() {
         isShowingPKCEFlow.toggle()
+    }
+    
+    private func sendMessageToWatchSession(projectTier: ProjectTier, projectURLSuffix: ProjectURLSuffix) {
+        try? WatchSessionController.shared.updateApplicationContext(applicationContext:
+                                                                        [WatchSessionController.Key.projectTier : projectTier.rawValue,
+                                                                         WatchSessionController.Key.projectURLSuffix : projectURLSuffix.rawValue]
+        )
     }
 }
 

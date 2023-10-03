@@ -60,6 +60,8 @@ extension WatchSessionController {
         static let consoleUser = "console"
         static let screenName = "screenName"
         static let outageReported = "outageReported"
+        static let projectTier = "projectTier"
+        static let projectURLSuffix = "projectURLSuffix"
     }
     
     // Sender
@@ -99,6 +101,13 @@ extension WatchSessionController {
             // User reported outage on phone
             if let outageReported = applicationContext[WatchSessionController.Key.outageReported] as? Bool, outageReported {
                 self?.outageReportedFromPhone?()
+            }
+            
+            // Save Project Tier & URL
+            if let projectTierRawValue = applicationContext[WatchSessionController.Key.projectTier] as? Bool,
+               let projectURLRawValue = applicationContext[WatchSessionController.Key.projectURLSuffix] as? Bool {
+                UserDefaults.standard.set("projectTierRawValue", forKey: "selectedProjectTier")
+                UserDefaults.standard.set("projectURLRawValue", forKey: "selectedProjectURL")
             }
             #endif
         }
