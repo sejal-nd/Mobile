@@ -22,6 +22,10 @@ struct DebugMenu: View {
         Bundle.main.versionNumber ?? "N/A"
     }
     
+    private var buildNumber: String {
+        Bundle.main.buildNumber ?? "N/A"
+    }
+    
     private var bundleID: String {
         Bundle.main.bundleIdentifier ?? "N/A"
     }
@@ -35,7 +39,7 @@ struct DebugMenu: View {
                     InfoLabel(title: "Tier",
                               value: Configuration.shared.environmentName.rawValue)
                     InfoLabel(title: "Version",
-                              value: versionString)
+                              value: "\(versionString)(\(buildNumber))")
                     InfoLabel(title: "Bundle ID",
                               value: bundleID)
                 }
@@ -57,6 +61,7 @@ struct DebugMenu: View {
                         }
                     }
                     Button("Save & Restart App", action: restartApp)
+                        .foregroundColor(.green)
                 }
                 
                 Section(header: Text("Other URLs"),
@@ -88,6 +93,7 @@ struct DebugMenu: View {
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Reset", action: reset)
+                        .foregroundColor(.orange)
                 }
             }
             .onChange(of: selectedProjectTier) { value in
