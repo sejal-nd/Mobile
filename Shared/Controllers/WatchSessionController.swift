@@ -104,10 +104,10 @@ extension WatchSessionController {
             }
             
             // Save Project Tier & URL
-            if let projectTierRawValue = applicationContext[WatchSessionController.Key.projectTier] as? Bool,
-               let projectURLRawValue = applicationContext[WatchSessionController.Key.projectURLSuffix] as? Bool {
-                UserDefaults.standard.set("projectTierRawValue", forKey: "selectedProjectTier")
-                UserDefaults.standard.set("projectURLRawValue", forKey: "selectedProjectURL")
+            if let projectTierRawValue = applicationContext[WatchSessionController.Key.projectTier] as? String,
+               let projectURLRawValue = applicationContext[WatchSessionController.Key.projectURLSuffix] as? String {
+                UserDefaults.standard.set(projectTierRawValue, forKey: "selectedProjectTier")
+                UserDefaults.standard.set(projectURLRawValue, forKey: "selectedProjectURL")
             }
             #endif
         }
