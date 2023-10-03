@@ -46,7 +46,7 @@ class LandingViewController: UIViewController {
     
     private var selectedProject: String {
         let projectRawValue = UserDefaults.standard.string(forKey: "selectedProjectURL") ?? "None"
-        let urlString = ProjectURLSuffix(rawValue: projectRawValue)?.projectURLString ?? "None"
+        let urlString = ProjectURLSuffix(rawValue: projectRawValue)?.projectPath ?? "/None"
         return urlString
     }
     
@@ -74,7 +74,7 @@ class LandingViewController: UIViewController {
         case .aut, .beta:
             if let version = Bundle.main.versionNumber {
                 versionLabel.numberOfLines = 0
-                versionLabel.text = "Version \(version) (\(buildNumber))\n\(selectedTier)/\(selectedProject)"
+                versionLabel.text = "Version \(version) (\(buildNumber))\n\(selectedTier)\(selectedProject)"
             } else {
                 versionLabel.text = nil
             }
