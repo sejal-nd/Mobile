@@ -80,6 +80,7 @@ extension ProjectURLSuffix {
     
     var projectURLString: String {
         var urlString = self.projectPath
+        guard !urlString.isEmpty else { return "" }
         urlString.remove(at: urlString.startIndex)
         return urlString
     }
