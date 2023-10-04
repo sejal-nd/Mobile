@@ -62,6 +62,7 @@ extension WatchSessionController {
         static let outageReported = "outageReported"
         static let projectTier = "projectTier"
         static let projectURLSuffix = "projectURLSuffix"
+        static let updateDebugMenu = "updateDebugMenu"
     }
     
     // Sender
@@ -108,6 +109,12 @@ extension WatchSessionController {
                let projectURLRawValue = applicationContext[WatchSessionController.Key.projectURLSuffix] as? String {
                 UserDefaults.standard.set(projectTierRawValue, forKey: "selectedProjectTier")
                 UserDefaults.standard.set(projectURLRawValue, forKey: "selectedProjectURL")
+                Log.info("Project Tier and url updated: \(projectTierRawValue)/\(projectURLRawValue)")
+            }
+            
+            if let shouldUpdateDebugMenu = applicationContext[WatchSessionController.Key.updateDebugMenu] as? Bool {
+                Log.info("Restarting WatchKit App...")
+                exit(0)
             }
             #endif
         }

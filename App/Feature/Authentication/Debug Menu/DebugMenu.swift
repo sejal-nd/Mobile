@@ -114,6 +114,10 @@ struct DebugMenu: View {
     }
     
     private func restartApp() {
+        // Restart Watch App
+        try? WatchSessionController.shared.updateApplicationContext(applicationContext:
+                                                                        [WatchSessionController.Key.updateDebugMenu : true])
+        // Restart iOS App
         exit(0)
     }
     
