@@ -13,7 +13,8 @@ import SwiftUI
 struct DebugMenu: View {
     @AppStorage("selectedProjectTier") private var selectedProjectTier: ProjectTier = .stage
     @AppStorage("selectedProjectURL") private var selectedProjectURL: ProjectURLSuffix = .none
-    
+    @AppStorage("apnsToken") private var apnsToken: String = "N/A"
+        
     @State private var isShowingPKCEFlow = false
     
     let dismiss: () -> Void
@@ -68,6 +69,8 @@ struct DebugMenu: View {
                         footer: Text("Note: This menu is only available at the BETA tier.").padding(.bottom)) {
                     InfoLabel(title: "Associated Domain",
                               value: Configuration.shared.associatedDomain)
+                    InfoLabel(title: "APNS Token",
+                              value: apnsToken)
                     InfoLabel(title: "Account URL",
                               value: Configuration.shared.myAccountUrl)
                     InfoLabel(title: "oAuth URL",
