@@ -184,6 +184,8 @@
 		35F9DD6C2333C8A000AAA2B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7BD21907F2E00BA13C6 /* Assets.xcassets */; };
 		35F9DD6D2333C8A100AAA2B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7BD21907F2E00BA13C6 /* Assets.xcassets */; };
 		35F9DD7C2333D14D00AAA2B2 /* Date+DueBy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7EB2190804E00BA13C6 /* Date+DueBy.swift */; };
+		35F9DD842333D2B800AAA2B2 /* EUMobile-Watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 35F9DD2F2333C34100AAA2B2 /* EUMobile-Watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		35F9DD932333D83F00AAA2B2 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		35F9DD932333D83F00AAA2B2 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		35F9DDA22333D87E00AAA2B2 /* AccountsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D340901EBA6A8700BA2D42 /* AccountsStore.swift */; };
 		35F9DDA32333D88400AAA2B2 /* ReportedOutagesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B085C44620FFD49400CE0893 /* ReportedOutagesStore.swift */; };
@@ -5319,12 +5321,23 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				67A9873324FD4C5F00BD46E7 /* (null) in Resources */,
+				35F9DD672333C85B00AAA2B2 /* README.md in Resources */,
+				35F9DD6C2333C8A000AAA2B2 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		35F9DD2D2333C34100AAA2B2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 				67D73B00246C72F100450B63 /* (null) in Resources */,
 				4A398A49271EAD4100FA7B89 /* AccountVerification.json in Resources */,
 				C3087B0324BDEE8B005AE544 /* EnergyTipMock.json in Resources */,
 				35F9DD6D2333C8A100AAA2B2 /* Assets.xcassets in Resources */,
 				67A9873324FD4C5F00BD46E7 /* (null) in Resources */,
 				C338282824E30B0600F133C5 /* PeakRewardsSummaryMock.json in Resources */,
+				67D73B00246C72F100450B63 /* (null) in Resources */,
 				35F9DD682333C85C00AAA2B2 /* README.md in Resources */,
 				35F9DD672333C85B00AAA2B2 /* README.md in Resources */,
 				678B622E24D09A1C009F8A6B /* RegistrationQuestionsMock.json in Resources */,
