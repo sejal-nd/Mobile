@@ -15,7 +15,7 @@ class StateAnimationView: UIView {
     @IBOutlet weak var errorImageView: UIImageView!
     
     var status: OutageTracker.Status = .none
-    var progressAnimation = AnimationView(name: "ot_reported")
+    var progressAnimation = LottieAnimationView(animation: .named("ot_reported"))
     var isStormMode: Bool {
         return StormModeStatus.shared.isOn
     }
@@ -77,7 +77,7 @@ extension StateAnimationView {
     
     func setUpProgressAnimation(animName: String) {
         progressAnimation.removeFromSuperview()
-        progressAnimation = AnimationView(name: animName)
+        progressAnimation = LottieAnimationView(animation: .named(animName))
         
         progressAnimation.frame = CGRect(x: 0, y: 1, width: progressAnimationContainer.frame.size.width, height: progressAnimationContainer.frame.size.height)
         progressAnimation.loopMode = .loop

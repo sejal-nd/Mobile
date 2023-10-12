@@ -8,7 +8,7 @@
 
 import UIKit
 import RxSwift
-import Toast_Swift
+import Toast
 import AuthenticationServices
 
 class MoreViewController: UIViewController {

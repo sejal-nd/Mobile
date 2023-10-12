@@ -6,7 +6,7 @@
 //  Copyright © 2017 Exelon Corporation. All rights reserved.
 //
 
-import Toast_Swift
+import Toast
 
 extension UIView {
     

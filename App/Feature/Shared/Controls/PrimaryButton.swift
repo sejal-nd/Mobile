@@ -11,8 +11,8 @@ import Lottie
 
 class PrimaryButton: UIButton {
     
-    var loadingAnimationView = AnimationView(name: "loading")
-    var checkmarkAnimationView = AnimationView(name: "checkmark")
+    var loadingAnimationView = LottieAnimationView(animation: .named("loading"))
+    var checkmarkAnimationView = LottieAnimationView(animation: .named("checkmark"))
     var restoreTitle: String?
     
     @IBInspectable var tintWhite: Bool = false {
@@ -31,8 +31,9 @@ class PrimaryButton: UIButton {
     
     var hasBlueAnimations: Bool = false {
         didSet {
-            loadingAnimationView = AnimationView(name: "smallcircleload_blue")
-            checkmarkAnimationView = AnimationView(name: "checkmark_blue")
+            loadingAnimationView = LottieAnimationView(animation: .named("smallcircleload_blue"))
+            
+            checkmarkAnimationView = LottieAnimationView(animation: .named("checkmark_blue"))            
         }
     }
     

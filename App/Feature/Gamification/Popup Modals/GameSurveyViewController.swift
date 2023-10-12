@@ -7,8 +7,8 @@
 //
 
 import UIKit
-import ForeSee
-import ForeSeeFeedback
+//import ForeSee
+//import ForeSeeFeedback
 
 protocol GameSurveyViewControllerDelegate: class {
     func gameSurveyViewControllerDidFinish(_ viewController: GameSurveyViewController, surveyComplete: Bool)
@@ -89,7 +89,7 @@ class GameSurveyViewController: UIViewController {
         tap.delegate = self
         contentView.addGestureRecognizer(tap)
         
-        ForeSeeFeedbackComponent.setFeedbackListener(delegate: self)
+//        ForeSeeFeedbackComponent.setFeedbackListener(delegate: self)
     }
         
     @objc private func dismiss(_ sender: Any) {
@@ -97,10 +97,10 @@ class GameSurveyViewController: UIViewController {
     }
         
     @IBAction func onTakeSurveyPress() {
-        ForeSee.resetState()
+//        ForeSee.resetState()
         
         let surveyName = survey.surveyNumber == 1 ? "Survey 1" : "Survey 2"
-        ForeSeeFeedbackComponent.showFeedbackForName(surveyName)
+//        ForeSeeFeedbackComponent.showFeedbackForName(surveyName)
     }
         
     @IBAction func onRemindMeLaterPress() {
@@ -132,11 +132,11 @@ extension GameSurveyViewController: UIGestureRecognizerDelegate {
     }
 }
 
-extension GameSurveyViewController: ForeSeeFeedbackDelegate {
-    func feedbackSubmitted(_ feedbackName: String) {
-        self.setSurveyComplete()
-        self.presentingViewController?.dismiss(animated: true, completion: {
-            self.delegate?.gameSurveyViewControllerDidFinish(self, surveyComplete: true)
-        })
-    }
-}
+//extension GameSurveyViewController: ForeSeeFeedbackDelegate {
+//    func feedbackSubmitted(_ feedbackName: String) {
+//        self.setSurveyComplete()
+//        self.presentingViewController?.dismiss(animated: true, completion: {
+//            self.delegate?.gameSurveyViewControllerDidFinish(self, surveyComplete: true)
+//        })
+//    }
+//}

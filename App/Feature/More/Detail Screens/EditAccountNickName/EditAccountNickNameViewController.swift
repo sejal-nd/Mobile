@@ -9,7 +9,7 @@
 import UIKit
 import RxCocoa
 import RxSwift
-import Toast_Swift
+import Toast
 
 final class EditAccountNickNameViewController: AccountPickerViewController {
     

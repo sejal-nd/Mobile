@@ -20,11 +20,11 @@ class SplashViewController: UIViewController{
     @IBOutlet weak var imageView: UIView!
     
     @IBOutlet weak var splashAnimationContainer: UIView!
-    var splashAnimationView: AnimationView?
+    var splashAnimationView: LottieAnimationView?
     
     @IBOutlet weak var loadingContainerView: UIView!
     @IBOutlet weak var loadingAnimationContainer: UIView!
-    var loadingAnimationView: AnimationView?
+    var loadingAnimationView: LottieAnimationView?
     @IBOutlet weak var loadingLabel: UILabel!
     
     @IBOutlet weak var errorView: UIView!
@@ -108,7 +108,7 @@ class SplashViewController: UIViewController{
         super.viewDidLayoutSubviews()
 
         if !AuthenticationService.isLoggedIn() && splashAnimationView == nil {
-            splashAnimationView = AnimationView(name: "splash")
+            splashAnimationView = LottieAnimationView(animation: .named("splash"))
             splashAnimationView!.frame.size = splashAnimationContainer.frame.size
             splashAnimationView!.loopMode = .playOnce
             splashAnimationView!.contentMode = .scaleAspectFit
@@ -125,7 +125,7 @@ class SplashViewController: UIViewController{
         }
         
         if loadingAnimationView == nil {
-            loadingAnimationView = AnimationView(name: "full_screen_loading")
+            loadingAnimationView = LottieAnimationView(animation: .named("full_screen_loading"))
             loadingAnimationView!.frame.size = loadingAnimationContainer.frame.size
             loadingAnimationView!.loopMode = .loop
             loadingAnimationView!.backgroundBehavior = .pauseAndRestore

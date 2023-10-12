@@ -101,7 +101,7 @@ class DailyInsightCoinView: UIControl {
             
             let decreasedUsage = lastWeekComparisionImage == #imageLiteral(resourceName: "ic_trenddown.pdf")
             if decreasedUsage {
-                let coinAnimation = AnimationView(name: "coin_bonus_point")
+                let coinAnimation = LottieAnimationView(name: "coin_bonus_point")
                 coinAnimation.frame.size = lottieView.frame.size
                 coinAnimation.contentMode = .scaleAspectFit
                 lottieView.addSubview(coinAnimation)

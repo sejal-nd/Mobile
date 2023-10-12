@@ -8,7 +8,7 @@
 
 import UIKit
 import WebKit
-import Toast_Swift
+import Toast
 
 class B2CForgotPasswordViewController: UIViewController {
     

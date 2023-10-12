@@ -1,29 +1,29 @@
 inhibit_all_warnings! # ignore all warnings from all pods
 
 def shared_pods # Shared in both iOS and WatchOS
-  pod 'RxSwift', '5.1.0'
-  pod 'RxSwiftExt', '5.2.0'
+  pod 'RxSwift', '5.1.0' # TODO MANUAL
+  pod 'RxSwiftExt', '5.2.0' # TODO MANUAL
 end
 
 source 'https://github.com/DecibelInsight/decibel-sdk-ios-spec'
 source 'https://github.com/CocoaPods/Specs.git'
 
 def iOS_pods
-  pod 'lottie-ios', '3.1.5'
-  pod 'Toast-Swift', '5.0.0'
-  pod 'zxcvbn-ios', '1.0.4'
-  pod 'ReachabilitySwift', '4.3.1'
-  pod 'RxSwiftExt/RxCocoa', '5.2.0'
-  pod 'HorizonCalendar', '1.13.3'
-  pod 'Charts', '4.1.0'
-  pod 'XLPagerTabStrip', '9.0.0'
-  pod 'GoogleAnalytics', '3.17.0'
-  pod 'Firebase/Core', '7.11.0'
-  pod 'AppCenter', '1.14'
-  pod 'ForeSee/Core', '6.0.4'
-  pod 'ForeSee/ForeSeeFeedback', '6.0.4'
-  pod 'MedalliaDigitalSDK', :http => 'https://repository.medallia.com/digital-generic/ios-sdk/4.1.0/ios-sdk-4.1.0.zip' #MedalliaSDK
-  pod 'DecibelSDK'
+ # pod 'lottie-ios', '3.1.5' # done but v upgrade
+ # pod 'Toast-Swift', '5.0.0' # done
+ # pod 'zxcvbn-ios', '1.0.4' # remove
+ # pod 'ReachabilitySwift', '4.3.1' # done
+  pod 'RxSwiftExt/RxCocoa', '5.2.0' # TODO MANUAL
+ # pod 'HorizonCalendar', '1.13.3' # done
+ # pod 'Charts', '4.1.0' # done
+ # pod 'XLPagerTabStrip', '9.0.0' # done upgradee by 0.1.0 versions
+  pod 'GoogleAnalytics', '3.17.0' # UNKNOWN IF POSSIBLE
+ # pod 'Firebase/Core', '7.11.0' # DONE
+ # pod 'AppCenter', '1.14' # Done had to upgrade to 5.0.0
+ # pod 'ForeSee/Core', '6.0.4' # remove, gamification only
+ # pod 'ForeSee/ForeSeeFeedback', '6.0.4' # remove, gamification only
+ # pod 'MedalliaDigitalSDK', :http => 'https://repository.medallia.com/digital-generic/ios-sdk/4.1.0/ios-sdk-4.1.0.zip' #MedalliaSDK DONE
+  pod 'DecibelSDK' # TODO Need to manually integrate
 end
 
 def iOS_UnitTestPods

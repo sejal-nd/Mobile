@@ -8,7 +8,7 @@
 
 import RxSwift
 import RxCocoa
-import zxcvbn_ios
+//import zxcvbn_ios
 
 class ChangePasswordViewModel {
     let disposeBag = DisposeBag()
@@ -83,7 +83,7 @@ class ChangePasswordViewModel {
     var passwordScore: Int32 {
         var score: Int32 = -1
         if newPassword.value.count > 0 {
-            score = DBZxcvbn().passwordStrength(newPassword.value).score
+//            score = DBZxcvbn().passwordStrength(newPassword.value).score
         }
         return score
     }

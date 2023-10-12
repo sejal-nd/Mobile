@@ -8,7 +8,7 @@
 
 import RxSwift
 import RxCocoa
-import zxcvbn_ios
+//import zxcvbn_ios
 
 fileprivate let kMaxUsernameChars = 255
 
@@ -453,7 +453,7 @@ class RegistrationViewModel {
     func getPasswordScore() -> Int32 {
         var score: Int32 = -1
         if !newPassword.value.isEmpty {
-            score = DBZxcvbn().passwordStrength(newPassword.value).score
+//            score = DBZxcvbn().passwordStrength(newPassword.value).score
         }
         return score
     }

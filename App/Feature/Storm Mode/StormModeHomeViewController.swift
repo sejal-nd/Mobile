@@ -238,7 +238,8 @@ class StormModeHomeViewController: AccountPickerViewController {
         }
     }
     
-    private var loadingLottieAnimation = AnimationView(name: "sm_outage_loading-Flavor\(Configuration.shared.opco.rawValue)")
+    private var loadingLottieAnimation = LottieAnimationView(animation: .named("sm_outage_loading-Flavor\(Configuration.shared.opco.rawValue)"))
+    
     private var refreshControl: UIRefreshControl?
     
     let viewModel = StormModeHomeViewModel()

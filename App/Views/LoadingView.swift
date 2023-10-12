@@ -13,7 +13,7 @@ class LoadingView: UIView {
     
     static let shared = LoadingView(frame: .zero)
     
-    private var loadingAnimationView = AnimationView(name: "full_screen_loading")
+    private var loadingAnimationView = LottieAnimationView(animation: .named("full_screen_loading"))
     
     public override init(frame: CGRect) {
         super.init(frame: frame)

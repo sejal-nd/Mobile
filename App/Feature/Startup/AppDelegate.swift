@@ -7,13 +7,11 @@
 //
 
 import UIKit
-import Toast_Swift
-import AppCenter
+import Toast
 import AppCenterCrashes
 import RxSwift
 import UserNotifications
 import CoreData
-import ForeSee
 import DecibelCore
 
 @UIApplicationMain
@@ -54,7 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Log.info("Configuration " + Configuration.shared.environmentName.rawValue)
         
         if let appCenterId = Configuration.shared.appCenterId {
-            MSAppCenter.start(appCenterId, withServices:[MSCrashes.self])
+            AppCenter.start(withAppSecret: appCenterId, services: [Crashes.self])
         }
         
         setupWatchConnectivity()
@@ -95,9 +93,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 self?.configureQuickActions(isAuthenticated: $0)
             })
             .disposed(by: disposeBag)
-        
-        ForeSee.start()
-        
+                
         //Medallia SDK
         MedalliaPlusDecibelUtility.shared.medalliaSDKInit()
         

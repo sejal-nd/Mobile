@@ -18,7 +18,7 @@ class HomeGameOnboardingCardView: UIView {
     @IBOutlet weak var letsGoButton: UIButton!
     @IBOutlet weak var imageButton: UIButton!
     
-    var lottieAnimation: AnimationView?
+    var lottieAnimation: LottieAnimationView?
     var version: OnboardingCardVersion = .v1
 
     static func create() -> HomeGameOnboardingCardView {

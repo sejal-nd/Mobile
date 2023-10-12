@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
-import Toast_Swift
+import Toast
 
 class RegistrationCreateCredentialsViewControllerNew: KeyboardAvoidingStickyFooterViewController {
 

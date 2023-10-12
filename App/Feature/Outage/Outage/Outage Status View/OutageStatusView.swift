@@ -40,7 +40,7 @@ class OutageStatusView: UIView {
     
     @IBOutlet weak var button: UIButton!
     
-    private var lottieAnimationView: AnimationView?
+    private var lottieAnimationView: LottieAnimationView?
     
     private var outageStatus: OutageStatus?
     var isOutageStatusInactive = false
@@ -182,12 +182,12 @@ extension OutageStatusView {
         case .powerStatus(let isOn):
             lottieAnimationView?.removeFromSuperview()
             if isOn {
-                lottieAnimationView = AnimationView(name: "outage_on")
+                lottieAnimationView = LottieAnimationView(animation: .named("outage_on"))
                 titleLabel.text = NSLocalizedString("POWER IS ON", comment: "")
                 detailDescriptionLabel.isHidden = true
                 detailLabel.isHidden = true
             } else {
-                lottieAnimationView = AnimationView(name: "outage_off")
+                lottieAnimationView = LottieAnimationView(animation: .named("outage_off"))
                 titleLabel.text = NSLocalizedString("POWER IS OUT", comment: "")
                 detailDescriptionLabel.isHidden = false
                 detailLabel.isHidden = false
@@ -210,7 +210,7 @@ extension OutageStatusView {
             titleLabel.accessibilityLabel = "\(titleDescriptionLabel.text ?? "") \(titleLabel.text ?? "")"
         case .reported:
             lottieAnimationView?.removeFromSuperview()
-            lottieAnimationView = AnimationView(name: "outage_reported")
+            lottieAnimationView = LottieAnimationView(animation: .named("outage_reported"))
             statusImageView.isHidden = true
             statusHeightConstraint.constant = 125
             statusWidthConstraint.constant = 125

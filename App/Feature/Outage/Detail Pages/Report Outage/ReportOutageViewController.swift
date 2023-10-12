@@ -60,7 +60,7 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
     
     @IBOutlet weak var submitButton: PrimaryButton!
     
-    private var lottieAnimationView: AnimationView?
+    private var lottieAnimationView: LottieAnimationView?
     
     var delegate: ReportOutageDelegate?
     let viewModel = ReportOutageViewModel()
@@ -378,7 +378,7 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
     
     private func setLottieAnimation(for name: String, shouldLoop: Bool = false) {
         self.lottieAnimationView?.removeFromSuperview()
-        self.lottieAnimationView = AnimationView(name: name)
+        self.lottieAnimationView = LottieAnimationView(animation: .named(name))        
         self.lottieAnimationView?.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
         self.lottieAnimationView?.loopMode = shouldLoop ? .loop : .playOnce
         self.lottieAnimationView?.backgroundBehavior = .pauseAndRestore

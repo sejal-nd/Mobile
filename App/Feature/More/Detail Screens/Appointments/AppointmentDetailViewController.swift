@@ -33,8 +33,8 @@ class AppointmentDetailViewController: UIViewController, IndicatorInfoProvider {
     @IBOutlet private weak var wantNotificationsLabel: UILabel!
     @IBOutlet private weak var adjustAlertPreferencesButton: UIButton!
     
-    var topAnimation = AnimationView()
-    var progressAnimation = AnimationView(name: "appointment_tracker")
+    var topAnimation = LottieAnimationView()
+    var progressAnimation = LottieAnimationView(animation: .named("appointment_tracker"))
     
     var eventVC = EKEventEditViewController()
     
@@ -289,7 +289,7 @@ class AppointmentDetailViewController: UIViewController, IndicatorInfoProvider {
             loop = false
         }
         
-        topAnimation = AnimationView(name: animationName)
+        topAnimation = LottieAnimationView(animation: .named(animationName))
         topAnimation.loopMode = loop ? .loop : .playOnce
         topAnimation.backgroundBehavior = .pauseAndRestore
         topAnimation.translatesAutoresizingMaskIntoConstraints = false

@@ -10,7 +10,7 @@ import Lottie
 
 class LoadingIndicator: UIView {
     
-    private var lottieAnimationView: AnimationView?
+    private var lottieAnimationView: LottieAnimationView?
     
     let bag = DisposeBag()
 
@@ -69,9 +69,9 @@ class LoadingIndicator: UIView {
         lottieAnimationView?.removeFromSuperview()
         
         if isStormMode {
-            lottieAnimationView = AnimationView(name: "ellipses_loading_white")
+            lottieAnimationView = LottieAnimationView(name: "ellipses_loading_white")
         } else {
-            lottieAnimationView = AnimationView(name: "ellipses_loading")
+            lottieAnimationView = LottieAnimationView(name: "ellipses_loading")
         }
 
         lottieAnimationView!.frame.size = CGSize(width: 60, height: 12)

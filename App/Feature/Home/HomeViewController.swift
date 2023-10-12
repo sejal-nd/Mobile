@@ -52,7 +52,7 @@ class HomeViewController: AccountPickerViewController {
     var refreshDisposable: Disposable?
     var refreshControl: UIRefreshControl?
     
-    var alertLottieAnimation = AnimationView(name: "alert_icon")
+    var alertLottieAnimation = LottieAnimationView(animation: .named("alert_icon"))
     
     let viewModel = HomeViewModel()
     

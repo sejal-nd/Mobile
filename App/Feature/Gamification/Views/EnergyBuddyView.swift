@@ -34,11 +34,11 @@ class EnergyBuddyView: UIView {
     @IBOutlet weak var taskIndicatorView: UIView!
     @IBOutlet weak var taskIndicatorLottieView: UIView!
     
-    var confettiAnimation: AnimationView?
-    var bodyAnimation: AnimationView?
-    var faceAnimation: AnimationView?
-    var particleAnimation: AnimationView?
-    var taskIndicatorAnimation: AnimationView?
+    var confettiAnimation: LottieAnimationView?
+    var bodyAnimation: LottieAnimationView?
+    var faceAnimation: LottieAnimationView?
+    var particleAnimation: LottieAnimationView?
+    var taskIndicatorAnimation: LottieAnimationView?
     
     var speechBubbleAnimator: UIViewPropertyAnimator?
     var welcomeMessages = [
@@ -131,7 +131,7 @@ class EnergyBuddyView: UIView {
         
         confettiAnimation?.stop()
         confettiAnimation?.removeFromSuperview()
-        confettiAnimation = AnimationView(name: "confetti")
+        confettiAnimation = LottieAnimationView(animation: .named("confetti"))
         confettiAnimation!.frame.size = confettiLottieView.frame.size
         confettiAnimation!.contentMode = .scaleAspectFit
         confettiAnimation!.loopMode = .loop
@@ -143,7 +143,7 @@ class EnergyBuddyView: UIView {
     func playDefaultAnimations(resetBounce: Bool = true) {
         bodyAnimation?.stop()
         bodyAnimation?.removeFromSuperview()
-        bodyAnimation = AnimationView(name: "buddy_body")
+        bodyAnimation = LottieAnimationView(animation: .named("buddy_body"))
         bodyAnimation!.frame.size = energyBuddyBodyLottieView.frame.size
         bodyAnimation!.contentMode = .scaleAspectFit
         bodyAnimation!.loopMode = .loop
@@ -171,7 +171,7 @@ class EnergyBuddyView: UIView {
     private func playDefaultFaceAnimation() {
         faceAnimation?.stop()
         faceAnimation?.removeFromSuperview()
-        faceAnimation = AnimationView(name: "buddy_face_normal")
+        faceAnimation = LottieAnimationView(animation: .named("buddy_face_normal"))
         faceAnimation!.frame.size = energyBuddyFaceLottieView.frame.size
         faceAnimation!.contentMode = .scaleAspectFit
         faceAnimation!.loopMode = .loop
@@ -182,7 +182,7 @@ class EnergyBuddyView: UIView {
     func playHappyAnimation() {
         faceAnimation?.stop()
         faceAnimation?.removeFromSuperview()
-        faceAnimation = AnimationView(name: "buddy_face_happy")
+        faceAnimation = LottieAnimationView(animation: .named("buddy_face_happy"))
         faceAnimation!.frame.size = energyBuddyFaceLottieView.frame.size
         faceAnimation!.contentMode = .scaleAspectFit
         energyBuddyFaceLottieView.addSubview(faceAnimation!)
@@ -196,7 +196,7 @@ class EnergyBuddyView: UIView {
     func playSuperHappyAnimation(withSparkles sparkles: Bool = false, withHearts hearts: Bool = false) {
         faceAnimation?.stop()
         faceAnimation?.removeFromSuperview()
-        faceAnimation = AnimationView(name: "buddy_face_happy_bounce")
+        faceAnimation = LottieAnimationView(animation: .named("buddy_face_happy_bounce"))
         faceAnimation!.frame.size = energyBuddyFaceLottieView.frame.size
         faceAnimation!.contentMode = .scaleAspectFit
         energyBuddyFaceLottieView.addSubview(faceAnimation!)
@@ -206,11 +206,11 @@ class EnergyBuddyView: UIView {
             }
         }
         
-        var particleAnimationView: AnimationView?
+        var particleAnimationView: LottieAnimationView?
         if sparkles {
-            particleAnimationView = AnimationView(name: "buddy_particles_sparkles")
+            particleAnimationView = LottieAnimationView(animation: .named("buddy_particles_sparkles"))
         } else if hearts {
-            particleAnimationView = AnimationView(name: "buddy_particles_hearts")
+            particleAnimationView = LottieAnimationView(animation: .named("buddy_particles_hearts"))            
         }
         if let av = particleAnimationView {
             particleAnimation = av
@@ -301,7 +301,7 @@ class EnergyBuddyView: UIView {
             lottieFileName = "message_bubble_unique"
         }
         
-        taskIndicatorAnimation = AnimationView(name: lottieFileName)
+        taskIndicatorAnimation = LottieAnimationView(animation: .named(lottieFileName))
         taskIndicatorAnimation!.frame.size = taskIndicatorLottieView.frame.size
         taskIndicatorAnimation!.contentMode = .scaleAspectFit
         taskIndicatorAnimation!.loopMode = .loop
