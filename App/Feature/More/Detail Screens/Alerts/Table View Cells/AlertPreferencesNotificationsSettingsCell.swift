@@ -25,7 +25,6 @@ class AlertPreferencesNotificationsSettingsCell: UITableViewCell {
 
     @IBAction func goToSettingsPressed(_ sender: Any) {
         if let url = URL(string: UIApplication.openSettingsURLString) {
-            GoogleAnalytics.log(event: .alertsDevSet)
             UIApplication.shared.open(url)
         }
     }

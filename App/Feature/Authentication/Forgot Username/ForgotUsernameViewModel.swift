@@ -34,7 +34,6 @@ class ForgotUsernameViewModel {
             case .success(let forgotMaskedUsernameRequest):
                 self.maskedUsernames = forgotMaskedUsernameRequest.maskedUsernames
                 onSuccess()
-                GoogleAnalytics.log(event: .forgotUsernameAccountValidate)
             case .failure(let error):
                 if error == .multiAccount {
                     onNeedAccountNumber()
@@ -49,7 +48,6 @@ class ForgotUsernameViewModel {
         let maskedUsername = maskedUsernames[selectedUsernameIndex]
         let acctNum: String? = accountNumber.value.count > 0 ? accountNumber.value : nil
         let identifier: String? = identifierNumber.value.count > 0 ? identifierNumber.value : nil
-        GoogleAnalytics.log(event: .forgotUsernameSecuritySubmit)
         
         let recoverUsernameRequest = RecoverUsernameRequest(phone: extractDigitsFrom(phoneNumber.value),
                                                             identifier: identifier,

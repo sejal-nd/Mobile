@@ -342,8 +342,6 @@ class UsageViewController: AccountPickerViewController {
                 } else {
                     FirebaseUtility.logEvent(.usage(parameters: [.last_bill_graph_press]))
                 }
-                
-                GoogleAnalytics.log(event: isPreviousBill ? .billPreviousToggle : .billLastYearToggle)
             })
             .disposed(by: disposeBag)
         
@@ -446,11 +444,7 @@ class UsageViewController: AccountPickerViewController {
             .skip(1)
             .distinctUntilChanged()
             .subscribe(onNext: { index in
-                if index == 0 {
-                    GoogleAnalytics.log(event: .billElectricityToggle)
-                } else {
-                    GoogleAnalytics.log(event: .billGasToggle)
-                }
+
             })
             .disposed(by: disposeBag)
         
@@ -905,31 +899,23 @@ class UsageViewController: AccountPickerViewController {
         case .homeProfile:
             performSegue(withIdentifier: "updateYourHomeProfileSegue", sender: accountDetail)
         case .peakRewards:
-            GoogleAnalytics.log(event: .viewUsagePeakRewards)
             performSegue(withIdentifier: "peakRewardsSegue", sender: accountDetail)
         case .smartEnergyRewards:
-            GoogleAnalytics.log(event: .viewSmartEnergyRewards)
             let segueIdentifier = FeatureFlagUtility.shared.bool(forKey: .isB2CAuthentication) ? "serWebViewB2cSegue" : "serWebViewSegue"
             performSegue(withIdentifier: segueIdentifier, sender: accountDetail)
         case .hourlyPricing:
             if accountDetail.isHourlyPricing {
-                GoogleAnalytics.log(event: .hourlyPricing,
-                                    dimensions: [.hourlyPricingEnrollment: "enrolled"])
                 performSegue(withIdentifier: "hourlyPricingSegue", sender: accountDetail)
             } else {
-                GoogleAnalytics.log(event: .hourlyPricing,
-                                    dimensions: [.hourlyPricingEnrollment: "unenrolled"])
                 let safariVc = SFSafariViewController
                     .createWithCustomStyle(url: URL(string: "https://hourlypricing.comed.com")!)
                 present(safariVc, animated: true, completion: nil)
             }
         case .peakTimeSavings:
             if accountDetail.isAMIAccount && !accountDetail.isPTSAccount {
-                GoogleAnalytics.log(event: .peakTimePromo)
                 let safariVc = SFSafariViewController.createWithCustomStyle(url: URL(string: "http://comed.com/PTS")!)
                 present(safariVc, animated: true, completion: nil)
             } else {
-                GoogleAnalytics.log(event: .viewPeakTimeSavings)
                 performSegue(withIdentifier: "smartEnergyRewardsSegue", sender: accountDetail)
             }
         case .energyWiseRewards:

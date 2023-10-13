@@ -90,14 +90,12 @@ extension B2CForgotPasswordViewController: WKScriptMessageHandler {
               let name = body["name"] as? String else { return }
         
         if command == "logEvent" {
-            if name == GoogleAnalyticsEvent.forgotPasswordOffer.rawValue {
+            if name == "ForgotPWDOffer" {
                 FirebaseUtility.logEvent(.login(parameters: [.forgot_password_press]))
-                GoogleAnalytics.log(event: .forgotPasswordOffer)
             }
             
-            if name == GoogleAnalyticsEvent.forgotPasswordComplete.rawValue {
+            if name == "ForgotPWDComplete" {
                 FirebaseUtility.logEvent(.forgotPassword(parameters: [.complete]))
-                GoogleAnalytics.log(event: .forgotPasswordComplete)
             }
         }
     }

@@ -314,15 +314,6 @@ class ReviewPaymentViewController: UIViewController {
     @IBAction func onSubmitPress() {
         LoadingView.show()
         
-        if let bankOrCard = viewModel.selectedWalletItem.value?.bankOrCard, let temp = viewModel.selectedWalletItem.value?.isTemporary {
-            switch bankOrCard {
-            case .bank:
-                GoogleAnalytics.log(event: .eCheckSubmit, dimensions: [.paymentTempWalletItem: temp ? "true" : "false"])
-            case .card:
-                GoogleAnalytics.log(event: .cardSubmit, dimensions: [.paymentTempWalletItem: temp ? "true" : "false"])
-            }
-        }
-        
         FirebaseUtility.logEvent(.reviewPaymentSubmit)
         FirebaseUtility.logEvent(.payment(parameters: [.submit]))
         
@@ -402,31 +393,14 @@ class ReviewPaymentViewController: UIViewController {
                         let temp = self?.viewModel.selectedWalletItem.value?.isTemporary ?? false
                         switch bankOrCard {
                         case .bank:
-                            GoogleAnalytics.log(event: .eCheckComplete, dimensions: [.paymentTempWalletItem: temp ? "true" : "false"])
                             FirebaseUtility.logEvent(.payment(parameters: [.bank_complete]))
                         case .card:
-                            GoogleAnalytics.log(event: .cardComplete, dimensions: [.paymentTempWalletItem: temp ? "true" : "false"])
                             FirebaseUtility.logEvent(.payment(parameters: [.card_complete]))
                         }
                     }
                     
                     self?.performSegue(withIdentifier: "paymentConfirmationSegue", sender: self)
                 }, onError: { [weak self] error in
-                    if let bankOrCard = self?.viewModel.selectedWalletItem.value?.bankOrCard {
-                        let temp = self?.viewModel.selectedWalletItem.value?.isTemporary ?? false
-                        switch bankOrCard {
-                        case .bank:
-                            GoogleAnalytics.log(event: .eCheckError, dimensions: [
-                                .errorCode: error.title ,
-                                .paymentTempWalletItem: temp ? "true" : "false"
-                            ])
-                        case .card:
-                            GoogleAnalytics.log(event: .cardError, dimensions: [
-                                .errorCode: error.title,
-                                .paymentTempWalletItem: temp ? "true" : "false"
-                            ])
-                        }
-                    }
                     handleError(error)
             })
         }

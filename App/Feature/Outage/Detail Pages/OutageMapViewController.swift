@@ -65,10 +65,6 @@ class OutageMapViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        if unauthenticatedExperience {
-            GoogleAnalytics.log(event: .viewOutageMapUnAuthOfferComplete)
-        }
-        
         if urlString?.isEmpty ?? true {
             let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: NSLocalizedString("The map is currently unavailable. Please try again later.", comment: ""), preferredStyle: .alert)
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: { [weak self] _ in

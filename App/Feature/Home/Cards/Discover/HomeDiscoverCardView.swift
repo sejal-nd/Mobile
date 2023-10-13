@@ -102,10 +102,8 @@ class HomeDiscoverCardView: UIView {
                 let appStoreUrl = URL(string:"https://itunes.apple.com/us/app/ecobee/id916985674?mt=8")!
 
                 if UIApplication.shared.canOpenURL(appLinkUrl) {
-                    GoogleAnalytics.log(event: .homePromoCard, dimensions: [.link: appLinkUrl.absoluteString])
                     UIApplication.shared.open(appLinkUrl)
                 } else if UIApplication.shared.canOpenURL(appStoreUrl) {
-                    GoogleAnalytics.log(event: .homePromoCard, dimensions: [.link: appStoreUrl.absoluteString])
                     UIApplication.shared.open(appStoreUrl)
                 }
             })
@@ -161,8 +159,6 @@ class HomeDiscoverCardView: UIView {
             return peakRewardsVC
         }.asDriver(onErrorDriveWith: .empty())
         .do(onNext: { _ in
-            GoogleAnalytics.log(event: .homePromoCard,
-                                 dimensions: [.link: "https://secure.bge.com/Peakrewards/Pages/default.aspx"])
         })
 
     private(set) lazy var alertPrefsViewController: Driver<UIViewController> = self.row9Button.rx.touchUpInside.asDriver()

@@ -50,10 +50,6 @@ class AutoPayChangeBankViewController: KeyboardAvoidingStickyFooterViewControlle
 		textFieldSetup()
 		bindViews()
 	}
-	
-    override func viewDidAppear(_ animated: Bool) {
-        GoogleAnalytics.log(event: .autoPayModifyBankView)
-    }
     
     
     // MARK: - Helper
@@ -254,7 +250,6 @@ class AutoPayChangeBankViewController: KeyboardAvoidingStickyFooterViewControlle
         view.endEditing(true)
         
         LoadingView.show()
-        GoogleAnalytics.log(event: .autoPayModifyBankSave)
         
         FirebaseUtility.logEvent(.autoPaySubmit)
         FirebaseUtility.logEvent(.autoPay(parameters: [.modify_start]))
@@ -267,7 +262,6 @@ class AutoPayChangeBankViewController: KeyboardAvoidingStickyFooterViewControlle
                 
                 FirebaseUtility.logEvent(.autoPayNetworkComplete)
                 FirebaseUtility.logEvent(.autoPay(parameters: [.modify_complete]))
-                GoogleAnalytics.log(event: .autoPayModifyBankComplete)
                 
                 self.delegate?.changedBank()
                 self.dismissModal()

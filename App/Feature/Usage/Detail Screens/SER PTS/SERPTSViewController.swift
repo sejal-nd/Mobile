@@ -90,7 +90,6 @@ class SERPTSViewController: UIViewController {
             .withLatestFrom(viewModel.eventResults)
             .asDriver(onErrorDriveWith: .empty())
             .drive(onNext: { [weak self] eventResults in
-                GoogleAnalytics.log(event: .allSavingsUsage)
                 self?.performSegue(withIdentifier: "totalSavingsSegue", sender: eventResults)
             })
             .disposed(by: disposeBag)
@@ -128,7 +127,7 @@ class SERPTSViewController: UIViewController {
         
         viewModel.shouldShowSmartEnergyRewardsContent.asObservable()
             .filter(!)
-            .subscribe(onNext: { _ in GoogleAnalytics.log(event: .emptyStatePeakSmart) })
+            .subscribe(onNext: { _ in  })
             .disposed(by: disposeBag)
         
         viewModel.smartEnergyRewardsSeasonLabelText

@@ -62,10 +62,6 @@ class RegistrationConfirmationViewController: DismissableFormSheetViewController
         bodyLabel.attributedText = attrString
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        GoogleAnalytics.log(event: .registerAccountComplete)
-    }
-    
     private var emailAddress: String {
         switch Configuration.shared.opco {
         case .comEd:
@@ -105,7 +101,6 @@ class RegistrationConfirmationViewController: DismissableFormSheetViewController
             case .success:
                 FirebaseUtility.logEvent(.register(parameters: [.resend_email]))
                 self?.view.showToast(NSLocalizedString("Verification email sent", comment: ""))
-                GoogleAnalytics.log(event: .registerResendEmail)
             case .failure(let error):
                 let alertVc = UIAlertController(title: error.title, message: error.description, preferredStyle: .alert)
                 alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))

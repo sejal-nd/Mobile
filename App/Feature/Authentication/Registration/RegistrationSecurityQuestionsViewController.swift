@@ -260,12 +260,6 @@ class RegistrationSecurityQuestionsViewController: KeyboardAvoidingStickyFooterV
             guard let self = self else { return }
             LoadingView.hide()
 
-            if self.viewModel.hasStrongPassword {
-                GoogleAnalytics.log(event: .strongPasswordComplete)
-            }
-            
-            GoogleAnalytics.log(event: .registerAccountSecurityQuestions)
-
             self.performSegue(withIdentifier: "loadRegistrationConfirmationSegue", sender: self)
 
         }, onError: { [weak self] (title, message) in
@@ -282,10 +276,6 @@ class RegistrationSecurityQuestionsViewController: KeyboardAvoidingStickyFooterV
         viewModel.paperlessEbill.accept(!viewModel.paperlessEbill.value)
         
         toggleAccountListing(viewModel.paperlessEbill.value && viewModel.accounts.value.count > displayAccountsIfGreaterThan)
-        
-        if eBillEnrollCheckbox.isChecked {
-            GoogleAnalytics.log(event: .registerEBillEnroll)
-        }
     }
     
     @IBAction func onQuestionButtonPress(_ sender: Any) {

@@ -87,7 +87,6 @@ class RegistrationBGEAccountNumberViewController: KeyboardAvoidingStickyFooterVi
         LoadingView.show()
         viewModel.validateAccount(onSuccess: {
             LoadingView.hide()
-            GoogleAnalytics.log(event: .registerAccountSetup)
             if Configuration.shared.opco.isPHI {
                 self.performSegue(withIdentifier: "phiCreateCredentialsSegue", sender: self)
             } else {

@@ -179,21 +179,6 @@ extension MainTabBarController: UITabBarControllerDelegate {
                 // Different tab tapped
                 previousViewController = viewController
                 
-                switch selectedIndex {
-                case 0:
-                    GoogleAnalytics.log(event: .tabHome)
-                case 1:
-                    GoogleAnalytics.log(event: .tabBill)
-                case 2:
-                    GoogleAnalytics.log(event: .tabOutage)
-                case 3:
-                    GoogleAnalytics.log(event: .tabUsage)
-                case 4:
-                    GoogleAnalytics.log(event: .tabMore)
-                default:
-                    break
-                }
-                
                 return
         }
         

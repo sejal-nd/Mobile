@@ -182,7 +182,6 @@ class TapToPayConfirmationViewController: UIViewController {
     }
     
     @IBAction func onEnrollInAutoPayPress() {
-        GoogleAnalytics.log(event: .confirmationScreenAutopayEnroll)
         NotificationCenter.default.post(name: .didSelectEnrollInAutoPay, object: self.viewModel.accountDetail.value)
         NotificationCenter.default.post(name: .didRecievePaymentConfirmation, object: nil)
         self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
@@ -195,7 +194,6 @@ class TapToPayConfirmationViewController: UIViewController {
                 })
                 break
             } else if let dest = vc as? HomeViewController {
-                GoogleAnalytics.log(event: .confirmationScreenAutopayEnroll)
                 presentingNavController.popToViewController(dest, animated: false)
                 let tabController = presentingNavController.tabBarController as! MainTabBarController
                 tabController.selectedIndex = 1

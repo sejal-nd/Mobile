@@ -408,8 +408,6 @@ extension WalletViewController: PaymentusFormViewControllerDelegate {
     }
     
     func didAddWalletItem(_ walletItem: WalletItem) {
-        GoogleAnalytics.log(event: .addWalletComplete)
-
         if walletItem.bankOrCard == .bank {
             FirebaseUtility.logEvent(.wallet(parameters: [.add_bank_complete]))
         } else {

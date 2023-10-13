@@ -49,8 +49,6 @@ class MyHomeProfileViewController: KeyboardAvoidingStickyFooterViewController {
         super.viewDidLoad()
         
         let residentialAMIString = String(format: "%@%@", accountDetail.isResidential ? "Residential/" : "Commercial/", accountDetail.isAMIAccount ? "AMI" : "Non-AMI")
-        GoogleAnalytics.log(event: .viewHomeProfile,
-                             dimensions: [.residentialAMI: residentialAMIString])
         
         styleViews()
         initialLoadSetup()

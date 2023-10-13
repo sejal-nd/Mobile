@@ -50,12 +50,6 @@ final class HomePrepaidCardView: UIView {
         }
     }
     @IBAction func callToActionPress(_ sender: Any) {
-        if viewModel.isActive {
-            GoogleAnalytics.log(event: .prePaidEnrolled)
-        } else {
-            GoogleAnalytics.log(event: .prePaidPending)
-        }
-        
         UIApplication.shared.openUrlIfCan(viewModel.buttonUrl)
     }
 }

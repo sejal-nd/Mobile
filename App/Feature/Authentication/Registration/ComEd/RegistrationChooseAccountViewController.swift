@@ -93,13 +93,11 @@ class RegistrationChooseAccountViewController: UIViewController {
         LoadingView.show()
         viewModel.validateAccount(onSuccess: { [weak self] in
             LoadingView.hide()
-            GoogleAnalytics.log(event: .registerAccountValidation)
 
             let segueIdentifier = FeatureFlagUtility.shared.bool(forKey: .isB2CAuthentication) ? "createCredentialsB2cSegue" : "createCredentialsMultipleAccountSegue"
             self?.performSegue(withIdentifier: segueIdentifier, sender: self)
             }, onMultipleAccounts:  { [weak self] in
                 LoadingView.hide()
-                GoogleAnalytics.log(event: .registerAccountValidation)
                
                 let segueIdentifier = FeatureFlagUtility.shared.bool(forKey: .isB2CAuthentication) ? "createCredentialsB2cSegue" : "createCredentialsMultipleAccountSegue"
                 self?.performSegue(withIdentifier: segueIdentifier, sender: self)

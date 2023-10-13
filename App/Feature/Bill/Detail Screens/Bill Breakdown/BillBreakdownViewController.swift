@@ -7,6 +7,7 @@
 //
 
 import Charts
+import UIKit
 
 class BillBreakdownViewController: UIViewController {
     
@@ -54,8 +55,6 @@ class BillBreakdownViewController: UIViewController {
         extendedLayoutIncludesOpaqueBars = true
 
         let residentialAMIString = String(format: "%@%@", viewModel.accountDetail.isResidential ? "Residential/" : "Commercial/", viewModel.accountDetail.isAMIAccount ? "AMI" : "Non-AMI")
-        GoogleAnalytics.log(event: .billNeedHelp,
-                             dimensions: [.residentialAMI: residentialAMIString])
         
         title = NSLocalizedString("Bill Breakdown", comment: "")
         

@@ -86,10 +86,6 @@ class BillingHistoryViewController: UIViewController {
         }
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        GoogleAnalytics.log(event: .billingOfferComplete)
-    }
-    
     func getBillingHistory() {
         loadingIndicator.isHidden = false
         tableView.isHidden = true
@@ -124,7 +120,6 @@ class BillingHistoryViewController: UIViewController {
     func selectedRow(at indexPath: IndexPath) {
         if let vc = viewControllerToPush(forTappedIndexPath: indexPath) {
             if vc is ViewBillViewController {
-                GoogleAnalytics.log(event: .billViewPastOfferComplete)
                 AppRating.logRatingEvent()
             }
             
@@ -544,12 +539,6 @@ extension BillingHistoryViewController: AutoPayViewControllerDelegate {
     func autoPayViewController(_ autoPayViewController: UIViewController, enrolled: Bool) {
         let message = enrolled ? NSLocalizedString("Enrolled in AutoPay", comment: ""): NSLocalizedString("Unenrolled from AutoPay", comment: "")
         showDelayedToast(withMessage: message)
-        
-        if enrolled {
-            GoogleAnalytics.log(event: .autoPayEnrollComplete)
-        } else {
-            GoogleAnalytics.log(event: .autoPayUnenrollComplete)
-        }
     }
     
 }

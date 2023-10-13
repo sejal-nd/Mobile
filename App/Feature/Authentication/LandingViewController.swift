@@ -159,7 +159,6 @@ class LandingViewController: UIViewController {
                         self.signInButton.accessibilityViewIsModal = false
                         
                         FirebaseUtility.logEvent(.login(parameters: [.forgot_username_press]))
-                        GoogleAnalytics.log(event: .forgotUsernameOffer)
                         
                         self.performSegue(withIdentifier: "forgotUsernameSegue", sender: self)
                     } else {
@@ -198,7 +197,6 @@ class LandingViewController: UIViewController {
                 
                 self.signInButton.setSuccess {
                     FirebaseUtility.logEvent(.initialAuthenticatedScreenStart)
-                    GoogleAnalytics.log(event: .loginComplete)
 
                     guard let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as? MainTabBarController,
                         let navController = self.navigationController else {
@@ -338,7 +336,6 @@ extension LandingViewController: RegistrationViewControllerDelegate {
 extension LandingViewController: ForgotUsernameResultViewControllerDelegate {
     func forgotUsernameResultViewController(_ forgotUsernameResultViewController: UIViewController, didUnmaskUsername username: String) {
         Log.info("unmasked email is \(username)")
-        GoogleAnalytics.log(event: .forgotUsernameCompleteAutoPopup)
         
         DispatchQueue.main.async {
             self.showFindEmailAlert(foundEmail: username)
@@ -349,7 +346,6 @@ extension LandingViewController: ForgotUsernameResultViewControllerDelegate {
 extension LandingViewController: AccountLookUpValidatePinViewControllerDelegate {
     func accountLookUpValidatePinViewController(_ accountLookUpValidatePinViewController: UIViewController, didUnmaskUsername username: String) {
         Log.info("unmasked email is \(username)")
-        GoogleAnalytics.log(event: .forgotUsernameCompleteAutoPopup)
         
         DispatchQueue.main.async {
             self.showFindEmailAlert(foundEmail: username)

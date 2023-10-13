@@ -6,7 +6,8 @@
 //  Copyright © 2021 Exelon Corporation. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
 extension UIAlertController {
     //Set background color of UIAlertController
     func setBackgroundColor(color: UIColor) {

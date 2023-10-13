@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UserNotifications
 
 final class GameTaskStore {
     static let shared = GameTaskStore()

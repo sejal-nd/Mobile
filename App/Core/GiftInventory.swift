@@ -6,7 +6,7 @@
 //  Copyright © 2019 Exelon Corporation. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 enum GiftType: String {
     case background, hat, accessory

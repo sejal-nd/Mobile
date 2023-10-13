@@ -66,11 +66,7 @@ class PECOReleaseOfInfoViewController: UIViewController {
         
         fetchCurrentSelection()
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        GoogleAnalytics.log(event: .releaseInfoOffer)
-    }
-    
+
     @objc func onSubmitPress() {
         var rowToIntMapping = selectedRowIndex // Address only is mapped correctly
         if selectedRowIndex == 0 {
@@ -82,7 +78,6 @@ class PECOReleaseOfInfoViewController: UIViewController {
         LoadingView.show()
         
         FirebaseUtility.logEvent(.releaseOfInfoSubmit)
-        GoogleAnalytics.log(event: .releaseInfoSubmit)
         
         AccountService.updatePECOReleaseOfInfoPreference(selectedIndex: rowToIntMapping) { [weak self] result in
             switch result {

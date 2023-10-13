@@ -24,9 +24,7 @@ class UnauthenticatedOutageValidateAccountViewController: KeyboardAvoidingSticky
     
     @IBOutlet weak var stickyFooterView: StickyFooterView!
     @IBOutlet weak var continueButton: PrimaryButton!
-    
-    var analyticsSource: AnalyticsOutageSource!
-    
+        
     let viewModel = UnauthenticatedOutageViewModel()
 
     let disposeBag = DisposeBag()
@@ -55,7 +53,6 @@ class UnauthenticatedOutageValidateAccountViewController: KeyboardAvoidingSticky
         footerView.addTopBorder(color: .accentGray, width: 1)
         footerTextView.textColor = .neutralDark
         footerTextView.tintColor = .actionBrand // For the phone numbers
-        footerTextView.linkTapDelegate = self
         maintenanceModeView.isHidden = true
         
         bindViewModel()
@@ -225,15 +222,6 @@ class UnauthenticatedOutageValidateAccountViewController: KeyboardAvoidingSticky
             
             self.present(alertVc, animated: true, completion: nil)
         })
-        
-        switch analyticsSource {
-        case .report?:
-            GoogleAnalytics.log(event: .reportAnOutageUnAuthSubmitAcctVal)
-        case .status?:
-            GoogleAnalytics.log(event: .outageStatusUnAuthAcctValidate)
-        default:
-            break
-        }
     }
     
     @IBAction func onAccountNumberTooltipPress() {
@@ -257,7 +245,6 @@ class UnauthenticatedOutageValidateAccountViewController: KeyboardAvoidingSticky
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? UnauthenticatedOutageValidateAccountResultViewController {
             vc.viewModel = viewModel
-            vc.analyticsSource = analyticsSource
         } else if let vc = segue.destination as? OutageViewController {
             vc.userState = .unauthenticated
             vc.viewModel.outageStatus.accept(viewModel.selectedOutageStatus.value)
@@ -311,11 +298,4 @@ extension UnauthenticatedOutageValidateAccountViewController: UITextFieldDelegat
         return true
     }
     
-}
-
-extension UnauthenticatedOutageValidateAccountViewController: DataDetectorTextViewLinkTapDelegate {
-    
-    func dataDetectorTextView(_ textView: DataDetectorTextView, didInteractWith URL: URL) {
-        GoogleAnalytics.log(event: .outageStatusUnAuthAcctValEmergencyPhone)
-    }
 }

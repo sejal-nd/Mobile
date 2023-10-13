@@ -139,7 +139,6 @@ class AutoPayViewController: KeyboardAvoidingStickyFooterViewController {
             tacLabel.setLineHeight(lineHeight: 25)
             tacSwitch.accessibilityLabel = viewModel.tacSwitchAccessibilityLabel
             tacButton.titleLabel?.font = .subheadlineSemibold
-            GoogleAnalytics.log(event: .autoPayEnrollOffer)
         }
 
         footerLabel.textColor = .neutralDark

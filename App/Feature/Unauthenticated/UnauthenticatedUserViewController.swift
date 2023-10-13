@@ -102,25 +102,10 @@ class UnauthenticatedUserViewController: UIViewController, UIGestureRecognizerDe
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? UnauthenticatedOutageValidateAccountViewController {
-            switch(segue.identifier) {
-            case "reportOutageValidateAccount"?:
-                GoogleAnalytics.log(event: .reportAnOutageUnAuthOffer)
-                vc.analyticsSource = .report
-                break
-            case "checkOutageValidateAccount"?:
-                GoogleAnalytics.log(event: .outageStatusUnAuthOffer)
-                vc.analyticsSource = .status
-                break
-            default:
-                break
-            }
+
         } else if let vc = segue.destination as? OutageMapViewController {
             vc.unauthenticatedExperience = true
             vc.hasPressedStreetlightOutageMapButton = segue.identifier == "streetlightOutageMapSegue" ? true : false
-            if !Configuration.shared.opco.isPHI {
-                GoogleAnalytics.log(event: .viewOutageMapGuestMenu)
-            }
-            
         } else if let vc = segue.destination as? ContactUsViewController {
             vc.unauthenticatedExperience = true
         } else if let vc = segue.destination as? UpdatesViewController {

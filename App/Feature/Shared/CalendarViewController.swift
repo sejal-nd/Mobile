@@ -6,7 +6,7 @@
 //  Copyright © 2022 Exelon Corporation. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import HorizonCalendar
 
 protocol CalendarViewDelegate {

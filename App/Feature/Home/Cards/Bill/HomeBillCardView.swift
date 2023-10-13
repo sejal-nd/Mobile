@@ -295,7 +295,6 @@ class HomeBillCardView: UIView {
         viewModel.showErrorState
             .filter { $0 }
             .drive(onNext: { _ in
-                GoogleAnalytics.log(event: .checkBalanceError)
                 FirebaseUtility.logEvent(.home(parameters: [.balance_not_available]))
             })
             .disposed(by: bag)
@@ -433,7 +432,6 @@ class HomeBillCardView: UIView {
     Driver.merge([self.viewBillButton.rx.touchUpInside.asDriver(), self.billCardHeader.button.rx.touchUpInside.asDriver()])
         .do(onNext: {
             FirebaseUtility.logEvent(.home(parameters: [.bill_cta]))
-            GoogleAnalytics.log(event: .viewBillBillCard)
         })
     
     private(set) lazy var oneTouchPayFinished: Observable<Void> = self.viewModel.oneTouchPayResult
@@ -447,7 +445,6 @@ class HomeBillCardView: UIView {
     private lazy var paymentTACModal: Driver<UIViewController> = self.oneTouchPayTCButton.rx.touchUpInside.asObservable()
         .do(onNext: {
             FirebaseUtility.logEvent(.home(parameters: [.bill_terms]))
-            GoogleAnalytics.log(event: .oneTouchTermsView)
         })
         .map { [weak self] in self?.viewModel.paymentTACUrl }
         .unwrap()

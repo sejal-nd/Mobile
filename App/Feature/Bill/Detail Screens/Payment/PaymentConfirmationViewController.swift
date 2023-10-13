@@ -176,7 +176,6 @@ class PaymentConfirmationViewController: UIViewController {
     }
     
     @IBAction func onEnrollInAutoPayPress() {
-        GoogleAnalytics.log(event: .confirmationScreenAutopayEnroll)
         for vc in presentingNavController.viewControllers {
             if let dest = vc as? BillViewController {
                 presentingNavController.popToViewController(dest, animated: false)
@@ -185,7 +184,6 @@ class PaymentConfirmationViewController: UIViewController {
                 })
                 break
             } else if let dest = vc as? HomeViewController {
-                GoogleAnalytics.log(event: .confirmationScreenAutopayEnroll)
                 presentingNavController.popToViewController(dest, animated: false)
                 let tabController = presentingNavController.tabBarController as! MainTabBarController
                 tabController.selectedIndex = 1

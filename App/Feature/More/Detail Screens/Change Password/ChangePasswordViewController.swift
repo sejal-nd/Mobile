@@ -172,10 +172,6 @@ class ChangePasswordViewController: KeyboardAvoidingStickyFooterViewController {
         navigationItem.setHidesBackButton(tempPasswordWorkflow, animated: true)
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        GoogleAnalytics.log(event: .changePasswordOffer)
-    }
-    
     // MARK: - Actions
     
     @IBAction func submitButtonPress(_ sender: Any? = nil) {
@@ -200,15 +196,11 @@ class ChangePasswordViewController: KeyboardAvoidingStickyFooterViewController {
             self.navigationController?.popViewController(animated: true)
 
             if self.viewModel.hasStrongPassword {
-                GoogleAnalytics.log(event: .strongPasswordComplete)
-                
                 FirebaseUtility.logEvent(.more(parameters: [.strong_password_complete]))
             }
             
             FirebaseUtility.logEvent(.changePasswordNetworkComplete)
-            
-            GoogleAnalytics.log(event: .changePasswordDone)
-                                                                        
+                                                                                    
             FirebaseUtility.logEvent(.more(parameters: [.change_password_complete]))
         }, onPasswordNoMatch: { [weak self] in
             LoadingView.hide()

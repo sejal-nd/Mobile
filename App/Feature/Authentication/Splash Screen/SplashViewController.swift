@@ -228,10 +228,7 @@ class SplashViewController: UIViewController{
             }
             
             let vcArray = [landing, unauthenticatedUser, unauthenticatedOutageValidate]
-            
-            GoogleAnalytics.log(event: .reportAnOutageUnAuthOffer)
-            unauthenticatedOutageValidate.analyticsSource = AnalyticsOutageSource.report
-            
+                        
             navigationController?.setViewControllers(vcArray, animated: true)
         } else if shortcutItem == .alertPreferences {
             let loginStoryboard = UIStoryboard(name: "Login", bundle: nil)

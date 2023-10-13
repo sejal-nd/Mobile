@@ -128,7 +128,7 @@ class AlertPreferencesViewController: UIViewController {
         .disposed(by: disposeBag)
 
         viewModel.prefsChanged.filter { $0 }.take(1)
-            .subscribe(onNext: { _ in GoogleAnalytics.log(event: .alertsPrefCenterOffer) })
+            .subscribe(onNext: { _ in  })
             .disposed(by: disposeBag)
 
         saveButton.rx.tap.asDriver()
@@ -138,7 +138,6 @@ class AlertPreferencesViewController: UIViewController {
     
     @objc func onSavePress() {
         guard saveButton.isEnabled else { return }
-        GoogleAnalytics.log(event: .alertsPrefCenterSave)
         
         FirebaseUtility.logEvent(.more(parameters: [.alert_preferences_start]))
         
@@ -183,20 +182,17 @@ class AlertPreferencesViewController: UIViewController {
             if !viewModel.accountDetail.isEBillEnrollment {
                 let alertTitle = NSLocalizedString("Go Paperless", comment: "")
                 let alertMessage = NSLocalizedString("By selecting this alert, you will be enrolled in paperless billing and you will no longer receive a paper bill in the mail. Paperless billing will begin with your next billing cycle.", comment: "")
-                GoogleAnalytics.log(event: .alertseBillEnrollPush)
                 
                 let alertVc = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
                 
                 alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: { [weak self] _ in
                     FirebaseUtility.logEvent(.alerts(parameters: [.bill_enroll_push_cancel]))
-                    GoogleAnalytics.log(event: .alertseBillEnrollPushCancel)
                     
                     self?.viewModel.billReady.accept(!isOn) // Need to manually set this because .setOn does not trigger rx binding
                 }))
                 
                 alertVc.addAction(UIAlertAction(title: NSLocalizedString("Continue", comment: ""), style: .default, handler: { [weak self] _ in
                     FirebaseUtility.logEvent(.alerts(parameters: [.bill_enroll_push_continue]))
-                    GoogleAnalytics.log(event: .alertseBillEnrollPushContinue)
                     
                     self?.viewModel.billReady.accept(true)
                 }))
@@ -214,8 +210,6 @@ class AlertPreferencesViewController: UIViewController {
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: { [weak self] _ in
                 
                 FirebaseUtility.logEvent(.alerts(parameters: [.bill_unenroll_push_continue]))
-
-                GoogleAnalytics.log(event: .alertseBillUnenrollPushContinue)
 
                 self?.viewModel.billReady.accept(false)
             }))
@@ -366,7 +360,6 @@ extension AlertPreferencesViewController: UITableViewDataSource {
                 .drive(onNext: { [weak self] in
                     guard let self = self else { return }
                     FirebaseUtility.logEvent(.alerts(parameters: [.days_before_due_press]))
-                    GoogleAnalytics.log(event: .alertsPayRemind)
                     let upperRange = Configuration.shared.opco == .bge ? 14 : 7
                     PickerView.showStringPicker(withTitle: NSLocalizedString("Payment Due Reminder", comment: ""),
                                                 data: (1...upperRange).map { $0 == 1 ? "\($0) Day" : "\($0) Days" },

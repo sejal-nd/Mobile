@@ -1,6 +1,5 @@
 PODS:
   - DecibelSDK (2.1.1)
-  - GoogleAnalytics (3.17.0)
   - RxCocoa (5.1.3):
     - RxRelay (~> 5)
     - RxSwift (~> 5)
@@ -18,14 +17,12 @@ PODS:
 
 DEPENDENCIES:
   - DecibelSDK
-  - GoogleAnalytics (= 3.17.0)
   - RxSwift (= 5.1.0)
   - RxSwiftExt (= 5.2.0)
   - RxSwiftExt/RxCocoa (= 5.2.0)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
-    - GoogleAnalytics
     - RxCocoa
     - RxRelay
     - RxSwift
@@ -35,12 +32,11 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   DecibelSDK: 9a7892ac6fe1e3882fe9cea14044bb6abcf40f3c
-  GoogleAnalytics: f42cc53a87a51fe94334821868d9c8481ff47a7b
   RxCocoa: e2ed092d5432e4296aa818021d27de4090ac0354
   RxRelay: 5a18c2eb2d68326ebaf0112f80d837ae41b92b97
   RxSwift: ad5874f24bb0dbffd1e9bb8443604e3578796c7a
   RxSwiftExt: 4ca80336f43c28f11a2825cdd2fc61dd6c044697
 
-PODFILE CHECKSUM: f50309277cce3797511f1e796a921f6066c4352d
+PODFILE CHECKSUM: 0aac171d8c51b3dd6c9f89532f0de1d0ffe1d02d
 
 COCOAPODS: 1.12.1

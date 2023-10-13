@@ -7,6 +7,7 @@
 //
 
 import Lottie
+import UIKit
 
 protocol OutageStatusButtonDelegate: class {
     func outageStatusButtonWasTapped(_ outageStatusButton: OutageStatusButton)

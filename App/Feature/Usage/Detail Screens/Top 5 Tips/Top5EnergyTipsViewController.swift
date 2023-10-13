@@ -27,7 +27,6 @@ class Top5EnergyTipsViewController: DismissableFormSheetViewController {
         title = NSLocalizedString("Top 5 Energy Tips", comment: "")
         
         let residentialAMIString = String(format: "%@%@", accountDetail.isResidential ? "Residential/" : "Commercial/", accountDetail.isAMIAccount ? "AMI" : "Non-AMI")
-        GoogleAnalytics.log(event: .viewTopTips, dimensions: [.residentialAMI: residentialAMIString])
         
         errorLabel.textColor = .neutralDark
         

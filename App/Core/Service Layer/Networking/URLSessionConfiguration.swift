@@ -7,7 +7,9 @@
 //
 
 import Foundation
-#if os(watchOS)
+#if os(iOS)
+import UIKit
+#elseif os(watchOS)
 import WatchKit
 #endif
 

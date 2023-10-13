@@ -19,7 +19,6 @@ class UnauthenticatedOutageValidateAccountResultViewController: UIViewController
     @IBOutlet weak var firstSeparatorView: UIView!
     @IBOutlet weak var selectAccountButton: PrimaryButton!
     
-    var analyticsSource: AnalyticsOutageSource!
     var viewModel: UnauthenticatedOutageViewModel! // Passed from UnauthenticatedOutageValidateAccountViewController
     
     var singleMultipremiseAccount = false
@@ -165,15 +164,6 @@ class UnauthenticatedOutageValidateAccountResultViewController: UIViewController
             vc.userState = .unauthenticated
             vc.viewModel.outageStatus.accept(viewModel.selectedOutageStatus.value)
             vc.viewModel.accountNumber = viewModel.selectedOutageStatus.value?.accountNumber
-
-            switch analyticsSource {
-            case .report?:
-                GoogleAnalytics.log(event: .reportAnOutageUnAuthSubmitAcctSelection)
-            case .status?:
-                GoogleAnalytics.log(event: .outageStatusUnAuthAcctSelect)
-            default:
-                break
-            }
         }
     }
     

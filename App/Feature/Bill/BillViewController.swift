@@ -11,6 +11,7 @@ import RxCocoa
 import RxSwiftExt
 import Lottie
 import SafariServices
+import UIKit
 
 class BillViewController: AccountPickerViewController {
     @IBOutlet weak var noNetworkConnectionView: NoNetworkConnectionView!
@@ -758,7 +759,6 @@ class BillViewController: AccountPickerViewController {
         
         prepaidBannerButton.rx.touchUpInside.asDriver()
             .drive(onNext: { [weak self] in
-                GoogleAnalytics.log(event: .prePaidPending)
                 UIApplication.shared.openUrlIfCan(self?.viewModel.prepaidUrl)
             })
             .disposed(by: bag)
@@ -814,8 +814,6 @@ class BillViewController: AccountPickerViewController {
                     
                     self.performSegue(withIdentifier: "viewBillSegue", sender: accountDetail)
                 }
-                
-                GoogleAnalytics.log(event: .billViewCurrentOfferComplete)
             })
             .disposed(by: bag)
 
@@ -1051,13 +1049,11 @@ extension BillViewController: BudgetBillingViewControllerDelegate {
         case .delmarva:
             showDelayedToast(withMessage: NSLocalizedString("Enrolled in Budget Billing", comment: ""))
         }
-        GoogleAnalytics.log(event: .budgetBillEnrollComplete)
         viewModel.fetchAccountDetail(isRefresh: true)
     }
 
     func budgetBillingViewControllerDidUnenroll(_ budgetBillingViewController: UIViewController) {
         showDelayedToast(withMessage: NSLocalizedString("Unenrolled from Budget Billing", comment: ""))
-        GoogleAnalytics.log(event: .budgetBillUnEnrollComplete)
         viewModel.fetchAccountDetail(isRefresh: true)
     }
 }
@@ -1092,12 +1088,6 @@ extension BillViewController: AutoPayViewControllerDelegate {
     func autoPayViewController(_ autoPayViewController: UIViewController, enrolled: Bool) {
         let message = enrolled ? NSLocalizedString("Enrolled in AutoPay", comment: ""): NSLocalizedString("Unenrolled from AutoPay", comment: "")
         showDelayedToast(withMessage: message)
-        
-        if enrolled {
-            GoogleAnalytics.log(event: .autoPayEnrollComplete)
-        } else {
-            GoogleAnalytics.log(event: .autoPayUnenrollComplete)
-        }
     }
 
 }

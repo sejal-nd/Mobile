@@ -463,6 +463,9 @@
 		6761AC362AD85C8400945554 /* AppCenterDistribute in Frameworks */ = {isa = PBXBuildFile; productRef = 6761AC352AD85C8400945554 /* AppCenterDistribute */; };
 		6761AC392AD85CEB00945554 /* MedalliaDigitalSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 6761AC382AD85CEB00945554 /* MedalliaDigitalSDK */; };
 		6761AC3C2AD8653400945554 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 6761AC3B2AD8653400945554 /* FirebaseAnalytics */; };
+		6761AC772AD9990A00945554 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6761AC762AD9990A00945554 /* RxSwift.framework */; };
+		6761AC782AD9990A00945554 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6761AC762AD9990A00945554 /* RxSwift.framework */; };
+		6761AC7A2AD9991100945554 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6761AC792AD9991100945554 /* RxCocoa.framework */; };
 		676279EF247DB11100A57FBC /* TermPolicies.html in Resources */ = {isa = PBXBuildFile; fileRef = 676279EE247DB11100A57FBC /* TermPolicies.html */; };
 		676434CB25AF692600DA6448 /* DebugMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 676434C925AF692600DA6448 /* DebugMenu.swift */; };
 		676434CC25AF692600DA6448 /* InfoLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 676434CA25AF692600DA6448 /* InfoLabel.swift */; };
@@ -814,7 +817,6 @@
 		B0E9EFFB21EE458F0086A82A /* Optional+Comparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E9EFFA21EE458F0086A82A /* Optional+Comparable.swift */; };
 		B0EE78EA221353E700F53C56 /* report_outage.json in Resources */ = {isa = PBXBuildFile; fileRef = B0EE78E9221353E600F53C56 /* report_outage.json */; };
 		B0EE78F12214766700F53C56 /* appointments.json in Resources */ = {isa = PBXBuildFile; fileRef = B0EE78F02214766600F53C56 /* appointments.json */; };
-		B52CA0AF1F311524002B5674 /* GoogleAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52CA0AE1F311524002B5674 /* GoogleAnalytics.swift */; };
 		B574BACF1E7360F4001E8A44 /* ErrorMessages.strings in Resources */ = {isa = PBXBuildFile; fileRef = B574BACE1E7360F4001E8A44 /* ErrorMessages.strings */; };
 		B58B5AC51E4E28740051FD5F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58B5AC41E4E28740051FD5F /* AppDelegate.swift */; };
 		B596062A1F7C1F4A00515B72 /* AppRating.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59606291F7C1F4A00515B72 /* AppRating.swift */; };
@@ -1678,6 +1680,8 @@
 		675F4DFF24B3A00800A828F9 /* AnonOutageStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnonOutageStatus.swift; sourceTree = "<group>"; };
 		675F4E2E24B4DB3500A828F9 /* AnonOutageStatusMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AnonOutageStatusMock.json; sourceTree = "<group>"; };
 		675F4E3B24B4DC1900A828F9 /* NewMockDataKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMockDataKey.swift; sourceTree = "<group>"; };
+		6761AC762AD9990A00945554 /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RxSwift.framework; sourceTree = "<group>"; };
+		6761AC792AD9991100945554 /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RxCocoa.framework; sourceTree = "<group>"; };
 		676279EE247DB11100A57FBC /* TermPolicies.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = TermPolicies.html; sourceTree = "<group>"; };
 		676434C925AF692600DA6448 /* DebugMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DebugMenu.swift; sourceTree = "<group>"; };
 		676434CA25AF692600DA6448 /* InfoLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoLabel.swift; sourceTree = "<group>"; };
@@ -2041,7 +2045,6 @@
 		B0EE78E9221353E600F53C56 /* report_outage.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = report_outage.json; sourceTree = "<group>"; };
 		B0EE78F02214766600F53C56 /* appointments.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = appointments.json; sourceTree = "<group>"; };
 		B48B1F39CA631CCED92367FB /* Pods-UITests.delmarva-rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UITests.delmarva-rc.xcconfig"; path = "Pods/Target Support Files/Pods-UITests/Pods-UITests.delmarva-rc.xcconfig"; sourceTree = "<group>"; };
-		B52CA0AE1F311524002B5674 /* GoogleAnalytics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleAnalytics.swift; sourceTree = "<group>"; };
 		B55A8B0B1F15644800F63AC3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		B55A8B0D1F15646E00F63AC3 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		B55A8B0F1F15647D00F63AC3 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
@@ -2174,10 +2177,6 @@
 		C3DF2B9C24CB32D000A6D4EC /* BillService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillService.swift; sourceTree = "<group>"; };
 		C3DF2BA924CB42BB00A6D4EC /* BillService+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BillService+Rx.swift"; sourceTree = "<group>"; };
 		C3DF2BB624CB42CE00A6D4EC /* PaymentService+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PaymentService+Rx.swift"; sourceTree = "<group>"; };
-		C3E31E9425794A0000D7FDAA /* ForeSeeLegacy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ForeSeeLegacy.framework; path = ForeSee/lib/ForeSeeLegacy.framework; sourceTree = "<group>"; };
-		C3E31E9525794A0000D7FDAA /* ForeSeeUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ForeSeeUtilities.framework; path = ForeSee/lib/ForeSeeUtilities.framework; sourceTree = "<group>"; };
-		C3E31E9625794A0100D7FDAA /* ForeSee.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ForeSee.framework; path = ForeSee/lib/ForeSee.framework; sourceTree = "<group>"; };
-		C3E31E9725794A0100D7FDAA /* ForeSeeFeedback.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ForeSeeFeedback.framework; path = ForeSee/lib/ForeSeeFeedback.framework; sourceTree = "<group>"; };
 		C3E377A727696385000D557D /* AccountSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSummary.swift; sourceTree = "<group>"; };
 		C3E7AE8D298305E70044194E /* outage_power_on.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = outage_power_on.json; sourceTree = "<group>"; };
 		C452B6F3F6B9F8627EDB8C7C /* Pods-UITests.peco-aut.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UITests.peco-aut.xcconfig"; path = "Pods/Target Support Files/Pods-UITests/Pods-UITests.peco-aut.xcconfig"; sourceTree = "<group>"; };
@@ -2325,6 +2324,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6761AC782AD9990A00945554 /* RxSwift.framework in Frameworks */,
 				C1FC7DEA2EEE0C8413984CF0 /* Pods_EUMobile_Watch_Extension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2359,12 +2359,14 @@
 			files = (
 				6761AC222AD84CC800945554 /* Toast in Frameworks */,
 				6761AC392AD85CEB00945554 /* MedalliaDigitalSDK in Frameworks */,
+				6761AC7A2AD9991100945554 /* RxCocoa.framework in Frameworks */,
 				6761AC2E2AD84DFA00945554 /* Charts in Frameworks */,
 				6761AC362AD85C8400945554 /* AppCenterDistribute in Frameworks */,
 				6761AC312AD84E4F00945554 /* XLPagerTabStrip in Frameworks */,
 				6761AC342AD85C8400945554 /* AppCenterCrashes in Frameworks */,
 				6761AC3C2AD8653400945554 /* FirebaseAnalytics in Frameworks */,
 				6761AC282AD84D8800945554 /* Reachability in Frameworks */,
+				6761AC772AD9990A00945554 /* RxSwift.framework in Frameworks */,
 				6761AC2B2AD84DB600945554 /* HorizonCalendar in Frameworks */,
 				C8F95FB76F50334BC5162649 /* Pods_EUMobile.framework in Frameworks */,
 				6761AC252AD84D2100945554 /* Lottie in Frameworks */,
@@ -4114,6 +4116,15 @@
 			path = Decibel;
 			sourceTree = "<group>";
 		};
+		6761AC752AD998EF00945554 /* RxSwift */ = {
+			isa = PBXGroup;
+			children = (
+				6761AC792AD9991100945554 /* RxCocoa.framework */,
+				6761AC762AD9990A00945554 /* RxSwift.framework */,
+			);
+			path = RxSwift;
+			sourceTree = "<group>";
+		};
 		676434C825AF692600DA6448 /* Debug Menu */ = {
 			isa = PBXGroup;
 			children = (
@@ -4517,10 +4528,6 @@
 		8FD3C25A1E524511005FB1BB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C3E31E9625794A0100D7FDAA /* ForeSee.framework */,
-				C3E31E9725794A0100D7FDAA /* ForeSeeFeedback.framework */,
-				C3E31E9425794A0000D7FDAA /* ForeSeeLegacy.framework */,
-				C3E31E9525794A0000D7FDAA /* ForeSeeUtilities.framework */,
 				823AA55F201247CF009CAEF0 /* XCTest.framework */,
 				E887C9F51ED5D3E1002433A3 /* Accelerate.framework */,
 				E887C9F91ED5D3F1002433A3 /* AudioToolbox.framework */,
@@ -4937,7 +4944,6 @@
 		B52CA0AD1F3114D5002B5674 /* Analytics */ = {
 			isa = PBXGroup;
 			children = (
-				B52CA0AE1F311524002B5674 /* GoogleAnalytics.swift */,
 				359BDB4F22D77073007002B0 /* FirebaseUtility.swift */,
 			);
 			path = Analytics;
@@ -5170,6 +5176,7 @@
 		E8B4F4C31E5CE1500031D934 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				6761AC752AD998EF00945554 /* RxSwift */,
 				6761AC3D2AD868BE00945554 /* Decibel */,
 				82D599411EC2374500DDB380 /* ActivityTracker.swift */,
 			);
@@ -6599,7 +6606,6 @@
 				E8C29C7C1F630FD200DB73FC /* OutageStatusButton.swift in Sources */,
 				67893AB024DB248C000143D6 /* DailyUsage.swift in Sources */,
 				30B0F53A25C918430078D2AF /* PeakEnergySavingsHistoryViewController.swift in Sources */,
-				B52CA0AF1F311524002B5674 /* GoogleAnalytics.swift in Sources */,
 				B0649A5F214834380041B299 /* StormModeStatus.swift in Sources */,
 				8206D0131FABB9AB0056F4CB /* PeakRewardsProgramCard.swift in Sources */,
 				9CD742BB237C900200915334 /* GameOnboardingStep1ViewController.swift in Sources */,
@@ -7050,7 +7056,10 @@
 				ENABLE_BITCODE = NO;
 				ENVIRONMENT_TIER = RELEASE;
 				EXCLUDED_ARCHS = "";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/App/Vendor/RxSwift",
+				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
@@ -7125,6 +7134,10 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENVIRONMENT_TIER = AUT;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/App/Vendor/RxSwift",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -7185,6 +7198,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENVIRONMENT_TIER = BETA;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/App/Vendor/RxSwift",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
@@ -7231,6 +7248,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENVIRONMENT_TIER = RC;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/App/Vendor/RxSwift",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
@@ -7279,6 +7300,10 @@
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_BITCODE = NO;
 				ENVIRONMENT_TIER = RELEASE;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/App/Vendor/RxSwift",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
@@ -7355,6 +7380,10 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENVIRONMENT_TIER = AUT;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/App/Vendor/RxSwift",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -7416,6 +7445,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENVIRONMENT_TIER = BETA;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/App/Vendor/RxSwift",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				IBSC_MODULE = "EUMobile-Watch Extension";
@@ -7463,6 +7496,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENVIRONMENT_TIER = RC;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/App/Vendor/RxSwift",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				IBSC_MODULE = "EUMobile-Watch Extension";
@@ -7512,6 +7549,10 @@
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_BITCODE = NO;
 				ENVIRONMENT_TIER = RELEASE;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/App/Vendor/RxSwift",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				IBSC_MODULE = "EUMobile-Watch Extension";
@@ -11068,7 +11109,10 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
 				EXCLUDED_ARCHS = "";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/App/Vendor/RxSwift",
+				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
@@ -11144,6 +11188,10 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENVIRONMENT_TIER = AUT;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/App/Vendor/RxSwift",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -11233,6 +11281,10 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENVIRONMENT_TIER = AUT;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/App/Vendor/RxSwift",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -11388,7 +11440,10 @@
 				ENVIRONMENT_TIER = BETA;
 				EXCLUDED_ARCHS = "";
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/App/Vendor/RxSwift",
+				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
@@ -11435,6 +11490,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENVIRONMENT_TIER = BETA;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/App/Vendor/RxSwift",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				IBSC_MODULE = "EUMobile-Watch Extension";
@@ -11480,6 +11539,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENVIRONMENT_TIER = BETA;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/App/Vendor/RxSwift",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
@@ -11614,7 +11677,10 @@
 				ENABLE_BITCODE = NO;
 				ENVIRONMENT_TIER = RC;
 				EXCLUDED_ARCHS = "";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/App/Vendor/RxSwift",
+				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
@@ -11662,6 +11728,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENVIRONMENT_TIER = RC;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/App/Vendor/RxSwift",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				IBSC_MODULE = "EUMobile-Watch Extension";
@@ -11709,6 +11779,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENVIRONMENT_TIER = RC;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/App/Vendor/RxSwift",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
@@ -11844,7 +11918,10 @@
 				ENABLE_BITCODE = NO;
 				ENVIRONMENT_TIER = RELEASE;
 				EXCLUDED_ARCHS = "";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/App/Vendor/RxSwift",
+				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
@@ -11893,6 +11970,10 @@
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_BITCODE = NO;
 				ENVIRONMENT_TIER = RELEASE;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/App/Vendor/RxSwift",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				IBSC_MODULE = "EUMobile-Watch Extension";
@@ -11941,6 +12022,10 @@
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_BITCODE = NO;
 				ENVIRONMENT_TIER = RELEASE;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/App/Vendor/RxSwift",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
@@ -12077,7 +12162,10 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
 				EXCLUDED_ARCHS = "";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/App/Vendor/RxSwift",
+				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GOOGLE_ANALYTICS_ID = "UA-76742208-14";
@@ -12153,6 +12241,10 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENVIRONMENT_TIER = AUT;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/App/Vendor/RxSwift",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -12242,6 +12334,10 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENVIRONMENT_TIER = AUT;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/App/Vendor/RxSwift",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -12397,7 +12493,10 @@
 				ENVIRONMENT_TIER = BETA;
 				EXCLUDED_ARCHS = "";
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/App/Vendor/RxSwift",
+				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GOOGLE_ANALYTICS_ID = "UA-76742208-14";
@@ -12445,6 +12544,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENVIRONMENT_TIER = BETA;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/App/Vendor/RxSwift",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				IBSC_MODULE = "EUMobile-Watch Extension";
@@ -12490,6 +12593,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENVIRONMENT_TIER = BETA;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/App/Vendor/RxSwift",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
@@ -12624,7 +12731,10 @@
 				ENABLE_BITCODE = NO;
 				ENVIRONMENT_TIER = RC;
 				EXCLUDED_ARCHS = "";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/App/Vendor/RxSwift",
+				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GOOGLE_ANALYTICS_ID = "UA-76742208-14";
@@ -12673,6 +12783,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENVIRONMENT_TIER = RC;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/App/Vendor/RxSwift",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				IBSC_MODULE = "EUMobile-Watch Extension";
@@ -12720,6 +12834,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENVIRONMENT_TIER = RC;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/App/Vendor/RxSwift",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
@@ -12855,7 +12973,10 @@
 				ENABLE_BITCODE = NO;
 				ENVIRONMENT_TIER = RELEASE;
 				EXCLUDED_ARCHS = "";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/App/Vendor/RxSwift",
+				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GOOGLE_ANALYTICS_ID = "UA-76742208-14";
@@ -12905,6 +13026,10 @@
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_BITCODE = NO;
 				ENVIRONMENT_TIER = RELEASE;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/App/Vendor/RxSwift",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				IBSC_MODULE = "EUMobile-Watch Extension";
@@ -12953,6 +13078,10 @@
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_BITCODE = NO;
 				ENVIRONMENT_TIER = RELEASE;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/App/Vendor/RxSwift",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
@@ -13089,7 +13218,10 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
 				EXCLUDED_ARCHS = "";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/App/Vendor/RxSwift",
+				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GOOGLE_ANALYTICS_ID = "UA-76742208-15";
@@ -13165,6 +13297,10 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENVIRONMENT_TIER = AUT;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/App/Vendor/RxSwift",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -13254,6 +13390,10 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENVIRONMENT_TIER = AUT;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/App/Vendor/RxSwift",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -13409,7 +13549,10 @@
 				ENVIRONMENT_TIER = BETA;
 				EXCLUDED_ARCHS = "";
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/App/Vendor/RxSwift",
+				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GOOGLE_ANALYTICS_ID = "UA-76742208-15";
@@ -13457,6 +13600,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENVIRONMENT_TIER = BETA;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/App/Vendor/RxSwift",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				IBSC_MODULE = "EUMobile-Watch Extension";
@@ -13502,6 +13649,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENVIRONMENT_TIER = BETA;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/App/Vendor/RxSwift",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
@@ -13636,7 +13787,10 @@
 				ENABLE_BITCODE = NO;
 				ENVIRONMENT_TIER = RC;
 				EXCLUDED_ARCHS = "";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/App/Vendor/RxSwift",
+				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GOOGLE_ANALYTICS_ID = "UA-76742208-15";
@@ -13685,6 +13839,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENVIRONMENT_TIER = RC;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/App/Vendor/RxSwift",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				IBSC_MODULE = "EUMobile-Watch Extension";
@@ -13732,6 +13890,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENVIRONMENT_TIER = RC;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/App/Vendor/RxSwift",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
@@ -13867,7 +14029,10 @@
 				ENABLE_BITCODE = NO;
 				ENVIRONMENT_TIER = RELEASE;
 				EXCLUDED_ARCHS = "";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/App/Vendor/RxSwift",
+				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GOOGLE_ANALYTICS_ID = "UA-76742208-15";
@@ -13917,6 +14082,10 @@
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_BITCODE = NO;
 				ENVIRONMENT_TIER = RELEASE;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/App/Vendor/RxSwift",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				IBSC_MODULE = "EUMobile-Watch Extension";
@@ -13965,6 +14134,10 @@
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_BITCODE = NO;
 				ENVIRONMENT_TIER = RELEASE;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/App/Vendor/RxSwift",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
@@ -14101,7 +14274,10 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
 				EXCLUDED_ARCHS = "";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/App/Vendor/RxSwift",
+				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GOOGLE_ANALYTICS_ID = "UA-76742208-13";
@@ -14177,6 +14353,10 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENVIRONMENT_TIER = AUT;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/App/Vendor/RxSwift",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -14266,6 +14446,10 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENVIRONMENT_TIER = AUT;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/App/Vendor/RxSwift",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -14421,7 +14605,10 @@
 				ENVIRONMENT_TIER = BETA;
 				EXCLUDED_ARCHS = "";
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/App/Vendor/RxSwift",
+				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GOOGLE_ANALYTICS_ID = "UA-76742208-13";
@@ -14469,6 +14656,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENVIRONMENT_TIER = BETA;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/App/Vendor/RxSwift",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				IBSC_MODULE = "EUMobile-Watch Extension";
@@ -14514,6 +14705,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENVIRONMENT_TIER = BETA;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/App/Vendor/RxSwift",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
@@ -14648,7 +14843,10 @@
 				ENABLE_BITCODE = NO;
 				ENVIRONMENT_TIER = RC;
 				EXCLUDED_ARCHS = "";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/App/Vendor/RxSwift",
+				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GOOGLE_ANALYTICS_ID = "UA-76742208-13";
@@ -14697,6 +14895,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENVIRONMENT_TIER = RC;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/App/Vendor/RxSwift",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				IBSC_MODULE = "EUMobile-Watch Extension";
@@ -14744,6 +14946,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENVIRONMENT_TIER = RC;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/App/Vendor/RxSwift",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
@@ -14879,7 +15085,10 @@
 				ENABLE_BITCODE = NO;
 				ENVIRONMENT_TIER = RELEASE;
 				EXCLUDED_ARCHS = "";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/App/Vendor/RxSwift",
+				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GOOGLE_ANALYTICS_ID = "UA-76742208-13";
@@ -14929,6 +15138,10 @@
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_BITCODE = NO;
 				ENVIRONMENT_TIER = RELEASE;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/App/Vendor/RxSwift",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				IBSC_MODULE = "EUMobile-Watch Extension";
@@ -14977,6 +15190,10 @@
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_BITCODE = NO;
 				ENVIRONMENT_TIER = RELEASE;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/App/Vendor/RxSwift",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
@@ -15113,7 +15330,10 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
 				EXCLUDED_ARCHS = "";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/App/Vendor/RxSwift",
+				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
@@ -15189,6 +15409,10 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENVIRONMENT_TIER = AUT;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/App/Vendor/RxSwift",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -15278,6 +15502,10 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENVIRONMENT_TIER = AUT;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/App/Vendor/RxSwift",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -15433,7 +15661,10 @@
 				ENVIRONMENT_TIER = BETA;
 				EXCLUDED_ARCHS = "";
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/App/Vendor/RxSwift",
+				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
@@ -15480,6 +15711,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENVIRONMENT_TIER = BETA;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/App/Vendor/RxSwift",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				IBSC_MODULE = "EUMobile-Watch Extension";
@@ -15525,6 +15760,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENVIRONMENT_TIER = BETA;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/App/Vendor/RxSwift",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
@@ -15659,7 +15898,10 @@
 				ENABLE_BITCODE = NO;
 				ENVIRONMENT_TIER = RC;
 				EXCLUDED_ARCHS = "";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/App/Vendor/RxSwift",
+				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
@@ -15707,6 +15949,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENVIRONMENT_TIER = RC;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/App/Vendor/RxSwift",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				IBSC_MODULE = "EUMobile-Watch Extension";
@@ -15754,6 +16000,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENVIRONMENT_TIER = RC;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/App/Vendor/RxSwift",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
@@ -15889,7 +16139,10 @@
 				ENABLE_BITCODE = NO;
 				ENVIRONMENT_TIER = RELEASE;
 				EXCLUDED_ARCHS = "";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/App/Vendor/RxSwift",
+				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
@@ -15938,6 +16191,10 @@
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_BITCODE = NO;
 				ENVIRONMENT_TIER = RELEASE;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/App/Vendor/RxSwift",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				IBSC_MODULE = "EUMobile-Watch Extension";
@@ -15986,6 +16243,10 @@
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_BITCODE = NO;
 				ENVIRONMENT_TIER = RELEASE;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/App/Vendor/RxSwift",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
@@ -16122,7 +16383,10 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
 				EXCLUDED_ARCHS = "";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/App/Vendor/RxSwift",
+				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
@@ -16257,7 +16521,10 @@
 				ENABLE_BITCODE = NO;
 				ENVIRONMENT_TIER = RC;
 				EXCLUDED_ARCHS = "";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/App/Vendor/RxSwift",
+				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
@@ -16398,7 +16665,10 @@
 				ENVIRONMENT_TIER = BETA;
 				EXCLUDED_ARCHS = "";
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/App/Vendor/RxSwift",
+				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";

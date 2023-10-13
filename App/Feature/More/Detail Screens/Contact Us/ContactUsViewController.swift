@@ -133,7 +133,6 @@ class ContactUsViewController: UIViewController {
             .drive(onNext: { [weak self] in
                 guard let self = self else { return }
                 
-                GoogleAnalytics.log(event: self.unauthenticatedExperience ? .unAuthContactUsForm : .contactUsForm)
                 FirebaseUtility.logEvent(.contactUs(parameters: [.online_form]))
                 
                 let safariVC = SFSafariViewController.createWithCustomStyle(url: self.viewModel.onlineFormUrl)
@@ -262,11 +261,6 @@ extension ContactUsViewController: DataDetectorTextViewLinkTapDelegate {
             dimensionValue = "TTY/TTD"
         default:
             dimensionValue = nil
-        }
-
-        if let value = dimensionValue {
-            let screenName: GoogleAnalyticsEvent = unauthenticatedExperience ? .contactUsUnAuthCall : .contactUsAuthCall
-            GoogleAnalytics.log(event: screenName, dimensions: [.link: value])
         }
         
         let paramValue: ContactUsParameter?

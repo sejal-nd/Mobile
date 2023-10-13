@@ -107,7 +107,7 @@ class MyHomeProfileViewModel {
     }.asDriver(onErrorJustReturn: "")
     
     private lazy var save: Observable<Event<Void>> = self.saveAction
-        .do(onNext: { GoogleAnalytics.log(event: .homeProfileSave) })
+        .do(onNext: {  })
         .withLatestFrom(self.updatedHomeProfile)
         .flatMapLatest { [weak self] updatedHomeProfile -> Observable<Event<Void>> in
             guard let self = self else { return .empty() }
@@ -118,7 +118,7 @@ class MyHomeProfileViewModel {
     .share()
     
     private(set) lazy var saveSuccess: Driver<Void> = self.save.elements()
-        .do(onNext: { GoogleAnalytics.log(event: .homeProfileConfirmation) })
+        .do(onNext: {  })
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var saveErrors: Driver<String> = self.save.errors()

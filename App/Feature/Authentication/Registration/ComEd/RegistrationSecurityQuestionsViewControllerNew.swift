@@ -254,12 +254,6 @@ class RegistrationSecurityQuestionsViewControllerNew: KeyboardAvoidingStickyFoot
             guard let self = self else { return }
             LoadingView.hide()
 
-            if self.viewModel.hasStrongPassword {
-                GoogleAnalytics.log(event: .strongPasswordComplete)
-            }
-            
-            GoogleAnalytics.log(event: .registerAccountSecurityQuestions)
-
             self.performSegue(withIdentifier: "loadRegistrationConfirmationSegue", sender: self)
 
         }, onError: { [weak self] (title, message) in

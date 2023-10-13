@@ -62,18 +62,6 @@ class HomeBillCardViewModel {
         oneTouchPayResult
             .withLatestFrom(walletItem.unwrap()) { ($0, $1) }
             .subscribe(onNext: { oneTouchPayEvent, walletItem in
-                switch (walletItem.bankOrCard, oneTouchPayEvent.error) {
-                case (.bank, nil):
-                    GoogleAnalytics.log(event: .oneTouchBankComplete)
-                case (.bank, let error):
-                    GoogleAnalytics.log(event: .oneTouchBankError,
-                                        dimensions: [.errorCode: (error as? NetworkingError)?.title ?? ""])
-                case (.card, nil):
-                    GoogleAnalytics.log(event: .oneTouchCardComplete)
-                case (.card, let error):
-                    GoogleAnalytics.log(event: .oneTouchCardError,
-                                        dimensions: [.errorCode: (error as? NetworkingError)?.title ?? ""])
-                }
             })
             .disposed(by: bag)
     }
@@ -197,12 +185,7 @@ class HomeBillCardViewModel {
         .withLatestFrom(Observable.combineLatest(accountDetailEvents.elements(),
                                                  walletItem.unwrap()))
         .do(onNext: { _, walletItem in
-            switch walletItem.bankOrCard {
-            case .bank:
-                GoogleAnalytics.log(event: .oneTouchBankOffer)
-            case .card:
-                GoogleAnalytics.log(event: .oneTouchCardOffer)
-            }
+
         })
             .map { accountDetail, walletItem in
                 let startOfToday = Calendar.opCo.startOfDay(for: .now)

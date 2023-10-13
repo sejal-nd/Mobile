@@ -5,9 +5,5 @@
 #ifndef EXBridgingHeader_h
 #define EXBridgingHeader_h
 
-#import "GAI.h"
-#import "GAIDictionaryBuilder.h"
-#import "GAIFields.h"
-#import "GAILogger.h"
 
 #endif /* EXBridgingHeader_h */

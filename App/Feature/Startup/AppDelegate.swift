@@ -286,9 +286,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func setupAnalytics() {
-        let gai = GAI.sharedInstance()
-        _ = gai?.tracker(withTrackingId: Configuration.shared.gaTrackingId)
-        
         FirebaseUtility.configure()
 
         if let subject = AuthenticationService.getTokenSubject() {
@@ -491,10 +488,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
             
             let vcArray = [landing, unauthenticatedUser, unauthenticatedOutageValidate]
-            
-            GoogleAnalytics.log(event: .reportAnOutageUnAuthOffer)
-            unauthenticatedOutageValidate.analyticsSource = AnalyticsOutageSource.report
-            
+                        
             // Reset the unauthenticated nav stack
             let newNavController = loginStoryboard.instantiateInitialViewController() as! UINavigationController
             newNavController.setViewControllers(vcArray, animated: false)

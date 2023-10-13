@@ -80,11 +80,6 @@ class HomeViewController: AccountPickerViewController {
                 
                 let isPeakSmart = (Configuration.shared.opco == .bge && accountDetail.isSERAccount) ||
                     (Configuration.shared.opco != .bge && accountDetail.isPTSAccount)
-                                
-                GoogleAnalytics.log(event: .profileLoaded,
-                              dimensions: [.residentialAMI: residentialAMIString,
-                                           .bgeControlGroup: accountDetail.isBGEControlGroup ? "true" : "false",
-                                           .peakSmart: isPeakSmart ? "true" : "false"])
             })
             .disposed(by: bag)
         
@@ -418,8 +413,6 @@ class HomeViewController: AccountPickerViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        GoogleAnalytics.log(event: .homeOfferComplete)
-        
         AppRating.present()
         
         if Configuration.shared.environmentName != .aut {
@@ -433,19 +426,10 @@ class HomeViewController: AccountPickerViewController {
             UNUserNotificationCenter.current().requestAuthorization(options: authOptions, completionHandler: { (granted: Bool, error: Error?) in
                 if !UserDefaults.standard.bool(forKey: UserDefaultKeys.isInitialPushNotificationPermissionsWorkflowCompleted) {
                     UserDefaults.standard.set(true, forKey: UserDefaultKeys.isInitialPushNotificationPermissionsWorkflowCompleted)
-                    if granted {
-                        GoogleAnalytics.log(event: .alertsiOSPushOKInitial)
-                    } else {
-                        GoogleAnalytics.log(event: .alertsiOSPushDontAllowInitial)
-                    }
                 }
             })
             
             UIApplication.shared.registerForRemoteNotifications()
-        }
-        
-        if !UserDefaults.standard.bool(forKey: UserDefaultKeys.isInitialPushNotificationPermissionsWorkflowCompleted) {
-            GoogleAnalytics.log(event: .alertsiOSPushInitial)
         }
         
         if let editAction = RxNotifications.shared.profileEditAction.value {
@@ -758,14 +742,11 @@ class HomeViewController: AccountPickerViewController {
                      usageCardView.viewCommercialUsageButton.rx.touchUpInside.asDriver())
             .withLatestFrom(viewModel.accountDetailEvents.elements().asDriver(onErrorDriveWith: .empty()))
             .drive(onNext: { [weak self] in
-                let residentialAMIString = String(format: "%@%@", $0.isResidential ? "Residential/" : "Commercial/", $0.isAMIAccount ? "AMI" : "Non-AMI")
+                let _ = String(format: "%@%@", $0.isResidential ? "Residential/" : "Commercial/", $0.isAMIAccount ? "AMI" : "Non-AMI")
                 
-                let isPeakSmart = (Configuration.shared.opco == .bge && $0.isSERAccount) ||
+                let _ = (Configuration.shared.opco == .bge && $0.isSERAccount) ||
                     (Configuration.shared.opco != .bge && $0.isPTSAccount)
-                
-                GoogleAnalytics.log(event: .viewUsageLink,
-                              dimensions: [.residentialAMI: residentialAMIString,
-                                           .peakSmart: isPeakSmart ? "true" : "false"])
+
                 self?.tabBarController?.selectedIndex = 3
             })
             .disposed(by: usageCardView.disposeBag)
@@ -773,7 +754,6 @@ class HomeViewController: AccountPickerViewController {
         usageCardView.viewAllSavingsButton.rx.touchUpInside.asDriver()
             .withLatestFrom(viewModel.usageCardViewModel.serResultEvents.elements().asDriver(onErrorDriveWith: .empty()))
             .drive(onNext: { [weak self] in
-                GoogleAnalytics.log(event: .allSavingsSmartEnergy)
                 self?.performSegue(withIdentifier: "totalSavingsSegue", sender: $0)
             }).disposed(by: usageCardView.disposeBag)
     }
@@ -906,7 +886,6 @@ class HomeViewController: AccountPickerViewController {
                     guard let this = self else { return }
                     DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
                         this.view.showToast(NSLocalizedString("Outage report received", comment: ""))
-                        GoogleAnalytics.log(event: .reportOutageAuthComplete)
                     })
                 })
                 .disposed(by: vc.disposeBag)
@@ -980,11 +959,6 @@ extension HomeViewController: AutoPayViewControllerDelegate {
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
             self.view.showToast(message)
         })
-        if enrolled {
-            GoogleAnalytics.log(event: .autoPayEnrollComplete)
-        } else {
-            GoogleAnalytics.log(event: .autoPayUnenrollComplete)
-        }
     }
     
 }

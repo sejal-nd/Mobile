@@ -540,7 +540,6 @@ class StormModeHomeViewController: AccountPickerViewController {
         }
         
         if let phone = phone, let url = URL(string: "telprompt://\(phone)"), UIApplication.shared.canOpenURL(url) {
-            GoogleAnalytics.log(event: .outageAuthEmergencyCall)
             UIApplication.shared.open(url)
         }
     }
@@ -910,20 +909,11 @@ extension StormModeHomeViewController: AccountPickerDelegate {
 extension StormModeHomeViewController: OutageStatusButtonDelegate {
     
     func outageStatusButtonWasTapped(_ outageStatusButton: OutageStatusButton) {
-        GoogleAnalytics.log(event: .outageStatusDetails)
-        
         if let message = viewModel.currentOutageStatus!.outageDescription {
             presentAlert(title: nil, message: message, style: .alert, actions: [UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil)])
         }
     }
     
-}
-
-extension StormModeHomeViewController: DataDetectorTextViewLinkTapDelegate {
-    
-    func dataDetectorTextView(_ textView: DataDetectorTextView, didInteractWith URL: URL) {
-        GoogleAnalytics.log(event: .outageAuthEmergencyCall)
-    }
 }
 
 extension StormModeHomeViewController: StatusInfoViewDelegate {

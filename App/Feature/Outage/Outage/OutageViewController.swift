@@ -115,12 +115,6 @@ class OutageViewController: AccountPickerViewController {
         if userState == .authenticated {
             FirebaseUtility.logScreenView(.outageView(className: self.className))
         } else {
-            if viewModel.isOutageStatusInactive {
-                GoogleAnalytics.log(event: .reportAnOutageUnAuthOutScreen)
-            }else{
-                GoogleAnalytics.log(event: .outageStatusUnAuthComplete)
-            }
-       
             FirebaseUtility.logScreenView(.unauthenticatedOutageView(className: self.className))
         }
     }
@@ -492,7 +486,6 @@ extension OutageViewController: UITableViewDelegate {
                 FirebaseUtility.logEvent(.unauthOutage(parameters: [.report_outage]))
             }
         case 1:
-            GoogleAnalytics.log(event: .viewStreetlightMapOfferComplete)
             if userState == .authenticated {
                 FirebaseUtility.logEvent(.authOutage(parameters: [.streetlight_map]))
             } else {
@@ -501,10 +494,8 @@ extension OutageViewController: UITableViewDelegate {
             performSegue(withIdentifier: "outageMapSegue", sender: true)
         case 2:
             if userState == .authenticated {
-                GoogleAnalytics.log(event: .viewMapOfferComplete)
                 FirebaseUtility.logEvent(.authOutage(parameters: [.map]))
             } else {
-                GoogleAnalytics.log(event: .viewOutageUnAuthMenu)
                 FirebaseUtility.logEvent(.unauthOutage(parameters: [.map]))
             }
             performSegue(withIdentifier: "outageMapSegue", sender: false)
@@ -537,7 +528,6 @@ extension OutageViewController: OutageStatusDelegate {
             FirebaseUtility.logEvent(.authOutage(parameters: [.view_details]))
         } else {
             FirebaseUtility.logEvent(.unauthOutage(parameters: [.view_details]))
-            GoogleAnalytics.log(event: .outageStatusUnAuthStatusButton)
         }
         
         switch outageState {
@@ -566,10 +556,8 @@ extension OutageViewController: DataDetectorTextViewLinkTapDelegate {
     func dataDetectorTextView(_ textView: DataDetectorTextView, didInteractWith URL: URL) {
         // Analytics
         if userState == .authenticated {
-            GoogleAnalytics.log(event: .outageAuthEmergencyCall)
             FirebaseUtility.logEvent(.authOutage(parameters: [.emergency_number]))
         } else {
-            GoogleAnalytics.log(event: .outageScreenUnAuthEmergencyPhone)
             FirebaseUtility.logEvent(.unauthOutage(parameters: [.emergency_number]))
         }
         viewModel.trackPhoneNumberAnalytics(isAuthenticated: userState == .authenticated, for: URL)

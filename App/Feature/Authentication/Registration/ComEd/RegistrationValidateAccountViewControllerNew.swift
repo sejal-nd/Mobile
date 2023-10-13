@@ -75,10 +75,6 @@ class RegistrationValidateAccountViewControllerNew: KeyboardAvoidingStickyFooter
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        GoogleAnalytics.log(event: .registerOffer)
-    }
-    
     private func configureTextFields() {
         accountNumberTextField.placeholder = NSLocalizedString("Account Number*", comment: "")
         accountNumberTextField.textField.autocorrectionType = .no
@@ -261,7 +257,6 @@ class RegistrationValidateAccountViewControllerNew: KeyboardAvoidingStickyFooter
         
         viewModel.validateAccount(onSuccess: { [weak self] in
             LoadingView.hide()
-            GoogleAnalytics.log(event: .registerAccountValidation)
             if self?.viewModel.hasMultipleAccount ?? false {
                 self?.performSegue(withIdentifier: "chooseAccountSegue", sender: self)
             } else {
@@ -271,7 +266,6 @@ class RegistrationValidateAccountViewControllerNew: KeyboardAvoidingStickyFooter
            
         }, onMultipleAccounts:  { [weak self] in
             LoadingView.hide()
-            GoogleAnalytics.log(event: .registerAccountValidation)
             
             self?.performSegue(withIdentifier: "bgeAccountNumberSegue", sender: self)
         }, onError: { [weak self] (title, message) in

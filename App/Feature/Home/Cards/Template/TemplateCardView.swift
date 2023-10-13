@@ -95,8 +95,8 @@ class TemplateCardView: UIView {
         
         callToActionButton.rx.touchUpInside.asObservable()
             .withLatestFrom(viewModel.ctaUrl.asObservable())
-            .subscribe(onNext: {
-                GoogleAnalytics.log(event: .homePromoCard, dimensions: [.link: $0.absoluteString])
+            .subscribe(onNext: { _ in
+            
             })
             .disposed(by: bag)
         
@@ -108,10 +108,10 @@ class TemplateCardView: UIView {
                 let appStoreUrl = URL(string:"https://itunes.apple.com/us/app/ecobee/id916985674?mt=8")!
                 
                 if UIApplication.shared.canOpenURL(appLinkUrl) {
-                    GoogleAnalytics.log(event: .homePromoCard, dimensions: [.link: appLinkUrl.absoluteString])
+                    
                     UIApplication.shared.open(appLinkUrl)
                 } else if UIApplication.shared.canOpenURL(appStoreUrl) {
-                    GoogleAnalytics.log(event: .homePromoCard, dimensions: [.link: appStoreUrl.absoluteString])
+                   
                     UIApplication.shared.open(appStoreUrl)
                 }
             })
@@ -177,8 +177,7 @@ class TemplateCardView: UIView {
             return peakRewardsVC
         }
         .do(onNext: { _ in
-            GoogleAnalytics.log(event: .homePromoCard,
-                                 dimensions: [.link: "https://secure.bge.com/Peakrewards/Pages/default.aspx"])
+            
         })
     
     private(set) lazy var pushedViewControllers: Driver<UIViewController> = Driver.merge(self.hourlyPricingViewController,

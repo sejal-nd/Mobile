@@ -111,10 +111,8 @@ class MoreViewController: UIViewController {
         
         if sender.isOn {
             presentPasswordAlert(message: viewModel.getConfirmPasswordMessage(), toggle: sender)
-            GoogleAnalytics.log(event: .touchIDEnable)
         } else {
             viewModel.disableBiometrics()
-            GoogleAnalytics.log(event: .touchIDDisable)
         }
     }
     
@@ -387,7 +385,6 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
         case 1:
             switch indexPath.row {
             case 0:
-                GoogleAnalytics.log(event: .changePasswordOffer)
                 FirebaseUtility.logScreenView(.mySecurityView(className: self.className))
                 
                 if FeatureFlagUtility.shared.bool(forKey: .isPkceAuthentication) {
@@ -400,7 +397,6 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
                                 
                                 if editAction == "PasswordUpdate" {
                                     self.view.showToast("Password changed")
-                                    GoogleAnalytics.log(event: .changePasswordComplete)
                                     FirebaseUtility.logEvent(.more(parameters: [.change_password_complete]))
                                 } else {
                                     self.view.showToast("Two-Step Verification settings updated")
@@ -527,7 +523,6 @@ extension MoreViewController: ChangePasswordViewControllerDelegate {
     func changePasswordViewControllerDidChangePassword(_ changePasswordViewController: UIViewController) {
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
             self.view.showToast(NSLocalizedString("Password changed", comment: ""))
-            GoogleAnalytics.log(event: .changePasswordComplete)
             FirebaseUtility.logEvent(.more(parameters: [.change_password_complete]))
             
         })
@@ -543,7 +538,6 @@ extension MoreViewController: PECOReleaseOfInfoViewControllerDelegate {
     func pecoReleaseOfInfoViewControllerDidUpdate(_ vc: PECOReleaseOfInfoViewController) {
         DispatchQueue.main.asyncAfter(deadline:  .now() + .milliseconds(500), execute: {
             self.view.showToast(NSLocalizedString("Release of Information updated", comment: ""))
-            GoogleAnalytics.log(event: .releaseInfoComplete)
         })
     }
     

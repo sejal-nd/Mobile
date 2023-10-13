@@ -272,23 +272,14 @@ class BillImpactView: UIView {
     
     @objc func onBillPeriodTap() {
         billPeriodExpanded.accept(!billPeriodExpanded.value)
-        if billPeriodExpanded.value {
-            GoogleAnalytics.log(event: .billPreviousReason)
-        }
     }
     
     @objc func onWeatherTap() {
         weatherExpanded.accept(!weatherExpanded.value)
-        if weatherExpanded.value {
-            GoogleAnalytics.log(event: .billWeatherReason)
-        }
     }
     
     @objc func onOtherTap() {
         otherExpanded.accept(!otherExpanded.value)
-        if otherExpanded.value {
-            GoogleAnalytics.log(event: .billOtherReason)
-        }
     }
     
 }

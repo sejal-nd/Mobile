@@ -209,8 +209,8 @@ class AdjustThermostatViewController: UIViewController {
         
         // Bind to view model
         permanentHoldCheckbox.rx.isChecked.distinctUntilChanged()
-            .do(onNext: {
-                GoogleAnalytics.log(event: $0 ? .permanentHoldOn : .permanentHoldOff)
+            .do(onNext: { _ in
+
             })
             .bind(to: viewModel.hold)
             .disposed(by: disposeBag)
@@ -218,15 +218,8 @@ class AdjustThermostatViewController: UIViewController {
         modeSegmentedControl.selectedIndex.asObservable()
             .distinctUntilChanged()
             .map { SmartThermostatMode.allValues[$0] }
-            .do(onNext: {
-                switch $0 {
-                case .cool:
-                    GoogleAnalytics.log(event: .systemCool)
-                case .heat:
-                    GoogleAnalytics.log(event: .systemHeat)
-                case .off:
-                    GoogleAnalytics.log(event: .systemOff)
-                }
+            .do(onNext: { _ in
+
             })
             .bind(to: viewModel.mode)
             .disposed(by: disposeBag)
@@ -234,15 +227,7 @@ class AdjustThermostatViewController: UIViewController {
         fanSegmentedControl.selectedIndex.asObservable()
             .distinctUntilChanged()
             .map { SmartThermostatFan.allValues[$0] }
-            .do(onNext: {
-                switch $0 {
-                case .auto:
-                    GoogleAnalytics.log(event: .fanAuto)
-                case .circulate:
-                    GoogleAnalytics.log(event: .fanCirculate)
-                case .on:
-                    GoogleAnalytics.log(event: .fanOn)
-                }
+            .do(onNext: { _ in
             })
             .bind(to: viewModel.fan)
             .disposed(by: disposeBag)

@@ -101,7 +101,7 @@ class OverrideViewModel {
     
     //MARK: - Actions
     private lazy var saveEvents: Observable<Event<Void>> = self.saveAction
-        .do(onNext: { GoogleAnalytics.log(event: .overrideSave) })
+        .do(onNext: {  })
         .withLatestFrom(self.selectedDate.asObservable())
         .flatMapLatest { [weak self] selectedDate -> Observable<Event<Void>> in
             guard let self = self else { return .empty() }
@@ -115,7 +115,7 @@ class OverrideViewModel {
         .share()
     
     private lazy var cancelEvents: Observable<Event<Void>> = self.cancelAction
-        .do(onNext: { GoogleAnalytics.log(event: .cancelOverride) })
+        .do(onNext: {  })
         .flatMapLatest { [weak self] _ -> Observable<Event<Void>> in
             guard let self = self else { return .empty() }
             return PeakRewardsService.rx.deleteOverride(accountNumber: self.accountDetail.accountNumber,
@@ -127,10 +127,10 @@ class OverrideViewModel {
         .share()
         
     private(set) lazy var saveSuccess: Observable<Void> = self.saveEvents.elements()
-        .do(onNext: { GoogleAnalytics.log(event: .overrideToast) })
+        .do(onNext: {  })
     
     private(set) lazy var cancelSuccess: Observable<Void> = self.cancelEvents.elements()
-        .do(onNext: { GoogleAnalytics.log(event: .cancelOverrideToast) })
+        .do(onNext: {  })
     
     private(set) lazy var error: Observable<(String?, String?)> = Observable.merge(self.saveEvents.errors(), self.cancelEvents.errors())
         .map {

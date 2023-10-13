@@ -481,7 +481,7 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
         }).disposed(by: disposeBag)
         
         addBankAccountButton.rx.touchUpInside
-            .do(onNext: { GoogleAnalytics.log(event: .addBankNewWallet) })
+            .do(onNext: {  })
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
                 let actionSheet = UIAlertController
@@ -494,7 +494,7 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
             }).disposed(by: disposeBag)
         
         addCreditCardButton.rx.touchUpInside
-            .do(onNext: { GoogleAnalytics.log(event: .addCardNewWallet) })
+            .do(onNext: {  })
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
                 let actionSheet = UIAlertController
@@ -531,16 +531,6 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
     
     @IBAction func onContinuePress() {
         view.endEditing(true)
-        
-        if let bankOrCard = viewModel.selectedWalletItem.value?.bankOrCard {
-            switch bankOrCard {
-            case .bank:
-                GoogleAnalytics.log(event: .eCheckOffer)
-            case .card:
-                GoogleAnalytics.log(event: .cardOffer)
-            }
-        }
-        
         FirebaseUtility.logEvent(.makePaymentNext)
         
         performSegue(withIdentifier: "reviewPaymentSegue", sender: self)
@@ -655,7 +645,6 @@ extension MakePaymentViewController: PaymentusFormViewControllerDelegate {
         viewModel.selectedWalletItem.accept(walletItem)
         fetchData(initialFetch: false)
         if !walletItem.isTemporary {
-            GoogleAnalytics.log(event: walletItem.bankOrCard == .bank ? .eCheckAddNewWallet : .cardAddNewWallet, dimensions: [.otpEnabled: walletItem.isDefault ? "enabled" : "disabled"])
             let toastMessage = walletItem.bankOrCard == .bank ?
                 NSLocalizedString("Bank account added", comment: "") :
                 NSLocalizedString("Card added", comment: "")

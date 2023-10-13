@@ -109,14 +109,6 @@ class BGEAutoPaySettingsViewController: KeyboardAvoidingStickyFooterViewControll
             .disposed(by: disposeBag)
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        if viewModel.initialEnrollmentStatus == .enrolled {
-            GoogleAnalytics.log(event: .autoPayModifySettingOffer)
-        } else {
-            GoogleAnalytics.log(event: .autoPayModifySettingOfferNew)
-        }
-    }
-    
     
     // MARK: - Helper
     

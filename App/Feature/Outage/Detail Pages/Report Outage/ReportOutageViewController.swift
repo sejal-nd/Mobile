@@ -176,7 +176,6 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
         
         footerTextView.tintColor = .actionBrand // For the phone numbers
         footerTextView.attributedText = viewModel.footerTextViewText
-        footerTextView.linkTapDelegate = self
         
         commentTextView.placeholder = NSLocalizedString("Enter details here (Optional)", comment: "")
         commentTextView.textView.accessibilityLabel = NSLocalizedString("Enter details here, optional", comment: "")
@@ -214,12 +213,6 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        if unauthenticatedExperience {
-            GoogleAnalytics.log(event: .reportAnOutageUnAuthScreenView)
-        } else {
-            GoogleAnalytics.log(event: .reportOutageAuthOffer)
-        }
         
         if viewModel.shouldPingMeter && !unauthenticatedExperience {
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
@@ -412,9 +405,7 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
             viewModel.reportOutageAnon(onSuccess: { [weak self] reportedOutage in
                 FirebaseUtility.logEvent(.reportOutageNetworkComplete)
                 FirebaseUtility.logEvent(.unauthOutage(parameters: [.report_complete]))
-                
-                GoogleAnalytics.log(event: .reportAnOutageUnAuthComplete)
-                
+                                
                 LoadingView.hide()
                 guard let self = self else { return }
                 RxNotifications.shared.outageReported.onNext(())
@@ -422,14 +413,11 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
                 self.medalliaReportOutageSurvey()
                 self.navigationController?.popViewController(animated: true)
                 }, onError: errorBlock)
-            GoogleAnalytics.log(event: .reportAnOutageUnAuthSubmit)
         } else {
             viewModel.reportOutage(onSuccess: { [weak self] in
                 FirebaseUtility.logEvent(.reportOutageNetworkComplete)
                 FirebaseUtility.logEvent(.authOutage(parameters: [.report_complete]))
-                
-                GoogleAnalytics.log(event: .reportOutageAuthComplete)
-                
+                                
                 LoadingView.hide()
                 guard let self = self else { return }
                 RxNotifications.shared.outageReported.onNext(())
@@ -437,8 +425,6 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
                 self.medalliaReportOutageSurvey()
                 self.navigationController?.popViewController(animated: true)
                 }, onError: errorBlock)
-            GoogleAnalytics.log(event: .reportOutageAuthSubmit)
-            
         }
         
     }
@@ -477,9 +463,7 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
     }
     
     @IBAction func checkboxToggled() {
-        if meterPingFuseBoxCheckbox.isChecked {
-            GoogleAnalytics.log(event: .reportOutageAuthCircuitBreak)
-        }
+
     }
     
 }
@@ -524,15 +508,4 @@ extension ReportOutageViewController: UITextFieldDelegate {
         
     }
     
-}
-
-extension ReportOutageViewController: DataDetectorTextViewLinkTapDelegate {
-    
-    func dataDetectorTextView(_ textView: DataDetectorTextView, didInteractWith URL: URL) {
-        let screenName: GoogleAnalyticsEvent = unauthenticatedExperience ?
-            .reportAnOutageUnAuthEmergencyPhone :
-            .reportOutageEmergencyCall
-        
-        GoogleAnalytics.log(event: screenName)
-    }
 }

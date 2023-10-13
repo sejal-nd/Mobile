@@ -60,7 +60,7 @@ class PaperlessEBillViewModel {
                 .drive(enrollStatesChanged)
                 .disposed(by: bag)
         }
-            
+        
         allAccountsCheckboxState = Observable.combineLatest(accountDetails.asObservable(),
                                                             accountsToEnroll.asObservable(),
                                                             accountsToUnenroll.asObservable())
@@ -89,13 +89,13 @@ class PaperlessEBillViewModel {
                     .map { $0 }
                     .catchErrorJustReturn(nil)
                     .unwrap()
-        }
+            }
         
         return Observable.from(accountResults)
             .merge(maxConcurrent: 3)
             .toArray()
-            // Re-sort the returned array of account details to match the original order of the accounts passed in.
-            // This is done in case one request was fired after, but returned before another
+        // Re-sort the returned array of account details to match the original order of the accounts passed in.
+        // This is done in case one request was fired after, but returned before another
             .map { accountDetails in
                 accountDetails
                     .map { detail -> (Int, AccountDetail) in
@@ -108,35 +108,33 @@ class PaperlessEBillViewModel {
                     .sorted { $0.0 < $1.0 }
                     .map { $0.1 }
             }
-    .asObservable()
+            .asObservable()
             .share(replay: 1)
     }()
     
     func submitChanges(onSuccess: @escaping (PaperlessEBillChangedStatus) -> Void, onError: @escaping (String) -> Void) {
         let enrollObservables = accountsToEnroll.value.map {
             BillService.rx.enrollPaperlessBilling(accountNumber: $0,
-                                               email: initialAccountDetail.value.customerInfo.emailAddress)
-                .do(onCompleted: {
-                    GoogleAnalytics.log(event: .eBillEnrollComplete)
-                    FirebaseUtility.logEvent(.eBill(parameters: [.enroll_complete]))
-                }, onSubscribe: {
-                    FirebaseUtility.logEvent(.eBill(parameters: [.enroll_start]))
-                })
-            }
+                                                  email: initialAccountDetail.value.customerInfo.emailAddress)
+            .do(onCompleted: {
+                FirebaseUtility.logEvent(.eBill(parameters: [.enroll_complete]))
+            }, onSubscribe: {
+                FirebaseUtility.logEvent(.eBill(parameters: [.enroll_start]))
+            })
+                }
             .doEach { _ in
-                GoogleAnalytics.log(event: .eBillEnrollOffer) }
+                 }
         
         let unenrollObservables = accountsToUnenroll.value.map {
             BillService.rx.unenrollPaperlessBilling(accountNumber: $0)
                 .do(onCompleted: {
-                    GoogleAnalytics.log(event: .eBillUnEnrollComplete)
                     FirebaseUtility.logEvent(.eBill(parameters: [.unenroll_complete]))
                 }, onSubscribe: {
                     FirebaseUtility.logEvent(.eBill(parameters: [.unenroll_start]))
                 })
         }
-        .doEach { _ in
-            GoogleAnalytics.log(event: .eBillUnEnrollOffer) }
+            .doEach { _ in
+                 }
         
         var changedStatus: PaperlessEBillChangedStatus
         if Configuration.shared.opco == .bge || Configuration.shared.opco.isPHI {
@@ -149,7 +147,7 @@ class PaperlessEBillViewModel {
             .merge(maxConcurrent: 3)
             .toArray()
             .observeOn(MainScheduler.instance)
-        .asObservable()
+            .asObservable()
             .subscribe(onNext: { [weak self] responseArray in
                 if Configuration.shared.opco.isPHI {
                     let opcoIdentifier = AccountsStore.shared.currentAccount.utilityCode?.uppercased() ?? Configuration.shared.opco.rawValue
@@ -216,5 +214,5 @@ class PaperlessEBillViewModel {
     }
     
     private(set) lazy var isSingleAccount: Driver<Bool> = self.accounts.asDriver().map { $0.count == 1 }
-
+    
 }

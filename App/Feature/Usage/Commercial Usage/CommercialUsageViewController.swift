@@ -148,17 +148,7 @@ class CommercialUsageViewController: UIViewController {
             .distinctUntilChanged()
             .subscribe(onNext: { [weak self] selectedIndex in
                 guard let self = self else { return }
-                
-                switch self.viewModel.tabs.value[selectedIndex] {
-                case .usageTrends:
-                    GoogleAnalytics.log(event: .comUsageTrends)
-                case .billingHistory:
-                    GoogleAnalytics.log(event: .comUsageBilling)
-                case .weatherImpact:
-                    GoogleAnalytics.log(event: .comUsageWeather)
-                case .operatingSchedule:
-                    GoogleAnalytics.log(event: .comUsageOpSchedule)
-                }
+
             })
             .disposed(by: disposeBag)
     }

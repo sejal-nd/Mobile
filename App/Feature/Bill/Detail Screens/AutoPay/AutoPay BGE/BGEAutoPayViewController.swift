@@ -77,7 +77,7 @@ class BGEAutoPayViewController: UIViewController {
         
         switch viewModel.initialEnrollmentStatus.value {
         case .unenrolled:
-            GoogleAnalytics.log(event: .autoPayEnrollOffer)
+            break
         case .enrolled:
             termsStackView.isHidden = true
         }
@@ -261,7 +261,6 @@ class BGEAutoPayViewController: UIViewController {
             guard let self = self else { return }
             
             LoadingView.show()
-            GoogleAnalytics.log(event: .autoPayUnenrollOffer)
             
             FirebaseUtility.logEvent(.autoPay(parameters: [.unenroll_start]))
             
@@ -269,7 +268,6 @@ class BGEAutoPayViewController: UIViewController {
             
             self.viewModel.unenroll(onSuccess: { [weak self] in
                 LoadingView.hide()
-                GoogleAnalytics.log(event: .autoPayUnenrollComplete)
                 
                 FirebaseUtility.logEvent(.autoPay(parameters: [.unenroll_complete]))
                 
@@ -307,23 +305,16 @@ class BGEAutoPayViewController: UIViewController {
     }
     
     private func enroll() {
-        GoogleAnalytics.log(event: .autoPayEnrollSubmit)
         FirebaseUtility.logEvent(.autoPay(parameters: [.enroll_start]))
         FirebaseUtility.logEvent(.autoPaySubmit)
         
         viewModel.enroll(onSuccess: { [weak self] in
             LoadingView.hide()
             guard let self = self else { return }
-            
-            GoogleAnalytics.log(event: .autoPayEnrollComplete)
-            
+                        
             FirebaseUtility.logEvent(.autoPay(parameters: [.enroll_complete]))
             
             FirebaseUtility.logEvent(.autoPayNetworkComplete)
-            
-            if self.viewModel.userDidChangeSettings.value {
-                GoogleAnalytics.log(event: .autoPayModifySettingCompleteNew)
-            }
             
             let title = NSLocalizedString("Enrolled in AutoPay", comment: "")
             let description: String
@@ -350,13 +341,11 @@ class BGEAutoPayViewController: UIViewController {
     }
     
     private func updateSettings() {
-        GoogleAnalytics.log(event: .autoPayModifySettingSubmit)
         FirebaseUtility.logEvent(.autoPaySubmit)
         FirebaseUtility.logEvent(.autoPay(parameters: [.modify_start]))
         
         viewModel.update(onSuccess: { [weak self] in
             LoadingView.hide()
-            GoogleAnalytics.log(event: .autoPayModifySettingComplete)
             
             FirebaseUtility.logEvent(.autoPay(parameters: [.settings_changed]))
             FirebaseUtility.logEvent(.autoPay(parameters: [.modify_complete]))
@@ -410,12 +399,6 @@ class BGEAutoPayViewController: UIViewController {
         miniWalletVC.titleText = NSLocalizedString("Select Bank Account", comment: "")
         miniWalletVC.tableHeaderText = nil
         
-        if accountDetail.isAutoPay {
-            GoogleAnalytics.log(event: .autoPayModifyWallet)
-        } else {
-            GoogleAnalytics.log(event: .autoPayEnrollSelectBank)
-        }
-        
         self.present(miniWalletVC, animated: false, completion: nil)
     }
     
@@ -467,7 +450,6 @@ extension BGEAutoPayViewController: MiniWalletSheetViewControllerDelegate {
         showUpdateButton()
         
         FirebaseUtility.logEvent(.autoPay(parameters: [.modify_bank]))
-        GoogleAnalytics.log(event: .autoPayModifyBankComplete)
     }
     
     func miniWalletSheetViewControllerDidSelectAddBank(_ miniWalletSheetViewController: MiniWalletSheetViewController) {

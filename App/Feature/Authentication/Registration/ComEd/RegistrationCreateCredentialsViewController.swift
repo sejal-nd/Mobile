@@ -108,7 +108,6 @@ class RegistrationCreateCredentialsViewController: KeyboardAvoidingStickyFooterV
         LoadingView.show()
         viewModel.verifyUniqueUsername(onSuccess: { [weak self] in
             LoadingView.hide()
-            GoogleAnalytics.log(event: .registerAccountSetup)
             
             self?.performSegue(withIdentifier: "loadSecretQuestionsSegue", sender: self)
         }, onEmailAlreadyExists: { [weak self] in
@@ -125,9 +124,7 @@ class RegistrationCreateCredentialsViewController: KeyboardAvoidingStickyFooterV
     
     @objc private func suggestPassword() {
         guard let strongPassword = SharedWebCredentials.generatePassword() else { return }
-        
-        GoogleAnalytics.log(event: .strongPasswordOffer)
-        
+                
         presentAlert(title: "Suggested Password:\n\n\(strongPassword)\n",
             message: "This password will be saved in your iCloud keychain so it is available for AutoFill on all your devices.",
             style: .actionSheet,
