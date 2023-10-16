@@ -1,0 +1,214 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.8.1 (swiftlang-5.8.0.124.5 clang-1403.0.22.11.100)
+// swift-module-flags: -target x86_64-apple-ios11.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name RxSwiftExt
+// swift-module-flags-ignorable: -enable-bare-slash-regex
+import Foundation
+import RxCocoa
+import RxSwift
+import RxSwift/*.RxSwift*/
+import Swift
+import UIKit
+import _Concurrency
+import _StringProcessing
+extension RxSwift.ObservableType {
+  public func ignoreErrors() -> RxSwift.Observable<Self.Element>
+  public func ignoreErrors(_ predicate: @escaping (any Swift.Error) -> Swift.Bool) -> RxSwift.Observable<Self.Element>
+}
+extension RxSwift.ObservableType {
+  public func unwrap<Result>() -> RxSwift.Observable<Result> where Self.Element == Result?
+}
+extension RxSwift.ObservableType {
+  public func ignoreWhen(_ predicate: @escaping (Self.Element) throws -> Swift.Bool) -> RxSwift.Observable<Self.Element>
+}
+extension RxSwift.Observable where Element : RxSwift.ObservableType {
+  public static func cascade<Sequence>(_ observables: Sequence) -> RxSwift.Observable<Element.Element> where Element == Sequence.Element, Sequence : Swift.Sequence
+}
+extension RxSwift.ObservableType {
+  public func cascade<S>(_ next: S) -> RxSwift.Observable<Self.Element> where Self == S.Element, S : Swift.Sequence
+}
+extension RxCocoa.SharedSequenceConvertibleType where Self.Element == Swift.Bool {
+  public func not() -> RxCocoa.SharedSequence<Self.SharingStrategy, Swift.Bool>
+}
+public enum RepeatBehavior {
+  case immediate(maxCount: Swift.UInt)
+  case delayed(maxCount: Swift.UInt, time: Swift.Double)
+  case exponentialDelayed(maxCount: Swift.UInt, initial: Swift.Double, multiplier: Swift.Double)
+  case customTimerDelayed(maxCount: Swift.UInt, delayCalculator: (Swift.UInt) -> Dispatch.DispatchTimeInterval)
+}
+public typealias RetryPredicate = (any Swift.Error) -> Swift.Bool
+extension RxSwift.ObservableType {
+  public func retry(_ behavior: RxSwiftExt.RepeatBehavior, scheduler: any RxSwift.SchedulerType = MainScheduler.instance, shouldRetry: RxSwiftExt.RetryPredicate? = nil) -> RxSwift.Observable<Self.Element>
+}
+extension RxSwift.Observable {
+  public func merge(with other: RxSwift.Observable<Element>) -> RxSwift.Observable<Element>
+  public func merge(with others: [RxSwift.Observable<Element>]) -> RxSwift.Observable<Element>
+}
+extension RxSwift.ObservableType where Self.Element : RxSwift.EventConvertible {
+  public func elements() -> RxSwift.Observable<Self.Element.Element>
+  public func errors() -> RxSwift.Observable<any Swift.Error>
+}
+extension RxSwift.Observable {
+  public static func once(_ element: Element) -> RxSwift.Observable<Element>
+}
+@available(iOS 10.0, *)
+extension RxSwift.Reactive where Base : UIKit.UIViewPropertyAnimator {
+  public var fractionComplete: RxCocoa.Binder<CoreFoundation.CGFloat> {
+    get
+  }
+  public func animate(afterDelay delay: Foundation.TimeInterval = 0) -> RxSwift.Completable
+}
+extension RxSwift.ObservableType {
+  public func mapTo<Result>(_ value: Result) -> RxSwift.Observable<Result>
+}
+extension RxSwift.PrimitiveSequence where Trait == RxSwift.SingleTrait {
+  public func mapTo<Result>(_ value: Result) -> RxSwift.Single<Result>
+}
+extension RxSwift.PrimitiveSequence where Trait == RxSwift.MaybeTrait {
+  public func mapTo<Result>(_ value: Result) -> RxSwift.Maybe<Result>
+}
+extension RxSwift.ObservableType {
+  public func apply<Result>(_ transform: (RxSwift.Observable<Self.Element>) -> RxSwift.Observable<Result>) -> RxSwift.Observable<Result>
+}
+extension RxSwift.PrimitiveSequenceType {
+  public func apply<Result>(_ transform: (RxSwift.PrimitiveSequence<Self.Trait, Self.Element>) -> RxSwift.PrimitiveSequence<Self.Trait, Result>) -> RxSwift.PrimitiveSequence<Self.Trait, Result>
+}
+extension RxSwift.Reactive where Base : UIKit.UIScrollView {
+  public func reachedBottom(offset: CoreFoundation.CGFloat = 0.0) -> RxCocoa.ControlEvent<Swift.Void>
+}
+extension RxSwift.ObservableType {
+  public func ofType<Result>(_ type: Result.Type) -> RxSwift.Observable<Result>
+}
+extension RxSwift.ObservableType {
+  public func subscribe<Object>(weak obj: Object, _ on: @escaping (Object) -> (RxSwift.Event<Self.Element>) -> Swift.Void) -> any RxSwift.Disposable where Object : AnyObject
+  public func subscribe<Object>(weak obj: Object, onNext: ((Object) -> (Self.Element) -> Swift.Void)? = nil, onError: ((Object) -> (any Swift.Error) -> Swift.Void)? = nil, onCompleted: ((Object) -> () -> Swift.Void)? = nil, onDisposed: ((Object) -> () -> Swift.Void)? = nil) -> any RxSwift.Disposable where Object : AnyObject
+  public func subscribeNext<Object>(weak obj: Object, _ onNext: @escaping (Object) -> (Self.Element) -> Swift.Void) -> any RxSwift.Disposable where Object : AnyObject
+  public func subscribeError<Object>(weak obj: Object, _ onError: @escaping (Object) -> (any Swift.Error) -> Swift.Void) -> any RxSwift.Disposable where Object : AnyObject
+  public func subscribeCompleted<Object>(weak obj: Object, _ onCompleted: @escaping (Object) -> () -> Swift.Void) -> any RxSwift.Disposable where Object : AnyObject
+}
+extension RxSwift.ObservableType where Self.Element == Swift.Bool {
+  public func and() -> RxSwift.Maybe<Self.Element>
+  public static func and<Collection>(_ collection: Collection) -> RxSwift.Maybe<Self.Element> where Collection : Swift.Collection, Collection.Element : RxSwift.ObservableType, Collection.Element.Element == Swift.Bool
+  public static func and<Observable>(_ sources: Observable...) -> RxSwift.Maybe<Self.Element> where Observable : RxSwift.ObservableType, Observable.Element == Swift.Bool
+}
+extension RxSwift.ObservableType {
+  public func mapAt<Result>(_ keyPath: Swift.KeyPath<Self.Element, Result>) -> RxSwift.Observable<Result>
+}
+extension RxSwift.ObservableType where Self.Element == Swift.Bool {
+  public func not() -> RxSwift.Observable<Swift.Bool>
+}
+extension RxSwift.Observable {
+  public func count() -> RxSwift.Observable<Swift.Int>
+  public func count(_ predicate: @escaping (Element) throws -> Swift.Bool) -> RxSwift.Observable<Swift.Int>
+}
+extension RxSwift.Observable {
+  public func distinct(_ predicate: @escaping (Element) throws -> Swift.Bool) -> RxSwift.Observable<Element>
+}
+extension RxSwift.Observable where Element : Swift.Hashable {
+  public func distinct() -> RxSwift.Observable<Element>
+}
+extension RxSwift.Observable where Element : Swift.Equatable {
+  public func distinct() -> RxSwift.Observable<Element>
+}
+extension RxSwift.ObservableType {
+  public func nwise(_ n: Swift.Int) -> RxSwift.Observable<[Self.Element]>
+  public func pairwise() -> RxSwift.Observable<(Self.Element, Self.Element)>
+}
+extension RxSwift.ObservableType {
+  public func pausable<Pauser>(_ pauser: Pauser) -> RxSwift.Observable<Self.Element> where Pauser : RxSwift.ObservableType, Pauser.Element == Swift.Bool
+}
+extension RxSwift.ObservableType {
+  public func toSortedArray(by: @escaping (Self.Element, Self.Element) -> Swift.Bool) -> RxSwift.Single<[Self.Element]>
+}
+extension RxSwift.ObservableType where Self.Element : Swift.Comparable {
+  public func toSortedArray(ascending: Swift.Bool = true) -> RxSwift.Single<[Self.Element]>
+}
+extension RxSwift.ObservableType {
+  public func bufferWithTrigger<Trigger>(_ trigger: Trigger) -> RxSwift.Observable<[Self.Element]> where Trigger : RxSwift.ObservableType
+}
+public enum FilterMap<Result> {
+  case ignore
+  case map(Result)
+}
+extension RxSwift.ObservableType {
+  public func filterMap<Result>(_ transform: @escaping (Self.Element) throws -> RxSwiftExt.FilterMap<Result>) -> RxSwift.Observable<Result>
+}
+extension RxCocoa.SharedSequence {
+  public func distinct(_ predicate: @escaping (Element) -> Swift.Bool) -> RxCocoa.SharedSequence<SharingStrategy, Element>
+}
+extension RxCocoa.SharedSequence where Element : Swift.Equatable {
+  public func distinct() -> RxCocoa.SharedSequence<SharingStrategy, Element>
+}
+extension RxSwift.ObservableType {
+  public func partition(_ predicate: @escaping (Self.Element) throws -> Swift.Bool) -> (matches: RxSwift.Observable<Self.Element>, nonMatches: RxSwift.Observable<Self.Element>)
+}
+extension RxSwift.ObservableType where Self.Element : Swift.Equatable {
+  public func ignore(_ valuesToIgnore: Self.Element...) -> RxSwift.Observable<Self.Element>
+  public func ignore<Sequence>(_ valuesToIgnore: Sequence) -> RxSwift.Observable<Self.Element> where Sequence : Swift.Sequence, Self.Element == Sequence.Element
+}
+extension RxSwift.ObservableType {
+  public func withUnretained<Object, Out>(_ obj: Object, resultSelector: @escaping ((Object, Self.Element)) -> Out) -> RxSwift.Observable<Out> where Object : AnyObject
+  public func withUnretained<Object>(_ obj: Object) -> RxSwift.Observable<(Object, Self.Element)> where Object : AnyObject
+}
+extension RxCocoa.SharedSequence {
+  public func unwrap<Result>() -> RxCocoa.SharedSequence<SharingStrategy, Result> where Element == Result?
+}
+extension RxSwift.ObservableType {
+  public func pausableBuffered<Pauser>(_ pauser: Pauser, limit: Swift.Int? = 1, flushOnCompleted: Swift.Bool = true, flushOnError: Swift.Bool = true) -> RxSwift.Observable<Self.Element> where Pauser : RxSwift.ObservableType, Pauser.Element == Swift.Bool
+}
+extension RxSwift.Observable {
+  public static func fromAsync(_ asyncRequest: @escaping (@escaping (Element) -> Swift.Void) -> Swift.Void) -> RxSwift.Observable<Element>
+  public static func fromAsync<A>(_ asyncRequest: @escaping (A, @escaping (Element) -> Swift.Void) -> Swift.Void) -> (A) -> RxSwift.Observable<Element>
+  public static func fromAsync<A, B>(_ asyncRequest: @escaping (A, B, @escaping (Element) -> Swift.Void) -> Swift.Void) -> (A, B) -> RxSwift.Observable<Element>
+  public static func fromAsync<A, B, C>(_ asyncRequest: @escaping (A, B, C, @escaping (Element) -> Swift.Void) -> Swift.Void) -> (A, B, C) -> RxSwift.Observable<Element>
+  public static func fromAsync<A, B, C, D>(_ asyncRequest: @escaping (A, B, C, D, @escaping (Element) -> Swift.Void) -> Swift.Void) -> (A, B, C, D) -> RxSwift.Observable<Element>
+  public static func fromAsync<A, B, C, D, E>(_ asyncRequest: @escaping (A, B, C, D, E, @escaping (Element) -> Swift.Void) -> Swift.Void) -> (A, B, C, D, E) -> RxSwift.Observable<Element>
+  public static func fromAsync<A, B, C, D, E, F>(_ asyncRequest: @escaping (A, B, C, D, E, F, @escaping (Element) -> Swift.Void) -> Swift.Void) -> (A, B, C, D, E, F) -> RxSwift.Observable<Element>
+  public static func fromAsync<A, B, C, D, E, F, G>(_ asyncRequest: @escaping (A, B, C, D, E, F, G, @escaping (Element) -> Swift.Void) -> Swift.Void) -> (A, B, C, D, E, F, G) -> RxSwift.Observable<Element>
+  public static func fromAsync<A, B, C, D, E, F, G, H>(_ asyncRequest: @escaping (A, B, C, D, E, F, G, H, @escaping (Element) -> Swift.Void) -> Swift.Void) -> (A, B, C, D, E, F, G, H) -> RxSwift.Observable<Element>
+  public static func fromAsync<A, B, C, D, E, F, G, H, I>(_ asyncRequest: @escaping (A, B, C, D, E, F, G, H, I, @escaping (Element) -> Swift.Void) -> Swift.Void) -> (A, B, C, D, E, F, G, H, I) -> RxSwift.Observable<Element>
+  public static func fromAsync<A, B, C, D, E, F, G, H, I, J>(_ asyncRequest: @escaping (A, B, C, D, E, F, G, H, I, J, @escaping (Element) -> Swift.Void) -> Swift.Void) -> (A, B, C, D, E, F, G, H, I, J) -> RxSwift.Observable<Element>
+}
+public enum FromAsyncError : Swift.Error {
+  case inconsistentCompletionResult
+  public static func == (a: RxSwiftExt.FromAsyncError, b: RxSwiftExt.FromAsyncError) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension RxSwift.PrimitiveSequenceType where Self.Trait == RxSwift.SingleTrait {
+  public static func fromAsync<Er>(_ asyncRequest: @escaping (@escaping (Self.Element?, Er?) -> Swift.Void) -> Swift.Void) -> RxSwift.Single<Self.Element> where Er : Swift.Error
+  public static func fromAsync<A, Er>(_ asyncRequest: @escaping (A, @escaping (Self.Element?, Er?) -> Swift.Void) -> Swift.Void) -> (A) -> RxSwift.Single<Self.Element> where Er : Swift.Error
+  public static func fromAsync<A, B, Er>(_ asyncRequest: @escaping (A, B, @escaping (Self.Element?, Er?) -> Swift.Void) -> Swift.Void) -> (A, B) -> RxSwift.Single<Self.Element> where Er : Swift.Error
+  public static func fromAsync<A, B, C, Er>(_ asyncRequest: @escaping (A, B, C, @escaping (Self.Element?, Er?) -> Swift.Void) -> Swift.Void) -> (A, B, C) -> RxSwift.Single<Self.Element> where Er : Swift.Error
+  public static func fromAsync<A, B, C, D, Er>(_ asyncRequest: @escaping (A, B, C, D, @escaping (Self.Element?, Er?) -> Swift.Void) -> Swift.Void) -> (A, B, C, D) -> RxSwift.Single<Self.Element> where Er : Swift.Error
+  public static func fromAsync<A, B, C, D, E, Er>(_ asyncRequest: @escaping (A, B, C, D, E, @escaping (Self.Element?, Er?) -> Swift.Void) -> Swift.Void) -> (A, B, C, D, E) -> RxSwift.Single<Self.Element> where Er : Swift.Error
+  public static func fromAsync<A, B, C, D, E, F, Er>(_ asyncRequest: @escaping (A, B, C, D, E, F, @escaping (Self.Element?, Er?) -> Swift.Void) -> Swift.Void) -> (A, B, C, D, E, F) -> RxSwift.Single<Self.Element> where Er : Swift.Error
+  public static func fromAsync<A, B, C, D, E, F, G, Er>(_ asyncRequest: @escaping (A, B, C, D, E, F, G, @escaping (Self.Element?, Er?) -> Swift.Void) -> Swift.Void) -> (A, B, C, D, E, F, G) -> RxSwift.Single<Self.Element> where Er : Swift.Error
+  public static func fromAsync<A, B, C, D, E, F, G, H, Er>(_ asyncRequest: @escaping (A, B, C, D, E, F, G, H, @escaping (Self.Element?, Er?) -> Swift.Void) -> Swift.Void) -> (A, B, C, D, E, F, G, H) -> RxSwift.Single<Self.Element> where Er : Swift.Error
+  public static func fromAsync<A, B, C, D, E, F, G, H, I, Er>(_ asyncRequest: @escaping (A, B, C, D, E, F, G, H, I, @escaping (Self.Element?, Er?) -> Swift.Void) -> Swift.Void) -> (A, B, C, D, E, F, G, H, I) -> RxSwift.Single<Self.Element> where Er : Swift.Error
+  public static func fromAsync<A, B, C, D, E, F, G, H, I, J, Er>(_ asyncRequest: @escaping (A, B, C, D, E, F, G, H, I, J, @escaping (Self.Element?, Er?) -> Swift.Void) -> Swift.Void) -> (A, B, C, D, E, F, G, H, I, J) -> RxSwift.Single<Self.Element> where Er : Swift.Error
+}
+extension RxSwift.ObservableType where Self.Element : Swift.Collection {
+  public func mapMany<Result>(_ transform: @escaping (Self.Element.Element) throws -> Result) -> RxSwift.Observable<[Result]>
+}
+extension RxCocoa.SharedSequenceConvertibleType {
+  public func mapTo<Result>(_ value: Result) -> RxCocoa.SharedSequence<Self.SharingStrategy, Result>
+  @available(*, deprecated, renamed: "mapTo(_:)")
+  public func map<Result>(to value: Result) -> RxCocoa.SharedSequence<Self.SharingStrategy, Result>
+}
+extension RxCocoa.SharedSequence {
+  public func partition(_ predicate: @escaping (Element) -> Swift.Bool) -> (matches: RxCocoa.SharedSequence<SharingStrategy, Element>, nonMatches: RxCocoa.SharedSequence<SharingStrategy, Element>)
+}
+public typealias RepeatPredicate = () -> Swift.Bool
+extension RxSwift.ObservableType {
+  public func repeatWithBehavior(_ behavior: RxSwiftExt.RepeatBehavior, scheduler: any RxSwift.SchedulerType = MainScheduler.instance, shouldRepeat: RxSwiftExt.RepeatPredicate? = nil) -> RxSwift.Observable<Self.Element>
+}
+extension RxSwift.ObservableType {
+  public func catchErrorJustComplete() -> RxSwift.Observable<Self.Element>
+}
+extension RxSwift.ObservableConvertibleType {
+  public func zip<Other, ResultType>(with second: Other, resultSelector: @escaping (Self.Element, Other.Element) throws -> ResultType) -> RxSwift.Observable<ResultType> where Other : RxSwift.ObservableConvertibleType
+}
+extension RxSwiftExt.FromAsyncError : Swift.Equatable {}
+extension RxSwiftExt.FromAsyncError : Swift.Hashable {}

@@ -8,6 +8,7 @@
 
 import RxSwift
 import RxCocoa
+import UIKit
 
 protocol BudgetBillingViewControllerDelegate: class {
     func budgetBillingViewControllerDidEnroll(_ budgetBillingViewController: UIViewController, averageMonthlyBill: String?)

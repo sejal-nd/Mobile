@@ -8,6 +8,7 @@
 
 import RxSwift
 import RxCocoa
+import UIKit
 
 class MaintenanceModeViewModel{
     let disposeBag = DisposeBag()

@@ -9,6 +9,7 @@
 import RxSwift
 import RxCocoa
 import RxSwiftExt
+import UIKit
 
 class HomeViewModel {
     let fetchData = PublishSubject<Void>()

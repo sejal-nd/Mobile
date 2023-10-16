@@ -6,8 +6,8 @@
 //  Copyright © 2020 Exelon Corporation. All rights reserved.
 //
 
-import Foundation
 import RxSwift
+import UIKit
 
 public enum AuthenticationService {
     

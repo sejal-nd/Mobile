@@ -8,6 +8,7 @@
 
 import RxSwift
 import RxCocoa
+import UIKit
 
 class HomeEditCardCell: UICollectionViewCell {
     @IBOutlet weak var cardView: UIView!

@@ -7,6 +7,7 @@
 //
 
 import Lottie
+import UIKit
 
 class LoadingIndicator: UIView {
     

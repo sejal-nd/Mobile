@@ -7,6 +7,7 @@
 //
 
 import RxSwift
+import UIKit
 
 protocol ForgotUsernameSecurityQuestionViewControllerDelegate: class {
     func forgotUsernameSecurityQuestionViewController(_ forgotUsernameSecurityQuestionViewController: ForgotUsernameSecurityQuestionViewController, didUnmaskUsername username: String)

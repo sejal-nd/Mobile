@@ -9,6 +9,7 @@
 import RxSwift
 import RxCocoa
 import RxSwiftExt
+import UIKit
 
 class WeeklyInsightViewModel {
     let bag = DisposeBag()

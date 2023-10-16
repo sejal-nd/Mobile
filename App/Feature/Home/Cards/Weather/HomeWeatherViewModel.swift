@@ -8,6 +8,7 @@
 
 import RxSwift
 import RxCocoa
+import UIKit
 
 fileprivate let coldTips = ["tip080_set_thermostat_wisely_winter","tip033_clear_around_vents","tip046_let_in_sun_for_warmth"]
 

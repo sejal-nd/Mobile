@@ -8,6 +8,7 @@
 
 import RxSwift
 import RxCocoa
+import UIKit
 
 protocol AccountLookUpValidatePinViewControllerDelegate: class {
     func accountLookUpValidatePinViewController(_ accountLookUpValidatePinViewController: UIViewController, didUnmaskUsername username: String)

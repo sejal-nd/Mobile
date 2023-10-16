@@ -1,0 +1,773 @@
+{
+  "ABIRoot": {
+    "kind": "Root",
+    "name": "TopLevel",
+    "printedName": "TopLevel",
+    "children": [
+      {
+        "kind": "Import",
+        "name": "RxSwift",
+        "printedName": "RxSwift",
+        "declKind": "Import",
+        "moduleName": "RxRelay",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "PublishRelay",
+        "printedName": "PublishRelay",
+        "children": [
+          {
+            "kind": "Function",
+            "name": "accept",
+            "printedName": "accept(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "GenericTypeParam",
+                "printedName": "τ_0_0"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:7RxRelay07PublishB0C6acceptyyxF",
+            "mangledName": "$s7RxRelay07PublishB0C6acceptyyxF",
+            "moduleName": "RxRelay",
+            "genericSig": "<τ_0_0>",
+            "sugared_genericSig": "<Element>",
+            "declAttributes": [
+              "Final",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "PublishRelay",
+                "printedName": "RxRelay.PublishRelay<τ_0_0>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  }
+                ],
+                "usr": "s:7RxRelay07PublishB0C"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:7RxRelay07PublishB0CACyxGycfc",
+            "mangledName": "$s7RxRelay07PublishB0CACyxGycfc",
+            "moduleName": "RxRelay",
+            "genericSig": "<τ_0_0>",
+            "sugared_genericSig": "<Element>",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "subscribe",
+            "printedName": "subscribe(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Disposable",
+                "printedName": "RxSwift.Disposable",
+                "usr": "s:7RxSwift10DisposableP"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "GenericTypeParam",
+                "printedName": "τ_1_0"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:7RxRelay07PublishB0C9subscribey0A5Swift10Disposable_pqd__7ElementQyd__RszAE12ObserverTypeRd__lF",
+            "mangledName": "$s7RxRelay07PublishB0C9subscribey0A5Swift10Disposable_pqd__7ElementQyd__RszAE12ObserverTypeRd__lF",
+            "moduleName": "RxRelay",
+            "genericSig": "<τ_0_0, τ_1_0 where τ_0_0 == τ_1_0.Element, τ_1_0 : RxSwift.ObserverType>",
+            "sugared_genericSig": "<Element, Observer where Element == Observer.Element, Observer : RxSwift.ObserverType>",
+            "declAttributes": [
+              "Final",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "asObservable",
+            "printedName": "asObservable()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Observable",
+                "printedName": "RxSwift.Observable<τ_0_0>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  }
+                ],
+                "usr": "s:7RxSwift10ObservableC"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:7RxRelay07PublishB0C12asObservable0A5Swift0E0CyxGyF",
+            "mangledName": "$s7RxRelay07PublishB0C12asObservable0A5Swift0E0CyxGyF",
+            "moduleName": "RxRelay",
+            "genericSig": "<τ_0_0>",
+            "sugared_genericSig": "<Element>",
+            "declAttributes": [
+              "Final",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "s:7RxRelay07PublishB0C",
+        "mangledName": "$s7RxRelay07PublishB0C",
+        "moduleName": "RxRelay",
+        "genericSig": "<τ_0_0>",
+        "sugared_genericSig": "<Element>",
+        "declAttributes": [
+          "Final",
+          "AccessControl",
+          "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "ObservableType",
+            "printedName": "ObservableType",
+            "usr": "s:7RxSwift14ObservableTypeP",
+            "mangledName": "$s7RxSwift14ObservableTypeP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "ObservableConvertibleType",
+            "printedName": "ObservableConvertibleType",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "Element",
+                "printedName": "Element",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:7RxSwift25ObservableConvertibleTypeP",
+            "mangledName": "$s7RxSwift25ObservableConvertibleTypeP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "RxSwift",
+        "printedName": "RxSwift",
+        "declKind": "Import",
+        "moduleName": "RxRelay",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "BehaviorRelay",
+        "printedName": "BehaviorRelay",
+        "children": [
+          {
+            "kind": "Function",
+            "name": "accept",
+            "printedName": "accept(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "GenericTypeParam",
+                "printedName": "τ_0_0"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:7RxRelay08BehaviorB0C6acceptyyxF",
+            "mangledName": "$s7RxRelay08BehaviorB0C6acceptyyxF",
+            "moduleName": "RxRelay",
+            "genericSig": "<τ_0_0>",
+            "sugared_genericSig": "<Element>",
+            "declAttributes": [
+              "Final",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Var",
+            "name": "value",
+            "printedName": "value",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "GenericTypeParam",
+                "printedName": "τ_0_0"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:7RxRelay08BehaviorB0C5valuexvp",
+            "mangledName": "$s7RxRelay08BehaviorB0C5valuexvp",
+            "moduleName": "RxRelay",
+            "declAttributes": [
+              "Final",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:7RxRelay08BehaviorB0C5valuexvg",
+                "mangledName": "$s7RxRelay08BehaviorB0C5valuexvg",
+                "moduleName": "RxRelay",
+                "genericSig": "<τ_0_0>",
+                "sugared_genericSig": "<Element>",
+                "declAttributes": [
+                  "Final"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(value:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "BehaviorRelay",
+                "printedName": "RxRelay.BehaviorRelay<τ_0_0>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  }
+                ],
+                "usr": "s:7RxRelay08BehaviorB0C"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "GenericTypeParam",
+                "printedName": "τ_0_0"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:7RxRelay08BehaviorB0C5valueACyxGx_tcfc",
+            "mangledName": "$s7RxRelay08BehaviorB0C5valueACyxGx_tcfc",
+            "moduleName": "RxRelay",
+            "genericSig": "<τ_0_0>",
+            "sugared_genericSig": "<Element>",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "subscribe",
+            "printedName": "subscribe(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Disposable",
+                "printedName": "RxSwift.Disposable",
+                "usr": "s:7RxSwift10DisposableP"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "GenericTypeParam",
+                "printedName": "τ_1_0"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:7RxRelay08BehaviorB0C9subscribey0A5Swift10Disposable_pqd__7ElementQyd__RszAE12ObserverTypeRd__lF",
+            "mangledName": "$s7RxRelay08BehaviorB0C9subscribey0A5Swift10Disposable_pqd__7ElementQyd__RszAE12ObserverTypeRd__lF",
+            "moduleName": "RxRelay",
+            "genericSig": "<τ_0_0, τ_1_0 where τ_0_0 == τ_1_0.Element, τ_1_0 : RxSwift.ObserverType>",
+            "sugared_genericSig": "<Element, Observer where Element == Observer.Element, Observer : RxSwift.ObserverType>",
+            "declAttributes": [
+              "Final",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "asObservable",
+            "printedName": "asObservable()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Observable",
+                "printedName": "RxSwift.Observable<τ_0_0>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  }
+                ],
+                "usr": "s:7RxSwift10ObservableC"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:7RxRelay08BehaviorB0C12asObservable0A5Swift0E0CyxGyF",
+            "mangledName": "$s7RxRelay08BehaviorB0C12asObservable0A5Swift0E0CyxGyF",
+            "moduleName": "RxRelay",
+            "genericSig": "<τ_0_0>",
+            "sugared_genericSig": "<Element>",
+            "declAttributes": [
+              "Final",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "s:7RxRelay08BehaviorB0C",
+        "mangledName": "$s7RxRelay08BehaviorB0C",
+        "moduleName": "RxRelay",
+        "genericSig": "<τ_0_0>",
+        "sugared_genericSig": "<Element>",
+        "declAttributes": [
+          "Final",
+          "AccessControl",
+          "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "ObservableType",
+            "printedName": "ObservableType",
+            "usr": "s:7RxSwift14ObservableTypeP",
+            "mangledName": "$s7RxSwift14ObservableTypeP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "ObservableConvertibleType",
+            "printedName": "ObservableConvertibleType",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "Element",
+                "printedName": "Element",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:7RxSwift25ObservableConvertibleTypeP",
+            "mangledName": "$s7RxSwift25ObservableConvertibleTypeP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "RxSwift",
+        "printedName": "RxSwift",
+        "declKind": "Import",
+        "moduleName": "RxRelay",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "RxRelay",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Function",
+        "name": "rxFatalErrorInDebug",
+        "printedName": "rxFatalErrorInDebug(_:file:line:)",
+        "children": [
+          {
+            "kind": "TypeNominal",
+            "name": "Void",
+            "printedName": "()"
+          },
+          {
+            "kind": "TypeFunc",
+            "name": "Function",
+            "printedName": "() -> Swift.String",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              }
+            ],
+            "typeAttributes": [
+              "noescape"
+            ]
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "StaticString",
+            "printedName": "Swift.StaticString",
+            "hasDefaultArg": true,
+            "usr": "s:s12StaticStringV"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "UInt",
+            "printedName": "Swift.UInt",
+            "hasDefaultArg": true,
+            "usr": "s:Su"
+          }
+        ],
+        "declKind": "Func",
+        "usr": "s:7RxRelay19rxFatalErrorInDebug_4file4lineySSyXK_s12StaticStringVSutF",
+        "mangledName": "$s7RxRelay19rxFatalErrorInDebug_4file4lineySSyXK_s12StaticStringVSutF",
+        "moduleName": "RxRelay",
+        "funcSelfKind": "NonMutating"
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "ObservableType",
+        "printedName": "ObservableType",
+        "children": [
+          {
+            "kind": "Function",
+            "name": "bind",
+            "printedName": "bind(to:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Disposable",
+                "printedName": "RxSwift.Disposable",
+                "usr": "s:7RxSwift10DisposableP"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Array",
+                "printedName": "[RxRelay.PublishRelay<τ_0_0.Element>]",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "PublishRelay",
+                    "printedName": "RxRelay.PublishRelay<τ_0_0.Element>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "DependentMember",
+                        "printedName": "τ_0_0.Element"
+                      }
+                    ],
+                    "usr": "s:7RxRelay07PublishB0C"
+                  }
+                ],
+                "usr": "s:Sa"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:7RxSwift14ObservableTypeP0A5RelayE4bind2toAA10Disposable_pAD07PublishE0Cy7ElementQzGd_tF",
+            "mangledName": "$s7RxSwift14ObservableTypeP0A5RelayE4bind2toAA10Disposable_pAD07PublishE0Cy7ElementQzGd_tF",
+            "moduleName": "RxRelay",
+            "genericSig": "<τ_0_0 where τ_0_0 : RxSwift.ObservableType>",
+            "sugared_genericSig": "<Self where Self : RxSwift.ObservableType>",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "bind",
+            "printedName": "bind(to:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Disposable",
+                "printedName": "RxSwift.Disposable",
+                "usr": "s:7RxSwift10DisposableP"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Array",
+                "printedName": "[RxRelay.PublishRelay<τ_0_0.Element?>]",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "PublishRelay",
+                    "printedName": "RxRelay.PublishRelay<τ_0_0.Element?>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Optional",
+                        "printedName": "τ_0_0.Element?",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "DependentMember",
+                            "printedName": "τ_0_0.Element"
+                          }
+                        ],
+                        "usr": "s:Sq"
+                      }
+                    ],
+                    "usr": "s:7RxRelay07PublishB0C"
+                  }
+                ],
+                "usr": "s:Sa"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:7RxSwift14ObservableTypeP0A5RelayE4bind2toAA10Disposable_pAD07PublishE0Cy7ElementQzSgGd_tF",
+            "mangledName": "$s7RxSwift14ObservableTypeP0A5RelayE4bind2toAA10Disposable_pAD07PublishE0Cy7ElementQzSgGd_tF",
+            "moduleName": "RxRelay",
+            "genericSig": "<τ_0_0 where τ_0_0 : RxSwift.ObservableType>",
+            "sugared_genericSig": "<Self where Self : RxSwift.ObservableType>",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "bind",
+            "printedName": "bind(to:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Disposable",
+                "printedName": "RxSwift.Disposable",
+                "usr": "s:7RxSwift10DisposableP"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Array",
+                "printedName": "[RxRelay.BehaviorRelay<τ_0_0.Element>]",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "BehaviorRelay",
+                    "printedName": "RxRelay.BehaviorRelay<τ_0_0.Element>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "DependentMember",
+                        "printedName": "τ_0_0.Element"
+                      }
+                    ],
+                    "usr": "s:7RxRelay08BehaviorB0C"
+                  }
+                ],
+                "usr": "s:Sa"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:7RxSwift14ObservableTypeP0A5RelayE4bind2toAA10Disposable_pAD08BehaviorE0Cy7ElementQzGd_tF",
+            "mangledName": "$s7RxSwift14ObservableTypeP0A5RelayE4bind2toAA10Disposable_pAD08BehaviorE0Cy7ElementQzGd_tF",
+            "moduleName": "RxRelay",
+            "genericSig": "<τ_0_0 where τ_0_0 : RxSwift.ObservableType>",
+            "sugared_genericSig": "<Self where Self : RxSwift.ObservableType>",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "bind",
+            "printedName": "bind(to:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Disposable",
+                "printedName": "RxSwift.Disposable",
+                "usr": "s:7RxSwift10DisposableP"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Array",
+                "printedName": "[RxRelay.BehaviorRelay<τ_0_0.Element?>]",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "BehaviorRelay",
+                    "printedName": "RxRelay.BehaviorRelay<τ_0_0.Element?>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Optional",
+                        "printedName": "τ_0_0.Element?",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "DependentMember",
+                            "printedName": "τ_0_0.Element"
+                          }
+                        ],
+                        "usr": "s:Sq"
+                      }
+                    ],
+                    "usr": "s:7RxRelay08BehaviorB0C"
+                  }
+                ],
+                "usr": "s:Sa"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:7RxSwift14ObservableTypeP0A5RelayE4bind2toAA10Disposable_pAD08BehaviorE0Cy7ElementQzSgGd_tF",
+            "mangledName": "$s7RxSwift14ObservableTypeP0A5RelayE4bind2toAA10Disposable_pAD08BehaviorE0Cy7ElementQzSgGd_tF",
+            "moduleName": "RxRelay",
+            "genericSig": "<τ_0_0 where τ_0_0 : RxSwift.ObservableType>",
+            "sugared_genericSig": "<Self where Self : RxSwift.ObservableType>",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Protocol",
+        "usr": "s:7RxSwift14ObservableTypeP",
+        "mangledName": "$s7RxSwift14ObservableTypeP",
+        "moduleName": "RxSwift",
+        "genericSig": "<τ_0_0 : RxSwift.ObservableConvertibleType>",
+        "sugared_genericSig": "<Self : RxSwift.ObservableConvertibleType>",
+        "isExternal": true,
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "ObservableConvertibleType",
+            "printedName": "ObservableConvertibleType",
+            "usr": "s:7RxSwift25ObservableConvertibleTypeP",
+            "mangledName": "$s7RxSwift25ObservableConvertibleTypeP"
+          }
+        ]
+      }
+    ],
+    "json_format_version": 8
+  },
+  "ConstValues": [
+    {
+      "filePath": "\/Users\/e114805\/Desktop\/frameworkTesting\/RxSwift-5.1-3.0\/RxRelay\/Observable+Bind.swift",
+      "kind": "StringLiteral",
+      "offset": 1886,
+      "length": 42,
+      "value": "\"Binding error to publish relay: \""
+    },
+    {
+      "filePath": "\/Users\/e114805\/Desktop\/frameworkTesting\/RxSwift-5.1-3.0\/RxRelay\/Observable+Bind.swift",
+      "kind": "StringLiteral",
+      "offset": 1927,
+      "length": 2,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/e114805\/Desktop\/frameworkTesting\/RxSwift-5.1-3.0\/RxRelay\/Observable+Bind.swift",
+      "kind": "StringLiteral",
+      "offset": 3715,
+      "length": 43,
+      "value": "\"Binding error to behavior relay: \""
+    },
+    {
+      "filePath": "\/Users\/e114805\/Desktop\/frameworkTesting\/RxSwift-5.1-3.0\/RxRelay\/Observable+Bind.swift",
+      "kind": "StringLiteral",
+      "offset": 3757,
+      "length": 2,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/e114805\/Desktop\/frameworkTesting\/RxSwift-5.1-3.0\/RxRelay\/Utils.swift",
+      "kind": "StringLiteral",
+      "offset": 365,
+      "length": 35,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/e114805\/Desktop\/frameworkTesting\/RxSwift-5.1-3.0\/RxRelay\/Utils.swift",
+      "kind": "StringLiteral",
+      "offset": 373,
+      "length": 1,
+      "value": "\":\""
+    },
+    {
+      "filePath": "\/Users\/e114805\/Desktop\/frameworkTesting\/RxSwift-5.1-3.0\/RxRelay\/Utils.swift",
+      "kind": "StringLiteral",
+      "offset": 381,
+      "length": 1,
+      "value": "\": \""
+    },
+    {
+      "filePath": "\/Users\/e114805\/Desktop\/frameworkTesting\/RxSwift-5.1-3.0\/RxRelay\/Utils.swift",
+      "kind": "StringLiteral",
+      "offset": 399,
+      "length": 2,
+      "value": "\"\""
+    }
+  ]
+}

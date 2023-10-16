@@ -7,7 +7,7 @@
 //
 
 import RxSwift
-
+import UIKit
 /* IMPORTANT - THEIR BACKEND MAPS THE CODES AS FOLLOWS (DIFFERENT FROM OUR DISPLAY
  01 = All Information
  02 = No Information

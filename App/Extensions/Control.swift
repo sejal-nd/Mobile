@@ -8,6 +8,7 @@
 
 import RxSwift
 import RxCocoa
+import UIKit
 
 extension Reactive where Base : UIControl {
     var touchUpInside: RxCocoa.ControlEvent<Swift.Void> {

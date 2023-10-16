@@ -8,6 +8,7 @@
 
 import RxSwift
 import RxCocoa
+import UIKit
 
 protocol WeeklyInsightViewControllerDelegate: class {
     func weeklyInsightViewControllerWillDisappear(_ weeklyInsightViewController: WeeklyInsightViewController)

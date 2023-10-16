@@ -9,6 +9,7 @@
 import XLPagerTabStrip
 import RxSwift
 import RxCocoa
+import UIKit
 
 class AppointmentsViewController: ButtonBarPagerTabStripViewController {
     

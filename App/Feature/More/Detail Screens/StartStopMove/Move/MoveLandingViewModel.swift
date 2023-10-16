@@ -9,6 +9,8 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import UIKit
+
 class MoveLandingViewModel {
 
     let disposeBag = DisposeBag()

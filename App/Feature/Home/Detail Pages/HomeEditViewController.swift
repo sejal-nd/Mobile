@@ -8,6 +8,7 @@
 
 import RxSwift
 import RxCocoa
+import UIKit
 
 fileprivate var topSectionHeaderHeight: CGFloat = 120
 fileprivate let cardsInUseString = NSLocalizedString("Cards in Use", comment: "")

@@ -9,6 +9,7 @@
 import RxSwift
 import RxCocoa
 import RxSwiftExt
+import UIKit
 
 class TapToPayViewModel {
     let disposeBag = DisposeBag()

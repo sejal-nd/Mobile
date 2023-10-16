@@ -12,6 +12,7 @@ import RxSwiftExt
 import Lottie
 import UserNotifications
 import SafariServices
+import UIKit
 
 fileprivate let editHomeSegueId = "editHomeSegue"
 fileprivate let colorBackgroundViewHeight: CGFloat = 446

@@ -1,0 +1,32 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.8.1 (swiftlang-5.8.0.124.5 clang-1403.0.22.11.100)
+// swift-module-flags: -target armv7k-apple-watchos7.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name RxRelay
+// swift-module-flags-ignorable: -enable-bare-slash-regex
+import Foundation
+import RxSwift
+import Swift
+import _Concurrency
+import _StringProcessing
+final public class PublishRelay<Element> : RxSwift.ObservableType {
+  final public func accept(_ event: Element)
+  public init()
+  final public func subscribe<Observer>(_ observer: Observer) -> any RxSwift.Disposable where Element == Observer.Element, Observer : RxSwift.ObserverType
+  final public func asObservable() -> RxSwift.Observable<Element>
+  @objc deinit
+}
+final public class BehaviorRelay<Element> : RxSwift.ObservableType {
+  final public func accept(_ event: Element)
+  final public var value: Element {
+    get
+  }
+  public init(value: Element)
+  final public func subscribe<Observer>(_ observer: Observer) -> any RxSwift.Disposable where Element == Observer.Element, Observer : RxSwift.ObserverType
+  final public func asObservable() -> RxSwift.Observable<Element>
+  @objc deinit
+}
+extension RxSwift.ObservableType {
+  public func bind(to relays: RxRelay.PublishRelay<Self.Element>...) -> any RxSwift.Disposable
+  public func bind(to relays: RxRelay.PublishRelay<Self.Element?>...) -> any RxSwift.Disposable
+  public func bind(to relays: RxRelay.BehaviorRelay<Self.Element>...) -> any RxSwift.Disposable
+  public func bind(to relays: RxRelay.BehaviorRelay<Self.Element?>...) -> any RxSwift.Disposable
+}

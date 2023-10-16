@@ -9,6 +9,7 @@
 import RxSwift
 import RxCocoa
 import UserNotifications
+import UIKit
 
 protocol AlertPreferencesViewControllerDelegate: class {
     func alertPreferencesViewControllerDidSavePreferences()

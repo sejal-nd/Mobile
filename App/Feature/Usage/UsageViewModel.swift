@@ -10,6 +10,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 import RxSwiftExt
+import UIKit
 
 fileprivate let firstfuelSessionTimeout = 900 // 15 minutes
 

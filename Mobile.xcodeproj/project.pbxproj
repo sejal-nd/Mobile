@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		045E71F2270F40DE00589623 /* GeneralSubmitErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045E71F1270F40DE00589623 /* GeneralSubmitErrorViewController.swift */; };
 		04AE2B7E27214BC600C6374D /* IdVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AE2B7D27214BC600C6374D /* IdVerificationViewController.swift */; };
-		04C329613DB0CC4C6391C318 /* Pods_EUMobile_Watch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 277650B6F85C6AC146C5F8C2 /* Pods_EUMobile_Watch.framework */; };
-		06EF941418076B8505D85358 /* Pods_UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F264461441121FBD4E0113E0 /* Pods_UITests.framework */; };
 		0D79C6C51F1D3360004793DD /* Maintenance.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0D79C6C41F1D3360004793DD /* Maintenance.storyboard */; };
 		0D79C6C91F1D3CD7004793DD /* MaintenanceModeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D79C6C81F1D3CD7004793DD /* MaintenanceModeViewController.swift */; };
 		0D79C6CD1F1F971E004793DD /* MaintenanceModeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D79C6CC1F1F971E004793DD /* MaintenanceModeViewModel.swift */; };
@@ -88,7 +86,7 @@
 		282B4F7C26E7817F00ACD33C /* ISUMMove.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 282B4F7B26E7817F00ACD33C /* ISUMMove.storyboard */; };
 		28C71DE326FB2961006148AA /* FinalMailingAddressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C71DE226FB2961006148AA /* FinalMailingAddressViewModel.swift */; };
 		2F86FB791F2661D900F1A55A /* BillingHistoryDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F86FB781F2661D900F1A55A /* BillingHistoryDetailsViewModel.swift */; };
-		2FA5D85F1F17D2A300A8B16B /* (null) in Sources */ = {isa = PBXBuildFile; };
+		2FA5D85F1F17D2A300A8B16B /* BuildFile in Sources */ = {isa = PBXBuildFile; };
 		2FA5D8641F17D88500A8B16B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA5D8631F17D88500A8B16B /* HomeViewController.swift */; };
 		301DE1F624BF0A7300992CA4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06C71E521B3200BBA4ED /* Assets.xcassets */; };
 		3090A643247F9A6900815EA1 /* More.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8B4F4AE1E5C957A0031D934 /* More.storyboard */; };
@@ -185,7 +183,7 @@
 		35F9DD6D2333C8A100AAA2B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7BD21907F2E00BA13C6 /* Assets.xcassets */; };
 		35F9DD7C2333D14D00AAA2B2 /* Date+DueBy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7EB2190804E00BA13C6 /* Date+DueBy.swift */; };
 		35F9DD842333D2B800AAA2B2 /* EUMobile-Watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 35F9DD2F2333C34100AAA2B2 /* EUMobile-Watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		35F9DD932333D83F00AAA2B2 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		35F9DD932333D83F00AAA2B2 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
 		35F9DDA22333D87E00AAA2B2 /* AccountsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D340901EBA6A8700BA2D42 /* AccountsStore.swift */; };
 		35F9DDA32333D88400AAA2B2 /* ReportedOutagesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B085C44620FFD49400CE0893 /* ReportedOutagesStore.swift */; };
 		35F9DDA42333D88800AAA2B2 /* StormModeStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0649A5E214834380041B299 /* StormModeStatus.swift */; };
@@ -463,9 +461,6 @@
 		6761AC362AD85C8400945554 /* AppCenterDistribute in Frameworks */ = {isa = PBXBuildFile; productRef = 6761AC352AD85C8400945554 /* AppCenterDistribute */; };
 		6761AC392AD85CEB00945554 /* MedalliaDigitalSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 6761AC382AD85CEB00945554 /* MedalliaDigitalSDK */; };
 		6761AC3C2AD8653400945554 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 6761AC3B2AD8653400945554 /* FirebaseAnalytics */; };
-		6761AC772AD9990A00945554 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6761AC762AD9990A00945554 /* RxSwift.framework */; };
-		6761AC782AD9990A00945554 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6761AC762AD9990A00945554 /* RxSwift.framework */; };
-		6761AC7A2AD9991100945554 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6761AC792AD9991100945554 /* RxCocoa.framework */; };
 		676279EF247DB11100A57FBC /* TermPolicies.html in Resources */ = {isa = PBXBuildFile; fileRef = 676279EE247DB11100A57FBC /* TermPolicies.html */; };
 		676434CB25AF692600DA6448 /* DebugMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 676434C925AF692600DA6448 /* DebugMenu.swift */; };
 		676434CC25AF692600DA6448 /* InfoLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 676434CA25AF692600DA6448 /* InfoLabel.swift */; };
@@ -548,9 +543,20 @@
 		67A986E024FD41A100BD46E7 /* Assets-FlavorPEPCO.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBD0924535EE6006CD6EB /* Assets-FlavorPEPCO.xcassets */; };
 		67A986E124FD41A100BD46E7 /* Assets-FlavorDPL.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBD872457389E006CD6EB /* Assets-FlavorDPL.xcassets */; };
 		67A986E224FD41A100BD46E7 /* Assets-FlavorACE.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBD8A245738B8006CD6EB /* Assets-FlavorACE.xcassets */; };
-		67A9873324FD4C5F00BD46E7 /* (null) in Resources */ = {isa = PBXBuildFile; };
+		67A9873324FD4C5F00BD46E7 /* BuildFile in Resources */ = {isa = PBXBuildFile; };
 		67AE888225BF5274008519B4 /* ProjectTier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AE888125BF5274008519B4 /* ProjectTier.swift */; };
 		67AE888B25BF5C8D008519B4 /* ProjectTier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AE888125BF5274008519B4 /* ProjectTier.swift */; };
+		67D0481A2AD9BD220036479A /* DecibelCore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67D048182AD9BD060036479A /* DecibelCore.xcframework */; };
+		67D0481B2AD9BD220036479A /* DecibelCore.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 67D048182AD9BD060036479A /* DecibelCore.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		67D04AA02ADDA4900036479A /* RxSwift.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67D04A9F2ADDA4900036479A /* RxSwift.xcframework */; };
+		67D04AA12ADDA4900036479A /* RxSwift.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67D04A9F2ADDA4900036479A /* RxSwift.xcframework */; };
+		67D04AA32ADDA5E40036479A /* RxRelay.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67D04AA22ADDA5E40036479A /* RxRelay.xcframework */; };
+		67D04AA42ADDA5E40036479A /* RxRelay.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67D04AA22ADDA5E40036479A /* RxRelay.xcframework */; };
+		67D04AA82ADDA7A00036479A /* RxCocoa.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67D04AA72ADDA7A00036479A /* RxCocoa.xcframework */; };
+		67D04AA92ADDA7A00036479A /* RxCocoa.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67D04AA72ADDA7A00036479A /* RxCocoa.xcframework */; };
+		67D04AB12ADDAB5F0036479A /* RxSwiftExt.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67D04AB02ADDAB5F0036479A /* RxSwiftExt.xcframework */; };
+		67D04AB22ADDAB5F0036479A /* RxSwiftExt.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67D04AB02ADDAB5F0036479A /* RxSwiftExt.xcframework */; };
+		67D04AB52ADDAFE30036479A /* ActivityTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D04AB42ADDAFE20036479A /* ActivityTracker.swift */; };
 		67D5626324EADA7E00852551 /* GameTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D5626224EADA7E00852551 /* GameTip.swift */; };
 		67D5626724EADA9700852551 /* GameQuiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D5626624EADA9600852551 /* GameQuiz.swift */; };
 		67D5626924EADAA700852551 /* GameSurvery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D5626824EADAA700852551 /* GameSurvery.swift */; };
@@ -567,7 +573,7 @@
 		67D73AE8246C47EF00450B63 /* NoNetworkConnectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67D73AE1246C47EF00450B63 /* NoNetworkConnectionView.xib */; };
 		67D73AF1246C480500450B63 /* BillingHistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67D73AEF246C480500450B63 /* BillingHistoryTableViewCell.xib */; };
 		67D73AF7246C480500450B63 /* BillingHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D73AF0246C480500450B63 /* BillingHistoryTableViewCell.swift */; };
-		67D73B00246C72F100450B63 /* (null) in Resources */ = {isa = PBXBuildFile; };
+		67D73B00246C72F100450B63 /* BuildFile in Resources */ = {isa = PBXBuildFile; };
 		67DDBDBF24646E38006CD6EB /* Color+OpCo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67DDBDBE24646E38006CD6EB /* Color+OpCo.swift */; };
 		67F950FC24BCA111009B5F07 /* RegistrationValidateAccountViewControllerNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F47C224AB6CD200A828F9 /* RegistrationValidateAccountViewControllerNew.swift */; };
 		67F950FD24BCA111009B5F07 /* RegistrationCreateCredentialsViewControllerNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3535363724AC9A3000B428D6 /* RegistrationCreateCredentialsViewControllerNew.swift */; };
@@ -623,7 +629,6 @@
 		82AEF2E41F618F560057E7ED /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 82AEF2E31F618F560057E7ED /* Settings.bundle */; };
 		82BE057F1ED8D14D00BC06EE /* FadeSubviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BE057E1ED8D14D00BC06EE /* FadeSubviews.swift */; };
 		82D551D91EAA9779001B1796 /* PaperlessEBillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D551D81EAA9779001B1796 /* PaperlessEBillViewController.swift */; };
-		82D599421EC2374500DDB380 /* ActivityTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D599411EC2374500DDB380 /* ActivityTracker.swift */; };
 		82D5994B1EC36B5500DDB380 /* NumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D5994A1EC36B5500DDB380 /* NumberFormatter.swift */; };
 		82D599511EC3A00900DDB380 /* alert_icon.json in Resources */ = {isa = PBXBuildFile; fileRef = 82D599501EC3A00900DDB380 /* alert_icon.json */; };
 		82DE61051FB9F34A00DC25C1 /* OverrideViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82DE61041FB9F34A00DC25C1 /* OverrideViewModel.swift */; };
@@ -637,7 +642,6 @@
 		82EAB33C1F97EFCD008B55B1 /* Top5EnergyTipsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EAB33B1F97EFCD008B55B1 /* Top5EnergyTipsViewController.swift */; };
 		82EAB3401F97EFF8008B55B1 /* HourlyPricingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EAB33F1F97EFF8008B55B1 /* HourlyPricingViewController.swift */; };
 		82EAB3441F97F01B008B55B1 /* MyHomeProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EAB3431F97F01B008B55B1 /* MyHomeProfileViewController.swift */; };
-		8B0396FB871DBD2335C770CA /* Pods_UnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C182D1AA9DB93326D321E8A /* Pods_UnitTests.framework */; };
 		8FD3C2691E5250AF005FB1BB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8FD3C2681E5250AF005FB1BB /* Main.storyboard */; };
 		8FD5AE861E54EA49003F640D /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD5AE831E54EA49003F640D /* LandingViewController.swift */; };
 		8FD5AE891E54EA49003F640D /* LoginTermsPoliciesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD5AE841E54EA49003F640D /* LoginTermsPoliciesViewController.swift */; };
@@ -824,7 +828,6 @@
 		B5AC06CC1E521B5300BBA4ED /* Assets-FlavorBGE.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06CB1E521B5300BBA4ED /* Assets-FlavorBGE.xcassets */; };
 		B5D415761F3A6C3000AC32B2 /* GoogleService-Info-BETA-FlavorBGE.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5D415751F3A6C3000AC32B2 /* GoogleService-Info-BETA-FlavorBGE.plist */; };
 		B5D415781F3A6C6300AC32B2 /* GoogleService-Info-RELEASE-FlavorBGE.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5D415771F3A6C6300AC32B2 /* GoogleService-Info-RELEASE-FlavorBGE.plist */; };
-		C1FC7DEA2EEE0C8413984CF0 /* Pods_EUMobile_Watch_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4ADF4FF916DE3B2844982F78 /* Pods_EUMobile_Watch_Extension.framework */; };
 		C30079382436637600A9BEB0 /* BGEStrings.strings in Resources */ = {isa = PBXBuildFile; fileRef = C300793A2436637600A9BEB0 /* BGEStrings.strings */; };
 		C300793C2436669F00A9BEB0 /* LocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = C300793B2436669F00A9BEB0 /* LocalizedString.swift */; };
 		C3055B382538F6DE000DB89C /* OutageStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B2E24AB828000A828F9 /* OutageStatus.swift */; };
@@ -1070,7 +1073,6 @@
 		C3E377A827696385000D557D /* AccountSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E377A727696385000D557D /* AccountSummary.swift */; };
 		C3E377A927696385000D557D /* AccountSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E377A727696385000D557D /* AccountSummary.swift */; };
 		C3E7AE8E298305E70044194E /* outage_power_on.json in Resources */ = {isa = PBXBuildFile; fileRef = C3E7AE8D298305E70044194E /* outage_power_on.json */; };
-		C8F95FB76F50334BC5162649 /* Pods_EUMobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F3FDD6CD872BFB6C5171060 /* Pods_EUMobile.framework */; };
 		CC6BC820296D6F43000A250C /* MedalliaPlusDecibelUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6BC81F296D6F42000A250C /* MedalliaPlusDecibelUtility.swift */; };
 		CEA2151D1F79005600689422 /* HomeBillCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2151C1F79005600689422 /* HomeBillCardViewModel.swift */; };
 		CEA215221F7900CC00689422 /* HomeBillCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA215201F7900CC00689422 /* HomeBillCardView.swift */; };
@@ -1223,37 +1225,28 @@
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		67D0481C2AD9BD250036479A /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				67D0481B2AD9BD220036479A /* DecibelCore.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		00EEF1DB7F3DD4C93D1C8532 /* Pods-EUMobile-Watch.pepco-aut.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch.pepco-aut.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch/Pods-EUMobile-Watch.pepco-aut.xcconfig"; sourceTree = "<group>"; };
-		03BAF012DCA4FE172D96935F /* Pods-UITests.pepco-rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UITests.pepco-rc.xcconfig"; path = "Pods/Target Support Files/Pods-UITests/Pods-UITests.pepco-rc.xcconfig"; sourceTree = "<group>"; };
-		03DA2DE4AA4D17C789D84AF6 /* Pods-UnitTests.ace-beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnitTests.ace-beta.xcconfig"; path = "Pods/Target Support Files/Pods-UnitTests/Pods-UnitTests.ace-beta.xcconfig"; sourceTree = "<group>"; };
-		043AD4137C4B870D0876711F /* Pods-UITests.peco-beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UITests.peco-beta.xcconfig"; path = "Pods/Target Support Files/Pods-UITests/Pods-UITests.peco-beta.xcconfig"; sourceTree = "<group>"; };
 		045E71F1270F40DE00589623 /* GeneralSubmitErrorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSubmitErrorViewController.swift; sourceTree = "<group>"; };
 		04AE2B7D27214BC600C6374D /* IdVerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdVerificationViewController.swift; sourceTree = "<group>"; };
-		07AA0C7324C571B496D261D5 /* Pods-UITests.bge-aut.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UITests.bge-aut.xcconfig"; path = "Pods/Target Support Files/Pods-UITests/Pods-UITests.bge-aut.xcconfig"; sourceTree = "<group>"; };
-		0845ED32A13A12B215991009 /* Pods-UnitTests.comed-aut.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnitTests.comed-aut.xcconfig"; path = "Pods/Target Support Files/Pods-UnitTests/Pods-UnitTests.comed-aut.xcconfig"; sourceTree = "<group>"; };
-		09E4372FC8E2C732F2939737 /* Pods-EUMobile-Watch Extension.comed-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch Extension.comed-release.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch Extension/Pods-EUMobile-Watch Extension.comed-release.xcconfig"; sourceTree = "<group>"; };
-		0BA01FDC771112716F0452A5 /* Pods-EUMobile.bge-beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile.bge-beta.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile/Pods-EUMobile.bge-beta.xcconfig"; sourceTree = "<group>"; };
-		0C5910660209B00E86BF701B /* Pods-UnitTests.ace-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnitTests.ace-release.xcconfig"; path = "Pods/Target Support Files/Pods-UnitTests/Pods-UnitTests.ace-release.xcconfig"; sourceTree = "<group>"; };
-		0C9EF509CB69C6BD8BC4BCC3 /* Pods-EUMobile.peco-beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile.peco-beta.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile/Pods-EUMobile.peco-beta.xcconfig"; sourceTree = "<group>"; };
 		0D79C6C41F1D3360004793DD /* Maintenance.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Maintenance.storyboard; sourceTree = "<group>"; };
 		0D79C6C81F1D3CD7004793DD /* MaintenanceModeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaintenanceModeViewController.swift; sourceTree = "<group>"; };
 		0D79C6CC1F1F971E004793DD /* MaintenanceModeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaintenanceModeViewModel.swift; sourceTree = "<group>"; };
 		0E5BEF09202E22CD009D1ADB /* GoogleService-Info-RC-FlavorCOMED.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-RC-FlavorCOMED.plist"; sourceTree = "<group>"; };
 		0E5BEF0B202E2389009D1ADB /* GoogleService-Info-RC-FlavorBGE.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-RC-FlavorBGE.plist"; sourceTree = "<group>"; };
 		0E5BEF0C202E2389009D1ADB /* GoogleService-Info-RC-FlavorPECO.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-RC-FlavorPECO.plist"; sourceTree = "<group>"; };
-		0F03C17FC734CC7FC7F04BB9 /* Pods-EUMobile-Watch Extension.comed-aut.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch Extension.comed-aut.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch Extension/Pods-EUMobile-Watch Extension.comed-aut.xcconfig"; sourceTree = "<group>"; };
-		0FA1863121E26ECB574EC99E /* Pods-UnitTests.pepco-rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnitTests.pepco-rc.xcconfig"; path = "Pods/Target Support Files/Pods-UnitTests/Pods-UnitTests.pepco-rc.xcconfig"; sourceTree = "<group>"; };
-		10AB530BBE9FC1BAC5B2B69D /* Pods-EUMobile.pepco-rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile.pepco-rc.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile/Pods-EUMobile.pepco-rc.xcconfig"; sourceTree = "<group>"; };
-		14AA9E852B6C8BA8DFA98DA4 /* Pods-EUMobile-Watch Extension.bge-aut.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch Extension.bge-aut.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch Extension/Pods-EUMobile-Watch Extension.bge-aut.xcconfig"; sourceTree = "<group>"; };
-		14D4A7EEC65155AF56005C10 /* Pods-EUMobile-Watch Extension.ace-rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch Extension.ace-rc.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch Extension/Pods-EUMobile-Watch Extension.ace-rc.xcconfig"; sourceTree = "<group>"; };
-		16663E1A946C593658B029ED /* Pods-EUMobile-Watch.comed-aut.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch.comed-aut.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch/Pods-EUMobile-Watch.comed-aut.xcconfig"; sourceTree = "<group>"; };
-		178E0419CA5FFF6B6B47F7D7 /* Pods-UITests.ace-beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UITests.ace-beta.xcconfig"; path = "Pods/Target Support Files/Pods-UITests/Pods-UITests.ace-beta.xcconfig"; sourceTree = "<group>"; };
-		18CFDD6F433CE3918FE2AE09 /* Pods-EUMobile-Watch.peco-rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch.peco-rc.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch/Pods-EUMobile-Watch.peco-rc.xcconfig"; sourceTree = "<group>"; };
-		1B711F2A3540AD1315F0A0DC /* Pods-EUMobile-Watch.bge-aut.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch.bge-aut.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch/Pods-EUMobile-Watch.bge-aut.xcconfig"; sourceTree = "<group>"; };
-		20F8D6479D8B22F80312E4A1 /* Pods-UITests.peco-rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UITests.peco-rc.xcconfig"; path = "Pods/Target Support Files/Pods-UITests/Pods-UITests.peco-rc.xcconfig"; sourceTree = "<group>"; };
 		2112AAB0272C2C520089FD05 /* MoveFinalMailingAddressViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoveFinalMailingAddressViewModelTests.swift; sourceTree = "<group>"; };
 		212629EC27328D85002D3407 /* UnauthenticatedMoveAccountSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnauthenticatedMoveAccountSelectionViewController.swift; sourceTree = "<group>"; };
 		212629EE2732A37F002D3407 /* UnauthenticatedMoveAccountSelectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnauthenticatedMoveAccountSelectionViewModel.swift; sourceTree = "<group>"; };
@@ -1313,20 +1306,11 @@
 		22EBDCCC1ED3FDA50038D696 /* ContactUsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactUsViewController.swift; sourceTree = "<group>"; };
 		22EF55962170507700070C13 /* AppointmentDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentDetailViewController.swift; sourceTree = "<group>"; };
 		22EF55972170507700070C13 /* AppointmentDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AppointmentDetailViewController.xib; sourceTree = "<group>"; };
-		24A26F01575E0A81574F9B67 /* Pods-EUMobile.ace-beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile.ace-beta.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile/Pods-EUMobile.ace-beta.xcconfig"; sourceTree = "<group>"; };
-		277650B6F85C6AC146C5F8C2 /* Pods_EUMobile_Watch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EUMobile_Watch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2817AE5433CCAFAB2265CB4A /* Pods-UITests.delmarva-aut.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UITests.delmarva-aut.xcconfig"; path = "Pods/Target Support Files/Pods-UITests/Pods-UITests.delmarva-aut.xcconfig"; sourceTree = "<group>"; };
 		282B4F7226E7469500ACD33C /* StopLandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopLandingViewController.swift; sourceTree = "<group>"; };
 		282B4F7526E7488200ACD33C /* MoveLandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveLandingViewController.swift; sourceTree = "<group>"; };
 		282B4F7926E7490400ACD33C /* ISUMStop.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ISUMStop.storyboard; sourceTree = "<group>"; };
 		282B4F7B26E7817F00ACD33C /* ISUMMove.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ISUMMove.storyboard; sourceTree = "<group>"; };
 		28C71DE226FB2961006148AA /* FinalMailingAddressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalMailingAddressViewModel.swift; sourceTree = "<group>"; };
-		2970025E51E4A6B5E1D1ED99 /* Pods-EUMobile-Watch.ace-beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch.ace-beta.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch/Pods-EUMobile-Watch.ace-beta.xcconfig"; sourceTree = "<group>"; };
-		298764D273AA146AC5E8E629 /* Pods-UITests.ace-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UITests.ace-release.xcconfig"; path = "Pods/Target Support Files/Pods-UITests/Pods-UITests.ace-release.xcconfig"; sourceTree = "<group>"; };
-		2A70B7D418CB23EDE9563CEA /* Pods-UnitTests.ace-rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnitTests.ace-rc.xcconfig"; path = "Pods/Target Support Files/Pods-UnitTests/Pods-UnitTests.ace-rc.xcconfig"; sourceTree = "<group>"; };
-		2AEAE0E6E5F9912B446F7542 /* Pods-EUMobile.peco-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile.peco-release.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile/Pods-EUMobile.peco-release.xcconfig"; sourceTree = "<group>"; };
-		2C182D1AA9DB93326D321E8A /* Pods_UnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2F3FDD6CD872BFB6C5171060 /* Pods_EUMobile.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EUMobile.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F86FB781F2661D900F1A55A /* BillingHistoryDetailsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillingHistoryDetailsViewModel.swift; sourceTree = "<group>"; };
 		2FA5D8631F17D88500A8B16B /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		2FA7B9F91F0548F000D660B8 /* OutageMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OutageMapViewController.swift; path = "App/Feature/Outage/Detail Pages/OutageMapViewController.swift"; sourceTree = SOURCE_ROOT; };
@@ -1342,8 +1326,6 @@
 		30DFE85F24925FE300FEFDE4 /* EditNicknameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNicknameViewModel.swift; sourceTree = "<group>"; };
 		30F8027F251DDA06009878D3 /* PeakEnergySavingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeakEnergySavingsViewModel.swift; sourceTree = "<group>"; };
 		30F8028C251DDA66009878D3 /* PeakEnergySavingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeakEnergySavingsViewController.swift; sourceTree = "<group>"; };
-		30FA80756A48AB9DC1934F7A /* Pods-EUMobile.ace-aut.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile.ace-aut.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile/Pods-EUMobile.ace-aut.xcconfig"; sourceTree = "<group>"; };
-		34D5D8773E8D72600EFCF9F9 /* Pods-EUMobile-Watch.delmarva-beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch.delmarva-beta.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch/Pods-EUMobile-Watch.delmarva-beta.xcconfig"; sourceTree = "<group>"; };
 		35052B0E251D09D600095499 /* TapToPayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapToPayViewModel.swift; sourceTree = "<group>"; };
 		350B980D24CE898D00BB0CA7 /* RegistrationChooseAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationChooseAccountViewController.swift; sourceTree = "<group>"; };
 		350F669A274387CC00E92765 /* AssistanceProgramStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssistanceProgramStore.swift; sourceTree = "<group>"; };
@@ -1435,17 +1417,8 @@
 		35F9DD612333C74100AAA2B2 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		35F9DE50233A583700AAA2B2 /* AnalyticController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticController.swift; sourceTree = "<group>"; };
 		389B0C5F1F17C054005DD0F9 /* UnauthenticatedUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnauthenticatedUserViewController.swift; sourceTree = "<group>"; };
-		3C5923E3B63A606655431D28 /* Pods-EUMobile-Watch.ace-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch.ace-release.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch/Pods-EUMobile-Watch.ace-release.xcconfig"; sourceTree = "<group>"; };
-		3E48B304225C532442701FF0 /* Pods-EUMobile-Watch.peco-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch.peco-release.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch/Pods-EUMobile-Watch.peco-release.xcconfig"; sourceTree = "<group>"; };
-		42C81CE12C82631C2A596E3B /* Pods-UITests.bge-rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UITests.bge-rc.xcconfig"; path = "Pods/Target Support Files/Pods-UITests/Pods-UITests.bge-rc.xcconfig"; sourceTree = "<group>"; };
-		431E8E7552EFD5BBEC6673DC /* Pods-EUMobile-Watch.comed-beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch.comed-beta.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch/Pods-EUMobile-Watch.comed-beta.xcconfig"; sourceTree = "<group>"; };
 		4465DE861F1FD0090014537F /* TemplateCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemplateCardView.swift; sourceTree = "<group>"; };
 		4465DE881F1FD07C0014537F /* TemplateCardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TemplateCardView.xib; sourceTree = "<group>"; };
-		452E1D0CC10469EF28897E47 /* Pods-UnitTests.peco-beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnitTests.peco-beta.xcconfig"; path = "Pods/Target Support Files/Pods-UnitTests/Pods-UnitTests.peco-beta.xcconfig"; sourceTree = "<group>"; };
-		45DD9C12EA34A3D1D2B70356 /* Pods-UnitTests.pepco-beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnitTests.pepco-beta.xcconfig"; path = "Pods/Target Support Files/Pods-UnitTests/Pods-UnitTests.pepco-beta.xcconfig"; sourceTree = "<group>"; };
-		48CAD1C641D85E5D906EF408 /* Pods-EUMobile.pepco-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile.pepco-release.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile/Pods-EUMobile.pepco-release.xcconfig"; sourceTree = "<group>"; };
-		4953FDF36B4164D916A6B19C /* Pods-EUMobile-Watch Extension.bge-rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch Extension.bge-rc.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch Extension/Pods-EUMobile-Watch Extension.bge-rc.xcconfig"; sourceTree = "<group>"; };
-		4958F3FA03A8BE776E455461 /* Pods-EUMobile-Watch Extension.ace-beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch Extension.ace-beta.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch Extension/Pods-EUMobile-Watch Extension.ace-beta.xcconfig"; sourceTree = "<group>"; };
 		4A12C26427038BD8007FFEA6 /* StopServiceVerificationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopServiceVerificationRequest.swift; sourceTree = "<group>"; };
 		4A12C26727039335007FFEA6 /* StopServiceVerificationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopServiceVerificationResponse.swift; sourceTree = "<group>"; };
 		4A12C26A27049034007FFEA6 /* StopServiceResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopServiceResponse.swift; sourceTree = "<group>"; };
@@ -1453,7 +1426,6 @@
 		4A12C2712706D42A007FFEA6 /* ScheduleMoveServiceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleMoveServiceViewModel.swift; sourceTree = "<group>"; };
 		4A25FA7226FC4A6C008026EA /* StopConfirmationScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopConfirmationScreenViewController.swift; sourceTree = "<group>"; };
 		4A2607F926F2080400B7AAB5 /* ReviewStopServiceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewStopServiceViewModel.swift; sourceTree = "<group>"; };
-		4A265B4A77D5F2CF40432C7C /* Pods-UnitTests.comed-rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnitTests.comed-rc.xcconfig"; path = "Pods/Target Support Files/Pods-UnitTests/Pods-UnitTests.comed-rc.xcconfig"; sourceTree = "<group>"; };
 		4A26E75C270EEFE00089EC0D /* StopConfirmationScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopConfirmationScreenViewModel.swift; sourceTree = "<group>"; };
 		4A398A3F271E997600FA7B89 /* WorkdaysMock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = WorkdaysMock.json; sourceTree = "<group>"; };
 		4A398A42271E9A1300FA7B89 /* StopServiceViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopServiceViewModelTests.swift; sourceTree = "<group>"; };
@@ -1490,7 +1462,6 @@
 		4AD0C77D26FCAE9E009DB068 /* USState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USState.swift; sourceTree = "<group>"; };
 		4ADD29EA2718012A00FA7B00 /* MoveFinaledView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveFinaledView.swift; sourceTree = "<group>"; };
 		4ADD29EE2718018300FA7B00 /* MovePendingDisconnectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovePendingDisconnectView.swift; sourceTree = "<group>"; };
-		4ADF4FF916DE3B2844982F78 /* Pods_EUMobile_Watch_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EUMobile_Watch_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AE3467B26E8C76900F4155C /* FinalMailingAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalMailingAddressViewController.swift; sourceTree = "<group>"; };
 		4AE3467D26E8C78200F4155C /* ReviewStopServiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewStopServiceViewController.swift; sourceTree = "<group>"; };
 		4AE3467F26E9CEF600F4155C /* StopService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopService.swift; sourceTree = "<group>"; };
@@ -1498,8 +1469,6 @@
 		4AE3468626EDA1CC00F4155C /* StopService+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StopService+Rx.swift"; sourceTree = "<group>"; };
 		4AE3468926EDA8BE00F4155C /* WorkdaysRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkdaysRequest.swift; sourceTree = "<group>"; };
 		4AEB19A626F387AA00879046 /* StopServiceFlowData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopServiceFlowData.swift; sourceTree = "<group>"; };
-		4D7F83742995B9D6D0BE7C6E /* Pods-UnitTests.comed-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnitTests.comed-release.xcconfig"; path = "Pods/Target Support Files/Pods-UnitTests/Pods-UnitTests.comed-release.xcconfig"; sourceTree = "<group>"; };
-		51F170E7715CB1BAAE24DF77 /* Pods-UITests.peco-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UITests.peco-release.xcconfig"; path = "Pods/Target Support Files/Pods-UITests/Pods-UITests.peco-release.xcconfig"; sourceTree = "<group>"; };
 		545784B11EF9A9B800C58E63 /* SeparatorLineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeparatorLineView.swift; sourceTree = "<group>"; };
 		5492E01E1EECC3230088A725 /* RegistrationConfirmationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationConfirmationViewController.swift; sourceTree = "<group>"; };
 		54AE06B41ED60236004A1FDA /* RegistrationCreateCredentialsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationCreateCredentialsViewController.swift; sourceTree = "<group>"; };
@@ -1513,10 +1482,6 @@
 		54DF4BD41EE895CF008CF7AD /* RegistrationSecurityQuestionListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationSecurityQuestionListViewController.swift; sourceTree = "<group>"; };
 		54DF4BD91EE9CBAB008CF7AD /* AccountDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountDetailsView.swift; sourceTree = "<group>"; };
 		54DF4BDD1EE9CBCA008CF7AD /* AccountDetailsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccountDetailsView.xib; sourceTree = "<group>"; };
-		56B6CCA33D752F1E1BDA3669 /* Pods-UITests.pepco-aut.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UITests.pepco-aut.xcconfig"; path = "Pods/Target Support Files/Pods-UITests/Pods-UITests.pepco-aut.xcconfig"; sourceTree = "<group>"; };
-		57A7F069D5F46C830E71DBC0 /* Pods-EUMobile-Watch.pepco-rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch.pepco-rc.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch/Pods-EUMobile-Watch.pepco-rc.xcconfig"; sourceTree = "<group>"; };
-		5A230F0FC2CC76B9992D884C /* Pods-UnitTests.bge-rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnitTests.bge-rc.xcconfig"; path = "Pods/Target Support Files/Pods-UnitTests/Pods-UnitTests.bge-rc.xcconfig"; sourceTree = "<group>"; };
-		5EAD472E49BC6B15EA1BB719 /* Pods-EUMobile.pepco-beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile.pepco-beta.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile/Pods-EUMobile.pepco-beta.xcconfig"; sourceTree = "<group>"; };
 		670DE2A026CC15FB00D4C863 /* KeychainSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainSwift.swift; sourceTree = "<group>"; };
 		670DE2A126CC15FB00D4C863 /* TegKeychainConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TegKeychainConstants.swift; sourceTree = "<group>"; };
 		670DE2A226CC15FC00D4C863 /* KeychainSwiftAccessOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainSwiftAccessOptions.swift; sourceTree = "<group>"; };
@@ -1680,8 +1645,6 @@
 		675F4DFF24B3A00800A828F9 /* AnonOutageStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnonOutageStatus.swift; sourceTree = "<group>"; };
 		675F4E2E24B4DB3500A828F9 /* AnonOutageStatusMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AnonOutageStatusMock.json; sourceTree = "<group>"; };
 		675F4E3B24B4DC1900A828F9 /* NewMockDataKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMockDataKey.swift; sourceTree = "<group>"; };
-		6761AC762AD9990A00945554 /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RxSwift.framework; sourceTree = "<group>"; };
-		6761AC792AD9991100945554 /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RxCocoa.framework; sourceTree = "<group>"; };
 		676279EE247DB11100A57FBC /* TermPolicies.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = TermPolicies.html; sourceTree = "<group>"; };
 		676434C925AF692600DA6448 /* DebugMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DebugMenu.swift; sourceTree = "<group>"; };
 		676434CA25AF692600DA6448 /* InfoLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoLabel.swift; sourceTree = "<group>"; };
@@ -1732,6 +1695,12 @@
 		67A4832526C57C6C00FBB0BB /* AzureB2CError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AzureB2CError.swift; sourceTree = "<group>"; };
 		67A732A924D35E0F00D0BF32 /* GovWeatherErrorTodo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GovWeatherErrorTodo.swift; sourceTree = "<group>"; };
 		67AE888125BF5274008519B4 /* ProjectTier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectTier.swift; sourceTree = "<group>"; };
+		67D048182AD9BD060036479A /* DecibelCore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = DecibelCore.xcframework; path = ../../../Downloads/DecibelCore.xcframework; sourceTree = "<group>"; };
+		67D04A9F2ADDA4900036479A /* RxSwift.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = RxSwift.xcframework; sourceTree = "<group>"; };
+		67D04AA22ADDA5E40036479A /* RxRelay.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = RxRelay.xcframework; sourceTree = "<group>"; };
+		67D04AA72ADDA7A00036479A /* RxCocoa.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = RxCocoa.xcframework; path = "../../../Desktop/frameworkTesting/RxSwift-5.1-3.0/build/RxCocoa.xcframework"; sourceTree = "<group>"; };
+		67D04AB02ADDAB5F0036479A /* RxSwiftExt.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = RxSwiftExt.xcframework; sourceTree = "<group>"; };
+		67D04AB42ADDAFE20036479A /* ActivityTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityTracker.swift; sourceTree = "<group>"; };
 		67D5626224EADA7E00852551 /* GameTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTip.swift; sourceTree = "<group>"; };
 		67D5626624EADA9600852551 /* GameQuiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameQuiz.swift; sourceTree = "<group>"; };
 		67D5626824EADAA700852551 /* GameSurvery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSurvery.swift; sourceTree = "<group>"; };
@@ -1756,17 +1725,6 @@
 		67DDBDB62464632F006CD6EB /* GoogleService-Info-RC-FlavorPEPCO.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-RC-FlavorPEPCO.plist"; sourceTree = "<group>"; };
 		67DDBDBA246463B7006CD6EB /* GoogleService-Info-BETA-FlavorPEPCO.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-BETA-FlavorPEPCO.plist"; sourceTree = "<group>"; };
 		67DDBDBE24646E38006CD6EB /* Color+OpCo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+OpCo.swift"; sourceTree = "<group>"; };
-		680FEAC89543EFDDA1CC1E98 /* Pods-UITests.bge-beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UITests.bge-beta.xcconfig"; path = "Pods/Target Support Files/Pods-UITests/Pods-UITests.bge-beta.xcconfig"; sourceTree = "<group>"; };
-		69ABACD8EE32B19842409496 /* Pods-EUMobile-Watch Extension.peco-rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch Extension.peco-rc.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch Extension/Pods-EUMobile-Watch Extension.peco-rc.xcconfig"; sourceTree = "<group>"; };
-		6F49D2B17C512CD5B1E59FDA /* Pods-EUMobile-Watch.ace-rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch.ace-rc.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch/Pods-EUMobile-Watch.ace-rc.xcconfig"; sourceTree = "<group>"; };
-		72529116722E5D2F259DFCC7 /* Pods-EUMobile-Watch Extension.peco-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch Extension.peco-release.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch Extension/Pods-EUMobile-Watch Extension.peco-release.xcconfig"; sourceTree = "<group>"; };
-		7262164C734E2BAB5F8870AF /* Pods-EUMobile-Watch.ace-aut.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch.ace-aut.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch/Pods-EUMobile-Watch.ace-aut.xcconfig"; sourceTree = "<group>"; };
-		732AEF16FD0EEC42C0417208 /* Pods-UnitTests.peco-rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnitTests.peco-rc.xcconfig"; path = "Pods/Target Support Files/Pods-UnitTests/Pods-UnitTests.peco-rc.xcconfig"; sourceTree = "<group>"; };
-		742CA4C4FB6661EC4AF7A566 /* Pods-UITests.delmarva-beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UITests.delmarva-beta.xcconfig"; path = "Pods/Target Support Files/Pods-UITests/Pods-UITests.delmarva-beta.xcconfig"; sourceTree = "<group>"; };
-		76268D74E667D234121B2A16 /* Pods-EUMobile.pepco-aut.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile.pepco-aut.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile/Pods-EUMobile.pepco-aut.xcconfig"; sourceTree = "<group>"; };
-		764054A9E6BB66EA5ED549C6 /* Pods-UITests.delmarva-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UITests.delmarva-release.xcconfig"; path = "Pods/Target Support Files/Pods-UITests/Pods-UITests.delmarva-release.xcconfig"; sourceTree = "<group>"; };
-		76BC3B0F7003807FAE04A53E /* Pods-UITests.comed-rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UITests.comed-rc.xcconfig"; path = "Pods/Target Support Files/Pods-UITests/Pods-UITests.comed-rc.xcconfig"; sourceTree = "<group>"; };
-		7BB967F129E086298483BDF8 /* Pods-EUMobile-Watch Extension.comed-rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch Extension.comed-rc.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch Extension/Pods-EUMobile-Watch Extension.comed-rc.xcconfig"; sourceTree = "<group>"; };
 		8206D0121FABB9AB0056F4CB /* PeakRewardsProgramCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeakRewardsProgramCard.swift; sourceTree = "<group>"; };
 		8206D0161FABC5350056F4CB /* SmartThermostatPeriodCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartThermostatPeriodCard.swift; sourceTree = "<group>"; };
 		8206D01A1FABCDD70056F4CB /* TemperatureScaleStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureScaleStore.swift; sourceTree = "<group>"; };
@@ -1820,7 +1778,6 @@
 		82AEF2E31F618F560057E7ED /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		82BE057E1ED8D14D00BC06EE /* FadeSubviews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FadeSubviews.swift; sourceTree = "<group>"; };
 		82D551D81EAA9779001B1796 /* PaperlessEBillViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaperlessEBillViewController.swift; sourceTree = "<group>"; };
-		82D599411EC2374500DDB380 /* ActivityTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityTracker.swift; sourceTree = "<group>"; };
 		82D5994A1EC36B5500DDB380 /* NumberFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberFormatter.swift; sourceTree = "<group>"; };
 		82D599501EC3A00900DDB380 /* alert_icon.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = alert_icon.json; sourceTree = "<group>"; };
 		82DE61041FB9F34A00DC25C1 /* OverrideViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverrideViewModel.swift; sourceTree = "<group>"; };
@@ -1834,11 +1791,6 @@
 		82EAB33B1F97EFCD008B55B1 /* Top5EnergyTipsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Top5EnergyTipsViewController.swift; sourceTree = "<group>"; };
 		82EAB33F1F97EFF8008B55B1 /* HourlyPricingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyPricingViewController.swift; sourceTree = "<group>"; };
 		82EAB3431F97F01B008B55B1 /* MyHomeProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyHomeProfileViewController.swift; sourceTree = "<group>"; };
-		83490D1A1EC4812D76C002D4 /* Pods-UnitTests.delmarva-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnitTests.delmarva-release.xcconfig"; path = "Pods/Target Support Files/Pods-UnitTests/Pods-UnitTests.delmarva-release.xcconfig"; sourceTree = "<group>"; };
-		8601B9200263DE0DFF4528CC /* Pods-EUMobile.delmarva-aut.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile.delmarva-aut.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile/Pods-EUMobile.delmarva-aut.xcconfig"; sourceTree = "<group>"; };
-		872673E4CBB9187552AA5AA1 /* Pods-UITests.comed-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UITests.comed-release.xcconfig"; path = "Pods/Target Support Files/Pods-UITests/Pods-UITests.comed-release.xcconfig"; sourceTree = "<group>"; };
-		890116DD2022FBBA0702A64E /* Pods-EUMobile-Watch Extension.pepco-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch Extension.pepco-release.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch Extension/Pods-EUMobile-Watch Extension.pepco-release.xcconfig"; sourceTree = "<group>"; };
-		8EAC87FC5CEAB583002622C9 /* Pods-EUMobile-Watch Extension.ace-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch Extension.ace-release.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch Extension/Pods-EUMobile-Watch Extension.ace-release.xcconfig"; sourceTree = "<group>"; };
 		8FD3C2681E5250AF005FB1BB /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		8FD3C26C1E52576F005FB1BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8FD5AE831E54EA49003F640D /* LandingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
@@ -1847,13 +1799,6 @@
 		8FD5AE981E54EAB8003F640D /* checkmark.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = checkmark.json; sourceTree = "<group>"; };
 		8FD5AE991E54EAB8003F640D /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
 		8FDF8C6D1E550669000B7BD0 /* SharedColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedColor.swift; sourceTree = "<group>"; };
-		8FE74F933532900AC7962FBA /* Pods-UnitTests.peco-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnitTests.peco-release.xcconfig"; path = "Pods/Target Support Files/Pods-UnitTests/Pods-UnitTests.peco-release.xcconfig"; sourceTree = "<group>"; };
-		90257AB88C3291537E392E36 /* Pods-UnitTests.peco-aut.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnitTests.peco-aut.xcconfig"; path = "Pods/Target Support Files/Pods-UnitTests/Pods-UnitTests.peco-aut.xcconfig"; sourceTree = "<group>"; };
-		90D0B26FE99EFBEA227C60F8 /* Pods-EUMobile.delmarva-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile.delmarva-release.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile/Pods-EUMobile.delmarva-release.xcconfig"; sourceTree = "<group>"; };
-		913BD0B6FA88CE1449774B87 /* Pods-EUMobile.peco-rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile.peco-rc.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile/Pods-EUMobile.peco-rc.xcconfig"; sourceTree = "<group>"; };
-		93803927EEC8DCD5D5530259 /* Pods-UnitTests.bge-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnitTests.bge-release.xcconfig"; path = "Pods/Target Support Files/Pods-UnitTests/Pods-UnitTests.bge-release.xcconfig"; sourceTree = "<group>"; };
-		94D56EE8642BE663AD7AA9EC /* Pods-EUMobile-Watch.peco-beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch.peco-beta.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch/Pods-EUMobile-Watch.peco-beta.xcconfig"; sourceTree = "<group>"; };
-		99CA380BADD2643BA206844C /* Pods-UITests.pepco-beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UITests.pepco-beta.xcconfig"; path = "Pods/Target Support Files/Pods-UITests/Pods-UITests.pepco-beta.xcconfig"; sourceTree = "<group>"; };
 		9C0A2C3323A042DC002C4B8E /* message_bubble_quiz.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = message_bubble_quiz.json; sourceTree = "<group>"; };
 		9C0A2C3423A042DC002C4B8E /* message_bubble_tip.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = message_bubble_tip.json; sourceTree = "<group>"; };
 		9C0A2C3523A042DC002C4B8E /* message_bubble_unique.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = message_bubble_unique.json; sourceTree = "<group>"; };
@@ -1938,15 +1883,6 @@
 		9CEE411C23722A0F005A4AD3 /* DailyInsightCoinView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DailyInsightCoinView.xib; sourceTree = "<group>"; };
 		9CEE412023722AD9005A4AD3 /* DailyInsightCoinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyInsightCoinView.swift; sourceTree = "<group>"; };
 		9CF5369D23A1A4C60006576E /* GiftCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftCollectionViewController.swift; sourceTree = "<group>"; };
-		9D644E4E93BE61A753CA9E15 /* Pods_EUMobileUnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EUMobileUnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9D6A7E932D1F627C0C07BDC8 /* Pods-EUMobile-Watch Extension.peco-beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch Extension.peco-beta.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch Extension/Pods-EUMobile-Watch Extension.peco-beta.xcconfig"; sourceTree = "<group>"; };
-		9FF2F983CC65F2076F1692C5 /* Pods-EUMobile-Watch.delmarva-aut.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch.delmarva-aut.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch/Pods-EUMobile-Watch.delmarva-aut.xcconfig"; sourceTree = "<group>"; };
-		A4985310A19F4BF46E4CBF6F /* Pods-EUMobile.comed-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile.comed-release.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile/Pods-EUMobile.comed-release.xcconfig"; sourceTree = "<group>"; };
-		A4AD181DB795B99260A44DB6 /* Pods-EUMobile-Watch Extension.comed-beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch Extension.comed-beta.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch Extension/Pods-EUMobile-Watch Extension.comed-beta.xcconfig"; sourceTree = "<group>"; };
-		A7F526CBB014D2888FD99FCF /* Pods-UITests.bge-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UITests.bge-release.xcconfig"; path = "Pods/Target Support Files/Pods-UITests/Pods-UITests.bge-release.xcconfig"; sourceTree = "<group>"; };
-		A8BD924B25D8A2E006CD664A /* Pods-EUMobile.comed-rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile.comed-rc.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile/Pods-EUMobile.comed-rc.xcconfig"; sourceTree = "<group>"; };
-		AA15170BE92CB5AF1C2BD94E /* Pods-EUMobile-Watch.bge-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch.bge-release.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch/Pods-EUMobile-Watch.bge-release.xcconfig"; sourceTree = "<group>"; };
-		AAFF79EAA4875A0741BB38FE /* Pods-EUMobile-Watch.delmarva-rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch.delmarva-rc.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch/Pods-EUMobile-Watch.delmarva-rc.xcconfig"; sourceTree = "<group>"; };
 		B0030D072097BC8300327A3D /* MaintenanceModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaintenanceModeView.swift; sourceTree = "<group>"; };
 		B0030D0B2097BC9A00327A3D /* MaintenanceModeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MaintenanceModeView.xib; sourceTree = "<group>"; };
 		B017488D2135D19B0039D0C6 /* Storm.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Storm.storyboard; sourceTree = "<group>"; };
@@ -2044,7 +1980,6 @@
 		B0E9EFFA21EE458F0086A82A /* Optional+Comparable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+Comparable.swift"; sourceTree = "<group>"; };
 		B0EE78E9221353E600F53C56 /* report_outage.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = report_outage.json; sourceTree = "<group>"; };
 		B0EE78F02214766600F53C56 /* appointments.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = appointments.json; sourceTree = "<group>"; };
-		B48B1F39CA631CCED92367FB /* Pods-UITests.delmarva-rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UITests.delmarva-rc.xcconfig"; path = "Pods/Target Support Files/Pods-UITests/Pods-UITests.delmarva-rc.xcconfig"; sourceTree = "<group>"; };
 		B55A8B0B1F15644800F63AC3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		B55A8B0D1F15646E00F63AC3 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		B55A8B0F1F15647D00F63AC3 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
@@ -2066,18 +2001,6 @@
 		B5D4157D1F3A6E4900AC32B2 /* GoogleService-Info-BETA-FlavorCOMED.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-BETA-FlavorCOMED.plist"; sourceTree = "<group>"; };
 		B5D415811F3A6E9000AC32B2 /* GoogleService-Info-RELEASE-FlavorPECO.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-RELEASE-FlavorPECO.plist"; sourceTree = "<group>"; };
 		B5D415851F3A6EC900AC32B2 /* GoogleService-Info-BETA-FlavorPECO.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-BETA-FlavorPECO.plist"; sourceTree = "<group>"; };
-		B6A0F9703B9DD37820E154C3 /* Pods-EUMobile.bge-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile.bge-release.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile/Pods-EUMobile.bge-release.xcconfig"; sourceTree = "<group>"; };
-		B796B8A214438C8DBF35799F /* Pods-EUMobile-Watch Extension.bge-beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch Extension.bge-beta.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch Extension/Pods-EUMobile-Watch Extension.bge-beta.xcconfig"; sourceTree = "<group>"; };
-		B8556379C7033076121C9420 /* Pods-EUMobile-Watch Extension.delmarva-aut.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch Extension.delmarva-aut.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch Extension/Pods-EUMobile-Watch Extension.delmarva-aut.xcconfig"; sourceTree = "<group>"; };
-		B8A3A4A7A4BBF2DD357F1C3F /* Pods_EUMobileUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EUMobileUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B8C923DA414D342D5C1F7F71 /* Pods-EUMobile-Watch Extension.ace-aut.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch Extension.ace-aut.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch Extension/Pods-EUMobile-Watch Extension.ace-aut.xcconfig"; sourceTree = "<group>"; };
-		BA0D7033CD59A08E8BC67C4F /* Pods-UITests.ace-aut.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UITests.ace-aut.xcconfig"; path = "Pods/Target Support Files/Pods-UITests/Pods-UITests.ace-aut.xcconfig"; sourceTree = "<group>"; };
-		BB7CA6327A54535477F5B485 /* Pods-EUMobile-Watch.pepco-beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch.pepco-beta.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch/Pods-EUMobile-Watch.pepco-beta.xcconfig"; sourceTree = "<group>"; };
-		BBA93B6658BDBACBD5997AE2 /* Pods-UnitTests.ace-aut.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnitTests.ace-aut.xcconfig"; path = "Pods/Target Support Files/Pods-UnitTests/Pods-UnitTests.ace-aut.xcconfig"; sourceTree = "<group>"; };
-		BBAE55A4DFC33620498824A7 /* Pods-EUMobile.ace-rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile.ace-rc.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile/Pods-EUMobile.ace-rc.xcconfig"; sourceTree = "<group>"; };
-		BE2CD0FB94EBF7FB32F742B0 /* Pods-EUMobile.comed-aut.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile.comed-aut.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile/Pods-EUMobile.comed-aut.xcconfig"; sourceTree = "<group>"; };
-		BFD03516A3C81B252FA85AAF /* Pods-EUMobile-Watch.bge-rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch.bge-rc.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch/Pods-EUMobile-Watch.bge-rc.xcconfig"; sourceTree = "<group>"; };
-		C100FFA695E366B478D3B26B /* Pods-UITests.comed-beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UITests.comed-beta.xcconfig"; path = "Pods/Target Support Files/Pods-UITests/Pods-UITests.comed-beta.xcconfig"; sourceTree = "<group>"; };
 		C30079392436637600A9BEB0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/BGEStrings.strings; sourceTree = "<group>"; };
 		C300793B2436669F00A9BEB0 /* LocalizedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedString.swift; sourceTree = "<group>"; };
 		C3087A8724B63D03005AE544 /* AccountService+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AccountService+Rx.swift"; sourceTree = "<group>"; };
@@ -2179,29 +2102,11 @@
 		C3DF2BB624CB42CE00A6D4EC /* PaymentService+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PaymentService+Rx.swift"; sourceTree = "<group>"; };
 		C3E377A727696385000D557D /* AccountSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSummary.swift; sourceTree = "<group>"; };
 		C3E7AE8D298305E70044194E /* outage_power_on.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = outage_power_on.json; sourceTree = "<group>"; };
-		C452B6F3F6B9F8627EDB8C7C /* Pods-UITests.peco-aut.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UITests.peco-aut.xcconfig"; path = "Pods/Target Support Files/Pods-UITests/Pods-UITests.peco-aut.xcconfig"; sourceTree = "<group>"; };
-		C587F978F7FF9677FFB3079A /* Pods-EUMobile-Watch.comed-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch.comed-release.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch/Pods-EUMobile-Watch.comed-release.xcconfig"; sourceTree = "<group>"; };
-		C5F180B3C7D252D0D5862467 /* Pods-EUMobile.bge-rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile.bge-rc.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile/Pods-EUMobile.bge-rc.xcconfig"; sourceTree = "<group>"; };
-		C60777FE5ADCB51BFE47125E /* Pods-EUMobile-Watch Extension.pepco-beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch Extension.pepco-beta.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch Extension/Pods-EUMobile-Watch Extension.pepco-beta.xcconfig"; sourceTree = "<group>"; };
-		C7D274803B29B5ABC60AD2D8 /* Pods-UITests.comed-aut.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UITests.comed-aut.xcconfig"; path = "Pods/Target Support Files/Pods-UITests/Pods-UITests.comed-aut.xcconfig"; sourceTree = "<group>"; };
 		CC6BC81F296D6F42000A250C /* MedalliaPlusDecibelUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MedalliaPlusDecibelUtility.swift; sourceTree = "<group>"; };
 		CEA2151C1F79005600689422 /* HomeBillCardViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeBillCardViewModel.swift; sourceTree = "<group>"; };
 		CEA215201F7900CC00689422 /* HomeBillCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeBillCardView.swift; sourceTree = "<group>"; };
 		CEA215211F7900CC00689422 /* HomeBillCardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeBillCardView.xib; sourceTree = "<group>"; };
-		CF13F95E464D0327C171CB43 /* Pods-EUMobile-Watch.delmarva-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch.delmarva-release.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch/Pods-EUMobile-Watch.delmarva-release.xcconfig"; sourceTree = "<group>"; };
-		D08BAD267D5EAAC3413E61D4 /* Pods-UnitTests.bge-aut.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnitTests.bge-aut.xcconfig"; path = "Pods/Target Support Files/Pods-UnitTests/Pods-UnitTests.bge-aut.xcconfig"; sourceTree = "<group>"; };
-		D2178BC4411C0460C0B7D517 /* Pods-UnitTests.comed-beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnitTests.comed-beta.xcconfig"; path = "Pods/Target Support Files/Pods-UnitTests/Pods-UnitTests.comed-beta.xcconfig"; sourceTree = "<group>"; };
-		D314742AA20FD452B2744534 /* Pods-EUMobile-Watch Extension.delmarva-rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch Extension.delmarva-rc.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch Extension/Pods-EUMobile-Watch Extension.delmarva-rc.xcconfig"; sourceTree = "<group>"; };
-		D87C9685FCCF09C7D91603D2 /* Pods-EUMobile.delmarva-rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile.delmarva-rc.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile/Pods-EUMobile.delmarva-rc.xcconfig"; sourceTree = "<group>"; };
-		D970D5C958B261B9EA4AD56B /* Pods-UnitTests.delmarva-rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnitTests.delmarva-rc.xcconfig"; path = "Pods/Target Support Files/Pods-UnitTests/Pods-UnitTests.delmarva-rc.xcconfig"; sourceTree = "<group>"; };
-		DB003E5F5FA39B4F617D7774 /* Pods-UITests.ace-rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UITests.ace-rc.xcconfig"; path = "Pods/Target Support Files/Pods-UITests/Pods-UITests.ace-rc.xcconfig"; sourceTree = "<group>"; };
-		DBE229F6DAA0D7263F768A37 /* Pods-EUMobile.peco-aut.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile.peco-aut.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile/Pods-EUMobile.peco-aut.xcconfig"; sourceTree = "<group>"; };
-		DCC4E5C04DE2F93F0CFEAB8C /* Pods-EUMobile-Watch.pepco-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch.pepco-release.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch/Pods-EUMobile-Watch.pepco-release.xcconfig"; sourceTree = "<group>"; };
-		DD3F10970CFE8096DE30CF58 /* Pods-EUMobile-Watch Extension.delmarva-beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch Extension.delmarva-beta.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch Extension/Pods-EUMobile-Watch Extension.delmarva-beta.xcconfig"; sourceTree = "<group>"; };
-		DD5CF096EF46C400972C7557 /* Pods-UnitTests.delmarva-beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnitTests.delmarva-beta.xcconfig"; path = "Pods/Target Support Files/Pods-UnitTests/Pods-UnitTests.delmarva-beta.xcconfig"; sourceTree = "<group>"; };
 		E71EBE9B26A6EDFB005AE781 /* B2CTokenRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = B2CTokenRequest.swift; sourceTree = "<group>"; };
-		E76B5E9F099F5C0D8F93E884 /* Pods-UITests.pepco-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UITests.pepco-release.xcconfig"; path = "Pods/Target Support Files/Pods-UITests/Pods-UITests.pepco-release.xcconfig"; sourceTree = "<group>"; };
-		E79613A84F8C1408B207C559 /* Pods-UnitTests.pepco-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnitTests.pepco-release.xcconfig"; path = "Pods/Target Support Files/Pods-UnitTests/Pods-UnitTests.pepco-release.xcconfig"; sourceTree = "<group>"; };
 		E7F38E0E2760B73700F8711B /* PKCEAuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKCEAuthenticationService.swift; sourceTree = "<group>"; };
 		E80043071E64DEE2005CF531 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
 		E800434C1E671FD6005CF531 /* PasswordStrengthMeterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordStrengthMeterView.swift; sourceTree = "<group>"; };
@@ -2262,7 +2167,6 @@
 		E89548F41EC646A200730022 /* BGEasyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BGEasyViewController.swift; sourceTree = "<group>"; };
 		E89983E01F61F4B0001E2870 /* UnauthenticatedOutageValidateAccountResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnauthenticatedOutageValidateAccountResultViewController.swift; sourceTree = "<group>"; };
 		E89D07A01E609DC900F87F87 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
-		E8AB8F323BF157FC32F9BB7A /* Pods-UnitTests.pepco-aut.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnitTests.pepco-aut.xcconfig"; path = "Pods/Target Support Files/Pods-UnitTests/Pods-UnitTests.pepco-aut.xcconfig"; sourceTree = "<group>"; };
 		E8B4F4AE1E5C957A0031D934 /* More.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = More.storyboard; sourceTree = "<group>"; };
 		E8B4F4B21E5C99380031D934 /* Alerts.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Alerts.storyboard; sourceTree = "<group>"; };
 		E8B4F4B61E5C99A00031D934 /* Outage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Outage.storyboard; sourceTree = "<group>"; };
@@ -2297,26 +2201,11 @@
 		E8EEF7371E57895F006804D4 /* LaunchScreen-FlavorPECO.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "LaunchScreen-FlavorPECO.storyboard"; sourceTree = "<group>"; };
 		E8EEF7441E578BCC006804D4 /* TermsPoliciesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsPoliciesViewController.swift; sourceTree = "<group>"; };
 		E8FF08591F7EDC160030F1BF /* BillingHistoryViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillingHistoryViewModel.swift; sourceTree = "<group>"; };
-		EAF277BBEE286DE69A9D3F96 /* Pods-EUMobile-Watch Extension.delmarva-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch Extension.delmarva-release.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch Extension/Pods-EUMobile-Watch Extension.delmarva-release.xcconfig"; sourceTree = "<group>"; };
-		EC07C85B686F954C1F136CCB /* Pods-UnitTests.bge-beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnitTests.bge-beta.xcconfig"; path = "Pods/Target Support Files/Pods-UnitTests/Pods-UnitTests.bge-beta.xcconfig"; sourceTree = "<group>"; };
-		EC7969E0A5F7924698395552 /* Pods-EUMobile.delmarva-beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile.delmarva-beta.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile/Pods-EUMobile.delmarva-beta.xcconfig"; sourceTree = "<group>"; };
-		EED2612F58F7296FF0E1D54E /* Pods-UnitTests.delmarva-aut.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnitTests.delmarva-aut.xcconfig"; path = "Pods/Target Support Files/Pods-UnitTests/Pods-UnitTests.delmarva-aut.xcconfig"; sourceTree = "<group>"; };
 		EF48B6CB2A2F215B00F3BB26 /* ValidatePinResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidatePinResult.swift; sourceTree = "<group>"; };
 		EF48B6CE2A2F216200F3BB26 /* SendPinResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendPinResult.swift; sourceTree = "<group>"; };
 		EF48B6D12A2F236800F3BB26 /* ValidateCodeRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidateCodeRequest.swift; sourceTree = "<group>"; };
 		EF48B6D42A2F236D00F3BB26 /* SendCodeRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendCodeRequest.swift; sourceTree = "<group>"; };
 		EF48B6D72A2F260900F3BB26 /* AccountLookUpValidatePinViewContoller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountLookUpValidatePinViewContoller.swift; sourceTree = "<group>"; };
-		F11238B3B4D3CC678A7812DA /* Pods-EUMobile.bge-aut.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile.bge-aut.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile/Pods-EUMobile.bge-aut.xcconfig"; sourceTree = "<group>"; };
-		F12094DBCBD76241DA6E3231 /* Pods-EUMobile-Watch.peco-aut.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch.peco-aut.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch/Pods-EUMobile-Watch.peco-aut.xcconfig"; sourceTree = "<group>"; };
-		F264461441121FBD4E0113E0 /* Pods_UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F6937A8758EFD1E596A9A04F /* Pods-EUMobile.comed-beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile.comed-beta.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile/Pods-EUMobile.comed-beta.xcconfig"; sourceTree = "<group>"; };
-		F70313F84BA5FD09CF744337 /* Pods-EUMobile.ace-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile.ace-release.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile/Pods-EUMobile.ace-release.xcconfig"; sourceTree = "<group>"; };
-		F76F143ABFA2600AD8AA8BCA /* Pods-EUMobile-Watch Extension.pepco-aut.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch Extension.pepco-aut.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch Extension/Pods-EUMobile-Watch Extension.pepco-aut.xcconfig"; sourceTree = "<group>"; };
-		F85F65BF77FEDD272401BFA4 /* Pods-EUMobile-Watch Extension.pepco-rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch Extension.pepco-rc.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch Extension/Pods-EUMobile-Watch Extension.pepco-rc.xcconfig"; sourceTree = "<group>"; };
-		FC0FC6D61469ACD6C5194D6C /* Pods-EUMobile-Watch.comed-rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch.comed-rc.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch/Pods-EUMobile-Watch.comed-rc.xcconfig"; sourceTree = "<group>"; };
-		FE60CB34CA163B81BF311DAF /* Pods-EUMobile-Watch.bge-beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch.bge-beta.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch/Pods-EUMobile-Watch.bge-beta.xcconfig"; sourceTree = "<group>"; };
-		FEF7F9E0320683B5F965A042 /* Pods-EUMobile-Watch Extension.bge-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch Extension.bge-release.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch Extension/Pods-EUMobile-Watch Extension.bge-release.xcconfig"; sourceTree = "<group>"; };
-		FFC7380BFE6C5CFD8D1C8E71 /* Pods-EUMobile-Watch Extension.peco-aut.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch Extension.peco-aut.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch Extension/Pods-EUMobile-Watch Extension.peco-aut.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2324,8 +2213,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6761AC782AD9990A00945554 /* RxSwift.framework in Frameworks */,
-				C1FC7DEA2EEE0C8413984CF0 /* Pods_EUMobile_Watch_Extension.framework in Frameworks */,
+				67D04AA12ADDA4900036479A /* RxSwift.xcframework in Frameworks */,
+				67D04AB22ADDAB5F0036479A /* RxSwiftExt.xcframework in Frameworks */,
+				67D04AA42ADDA5E40036479A /* RxRelay.xcframework in Frameworks */,
+				67D04AA92ADDA7A00036479A /* RxCocoa.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2333,7 +2224,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04C329613DB0CC4C6391C318 /* Pods_EUMobile_Watch.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2341,7 +2231,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				06EF941418076B8505D85358 /* Pods_UITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2349,7 +2238,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8B0396FB871DBD2335C770CA /* Pods_UnitTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2358,151 +2246,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				6761AC222AD84CC800945554 /* Toast in Frameworks */,
+				67D04AA32ADDA5E40036479A /* RxRelay.xcframework in Frameworks */,
+				67D04AA02ADDA4900036479A /* RxSwift.xcframework in Frameworks */,
 				6761AC392AD85CEB00945554 /* MedalliaDigitalSDK in Frameworks */,
-				6761AC7A2AD9991100945554 /* RxCocoa.framework in Frameworks */,
 				6761AC2E2AD84DFA00945554 /* Charts in Frameworks */,
+				67D04AB12ADDAB5F0036479A /* RxSwiftExt.xcframework in Frameworks */,
 				6761AC362AD85C8400945554 /* AppCenterDistribute in Frameworks */,
 				6761AC312AD84E4F00945554 /* XLPagerTabStrip in Frameworks */,
 				6761AC342AD85C8400945554 /* AppCenterCrashes in Frameworks */,
+				67D04AA82ADDA7A00036479A /* RxCocoa.xcframework in Frameworks */,
 				6761AC3C2AD8653400945554 /* FirebaseAnalytics in Frameworks */,
 				6761AC282AD84D8800945554 /* Reachability in Frameworks */,
-				6761AC772AD9990A00945554 /* RxSwift.framework in Frameworks */,
 				6761AC2B2AD84DB600945554 /* HorizonCalendar in Frameworks */,
-				C8F95FB76F50334BC5162649 /* Pods_EUMobile.framework in Frameworks */,
 				6761AC252AD84D2100945554 /* Lottie in Frameworks */,
+				67D0481A2AD9BD220036479A /* DecibelCore.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1E476E42A91FD22BB3DB8A88 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				F11238B3B4D3CC678A7812DA /* Pods-EUMobile.bge-aut.xcconfig */,
-				30FA80756A48AB9DC1934F7A /* Pods-EUMobile.ace-aut.xcconfig */,
-				8601B9200263DE0DFF4528CC /* Pods-EUMobile.delmarva-aut.xcconfig */,
-				76268D74E667D234121B2A16 /* Pods-EUMobile.pepco-aut.xcconfig */,
-				BE2CD0FB94EBF7FB32F742B0 /* Pods-EUMobile.comed-aut.xcconfig */,
-				DBE229F6DAA0D7263F768A37 /* Pods-EUMobile.peco-aut.xcconfig */,
-				0BA01FDC771112716F0452A5 /* Pods-EUMobile.bge-beta.xcconfig */,
-				24A26F01575E0A81574F9B67 /* Pods-EUMobile.ace-beta.xcconfig */,
-				EC7969E0A5F7924698395552 /* Pods-EUMobile.delmarva-beta.xcconfig */,
-				5EAD472E49BC6B15EA1BB719 /* Pods-EUMobile.pepco-beta.xcconfig */,
-				F6937A8758EFD1E596A9A04F /* Pods-EUMobile.comed-beta.xcconfig */,
-				0C9EF509CB69C6BD8BC4BCC3 /* Pods-EUMobile.peco-beta.xcconfig */,
-				C5F180B3C7D252D0D5862467 /* Pods-EUMobile.bge-rc.xcconfig */,
-				BBAE55A4DFC33620498824A7 /* Pods-EUMobile.ace-rc.xcconfig */,
-				D87C9685FCCF09C7D91603D2 /* Pods-EUMobile.delmarva-rc.xcconfig */,
-				10AB530BBE9FC1BAC5B2B69D /* Pods-EUMobile.pepco-rc.xcconfig */,
-				A8BD924B25D8A2E006CD664A /* Pods-EUMobile.comed-rc.xcconfig */,
-				913BD0B6FA88CE1449774B87 /* Pods-EUMobile.peco-rc.xcconfig */,
-				B6A0F9703B9DD37820E154C3 /* Pods-EUMobile.bge-release.xcconfig */,
-				F70313F84BA5FD09CF744337 /* Pods-EUMobile.ace-release.xcconfig */,
-				90D0B26FE99EFBEA227C60F8 /* Pods-EUMobile.delmarva-release.xcconfig */,
-				48CAD1C641D85E5D906EF408 /* Pods-EUMobile.pepco-release.xcconfig */,
-				A4985310A19F4BF46E4CBF6F /* Pods-EUMobile.comed-release.xcconfig */,
-				2AEAE0E6E5F9912B446F7542 /* Pods-EUMobile.peco-release.xcconfig */,
-				1B711F2A3540AD1315F0A0DC /* Pods-EUMobile-Watch.bge-aut.xcconfig */,
-				7262164C734E2BAB5F8870AF /* Pods-EUMobile-Watch.ace-aut.xcconfig */,
-				9FF2F983CC65F2076F1692C5 /* Pods-EUMobile-Watch.delmarva-aut.xcconfig */,
-				00EEF1DB7F3DD4C93D1C8532 /* Pods-EUMobile-Watch.pepco-aut.xcconfig */,
-				16663E1A946C593658B029ED /* Pods-EUMobile-Watch.comed-aut.xcconfig */,
-				F12094DBCBD76241DA6E3231 /* Pods-EUMobile-Watch.peco-aut.xcconfig */,
-				FE60CB34CA163B81BF311DAF /* Pods-EUMobile-Watch.bge-beta.xcconfig */,
-				2970025E51E4A6B5E1D1ED99 /* Pods-EUMobile-Watch.ace-beta.xcconfig */,
-				34D5D8773E8D72600EFCF9F9 /* Pods-EUMobile-Watch.delmarva-beta.xcconfig */,
-				BB7CA6327A54535477F5B485 /* Pods-EUMobile-Watch.pepco-beta.xcconfig */,
-				431E8E7552EFD5BBEC6673DC /* Pods-EUMobile-Watch.comed-beta.xcconfig */,
-				94D56EE8642BE663AD7AA9EC /* Pods-EUMobile-Watch.peco-beta.xcconfig */,
-				BFD03516A3C81B252FA85AAF /* Pods-EUMobile-Watch.bge-rc.xcconfig */,
-				6F49D2B17C512CD5B1E59FDA /* Pods-EUMobile-Watch.ace-rc.xcconfig */,
-				AAFF79EAA4875A0741BB38FE /* Pods-EUMobile-Watch.delmarva-rc.xcconfig */,
-				57A7F069D5F46C830E71DBC0 /* Pods-EUMobile-Watch.pepco-rc.xcconfig */,
-				FC0FC6D61469ACD6C5194D6C /* Pods-EUMobile-Watch.comed-rc.xcconfig */,
-				18CFDD6F433CE3918FE2AE09 /* Pods-EUMobile-Watch.peco-rc.xcconfig */,
-				AA15170BE92CB5AF1C2BD94E /* Pods-EUMobile-Watch.bge-release.xcconfig */,
-				3C5923E3B63A606655431D28 /* Pods-EUMobile-Watch.ace-release.xcconfig */,
-				CF13F95E464D0327C171CB43 /* Pods-EUMobile-Watch.delmarva-release.xcconfig */,
-				DCC4E5C04DE2F93F0CFEAB8C /* Pods-EUMobile-Watch.pepco-release.xcconfig */,
-				C587F978F7FF9677FFB3079A /* Pods-EUMobile-Watch.comed-release.xcconfig */,
-				3E48B304225C532442701FF0 /* Pods-EUMobile-Watch.peco-release.xcconfig */,
-				07AA0C7324C571B496D261D5 /* Pods-UITests.bge-aut.xcconfig */,
-				BA0D7033CD59A08E8BC67C4F /* Pods-UITests.ace-aut.xcconfig */,
-				2817AE5433CCAFAB2265CB4A /* Pods-UITests.delmarva-aut.xcconfig */,
-				56B6CCA33D752F1E1BDA3669 /* Pods-UITests.pepco-aut.xcconfig */,
-				C7D274803B29B5ABC60AD2D8 /* Pods-UITests.comed-aut.xcconfig */,
-				C452B6F3F6B9F8627EDB8C7C /* Pods-UITests.peco-aut.xcconfig */,
-				680FEAC89543EFDDA1CC1E98 /* Pods-UITests.bge-beta.xcconfig */,
-				178E0419CA5FFF6B6B47F7D7 /* Pods-UITests.ace-beta.xcconfig */,
-				742CA4C4FB6661EC4AF7A566 /* Pods-UITests.delmarva-beta.xcconfig */,
-				99CA380BADD2643BA206844C /* Pods-UITests.pepco-beta.xcconfig */,
-				C100FFA695E366B478D3B26B /* Pods-UITests.comed-beta.xcconfig */,
-				043AD4137C4B870D0876711F /* Pods-UITests.peco-beta.xcconfig */,
-				42C81CE12C82631C2A596E3B /* Pods-UITests.bge-rc.xcconfig */,
-				DB003E5F5FA39B4F617D7774 /* Pods-UITests.ace-rc.xcconfig */,
-				B48B1F39CA631CCED92367FB /* Pods-UITests.delmarva-rc.xcconfig */,
-				03BAF012DCA4FE172D96935F /* Pods-UITests.pepco-rc.xcconfig */,
-				76BC3B0F7003807FAE04A53E /* Pods-UITests.comed-rc.xcconfig */,
-				20F8D6479D8B22F80312E4A1 /* Pods-UITests.peco-rc.xcconfig */,
-				A7F526CBB014D2888FD99FCF /* Pods-UITests.bge-release.xcconfig */,
-				298764D273AA146AC5E8E629 /* Pods-UITests.ace-release.xcconfig */,
-				764054A9E6BB66EA5ED549C6 /* Pods-UITests.delmarva-release.xcconfig */,
-				E76B5E9F099F5C0D8F93E884 /* Pods-UITests.pepco-release.xcconfig */,
-				872673E4CBB9187552AA5AA1 /* Pods-UITests.comed-release.xcconfig */,
-				51F170E7715CB1BAAE24DF77 /* Pods-UITests.peco-release.xcconfig */,
-				D08BAD267D5EAAC3413E61D4 /* Pods-UnitTests.bge-aut.xcconfig */,
-				BBA93B6658BDBACBD5997AE2 /* Pods-UnitTests.ace-aut.xcconfig */,
-				EED2612F58F7296FF0E1D54E /* Pods-UnitTests.delmarva-aut.xcconfig */,
-				E8AB8F323BF157FC32F9BB7A /* Pods-UnitTests.pepco-aut.xcconfig */,
-				0845ED32A13A12B215991009 /* Pods-UnitTests.comed-aut.xcconfig */,
-				90257AB88C3291537E392E36 /* Pods-UnitTests.peco-aut.xcconfig */,
-				EC07C85B686F954C1F136CCB /* Pods-UnitTests.bge-beta.xcconfig */,
-				03DA2DE4AA4D17C789D84AF6 /* Pods-UnitTests.ace-beta.xcconfig */,
-				DD5CF096EF46C400972C7557 /* Pods-UnitTests.delmarva-beta.xcconfig */,
-				45DD9C12EA34A3D1D2B70356 /* Pods-UnitTests.pepco-beta.xcconfig */,
-				D2178BC4411C0460C0B7D517 /* Pods-UnitTests.comed-beta.xcconfig */,
-				452E1D0CC10469EF28897E47 /* Pods-UnitTests.peco-beta.xcconfig */,
-				5A230F0FC2CC76B9992D884C /* Pods-UnitTests.bge-rc.xcconfig */,
-				2A70B7D418CB23EDE9563CEA /* Pods-UnitTests.ace-rc.xcconfig */,
-				D970D5C958B261B9EA4AD56B /* Pods-UnitTests.delmarva-rc.xcconfig */,
-				0FA1863121E26ECB574EC99E /* Pods-UnitTests.pepco-rc.xcconfig */,
-				4A265B4A77D5F2CF40432C7C /* Pods-UnitTests.comed-rc.xcconfig */,
-				732AEF16FD0EEC42C0417208 /* Pods-UnitTests.peco-rc.xcconfig */,
-				93803927EEC8DCD5D5530259 /* Pods-UnitTests.bge-release.xcconfig */,
-				0C5910660209B00E86BF701B /* Pods-UnitTests.ace-release.xcconfig */,
-				83490D1A1EC4812D76C002D4 /* Pods-UnitTests.delmarva-release.xcconfig */,
-				E79613A84F8C1408B207C559 /* Pods-UnitTests.pepco-release.xcconfig */,
-				4D7F83742995B9D6D0BE7C6E /* Pods-UnitTests.comed-release.xcconfig */,
-				8FE74F933532900AC7962FBA /* Pods-UnitTests.peco-release.xcconfig */,
-				14AA9E852B6C8BA8DFA98DA4 /* Pods-EUMobile-Watch Extension.bge-aut.xcconfig */,
-				B8C923DA414D342D5C1F7F71 /* Pods-EUMobile-Watch Extension.ace-aut.xcconfig */,
-				B8556379C7033076121C9420 /* Pods-EUMobile-Watch Extension.delmarva-aut.xcconfig */,
-				F76F143ABFA2600AD8AA8BCA /* Pods-EUMobile-Watch Extension.pepco-aut.xcconfig */,
-				0F03C17FC734CC7FC7F04BB9 /* Pods-EUMobile-Watch Extension.comed-aut.xcconfig */,
-				FFC7380BFE6C5CFD8D1C8E71 /* Pods-EUMobile-Watch Extension.peco-aut.xcconfig */,
-				B796B8A214438C8DBF35799F /* Pods-EUMobile-Watch Extension.bge-beta.xcconfig */,
-				4958F3FA03A8BE776E455461 /* Pods-EUMobile-Watch Extension.ace-beta.xcconfig */,
-				DD3F10970CFE8096DE30CF58 /* Pods-EUMobile-Watch Extension.delmarva-beta.xcconfig */,
-				C60777FE5ADCB51BFE47125E /* Pods-EUMobile-Watch Extension.pepco-beta.xcconfig */,
-				A4AD181DB795B99260A44DB6 /* Pods-EUMobile-Watch Extension.comed-beta.xcconfig */,
-				9D6A7E932D1F627C0C07BDC8 /* Pods-EUMobile-Watch Extension.peco-beta.xcconfig */,
-				4953FDF36B4164D916A6B19C /* Pods-EUMobile-Watch Extension.bge-rc.xcconfig */,
-				14D4A7EEC65155AF56005C10 /* Pods-EUMobile-Watch Extension.ace-rc.xcconfig */,
-				D314742AA20FD452B2744534 /* Pods-EUMobile-Watch Extension.delmarva-rc.xcconfig */,
-				F85F65BF77FEDD272401BFA4 /* Pods-EUMobile-Watch Extension.pepco-rc.xcconfig */,
-				7BB967F129E086298483BDF8 /* Pods-EUMobile-Watch Extension.comed-rc.xcconfig */,
-				69ABACD8EE32B19842409496 /* Pods-EUMobile-Watch Extension.peco-rc.xcconfig */,
-				FEF7F9E0320683B5F965A042 /* Pods-EUMobile-Watch Extension.bge-release.xcconfig */,
-				8EAC87FC5CEAB583002622C9 /* Pods-EUMobile-Watch Extension.ace-release.xcconfig */,
-				EAF277BBEE286DE69A9D3F96 /* Pods-EUMobile-Watch Extension.delmarva-release.xcconfig */,
-				890116DD2022FBBA0702A64E /* Pods-EUMobile-Watch Extension.pepco-release.xcconfig */,
-				09E4372FC8E2C732F2939737 /* Pods-EUMobile-Watch Extension.comed-release.xcconfig */,
-				72529116722E5D2F259DFCC7 /* Pods-EUMobile-Watch Extension.peco-release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		214006562767F55F00430C6E /* Outage */ = {
 			isa = PBXGroup;
 			children = (
@@ -4109,22 +3872,6 @@
 			path = "Mock JSONS";
 			sourceTree = "<group>";
 		};
-		6761AC3D2AD868BE00945554 /* Decibel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Decibel;
-			sourceTree = "<group>";
-		};
-		6761AC752AD998EF00945554 /* RxSwift */ = {
-			isa = PBXGroup;
-			children = (
-				6761AC792AD9991100945554 /* RxCocoa.framework */,
-				6761AC762AD9990A00945554 /* RxSwift.framework */,
-			);
-			path = RxSwift;
-			sourceTree = "<group>";
-		};
 		676434C825AF692600DA6448 /* Debug Menu */ = {
 			isa = PBXGroup;
 			children = (
@@ -4306,6 +4053,14 @@
 				67DDBDA4246450F8006CD6EB /* GoogleService-Info-RELEASE-FlavorDPL.plist */,
 			);
 			path = Google;
+			sourceTree = "<group>";
+		};
+		67D04AB32ADDAFC30036479A /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				67D04AB42ADDAFE20036479A /* ActivityTracker.swift */,
+			);
+			path = Vendor;
 			sourceTree = "<group>";
 		};
 		67D5621F24E4643A00852551 /* Models */ = {
@@ -4528,10 +4283,15 @@
 		8FD3C25A1E524511005FB1BB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				67D048182AD9BD060036479A /* DecibelCore.xcframework */,
 				823AA55F201247CF009CAEF0 /* XCTest.framework */,
 				E887C9F51ED5D3E1002433A3 /* Accelerate.framework */,
 				E887C9F91ED5D3F1002433A3 /* AudioToolbox.framework */,
 				E887C9F71ED5D3EB002433A3 /* AVFoundation.framework */,
+				67D04AA72ADDA7A00036479A /* RxCocoa.xcframework */,
+				67D04AA22ADDA5E40036479A /* RxRelay.xcframework */,
+				67D04A9F2ADDA4900036479A /* RxSwift.xcframework */,
+				67D04AB02ADDAB5F0036479A /* RxSwiftExt.xcframework */,
 				B55A8B0B1F15644800F63AC3 /* CoreData.framework */,
 				B5AC07411E52A49900BBA4ED /* CoreLocation.framework */,
 				E887C9FB1ED5D3F9002433A3 /* CoreMedia.framework */,
@@ -4542,13 +4302,6 @@
 				B5AC073B1E52A2BD00BBA4ED /* Security.framework */,
 				B5AC07391E52A2B900BBA4ED /* SystemConfiguration.framework */,
 				E83F02821FB380700062A348 /* UserNotifications.framework */,
-				277650B6F85C6AC146C5F8C2 /* Pods_EUMobile_Watch.framework */,
-				4ADF4FF916DE3B2844982F78 /* Pods_EUMobile_Watch_Extension.framework */,
-				B8A3A4A7A4BBF2DD357F1C3F /* Pods_EUMobileUITests.framework */,
-				9D644E4E93BE61A753CA9E15 /* Pods_EUMobileUnitTests.framework */,
-				2F3FDD6CD872BFB6C5171060 /* Pods_EUMobile.framework */,
-				F264461441121FBD4E0113E0 /* Pods_UITests.framework */,
-				2C182D1AA9DB93326D321E8A /* Pods_UnitTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -4961,7 +4714,6 @@
 				6716595026F0FBC6004546DE /* UnitTests */,
 				B58B5AC21E4E28740051FD5F /* Products */,
 				8FD3C25A1E524511005FB1BB /* Frameworks */,
-				1E476E42A91FD22BB3DB8A88 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -4988,8 +4740,8 @@
 				351241EA22B3DB6800E8BD25 /* Feature */,
 				B5AC06C61E521B2600BBA4ED /* Resources */,
 				67D73B33246DA27800450B63 /* Services */,
+				67D04AB32ADDAFC30036479A /* Vendor */,
 				67D73B0D246C743500450B63 /* Supporting Files */,
-				E8B4F4C31E5CE1500031D934 /* Vendor */,
 				8FD5AE7D1E54EA11003F640D /* Views */,
 			);
 			path = App;
@@ -5173,16 +4925,6 @@
 			path = "Forgot Username";
 			sourceTree = "<group>";
 		};
-		E8B4F4C31E5CE1500031D934 /* Vendor */ = {
-			isa = PBXGroup;
-			children = (
-				6761AC752AD998EF00945554 /* RxSwift */,
-				6761AC3D2AD868BE00945554 /* Decibel */,
-				82D599411EC2374500DDB380 /* ActivityTracker.swift */,
-			);
-			path = Vendor;
-			sourceTree = "<group>";
-		};
 		E8C29C761F630F9E00DB73FC /* OutageStatusButton */ = {
 			isa = PBXGroup;
 			children = (
@@ -5225,7 +4967,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 35F9DD462333C34200AAA2B2 /* Build configuration list for PBXNativeTarget "EUMobile-Watch" */;
 			buildPhases = (
-				55C2EBA82601F7D149265A91 /* [CP] Check Pods Manifest.lock */,
 				35F9DD212333C33F00AAA2B2 /* Resources */,
 				35F9DD872333D2B800AAA2B2 /* Embed App Extensions */,
 				35F9DD592333C3FB00AAA2B2 /* Frameworks */,
@@ -5245,11 +4986,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 35F9DD3E2333C34200AAA2B2 /* Build configuration list for PBXNativeTarget "EUMobile-Watch Extension" */;
 			buildPhases = (
-				9D65B3150EABD7C6A32DF36E /* [CP] Check Pods Manifest.lock */,
 				35F9DD2B2333C34100AAA2B2 /* Sources */,
 				35F9DD2C2333C34100AAA2B2 /* Frameworks */,
 				35F9DD2D2333C34100AAA2B2 /* Resources */,
-				8DE5BB4C03A54C48796C44F4 /* [CP] Embed Pods Frameworks */,
 				67D5633024EECD2200852551 /* Set Build Number */,
 			);
 			buildRules = (
@@ -5265,11 +5004,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6716592E26F0FBA0004546DE /* Build configuration list for PBXNativeTarget "UITests" */;
 			buildPhases = (
-				6FB461DFAD45047C2DB9FEF5 /* [CP] Check Pods Manifest.lock */,
 				6716592326F0FBA0004546DE /* Sources */,
 				6716592426F0FBA0004546DE /* Frameworks */,
 				6716592526F0FBA0004546DE /* Resources */,
-				A4D596080434B77809DFD18C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -5285,11 +5022,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6716595626F0FBC6004546DE /* Build configuration list for PBXNativeTarget "UnitTests" */;
 			buildPhases = (
-				48B113A921DBFFA807F46FD3 /* [CP] Check Pods Manifest.lock */,
 				6716594B26F0FBC6004546DE /* Sources */,
 				6716594C26F0FBC6004546DE /* Frameworks */,
 				6716594D26F0FBC6004546DE /* Resources */,
-				984123DAE7F244C6575852D0 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -5305,14 +5040,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B58B5AE91E4E28740051FD5F /* Build configuration list for PBXNativeTarget "EUMobile" */;
 			buildPhases = (
-				B94B53A494B834F78A5C29C7 /* [CP] Check Pods Manifest.lock */,
 				B58B5ABD1E4E28740051FD5F /* Sources */,
 				B58B5ABE1E4E28740051FD5F /* Frameworks */,
 				B58B5ABF1E4E28740051FD5F /* Resources */,
 				67D5632E24EECD0000852551 /* Set Build Number */,
-				F83C4B3507FC346BD43DF524 /* [CP] Embed Pods Frameworks */,
 				35F9DD4D2333C34200AAA2B2 /* Embed Watch Content */,
 				0E9BB58425827FAF00EF6BE3 /* Remove any i386 or x86_64 architectures from linked frameworks */,
+				67D0481C2AD9BD250036479A /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -5395,15 +5129,15 @@
 			);
 			mainGroup = B58B5AB81E4E28740051FD5F;
 			packageReferences = (
-				6761AC202AD84CC700945554 /* XCRemoteSwiftPackageReference "Toast-Swift" */,
-				6761AC232AD84D2100945554 /* XCRemoteSwiftPackageReference "lottie-spm" */,
-				6761AC262AD84D8800945554 /* XCRemoteSwiftPackageReference "Reachability.swift" */,
-				6761AC292AD84DB600945554 /* XCRemoteSwiftPackageReference "HorizonCalendar" */,
-				6761AC2C2AD84DFA00945554 /* XCRemoteSwiftPackageReference "Charts" */,
-				6761AC2F2AD84E4F00945554 /* XCRemoteSwiftPackageReference "XLPagerTabStrip" */,
-				6761AC322AD85C8400945554 /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */,
-				6761AC372AD85CEA00945554 /* XCRemoteSwiftPackageReference "digital-ios-sdk" */,
-				6761AC3A2AD8653400945554 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				6761AC202AD84CC700945554 /* XCRemoteSwiftPackageReference "Toast-Swift.git" */,
+				6761AC232AD84D2100945554 /* XCRemoteSwiftPackageReference "lottie-spm.git" */,
+				6761AC262AD84D8800945554 /* XCRemoteSwiftPackageReference "Reachability.swift.git" */,
+				6761AC292AD84DB600945554 /* XCRemoteSwiftPackageReference "HorizonCalendar.git" */,
+				6761AC2C2AD84DFA00945554 /* XCRemoteSwiftPackageReference "Charts.git" */,
+				6761AC2F2AD84E4F00945554 /* XCRemoteSwiftPackageReference "XLPagerTabStrip.git" */,
+				6761AC322AD85C8400945554 /* XCRemoteSwiftPackageReference "appcenter-sdk-apple.git" */,
+				6761AC372AD85CEA00945554 /* XCRemoteSwiftPackageReference "digital-ios-sdk.git" */,
+				6761AC3A2AD8653400945554 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */,
 			);
 			productRefGroup = B58B5AC21E4E28740051FD5F /* Products */;
 			projectDirPath = "";
@@ -5423,7 +5157,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				67A9873324FD4C5F00BD46E7 /* (null) in Resources */,
+				67A9873324FD4C5F00BD46E7 /* BuildFile in Resources */,
 				35F9DD672333C85B00AAA2B2 /* README.md in Resources */,
 				35F9DD6C2333C8A000AAA2B2 /* Assets.xcassets in Resources */,
 			);
@@ -5442,7 +5176,7 @@
 				678B621A24CF6AD2009F8A6B /* ValidateRegistrationMock.json in Resources */,
 				35F9DD6D2333C8A100AAA2B2 /* Assets.xcassets in Resources */,
 				C338282824E30B0600F133C5 /* PeakRewardsSummaryMock.json in Resources */,
-				67D73B00246C72F100450B63 /* (null) in Resources */,
+				67D73B00246C72F100450B63 /* BuildFile in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5754,50 +5488,6 @@
 			shellPath = /bin/sh;
 			shellScript = "# from https://stackoverflow.com/questions/30547283/submit-to-app-store-issues-unsupported-architecture-x86/41416964#41416964\n\necho \"Target architectures: $ARCHS\"\n\nAPP_PATH=\"${TARGET_BUILD_DIR}/${WRAPPER_NAME}\"\n\nfind \"$APP_PATH\" -name '*.framework' -type d | while read -r FRAMEWORK\ndo\nFRAMEWORK_EXECUTABLE_NAME=$(defaults read \"$FRAMEWORK/Info.plist\" CFBundleExecutable)\nFRAMEWORK_EXECUTABLE_PATH=\"$FRAMEWORK/$FRAMEWORK_EXECUTABLE_NAME\"\necho \"Executable is $FRAMEWORK_EXECUTABLE_PATH\"\necho $(lipo -info \"$FRAMEWORK_EXECUTABLE_PATH\")\n\nFRAMEWORK_TMP_PATH=\"$FRAMEWORK_EXECUTABLE_PATH-tmp\"\n\n# remove simulator's archs if location is not simulator's directory\ncase \"${TARGET_BUILD_DIR}\" in\n*\"iphonesimulator\")\n    echo \"No need to remove archs\"\n    ;;\n*)\n    if $(lipo \"$FRAMEWORK_EXECUTABLE_PATH\" -verify_arch \"i386\") ; then\n    lipo -output \"$FRAMEWORK_TMP_PATH\" -remove \"i386\" \"$FRAMEWORK_EXECUTABLE_PATH\"\n    echo \"i386 architecture removed\"\n    rm \"$FRAMEWORK_EXECUTABLE_PATH\"\n    mv \"$FRAMEWORK_TMP_PATH\" \"$FRAMEWORK_EXECUTABLE_PATH\"\n    fi\n    if $(lipo \"$FRAMEWORK_EXECUTABLE_PATH\" -verify_arch \"x86_64\") ; then\n    lipo -output \"$FRAMEWORK_TMP_PATH\" -remove \"x86_64\" \"$FRAMEWORK_EXECUTABLE_PATH\"\n    echo \"x86_64 architecture removed\"\n    rm \"$FRAMEWORK_EXECUTABLE_PATH\"\n    mv \"$FRAMEWORK_TMP_PATH\" \"$FRAMEWORK_EXECUTABLE_PATH\"\n    fi\n    ;;\nesac\n\necho \"Completed for executable $FRAMEWORK_EXECUTABLE_PATH\"\necho $(lipo -info \"$FRAMEWORK_EXECUTABLE_PATH\")\n\ndone\n";
 		};
-		48B113A921DBFFA807F46FD3 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-UnitTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		55C2EBA82601F7D149265A91 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-EUMobile-Watch-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		67D5632E24EECD0000852551 /* Set Build Number */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -5851,174 +5541,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "git=`sh /etc/profile; which git`\nbundleVersion=`\"$git\" rev-list --all |wc -l`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $bundleVersion\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\n\necho \"EUMobile-Watch Extension Build number set: $bundleVersion\"\n";
-		};
-		6FB461DFAD45047C2DB9FEF5 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-UITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		8DE5BB4C03A54C48796C44F4 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-EUMobile-Watch Extension/Pods-EUMobile-Watch Extension-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/RxCocoa-watchOS/RxCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/RxRelay-watchOS/RxRelay.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift-watchOS/RxSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwiftExt-watchOS/RxSwiftExt.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-EUMobile-Watch Extension/Pods-EUMobile-Watch Extension-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		984123DAE7F244C6575852D0 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-UnitTests/Pods-UnitTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/RxCocoa-iOS/RxCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/RxRelay-iOS/RxRelay.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwiftExt-iOS/RxSwiftExt.framework",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/DecibelSDK/DecibelCore.framework/DecibelCore",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DecibelCore.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-UnitTests/Pods-UnitTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		9D65B3150EABD7C6A32DF36E /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-EUMobile-Watch Extension-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A4D596080434B77809DFD18C /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-UITests/Pods-UITests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/RxCocoa-iOS/RxCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/RxRelay-iOS/RxRelay.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwiftExt-iOS/RxSwiftExt.framework",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/DecibelSDK/DecibelCore.framework/DecibelCore",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DecibelCore.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-UITests/Pods-UITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B94B53A494B834F78A5C29C7 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-EUMobile-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F83C4B3507FC346BD43DF524 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-EUMobile/Pods-EUMobile-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/RxCocoa-iOS/RxCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/RxRelay-iOS/RxRelay.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwiftExt-iOS/RxSwiftExt.framework",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/DecibelSDK/DecibelCore.framework/DecibelCore",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DecibelCore.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-EUMobile/Pods-EUMobile-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -6106,7 +5628,7 @@
 				678C7F382858E210006C0FDC /* ThirdPartyTransferEligibilityRequest.swift in Sources */,
 				C3055B4D2538F812000DB89C /* PremiseInfo.swift in Sources */,
 				670DE2A426CC15FC00D4C863 /* KeychainSwift.swift in Sources */,
-				35F9DD932333D83F00AAA2B2 /* (null) in Sources */,
+				35F9DD932333D83F00AAA2B2 /* BuildFile in Sources */,
 				C3055BFD2538FB11000DB89C /* ValidateAccountRequest.swift in Sources */,
 				C3055B822538F81B000DB89C /* AccountLookupResults.swift in Sources */,
 				67247F1325D2D8EC0024467D /* SignInView.swift in Sources */,
@@ -6338,7 +5860,6 @@
 				9CD3531E22CABBB800165F87 /* DataDetectorTextView.swift in Sources */,
 				C364A87D2375DC9100C7D51B /* EmptyChildViewController.swift in Sources */,
 				674A11F3252387A100AF0D38 /* SubOpCo.swift in Sources */,
-				82D599421EC2374500DDB380 /* ActivityTracker.swift in Sources */,
 				C36C394324ED7D4800BA83B6 /* RegistrationService+Rx.swift in Sources */,
 				21AB86D3273912B0004FBC18 /* UnauthenticatedMoveAccountSelectionCell.swift in Sources */,
 				C33827ED24DDDB9900F133C5 /* StringResult.swift in Sources */,
@@ -6531,7 +6052,7 @@
 				215A1B7C270B1713003A4EE9 /* AddressLookupResponse.swift in Sources */,
 				675F4DF224AB828200A828F9 /* NetworkingLayer.swift in Sources */,
 				4AD0C77E26FCAE9E009DB068 /* USState.swift in Sources */,
-				2FA5D85F1F17D2A300A8B16B /* (null) in Sources */,
+				2FA5D85F1F17D2A300A8B16B /* BuildFile in Sources */,
 				2FA5D8641F17D88500A8B16B /* HomeViewController.swift in Sources */,
 				215A1B76270B12DF003A4EE9 /* AppartmentRequest.swift in Sources */,
 				4AE3468A26EDA8BE00F4155C /* WorkdaysRequest.swift in Sources */,
@@ -6879,6 +6400,7 @@
 				350F669B274387CC00E92765 /* AssistanceProgramStore.swift in Sources */,
 				C33B5A4827C53D42005500C5 /* CalendarViewController.swift in Sources */,
 				678C7F262833F628006C0FDC /* SeamlessMoveViewController.swift in Sources */,
+				67D04AB52ADDAFE30036479A /* ActivityTracker.swift in Sources */,
 				E8C453271EF435E500F5C781 /* BGEAutoPaySettingsViewController.swift in Sources */,
 				676434DD25AF702800DA6448 /* ProjectURLSuffix.swift in Sources */,
 				825171A31F1D1D4F0020A6CA /* RadioSelectControl.swift in Sources */,
@@ -7040,7 +6562,6 @@
 		};
 		0E131752202B583000865819 /* BGE-Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B6A0F9703B9DD37820E154C3 /* Pods-EUMobile.bge-release.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.bge.com;
 				ANON_ASSOCIATED_DOMAIN = bge.com;
@@ -7089,7 +6610,6 @@
 		};
 		35F9DD3F2333C34200AAA2B2 /* BGE-AUT */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 14AA9E852B6C8BA8DFA98DA4 /* Pods-EUMobile-Watch Extension.bge-aut.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ANON_ASSOCIATED_DOMAIN = azstage.bge.com;
@@ -7182,7 +6702,6 @@
 		};
 		35F9DD412333C34200AAA2B2 /* BGE-Beta */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B796B8A214438C8DBF35799F /* Pods-EUMobile-Watch Extension.bge-beta.xcconfig */;
 			buildSettings = {
 				ANON_ASSOCIATED_DOMAIN = azstage.bge.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
@@ -7231,7 +6750,6 @@
 		};
 		35F9DD432333C34200AAA2B2 /* BGE-RC */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4953FDF36B4164D916A6B19C /* Pods-EUMobile-Watch Extension.bge-rc.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.bge.com;
 				ANON_ASSOCIATED_DOMAIN = bge.com;
@@ -7282,7 +6800,6 @@
 		};
 		35F9DD442333C34200AAA2B2 /* BGE-Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FEF7F9E0320683B5F965A042 /* Pods-EUMobile-Watch Extension.bge-release.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.bge.com;
 				ANON_ASSOCIATED_DOMAIN = bge.com;
@@ -7334,7 +6851,6 @@
 		};
 		35F9DD472333C34200AAA2B2 /* BGE-AUT */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1B711F2A3540AD1315F0A0DC /* Pods-EUMobile-Watch.bge-aut.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ANON_ASSOCIATED_DOMAIN = azstage.bge.com;
@@ -7428,7 +6944,6 @@
 		};
 		35F9DD492333C34200AAA2B2 /* BGE-Beta */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FE60CB34CA163B81BF311DAF /* Pods-EUMobile-Watch.bge-beta.xcconfig */;
 			buildSettings = {
 				ANON_ASSOCIATED_DOMAIN = azstage.bge.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
@@ -7478,7 +6993,6 @@
 		};
 		35F9DD4B2333C34200AAA2B2 /* BGE-RC */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BFD03516A3C81B252FA85AAF /* Pods-EUMobile-Watch.bge-rc.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.bge.com;
 				ANON_ASSOCIATED_DOMAIN = bge.com;
@@ -7530,7 +7044,6 @@
 		};
 		35F9DD4C2333C34200AAA2B2 /* BGE-Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AA15170BE92CB5AF1C2BD94E /* Pods-EUMobile-Watch.bge-release.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.bge.com;
 				ANON_ASSOCIATED_DOMAIN = bge.com;
@@ -7583,7 +7096,6 @@
 		};
 		6716592F26F0FBA0004546DE /* BGE-AUT */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 07AA0C7324C571B496D261D5 /* Pods-UITests.bge-aut.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -7660,7 +7172,6 @@
 		};
 		6716593026F0FBA0004546DE /* ACE-AUT */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BA0D7033CD59A08E8BC67C4F /* Pods-UITests.ace-aut.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -7731,7 +7242,6 @@
 		};
 		6716593126F0FBA0004546DE /* Delmarva-AUT */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2817AE5433CCAFAB2265CB4A /* Pods-UITests.delmarva-aut.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -7802,7 +7312,6 @@
 		};
 		6716593226F0FBA0004546DE /* Pepco-AUT */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 56B6CCA33D752F1E1BDA3669 /* Pods-UITests.pepco-aut.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -7873,7 +7382,6 @@
 		};
 		6716593326F0FBA0004546DE /* ComEd-AUT */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C7D274803B29B5ABC60AD2D8 /* Pods-UITests.comed-aut.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -7944,7 +7452,6 @@
 		};
 		6716593426F0FBA0004546DE /* PECO-AUT */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C452B6F3F6B9F8627EDB8C7C /* Pods-UITests.peco-aut.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -8015,7 +7522,6 @@
 		};
 		6716593526F0FBA0004546DE /* BGE-Beta */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 680FEAC89543EFDDA1CC1E98 /* Pods-UITests.bge-beta.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -8086,7 +7592,6 @@
 		};
 		6716593626F0FBA0004546DE /* ACE-Beta */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 178E0419CA5FFF6B6B47F7D7 /* Pods-UITests.ace-beta.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -8157,7 +7662,6 @@
 		};
 		6716593726F0FBA0004546DE /* Delmarva-Beta */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 742CA4C4FB6661EC4AF7A566 /* Pods-UITests.delmarva-beta.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -8228,7 +7732,6 @@
 		};
 		6716593826F0FBA0004546DE /* Pepco-Beta */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 99CA380BADD2643BA206844C /* Pods-UITests.pepco-beta.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -8299,7 +7802,6 @@
 		};
 		6716593926F0FBA0004546DE /* ComEd-Beta */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C100FFA695E366B478D3B26B /* Pods-UITests.comed-beta.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -8370,7 +7872,6 @@
 		};
 		6716593A26F0FBA0004546DE /* PECO-Beta */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 043AD4137C4B870D0876711F /* Pods-UITests.peco-beta.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -8441,7 +7942,6 @@
 		};
 		6716593B26F0FBA0004546DE /* BGE-RC */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 42C81CE12C82631C2A596E3B /* Pods-UITests.bge-rc.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -8512,7 +8012,6 @@
 		};
 		6716593C26F0FBA0004546DE /* ACE-RC */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DB003E5F5FA39B4F617D7774 /* Pods-UITests.ace-rc.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -8583,7 +8082,6 @@
 		};
 		6716593D26F0FBA0004546DE /* Delmarva-RC */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B48B1F39CA631CCED92367FB /* Pods-UITests.delmarva-rc.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -8654,7 +8152,6 @@
 		};
 		6716593E26F0FBA0004546DE /* Pepco-RC */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 03BAF012DCA4FE172D96935F /* Pods-UITests.pepco-rc.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -8725,7 +8222,6 @@
 		};
 		6716593F26F0FBA0004546DE /* ComEd-RC */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 76BC3B0F7003807FAE04A53E /* Pods-UITests.comed-rc.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -8796,7 +8292,6 @@
 		};
 		6716594026F0FBA0004546DE /* PECO-RC */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 20F8D6479D8B22F80312E4A1 /* Pods-UITests.peco-rc.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -8867,7 +8362,6 @@
 		};
 		6716594126F0FBA0004546DE /* BGE-Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A7F526CBB014D2888FD99FCF /* Pods-UITests.bge-release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -8938,7 +8432,6 @@
 		};
 		6716594226F0FBA0004546DE /* ACE-Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 298764D273AA146AC5E8E629 /* Pods-UITests.ace-release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -9009,7 +8502,6 @@
 		};
 		6716594326F0FBA0004546DE /* Delmarva-Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 764054A9E6BB66EA5ED549C6 /* Pods-UITests.delmarva-release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -9080,7 +8572,6 @@
 		};
 		6716594426F0FBA0004546DE /* Pepco-Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E76B5E9F099F5C0D8F93E884 /* Pods-UITests.pepco-release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -9151,7 +8642,6 @@
 		};
 		6716594526F0FBA0004546DE /* ComEd-Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 872673E4CBB9187552AA5AA1 /* Pods-UITests.comed-release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -9222,7 +8712,6 @@
 		};
 		6716594626F0FBA0004546DE /* PECO-Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 51F170E7715CB1BAAE24DF77 /* Pods-UITests.peco-release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -9293,7 +8782,6 @@
 		};
 		6716595726F0FBC6004546DE /* BGE-AUT */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D08BAD267D5EAAC3413E61D4 /* Pods-UnitTests.bge-aut.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -9370,7 +8858,6 @@
 		};
 		6716595826F0FBC6004546DE /* ACE-AUT */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BBA93B6658BDBACBD5997AE2 /* Pods-UnitTests.ace-aut.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -9441,7 +8928,6 @@
 		};
 		6716595926F0FBC6004546DE /* Delmarva-AUT */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EED2612F58F7296FF0E1D54E /* Pods-UnitTests.delmarva-aut.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -9512,7 +8998,6 @@
 		};
 		6716595A26F0FBC6004546DE /* Pepco-AUT */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E8AB8F323BF157FC32F9BB7A /* Pods-UnitTests.pepco-aut.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -9583,7 +9068,6 @@
 		};
 		6716595B26F0FBC6004546DE /* ComEd-AUT */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0845ED32A13A12B215991009 /* Pods-UnitTests.comed-aut.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -9654,7 +9138,6 @@
 		};
 		6716595C26F0FBC6004546DE /* PECO-AUT */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 90257AB88C3291537E392E36 /* Pods-UnitTests.peco-aut.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -9725,7 +9208,6 @@
 		};
 		6716595D26F0FBC6004546DE /* BGE-Beta */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EC07C85B686F954C1F136CCB /* Pods-UnitTests.bge-beta.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -9796,7 +9278,6 @@
 		};
 		6716595E26F0FBC6004546DE /* ACE-Beta */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 03DA2DE4AA4D17C789D84AF6 /* Pods-UnitTests.ace-beta.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -9867,7 +9348,6 @@
 		};
 		6716595F26F0FBC6004546DE /* Delmarva-Beta */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DD5CF096EF46C400972C7557 /* Pods-UnitTests.delmarva-beta.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -9938,7 +9418,6 @@
 		};
 		6716596026F0FBC6004546DE /* Pepco-Beta */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 45DD9C12EA34A3D1D2B70356 /* Pods-UnitTests.pepco-beta.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -10009,7 +9488,6 @@
 		};
 		6716596126F0FBC6004546DE /* ComEd-Beta */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D2178BC4411C0460C0B7D517 /* Pods-UnitTests.comed-beta.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -10080,7 +9558,6 @@
 		};
 		6716596226F0FBC6004546DE /* PECO-Beta */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 452E1D0CC10469EF28897E47 /* Pods-UnitTests.peco-beta.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -10151,7 +9628,6 @@
 		};
 		6716596326F0FBC6004546DE /* BGE-RC */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5A230F0FC2CC76B9992D884C /* Pods-UnitTests.bge-rc.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -10222,7 +9698,6 @@
 		};
 		6716596426F0FBC6004546DE /* ACE-RC */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2A70B7D418CB23EDE9563CEA /* Pods-UnitTests.ace-rc.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -10293,7 +9768,6 @@
 		};
 		6716596526F0FBC6004546DE /* Delmarva-RC */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D970D5C958B261B9EA4AD56B /* Pods-UnitTests.delmarva-rc.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -10364,7 +9838,6 @@
 		};
 		6716596626F0FBC6004546DE /* Pepco-RC */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0FA1863121E26ECB574EC99E /* Pods-UnitTests.pepco-rc.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -10435,7 +9908,6 @@
 		};
 		6716596726F0FBC6004546DE /* ComEd-RC */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4A265B4A77D5F2CF40432C7C /* Pods-UnitTests.comed-rc.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -10506,7 +9978,6 @@
 		};
 		6716596826F0FBC6004546DE /* PECO-RC */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 732AEF16FD0EEC42C0417208 /* Pods-UnitTests.peco-rc.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -10577,7 +10048,6 @@
 		};
 		6716596926F0FBC6004546DE /* BGE-Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 93803927EEC8DCD5D5530259 /* Pods-UnitTests.bge-release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -10648,7 +10118,6 @@
 		};
 		6716596A26F0FBC6004546DE /* ACE-Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0C5910660209B00E86BF701B /* Pods-UnitTests.ace-release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -10719,7 +10188,6 @@
 		};
 		6716596B26F0FBC6004546DE /* Delmarva-Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 83490D1A1EC4812D76C002D4 /* Pods-UnitTests.delmarva-release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -10790,7 +10258,6 @@
 		};
 		6716596C26F0FBC6004546DE /* Pepco-Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E79613A84F8C1408B207C559 /* Pods-UnitTests.pepco-release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -10861,7 +10328,6 @@
 		};
 		6716596D26F0FBC6004546DE /* ComEd-Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4D7F83742995B9D6D0BE7C6E /* Pods-UnitTests.comed-release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -10932,7 +10398,6 @@
 		};
 		6716596E26F0FBC6004546DE /* PECO-Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8FE74F933532900AC7962FBA /* Pods-UnitTests.peco-release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -11096,7 +10561,6 @@
 		};
 		67A9867724F950F900BD46E7 /* PECO-AUT */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DBE229F6DAA0D7263F768A37 /* Pods-EUMobile.peco-aut.xcconfig */;
 			buildSettings = {
 				ANON_ASSOCIATED_DOMAIN = azstage.peco.com;
 				APP_CENTER_ID = "";
@@ -11142,7 +10606,6 @@
 		};
 		67A9867A24F950F900BD46E7 /* PECO-AUT */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F12094DBCBD76241DA6E3231 /* Pods-EUMobile-Watch.peco-aut.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ANON_ASSOCIATED_DOMAIN = azstage.peco.com;
@@ -11236,7 +10699,6 @@
 		};
 		67A9867B24F950F900BD46E7 /* PECO-AUT */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FFC7380BFE6C5CFD8D1C8E71 /* Pods-EUMobile-Watch Extension.peco-aut.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ANON_ASSOCIATED_DOMAIN = azstage.peco.com;
@@ -11424,7 +10886,6 @@
 		};
 		67A9868324F9510D00BD46E7 /* PECO-Beta */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0C9EF509CB69C6BD8BC4BCC3 /* Pods-EUMobile.peco-beta.xcconfig */;
 			buildSettings = {
 				ANON_ASSOCIATED_DOMAIN = azstage.peco.com;
 				APP_CENTER_ID = "263b80d6-242b-4962-9a64-01731f98056b";
@@ -11473,7 +10934,6 @@
 		};
 		67A9868624F9510D00BD46E7 /* PECO-Beta */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 94D56EE8642BE663AD7AA9EC /* Pods-EUMobile-Watch.peco-beta.xcconfig */;
 			buildSettings = {
 				ANON_ASSOCIATED_DOMAIN = azstage.peco.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
@@ -11523,7 +10983,6 @@
 		};
 		67A9868724F9510D00BD46E7 /* PECO-Beta */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9D6A7E932D1F627C0C07BDC8 /* Pods-EUMobile-Watch Extension.peco-beta.xcconfig */;
 			buildSettings = {
 				ANON_ASSOCIATED_DOMAIN = azstage.peco.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
@@ -11661,7 +11120,6 @@
 		};
 		67A9868924F9511500BD46E7 /* PECO-RC */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 913BD0B6FA88CE1449774B87 /* Pods-EUMobile.peco-rc.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.peco.com;
 				ANON_ASSOCIATED_DOMAIN = peco.com;
@@ -11710,7 +11168,6 @@
 		};
 		67A9868C24F9511500BD46E7 /* PECO-RC */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 18CFDD6F433CE3918FE2AE09 /* Pods-EUMobile-Watch.peco-rc.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.peco.com;
 				ANON_ASSOCIATED_DOMAIN = peco.com;
@@ -11762,7 +11219,6 @@
 		};
 		67A9868D24F9511500BD46E7 /* PECO-RC */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 69ABACD8EE32B19842409496 /* Pods-EUMobile-Watch Extension.peco-rc.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.peco.com;
 				ANON_ASSOCIATED_DOMAIN = peco.com;
@@ -11902,7 +11358,6 @@
 		};
 		67A9868F24F9511D00BD46E7 /* PECO-Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2AEAE0E6E5F9912B446F7542 /* Pods-EUMobile.peco-release.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.peco.com;
 				ANON_ASSOCIATED_DOMAIN = peco.com;
@@ -11951,7 +11406,6 @@
 		};
 		67A9869224F9511D00BD46E7 /* PECO-Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3E48B304225C532442701FF0 /* Pods-EUMobile-Watch.peco-release.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.peco.com;
 				ANON_ASSOCIATED_DOMAIN = peco.com;
@@ -12004,7 +11458,6 @@
 		};
 		67A9869324F9511D00BD46E7 /* PECO-Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 72529116722E5D2F259DFCC7 /* Pods-EUMobile-Watch Extension.peco-release.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.peco.com;
 				ANON_ASSOCIATED_DOMAIN = peco.com;
@@ -12149,7 +11602,6 @@
 		};
 		67A986B124FD3E8500BD46E7 /* ACE-AUT */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 30FA80756A48AB9DC1934F7A /* Pods-EUMobile.ace-aut.xcconfig */;
 			buildSettings = {
 				ANON_ASSOCIATED_DOMAIN = azstage.atlanticcityelectric.com;
 				APP_CENTER_ID = "";
@@ -12195,7 +11647,6 @@
 		};
 		67A986B424FD3E8500BD46E7 /* ACE-AUT */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7262164C734E2BAB5F8870AF /* Pods-EUMobile-Watch.ace-aut.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ANON_ASSOCIATED_DOMAIN = azstage.atlanticcityelectric.com;
@@ -12289,7 +11740,6 @@
 		};
 		67A986B524FD3E8500BD46E7 /* ACE-AUT */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B8C923DA414D342D5C1F7F71 /* Pods-EUMobile-Watch Extension.ace-aut.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ANON_ASSOCIATED_DOMAIN = azstage.atlanticcityelectric.com;
@@ -12477,7 +11927,6 @@
 		};
 		67A986BD24FD3E9300BD46E7 /* ACE-Beta */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 24A26F01575E0A81574F9B67 /* Pods-EUMobile.ace-beta.xcconfig */;
 			buildSettings = {
 				ANON_ASSOCIATED_DOMAIN = azstage.atlanticcityelectric.com;
 				APP_CENTER_ID = "236e33d9-c10a-4dae-92d8-75c3f0b41450";
@@ -12527,7 +11976,6 @@
 		};
 		67A986C024FD3E9300BD46E7 /* ACE-Beta */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2970025E51E4A6B5E1D1ED99 /* Pods-EUMobile-Watch.ace-beta.xcconfig */;
 			buildSettings = {
 				ANON_ASSOCIATED_DOMAIN = azstage.atlanticcityelectric.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
@@ -12577,7 +12025,6 @@
 		};
 		67A986C124FD3E9300BD46E7 /* ACE-Beta */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4958F3FA03A8BE776E455461 /* Pods-EUMobile-Watch Extension.ace-beta.xcconfig */;
 			buildSettings = {
 				ANON_ASSOCIATED_DOMAIN = azstage.atlanticcityelectric.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
@@ -12715,7 +12162,6 @@
 		};
 		67A986C324FD3E9900BD46E7 /* ACE-RC */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BBAE55A4DFC33620498824A7 /* Pods-EUMobile.ace-rc.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.atlanticcityelectric.com;
 				ANON_ASSOCIATED_DOMAIN = atlanticcityelectric.com;
@@ -12765,7 +12211,6 @@
 		};
 		67A986C624FD3E9900BD46E7 /* ACE-RC */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6F49D2B17C512CD5B1E59FDA /* Pods-EUMobile-Watch.ace-rc.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.atlanticcityelectric.com;
 				ANON_ASSOCIATED_DOMAIN = atlanticcityelectric.com;
@@ -12817,7 +12262,6 @@
 		};
 		67A986C724FD3E9900BD46E7 /* ACE-RC */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 14D4A7EEC65155AF56005C10 /* Pods-EUMobile-Watch Extension.ace-rc.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.atlanticcityelectric.com;
 				ANON_ASSOCIATED_DOMAIN = atlanticcityelectric.com;
@@ -12957,7 +12401,6 @@
 		};
 		67A986C924FD3E9F00BD46E7 /* ACE-Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F70313F84BA5FD09CF744337 /* Pods-EUMobile.ace-release.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.atlanticcityelectric.com;
 				ANON_ASSOCIATED_DOMAIN = atlanticcityelectric.com;
@@ -13007,7 +12450,6 @@
 		};
 		67A986CC24FD3E9F00BD46E7 /* ACE-Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3C5923E3B63A606655431D28 /* Pods-EUMobile-Watch.ace-release.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.atlanticcityelectric.com;
 				ANON_ASSOCIATED_DOMAIN = atlanticcityelectric.com;
@@ -13060,7 +12502,6 @@
 		};
 		67A986CD24FD3E9F00BD46E7 /* ACE-Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8EAC87FC5CEAB583002622C9 /* Pods-EUMobile-Watch Extension.ace-release.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.atlanticcityelectric.com;
 				ANON_ASSOCIATED_DOMAIN = atlanticcityelectric.com;
@@ -13205,7 +12646,6 @@
 		};
 		67A986EA24FD41DB00BD46E7 /* Delmarva-AUT */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8601B9200263DE0DFF4528CC /* Pods-EUMobile.delmarva-aut.xcconfig */;
 			buildSettings = {
 				ANON_ASSOCIATED_DOMAIN = azstage.delmarva.com;
 				APP_CENTER_ID = "";
@@ -13251,7 +12691,6 @@
 		};
 		67A986ED24FD41DB00BD46E7 /* Delmarva-AUT */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9FF2F983CC65F2076F1692C5 /* Pods-EUMobile-Watch.delmarva-aut.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ANON_ASSOCIATED_DOMAIN = azstage.delmarva.com;
@@ -13345,7 +12784,6 @@
 		};
 		67A986EE24FD41DB00BD46E7 /* Delmarva-AUT */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B8556379C7033076121C9420 /* Pods-EUMobile-Watch Extension.delmarva-aut.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ANON_ASSOCIATED_DOMAIN = azstage.delmarva.com;
@@ -13533,7 +12971,6 @@
 		};
 		67A986F624FD41E900BD46E7 /* Delmarva-Beta */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EC7969E0A5F7924698395552 /* Pods-EUMobile.delmarva-beta.xcconfig */;
 			buildSettings = {
 				ANON_ASSOCIATED_DOMAIN = azstage.delmarva.com;
 				APP_CENTER_ID = "ee9f1ca8-fe59-4c5f-80d3-ebcef6ae7168";
@@ -13583,7 +13020,6 @@
 		};
 		67A986F924FD41E900BD46E7 /* Delmarva-Beta */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 34D5D8773E8D72600EFCF9F9 /* Pods-EUMobile-Watch.delmarva-beta.xcconfig */;
 			buildSettings = {
 				ANON_ASSOCIATED_DOMAIN = azstage.delmarva.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
@@ -13633,7 +13069,6 @@
 		};
 		67A986FA24FD41E900BD46E7 /* Delmarva-Beta */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DD3F10970CFE8096DE30CF58 /* Pods-EUMobile-Watch Extension.delmarva-beta.xcconfig */;
 			buildSettings = {
 				ANON_ASSOCIATED_DOMAIN = azstage.delmarva.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
@@ -13771,7 +13206,6 @@
 		};
 		67A986FC24FD41F100BD46E7 /* Delmarva-RC */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D87C9685FCCF09C7D91603D2 /* Pods-EUMobile.delmarva-rc.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.delmarva.com;
 				ANON_ASSOCIATED_DOMAIN = delmarva.com;
@@ -13821,7 +13255,6 @@
 		};
 		67A986FF24FD41F100BD46E7 /* Delmarva-RC */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AAFF79EAA4875A0741BB38FE /* Pods-EUMobile-Watch.delmarva-rc.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.delmarva.com;
 				ANON_ASSOCIATED_DOMAIN = delmarva.com;
@@ -13873,7 +13306,6 @@
 		};
 		67A9870024FD41F100BD46E7 /* Delmarva-RC */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D314742AA20FD452B2744534 /* Pods-EUMobile-Watch Extension.delmarva-rc.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.delmarva.com;
 				ANON_ASSOCIATED_DOMAIN = delmarva.com;
@@ -14013,7 +13445,6 @@
 		};
 		67A9870224FD41F600BD46E7 /* Delmarva-Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 90D0B26FE99EFBEA227C60F8 /* Pods-EUMobile.delmarva-release.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.delmarva.com;
 				ANON_ASSOCIATED_DOMAIN = delmarva.com;
@@ -14063,7 +13494,6 @@
 		};
 		67A9870524FD41F600BD46E7 /* Delmarva-Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CF13F95E464D0327C171CB43 /* Pods-EUMobile-Watch.delmarva-release.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.delmarva.com;
 				ANON_ASSOCIATED_DOMAIN = delmarva.com;
@@ -14116,7 +13546,6 @@
 		};
 		67A9870624FD41F600BD46E7 /* Delmarva-Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EAF277BBEE286DE69A9D3F96 /* Pods-EUMobile-Watch Extension.delmarva-release.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.delmarva.com;
 				ANON_ASSOCIATED_DOMAIN = delmarva.com;
@@ -14261,7 +13690,6 @@
 		};
 		67A9870824FD41FE00BD46E7 /* Pepco-AUT */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 76268D74E667D234121B2A16 /* Pods-EUMobile.pepco-aut.xcconfig */;
 			buildSettings = {
 				ANON_ASSOCIATED_DOMAIN = azstage.pepco.com;
 				APP_CENTER_ID = "";
@@ -14307,7 +13735,6 @@
 		};
 		67A9870B24FD41FE00BD46E7 /* Pepco-AUT */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 00EEF1DB7F3DD4C93D1C8532 /* Pods-EUMobile-Watch.pepco-aut.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ANON_ASSOCIATED_DOMAIN = azstage.pepco.com;
@@ -14401,7 +13828,6 @@
 		};
 		67A9870C24FD41FE00BD46E7 /* Pepco-AUT */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F76F143ABFA2600AD8AA8BCA /* Pods-EUMobile-Watch Extension.pepco-aut.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ANON_ASSOCIATED_DOMAIN = azstage.pepco.com;
@@ -14589,7 +14015,6 @@
 		};
 		67A9871424FD420D00BD46E7 /* Pepco-Beta */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5EAD472E49BC6B15EA1BB719 /* Pods-EUMobile.pepco-beta.xcconfig */;
 			buildSettings = {
 				ANON_ASSOCIATED_DOMAIN = azstage.pepco.com;
 				APP_CENTER_ID = "7f015d81-de56-4f18-a90d-d17a93ee65d4";
@@ -14639,7 +14064,6 @@
 		};
 		67A9871724FD420D00BD46E7 /* Pepco-Beta */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BB7CA6327A54535477F5B485 /* Pods-EUMobile-Watch.pepco-beta.xcconfig */;
 			buildSettings = {
 				ANON_ASSOCIATED_DOMAIN = azstage.pepco.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
@@ -14689,7 +14113,6 @@
 		};
 		67A9871824FD420D00BD46E7 /* Pepco-Beta */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C60777FE5ADCB51BFE47125E /* Pods-EUMobile-Watch Extension.pepco-beta.xcconfig */;
 			buildSettings = {
 				ANON_ASSOCIATED_DOMAIN = azstage.pepco.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
@@ -14827,7 +14250,6 @@
 		};
 		67A9871A24FD421400BD46E7 /* Pepco-RC */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 10AB530BBE9FC1BAC5B2B69D /* Pods-EUMobile.pepco-rc.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.pepco.com;
 				ANON_ASSOCIATED_DOMAIN = pepco.com;
@@ -14877,7 +14299,6 @@
 		};
 		67A9871D24FD421400BD46E7 /* Pepco-RC */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 57A7F069D5F46C830E71DBC0 /* Pods-EUMobile-Watch.pepco-rc.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.pepco.com;
 				ANON_ASSOCIATED_DOMAIN = pepco.com;
@@ -14929,7 +14350,6 @@
 		};
 		67A9871E24FD421400BD46E7 /* Pepco-RC */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F85F65BF77FEDD272401BFA4 /* Pods-EUMobile-Watch Extension.pepco-rc.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.pepco.com;
 				ANON_ASSOCIATED_DOMAIN = pepco.com;
@@ -15069,7 +14489,6 @@
 		};
 		67A9872024FD421C00BD46E7 /* Pepco-Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 48CAD1C641D85E5D906EF408 /* Pods-EUMobile.pepco-release.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.pepco.com;
 				ANON_ASSOCIATED_DOMAIN = pepco.com;
@@ -15119,7 +14538,6 @@
 		};
 		67A9872324FD421C00BD46E7 /* Pepco-Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DCC4E5C04DE2F93F0CFEAB8C /* Pods-EUMobile-Watch.pepco-release.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.pepco.com;
 				ANON_ASSOCIATED_DOMAIN = pepco.com;
@@ -15172,7 +14590,6 @@
 		};
 		67A9872424FD421C00BD46E7 /* Pepco-Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 890116DD2022FBBA0702A64E /* Pods-EUMobile-Watch Extension.pepco-release.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.pepco.com;
 				ANON_ASSOCIATED_DOMAIN = pepco.com;
@@ -15317,7 +14734,6 @@
 		};
 		67D562FA24ED9DD100852551 /* ComEd-AUT */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BE2CD0FB94EBF7FB32F742B0 /* Pods-EUMobile.comed-aut.xcconfig */;
 			buildSettings = {
 				ANON_ASSOCIATED_DOMAIN = azstage.comed.com;
 				APP_CENTER_ID = "";
@@ -15363,7 +14779,6 @@
 		};
 		67D562FD24ED9DD100852551 /* ComEd-AUT */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 16663E1A946C593658B029ED /* Pods-EUMobile-Watch.comed-aut.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ANON_ASSOCIATED_DOMAIN = azstage.comed.com;
@@ -15457,7 +14872,6 @@
 		};
 		67D562FE24ED9DD100852551 /* ComEd-AUT */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0F03C17FC734CC7FC7F04BB9 /* Pods-EUMobile-Watch Extension.comed-aut.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ANON_ASSOCIATED_DOMAIN = azstage.comed.com;
@@ -15645,7 +15059,6 @@
 		};
 		67D5630624ED9DD500852551 /* ComEd-Beta */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F6937A8758EFD1E596A9A04F /* Pods-EUMobile.comed-beta.xcconfig */;
 			buildSettings = {
 				ANON_ASSOCIATED_DOMAIN = azstage.comed.com;
 				APP_CENTER_ID = "3c531e04-e7cc-44c0-96e3-5a67f815484a";
@@ -15694,7 +15107,6 @@
 		};
 		67D5630924ED9DD500852551 /* ComEd-Beta */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 431E8E7552EFD5BBEC6673DC /* Pods-EUMobile-Watch.comed-beta.xcconfig */;
 			buildSettings = {
 				ANON_ASSOCIATED_DOMAIN = azstage.comed.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
@@ -15744,7 +15156,6 @@
 		};
 		67D5630A24ED9DD500852551 /* ComEd-Beta */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A4AD181DB795B99260A44DB6 /* Pods-EUMobile-Watch Extension.comed-beta.xcconfig */;
 			buildSettings = {
 				ANON_ASSOCIATED_DOMAIN = azstage.comed.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
@@ -15882,7 +15293,6 @@
 		};
 		67D5631224ED9DD900852551 /* ComEd-RC */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A8BD924B25D8A2E006CD664A /* Pods-EUMobile.comed-rc.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.comed.com;
 				ANON_ASSOCIATED_DOMAIN = comed.com;
@@ -15931,7 +15341,6 @@
 		};
 		67D5631524ED9DD900852551 /* ComEd-RC */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FC0FC6D61469ACD6C5194D6C /* Pods-EUMobile-Watch.comed-rc.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.comed.com;
 				ANON_ASSOCIATED_DOMAIN = comed.com;
@@ -15983,7 +15392,6 @@
 		};
 		67D5631624ED9DD900852551 /* ComEd-RC */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7BB967F129E086298483BDF8 /* Pods-EUMobile-Watch Extension.comed-rc.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.comed.com;
 				ANON_ASSOCIATED_DOMAIN = comed.com;
@@ -16123,7 +15531,6 @@
 		};
 		67D5631824ED9DDB00852551 /* ComEd-Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A4985310A19F4BF46E4CBF6F /* Pods-EUMobile.comed-release.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.comed.com;
 				ANON_ASSOCIATED_DOMAIN = comed.com;
@@ -16172,7 +15579,6 @@
 		};
 		67D5631B24ED9DDB00852551 /* ComEd-Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C587F978F7FF9677FFB3079A /* Pods-EUMobile-Watch.comed-release.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.comed.com;
 				ANON_ASSOCIATED_DOMAIN = comed.com;
@@ -16225,7 +15631,6 @@
 		};
 		67D5631C24ED9DDB00852551 /* ComEd-Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 09E4372FC8E2C732F2939737 /* Pods-EUMobile-Watch Extension.comed-release.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.comed.com;
 				ANON_ASSOCIATED_DOMAIN = comed.com;
@@ -16370,7 +15775,6 @@
 		};
 		9CEB30D022612D8500DD725C /* BGE-AUT */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F11238B3B4D3CC678A7812DA /* Pods-EUMobile.bge-aut.xcconfig */;
 			buildSettings = {
 				ANON_ASSOCIATED_DOMAIN = azstage.bge.com;
 				APP_CENTER_ID = "";
@@ -16505,7 +15909,6 @@
 		};
 		B58B5AEB1E4E28740051FD5F /* BGE-RC */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C5F180B3C7D252D0D5862467 /* Pods-EUMobile.bge-rc.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.bge.com;
 				ANON_ASSOCIATED_DOMAIN = bge.com;
@@ -16649,7 +16052,6 @@
 		};
 		B58B5AF71E51497B0051FD5F /* BGE-Beta */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0BA01FDC771112716F0452A5 /* Pods-EUMobile.bge-beta.xcconfig */;
 			buildSettings = {
 				ANON_ASSOCIATED_DOMAIN = azstage.bge.com;
 				APP_CENTER_ID = "d63492ab-45ec-4d90-9e5a-963fa127e697";
@@ -16888,7 +16290,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		6761AC202AD84CC700945554 /* XCRemoteSwiftPackageReference "Toast-Swift" */ = {
+		6761AC202AD84CC700945554 /* XCRemoteSwiftPackageReference "Toast-Swift.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "git@github.com:scalessec/Toast-Swift.git";
 			requirement = {
@@ -16896,7 +16298,7 @@
 				minimumVersion = 5.0.0;
 			};
 		};
-		6761AC232AD84D2100945554 /* XCRemoteSwiftPackageReference "lottie-spm" */ = {
+		6761AC232AD84D2100945554 /* XCRemoteSwiftPackageReference "lottie-spm.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "git@github.com:airbnb/lottie-spm.git";
 			requirement = {
@@ -16904,7 +16306,7 @@
 				minimumVersion = 4.0.0;
 			};
 		};
-		6761AC262AD84D8800945554 /* XCRemoteSwiftPackageReference "Reachability.swift" */ = {
+		6761AC262AD84D8800945554 /* XCRemoteSwiftPackageReference "Reachability.swift.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "git@github.com:ashleymills/Reachability.swift.git";
 			requirement = {
@@ -16912,7 +16314,7 @@
 				version = 4.3.1;
 			};
 		};
-		6761AC292AD84DB600945554 /* XCRemoteSwiftPackageReference "HorizonCalendar" */ = {
+		6761AC292AD84DB600945554 /* XCRemoteSwiftPackageReference "HorizonCalendar.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "git@github.com:airbnb/HorizonCalendar.git";
 			requirement = {
@@ -16920,7 +16322,7 @@
 				version = 1.13.3;
 			};
 		};
-		6761AC2C2AD84DFA00945554 /* XCRemoteSwiftPackageReference "Charts" */ = {
+		6761AC2C2AD84DFA00945554 /* XCRemoteSwiftPackageReference "Charts.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "git@github.com:danielgindi/Charts.git";
 			requirement = {
@@ -16928,7 +16330,7 @@
 				version = 4.1.0;
 			};
 		};
-		6761AC2F2AD84E4F00945554 /* XCRemoteSwiftPackageReference "XLPagerTabStrip" */ = {
+		6761AC2F2AD84E4F00945554 /* XCRemoteSwiftPackageReference "XLPagerTabStrip.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "git@github.com:xmartlabs/XLPagerTabStrip.git";
 			requirement = {
@@ -16936,7 +16338,7 @@
 				version = 9.1.0;
 			};
 		};
-		6761AC322AD85C8400945554 /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */ = {
+		6761AC322AD85C8400945554 /* XCRemoteSwiftPackageReference "appcenter-sdk-apple.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "git@github.com:microsoft/appcenter-sdk-apple.git";
 			requirement = {
@@ -16944,7 +16346,7 @@
 				minimumVersion = 5.0.0;
 			};
 		};
-		6761AC372AD85CEA00945554 /* XCRemoteSwiftPackageReference "digital-ios-sdk" */ = {
+		6761AC372AD85CEA00945554 /* XCRemoteSwiftPackageReference "digital-ios-sdk.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "git@github.com:medallia/digital-ios-sdk.git";
 			requirement = {
@@ -16952,7 +16354,7 @@
 				version = 4.1.0;
 			};
 		};
-		6761AC3A2AD8653400945554 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+		6761AC3A2AD8653400945554 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "git@github.com:firebase/firebase-ios-sdk.git";
 			requirement = {
@@ -16965,52 +16367,52 @@
 /* Begin XCSwiftPackageProductDependency section */
 		6761AC212AD84CC700945554 /* Toast */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 6761AC202AD84CC700945554 /* XCRemoteSwiftPackageReference "Toast-Swift" */;
+			package = 6761AC202AD84CC700945554 /* XCRemoteSwiftPackageReference "Toast-Swift.git" */;
 			productName = Toast;
 		};
 		6761AC242AD84D2100945554 /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 6761AC232AD84D2100945554 /* XCRemoteSwiftPackageReference "lottie-spm" */;
+			package = 6761AC232AD84D2100945554 /* XCRemoteSwiftPackageReference "lottie-spm.git" */;
 			productName = Lottie;
 		};
 		6761AC272AD84D8800945554 /* Reachability */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 6761AC262AD84D8800945554 /* XCRemoteSwiftPackageReference "Reachability.swift" */;
+			package = 6761AC262AD84D8800945554 /* XCRemoteSwiftPackageReference "Reachability.swift.git" */;
 			productName = Reachability;
 		};
 		6761AC2A2AD84DB600945554 /* HorizonCalendar */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 6761AC292AD84DB600945554 /* XCRemoteSwiftPackageReference "HorizonCalendar" */;
+			package = 6761AC292AD84DB600945554 /* XCRemoteSwiftPackageReference "HorizonCalendar.git" */;
 			productName = HorizonCalendar;
 		};
 		6761AC2D2AD84DFA00945554 /* Charts */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 6761AC2C2AD84DFA00945554 /* XCRemoteSwiftPackageReference "Charts" */;
+			package = 6761AC2C2AD84DFA00945554 /* XCRemoteSwiftPackageReference "Charts.git" */;
 			productName = Charts;
 		};
 		6761AC302AD84E4F00945554 /* XLPagerTabStrip */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 6761AC2F2AD84E4F00945554 /* XCRemoteSwiftPackageReference "XLPagerTabStrip" */;
+			package = 6761AC2F2AD84E4F00945554 /* XCRemoteSwiftPackageReference "XLPagerTabStrip.git" */;
 			productName = XLPagerTabStrip;
 		};
 		6761AC332AD85C8400945554 /* AppCenterCrashes */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 6761AC322AD85C8400945554 /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */;
+			package = 6761AC322AD85C8400945554 /* XCRemoteSwiftPackageReference "appcenter-sdk-apple.git" */;
 			productName = AppCenterCrashes;
 		};
 		6761AC352AD85C8400945554 /* AppCenterDistribute */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 6761AC322AD85C8400945554 /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */;
+			package = 6761AC322AD85C8400945554 /* XCRemoteSwiftPackageReference "appcenter-sdk-apple.git" */;
 			productName = AppCenterDistribute;
 		};
 		6761AC382AD85CEB00945554 /* MedalliaDigitalSDK */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 6761AC372AD85CEA00945554 /* XCRemoteSwiftPackageReference "digital-ios-sdk" */;
+			package = 6761AC372AD85CEA00945554 /* XCRemoteSwiftPackageReference "digital-ios-sdk.git" */;
 			productName = MedalliaDigitalSDK;
 		};
 		6761AC3B2AD8653400945554 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 6761AC3A2AD8653400945554 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = 6761AC3A2AD8653400945554 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
 			productName = FirebaseAnalytics;
 		};
 /* End XCSwiftPackageProductDependency section */
