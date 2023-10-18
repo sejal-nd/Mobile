@@ -126,7 +126,7 @@ default_platform(:ios)
     end
 
     desc "Verify and install certs"
-    lane :prepareCerts
+    lane :prepareCerts do
       certificates()
 
       generate_new_certificates()
