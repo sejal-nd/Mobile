@@ -44,9 +44,99 @@ default_platform(:ios)
        end
     end
 
+    desc "Get certificates"
+    lane :certificates do
+
+      # development
+      # sync_code_signing(
+      #   type: "development",
+      #   app_identifier: [
+      #     'com.exelon.mobile.ace.testing', 'com.exelon.mobile.ace.staging', 'com.exelon.mobile.ace.prodbeta',
+      #     'com.exelon.mobile.bge.testing', 'com.exelon.mobile.bge.staging', 'com.exelon.mobile.bge.prodbeta', 
+      #     'com.exelon.mobile.comed.testing', 'com.exelon.mobile.comed.staging', 'com.exelon.mobile.comed.prodbeta', 
+      #     'com.exelon.mobile.delmarva.testing', 'com.exelon.mobile.delmarva.staging', 'com.exelon.mobile.delmarva.prodbeta',
+      #     'com.exelon.mobile.peco.testing', 'com.exelon.mobile.peco.staging', 'com.exelon.mobile.peco.prodbeta', 
+      #     'com.exelon.mobile.pepco.testing', 'com.exelon.mobile.pepco.staging', 'com.exelon.mobile.pepco.prodbeta',
+
+      #     'com.exelon.mobile.ace.testing.watchkitapp', 'com.exelon.mobile.ace.staging.watchkitapp', 'com.exelon.mobile.ace.prodbeta.watchkitapp',
+      #     'com.exelon.mobile.bge.testing.watchkitapp', 'com.exelon.mobile.bge.staging.watchkitapp', 'com.exelon.mobile.bge.prodbeta.watchkitapp', 
+      #     'com.exelon.mobile.comed.testing.watchkitapp', 'com.exelon.mobile.comed.staging.watchkitapp', 'com.exelon.mobile.comed.prodbeta.watchkitapp', 
+      #     'com.exelon.mobile.delmarva.testing.watchkitapp', 'com.exelon.mobile.delmarva.staging.watchkitapp', 'com.exelon.mobile.delmarva.prodbeta.watchkitapp',
+      #     'com.exelon.mobile.peco.testing.watchkitapp', 'com.exelon.mobile.peco.staging.watchkitapp', 'com.exelon.mobile.peco.prodbeta.watchkitapp', 
+      #     'com.exelon.mobile.pepco.testing.watchkitapp', 'com.exelon.mobile.pepco.staging.watchkitapp', 'com.exelon.mobile.pepco.prodbeta.watchkitapp',
+      # ],
+      #   force_for_new_devices: true,
+      #   readonly: true
+      # )
+
+      # enterprise
+      sync_code_signing(
+        type: "enterprise",
+        app_identifier: [
+          'com.exelon.mobile.ace.testing', 'com.exelon.mobile.ace.staging', 'com.exelon.mobile.ace.prodbeta',
+          'com.exelon.mobile.bge.testing', 'com.exelon.mobile.bge.staging', 'com.exelon.mobile.bge.prodbeta', 
+          'com.exelon.mobile.comed.testing', 'com.exelon.mobile.comed.staging', 'com.exelon.mobile.comed.prodbeta', 
+          'com.exelon.mobile.delmarva.testing', 'com.exelon.mobile.delmarva.staging', 'com.exelon.mobile.delmarva.prodbeta',
+          'com.exelon.mobile.peco.testing', 'com.exelon.mobile.peco.staging', 'com.exelon.mobile.peco.prodbeta', 
+          'com.exelon.mobile.pepco.testing', 'com.exelon.mobile.pepco.staging', 'com.exelon.mobile.pepco.prodbeta',
+
+          'com.exelon.mobile.ace.testing.watchkitapp', 'com.exelon.mobile.ace.staging.watchkitapp', 'com.exelon.mobile.ace.prodbeta.watchkitapp',
+          'com.exelon.mobile.bge.testing.watchkitapp', 'com.exelon.mobile.bge.staging.watchkitapp', 'com.exelon.mobile.bge.prodbeta.watchkitapp', 
+          'com.exelon.mobile.comed.testing.watchkitapp', 'com.exelon.mobile.comed.staging.watchkitapp', 'com.exelon.mobile.comed.prodbeta.watchkitapp', 
+          'com.exelon.mobile.delmarva.testing.watchkitapp', 'com.exelon.mobile.delmarva.staging.watchkitapp', 'com.exelon.mobile.delmarva.prodbeta.watchkitapp',
+          'com.exelon.mobile.peco.testing.watchkitapp', 'com.exelon.mobile.peco.staging.watchkitapp', 'com.exelon.mobile.peco.prodbeta.watchkitapp', 
+          'com.exelon.mobile.pepco.testing.watchkitapp', 'com.exelon.mobile.pepco.staging.watchkitapp', 'com.exelon.mobile.pepco.prodbeta.watchkitapp',
+      ],
+        force_for_new_devices: true,
+        readonly: true
+      )
+  
+      # You can repeate the sync_code_signing with other types of certificates such as appstore and adhoc
+      # TODO APP STORE VARIANT
+    end
+  
+    desc "Generate new certificates"
+    lane :generate_new_certificates do
+      # enterprise
+      sync_code_signing(
+        type: "enterprise",
+        app_identifier: [
+          'com.exelon.mobile.ace.testing', 'com.exelon.mobile.ace.staging', 'com.exelon.mobile.ace.prodbeta',
+          'com.exelon.mobile.bge.testing', 'com.exelon.mobile.bge.staging', 'com.exelon.mobile.bge.prodbeta', 
+          'com.exelon.mobile.comed.testing', 'com.exelon.mobile.comed.staging', 'com.exelon.mobile.comed.prodbeta', 
+          'com.exelon.mobile.delmarva.testing', 'com.exelon.mobile.delmarva.staging', 'com.exelon.mobile.delmarva.prodbeta',
+          'com.exelon.mobile.peco.testing', 'com.exelon.mobile.peco.staging', 'com.exelon.mobile.peco.prodbeta', 
+          'com.exelon.mobile.pepco.testing', 'com.exelon.mobile.pepco.staging', 'com.exelon.mobile.pepco.prodbeta',
+
+          'com.exelon.mobile.ace.testing.watchkitapp', 'com.exelon.mobile.ace.staging.watchkitapp', 'com.exelon.mobile.ace.prodbeta.watchkitapp',
+          'com.exelon.mobile.bge.testing.watchkitapp', 'com.exelon.mobile.bge.staging.watchkitapp', 'com.exelon.mobile.bge.prodbeta.watchkitapp', 
+          'com.exelon.mobile.comed.testing.watchkitapp', 'com.exelon.mobile.comed.staging.watchkitapp', 'com.exelon.mobile.comed.prodbeta.watchkitapp', 
+          'com.exelon.mobile.delmarva.testing.watchkitapp', 'com.exelon.mobile.delmarva.staging.watchkitapp', 'com.exelon.mobile.delmarva.prodbeta.watchkitapp',
+          'com.exelon.mobile.peco.testing.watchkitapp', 'com.exelon.mobile.peco.staging.watchkitapp', 'com.exelon.mobile.peco.prodbeta.watchkitapp', 
+          'com.exelon.mobile.pepco.testing.watchkitapp', 'com.exelon.mobile.pepco.staging.watchkitapp', 'com.exelon.mobile.pepco.prodbeta.watchkitapp',
+      ],
+        force_for_new_devices: true,
+        readonly: false
+      )
+      
+      # You can repeate the sync_code_signing with other types of certificates such as appstore and adhoc
+  
+ # TODO APP STORE VARIANT
+
+    end
+
+    desc "Verify and install certs"
+    lane :prepareCerts
+      certificates()
+
+      generate_new_certificates()
+    end
+
     desc "Package and build the app, resulting in an IPA file"
     lane :package do |options|
       xcversion(version: "14.1")
+
+
 
       build_app(
         workspace: "Mobile.xcworkspace",

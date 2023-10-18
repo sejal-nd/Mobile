@@ -62,3 +62,4 @@ iOSInjectionProject/
 
 # AppCode files
 .idea
+/fastlane/.env.default
