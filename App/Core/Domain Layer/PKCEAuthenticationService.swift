@@ -58,7 +58,23 @@ class PKCEAuthenticationService: UIViewController {
     }
     
     func presentMySecurityForm(completion: @escaping (Result<String, Error>) -> ()) {
-        let urlString = "https://\(Configuration.shared.b2cAuthEndpoint)/\(Configuration.shared.b2cTenant).onmicrosoft.com/oauth2/v2.0/authorize?p=B2C_1A_CIS_ProfileEdit_Mobile&client_id=\(Configuration.shared.b2cClientID)&nonce=defaultNonce&redirect_uri=\(Configuration.shared.b2cRedirectURI)://auth&scope=openid%20offline_access&response_type=id_token"
+        let projectURLRawValue = UserDefaults.standard.string(forKey: "selectedProjectURL") ?? ""
+        let projectURLSuffix = ProjectURLSuffix(rawValue: projectURLRawValue) ?? .none
+        
+        
+        let b2cPolicyName: String
+        if Configuration.shared.environmentName == .release {
+            b2cPolicyName = "B2C_1A_ProfileEdit_Mobile"
+        } else {
+            switch projectURLSuffix {
+            case .cis:
+                b2cPolicyName = "B2C_1A_ProfileEdit_Mobile"
+            default:
+                b2cPolicyName = "B2C_1A_Old_ProfileEdit_Mobile"
+            }
+        }
+        
+        let urlString = "https://\(Configuration.shared.b2cAuthEndpoint)/\(Configuration.shared.b2cTenant).onmicrosoft.com/oauth2/v2.0/authorize?p=\(b2cPolicyName)&client_id=\(Configuration.shared.b2cClientID)&nonce=defaultNonce&redirect_uri=\(Configuration.shared.b2cRedirectURI)://auth&scope=openid%20offline_access&response_type=id_token"
         
         guard let url = URL(string: urlString) else { return }
         

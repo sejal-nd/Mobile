@@ -236,10 +236,31 @@ struct Configuration {
     }
     
     var b2cPolicy: String {
+        let projectURLRawValue = UserDefaults.standard.string(forKey: "selectedProjectURL") ?? ""
+        let projectURLSuffix = ProjectURLSuffix(rawValue: projectURLRawValue) ?? .none
+
         if FeatureFlagUtility.shared.bool(forKey: .isPkceAuthentication) {
-            return "B2C_1A_CIS_SignIn_Mobile"
+            if Configuration.shared.environmentName == .release {
+                return "B2C_1A_SignIn_Mobile"
+            } else {
+                switch projectURLSuffix {
+                case .cis:
+                    return "B2C_1A_SignIn_Mobile"
+                default:
+                    return "B2C_1A_Old_SignIn_Mobile"
+                }
+            }
         } else {
-            return "B2C_1A_CIS_SignIn_ROPC"
+            if Configuration.shared.environmentName == .release {
+                return "B2C_1A_SignIn_ROPC"
+            } else {
+                switch projectURLSuffix {
+                case .cis:
+                    return "B2C_1A_SignIn_ROPC"
+                default:
+                    return "B2C_1A_Old_SignIn_ROPC"
+                }
+            }
         }
     }
     
@@ -453,19 +474,7 @@ struct Configuration {
             let operatingCompany = OpCo(rawValue: infoPlist.buildFlavor)!
             opco = operatingCompany
 
-            if let projectURLRawValue = UserDefaults.standard.string(forKey: "selectedProjectURL"), let projectURLSuffix = ProjectURLSuffix(rawValue: projectURLRawValue), projectURLSuffix == .cis || projectURLSuffix == .cisProject {
-                if opco == .comEd {
-                    paymentusUrl = "https://comd-sit-6893.paymentus.io/xotp/pm/comd"
-                } else if opco == .peco {
-                    paymentusUrl = "https://peco-sit-6917.paymentus.io/xotp/pm/peco"
-                } else {
-                    paymentusUrl = infoPlist.paymentURL
-                }
-            } else {
-                paymentusUrl = infoPlist.paymentURL
-            }
-
-//            paymentusUrl = infoPlist.paymentURL
+            paymentusUrl = infoPlist.paymentURL
             myAccountUrl = infoPlist.accountURL
             gaTrackingId = infoPlist.googleAnalyticID
             associatedDomain = infoPlist.associatedDomain
@@ -482,11 +491,7 @@ struct Configuration {
                     baseUrl = "eudapi-test.\(operatingCompany.urlDisplayString).com"
                     oAuthEndpoint = "api-development.exeloncorp.com"
                 case .stage:
-                    if let projectURLRawValue = UserDefaults.standard.string(forKey: "selectedProjectURL"), let projectURLSuffix = ProjectURLSuffix(rawValue: projectURLRawValue), projectURLSuffix == .cisProject {
-                        baseUrl = "xzc-e-n-eudapi-\(operatingCompany.urlDisplayString)-s-ams-01.azure-api.net"
-                    } else {
-                        baseUrl = "eudapi-stage.\(operatingCompany.urlDisplayString).com"
-                    }
+                    baseUrl = "eudapi-stage.\(operatingCompany.urlDisplayString).com"
                     oAuthEndpoint = "api-stage.exeloncorp.com"
                 }
             } else {
