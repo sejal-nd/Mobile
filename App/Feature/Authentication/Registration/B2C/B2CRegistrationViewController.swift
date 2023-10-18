@@ -65,7 +65,22 @@ class B2CRegistrationViewController: UIViewController {
     }
     
     private func loadWebView(token: String) {
-        let registrationURLString = "https://\(Configuration.shared.b2cAuthEndpoint)/\(Configuration.shared.b2cTenant).onmicrosoft.com/oauth2/v2.0/authorize?p=B2C_1A_CIS_REGISTER_MOBILE&client_id=\(Configuration.shared.b2cClientID)&nonce=defaultNonce&redirect_uri=https%3A%2F%2Fjwt.ms&scope=openid&response_type=id_token&prompt=login&id_token_hint=\(token)"
+        let projectURLRawValue = UserDefaults.standard.string(forKey: "selectedProjectURL") ?? ""
+        let projectURLSuffix = ProjectURLSuffix(rawValue: projectURLRawValue) ?? .none
+        
+        let b2cPolicyName: String
+        if Configuration.shared.environmentName == .release {
+            b2cPolicyName = "B2C_1A_REGISTER_MOBILE"
+        } else {
+            switch projectURLSuffix {
+            case .cis:
+                b2cPolicyName = "B2C_1A_REGISTER_MOBILE"
+            default:
+                b2cPolicyName = "B2C_1A_Old_Register_Mobile"
+            }
+        }
+        
+        let registrationURLString = "https://\(Configuration.shared.b2cAuthEndpoint)/\(Configuration.shared.b2cTenant).onmicrosoft.com/oauth2/v2.0/authorize?p=\(b2cPolicyName)&client_id=\(Configuration.shared.b2cClientID)&nonce=defaultNonce&redirect_uri=https%3A%2F%2Fjwt.ms&scope=openid&response_type=id_token&prompt=login&id_token_hint=\(token)"
         if let url = URL(string: registrationURLString) {
             webView.load(NSURLRequest(url: url) as URLRequest)
         }
