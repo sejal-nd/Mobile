@@ -130,11 +130,11 @@ default_platform(:ios)
     desc "Verify and install certs"
     lane :prepareCerts do |options|
       certificates(
-        api_token: options[:app_center_api_token],
+        api_token: options[:api_key_path],
       )
 
       generate_new_certificates(
-        api_token: options[:app_center_api_token],
+        api_token: options[:api_key_path],
       )
     end
 
