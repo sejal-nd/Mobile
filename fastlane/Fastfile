@@ -71,7 +71,7 @@ default_platform(:ios)
 
       # enterprise
       sync_code_signing(
-        api_token: options[:app_center_api_token],
+        api_key_path: options[:api_key_path],
         type: "enterprise",
         app_identifier: [
           'com.exelon.mobile.ace.testing', 'com.exelon.mobile.ace.staging', 'com.exelon.mobile.ace.prodbeta',
@@ -100,7 +100,7 @@ default_platform(:ios)
     lane :generate_new_certificates do |options|
       # enterprise
       sync_code_signing(
-        api_token: options[:app_center_api_token],
+        api_key_path: options[:api_key_path],
         type: "enterprise",
         app_identifier: [
           'com.exelon.mobile.ace.testing', 'com.exelon.mobile.ace.staging', 'com.exelon.mobile.ace.prodbeta',
@@ -132,11 +132,11 @@ default_platform(:ios)
       # environment_variable MATCH_PASSWORD:options[:MATCH_PASSWORD]
 
       certificates(
-        api_token: options[:api_key_path],
+        api_key_path: options[:api_key_path],
       )
 
       generate_new_certificates(
-        api_token: options[:api_key_path],
+        api_key_path: options[:api_key_path],
       )
     end
 
