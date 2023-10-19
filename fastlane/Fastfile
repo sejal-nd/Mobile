@@ -45,7 +45,7 @@ default_platform(:ios)
     end
 
     desc "Get certificates"
-    lane :certificates do
+    lane :certificates do |options|
 
       # development
       # sync_code_signing(
@@ -71,6 +71,7 @@ default_platform(:ios)
 
       # enterprise
       sync_code_signing(
+        api_token: options[:app_center_api_token],
         type: "enterprise",
         app_identifier: [
           'com.exelon.mobile.ace.testing', 'com.exelon.mobile.ace.staging', 'com.exelon.mobile.ace.prodbeta',
@@ -96,9 +97,10 @@ default_platform(:ios)
     end
   
     desc "Generate new certificates"
-    lane :generate_new_certificates do
+    lane :generate_new_certificates do |options|
       # enterprise
       sync_code_signing(
+        api_token: options[:app_center_api_token],
         type: "enterprise",
         app_identifier: [
           'com.exelon.mobile.ace.testing', 'com.exelon.mobile.ace.staging', 'com.exelon.mobile.ace.prodbeta',
@@ -126,10 +128,14 @@ default_platform(:ios)
     end
 
     desc "Verify and install certs"
-    lane :prepareCerts do
-      certificates()
+    lane :prepareCerts do |options|
+      certificates(
+        api_token: options[:app_center_api_token],
+      )
 
-      generate_new_certificates()
+      generate_new_certificates(
+        api_token: options[:app_center_api_token],
+      )
     end
 
     desc "Package and build the app, resulting in an IPA file"
