@@ -126,10 +126,10 @@ default_platform(:ios)
  # TODO APP STORE VARIANT
 
     end
-
+da6xwn1BNK4BCZLay1G2
     desc "Verify and install certs"
     lane :prepareCerts do |options|
-      environment_variable MATCH_PASSWORD:options[:MATCH_PASSWORD]
+      # environment_variable MATCH_PASSWORD:options[:MATCH_PASSWORD]
 
       certificates(
         api_token: options[:api_key_path],
