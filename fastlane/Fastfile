@@ -129,7 +129,7 @@ default_platform(:ios)
 
     desc "Verify and install certs"
     lane :prepareCerts do |options|
-      # environment_variable MATCH_PASSWORD:options[:MATCH_PASSWORD]
+      ENV["MATCH_PASSWORD"] = options[:MATCH_PASSWORD]
 
       certificates(
         api_key_path: options[:api_key_path],
