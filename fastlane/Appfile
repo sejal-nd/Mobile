@@ -1,8 +1,11 @@
 # Team
 team_name "Exelon Business Services Company, LLC"
 team_id "38R4RRBYR8"
-itc_team_id "Your company's Appstore connect id"
-itc_team_name "Your company's team name"
+itc_team_name "Exelon Business Services Company, LLC"
+itc_team_id "119624740"
+
+
+
 
 # app_identifier "net.sunapps.1" # The bundle identifier of your app
 # apple_id "felix@krausefx.com"  # Your Apple email address
