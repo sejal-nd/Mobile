@@ -154,7 +154,7 @@ class OutageTrackerViewController: UIViewController {
                 hazardContainerView.isHidden = !show
             }
             
-            if viewModel.isActiveOutage == false {
+            if !viewModel.isActiveOutage {
                 powerOnContainer.isHidden = false
                 powerStatusHeader.text = NSLocalizedString("Our records indicate", comment: "")
                 powerStatusDescription.text = NSLocalizedString("POWER IS ON", comment: "")
@@ -218,7 +218,7 @@ class OutageTrackerViewController: UIViewController {
             FirebaseUtility.logEvent(.outageTracker(parameters: [.account_inactive]))
         } else {
             guard let tracker = viewModel.outageTracker.value else { return }
-            if viewModel.isActiveOutage == true {
+            if viewModel.isActiveOutage {
                 FirebaseUtility.logEvent(.outageTracker(parameters: [.active_outage]))
             } else {
                 FirebaseUtility.logEvent(.outageTracker(parameters: [.power_on]))

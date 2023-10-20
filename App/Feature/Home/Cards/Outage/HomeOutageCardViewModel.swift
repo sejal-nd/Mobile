@@ -127,10 +127,16 @@ class HomeOutageCardViewModel {
     // MARK: - View Content
 
     private(set) lazy var powerStatusImage: Driver<UIImage> = self.currentOutageStatus
-        .map { $0.isActiveOutage ? #imageLiteral(resourceName: "ic_lightbulb_off") : #imageLiteral(resourceName: "ic_outagestatus_on") }
+        .withLatestFrom(self.showReportedOutageTime) { outageStatus, isReportedTime -> Bool in
+            return outageStatus.isActiveOutage || isReportedTime
+        }
+        .map { $0 ? #imageLiteral(resourceName: "ic_lightbulb_off") : #imageLiteral(resourceName: "ic_outagestatus_on") }
     
     private(set) lazy var powerStatus: Driver<String> = self.currentOutageStatus
-        .map { $0.isActiveOutage ? "POWER IS OUT" : "POWER IS ON" }
+        .withLatestFrom(self.showReportedOutageTime) { outageStatus, isReportedTime -> Bool in
+            return outageStatus.isActiveOutage || isReportedTime
+        }
+        .map { $0 ? "POWER IS OUT" : "POWER IS ON" }
     
     private(set) lazy var etrText: Driver<String> = Driver.merge(self.storedEtr, self.fetchedEtr)
         .map {
