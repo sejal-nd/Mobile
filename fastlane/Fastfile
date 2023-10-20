@@ -173,7 +173,7 @@ default_platform(:ios)
 
     desc "Package and build the app, resulting in an IPA file"
     lane :package do |options|
-      xcodes(version: "14.3.1")
+      xcversion(version: "14.3")
 
       build_app(
         workspace: "Mobile.xcworkspace",
