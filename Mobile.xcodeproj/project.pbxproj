@@ -547,15 +547,19 @@
 		67AE888B25BF5C8D008519B4 /* ProjectTier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AE888125BF5274008519B4 /* ProjectTier.swift */; };
 		67D0481A2AD9BD220036479A /* DecibelCore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67D048182AD9BD060036479A /* DecibelCore.xcframework */; };
 		67D0481B2AD9BD220036479A /* DecibelCore.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 67D048182AD9BD060036479A /* DecibelCore.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		67D04AA02ADDA4900036479A /* RxSwift.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67D04A9F2ADDA4900036479A /* RxSwift.xcframework */; };
 		67D04AA12ADDA4900036479A /* RxSwift.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67D04A9F2ADDA4900036479A /* RxSwift.xcframework */; };
-		67D04AA32ADDA5E40036479A /* RxRelay.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67D04AA22ADDA5E40036479A /* RxRelay.xcframework */; };
 		67D04AA42ADDA5E40036479A /* RxRelay.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67D04AA22ADDA5E40036479A /* RxRelay.xcframework */; };
-		67D04AA82ADDA7A00036479A /* RxCocoa.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67D04AA72ADDA7A00036479A /* RxCocoa.xcframework */; };
 		67D04AA92ADDA7A00036479A /* RxCocoa.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67D04AA72ADDA7A00036479A /* RxCocoa.xcframework */; };
-		67D04AB12ADDAB5F0036479A /* RxSwiftExt.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67D04AB02ADDAB5F0036479A /* RxSwiftExt.xcframework */; };
 		67D04AB22ADDAB5F0036479A /* RxSwiftExt.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67D04AB02ADDAB5F0036479A /* RxSwiftExt.xcframework */; };
 		67D04AB52ADDAFE30036479A /* ActivityTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D04AB42ADDAFE20036479A /* ActivityTracker.swift */; };
+		67D04AB62AE2E5840036479A /* RxCocoa.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67D04AA72ADDA7A00036479A /* RxCocoa.xcframework */; };
+		67D04AB72AE2E5840036479A /* RxCocoa.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 67D04AA72ADDA7A00036479A /* RxCocoa.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		67D04AB82AE2E5890036479A /* RxRelay.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67D04AA22ADDA5E40036479A /* RxRelay.xcframework */; };
+		67D04AB92AE2E5890036479A /* RxRelay.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 67D04AA22ADDA5E40036479A /* RxRelay.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		67D04ABA2AE2E58E0036479A /* RxSwift.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67D04A9F2ADDA4900036479A /* RxSwift.xcframework */; };
+		67D04ABB2AE2E58E0036479A /* RxSwift.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 67D04A9F2ADDA4900036479A /* RxSwift.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		67D04ABC2AE2E5930036479A /* RxSwiftExt.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67D04AB02ADDAB5F0036479A /* RxSwiftExt.xcframework */; };
+		67D04ABD2AE2E5930036479A /* RxSwiftExt.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 67D04AB02ADDAB5F0036479A /* RxSwiftExt.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		67D5626324EADA7E00852551 /* GameTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D5626224EADA7E00852551 /* GameTip.swift */; };
 		67D5626724EADA9700852551 /* GameQuiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D5626624EADA9600852551 /* GameQuiz.swift */; };
 		67D5626924EADAA700852551 /* GameSurvery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D5626824EADAA700852551 /* GameSurvery.swift */; };
@@ -1212,7 +1216,11 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				67D04AB92AE2E5890036479A /* RxRelay.xcframework in Embed Frameworks */,
+				67D04ABD2AE2E5930036479A /* RxSwiftExt.xcframework in Embed Frameworks */,
+				67D04ABB2AE2E58E0036479A /* RxSwift.xcframework in Embed Frameworks */,
 				67D0481B2AD9BD220036479A /* DecibelCore.xcframework in Embed Frameworks */,
+				67D04AB72AE2E5840036479A /* RxCocoa.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2218,18 +2226,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				67D04ABA2AE2E58E0036479A /* RxSwift.xcframework in Frameworks */,
 				6761AC222AD84CC800945554 /* Toast in Frameworks */,
-				67D04AA32ADDA5E40036479A /* RxRelay.xcframework in Frameworks */,
-				67D04AA02ADDA4900036479A /* RxSwift.xcframework in Frameworks */,
+				67D04AB62AE2E5840036479A /* RxCocoa.xcframework in Frameworks */,
+				67D04AB82AE2E5890036479A /* RxRelay.xcframework in Frameworks */,
 				6761AC392AD85CEB00945554 /* MedalliaDigitalSDK in Frameworks */,
 				6761AC2E2AD84DFA00945554 /* Charts in Frameworks */,
-				67D04AB12ADDAB5F0036479A /* RxSwiftExt.xcframework in Frameworks */,
 				6761AC362AD85C8400945554 /* AppCenterDistribute in Frameworks */,
 				6761AC312AD84E4F00945554 /* XLPagerTabStrip in Frameworks */,
 				6761AC342AD85C8400945554 /* AppCenterCrashes in Frameworks */,
-				67D04AA82ADDA7A00036479A /* RxCocoa.xcframework in Frameworks */,
 				6761AC3C2AD8653400945554 /* FirebaseAnalytics in Frameworks */,
 				6761AC282AD84D8800945554 /* Reachability in Frameworks */,
+				67D04ABC2AE2E5930036479A /* RxSwiftExt.xcframework in Frameworks */,
 				6761AC2B2AD84DB600945554 /* HorizonCalendar in Frameworks */,
 				6761AC252AD84D2100945554 /* Lottie in Frameworks */,
 				67D0481A2AD9BD220036479A /* DecibelCore.xcframework in Frameworks */,
