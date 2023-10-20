@@ -182,7 +182,24 @@ default_platform(:ios)
         silent: true,
         output_directory: options[:output_directory], # Destination directory. Defaults to current directory.
         output_name: "EUMobile.ipa", # Specify the name of the .ipa file to generate (including file extension)
-        export_options: options[:export_options_path] # Path to export Plist
+        export_method: "enterprise",
+        export_options: {
+          provisioningProfiles: {
+            "com.exelon.mobile.ace.staging" => "ACE Staging Enterprise Dist",
+            "com.exelon.mobile.bge.staging" => "BGE Staging Enterprise Dist",
+            "com.exelon.mobile.comed.staging" => "ComEd Staging Enterprise Dist",
+            "com.exelon.mobile.delmarva.staging" => "Delmarva Staging Enterprise Dist",
+            "com.exelon.mobile.peco.staging" => "PECO Staging Enterprise Dist",
+            "com.exelon.mobile.pepco.staging" => "Pepco Staging Enterprise Dist",
+
+            "com.exelon.mobile.ace.staging.watchkitapp" => "ACE Staging Watchkit App Enterprise Dist",
+            "com.exelon.mobile.bge.staging.watchkitapp" => "BGE Staging WatchKit App",
+            "com.exelon.mobile.comed.staging.watchkitapp" => "ComEd Staging WatchKit App",
+            "com.exelon.mobile.delmarva.staging.watchkitapp" => "Delmarva Staging WatchKit App",
+            "com.exelon.mobile.peco.staging.watchkitapp" => "PECO Staging WatchKit App",
+            "com.exelon.mobile.pepco.staging.watchkitapp" => "Pepco Staging WatchKit App"
+          }
+        }
       )
     end
 
