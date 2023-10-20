@@ -502,11 +502,11 @@
 		678C7F392858E2FC006C0FDC /* ThirdPartyTransferEligibilityResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678C7F362858DB85006C0FDC /* ThirdPartyTransferEligibilityResponse.swift */; };
 		6797115425DD87E3008A0080 /* OutageAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6797115325DD87E3008A0080 /* OutageAnimation.swift */; };
 		6797115B25DD901F008A0080 /* Arc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6797115A25DD901F008A0080 /* Arc.swift */; };
-		679A631A2AE2E8B400DC25D7 /* RxCocoa.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 679A63182AE2E8B300DC25D7 /* RxCocoa.xcframework */; };
 		679A631B2AE2E8D000DC25D7 /* DecibelCore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 679A63162AE2E88B00DC25D7 /* DecibelCore.xcframework */; };
 		679A631C2AE2E8D000DC25D7 /* DecibelCore.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 679A63162AE2E88B00DC25D7 /* DecibelCore.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		679A631D2AE2E8D300DC25D7 /* RxCocoa.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 679A63182AE2E8B300DC25D7 /* RxCocoa.xcframework */; };
-		679A631E2AE2E8D300DC25D7 /* RxCocoa.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 679A63182AE2E8B300DC25D7 /* RxCocoa.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		679A63212AE3142400DC25D7 /* RxCocoa.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 679A631F2AE3142300DC25D7 /* RxCocoa.xcframework */; };
+		679A63222AE3142700DC25D7 /* RxCocoa.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 679A631F2AE3142300DC25D7 /* RxCocoa.xcframework */; };
+		679A63232AE3142800DC25D7 /* RxCocoa.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 679A631F2AE3142300DC25D7 /* RxCocoa.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		679C6EB124D1E84E00535DE7 /* AppointmentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679C6EB024D1E84E00535DE7 /* AppointmentService.swift */; };
 		679C6EBE24D1EBCA00535DE7 /* AppointmentService+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679C6EBD24D1EBCA00535DE7 /* AppointmentService+Rx.swift */; };
 		679C6ED824D1F0A800535DE7 /* Appointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679C6ED724D1F0A800535DE7 /* Appointment.swift */; };
@@ -1218,7 +1218,7 @@
 			files = (
 				67D04AB92AE2E5890036479A /* RxRelay.xcframework in Embed Frameworks */,
 				67D04ABD2AE2E5930036479A /* RxSwiftExt.xcframework in Embed Frameworks */,
-				679A631E2AE2E8D300DC25D7 /* RxCocoa.xcframework in Embed Frameworks */,
+				679A63232AE3142800DC25D7 /* RxCocoa.xcframework in Embed Frameworks */,
 				67D04ABB2AE2E58E0036479A /* RxSwift.xcframework in Embed Frameworks */,
 				679A631C2AE2E8D000DC25D7 /* DecibelCore.xcframework in Embed Frameworks */,
 			);
@@ -1670,7 +1670,7 @@
 		6797115325DD87E3008A0080 /* OutageAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutageAnimation.swift; sourceTree = "<group>"; };
 		6797115A25DD901F008A0080 /* Arc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arc.swift; sourceTree = "<group>"; };
 		679A63162AE2E88B00DC25D7 /* DecibelCore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = DecibelCore.xcframework; sourceTree = "<group>"; };
-		679A63182AE2E8B300DC25D7 /* RxCocoa.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = RxCocoa.xcframework; sourceTree = "<group>"; };
+		679A631F2AE3142300DC25D7 /* RxCocoa.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = RxCocoa.xcframework; sourceTree = "<group>"; };
 		679C6EB024D1E84E00535DE7 /* AppointmentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentService.swift; sourceTree = "<group>"; };
 		679C6EBD24D1EBCA00535DE7 /* AppointmentService+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppointmentService+Rx.swift"; sourceTree = "<group>"; };
 		679C6ED724D1F0A800535DE7 /* Appointment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appointment.swift; sourceTree = "<group>"; };
@@ -2202,7 +2202,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				67D04AA42ADDA5E40036479A /* RxRelay.xcframework in Frameworks */,
-				679A631A2AE2E8B400DC25D7 /* RxCocoa.xcframework in Frameworks */,
+				679A63212AE3142400DC25D7 /* RxCocoa.xcframework in Frameworks */,
 				67D04AA12ADDA4900036479A /* RxSwift.xcframework in Frameworks */,
 				67D04AB22ADDAB5F0036479A /* RxSwiftExt.xcframework in Frameworks */,
 			);
@@ -2228,7 +2228,7 @@
 			files = (
 				67D04ABA2AE2E58E0036479A /* RxSwift.xcframework in Frameworks */,
 				6761AC222AD84CC800945554 /* Toast in Frameworks */,
-				679A631D2AE2E8D300DC25D7 /* RxCocoa.xcframework in Frameworks */,
+				679A63222AE3142700DC25D7 /* RxCocoa.xcframework in Frameworks */,
 				67D04AB82AE2E5890036479A /* RxRelay.xcframework in Frameworks */,
 				6761AC392AD85CEB00945554 /* MedalliaDigitalSDK in Frameworks */,
 				6761AC2E2AD84DFA00945554 /* Charts in Frameworks */,
@@ -4269,7 +4269,7 @@
 				E887C9F51ED5D3E1002433A3 /* Accelerate.framework */,
 				E887C9F91ED5D3F1002433A3 /* AudioToolbox.framework */,
 				E887C9F71ED5D3EB002433A3 /* AVFoundation.framework */,
-				679A63182AE2E8B300DC25D7 /* RxCocoa.xcframework */,
+				679A631F2AE3142300DC25D7 /* RxCocoa.xcframework */,
 				67D04AA22ADDA5E40036479A /* RxRelay.xcframework */,
 				67D04A9F2ADDA4900036479A /* RxSwift.xcframework */,
 				67D04AB02ADDAB5F0036479A /* RxSwiftExt.xcframework */,
