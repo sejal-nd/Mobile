@@ -16,10 +16,25 @@ class PKCEAuthenticationService: UIViewController {
     var authSession: ASWebAuthenticationSession!
     
     func presentLoginForm(completion: @escaping (Result<PKCEResult, Error>) -> ()) {
+        let projectURLRawValue = UserDefaults.standard.string(forKey: "selectedProjectURL") ?? ""
+        let projectURLSuffix = ProjectURLSuffix(rawValue: projectURLRawValue) ?? .none
+        
+        let b2cPolicyName: String
+        if Configuration.shared.environmentName == .release {
+            b2cPolicyName = "B2C_1A_SignIn_Mobile"
+        } else {
+            switch projectURLSuffix {
+            case .cis, .none:
+                b2cPolicyName = "B2C_1A_SignIn_Mobile"
+            default:
+                b2cPolicyName = "B2C_1A_Old_SignIn_Mobile"
+            }
+        }
+        
         let codeVerifier = createCodeVerifier()
         let codeChallenge = createCodeChallenge(for: codeVerifier)
         let codeChallengeMethod = "S256"
-        let urlString = "https://\(Configuration.shared.b2cAuthEndpoint)/\(Configuration.shared.b2cTenant).onmicrosoft.com/oauth2/v2.0/authorize?p=\(Configuration.shared.b2cPolicy)&client_id=\(Configuration.shared.b2cClientID)&nonce=defaultNonce&redirect_uri=\(Configuration.shared.b2cRedirectURI)://auth&scope=openid%20offline_access&response_type=code&code_challenge=\(codeChallenge)&code_challenge_method=\(codeChallengeMethod)&prompt=login#"
+        let urlString = "https://\(Configuration.shared.b2cAuthEndpoint)/\(Configuration.shared.b2cTenant).onmicrosoft.com/oauth2/v2.0/authorize?p=\(b2cPolicyName)&client_id=\(Configuration.shared.b2cClientID)&nonce=defaultNonce&redirect_uri=\(Configuration.shared.b2cRedirectURI)://auth&scope=openid%20offline_access&response_type=code&code_challenge=\(codeChallenge)&code_challenge_method=\(codeChallengeMethod)&prompt=login#"
         
         guard let url = URL(string: urlString) else { return }
         
