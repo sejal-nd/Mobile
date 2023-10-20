@@ -50,7 +50,7 @@ class B2CForgotPasswordViewController: UIViewController {
             b2cPolicyName = "B2C_1A_RESETPASSWORD_MOBILE"
         } else {
             switch projectURLSuffix {
-            case .cis, .none:
+            case .cis:
                 b2cPolicyName = "B2C_1A_RESETPASSWORD_MOBILE"
             default:
                 b2cPolicyName = "B2C_1A_Old_ResetPassword_Mobile"

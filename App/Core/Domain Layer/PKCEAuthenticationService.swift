@@ -24,7 +24,7 @@ class PKCEAuthenticationService: UIViewController {
             b2cPolicyName = "B2C_1A_SignIn_Mobile"
         } else {
             switch projectURLSuffix {
-            case .cis, .none:
+            case .cis:
                 b2cPolicyName = "B2C_1A_SignIn_Mobile"
             default:
                 b2cPolicyName = "B2C_1A_Old_SignIn_Mobile"
