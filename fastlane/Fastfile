@@ -178,7 +178,7 @@ default_platform(:ios)
       ENV["FASTLANE_XCODEBUILD_SETTINGS_RETRIES"] = "8"
       
       build_app(
-        workspace: "Mobile.xcworkspace",
+        project: "Mobile.xcodeproj",
         configuration: options[:configuration],
         scheme: options[:scheme],
         skip_package_dependencies_resolution: true,
