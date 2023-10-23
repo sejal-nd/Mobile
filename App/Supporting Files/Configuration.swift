@@ -237,10 +237,22 @@ struct Configuration {
     }
     
     var b2cPolicy: String {
-        if FeatureFlagUtility.shared.bool(forKey: .isPkceAuthentication) {
-            return "B2C_1A_SIGNIN_MOBILE"
+        let projectURLRawValue = UserDefaults.standard.string(forKey: "selectedProjectURL") ?? ""
+        let projectURLSuffix = ProjectURLSuffix(rawValue: projectURLRawValue) ?? .none
+        
+        if Configuration.shared.environmentName == .release {
+            if FeatureFlagUtility.shared.bool(forKey: .isPkceAuthentication) {
+                return "B2C_1A_SignIn_Mobile"
+            } else {
+                return "B2C_1A_Signin_ROPC"
+            }
         } else {
-            return "B2C_1A_Signin_ROPC"
+            switch projectURLSuffix {
+            case .cis:
+                return "B2C_1A_SignIn_Mobile"
+            default:
+                return "B2C_1A_Old_SignIn_Mobile"
+            }
         }
     }
     
