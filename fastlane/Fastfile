@@ -181,6 +181,8 @@ default_platform(:ios)
         workspace: "Mobile.xcworkspace",
         configuration: options[:configuration],
         scheme: options[:scheme],
+        skip_package_dependencies_resolution: true,
+        cloned_source_packages_path: "Dependencies/",
         silent: true,
         output_directory: options[:output_directory], # Destination directory. Defaults to current directory.
         output_name: "EUMobile.ipa", # Specify the name of the .ipa file to generate (including file extension)
