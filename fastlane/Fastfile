@@ -175,6 +175,8 @@ default_platform(:ios)
     lane :package do |options|
       xcversion(version: "~> 14.3.0")
 
+      ENV["FASTLANE_XCODEBUILD_SETTINGS_RETRIES"] = 8
+      
       build_app(
         workspace: "Mobile.xcworkspace",
         configuration: options[:configuration],
