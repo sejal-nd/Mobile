@@ -173,7 +173,10 @@ default_platform(:ios)
 
     desc "Package and build the app, resulting in an IPA file"
     lane :package do |options|
-      xcversion(version: "~> 14.3.0")
+      xcodes(
+        version: "14.3.1",
+        select_for_current_build_only: true
+      )
 
       ENV["FASTLANE_XCODEBUILD_SETTINGS_RETRIES"] = "8"
       
