@@ -21,6 +21,22 @@ default_platform(:ios)
       )
 
       tag_release
+
+      teams(
+        title: "✅ TODO OPCO NAME Successfully Uploaded to App Store",
+        message: "App successfully builts!",
+        facts:[
+          {
+           "name"=>"Platform",
+           "value"=>"iOS"
+          },
+          {
+            "name"=>"Lane Test",
+            "value"=>"iOS Internal"
+          }
+        ],
+        teams_url: "https://exeloncorp.webhook.office.com/webhookb2/50bbc509-81bb-4f27-9e1e-36c130782b82@600d01fc-055f-49c6-868f-3ecfcc791773/IncomingWebhook/98249b98175a4b4fbbe0b611c820c345/ee8c931d-feeb-44db-a23a-ddfe46e4a22d"
+      )
     end
 
     desc "Adds a git tag of the Xcode project number, e.g. 5.10.0"
