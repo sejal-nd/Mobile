@@ -1,0 +1,1 @@
+utility,power,electric,outage,report,restoration,washington,dc,maryland,storm,energy
