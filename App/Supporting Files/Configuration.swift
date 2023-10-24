@@ -119,9 +119,8 @@ struct InfoPlist: Codable {
     let accountURL: String
     let paymentURL: String
     let associatedDomain: String
-    let googleAnalyticID: String
     let appCenterID: String
-    let buildFlavor: String
+    let opco: String
     let environmentTier: String
     
     // Determined by git path in build phase run script "Set Project Prefix"
@@ -134,9 +133,8 @@ struct InfoPlist: Codable {
         case accountURL = "Account URL"
         case paymentURL = "Payment URL"
         case associatedDomain = "Associated Domain"
-        case googleAnalyticID = "Google Analytics ID"
         case appCenterID = "App Center ID"
-        case buildFlavor = "Build Flavor"
+        case opco = "Opco"
         case environmentTier = "Environment Tier"
     }
 }
@@ -147,7 +145,6 @@ struct Configuration {
     let environmentName: ConfigurationName
     let opco: OpCo
     let myAccountUrl: String
-    let gaTrackingId: String
     let associatedDomain: String
     let appCenterId: String?
     let baseUrl: String
@@ -450,11 +447,10 @@ struct Configuration {
             let envName = ConfigurationName(rawValue: infoPlist.environmentTier)!
             environmentName = envName
             
-            let operatingCompany = OpCo(rawValue: infoPlist.buildFlavor)!
+            let operatingCompany = OpCo(rawValue: infoPlist.opco)!
             opco = operatingCompany
             paymentusUrl = infoPlist.paymentURL
             myAccountUrl = infoPlist.accountURL
-            gaTrackingId = infoPlist.googleAnalyticID
             associatedDomain = infoPlist.associatedDomain
             appCenterId = infoPlist.appCenterID
             

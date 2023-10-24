@@ -1,0 +1,112 @@
+// Beta.xcconfig
+
+#include "Version.xcconfig"
+
+
+// Fixed bug where a url with be considered a comment due to // 
+
+SLASH=/
+
+
+// Account URL
+
+ACCOUNT_URL = $($(OPCO)_ACCOUNT_URL)
+
+ACE_ACCOUNT_URL = https:$(SLASH)/azstage.atlanticcityelectric.com/MyAccount
+BGE_ACCOUNT_URL = https:$(SLASH)/azstage.bge.com/MyAccount
+COMED_ACCOUNT_URL = https:$(SLASH)/azstage.comed.com/MyAccount
+DPL_ACCOUNT_URL = https:$(SLASH)/azstage.delmarva.com/MyAccount
+PECO_ACCOUNT_URL = https:$(SLASH)/azstage.peco.com/MyAccount
+PEPCO_ACCOUNT_URL = https:$(SLASH)/azstage.pepco.com/MyAccount
+
+
+// Anon Associated Domain
+
+ANON_ASSOCIATED_DOMAIN = $($(OPCO)_ANON_ASSOCIATED_DOMAIN)
+
+ACE_ANON_ASSOCIATED_DOMAIN = azstage.atlanticcityelectric.com
+BGE_ANON_ASSOCIATED_DOMAIN = azstage.bge.com
+COMED_ANON_ASSOCIATED_DOMAIN = azstage.comed.com
+DPL_ANON_ASSOCIATED_DOMAIN = azstage.delmarva.com
+PECO_ANON_ASSOCIATED_DOMAIN = azstage.peco.com
+PEPCO_ANON_ASSOCIATED_DOMAIN = azstage.pepco.com
+
+// Secure Associated Domain
+
+ASSOCIATED_DOMAIN = $($(OPCO)_ASSOCIATED_DOMAIN)
+
+ACE_ASSOCIATED_DOMAIN = azstg-secure.atlanticcityelectric.com
+BGE_ASSOCIATED_DOMAIN = azstg-secure.bge.com
+COMED_ASSOCIATED_DOMAIN = azstg-secure.comed.com
+DPL_ASSOCIATED_DOMAIN = azstg-secure.delmarva.com
+PECO_ASSOCIATED_DOMAIN = azstg-secure.peco.com
+PEPCO_ASSOCIATED_DOMAIN = azstg-secure.pepco.com
+
+// App Center ID
+
+APP_CENTER_ID = $($(OPCO)_APP_CENTER_ID)
+
+ACE_APP_CENTER_ID = 236e33d9-c10a-4dae-92d8-75c3f0b41450
+BGE_APP_CENTER_ID = d63492ab-45ec-4d90-9e5a-963fa127e697
+COMED_APP_CENTER_ID = 3c531e04-e7cc-44c0-96e3-5a67f815484a
+DPL_APP_CENTER_ID = ee9f1ca8-fe59-4c5f-80d3-ebcef6ae7168
+PECO_APP_CENTER_ID = 263b80d6-242b-4962-9a64-01731f98056b
+PEPCO_APP_CENTER_ID = 7f015d81-de56-4f18-a90d-d17a93ee65d4
+
+
+// Base URL
+
+BASE_URL = $($(OPCO)_BASE_URL)
+
+ACE_BASE_URL = eudapi-stage.atlanticcityelectric.com
+BGE_BASE_URL = eudapi-stage.bge.com
+COMED_BASE_URL = eudapi-stage.comed.com
+DPL_BASE_URL = eudapi-stage.delmarva.com
+PECO_BASE_URL = eudapi-stage.peco.com
+PEPCO_BASE_URL = eudapi-stage.pepco.com
+
+
+// Build Display Name (Home screen app name)
+
+BUILD_DISPLAY_NAME = $($(OPCO)_BUILD_DISPLAY_NAME)
+
+ACE_BUILD_DISPLAY_NAME = AC Electric
+BGE_BUILD_DISPLAY_NAME = BGE
+COMED_BUILD_DISPLAY_NAME = ComEd
+DPL_BUILD_DISPLAY_NAME = Delmarva
+PECO_BUILD_DISPLAY_NAME = PECO
+PEPCO_BUILD_DISPLAY_NAME = Pepco
+
+
+// Bundle ID
+
+BUNDLE_ID = $($(OPCO)_BUNDLE_ID)
+
+ACE_BUNDLE_ID = com.exelon.mobile.ace.staging
+BGE_BUNDLE_ID = com.exelon.mobile.bge.staging
+COMED_BUNDLE_ID = com.exelon.mobile.comed.staging
+DPL_BUNDLE_ID = com.exelon.mobile.delmarva.staging
+PECO_BUNDLE_ID = com.exelon.mobile.peco.staging
+PEPCO_BUNDLE_ID = com.exelon.mobile.pepco.staging
+
+
+// Environment Tier
+
+ENVIRONMENT_TIER = BETA
+
+
+// Oauth URL
+
+OAUTH_URL = api-stage.exeloncorp.com
+
+
+// Payment URL
+
+PAYMENT_URL = $($(OPCO)_PAYMENT_URL)
+
+ACE_PAYMENT_URL = https:$(SLASH)/secure2.paymentus.com/xotp/pm/phi
+BGE_PAYMENT_URL = https:$(SLASH)/secure2.paymentus.com/xotp/pm/bge
+COMED_PAYMENT_URL = https:$(SLASH)/secure2.paymentus.com/xotp/pm/comd
+DPL_PAYMENT_URL = https:$(SLASH)/secure2.paymentus.com/xotp/pm/phi
+PECO_PAYMENT_URL = https:$(SLASH)/secure2.paymentus.com/xotp/pm/peco
+PEPCO_PAYMENT_URL = https:$(SLASH)/secure2.paymentus.com/xotp/pm/phi

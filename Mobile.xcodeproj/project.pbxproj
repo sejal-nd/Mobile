@@ -1664,8 +1664,12 @@
 		6797115A25DD901F008A0080 /* Arc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arc.swift; sourceTree = "<group>"; };
 		679A63162AE2E88B00DC25D7 /* DecibelCore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = DecibelCore.xcframework; sourceTree = "<group>"; };
 		679A631F2AE3142300DC25D7 /* RxCocoa.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = RxCocoa.xcframework; sourceTree = "<group>"; };
-		679A63252AE814EE00DC25D7 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		679A63262AE814EE00DC25D7 /* version_bump.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = version_bump.sh; sourceTree = "<group>"; };
+		679A63272AE8377400DC25D7 /* Version.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Version.xcconfig; sourceTree = "<group>"; };
+		679A63282AE8377400DC25D7 /* Beta.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Beta.xcconfig; sourceTree = "<group>"; };
+		679A63292AE8377400DC25D7 /* AUT.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = AUT.xcconfig; sourceTree = "<group>"; };
+		679A632A2AE8377400DC25D7 /* RC.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = RC.xcconfig; sourceTree = "<group>"; };
+		679A632B2AE8377500DC25D7 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
 		679C6EB024D1E84E00535DE7 /* AppointmentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentService.swift; sourceTree = "<group>"; };
 		679C6EBD24D1EBCA00535DE7 /* AppointmentService+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppointmentService+Rx.swift"; sourceTree = "<group>"; };
 		679C6ED724D1F0A800535DE7 /* Appointment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appointment.swift; sourceTree = "<group>"; };
@@ -3940,7 +3944,11 @@
 		679A63242AE814EE00DC25D7 /* tools */ = {
 			isa = PBXGroup;
 			children = (
-				679A63252AE814EE00DC25D7 /* Config.xcconfig */,
+				679A63292AE8377400DC25D7 /* AUT.xcconfig */,
+				679A63282AE8377400DC25D7 /* Beta.xcconfig */,
+				679A632A2AE8377400DC25D7 /* RC.xcconfig */,
+				679A632B2AE8377500DC25D7 /* Release.xcconfig */,
+				679A63272AE8377400DC25D7 /* Version.xcconfig */,
 				679A63262AE814EE00DC25D7 /* version_bump.sh */,
 			);
 			path = tools;
@@ -6347,7 +6355,7 @@
 /* Begin XCBuildConfiguration section */
 		0E131751202B583000865819 /* BGE-Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 679A63252AE814EE00DC25D7 /* Config.xcconfig */;
+			baseConfigurationReference = 679A632B2AE8377500DC25D7 /* Release.xcconfig */;
 			buildSettings = {
 				ACCOUNT_URL = "https://bge.com/MyAccount";
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -6356,7 +6364,6 @@
 				ASSOCIATED_DOMAIN = secure.bge.com;
 				BASE_URL = eudapi.bge.com;
 				BUILD_DISPLAY_NAME = BGE;
-				BUILD_FLAVOR = BGE;
 				BUNDLE_ID = com.exelon.mobile.bge;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -6403,21 +6410,19 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				GOOGLE_ANALYTICS_ID = "UA-76742208-1";
 				HEADER_SEARCH_PATHS = "";
-				INCLUDED_SOURCE_FILE_NAMES = "*-Flavor$(BUILD_FLAVOR)*.*";
+				INCLUDED_SOURCE_FILE_NAMES = "*-Flavor$(OPCO)*.*";
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				NEW_SETTING = "";
 				OAUTH_URL = api.exeloncorp.com;
 				ONLY_ACTIVE_ARCH = YES;
+				OPCO = BGE;
 				OTHER_LDFLAGS = "-ObjC";
 				PAYMENT_URL = "https://ipn2.paymentus.com/xotp/pm/bge";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
@@ -6430,7 +6435,6 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VALIDATE_PRODUCT = YES;
-				VALIDATE_WORKSPACE = YES;
 			};
 			name = "BGE-Release";
 		};
@@ -6466,6 +6470,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = "$(VERSION)";
+				OPCO = BGE;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = "$(BUILD_DISPLAY_NAME)";
@@ -6476,7 +6481,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				USER_HEADER_SEARCH_PATHS = "";
-				VALIDATE_WORKSPACE = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
@@ -10112,7 +10116,7 @@
 		};
 		67A9867624F950F900BD46E7 /* PECO-AUT */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 679A63252AE814EE00DC25D7 /* Config.xcconfig */;
+			baseConfigurationReference = 679A63292AE8377400DC25D7 /* AUT.xcconfig */;
 			buildSettings = {
 				ACCOUNT_URL = "https://azstage.peco.com/MyAccount";
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -10121,7 +10125,6 @@
 				ASSOCIATED_DOMAIN = "azstg-secure.peco.com";
 				BASE_URL = "eudapi-test.peco.com";
 				BUILD_DISPLAY_NAME = PECO;
-				BUILD_FLAVOR = PECO;
 				BUNDLE_ID = com.exelon.mobile.peco.testing;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -10174,21 +10177,19 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				GOOGLE_ANALYTICS_ID = "UA-76742208-17";
 				HEADER_SEARCH_PATHS = "";
-				INCLUDED_SOURCE_FILE_NAMES = "*-Flavor$(BUILD_FLAVOR)*.*";
+				INCLUDED_SOURCE_FILE_NAMES = "*-Flavor$(OPCO)*.*";
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = YES;
-				NEW_SETTING = "";
 				OAUTH_URL = "api-development.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = YES;
+				OPCO = PECO;
 				OTHER_LDFLAGS = "-ObjC";
 				PAYMENT_URL = "https://secure2.paymentus.com/xotp/pm/peco";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
@@ -10199,7 +10200,6 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
-				VALIDATE_WORKSPACE = YES;
 			};
 			name = "PECO-AUT";
 		};
@@ -10233,6 +10233,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = "$(VERSION)";
+				OPCO = PECO;
 				OTHER_LDFLAGS = "$(inherited)";
 				PAYMENT_URL = "https://secure2.paymentus.com/xotp/pm/peco";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
@@ -10244,7 +10245,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				USER_HEADER_SEARCH_PATHS = "";
-				VALIDATE_WORKSPACE = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
@@ -10349,7 +10349,7 @@
 		};
 		67A9868224F9510D00BD46E7 /* PECO-Beta */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 679A63252AE814EE00DC25D7 /* Config.xcconfig */;
+			baseConfigurationReference = 679A63282AE8377400DC25D7 /* Beta.xcconfig */;
 			buildSettings = {
 				ACCOUNT_URL = "https://azstage.peco.com/MyAccount";
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -10358,7 +10358,6 @@
 				ASSOCIATED_DOMAIN = "azstg-secure.peco.com";
 				BASE_URL = "eudapi-stage.peco.com";
 				BUILD_DISPLAY_NAME = PECO;
-				BUILD_FLAVOR = PECO;
 				BUNDLE_ID = com.exelon.mobile.peco.staging;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -10411,21 +10410,19 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				GOOGLE_ANALYTICS_ID = "UA-76742208-17";
 				HEADER_SEARCH_PATHS = "";
-				INCLUDED_SOURCE_FILE_NAMES = "*-Flavor$(BUILD_FLAVOR)*.*";
+				INCLUDED_SOURCE_FILE_NAMES = "*-Flavor$(OPCO)*.*";
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = YES;
-				NEW_SETTING = "";
 				OAUTH_URL = "api-stage.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = YES;
+				OPCO = PECO;
 				OTHER_LDFLAGS = "-ObjC";
 				PAYMENT_URL = "https://secure2.paymentus.com/xotp/pm/peco";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
@@ -10437,7 +10434,6 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
-				VALIDATE_WORKSPACE = YES;
 			};
 			name = "PECO-Beta";
 		};
@@ -10475,6 +10471,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = "$(VERSION)";
 				ONLY_ACTIVE_ARCH = YES;
+				OPCO = PECO;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = "$(BUILD_DISPLAY_NAME)";
@@ -10485,7 +10482,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				USER_HEADER_SEARCH_PATHS = "";
-				VALIDATE_WORKSPACE = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
@@ -10545,7 +10541,7 @@
 		};
 		67A9868824F9511500BD46E7 /* PECO-RC */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 679A63252AE814EE00DC25D7 /* Config.xcconfig */;
+			baseConfigurationReference = 679A632A2AE8377400DC25D7 /* RC.xcconfig */;
 			buildSettings = {
 				ACCOUNT_URL = "https://peco.com/MyAccount";
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -10554,7 +10550,6 @@
 				ASSOCIATED_DOMAIN = secure.peco.com;
 				BASE_URL = eudapi.peco.com;
 				BUILD_DISPLAY_NAME = PECO;
-				BUILD_FLAVOR = PECO;
 				BUNDLE_ID = com.exelon.mobile.peco.prodbeta;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -10601,21 +10596,19 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				GOOGLE_ANALYTICS_ID = "UA-76742208-2";
 				HEADER_SEARCH_PATHS = "";
-				INCLUDED_SOURCE_FILE_NAMES = "*-Flavor$(BUILD_FLAVOR)*.*";
+				INCLUDED_SOURCE_FILE_NAMES = "*-Flavor$(OPCO)*.*";
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				NEW_SETTING = "";
 				OAUTH_URL = api.exeloncorp.com;
 				ONLY_ACTIVE_ARCH = YES;
+				OPCO = PECO;
 				OTHER_LDFLAGS = "-ObjC";
 				PAYMENT_URL = "https://ipn2.paymentus.com/xotp/pm/peco";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
@@ -10628,7 +10621,6 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VALIDATE_PRODUCT = YES;
-				VALIDATE_WORKSPACE = YES;
 			};
 			name = "PECO-RC";
 		};
@@ -10665,6 +10657,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = "$(VERSION)";
+				OPCO = PECO;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = "$(BUILD_DISPLAY_NAME)";
@@ -10676,7 +10669,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				USER_HEADER_SEARCH_PATHS = "";
-				VALIDATE_WORKSPACE = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
@@ -10738,7 +10730,7 @@
 		};
 		67A9868E24F9511D00BD46E7 /* PECO-Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 679A63252AE814EE00DC25D7 /* Config.xcconfig */;
+			baseConfigurationReference = 679A632B2AE8377500DC25D7 /* Release.xcconfig */;
 			buildSettings = {
 				ACCOUNT_URL = "https://peco.com/MyAccount";
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -10747,7 +10739,6 @@
 				ASSOCIATED_DOMAIN = secure.peco.com;
 				BASE_URL = eudapi.peco.com;
 				BUILD_DISPLAY_NAME = PECO;
-				BUILD_FLAVOR = PECO;
 				BUNDLE_ID = com.exelon.mobile.peco;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -10794,21 +10785,19 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				GOOGLE_ANALYTICS_ID = "UA-76742208-2";
 				HEADER_SEARCH_PATHS = "";
-				INCLUDED_SOURCE_FILE_NAMES = "*-Flavor$(BUILD_FLAVOR)*.*";
+				INCLUDED_SOURCE_FILE_NAMES = "*-Flavor$(OPCO)*.*";
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				NEW_SETTING = "";
 				OAUTH_URL = api.exeloncorp.com;
 				ONLY_ACTIVE_ARCH = YES;
+				OPCO = PECO;
 				OTHER_LDFLAGS = "-ObjC";
 				PAYMENT_URL = "https://ipn2.paymentus.com/xotp/pm/peco";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
@@ -10821,7 +10810,6 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VALIDATE_PRODUCT = YES;
-				VALIDATE_WORKSPACE = YES;
 			};
 			name = "PECO-Release";
 		};
@@ -10857,6 +10845,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = "$(VERSION)";
+				OPCO = PECO;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = "$(BUILD_DISPLAY_NAME)";
@@ -10867,7 +10856,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				USER_HEADER_SEARCH_PATHS = "";
-				VALIDATE_WORKSPACE = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
@@ -10928,7 +10916,7 @@
 		};
 		67A986B024FD3E8500BD46E7 /* ACE-AUT */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 679A63252AE814EE00DC25D7 /* Config.xcconfig */;
+			baseConfigurationReference = 679A63292AE8377400DC25D7 /* AUT.xcconfig */;
 			buildSettings = {
 				ACCOUNT_URL = "https://azstage.atlanticcityelectric.com/MyAccount";
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -10937,7 +10925,6 @@
 				ASSOCIATED_DOMAIN = "azstg-secure.atlanticcityelectric.com";
 				BASE_URL = "eudapi-test.atlanticcityelectric.com";
 				BUILD_DISPLAY_NAME = "AC Electric";
-				BUILD_FLAVOR = ACE;
 				BUNDLE_ID = com.exelon.mobile.ace.testing;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -10990,21 +10977,19 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				GOOGLE_ANALYTICS_ID = "";
 				HEADER_SEARCH_PATHS = "";
-				INCLUDED_SOURCE_FILE_NAMES = "*-Flavor$(BUILD_FLAVOR)*.*";
+				INCLUDED_SOURCE_FILE_NAMES = "*-Flavor$(OPCO)*.*";
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = YES;
-				NEW_SETTING = "";
 				OAUTH_URL = "api-development.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = YES;
+				OPCO = ACE;
 				OTHER_LDFLAGS = "-ObjC";
 				PAYMENT_URL = "https://secure2.paymentus.com/xotp/pm/phi";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
@@ -11015,7 +11000,6 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
-				VALIDATE_WORKSPACE = YES;
 			};
 			name = "ACE-AUT";
 		};
@@ -11050,6 +11034,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = "$(VERSION)";
+				OPCO = ACE;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = "Atlantic City Electric";
@@ -11060,7 +11045,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				USER_HEADER_SEARCH_PATHS = "";
-				VALIDATE_WORKSPACE = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
@@ -11165,7 +11149,7 @@
 		};
 		67A986BC24FD3E9300BD46E7 /* ACE-Beta */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 679A63252AE814EE00DC25D7 /* Config.xcconfig */;
+			baseConfigurationReference = 679A63282AE8377400DC25D7 /* Beta.xcconfig */;
 			buildSettings = {
 				ACCOUNT_URL = "https://azstage.atlanticcityelectric.com/MyAccount";
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -11174,7 +11158,6 @@
 				ASSOCIATED_DOMAIN = "azstg-secure.atlanticcityelectric.com";
 				BASE_URL = "eudapi-stage.atlanticcityelectric.com";
 				BUILD_DISPLAY_NAME = "AC Electric";
-				BUILD_FLAVOR = ACE;
 				BUNDLE_ID = com.exelon.mobile.ace.staging;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -11227,21 +11210,19 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				GOOGLE_ANALYTICS_ID = "";
 				HEADER_SEARCH_PATHS = "";
-				INCLUDED_SOURCE_FILE_NAMES = "*-Flavor$(BUILD_FLAVOR)*.*";
+				INCLUDED_SOURCE_FILE_NAMES = "*-Flavor$(OPCO)*.*";
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = YES;
-				NEW_SETTING = "";
 				OAUTH_URL = "api-stage.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = YES;
+				OPCO = ACE;
 				OTHER_LDFLAGS = "-ObjC";
 				PAYMENT_URL = "https://secure2.paymentus.com/xotp/pm/phi";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
@@ -11253,7 +11234,6 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
-				VALIDATE_WORKSPACE = YES;
 			};
 			name = "ACE-Beta";
 		};
@@ -11292,6 +11272,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = "$(VERSION)";
 				ONLY_ACTIVE_ARCH = YES;
+				OPCO = ACE;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = "Atlantic City Electric";
@@ -11302,7 +11283,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				USER_HEADER_SEARCH_PATHS = "";
-				VALIDATE_WORKSPACE = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
@@ -11362,7 +11342,7 @@
 		};
 		67A986C224FD3E9900BD46E7 /* ACE-RC */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 679A63252AE814EE00DC25D7 /* Config.xcconfig */;
+			baseConfigurationReference = 679A632A2AE8377400DC25D7 /* RC.xcconfig */;
 			buildSettings = {
 				ACCOUNT_URL = "https://atlanticcityelectric.com/MyAccount";
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -11371,7 +11351,6 @@
 				ASSOCIATED_DOMAIN = secure.atlanticcityelectric.com;
 				BASE_URL = eudapi.atlanticcityelectric.com;
 				BUILD_DISPLAY_NAME = "AC Electric";
-				BUILD_FLAVOR = ACE;
 				BUNDLE_ID = com.exelon.mobile.ace.prodbeta;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -11418,21 +11397,19 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				GOOGLE_ANALYTICS_ID = "";
 				HEADER_SEARCH_PATHS = "";
-				INCLUDED_SOURCE_FILE_NAMES = "*-Flavor$(BUILD_FLAVOR)*.*";
+				INCLUDED_SOURCE_FILE_NAMES = "*-Flavor$(OPCO)*.*";
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				NEW_SETTING = "";
 				OAUTH_URL = api.exeloncorp.com;
 				ONLY_ACTIVE_ARCH = YES;
+				OPCO = ACE;
 				OTHER_LDFLAGS = "-ObjC";
 				PAYMENT_URL = "https://ipn2.paymentus.com/xotp/pm/phi";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
@@ -11445,7 +11422,6 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VALIDATE_PRODUCT = YES;
-				VALIDATE_WORKSPACE = YES;
 			};
 			name = "ACE-RC";
 		};
@@ -11483,6 +11459,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = "$(VERSION)";
+				OPCO = ACE;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = "Atlantic City Electric";
@@ -11494,7 +11471,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				USER_HEADER_SEARCH_PATHS = "";
-				VALIDATE_WORKSPACE = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
@@ -11556,7 +11532,7 @@
 		};
 		67A986C824FD3E9F00BD46E7 /* ACE-Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 679A63252AE814EE00DC25D7 /* Config.xcconfig */;
+			baseConfigurationReference = 679A632B2AE8377500DC25D7 /* Release.xcconfig */;
 			buildSettings = {
 				ACCOUNT_URL = "https://atlanticcityelectric.com/MyAccount";
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -11565,7 +11541,6 @@
 				ASSOCIATED_DOMAIN = secure.atlanticcityelectric.com;
 				BASE_URL = eudapi.atlanticcityelectric.com;
 				BUILD_DISPLAY_NAME = "AC Electric";
-				BUILD_FLAVOR = ACE;
 				BUNDLE_ID = com.ifactorconsulting.ace;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -11612,21 +11587,19 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				GOOGLE_ANALYTICS_ID = "";
 				HEADER_SEARCH_PATHS = "";
-				INCLUDED_SOURCE_FILE_NAMES = "*-Flavor$(BUILD_FLAVOR)*.*";
+				INCLUDED_SOURCE_FILE_NAMES = "*-Flavor$(OPCO)*.*";
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				NEW_SETTING = "";
 				OAUTH_URL = api.exeloncorp.com;
 				ONLY_ACTIVE_ARCH = YES;
+				OPCO = ACE;
 				OTHER_LDFLAGS = "-ObjC";
 				PAYMENT_URL = "https://ipn2.paymentus.com/xotp/pm/phi";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
@@ -11639,7 +11612,6 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VALIDATE_PRODUCT = YES;
-				VALIDATE_WORKSPACE = YES;
 			};
 			name = "ACE-Release";
 		};
@@ -11676,6 +11648,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = "$(VERSION)";
+				OPCO = ACE;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = "Atlantic City Electric";
@@ -11686,7 +11659,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				USER_HEADER_SEARCH_PATHS = "";
-				VALIDATE_WORKSPACE = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
@@ -11747,7 +11719,7 @@
 		};
 		67A986E924FD41DB00BD46E7 /* Delmarva-AUT */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 679A63252AE814EE00DC25D7 /* Config.xcconfig */;
+			baseConfigurationReference = 679A63292AE8377400DC25D7 /* AUT.xcconfig */;
 			buildSettings = {
 				ACCOUNT_URL = "https://azstage.delmarva.com/MyAccount";
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -11756,7 +11728,6 @@
 				ASSOCIATED_DOMAIN = "azstg-secure.delmarva.com";
 				BASE_URL = "eudapi-test.delmarva.com";
 				BUILD_DISPLAY_NAME = Delmarva;
-				BUILD_FLAVOR = DPL;
 				BUNDLE_ID = com.exelon.mobile.delmarva.testing;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -11809,21 +11780,19 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				GOOGLE_ANALYTICS_ID = "";
 				HEADER_SEARCH_PATHS = "";
-				INCLUDED_SOURCE_FILE_NAMES = "*-Flavor$(BUILD_FLAVOR)*.*";
+				INCLUDED_SOURCE_FILE_NAMES = "*-Flavor$(OPCO)*.*";
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = YES;
-				NEW_SETTING = "";
 				OAUTH_URL = "api-development.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = YES;
+				OPCO = DPL;
 				OTHER_LDFLAGS = "-ObjC";
 				PAYMENT_URL = "https://secure2.paymentus.com/xotp/pm/phi";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
@@ -11834,7 +11803,6 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
-				VALIDATE_WORKSPACE = YES;
 			};
 			name = "Delmarva-AUT";
 		};
@@ -11869,6 +11837,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = "$(VERSION)";
+				OPCO = DPL;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = "Delmarva Power";
@@ -11879,7 +11848,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				USER_HEADER_SEARCH_PATHS = "";
-				VALIDATE_WORKSPACE = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
@@ -11984,7 +11952,7 @@
 		};
 		67A986F524FD41E900BD46E7 /* Delmarva-Beta */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 679A63252AE814EE00DC25D7 /* Config.xcconfig */;
+			baseConfigurationReference = 679A63282AE8377400DC25D7 /* Beta.xcconfig */;
 			buildSettings = {
 				ACCOUNT_URL = "https://azstage.delmarva.com/MyAccount";
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -11993,7 +11961,6 @@
 				ASSOCIATED_DOMAIN = "azstg-secure.delmarva.com";
 				BASE_URL = "eudapi-stage.delmarva.com";
 				BUILD_DISPLAY_NAME = Delmarva;
-				BUILD_FLAVOR = DPL;
 				BUNDLE_ID = com.exelon.mobile.delmarva.staging;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -12046,21 +12013,19 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				GOOGLE_ANALYTICS_ID = "";
 				HEADER_SEARCH_PATHS = "";
-				INCLUDED_SOURCE_FILE_NAMES = "*-Flavor$(BUILD_FLAVOR)*.*";
+				INCLUDED_SOURCE_FILE_NAMES = "*-Flavor$(OPCO)*.*";
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = YES;
-				NEW_SETTING = "";
 				OAUTH_URL = "api-stage.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = YES;
+				OPCO = DPL;
 				OTHER_LDFLAGS = "-ObjC";
 				PAYMENT_URL = "https://secure2.paymentus.com/xotp/pm/phi";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
@@ -12072,7 +12037,6 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
-				VALIDATE_WORKSPACE = YES;
 			};
 			name = "Delmarva-Beta";
 		};
@@ -12111,6 +12075,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = "$(VERSION)";
 				ONLY_ACTIVE_ARCH = YES;
+				OPCO = DPL;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = "Delmarva Power";
@@ -12121,7 +12086,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				USER_HEADER_SEARCH_PATHS = "";
-				VALIDATE_WORKSPACE = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
@@ -12181,7 +12145,7 @@
 		};
 		67A986FB24FD41F100BD46E7 /* Delmarva-RC */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 679A63252AE814EE00DC25D7 /* Config.xcconfig */;
+			baseConfigurationReference = 679A632A2AE8377400DC25D7 /* RC.xcconfig */;
 			buildSettings = {
 				ACCOUNT_URL = "https://delmarva.com/MyAccount";
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -12190,7 +12154,6 @@
 				ASSOCIATED_DOMAIN = secure.delmarva.com;
 				BASE_URL = eudapi.delmarva.com;
 				BUILD_DISPLAY_NAME = Delmarva;
-				BUILD_FLAVOR = DPL;
 				BUNDLE_ID = com.exelon.mobile.delmarva.prodbeta;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -12237,21 +12200,19 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				GOOGLE_ANALYTICS_ID = "";
 				HEADER_SEARCH_PATHS = "";
-				INCLUDED_SOURCE_FILE_NAMES = "*-Flavor$(BUILD_FLAVOR)*.*";
+				INCLUDED_SOURCE_FILE_NAMES = "*-Flavor$(OPCO)*.*";
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				NEW_SETTING = "";
 				OAUTH_URL = api.exeloncorp.com;
 				ONLY_ACTIVE_ARCH = YES;
+				OPCO = DPL;
 				OTHER_LDFLAGS = "-ObjC";
 				PAYMENT_URL = "https://ipn2.paymentus.com/xotp/pm/phi";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
@@ -12264,7 +12225,6 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VALIDATE_PRODUCT = YES;
-				VALIDATE_WORKSPACE = YES;
 			};
 			name = "Delmarva-RC";
 		};
@@ -12302,6 +12262,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = "$(VERSION)";
+				OPCO = DPL;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = "Delmarva Power";
@@ -12313,7 +12274,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				USER_HEADER_SEARCH_PATHS = "";
-				VALIDATE_WORKSPACE = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
@@ -12375,7 +12335,7 @@
 		};
 		67A9870124FD41F600BD46E7 /* Delmarva-Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 679A63252AE814EE00DC25D7 /* Config.xcconfig */;
+			baseConfigurationReference = 679A632B2AE8377500DC25D7 /* Release.xcconfig */;
 			buildSettings = {
 				ACCOUNT_URL = "https://delmarva.com/MyAccount";
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -12384,7 +12344,6 @@
 				ASSOCIATED_DOMAIN = secure.delmarva.com;
 				BASE_URL = eudapi.delmarva.com;
 				BUILD_DISPLAY_NAME = Delmarva;
-				BUILD_FLAVOR = DPL;
 				BUNDLE_ID = com.ifactorconsulting.delmarva;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -12431,21 +12390,19 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				GOOGLE_ANALYTICS_ID = "";
 				HEADER_SEARCH_PATHS = "";
-				INCLUDED_SOURCE_FILE_NAMES = "*-Flavor$(BUILD_FLAVOR)*.*";
+				INCLUDED_SOURCE_FILE_NAMES = "*-Flavor$(OPCO)*.*";
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				NEW_SETTING = "";
 				OAUTH_URL = api.exeloncorp.com;
 				ONLY_ACTIVE_ARCH = YES;
+				OPCO = DPL;
 				OTHER_LDFLAGS = "-ObjC";
 				PAYMENT_URL = "https://ipn2.paymentus.com/xotp/pm/phi";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
@@ -12458,7 +12415,6 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VALIDATE_PRODUCT = YES;
-				VALIDATE_WORKSPACE = YES;
 			};
 			name = "Delmarva-Release";
 		};
@@ -12495,6 +12451,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = "$(VERSION)";
+				OPCO = DPL;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = "Delmarva Power";
@@ -12505,7 +12462,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				USER_HEADER_SEARCH_PATHS = "";
-				VALIDATE_WORKSPACE = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
@@ -12566,7 +12522,7 @@
 		};
 		67A9870724FD41FE00BD46E7 /* Pepco-AUT */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 679A63252AE814EE00DC25D7 /* Config.xcconfig */;
+			baseConfigurationReference = 679A63292AE8377400DC25D7 /* AUT.xcconfig */;
 			buildSettings = {
 				ACCOUNT_URL = "https://azstage.pepco.com/MyAccount";
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -12575,7 +12531,6 @@
 				ASSOCIATED_DOMAIN = "azstg-secure.pepco.com";
 				BASE_URL = "eudapi-test.pepco.com";
 				BUILD_DISPLAY_NAME = Pepco;
-				BUILD_FLAVOR = PEPCO;
 				BUNDLE_ID = com.exelon.mobile.pepco.testing;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -12628,21 +12583,19 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				GOOGLE_ANALYTICS_ID = "";
 				HEADER_SEARCH_PATHS = "";
-				INCLUDED_SOURCE_FILE_NAMES = "*-Flavor$(BUILD_FLAVOR)*.*";
+				INCLUDED_SOURCE_FILE_NAMES = "*-Flavor$(OPCO)*.*";
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = YES;
-				NEW_SETTING = "";
 				OAUTH_URL = "api-development.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = YES;
+				OPCO = PEPCO;
 				OTHER_LDFLAGS = "-ObjC";
 				PAYMENT_URL = "https://secure2.paymentus.com/xotp/pm/phi";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
@@ -12653,7 +12606,6 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
-				VALIDATE_WORKSPACE = YES;
 			};
 			name = "Pepco-AUT";
 		};
@@ -12688,6 +12640,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = "$(VERSION)";
+				OPCO = PEPCO;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = "$(BUILD_DISPLAY_NAME)";
@@ -12698,7 +12651,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				USER_HEADER_SEARCH_PATHS = "";
-				VALIDATE_WORKSPACE = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
@@ -12803,7 +12755,7 @@
 		};
 		67A9871324FD420D00BD46E7 /* Pepco-Beta */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 679A63252AE814EE00DC25D7 /* Config.xcconfig */;
+			baseConfigurationReference = 679A63282AE8377400DC25D7 /* Beta.xcconfig */;
 			buildSettings = {
 				ACCOUNT_URL = "https://azstage.pepco.com/MyAccount";
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -12812,7 +12764,6 @@
 				ASSOCIATED_DOMAIN = "azstg-secure.pepco.com";
 				BASE_URL = "eudapi-stage.pepco.com";
 				BUILD_DISPLAY_NAME = Pepco;
-				BUILD_FLAVOR = PEPCO;
 				BUNDLE_ID = com.exelon.mobile.pepco.staging;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -12865,21 +12816,19 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				GOOGLE_ANALYTICS_ID = "";
 				HEADER_SEARCH_PATHS = "";
-				INCLUDED_SOURCE_FILE_NAMES = "*-Flavor$(BUILD_FLAVOR)*.*";
+				INCLUDED_SOURCE_FILE_NAMES = "*-Flavor$(OPCO)*.*";
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = YES;
-				NEW_SETTING = "";
 				OAUTH_URL = "api-stage.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = YES;
+				OPCO = PEPCO;
 				OTHER_LDFLAGS = "-ObjC";
 				PAYMENT_URL = "https://secure2.paymentus.com/xotp/pm/phi";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
@@ -12891,7 +12840,6 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
-				VALIDATE_WORKSPACE = YES;
 			};
 			name = "Pepco-Beta";
 		};
@@ -12930,6 +12878,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = "$(VERSION)";
 				ONLY_ACTIVE_ARCH = YES;
+				OPCO = PEPCO;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = "$(BUILD_DISPLAY_NAME)";
@@ -12940,7 +12889,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				USER_HEADER_SEARCH_PATHS = "";
-				VALIDATE_WORKSPACE = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
@@ -13000,7 +12948,7 @@
 		};
 		67A9871924FD421400BD46E7 /* Pepco-RC */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 679A63252AE814EE00DC25D7 /* Config.xcconfig */;
+			baseConfigurationReference = 679A632A2AE8377400DC25D7 /* RC.xcconfig */;
 			buildSettings = {
 				ACCOUNT_URL = "https://pepco.com/MyAccount";
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -13009,7 +12957,6 @@
 				ASSOCIATED_DOMAIN = secure.pepco.com;
 				BASE_URL = eudapi.pepco.com;
 				BUILD_DISPLAY_NAME = Pepco;
-				BUILD_FLAVOR = PEPCO;
 				BUNDLE_ID = com.exelon.mobile.pepco.prodbeta;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -13056,21 +13003,19 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				GOOGLE_ANALYTICS_ID = "";
 				HEADER_SEARCH_PATHS = "";
-				INCLUDED_SOURCE_FILE_NAMES = "*-Flavor$(BUILD_FLAVOR)*.*";
+				INCLUDED_SOURCE_FILE_NAMES = "*-Flavor$(OPCO)*.*";
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				NEW_SETTING = "";
 				OAUTH_URL = api.exeloncorp.com;
 				ONLY_ACTIVE_ARCH = YES;
+				OPCO = PEPCO;
 				OTHER_LDFLAGS = "-ObjC";
 				PAYMENT_URL = "https://ipn2.paymentus.com/xotp/pm/phi";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
@@ -13083,7 +13028,6 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VALIDATE_PRODUCT = YES;
-				VALIDATE_WORKSPACE = YES;
 			};
 			name = "Pepco-RC";
 		};
@@ -13121,6 +13065,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = "$(VERSION)";
+				OPCO = PEPCO;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = "$(BUILD_DISPLAY_NAME)";
@@ -13132,7 +13077,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				USER_HEADER_SEARCH_PATHS = "";
-				VALIDATE_WORKSPACE = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
@@ -13194,7 +13138,7 @@
 		};
 		67A9871F24FD421C00BD46E7 /* Pepco-Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 679A63252AE814EE00DC25D7 /* Config.xcconfig */;
+			baseConfigurationReference = 679A632B2AE8377500DC25D7 /* Release.xcconfig */;
 			buildSettings = {
 				ACCOUNT_URL = "https://pepco.com/MyAccount";
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -13203,7 +13147,6 @@
 				ASSOCIATED_DOMAIN = secure.pepco.com;
 				BASE_URL = eudapi.pepco.com;
 				BUILD_DISPLAY_NAME = Pepco;
-				BUILD_FLAVOR = PEPCO;
 				BUNDLE_ID = com.ifactorconsulting.pepco;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -13250,21 +13193,19 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				GOOGLE_ANALYTICS_ID = "";
 				HEADER_SEARCH_PATHS = "";
-				INCLUDED_SOURCE_FILE_NAMES = "*-Flavor$(BUILD_FLAVOR)*.*";
+				INCLUDED_SOURCE_FILE_NAMES = "*-Flavor$(OPCO)*.*";
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				NEW_SETTING = "";
 				OAUTH_URL = api.exeloncorp.com;
 				ONLY_ACTIVE_ARCH = YES;
+				OPCO = PEPCO;
 				OTHER_LDFLAGS = "-ObjC";
 				PAYMENT_URL = "https://ipn2.paymentus.com/xotp/pm/phi";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
@@ -13277,7 +13218,6 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VALIDATE_PRODUCT = YES;
-				VALIDATE_WORKSPACE = YES;
 			};
 			name = "Pepco-Release";
 		};
@@ -13314,6 +13254,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = "$(VERSION)";
+				OPCO = PEPCO;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = "$(BUILD_DISPLAY_NAME)";
@@ -13324,7 +13265,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				USER_HEADER_SEARCH_PATHS = "";
-				VALIDATE_WORKSPACE = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
@@ -13385,7 +13325,7 @@
 		};
 		67D562F924ED9DD100852551 /* ComEd-AUT */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 679A63252AE814EE00DC25D7 /* Config.xcconfig */;
+			baseConfigurationReference = 679A63292AE8377400DC25D7 /* AUT.xcconfig */;
 			buildSettings = {
 				ACCOUNT_URL = "https://azstage.comed.com/MyAccount";
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -13394,7 +13334,6 @@
 				ASSOCIATED_DOMAIN = "azstg-secure.comed.com";
 				BASE_URL = "eudapi-test.comed.com";
 				BUILD_DISPLAY_NAME = ComEd;
-				BUILD_FLAVOR = COMED;
 				BUNDLE_ID = com.exelon.mobile.comed.testing;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -13447,21 +13386,19 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				GOOGLE_ANALYTICS_ID = "UA-76742208-16";
 				HEADER_SEARCH_PATHS = "";
-				INCLUDED_SOURCE_FILE_NAMES = "*-Flavor$(BUILD_FLAVOR)*.*";
+				INCLUDED_SOURCE_FILE_NAMES = "*-Flavor$(OPCO)*.*";
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = YES;
-				NEW_SETTING = "";
 				OAUTH_URL = "api-development.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = YES;
+				OPCO = COMED;
 				OTHER_LDFLAGS = "-ObjC";
 				PAYMENT_URL = "https://secure2.paymentus.com/xotp/pm/comd";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
@@ -13472,7 +13409,6 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
-				VALIDATE_WORKSPACE = YES;
 			};
 			name = "ComEd-AUT";
 		};
@@ -13506,6 +13442,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = "$(VERSION)";
+				OPCO = COMED;
 				OTHER_LDFLAGS = "$(inherited)";
 				PAYMENT_URL = "https://secure2.paymentus.com/xotp/pm/comd";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
@@ -13517,7 +13454,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				USER_HEADER_SEARCH_PATHS = "";
-				VALIDATE_WORKSPACE = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
@@ -13622,7 +13558,7 @@
 		};
 		67D5630524ED9DD500852551 /* ComEd-Beta */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 679A63252AE814EE00DC25D7 /* Config.xcconfig */;
+			baseConfigurationReference = 679A63282AE8377400DC25D7 /* Beta.xcconfig */;
 			buildSettings = {
 				ACCOUNT_URL = "https://azstage.comed.com/MyAccount";
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -13631,7 +13567,6 @@
 				ASSOCIATED_DOMAIN = "azstg-secure.comed.com";
 				BASE_URL = "eudapi-stage.comed.com";
 				BUILD_DISPLAY_NAME = ComEd;
-				BUILD_FLAVOR = COMED;
 				BUNDLE_ID = com.exelon.mobile.comed.staging;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -13684,21 +13619,19 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				GOOGLE_ANALYTICS_ID = "UA-76742208-16";
 				HEADER_SEARCH_PATHS = "";
-				INCLUDED_SOURCE_FILE_NAMES = "*-Flavor$(BUILD_FLAVOR)*.*";
+				INCLUDED_SOURCE_FILE_NAMES = "*-Flavor$(OPCO)*.*";
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = YES;
-				NEW_SETTING = "";
 				OAUTH_URL = "api-stage.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = YES;
+				OPCO = COMED;
 				OTHER_LDFLAGS = "-ObjC";
 				PAYMENT_URL = "https://secure2.paymentus.com/xotp/pm/comd";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
@@ -13710,7 +13643,6 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
-				VALIDATE_WORKSPACE = YES;
 			};
 			name = "ComEd-Beta";
 		};
@@ -13748,6 +13680,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = "$(VERSION)";
 				ONLY_ACTIVE_ARCH = YES;
+				OPCO = COMED;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = "$(BUILD_DISPLAY_NAME)";
@@ -13758,7 +13691,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				USER_HEADER_SEARCH_PATHS = "";
-				VALIDATE_WORKSPACE = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
@@ -13818,7 +13750,7 @@
 		};
 		67D5631124ED9DD900852551 /* ComEd-RC */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 679A63252AE814EE00DC25D7 /* Config.xcconfig */;
+			baseConfigurationReference = 679A632A2AE8377400DC25D7 /* RC.xcconfig */;
 			buildSettings = {
 				ACCOUNT_URL = "https://comed.com/MyAccount";
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -13827,7 +13759,6 @@
 				ASSOCIATED_DOMAIN = secure.comed.com;
 				BASE_URL = eudapi.comed.com;
 				BUILD_DISPLAY_NAME = ComEd;
-				BUILD_FLAVOR = COMED;
 				BUNDLE_ID = com.exelon.mobile.comed.prodbeta;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -13874,21 +13805,19 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				GOOGLE_ANALYTICS_ID = "UA-76742208-3";
 				HEADER_SEARCH_PATHS = "";
-				INCLUDED_SOURCE_FILE_NAMES = "*-Flavor$(BUILD_FLAVOR)*.*";
+				INCLUDED_SOURCE_FILE_NAMES = "*-Flavor$(OPCO)*.*";
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				NEW_SETTING = "";
 				OAUTH_URL = api.exeloncorp.com;
 				ONLY_ACTIVE_ARCH = YES;
+				OPCO = COMED;
 				OTHER_LDFLAGS = "-ObjC";
 				PAYMENT_URL = "https://ipn2.paymentus.com/xotp/pm/comd";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
@@ -13901,7 +13830,6 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VALIDATE_PRODUCT = YES;
-				VALIDATE_WORKSPACE = YES;
 			};
 			name = "ComEd-RC";
 		};
@@ -13938,6 +13866,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = "$(VERSION)";
+				OPCO = COMED;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = "$(BUILD_DISPLAY_NAME)";
@@ -13949,7 +13878,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				USER_HEADER_SEARCH_PATHS = "";
-				VALIDATE_WORKSPACE = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
@@ -14011,7 +13939,7 @@
 		};
 		67D5631724ED9DDB00852551 /* ComEd-Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 679A63252AE814EE00DC25D7 /* Config.xcconfig */;
+			baseConfigurationReference = 679A632B2AE8377500DC25D7 /* Release.xcconfig */;
 			buildSettings = {
 				ACCOUNT_URL = "https://comed.com/MyAccount";
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -14020,7 +13948,6 @@
 				ASSOCIATED_DOMAIN = secure.comed.com;
 				BASE_URL = eudapi.comed.com;
 				BUILD_DISPLAY_NAME = ComEd;
-				BUILD_FLAVOR = COMED;
 				BUNDLE_ID = com.iphoneproduction.exelon;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -14067,21 +13994,19 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				GOOGLE_ANALYTICS_ID = "UA-76742208-3";
 				HEADER_SEARCH_PATHS = "";
-				INCLUDED_SOURCE_FILE_NAMES = "*-Flavor$(BUILD_FLAVOR)*.*";
+				INCLUDED_SOURCE_FILE_NAMES = "*-Flavor$(OPCO)*.*";
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				NEW_SETTING = "";
 				OAUTH_URL = api.exeloncorp.com;
 				ONLY_ACTIVE_ARCH = YES;
+				OPCO = COMED;
 				OTHER_LDFLAGS = "-ObjC";
 				PAYMENT_URL = "https://ipn2.paymentus.com/xotp/pm/comd";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
@@ -14094,7 +14019,6 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VALIDATE_PRODUCT = YES;
-				VALIDATE_WORKSPACE = YES;
 			};
 			name = "ComEd-Release";
 		};
@@ -14130,6 +14054,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = "$(VERSION)";
+				OPCO = COMED;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = "$(BUILD_DISPLAY_NAME)";
@@ -14140,7 +14065,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				USER_HEADER_SEARCH_PATHS = "";
-				VALIDATE_WORKSPACE = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
@@ -14201,7 +14125,7 @@
 		};
 		9CEB30CF22612D8500DD725C /* BGE-AUT */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 679A63252AE814EE00DC25D7 /* Config.xcconfig */;
+			baseConfigurationReference = 679A63292AE8377400DC25D7 /* AUT.xcconfig */;
 			buildSettings = {
 				ACCOUNT_URL = "https://azstage.bge.com/MyAccount";
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -14210,7 +14134,6 @@
 				ASSOCIATED_DOMAIN = "azstg-secure.bge.com";
 				BASE_URL = "eudapi-test.bge.com";
 				BUILD_DISPLAY_NAME = BGE;
-				BUILD_FLAVOR = BGE;
 				BUNDLE_ID = com.exelon.mobile.bge.testing;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -14263,21 +14186,19 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				GOOGLE_ANALYTICS_ID = "UA-76742208-8";
 				HEADER_SEARCH_PATHS = "";
-				INCLUDED_SOURCE_FILE_NAMES = "*-Flavor$(BUILD_FLAVOR)*.*";
+				INCLUDED_SOURCE_FILE_NAMES = "*-Flavor$(OPCO)*.*";
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = YES;
-				NEW_SETTING = "";
 				OAUTH_URL = "api-development.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = YES;
+				OPCO = BGE;
 				OTHER_LDFLAGS = "-ObjC";
 				PAYMENT_URL = "https://secure2.paymentus.com/xotp/pm/bge";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
@@ -14288,7 +14209,6 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
-				VALIDATE_WORKSPACE = YES;
 			};
 			name = "BGE-AUT";
 		};
@@ -14322,6 +14242,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = "$(VERSION)";
+				OPCO = BGE;
 				OTHER_LDFLAGS = "$(inherited)";
 				PAYMENT_URL = "https://secure2.paymentus.com/xotp/pm/bge";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
@@ -14333,7 +14254,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				USER_HEADER_SEARCH_PATHS = "";
-				VALIDATE_WORKSPACE = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
@@ -14341,7 +14261,7 @@
 		};
 		B58B5AE81E4E28740051FD5F /* BGE-RC */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 679A63252AE814EE00DC25D7 /* Config.xcconfig */;
+			baseConfigurationReference = 679A632A2AE8377400DC25D7 /* RC.xcconfig */;
 			buildSettings = {
 				ACCOUNT_URL = "https://bge.com/MyAccount";
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -14350,7 +14270,6 @@
 				ASSOCIATED_DOMAIN = secure.bge.com;
 				BASE_URL = eudapi.bge.com;
 				BUILD_DISPLAY_NAME = BGE;
-				BUILD_FLAVOR = BGE;
 				BUNDLE_ID = com.exelon.mobile.bge.prodbeta;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -14397,21 +14316,19 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				GOOGLE_ANALYTICS_ID = "UA-76742208-1";
 				HEADER_SEARCH_PATHS = "";
-				INCLUDED_SOURCE_FILE_NAMES = "*-Flavor$(BUILD_FLAVOR)*.*";
+				INCLUDED_SOURCE_FILE_NAMES = "*-Flavor$(OPCO)*.*";
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				NEW_SETTING = "";
 				OAUTH_URL = api.exeloncorp.com;
 				ONLY_ACTIVE_ARCH = YES;
+				OPCO = BGE;
 				OTHER_LDFLAGS = "-ObjC";
 				PAYMENT_URL = "https://ipn2.paymentus.com/xotp/pm/bge";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
@@ -14424,7 +14341,6 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VALIDATE_PRODUCT = YES;
-				VALIDATE_WORKSPACE = YES;
 			};
 			name = "BGE-RC";
 		};
@@ -14461,6 +14377,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = "$(VERSION)";
+				OPCO = BGE;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = "$(BUILD_DISPLAY_NAME)";
@@ -14472,7 +14389,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				USER_HEADER_SEARCH_PATHS = "";
-				VALIDATE_WORKSPACE = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
@@ -14480,7 +14396,7 @@
 		};
 		B58B5AF61E51497B0051FD5F /* BGE-Beta */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 679A63252AE814EE00DC25D7 /* Config.xcconfig */;
+			baseConfigurationReference = 679A63282AE8377400DC25D7 /* Beta.xcconfig */;
 			buildSettings = {
 				ACCOUNT_URL = "https://azstage.bge.com/MyAccount";
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -14489,7 +14405,6 @@
 				ASSOCIATED_DOMAIN = "azstg-secure.bge.com";
 				BASE_URL = "eudapi-stage.bge.com";
 				BUILD_DISPLAY_NAME = BGE;
-				BUILD_FLAVOR = BGE;
 				BUNDLE_ID = com.exelon.mobile.bge.staging;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -14542,21 +14457,19 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				GOOGLE_ANALYTICS_ID = "UA-76742208-8";
 				HEADER_SEARCH_PATHS = "";
-				INCLUDED_SOURCE_FILE_NAMES = "*-Flavor$(BUILD_FLAVOR)*.*";
+				INCLUDED_SOURCE_FILE_NAMES = "*-Flavor$(OPCO)*.*";
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = YES;
-				NEW_SETTING = "";
 				OAUTH_URL = "api-stage.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = YES;
+				OPCO = BGE;
 				OTHER_LDFLAGS = "-ObjC";
 				PAYMENT_URL = "https://secure2.paymentus.com/xotp/pm/bge";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
@@ -14568,7 +14481,6 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
-				VALIDATE_WORKSPACE = YES;
 			};
 			name = "BGE-Beta";
 		};
@@ -14606,6 +14518,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = "$(VERSION)";
 				ONLY_ACTIVE_ARCH = YES;
+				OPCO = BGE;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = "$(BUILD_DISPLAY_NAME)";
@@ -14616,7 +14529,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				USER_HEADER_SEARCH_PATHS = "";
-				VALIDATE_WORKSPACE = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
@@ -14654,7 +14566,7 @@
 				67A9869224F9511D00BD46E7 /* PECO-Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = "ACE-AUT";
+			defaultConfigurationName = "BGE-Beta";
 		};
 		6716592E26F0FBA0004546DE /* Build configuration list for PBXNativeTarget "UITests" */ = {
 			isa = XCConfigurationList;
@@ -14685,7 +14597,7 @@
 				6716594626F0FBA0004546DE /* PECO-Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = "ACE-AUT";
+			defaultConfigurationName = "BGE-Beta";
 		};
 		6716595626F0FBC6004546DE /* Build configuration list for PBXNativeTarget "UnitTests" */ = {
 			isa = XCConfigurationList;
@@ -14716,7 +14628,7 @@
 				6716596E26F0FBC6004546DE /* PECO-Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = "ACE-AUT";
+			defaultConfigurationName = "BGE-Beta";
 		};
 		B58B5ABC1E4E28740051FD5F /* Build configuration list for PBXProject "Mobile" */ = {
 			isa = XCConfigurationList;
@@ -14747,7 +14659,7 @@
 				67A9868E24F9511D00BD46E7 /* PECO-Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = "ACE-AUT";
+			defaultConfigurationName = "BGE-Beta";
 		};
 		B58B5AE91E4E28740051FD5F /* Build configuration list for PBXNativeTarget "EUMobile" */ = {
 			isa = XCConfigurationList;
@@ -14778,7 +14690,7 @@
 				67A9868F24F9511D00BD46E7 /* PECO-Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = "ACE-AUT";
+			defaultConfigurationName = "BGE-Beta";
 		};
 /* End XCConfigurationList section */
 

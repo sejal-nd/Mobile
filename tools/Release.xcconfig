@@ -1,0 +1,111 @@
+// Release.xcconfig
+
+#include "Version.xcconfig"
+
+
+// Fixed bug where a url with be considered a comment due to // 
+
+SLASH=/
+
+// Account URL
+
+ACCOUNT_URL = $($(OPCO)_ACCOUNT_URL)
+
+ACE_ACCOUNT_URL = https:$(SLASH)/atlanticcityelectric.com/MyAccount
+BGE_ACCOUNT_URL = https:$(SLASH)/bge.com/MyAccount
+COMED_ACCOUNT_URL = https:$(SLASH)/comed.com/MyAccount
+DPL_ACCOUNT_URL = https:$(SLASH)/delmarva.com/MyAccount
+PECO_ACCOUNT_URL = https:$(SLASH)/peco.com/MyAccount
+PEPCO_ACCOUNT_URL = https:$(SLASH)/pepco.com/MyAccount
+
+
+// Anon Associated Domain
+
+ANON_ASSOCIATED_DOMAIN = $($(OPCO)_ANON_ASSOCIATED_DOMAIN)
+
+ACE_ANON_ASSOCIATED_DOMAIN = atlanticcityelectric.com
+BGE_ANON_ASSOCIATED_DOMAIN = bge.com
+COMED_ANON_ASSOCIATED_DOMAIN = comed.com
+DPL_ANON_ASSOCIATED_DOMAIN = delmarva.com
+PECO_ANON_ASSOCIATED_DOMAIN = peco.com
+PEPCO_ANON_ASSOCIATED_DOMAIN = pepco.com
+
+// Secure Associated Domain
+
+ASSOCIATED_DOMAIN = $($(OPCO)_ASSOCIATED_DOMAIN)
+
+ACE_ASSOCIATED_DOMAIN = secure.atlanticcityelectric.com
+BGE_ASSOCIATED_DOMAIN = secure.bge.com
+COMED_ASSOCIATED_DOMAIN = secure.comed.com
+DPL_ASSOCIATED_DOMAIN = secure.delmarva.com
+PECO_ASSOCIATED_DOMAIN = secure.peco.com
+PEPCO_ASSOCIATED_DOMAIN = secure.pepco.com
+
+// App Center ID
+
+APP_CENTER_ID = $($(OPCO)_APP_CENTER_ID)
+
+ACE_APP_CENTER_ID = e717a9ba-bed1-443f-8311-9653b4bd058b
+BGE_APP_CENTER_ID = 8bfce822-abdf-4e5c-8425-0897f447692a
+COMED_APP_CENTER_ID = 9f56e08c-6fa5-4209-93a2-d773601a1e45
+DPL_APP_CENTER_ID = 9f85e63c-c1a6-40de-811b-df4074860f14
+PECO_APP_CENTER_ID = 0a416441-1ad6-4be2-b009-79f8b15f8b58
+PEPCO_APP_CENTER_ID = 5e8d65a7-7ffb-46b9-99f1-34d4080f52dd
+
+
+// Base URL
+
+BASE_URL = $($(OPCO)_BASE_URL)
+
+ACE_BASE_URL = eudapi.atlanticcityelectric.com
+BGE_BASE_URL = eudapi.bge.com
+COMED_BASE_URL = eudapi.comed.com
+DPL_BASE_URL = eudapi.delmarva.com
+PECO_BASE_URL = eudapi.peco.com
+PEPCO_BASE_URL = eudapi.pepco.com
+
+
+// Build Display Name (Home screen app name)
+
+BUILD_DISPLAY_NAME = $($(OPCO)_BUILD_DISPLAY_NAME)
+
+ACE_BUILD_DISPLAY_NAME = AC Electric
+BGE_BUILD_DISPLAY_NAME = BGE
+COMED_BUILD_DISPLAY_NAME = ComEd
+DPL_BUILD_DISPLAY_NAME = Delmarva
+PECO_BUILD_DISPLAY_NAME = PECO
+PEPCO_BUILD_DISPLAY_NAME = Pepco
+
+
+// Bundle ID
+
+BUNDLE_ID = $($(OPCO)_BUNDLE_ID)
+
+ACE_BUNDLE_ID = com.ifactorconsulting.ace
+BGE_BUNDLE_ID = com.exelon.mobile.bge
+COMED_BUNDLE_ID = com.iphoneproduction.exelon
+DPL_BUNDLE_ID = com.ifactorconsulting.delmarva
+PECO_BUNDLE_ID = com.exelon.mobile.peco
+PEPCO_BUNDLE_ID = com.ifactorconsulting.pepco
+
+
+// Environment Tier
+
+ENVIRONMENT_TIER = PROD
+
+
+// Oauth URL
+
+OAUTH_URL = api.exeloncorp.com
+
+
+// Payment URL
+
+PAYMENT_URL = $($(OPCO)_PAYMENT_URL)
+
+ACE_PAYMENT_URL = https:$(SLASH)/ipn2.paymentus.com/xotp/pm/phi
+BGE_PAYMENT_URL = https:$(SLASH)/ipn2.paymentus.com/xotp/pm/bge
+COMED_PAYMENT_URL = https:$(SLASH)/ipn2.paymentus.com/xotp/pm/comd
+DPL_PAYMENT_URL = https:$(SLASH)/ipn2.paymentus.com/xotp/pm/phi
+PECO_PAYMENT_URL = https:$(SLASH)/ipn2.paymentus.com/xotp/pm/peco
+PEPCO_PAYMENT_URL = https:$(SLASH)/ipn2.paymentus.com/xotp/pm/phi

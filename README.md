@@ -2,16 +2,14 @@
 
 ## Installation
 **Requirements**
-- Xcode: 12.0
-- Cocoa Pods: 1.5.3
-After a fresh `git clone` from the "Exelon_Mobile_iOS" repository, open a terminal at the root project folder and run `pod install`.  Following this open the project workspace named: "Mobile.xcworkspace", the project is now open and working.
+- Xcode: 13.3.1
 
 ## Configurations
 
 The project is configured such that Each Operating Company (OpCo) as well as each environment tier has its own
 Xcode configuration, and therefore a separate scheme.
 
-Each configuration defines specific values within the project target build settings which dictate everything about differnt tiers and OpCos.
+Each configuration defines specific values within the project target build settings which dictate everything about differnt tiers and OpCos.  These values are managed via xcconfig files stored in the tools folder.
 
 ## Schemes
 
@@ -33,25 +31,25 @@ https://exelontfs.visualstudio.com/EU-mobile/_wiki/wikis/EU-mobile.wiki/1386/Git
 
 ## Third Party Libraries
 
-Third party libraries are primarily managed using Cocoa Pods (https://github.com/CocoaPods/CocoaPods), in the event that a library needs modification it is integrated directly into the project (Mobile/Vender...)
+Third party libraries are primarily managed using SPM - [Swift Package Manager] (https://github.com/apple/swift-package-manager), in the event that a library needs modification it is integrated directly into the project (Mobile/Vender...).  When neccisary third party libraries are integrated via XCFrameworks, which allow for closed source code added to the project supporting multiple platforms.
 
 **Libraries Integrated Directly:**
 - SimpleKeychain
 
-**Libraries Managed By Cocoa Pods:**
-- RXSwift
+**Libraries Integrated Via XCFrameworks:**
+- Decibel
 - RXCocoa
+- RxRelay
+- RXSwift
 - RXSwiftExt
-- RXTest
-- ToastSwift
-- Zxcvbn
+
+**Libraries Managed By Swift Package Manager:**
+- Toast
 - Lottie
-- JVFloatLabeledTextField
-- ReachabilitySwift
+- Reachability
 - HorizonCalendar
 - Charts
 - XLPagerTabStrip
-- GoogleAnalytics
-- Firebase
 - AppCenter
-- ForeSee
+- MedalliaDigialSDK
+- Firebase

@@ -12,8 +12,8 @@
 	<string>$(BASE_URL)</string>
 	<key>Build Display Name</key>
 	<string>$(BUILD_DISPLAY_NAME)</string>
-	<key>Build Flavor</key>
-	<string>$(BUILD_FLAVOR)</string>
+	<key>Opco</key>
+	<string>$(OPCO)</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -45,8 +45,6 @@
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>Environment Tier</key>
 	<string>$(ENVIRONMENT_TIER)</string>
-	<key>Google Analytics ID</key>
-	<string>$(GOOGLE_ANALYTICS_ID)</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>LSApplicationQueriesSchemes</key>
