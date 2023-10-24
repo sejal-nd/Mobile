@@ -1,0 +1,8 @@
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+/// MARK: - Do not modify `VERSION` or `BUILD_NUMBER`.  These files are automatically modified by `version_bump.sh` in CI
+/// To modify the major version of a release modify `major` variable within `version_bump.sh`
+
+VERSION = 23.2023.297
+BUILD_NUMBER = 10664
