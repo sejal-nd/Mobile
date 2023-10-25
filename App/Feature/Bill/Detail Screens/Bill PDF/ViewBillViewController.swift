@@ -49,8 +49,8 @@ class ViewBillViewController: UIViewController {
              * When peek/popping from Billing History, if you wait on the peek until the PDF
              * fully loads, then pop in, the PDF would disappear for some reason. Reloading it here
              * fixes the issue, because viewWillAppear is called again during the pop */
-            guard let pdfData = viewModel.pdfData, let baseUrl = URL(string: "https://www.google.com") else { return }
-            webView.load(pdfData, mimeType: "application/pdf", characterEncodingName: "utf-8", baseURL: baseUrl)
+            guard let pdfData = viewModel.pdfData else { return }
+            webView.load(pdfData, mimeType: viewModel.contentType, characterEncodingName: "utf-8", baseURL: URL(fileURLWithPath: ""))
         }
     }
     
@@ -70,8 +70,8 @@ class ViewBillViewController: UIViewController {
         webView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         webView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         
-        guard let pdfData = viewModel.pdfData, let baseUrl = URL(string: "https://www.google.com") else { return }
-        webView.load(pdfData, mimeType: "application/pdf", characterEncodingName: "utf-8", baseURL: baseUrl)
+        guard let pdfData = viewModel.pdfData else { return }
+        webView.load(pdfData, mimeType: viewModel.contentType, characterEncodingName: "utf-8", baseURL: URL(fileURLWithPath: ""))
     }
     
     func fetchBillPDFData() {

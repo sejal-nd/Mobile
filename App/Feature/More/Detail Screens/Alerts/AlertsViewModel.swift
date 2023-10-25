@@ -13,7 +13,7 @@ class AlertsViewModel {
     let currentAlerts = BehaviorRelay(value: [PushNotification]())
 
     func fetchAlertsFromDisk() {
-        currentAlerts.accept(AlertsStore.shared.getAlerts(forAccountNumber: AccountsStore.shared.currentAccount.accountNumber))
+        currentAlerts.accept(PushNotificationStore.shared.loadNotifications(for: AccountsStore.shared.currentAccount.accountNumber))
     }
 
     private(set) lazy var shouldShowAlertsEmptyState: Driver<Bool> = currentAlerts.asDriver()

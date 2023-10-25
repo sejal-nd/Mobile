@@ -13,6 +13,7 @@ import SwiftUI
 struct DebugMenu: View {
     @AppStorage("selectedProjectTier") private var selectedProjectTier: ProjectTier = .stage
     @AppStorage("selectedProjectURL") private var selectedProjectURL: ProjectURLSuffix = .none
+    @AppStorage("apnsToken") private var apnsToken: String = "N/A"
     
     @State private var isShowingPKCEFlow = false
     
@@ -20,6 +21,10 @@ struct DebugMenu: View {
     
     private var versionString: String {
         Bundle.main.versionNumber ?? "N/A"
+    }
+    
+    private var buildNumber: String {
+        Bundle.main.buildNumber ?? "N/A"
     }
     
     private var bundleID: String {
@@ -35,7 +40,7 @@ struct DebugMenu: View {
                     InfoLabel(title: "Tier",
                               value: Configuration.shared.environmentName.rawValue)
                     InfoLabel(title: "Version",
-                              value: versionString)
+                              value: "\(versionString)(\(buildNumber))")
                     InfoLabel(title: "Bundle ID",
                               value: bundleID)
                 }
@@ -57,12 +62,15 @@ struct DebugMenu: View {
                         }
                     }
                     Button("Save & Restart App", action: restartApp)
+                        .foregroundColor(.green)
                 }
                 
                 Section(header: Text("Other URLs"),
                         footer: Text("Note: This menu is only available at the BETA tier.").padding(.bottom)) {
                     InfoLabel(title: "Associated Domain",
                               value: Configuration.shared.associatedDomain)
+                    InfoLabel(title: "APNS Token",
+                              value: apnsToken)
                     InfoLabel(title: "Account URL",
                               value: Configuration.shared.myAccountUrl)
                     InfoLabel(title: "oAuth URL",
@@ -88,7 +96,14 @@ struct DebugMenu: View {
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Reset", action: reset)
+                        .foregroundColor(.orange)
                 }
+            }
+            .onChange(of: selectedProjectTier) { value in
+                sendMessageToWatchSession(projectTier: value, projectURLSuffix: selectedProjectURL)
+            }
+            .onChange(of: selectedProjectURL) { value in
+                sendMessageToWatchSession(projectTier: selectedProjectTier, projectURLSuffix: value)
             }
         }
         .navigationViewStyle(StackNavigationViewStyle())
@@ -97,14 +112,27 @@ struct DebugMenu: View {
     private func reset() {
         selectedProjectTier = .stage
         selectedProjectURL = .none
+        
+        sendMessageToWatchSession(projectTier: selectedProjectTier, projectURLSuffix: selectedProjectURL)
     }
     
     private func restartApp() {
+        // Restart Watch App
+        try? WatchSessionController.shared.updateApplicationContext(applicationContext:
+                                                                        [WatchSessionController.Key.updateDebugMenu : true])
+        // Restart iOS App
         exit(0)
     }
     
     private func launchPKCESignIn() {
         isShowingPKCEFlow.toggle()
+    }
+    
+    private func sendMessageToWatchSession(projectTier: ProjectTier, projectURLSuffix: ProjectURLSuffix) {
+        try? WatchSessionController.shared.updateApplicationContext(applicationContext:
+                                                                        [WatchSessionController.Key.projectTier : projectTier.rawValue,
+                                                                         WatchSessionController.Key.projectURLSuffix : projectURLSuffix.rawValue]
+        )
     }
 }
 

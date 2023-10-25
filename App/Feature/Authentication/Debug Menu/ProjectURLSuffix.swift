@@ -27,7 +27,7 @@ enum ProjectURLSuffix: String, Identifiable, Equatable, CaseIterable {
     case maintenance = "Maintenance"
     
     case agentis = "Agentis"
-    case cis = "CIS"
+    case cis = "CIS UCD"
     case advancedNotifications = "Advance Notifications"
     
     case ace = "ACE NJ AMI"
@@ -67,7 +67,7 @@ extension ProjectURLSuffix {
         case .agentis:
             return "/agentis"
         case .cis:
-            return "/cis-upgrade"
+            return "/cis"
         case .advancedNotifications:
             return "/phiadvnoti"
         case .ace:
@@ -77,6 +77,7 @@ extension ProjectURLSuffix {
     
     var projectURLString: String {
         var urlString = self.projectPath
+        guard !urlString.isEmpty else { return "" }
         urlString.remove(at: urlString.startIndex)
         return urlString
     }

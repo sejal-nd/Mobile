@@ -79,8 +79,8 @@ enum AccountService {
     }
     
     #if os(iOS)
-    static func updatePECOReleaseOfInfoPreference(accountNumber: String = AccountsStore.shared.currentAccount.accountNumber, selectedIndex: Int, completion: @escaping (Result<VoidDecodable, NetworkingError>) -> ()) {
-        NetworkingLayer.request(router: .updateReleaseOfInfo(accountNumber: accountNumber, encodable: ReleaseOfInfoRequest(selectedIndex: selectedIndex)), completion: completion)
+    static func updatePECOReleaseOfInfoPreference(accountNumber: String = AccountsStore.shared.currentAccount.accountNumber, selectedPreference: String, completion: @escaping (Result<VoidDecodable, NetworkingError>) -> ()) {
+        NetworkingLayer.request(router: .updateReleaseOfInfo(accountNumber: accountNumber, encodable: ReleaseOfInfoRequest(value: selectedPreference)), completion: completion)
     }
 
     static func setDefaultAccount(accountNumber: String, completion: @escaping (Result<VoidDecodable, NetworkingError>) -> ()) {
