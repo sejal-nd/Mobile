@@ -1,5 +1,8 @@
 /// MARK: - Do not modify `VERSION` or `BUILD_NUMBER`.  These files are automatically modified by `version_bump.sh` in CI
 /// To modify the major version of a release modify `major` variable within `version_bump.sh`
+/// `version_bump.sh` modifies both version and build number
+/// `increment_build_number.sh` only incremements the build number.
+/// MARK: - TODO we many not want `version_bump.sh` to incremement build number since we want to call this after our release pipeline completes. and we will want to call incremement build number on every single PR into main.
 
 VERSION = 23.2023.297
 BUILD_NUMBER = 10664
