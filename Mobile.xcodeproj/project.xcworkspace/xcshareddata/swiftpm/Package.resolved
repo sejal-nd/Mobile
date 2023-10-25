@@ -19,6 +19,15 @@
       }
     },
     {
+      "identity" : "bettersafariview",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/stleamist/BetterSafariView.git",
+      "state" : {
+        "revision" : "dffd42bc70287e761979bc81dd278db5c80f0deb",
+        "version" : "2.4.1"
+      }
+    },
+    {
       "identity" : "boringssl-swiftpm",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/firebase/boringssl-SwiftPM.git",
@@ -43,6 +52,15 @@
       "state" : {
         "revision" : "fe4d527f0726bbeebeeb1aaef520721a57c90740",
         "version" : "4.1.0"
+      }
+    },
+    {
+      "identity" : "eu_ios_design_system",
+      "kind" : "remoteSourceControl",
+      "location" : "git@ssh.dev.azure.com:v3/exelontfs/EU-mobile/EU_iOS_Design_System",
+      "state" : {
+        "revision" : "80543963fac06a6d2deaa607c30b5a2deb9babc0",
+        "version" : "0.2.0"
       }
     },
     {

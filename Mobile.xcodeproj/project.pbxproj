@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 53;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -5098,6 +5098,7 @@
 				6761AC322AD85C8400945554 /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */,
 				6761AC372AD85CEA00945554 /* XCRemoteSwiftPackageReference "digital-ios-sdk" */,
 				6761AC3A2AD8653400945554 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				67396DF42AE9A6470038025F /* XCRemoteSwiftPackageReference "EU_iOS_Design_System" */,
 			);
 			productRefGroup = B58B5AC21E4E28740051FD5F /* Products */;
 			projectDirPath = "";
@@ -14701,6 +14702,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		67396DF42AE9A6470038025F /* XCRemoteSwiftPackageReference "EU_iOS_Design_System" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@ssh.dev.azure.com:v3/exelontfs/EU-mobile/EU_iOS_Design_System";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.0;
+			};
+		};
 		6761AC202AD84CC700945554 /* XCRemoteSwiftPackageReference "Toast-Swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "git@github.com:scalessec/Toast-Swift.git";
