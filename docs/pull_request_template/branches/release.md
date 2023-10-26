@@ -7,8 +7,8 @@ Please include a summary of the changes included in this release.
 
 ## Type of release
 
-Please check the type of change your PR introduces:
-_Put an `x` in the boxes that apply_
+<!-- Please check the type of change your PR introduces:
+_Put an `x` in the boxes that apply_ -->
 - [ ] Bug fix (non-breaking change which fixes an issue)
 - [ ] New feature (non-breaking change which adds functionality)
 
