@@ -3,7 +3,7 @@
 Please include a summary of the change and which issue is fixed. Please also include relevant motivation and context. List any dependencies that are required for this change.
 
 - Product Team / Project:
-- Desired Release Timeframe:
+- Desired Release Month:
 
 ## Type of change
 
@@ -16,12 +16,11 @@ _Put an `x` in the boxes that apply_
 - [ ] Breaking change (fix or feature that would cause existing functionality to not work as expected)
 - [ ] This change requires a documentation update
 
-# Sympli / Invision Design
+# Figma Design
 
 | Resource      | Link                |
 | ------------- |---------------------|
-| Sympli        | https://example.com |
-| Invision      | https://example.com |
+| Figma         | https://example.com |
 
 # Checklist:
 
