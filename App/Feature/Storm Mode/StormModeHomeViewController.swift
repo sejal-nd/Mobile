@@ -11,7 +11,7 @@ import RxCocoa
 import RxSwiftExt
 import Lottie
 import UIKit
-
+import SwiftUI
 class StormModeHomeViewController: AccountPickerViewController {
         
     @IBOutlet private weak var gradientView: UIView!
@@ -501,11 +501,11 @@ class StormModeHomeViewController: AccountPickerViewController {
     // MARK: - Actions
     
     @IBAction func showStormModeDetails(_ sender: Any) {
-        if viewModel.stormModeUpdate.value != nil {
-            performSegue(withIdentifier: "UpdatesDetailSegue", sender: nil)
-            FirebaseUtility.logEvent(.stormOutage(parameters: [.view_details]))
-
-        }
+        guard let update = viewModel.stormModeUpdate.value else { return }
+        #warning("todo, need to test")
+        FirebaseUtility.logEvent(.stormOutage(parameters: [.view_details]))
+        
+        navigationController?.pushViewController(UIHostingController(rootView: OpcoUpdateDetailView(update: update)), animated: true)
     }
 
     @IBAction func exitStormMode(_ sender: Any) {
@@ -853,9 +853,7 @@ class StormModeHomeViewController: AccountPickerViewController {
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vc = segue.destination as? UpdatesDetailViewController, let stormUpdate = viewModel.stormModeUpdate.value {
-            vc.opcoUpdate = stormUpdate
-        } else if let vc = segue.destination as? ReportOutageViewController,
+        if let vc = segue.destination as? ReportOutageViewController,
             let outageStatus = viewModel.currentOutageStatus {
             vc.viewModel.outageStatus = outageStatus
             vc.viewModel.phoneNumber.accept(outageStatus.contactHomeNumber ?? "")

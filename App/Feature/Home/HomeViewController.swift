@@ -13,6 +13,7 @@ import Lottie
 import UserNotifications
 import SafariServices
 import UIKit
+import SwiftUI
 
 fileprivate let editHomeSegueId = "editHomeSegue"
 fileprivate let colorBackgroundViewHeight: CGFloat = 446
@@ -295,7 +296,8 @@ class HomeViewController: AccountPickerViewController {
 //                    importantUpdateView.addTabletWidthConstraints(horizontalPadding: 16)
                     importantUpdateView.button.rx.touchUpInside.asDriver()
                         .drive(onNext: { [weak self] in
-                            self?.performSegue(withIdentifier: "UpdatesDetailSegue", sender: update)
+                            #warning("todo, need to test this.  may need to present over tabbar, may need to wrap in custom hosting controller for navbar control.")
+                            self?.navigationController?.pushViewController(UIHostingController(rootView: OpcoUpdateDetailView(update: update)), animated: true)
                         })
                         .disposed(by: importantUpdateView.disposeBag)
                     
@@ -867,8 +869,6 @@ class HomeViewController: AccountPickerViewController {
             vc.accountDetail = accountDetail
         case let (vc as TotalSavingsViewController, eventResults as [SERResult]):
             vc.eventResults = eventResults
-        case let (vc as UpdatesDetailViewController, update as Alert):
-            vc.opcoUpdate = update
         case let (vc as BGEAutoPayViewController, accountDetail as AccountDetail):
              vc.delegate = self
              vc.accountDetail = accountDetail

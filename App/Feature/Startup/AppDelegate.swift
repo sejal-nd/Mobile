@@ -13,6 +13,7 @@ import RxSwift
 import UserNotifications
 import CoreData
 import DecibelCore
+import EUDesignSystem
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -59,6 +60,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setupUserDefaults()
         setupToastStyles()
         setupAnalytics()
+        
+        // Design System Module - Register Fonts
+        FontRegistration.registerFonts()
         
         // Fetch Feature Flag Values
         let _ = FeatureFlagUtility.shared

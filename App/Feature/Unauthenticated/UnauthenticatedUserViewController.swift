@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 class UnauthenticatedUserViewController: UIViewController, UIGestureRecognizerDelegate {
     
@@ -101,14 +102,10 @@ class UnauthenticatedUserViewController: UIViewController, UIGestureRecognizerDe
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vc = segue.destination as? UnauthenticatedOutageValidateAccountViewController {
-
-        } else if let vc = segue.destination as? OutageMapViewController {
+        if let vc = segue.destination as? OutageMapViewController {
             vc.unauthenticatedExperience = true
             vc.hasPressedStreetlightOutageMapButton = segue.identifier == "streetlightOutageMapSegue" ? true : false
         } else if let vc = segue.destination as? ContactUsViewController {
-            vc.unauthenticatedExperience = true
-        } else if let vc = segue.destination as? UpdatesViewController {
             vc.unauthenticatedExperience = true
         }
     }
@@ -244,7 +241,7 @@ extension UnauthenticatedUserViewController: UITableViewDataSource, UITableViewD
                 if FeatureFlagUtility.shared.bool(forKey: .hasUnauthenticatedISUM) {
                     UIApplication.shared.openUrlIfCan(startServiceWebURL)
                 } else {
-                    performSegue(withIdentifier: "updatesSegue", sender: nil)
+                    navigationController?.pushViewController(UIHostingController(rootView: OpcoUpdatesView()), animated: true)
                 }
             case 1:
                 if FeatureFlagUtility.shared.bool(forKey: .hasUnauthenticatedISUM) {
@@ -265,7 +262,7 @@ extension UnauthenticatedUserViewController: UITableViewDataSource, UITableViewD
         case 2:
             switch indexPath.row {
             case 0:
-                performSegue(withIdentifier: "updatesSegue", sender: nil)
+                navigationController?.pushViewController(UIHostingController(rootView: OpcoUpdatesView()), animated: true)
             case 1:
                 performSegue(withIdentifier: "contactUsSegue", sender: nil)
             case 2:

@@ -4,6 +4,6 @@
 
 #ifndef EXBridgingHeader_h
 #define EXBridgingHeader_h
-
-
+#import "Firebase.h"
+//#import "module.modulemap"
 #endif /* EXBridgingHeader_h */

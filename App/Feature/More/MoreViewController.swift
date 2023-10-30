@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import Toast
 import AuthenticationServices
+import SwiftUI
 
 class MoreViewController: UIViewController {
     
@@ -86,7 +87,8 @@ class MoreViewController: UIViewController {
         FirebaseUtility.logScreenView(.moreView(className: self.className))
         
         navigationController?.setNavigationBarHidden(!StormModeStatus.shared.isOn, animated: true)
-
+        tabBarController?.navigationController?.setNavigationBarHidden(!StormModeStatus.shared.isOn, animated: true)
+        
         if AccountsStore.shared.accounts == nil {
             fetchAccounts()
         }
@@ -376,7 +378,11 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
             case 0:
                 performSegue(withIdentifier: "alertsSegue", sender: nil)
             case 1:
-                performSegue(withIdentifier: "updatesSegue", sender: nil)
+                if StormModeStatus.shared.isOn {
+                    navigationController?.pushViewController(SecondViewHostingController(rootView: OpcoUpdatesView()), animated: true)
+                } else {
+                    tabBarController?.navigationController?.pushViewController(SecondViewHostingController(rootView: OpcoUpdatesView()), animated: true)
+                }
             case 2:
                 performSegue(withIdentifier: "appointmentsSegue", sender: nil)
             default:

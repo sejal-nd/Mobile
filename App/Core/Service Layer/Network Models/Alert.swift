@@ -8,7 +8,8 @@
 
 import Foundation
 
-public struct Alert: Decodable {
+public struct Alert: Decodable, Identifiable {
+    public var id: UUID = UUID()
     public var title: String
     public var message: String
     public var order: Int
@@ -19,6 +20,14 @@ public struct Alert: Decodable {
         case message = "Message"
         case order = "Order"
         case type = "AlertTypeString"
+    }
+    
+    public init(title: String,
+                message: String) {
+        self.title = title
+        self.message = message
+        self.order = 0
+        self.type = "test"
     }
     
     public init(from decoder: Decoder) throws {

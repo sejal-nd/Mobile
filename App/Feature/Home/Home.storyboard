@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="GkP-jV-MfK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="GkP-jV-MfK">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -24,11 +24,11 @@
             <objects>
                 <viewController extendedLayoutIncludesOpaqueBars="YES" hidesBottomBarWhenPushed="YES" id="jop-CG-TUs" customClass="HomeEditViewController" customModule="Atlantic_City_Electric" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ru0-ER-Lgv">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="SaA-dQ-kuY">
-                                <rect key="frame" x="0.0" y="0.0" width="393" height="698"/>
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="757"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="qE7-g0-s29">
                                     <size key="itemSize" width="375" height="60"/>
@@ -285,7 +285,7 @@
                                 </connections>
                             </collectionView>
                             <view contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ONv-RL-qH5" customClass="StickyFooterView" customModule="Atlantic_City_Electric" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="698" width="393" height="85"/>
+                                <rect key="frame" x="0.0" y="757" width="393" height="85"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1zG-sw-7Fq" customClass="PrimaryButton" customModule="Atlantic_City_Electric" customModuleProvider="target">
                                         <rect key="frame" x="28" y="15" width="337" height="55"/>
@@ -328,16 +328,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HyB-6K-vcz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-209" y="-698"/>
-        </scene>
-        <!--UpdatesDetailViewController-->
-        <scene sceneID="g5d-Cq-yGf">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Updates" referencedIdentifier="UpdatesDetailViewController" id="8XL-jd-5lL" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="fN2-XW-ilz"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="z0N-Jo-QyJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="570" y="-2278"/>
         </scene>
         <!--ReportOutageViewController-->
         <scene sceneID="Hv2-cW-QlF">
@@ -401,7 +391,7 @@
             <objects>
                 <viewController hidesBottomBarWhenPushed="YES" id="sRC-YE-f9Y" customClass="TotalSavingsViewController" customModule="Atlantic_City_Electric" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MzG-Xm-OsS">
-                        <rect key="frame" x="0.0" y="0.0" width="581" height="542"/>
+                        <rect key="frame" x="0.0" y="0.0" width="581" height="601"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$00.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U9t-IF-uZb">
@@ -446,13 +436,13 @@
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CHb-sT-z0N">
-                                <rect key="frame" x="0.0" y="103" width="581" height="439"/>
+                                <rect key="frame" x="0.0" y="103" width="581" height="498"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JE0-1x-WxG">
-                                        <rect key="frame" x="0.0" y="0.0" width="581" height="439"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="581" height="498"/>
                                         <subviews>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" sectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="fWK-Vp-ecc">
-                                                <rect key="frame" x="0.0" y="0.0" width="581" height="439"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="581" height="498"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="581" id="ch8-Rz-3i0"/>
@@ -701,11 +691,11 @@
                         <viewControllerLayoutGuide type="bottom" id="Dqq-1a-lJA"/>
                     </layoutGuides>
                     <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="bB9-IB-WIF">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="wrg-RC-Urp">
-                                <rect key="frame" x="0.0" y="59" width="393" height="639"/>
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="757"/>
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="dSq-GB-YL7" customClass="ButtonBarView" customModule="XLPagerTabStrip">
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="48"/>
@@ -729,18 +719,18 @@
                                         </constraints>
                                     </view>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mTr-Pe-azx">
-                                        <rect key="frame" x="0.0" y="49" width="393" height="590"/>
+                                        <rect key="frame" x="0.0" y="49" width="393" height="708"/>
                                     </scrollView>
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nzs-yn-phX" customClass="NoNetworkConnectionView" customModule="Atlantic_City_Electric" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="49" width="393" height="590"/>
+                                        <rect key="frame" x="0.0" y="49" width="393" height="708"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="epj-nW-btH" customClass="StateView" customModule="Atlantic_City_Electric" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="49" width="393" height="590"/>
+                                        <rect key="frame" x="0.0" y="49" width="393" height="708"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bCZ-fZ-pSB" customClass="StateView" customModule="Atlantic_City_Electric" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="639" width="393" height="0.0"/>
+                                        <rect key="frame" x="0.0" y="757" width="393" height="0.0"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                 </subviews>
@@ -760,11 +750,11 @@
                                 </constraints>
                             </stackView>
                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="Sx1-DX-5IR" customClass="LoadingIndicator" customModule="Atlantic_City_Electric" customModuleProvider="target">
-                                <rect key="frame" x="166.66666666666666" y="385.66666666666669" width="60" height="12"/>
+                                <rect key="frame" x="166.66666666666666" y="415" width="60" height="12"/>
                                 <color key="backgroundColor" red="0.84705882349999995" green="0.84705882349999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <view contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YwV-bN-j38" customClass="StickyFooterView" customModule="Atlantic_City_Electric" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="698" width="393" height="85"/>
+                                <rect key="frame" x="0.0" y="757" width="393" height="85"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZVL-zv-6aa" customClass="PrimaryButton" customModule="Atlantic_City_Electric" customModuleProvider="target">
                                         <rect key="frame" x="28" y="15" width="337" height="55"/>
@@ -1072,7 +1062,6 @@
                         <segue destination="WSt-KO-Xq2" kind="show" identifier="appointmentDetailSegue" id="Y7R-Hd-d60"/>
                         <segue destination="9AE-d3-QcS" kind="show" identifier="outageMapSegue" id="h5F-aX-a1n"/>
                         <segue destination="ho2-TI-3tb" kind="show" identifier="reportOutageSegue" id="Lop-PA-Q6Y"/>
-                        <segue destination="8XL-jd-5lL" kind="show" identifier="UpdatesDetailSegue" id="ayy-wa-ekS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="arn-JF-3F9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
