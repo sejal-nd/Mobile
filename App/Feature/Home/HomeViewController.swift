@@ -296,8 +296,7 @@ class HomeViewController: AccountPickerViewController {
 //                    importantUpdateView.addTabletWidthConstraints(horizontalPadding: 16)
                     importantUpdateView.button.rx.touchUpInside.asDriver()
                         .drive(onNext: { [weak self] in
-                            #warning("todo, need to test this.  may need to present over tabbar, may need to wrap in custom hosting controller for navbar control.")
-                            self?.navigationController?.pushViewController(UIHostingController(rootView: OpcoUpdateDetailView(update: update)), animated: true)
+                            self?.navigationController?.pushViewController(OpcoUpdatesHostingController(rootView: OpcoUpdateDetailView(update: update), shouldShowLargeTitle: false), animated: true)
                         })
                         .disposed(by: importantUpdateView.disposeBag)
                     

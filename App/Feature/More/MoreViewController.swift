@@ -379,9 +379,9 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
                 performSegue(withIdentifier: "alertsSegue", sender: nil)
             case 1:
                 if StormModeStatus.shared.isOn {
-                    navigationController?.pushViewController(SecondViewHostingController(rootView: OpcoUpdatesView()), animated: true)
+                    navigationController?.pushViewController(OpcoUpdatesHostingController(rootView: OpcoUpdatesView()), animated: true)
                 } else {
-                    tabBarController?.navigationController?.pushViewController(SecondViewHostingController(rootView: OpcoUpdatesView()), animated: true)
+                    tabBarController?.navigationController?.pushViewController(OpcoUpdatesHostingController(rootView: OpcoUpdatesView()), animated: true)
                 }
             case 2:
                 performSegue(withIdentifier: "appointmentsSegue", sender: nil)

@@ -13,22 +13,22 @@ struct OpcoUpdatesView: View {
     @StateObject private var viewModel = ViewModel()
     
     var body: some View {
-        ScrollView {
-            RootContainerView(state: viewModel.state) {
+        RootContainerView(state: viewModel.state) {
+            ScrollView {
                 LazyVStack {
                     ForEach(viewModel.updates) { update in
                         OpcoUpdatesRow(update: update)
                     }
                 }
                 .padding(.top, 20)
-            } emptyView: {
-                EmptyDataView(imageName: viewModel.emptyImageName,
-                              text: viewModel.emptyText)
-            } loadingView: {
-                LoadingDotView() // is top justified...
-            } errorView: {
-                ErrorView(text: viewModel.errorText)
             }
+        } emptyView: {
+            EmptyDataView(imageName: viewModel.emptyImageName,
+                          text: viewModel.emptyText)
+        } loadingView: {
+            LoadingDotView()
+        } errorView: {
+            ErrorView(text: viewModel.errorText)
         }
         .navigationTitle("Updates")
         .navigationBarTitleDisplayMode(.large)

@@ -502,10 +502,9 @@ class StormModeHomeViewController: AccountPickerViewController {
     
     @IBAction func showStormModeDetails(_ sender: Any) {
         guard let update = viewModel.stormModeUpdate.value else { return }
-        #warning("todo, need to test")
         FirebaseUtility.logEvent(.stormOutage(parameters: [.view_details]))
         
-        navigationController?.pushViewController(UIHostingController(rootView: OpcoUpdateDetailView(update: update)), animated: true)
+        navigationController?.pushViewController(OpcoUpdatesHostingController(rootView: OpcoUpdateDetailView(update: update), shouldShowLargeTitle: false), animated: true)
     }
 
     @IBAction func exitStormMode(_ sender: Any) {

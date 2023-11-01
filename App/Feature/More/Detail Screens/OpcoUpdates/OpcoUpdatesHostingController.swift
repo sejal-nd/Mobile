@@ -9,19 +9,26 @@
 import UIKit
 import SwiftUI
 
-class SecondViewHostingController: UIHostingController<OpcoUpdatesView> {
-    override init(rootView: OpcoUpdatesView) {
+class OpcoUpdatesHostingController<T:View>: UIHostingController<T> {
+    var shouldShowLargeTitle = true
+    
+    init(rootView: T, shouldShowLargeTitle: Bool) {
+        super.init(rootView: rootView)
+        self.shouldShowLargeTitle = shouldShowLargeTitle
+    }
+    
+    override init(rootView: T) {
         super.init(rootView: rootView)
     }
     
     required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder, rootView: OpcoUpdatesView())
+        fatalError("Not implemented (or needed)")
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         navigationController?.setNavigationBarHidden(false, animated: true)
-        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.prefersLargeTitles = shouldShowLargeTitle
     }
 }

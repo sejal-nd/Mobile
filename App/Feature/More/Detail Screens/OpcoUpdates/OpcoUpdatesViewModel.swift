@@ -21,8 +21,7 @@ extension OpcoUpdatesView {
         let errorText = "Unable to retrieve data at this time. Please try again later."
         
         init() {
-            #warning("todo re enable")
-//            fetchOpcoUpdates()
+            fetchOpcoUpdates()
         }
         
         private func fetchOpcoUpdates() {
