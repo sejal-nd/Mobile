@@ -176,8 +176,8 @@ steps:
     script: |
       git config --global user.email "azurePipeline@noreply.com"
       git config --global user.name "Azure Pipeline"
-      git checkout main
-      git pull main
+      git checkout -b main
+      git pull
       bash increment_build_number.sh
       git add Version.xcconfig
       git commit -m "Build Number Bump - Pipeline [skip ci]"
