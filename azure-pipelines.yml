@@ -3,10 +3,10 @@ trigger:
 
 strategy:
   matrix:
-    ACE:
-      opco: ACE
-    # BGE:
-    #   opco: BGE
+    # ACE:
+    #   opco: ACE
+    BGE:
+      opco: BGE
     # ComEd:
     #   opco: ComEd
     # DPL:
