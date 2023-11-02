@@ -3,10 +3,10 @@ trigger:
 
 strategy:
   matrix:
-    # ACE:
-    #   opco: ACE
-    BGE:
-      opco: BGE
+    ACE:
+      opco: ACE
+    # BGE:
+    #   opco: BGE
     # ComEd:
     #   opco: ComEd
     # DPL:
@@ -190,7 +190,7 @@ steps:
       git commit -m "Build Number Bump - Pipeline [skip ci]"
       git push --set-upstream origin main
     workingDirectory: 'tools'
-  condition: contains(variables['opco'], 'BGE') # Workaround to only trigger once per PR instead of 6 times
+  condition: contains(variables['opco'], 'ACE') # Workaround to only trigger once per PR instead of 6 times
 
 # Load SPM Cache
 - task: Cache@2
