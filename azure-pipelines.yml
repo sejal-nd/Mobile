@@ -35,7 +35,7 @@ steps:
   displayName: '🔐 Install iOS Enterprise Distribution Certificates'
   inputs:
     certSecureFile: 'Exelon iOS Enterprise Distribution - Expires Feb 2024-01-05.p12'
-    certPwd: '$(exelon.iOSExelonEnterpriseDistributionP12)'
+    certPwd: '$(iOSExelonEnterpriseDistributionP12)'
     setUpPartitionIdACLForPrivateKey: false
     keychain: 'temp'
 
