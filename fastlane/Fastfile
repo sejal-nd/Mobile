@@ -1,194 +1,15 @@
 
 skip_docs # skip autogenerating the README.md, we are manually writing it
 
+import("Fastfile_Match")
+import("Fastfile_Helpers")
+
 default_platform(:ios)
   platform :ios do
-    desc "Upload a pre-built IPA to the App Store and tag release"
-    lane :uploadBuild do |options|
-      deliver(
-        api_key_path: options[:api_key_path],
-        app_identifier: options[:bundle_id],
-        ipa: options[:ipa_path],
-        metadata_path: options[:metadata_path],
-        team_id: "YU7Y757VB5",
-        submit_for_review: true,
-        skip_screenshots: true,
-        ignore_language_directory_validation: true,
-        run_precheck_before_submit: false,
-        precheck_include_in_app_purchases: false,
-        submission_information: "{\"export_compliance_uses_encryption\": false, \"add_id_info_uses_idfa\": false }",
-        force: true
-      )
 
-      tag_release
-
-      teams(
-        title: "✅ TODO OPCO NAME Successfully Uploaded to App Store",
-        message: "App successfully builts!",
-        facts:[
-          {
-           "name"=>"Platform",
-           "value"=>"iOS"
-          },
-          {
-            "name"=>"Lane Test",
-            "value"=>"iOS Internal"
-          }
-        ],
-        teams_url: "https://exeloncorp.webhook.office.com/webhookb2/50bbc509-81bb-4f27-9e1e-36c130782b82@600d01fc-055f-49c6-868f-3ecfcc791773/IncomingWebhook/98249b98175a4b4fbbe0b611c820c345/ee8c931d-feeb-44db-a23a-ddfe46e4a22d"
-      )
-    end
-
-    desc "Adds a git tag of the Xcode project number, e.g. 5.10.0"
-    lane :tag_release do
-      version = get_version_number(
-        target: "EUMobile"
-      )
-
-      begin
-        if !git_tag_exists(tag: version)
-          # Tags git release commit: ex: 5.10.0
-          add_git_tag(
-            tag: version,
-            includes_lane: false
-          )
-
-          push_git_tags
-        end
-       rescue => ex
-         puts "Something went wrong: #{ex}"
-       end
-    end
-
-    # MATCH - enterprise
-
-    desc "Sync enterprise certificates"
-    lane :sync_enterprise_certificates do |options|
-      # enterprise
-      sync_code_signing(
-        api_key_path: options[:api_key_path],
-        team_name: "Exelon Business Services Company, LLC",
-        team_id: "38R4RRBYR8",
-        type: "enterprise",
-        app_identifier: [
-          'com.exelon.mobile.ace.testing', 'com.exelon.mobile.ace.staging', 'com.exelon.mobile.ace.prodbeta',
-          'com.exelon.mobile.bge.testing', 'com.exelon.mobile.bge.staging', 'com.exelon.mobile.bge.prodbeta', 
-          'com.exelon.mobile.comed.testing', 'com.exelon.mobile.comed.staging', 'com.exelon.mobile.comed.prodbeta', 
-          'com.exelon.mobile.delmarva.testing', 'com.exelon.mobile.delmarva.staging', 'com.exelon.mobile.delmarva.prodbeta',
-          'com.exelon.mobile.peco.testing', 'com.exelon.mobile.peco.staging', 'com.exelon.mobile.peco.prodbeta', 
-          'com.exelon.mobile.pepco.testing', 'com.exelon.mobile.pepco.staging', 'com.exelon.mobile.pepco.prodbeta',
-
-          'com.exelon.mobile.ace.testing.watchkitapp', 'com.exelon.mobile.ace.staging.watchkitapp', 'com.exelon.mobile.ace.prodbeta.watchkitapp',
-          'com.exelon.mobile.bge.testing.watchkitapp', 'com.exelon.mobile.bge.staging.watchkitapp', 'com.exelon.mobile.bge.prodbeta.watchkitapp', 
-          'com.exelon.mobile.comed.testing.watchkitapp', 'com.exelon.mobile.comed.staging.watchkitapp', 'com.exelon.mobile.comed.prodbeta.watchkitapp', 
-          'com.exelon.mobile.delmarva.testing.watchkitapp', 'com.exelon.mobile.delmarva.staging.watchkitapp', 'com.exelon.mobile.delmarva.prodbeta.watchkitapp',
-          'com.exelon.mobile.peco.testing.watchkitapp', 'com.exelon.mobile.peco.staging.watchkitapp', 'com.exelon.mobile.peco.prodbeta.watchkitapp', 
-          'com.exelon.mobile.pepco.testing.watchkitapp', 'com.exelon.mobile.pepco.staging.watchkitapp', 'com.exelon.mobile.pepco.prodbeta.watchkitapp',
-      ],
-        force_for_new_devices: true,
-        readonly: true
-      )
-    end
-
-  
-    desc "Generate new enterprise certificates"
-    lane :generate_new_enterprise_certificates do |options|
-      # enterprise
-      sync_code_signing(
-        api_key_path: options[:api_key_path],
-        team_name: "Exelon Business Services Company, LLC",
-        team_id: "38R4RRBYR8",
-        type: "enterprise",
-        app_identifier: [
-          'com.exelon.mobile.ace.testing', 'com.exelon.mobile.ace.staging', 'com.exelon.mobile.ace.prodbeta',
-          'com.exelon.mobile.bge.testing', 'com.exelon.mobile.bge.staging', 'com.exelon.mobile.bge.prodbeta', 
-          'com.exelon.mobile.comed.testing', 'com.exelon.mobile.comed.staging', 'com.exelon.mobile.comed.prodbeta', 
-          'com.exelon.mobile.delmarva.testing', 'com.exelon.mobile.delmarva.staging', 'com.exelon.mobile.delmarva.prodbeta',
-          'com.exelon.mobile.peco.testing', 'com.exelon.mobile.peco.staging', 'com.exelon.mobile.peco.prodbeta', 
-          'com.exelon.mobile.pepco.testing', 'com.exelon.mobile.pepco.staging', 'com.exelon.mobile.pepco.prodbeta',
-
-          'com.exelon.mobile.ace.testing.watchkitapp', 'com.exelon.mobile.ace.staging.watchkitapp', 'com.exelon.mobile.ace.prodbeta.watchkitapp',
-          'com.exelon.mobile.bge.testing.watchkitapp', 'com.exelon.mobile.bge.staging.watchkitapp', 'com.exelon.mobile.bge.prodbeta.watchkitapp', 
-          'com.exelon.mobile.comed.testing.watchkitapp', 'com.exelon.mobile.comed.staging.watchkitapp', 'com.exelon.mobile.comed.prodbeta.watchkitapp', 
-          'com.exelon.mobile.delmarva.testing.watchkitapp', 'com.exelon.mobile.delmarva.staging.watchkitapp', 'com.exelon.mobile.delmarva.prodbeta.watchkitapp',
-          'com.exelon.mobile.peco.testing.watchkitapp', 'com.exelon.mobile.peco.staging.watchkitapp', 'com.exelon.mobile.peco.prodbeta.watchkitapp', 
-          'com.exelon.mobile.pepco.testing.watchkitapp', 'com.exelon.mobile.pepco.staging.watchkitapp', 'com.exelon.mobile.pepco.prodbeta.watchkitapp',
-      ],
-        force_for_new_devices: true,
-        readonly: false
-      )
-    end
-
-    desc "Verify and install enterprise certs"
-    lane :prepareEnterpriseCerts do |options|
-      ENV["MATCH_PASSWORD"] = options[:MATCH_PASSWORD]
-
-      sync_enterprise_certificates(
-        api_key_path: options[:api_key_path],
-      )
-
-      generate_new_enterprise_certificates(
-        api_key_path: options[:api_key_path],
-      )
-    end
-
-    # MATCH - appstore
-
-    desc "Sync appstore certificates"
-    lane :sync_appstore_certificates do |options|
-      # appstore
-      sync_code_signing(
-        api_key_path: options[:api_key_path],
-        team_name: "EXELON BUSINESS SERVICES COMPANY, LLC",
-        team_id: "YU7Y757VB5",
-        type: "appstore",
-        app_identifier: [
-          'com.ifactorconsulting.ace', 'com.exelon.mobile.bge', 'com.iphoneproduction.exelon',
-          'com.ifactorconsulting.delmarva', 'com.exelon.mobile.peco', 'com.ifactorconsulting.pepco',
-
-          'com.ifactorconsulting.ace.watchkitapp', 'com.exelon.mobile.bge.watchkitapp', 'com.iphoneproduction.exelon.watchkitapp', 
-          'com.ifactorconsulting.delmarva.watchkitapp', 'com.exelon.mobile.peco.watchkitapp', 'com.ifactorconsulting.pepco.watchkitapp'
-      ],
-        force_for_new_devices: true,
-        readonly: true
-      )
-    end
-
-    desc "Generate new appstore certificates"
-    lane :generate_new_appstore_certificates do |options|
-      # appstore
-      sync_code_signing(
-        api_key_path: options[:api_key_path],
-        team_name: "EXELON BUSINESS SERVICES COMPANY, LLC",
-        team_id: "YU7Y757VB5",
-        type: "appstore",
-        app_identifier: [
-          'com.ifactorconsulting.ace', 'com.exelon.mobile.bge', 'com.iphoneproduction.exelon',
-          'com.ifactorconsulting.delmarva', 'com.exelon.mobile.peco', 'com.ifactorconsulting.pepco',
-
-          'com.ifactorconsulting.ace.watchkitapp', 'com.exelon.mobile.bge.watchkitapp', 'com.iphoneproduction.exelon.watchkitapp', 
-          'com.ifactorconsulting.delmarva.watchkitapp', 'com.exelon.mobile.peco.watchkitapp', 'com.ifactorconsulting.pepco.watchkitapp'
-      ],
-        force_for_new_devices: true,
-        readonly: false
-      )
-    end
-
-    desc "Verify and install appstore certs"
-    lane :prepareAppstoreCerts do |options|
-      ENV["MATCH_PASSWORD"] = options[:MATCH_PASSWORD]
-
-      sync_appstore_certificates(
-        api_key_path: options[:api_key_path],
-      )
-
-      generate_new_appstore_certificates(
-        api_key_path: options[:api_key_path],
-      )
-    end
-
+    # MARK: Package IPA
     desc "Package and build the app, resulting in an IPA file"
-    lane :package do |options|
+    lane :build_app do |options|
       xcodes(
         version: "14.3.1",
         select_for_current_build_only: true
@@ -204,7 +25,7 @@ default_platform(:ios)
         cloned_source_packages_path: "SourcePackages",
         silent: true,
         output_directory: options[:output_directory], # Destination directory. Defaults to current directory.
-        output_name: "EUMobile.ipa", # Specify the name of the .ipa file to generate (including file extension)
+        output_name: "Mobile.ipa", # Specify the name of the .ipa file to generate (including file extension)
         export_method: "enterprise",
         export_options: {
           provisioningProfiles: {
@@ -225,23 +46,24 @@ default_platform(:ios)
         }
       )
 
-      teams(
-        title: "App Built Successfully",
-        message: "App successfully builts!",
-        facts:[
-          {
-           "name"=>"Platform",
-           "value"=>"iOS"
-          },
-          {
-            "name"=>"Lane Test",
-            "value"=>"iOS Internal"
-          }
-        ],
-        teams_url: "https://exeloncorp.webhook.office.com/webhookb2/50bbc509-81bb-4f27-9e1e-36c130782b82@600d01fc-055f-49c6-868f-3ecfcc791773/IncomingWebhook/98249b98175a4b4fbbe0b611c820c345/ee8c931d-feeb-44db-a23a-ddfe46e4a22d"
-      )
+      # teams(
+      #   title: "App Built Successfully",
+      #   message: "App successfully builts!",
+      #   facts:[
+      #     {
+      #      "name"=>"Platform",
+      #      "value"=>"iOS"
+      #     },
+      #     {
+      #       "name"=>"Lane Test",
+      #       "value"=>"iOS Internal"
+      #     }
+      #   ],
+      #   teams_url: "https://exeloncorp.webhook.office.com/webhookb2/50bbc509-81bb-4f27-9e1e-36c130782b82@600d01fc-055f-49c6-868f-3ecfcc791773/IncomingWebhook/98249b98175a4b4fbbe0b611c820c345/ee8c931d-feeb-44db-a23a-ddfe46e4a22d"
+      # )
     end
 
+    # Upload IPA to App Center
     desc "Upload a pre-built IPA and DSYM Zip to App Center and distribute"
     lane :app_center_upload do |options|
       appcenter_upload(
@@ -254,5 +76,42 @@ default_platform(:ios)
         destinations: options[:destinations],
         dsym: options[:dsym_path]
       )
+    end
+
+    # Upload IPA to App Store
+    desc "Upload a pre-built IPA to the App Store and tag release"
+    lane :app_store_ipa_upload do |options|
+      deliver(
+        api_key_path: options[:api_key_path],
+        app_identifier: options[:bundle_id],
+        ipa: options[:ipa_path],
+        metadata_path: options[:metadata_path],
+        team_id: "YU7Y757VB5",
+        submit_for_review: true,
+        skip_screenshots: true,
+        ignore_language_directory_validation: true,
+        run_precheck_before_submit: false,
+        precheck_include_in_app_purchases: false,
+        submission_information: "{\"export_compliance_uses_encryption\": false, \"add_id_info_uses_idfa\": false }",
+        force: true
+      )
+
+      tag_release
+
+      # teams(
+      #   title: "✅ TODO OPCO NAME Successfully Uploaded to App Store",
+      #   message: "App successfully builts!",
+      #   facts:[
+      #     {
+      #      "name"=>"Platform",
+      #      "value"=>"iOS"
+      #     },
+      #     {
+      #       "name"=>"Lane Test",
+      #       "value"=>"iOS Internal"
+      #     }
+      #   ],
+      #   teams_url: "https://exeloncorp.webhook.office.com/webhookb2/50bbc509-81bb-4f27-9e1e-36c130782b82@600d01fc-055f-49c6-868f-3ecfcc791773/IncomingWebhook/98249b98175a4b4fbbe0b611c820c345/ee8c931d-feeb-44db-a23a-ddfe46e4a22d"
+      # )
     end
   end
