@@ -5,16 +5,16 @@ strategy:
   matrix:
     ACE:
       opco: ACE
-    BGE:
-      opco: BGE
-    ComEd:
-      opco: ComEd
-    DPL:
-      opco: Delmarva
-    PECO:
-      opco: PECO
-    Pepco:
-      opco: Pepco
+    # BGE:
+    #   opco: BGE
+    # ComEd:
+    #   opco: ComEd
+    # DPL:
+    #   opco: Delmarva
+    # PECO:
+    #   opco: PECO
+    # Pepco:
+    #   opco: Pepco
 
 
 pool:
