@@ -169,7 +169,6 @@ steps:
     sshPublicKey: 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKrqa/xQQM3BrscbZZ3CrDoC/poU1Iu1HzwgAzuaf4wX “joeph.erlandson@exeloncorp.com” '
     sshKeySecureFile: 'id_ed25519'
 
-# we only want this ran once, not 6 times....
 # Build Number Bump
 - task: CmdLine@2
   displayName: '⬆️ Build Number Bump'
@@ -183,6 +182,7 @@ steps:
       git commit -m "Build Number Bump - Pipeline [skip ci]"
       git push --set-upstream origin main
     workingDirectory: 'tools'
+  condition: contains(variables['variables.opco'], 'BGE') # Workaround to only trigger once per PR instead of 6 times
 
 # Load SPM Cache
 - task: Cache@2
