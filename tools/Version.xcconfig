@@ -5,4 +5,4 @@
 /// MARK: - TODO we many not want `version_bump.sh` to incremement build number since we want to call this after our release pipeline completes. and we will want to call incremement build number on every single PR into main.
 
 VERSION = 24.0.0
-BUILD_NUMBER = 10664
+BUILD_NUMBER = 10665
