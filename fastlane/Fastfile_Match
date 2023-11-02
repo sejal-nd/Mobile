@@ -6,7 +6,7 @@ default_platform(:ios)
 
     # Install appstore Certs
     desc "Verify and install appstore certs"
-    lane :prepareAppstoreCerts do |options|
+    lane :prepare_app_store_certs do |options|
       ENV["MATCH_PASSWORD"] = options[:MATCH_PASSWORD]
 
       sync_appstore_certificates(
@@ -16,7 +16,7 @@ default_platform(:ios)
 
     # Install Enterprise Certs
     desc "Verify and install enterprise certs"
-    lane :prepareEnterpriseCerts do |options|
+    lane :prepare_enterprise_certs do |options|
       ENV["MATCH_PASSWORD"] = options[:MATCH_PASSWORD]
 
       sync_enterprise_certificates(
