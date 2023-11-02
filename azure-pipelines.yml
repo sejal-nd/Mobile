@@ -133,6 +133,13 @@ steps:
       bundle update
       sudo bundle install --retry=3 --jobs=4
 
+- task: CmdLine@2
+  displayName: '⚙️ TESTESTETSETEST'
+  inputs:
+    script: |
+      echo "$(variables.opco)"
+      echo "$(opco)"
+
 # Install Xcodes
 - task: CmdLine@2
   displayName: '⚙️ Install Xcodes'
