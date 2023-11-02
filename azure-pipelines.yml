@@ -197,7 +197,7 @@ steps:
 - task: CmdLine@2
   displayName: '🛠️ Build App'
   inputs:
-    script: 'bundle exec fastlane build_app configuration:$(opco)-$(exelon.buildType) scheme:$(opco)-$(exelon.buildType) output_directory:$(system.defaultworkingdirectory)/archive'
+    script: 'bundle exec fastlane build configuration:$(opco)-$(exelon.buildType) scheme:$(opco)-$(exelon.buildType) output_directory:$(system.defaultworkingdirectory)/archive'
 
 # Copy files to publish? is this step even needed?
 
