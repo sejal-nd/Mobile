@@ -46,84 +46,84 @@ steps:
   inputs:
     provisioningProfileLocation: 'secureFiles'
     provProfileSecureFile: 'ACE_Staging_Enterprise_Dist_Expires_2022-01-05.mobileprovision'
-  condition: contains(variables['variables.opco'], 'ACE')
+  condition: contains(variables['opco'], 'ACE')
 
 - task: InstallAppleProvisioningProfile@1
   displayName: 'Install Profile - ACE Beta WatchKit App'
   inputs:
     provisioningProfileLocation: 'secureFiles'
     provProfileSecureFile: 'ACE_Staging_Watchkit_App_Enterprise_Dist_Expires_2022-01-05.mobileprovision'
-  condition: contains(variables['variables.opco'], 'ACE')
+  condition: contains(variables['opco'], 'ACE')
 
 - task: InstallAppleProvisioningProfile@1
   displayName: 'Install Profile - BGE Beta'
   inputs:
     provisioningProfileLocation: 'secureFiles'
     provProfileSecureFile: 'BGE_Staging_Enterprise_Dist_Expires_2022-01-05.mobileprovision'
-  condition: contains(variables['variables.opco'], 'BGE')
+  condition: contains(variables['opco'], 'BGE')
 
 - task: InstallAppleProvisioningProfile@1
   displayName: 'Install Profile - BGE Beta WatchKit App'
   inputs:
     provisioningProfileLocation: 'secureFiles'
     provProfileSecureFile: 'BGE_Staging_Watchkit_App_Enterprise_Dist_Expires_2022-01-05.mobileprovision'
-  condition: contains(variables['variables.opco'], 'BGE')
+  condition: contains(variables['opco'], 'BGE')
 
 - task: InstallAppleProvisioningProfile@1
   displayName: 'Install Profile - ComEd Beta'
   inputs:
     provisioningProfileLocation: 'secureFiles'
     provProfileSecureFile: 'ComEd_Staging_Enterprise_Dist_Expires_2022-01-05.mobileprovision'
-  condition: contains(variables['variables.opco'], 'ComEd')
+  condition: contains(variables['opco'], 'ComEd')
 
 - task: InstallAppleProvisioningProfile@1
   displayName: 'Install Profile - ComEd Beta WatchKit App'
   inputs:
     provisioningProfileLocation: 'secureFiles'
     provProfileSecureFile: 'ComEd_Staging_WatchKit_App_Expires_2022-01-05.mobileprovision'
-  condition: contains(variables['variables.opco'], 'ComEd')
+  condition: contains(variables['opco'], 'ComEd')
 
 - task: InstallAppleProvisioningProfile@1
   displayName: 'Install Profile - Delmarva Beta'
   inputs:
     provisioningProfileLocation: 'secureFiles'
     provProfileSecureFile: 'Delmarva_Staging_Enterprise_Dist_Expires_2022-01-05.mobileprovision'
-  condition: contains(variables['variables.opco'], 'Delmarva')
+  condition: contains(variables['opco'], 'Delmarva')
 
 - task: InstallAppleProvisioningProfile@1
   displayName: 'Install Profile - Delmarva Beta WatchKit App'
   inputs:
     provisioningProfileLocation: 'secureFiles'
     provProfileSecureFile: 'Delmarva_Staging_Watchkit_App_Enterprise_Dist_Expires_2022-01-05.mobileprovision'
-  condition: contains(variables['variables.opco'], 'Delmarva')
+  condition: contains(variables['opco'], 'Delmarva')
 
 - task: InstallAppleProvisioningProfile@1
   displayName: 'Install Profile - PECO Beta'
   inputs:
     provisioningProfileLocation: 'secureFiles'
     provProfileSecureFile: 'PECO_Staging_Enterprise_Dist_Expires_2022-01-05.mobileprovision'
-  condition: contains(variables['variables.opco'], 'PECO')
+  condition: contains(variables['opco'], 'PECO')
 
 - task: InstallAppleProvisioningProfile@1
   displayName: 'Install Profile - PECO Beta WatchKit App'
   inputs:
     provisioningProfileLocation: 'secureFiles'
     provProfileSecureFile: 'PECO_Staging_Watchkit_App_Enterprise_Dist_Expires_2022-01-05.mobileprovision'
-  condition: contains(variables['variables.opco'], 'PECO')
+  condition: contains(variables['opco'], 'PECO')
 
 - task: InstallAppleProvisioningProfile@1
   displayName: 'Install Profile - Pepco Beta'
   inputs:
     provisioningProfileLocation: 'secureFiles'
     provProfileSecureFile: 'Pepco_Staging_Enterprise_Dist.mobileprovision'
-  condition: contains(variables['variables.opco'], 'Pepco')
+  condition: contains(variables['opco'], 'Pepco')
 
 - task: InstallAppleProvisioningProfile@1
   displayName: 'Install Profile - Pepco Beta WatchKit App'
   inputs:
     provisioningProfileLocation: 'secureFiles'
     provProfileSecureFile: 'Pepco_Staging_Watchkit_App_Enterprise_Dist.mobileprovision'
-  condition: contains(variables['variables.opco'], 'Pepco')
+  condition: contains(variables['opco'], 'Pepco')
 
 # Install Bundler
 - task: CmdLine@2
@@ -134,11 +134,12 @@ steps:
       sudo bundle install --retry=3 --jobs=4
 
 - task: CmdLine@2
-  displayName: '⚙️ TESTESTETSETEST'
+  displayName: '⚙️ Install Xcodes'
   inputs:
     script: |
-      echo "$(variables.opco)"
       echo "$(opco)"
+      echo "$(variables['opco'])"
+      echo "variables['opco']" 
 
 # Install Xcodes
 - task: CmdLine@2
@@ -189,7 +190,7 @@ steps:
       git commit -m "Build Number Bump - Pipeline [skip ci]"
       git push --set-upstream origin main
     workingDirectory: 'tools'
-  condition: contains(variables['variables.opco'], 'BGE') # Workaround to only trigger once per PR instead of 6 times
+  condition: contains(variables['opco'], 'BGE') # Workaround to only trigger once per PR instead of 6 times
 
 # Load SPM Cache
 - task: Cache@2
@@ -203,7 +204,7 @@ steps:
 - task: CmdLine@2
   displayName: '🛠️ Build App'
   inputs:
-    script: 'bundle exec fastlane build_app configuration:$(variables.opco)-$(exelon.buildType) scheme:$(variables.opco)-$(exelon.buildType) output_directory:$(system.defaultworkingdirectory)/archive'
+    script: 'bundle exec fastlane build_app configuration:$(opco)-$(exelon.buildType) scheme:$(opco)-$(exelon.buildType) output_directory:$(system.defaultworkingdirectory)/archive'
 
 # Copy files to publish? is this step even needed?
 
@@ -239,5 +240,5 @@ steps:
 - task: CmdLine@2
   displayName: '📤 App Center Upload'
   inputs:
-    script: 'bundle exec fastlane app_center_upload app_center_api_token:$(exelon.appCenterAPIToken) app_name:EU-Mobile-App-iOS-$(variables.opco)-$(exelon.buildType) file_path:$(system.defaultworkingdirectory)/archive/Mobile.ipa destinations:"$(exelon.distributionGroups)" dsym:$(system.defaultworkingdirectory)/archive/Mobile.app.dSYM.zip --verbose'
+    script: 'bundle exec fastlane app_center_upload app_center_api_token:$(exelon.appCenterAPIToken) app_name:EU-Mobile-App-iOS-$(opco)-$(exelon.buildType) file_path:$(system.defaultworkingdirectory)/archive/Mobile.ipa destinations:"$(exelon.distributionGroups)" dsym:$(system.defaultworkingdirectory)/archive/Mobile.app.dSYM.zip --verbose'
     
