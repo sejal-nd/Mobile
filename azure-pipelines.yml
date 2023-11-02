@@ -233,5 +233,5 @@ steps:
 - task: CmdLine@2
   displayName: '📤 App Center Upload'
   inputs:
-    script: 'bundle exec fastlane app_center_upload app_center_api_token:$(exelon.appCenterAPIToken) app_name:EU-Mobile-App-iOS-$(opco)-$(exelon.buildType) file_path:$(system.defaultworkingdirectory)/archive/Mobile.ipa destinations:"$(exelon.distributionGroups)" dsym:$(system.defaultworkingdirectory)/archive/Mobile.app.dSYM.zip --verbose'
+    script: 'bundle exec fastlane app_center_upload app_center_api_token:$(appCenterAPIToken) app_name:EU-Mobile-App-iOS-$(opco)-$(exelon.buildType) file_path:$(system.defaultworkingdirectory)/archive/Mobile.ipa destinations:"$(exelon.distributionGroups)" dsym:$(system.defaultworkingdirectory)/archive/Mobile.app.dSYM.zip --verbose'
     
