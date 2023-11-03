@@ -5,16 +5,16 @@ strategy:
   matrix:
     ACE:
       opco: ACE
-    # BGE:
-    #   opco: BGE
-    # ComEd:
-    #   opco: ComEd
-    # DPL:
-    #   opco: Delmarva
-    # PECO:
-    #   opco: PECO
-    # Pepco:
-    #   opco: Pepco
+    BGE:
+      opco: BGE
+    ComEd:
+      opco: ComEd
+    DPL:
+      opco: Delmarva
+    PECO:
+      opco: PECO
+    Pepco:
+      opco: Pepco
 
 
 pool:
@@ -199,36 +199,24 @@ steps:
   inputs:
     script: 'bundle exec fastlane build configuration:$(opco)-$(exelon.buildType) scheme:$(opco)-$(exelon.buildType) output_directory:$(system.defaultworkingdirectory)/archive'
 
-# Copy files to publish? is this step even needed?
-
-# Publish artifacts? is this step even needed?
-
 # Generate Release Notes - TODO extract into a build script
-- task: richardfennellBM.BM-VSTS-XplatGenerateReleaseNotes.XplatGenerate-Release-Notes.XplatGenerateReleaseNotes@3
+- task: XplatGenerateReleaseNotes@4
   displayName: '📝 Generate Release Notes based on Release Comparison API'
   inputs:
-    outputfile: fastlane/ReleaseNotes.md
-    templateLocation: InLine
-    inlinetemplate: |
-     $(exelon.overrideReleaseNotes)
-     
-     {{#forEach pullRequests}}
-     # [{{this.pullRequestId}}]({{replace (replace this.url "_apis/git/repositories" "_git") "pullRequests" "pullRequest"}}) {{this.title}}
-     
-     ----
-     
-     * Associated Work Items
-     {{#forEach this.associatedWorkitems}}
-        {{#with (lookup_a_work_item ../../relatedWorkItems this.url)}}
-         - [{{this.id}}]({{replace this.url "_apis/wit/workItems" "_workitems/edit"}}) - {{lookup this.fields 'System.Title'}} 
-        {{/with}}
-     {{/forEach}}
-     * Associated Commits (this includes commits on the PR source branch not associated directly with the build)
-     {{#forEach this.associatedCommits}}
-         - [{{this.commitId}}]({{this.remoteUrl}}) -  {{this.comment}}
-     {{/forEach}}
-     {{/forEach}}
-
+    outputfile: 'fastlane/ReleaseNotes.md'
+    templateLocation: 'File'
+    templatefile: 'ci_scripts/release_notes_template'
+    dumpPayloadToConsole: false
+    dumpPayloadToFile: false
+    replaceFile: True
+    getParentsAndChildren: False
+    getAllParents: False
+    getIndirectPullRequests: False
+    stopOnError: False
+    considerPartiallySuccessfulReleases: False
+    checkForManuallyLinkedWI: False
+    wiqlFromTarget: 'WorkItems'
+  
 # Upload IPA & dysm files to App Center
 - task: CmdLine@2
   displayName: '📤 App Center Upload'
