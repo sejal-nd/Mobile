@@ -361,6 +361,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     
+    
     func showStormMode(){
         StormModeStatus.shared.isOn = true
         DispatchQueue.main.async { [weak self] in
