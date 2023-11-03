@@ -5,16 +5,16 @@ strategy:
   matrix:
     ACE:
       opco: ACE
-    BGE:
-      opco: BGE
-    ComEd:
-      opco: ComEd
-    DPL:
-      opco: Delmarva
-    PECO:
-      opco: PECO
-    Pepco:
-      opco: Pepco
+    # BGE:
+    #   opco: BGE
+    # ComEd:
+    #   opco: ComEd
+    # DPL:
+    #   opco: Delmarva
+    # PECO:
+    #   opco: PECO
+    # Pepco:
+    #   opco: Pepco
 
 
 pool:
@@ -199,7 +199,7 @@ steps:
   inputs:
     script: 'bundle exec fastlane build configuration:$(opco)-$(exelon.buildType) scheme:$(opco)-$(exelon.buildType) output_directory:$(system.defaultworkingdirectory)/archive'
 
-# Generate Release Notes - TODO extract into a build script
+# Generate Release Notes
 - task: XplatGenerateReleaseNotes@4
   displayName: '📝 Generate Release Notes based on Release Comparison API'
   inputs:
@@ -216,7 +216,7 @@ steps:
     considerPartiallySuccessfulReleases: False
     checkForManuallyLinkedWI: False
     wiqlFromTarget: 'WorkItems'
-  
+
 # Upload IPA & dysm files to App Center
 - task: CmdLine@2
   displayName: '📤 App Center Upload'
