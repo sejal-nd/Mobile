@@ -187,9 +187,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         guard let aps = userInfo["aps"] as? [String: Any] else { print("1");return }
         guard let alert = aps["alert"] as? [String: Any] else { print("2");return }
         var accountNumbers: [String]
-        if let accountIds = aps["accountIds"] as? [String] {
+        if let accountIds = userInfo["accountIds"] as? [String] {
             accountNumbers = accountIds
-        } else if let accountId = aps["accountId"] as? String {
+        } else if let accountId = userInfo["accountId"] as? String {
             accountNumbers = [accountId]
         } else {
             completionHandler?()
