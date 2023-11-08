@@ -1,6 +1,7 @@
 # Description
 
-Please include a summary of the change and which issue is fixed. Please also include relevant motivation and context. List any dependencies that are required for this change.
+<!-- Please include a summary of the change and which issue is fixed. Please also include relevant motivation and context.
+List any dependencies that are required for this change. -->
 
 - Product Team / Project:
 - Desired Release Month:
@@ -11,8 +12,9 @@ Please include a summary of the change and which issue is fixed. Please also inc
 
 <!-- Please check the type of change your PR introduces:
 _Put an `x` in the boxes that apply_ -->
-- [ ] Bug fix (non-breaking change which fixes an issue)
 - [ ] New feature (non-breaking change which adds functionality)
+- [ ] Refactor (cleans up code with minimal changes)
+- [ ] Bug fix (non-breaking change which fixes an issue)
 - [ ] Breaking change (fix or feature that would cause existing functionality to not work as expected)
 - [ ] This change requires a documentation update
 
@@ -23,6 +25,9 @@ _Put an `x` in the boxes that apply_ -->
 | Figma         | https://example.com |
 
 # Checklist:
+
+<!-- Ensure your pull reqeust  deletes the feature branch when merging.
+This can be done by checking the checkbox under complete -> Delete `feature/your_branch_name` after merging. -->
 
 - [ ] My code follows the style guidelines of this project
 - [ ] I have performed a self-review of my own code

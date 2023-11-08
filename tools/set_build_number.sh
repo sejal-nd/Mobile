@@ -15,8 +15,8 @@ previous_build_number=$(awk -F "=" '/BUILD_NUMBER/ {print $2}' Version.xcconfig 
 # Incrememnt build number
 incremented_number=$((previous_build_number+1))
 
-# New build number
-new_build_number="${incremented_number}"
+# New build number passed from ADO pipeline `$(build.buildId)`
+new_build_number=$1
 
 # Use 'sed' command to replace the previous build number with the new build
 # number in the 'Version.xcconfig' file.

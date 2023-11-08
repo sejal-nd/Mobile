@@ -338,6 +338,20 @@
 		674A12012523891C00AF0D38 /* TapToPayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35052B0E251D09D600095499 /* TapToPayViewModel.swift */; };
 		674A120625238CE900AF0D38 /* PeakEnergySavingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F8028C251DDA66009878D3 /* PeakEnergySavingsViewController.swift */; };
 		674A126425239C4800AF0D38 /* PeakEnergySavingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F8027F251DDA06009878D3 /* PeakEnergySavingsViewModel.swift */; };
+		674E6BA02AF95EFA00329D22 /* RxRelay.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 674E6B9B2AF95EF800329D22 /* RxRelay.xcframework */; };
+		674E6BA22AF95EFA00329D22 /* RxCocoa.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 674E6B9C2AF95EF900329D22 /* RxCocoa.xcframework */; };
+		674E6BA42AF95EFA00329D22 /* RxSwift.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 674E6B9D2AF95EF900329D22 /* RxSwift.xcframework */; };
+		674E6BA62AF95EFA00329D22 /* RxSwiftExt.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 674E6B9E2AF95EFA00329D22 /* RxSwiftExt.xcframework */; };
+		674E6BA72AF95F0700329D22 /* RxCocoa.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 674E6B9C2AF95EF900329D22 /* RxCocoa.xcframework */; };
+		674E6BA82AF95F0700329D22 /* RxCocoa.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 674E6B9C2AF95EF900329D22 /* RxCocoa.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		674E6BA92AF95F0A00329D22 /* RxRelay.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 674E6B9B2AF95EF800329D22 /* RxRelay.xcframework */; };
+		674E6BAA2AF95F0A00329D22 /* RxRelay.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 674E6B9B2AF95EF800329D22 /* RxRelay.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		674E6BAB2AF95F0D00329D22 /* RxSwift.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 674E6B9D2AF95EF900329D22 /* RxSwift.xcframework */; };
+		674E6BAC2AF95F0D00329D22 /* RxSwift.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 674E6B9D2AF95EF900329D22 /* RxSwift.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		674E6BAD2AF95F1000329D22 /* RxSwiftExt.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 674E6B9E2AF95EFA00329D22 /* RxSwiftExt.xcframework */; };
+		674E6BAE2AF95F1000329D22 /* RxSwiftExt.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 674E6B9E2AF95EFA00329D22 /* RxSwiftExt.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		674E6BB12AF9608A00329D22 /* DecibelCore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 674E6BAF2AF9608200329D22 /* DecibelCore.xcframework */; };
+		674E6BB22AF9608A00329D22 /* DecibelCore.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 674E6BAF2AF9608200329D22 /* DecibelCore.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		675F47B724AB6C9700A828F9 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35A2B88324A1E092004B38BC /* Login.storyboard */; };
 		675F47D424AB748200A828F9 /* PaymentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F47C824AB747200A828F9 /* PaymentViewModel.swift */; };
 		675F4B5E24AB828100A828F9 /* OutageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AE824AB828000A828F9 /* OutageService.swift */; };
@@ -496,11 +510,6 @@
 		67933BA52AEBFF7D00EE75C0 /* OpcoUpdatesHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67933BA42AEBFF7C00EE75C0 /* OpcoUpdatesHostingController.swift */; };
 		6797115425DD87E3008A0080 /* OutageAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6797115325DD87E3008A0080 /* OutageAnimation.swift */; };
 		6797115B25DD901F008A0080 /* Arc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6797115A25DD901F008A0080 /* Arc.swift */; };
-		679A631B2AE2E8D000DC25D7 /* DecibelCore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 679A63162AE2E88B00DC25D7 /* DecibelCore.xcframework */; };
-		679A631C2AE2E8D000DC25D7 /* DecibelCore.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 679A63162AE2E88B00DC25D7 /* DecibelCore.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		679A63212AE3142400DC25D7 /* RxCocoa.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 679A631F2AE3142300DC25D7 /* RxCocoa.xcframework */; };
-		679A63222AE3142700DC25D7 /* RxCocoa.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 679A631F2AE3142300DC25D7 /* RxCocoa.xcframework */; };
-		679A63232AE3142800DC25D7 /* RxCocoa.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 679A631F2AE3142300DC25D7 /* RxCocoa.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		679A632D2AE9760800DC25D7 /* AppointmentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679A632C2AE9760800DC25D7 /* AppointmentResponse.swift */; };
 		679A63302AE9765300DC25D7 /* ReleaseOfInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679A632F2AE9765300DC25D7 /* ReleaseOfInformation.swift */; };
 		679A63312AE9765300DC25D7 /* ReleaseOfInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679A632F2AE9765300DC25D7 /* ReleaseOfInformation.swift */; };
@@ -552,16 +561,7 @@
 		67BEB6FB2AEAF88B006FA08A /* OpcoUpdatesRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67BEB6FA2AEAF88B006FA08A /* OpcoUpdatesRow.swift */; };
 		67BFDDDB2AF03141007E7864 /* nanopb.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67BFDDD22AF0313F007E7864 /* nanopb.xcframework */; };
 		67BFDDDC2AF03141007E7864 /* PromisesObjC.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67BFDDD32AF0313F007E7864 /* PromisesObjC.xcframework */; };
-		67D04AA12ADDA4900036479A /* RxSwift.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67D04A9F2ADDA4900036479A /* RxSwift.xcframework */; };
-		67D04AA42ADDA5E40036479A /* RxRelay.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67D04AA22ADDA5E40036479A /* RxRelay.xcframework */; };
-		67D04AB22ADDAB5F0036479A /* RxSwiftExt.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67D04AB02ADDAB5F0036479A /* RxSwiftExt.xcframework */; };
 		67D04AB52ADDAFE30036479A /* ActivityTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D04AB42ADDAFE20036479A /* ActivityTracker.swift */; };
-		67D04AB82AE2E5890036479A /* RxRelay.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67D04AA22ADDA5E40036479A /* RxRelay.xcframework */; };
-		67D04AB92AE2E5890036479A /* RxRelay.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 67D04AA22ADDA5E40036479A /* RxRelay.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		67D04ABA2AE2E58E0036479A /* RxSwift.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67D04A9F2ADDA4900036479A /* RxSwift.xcframework */; };
-		67D04ABB2AE2E58E0036479A /* RxSwift.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 67D04A9F2ADDA4900036479A /* RxSwift.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		67D04ABC2AE2E5930036479A /* RxSwiftExt.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67D04AB02ADDAB5F0036479A /* RxSwiftExt.xcframework */; };
-		67D04ABD2AE2E5930036479A /* RxSwiftExt.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 67D04AB02ADDAB5F0036479A /* RxSwiftExt.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		67D5626324EADA7E00852551 /* GameTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D5626224EADA7E00852551 /* GameTip.swift */; };
 		67D5626724EADA9700852551 /* GameQuiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D5626624EADA9600852551 /* GameQuiz.swift */; };
 		67D5626924EADAA700852551 /* GameSurvery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D5626824EADAA700852551 /* GameSurvery.swift */; };
@@ -1220,11 +1220,11 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				67D04AB92AE2E5890036479A /* RxRelay.xcframework in Embed Frameworks */,
-				67D04ABD2AE2E5930036479A /* RxSwiftExt.xcframework in Embed Frameworks */,
-				679A63232AE3142800DC25D7 /* RxCocoa.xcframework in Embed Frameworks */,
-				67D04ABB2AE2E58E0036479A /* RxSwift.xcframework in Embed Frameworks */,
-				679A631C2AE2E8D000DC25D7 /* DecibelCore.xcframework in Embed Frameworks */,
+				674E6BAA2AF95F0A00329D22 /* RxRelay.xcframework in Embed Frameworks */,
+				674E6BAE2AF95F1000329D22 /* RxSwiftExt.xcframework in Embed Frameworks */,
+				674E6BAC2AF95F0D00329D22 /* RxSwift.xcframework in Embed Frameworks */,
+				674E6BB22AF9608A00329D22 /* DecibelCore.xcframework in Embed Frameworks */,
+				674E6BA82AF95F0700329D22 /* RxCocoa.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1526,6 +1526,11 @@
 		674A11F2252387A100AF0D38 /* SubOpCo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubOpCo.swift; sourceTree = "<group>"; };
 		674A11F92523889C00AF0D38 /* EnergyWiseRewardsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnergyWiseRewardsViewModel.swift; sourceTree = "<group>"; };
 		674A11FA2523889C00AF0D38 /* EnergyWiseRewardsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnergyWiseRewardsViewController.swift; sourceTree = "<group>"; };
+		674E6B9B2AF95EF800329D22 /* RxRelay.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = RxRelay.xcframework; path = Frameworks/RxSwift/RxRelay.xcframework; sourceTree = "<group>"; };
+		674E6B9C2AF95EF900329D22 /* RxCocoa.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = RxCocoa.xcframework; path = Frameworks/RxSwift/RxCocoa.xcframework; sourceTree = "<group>"; };
+		674E6B9D2AF95EF900329D22 /* RxSwift.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = RxSwift.xcframework; path = Frameworks/RxSwift/RxSwift.xcframework; sourceTree = "<group>"; };
+		674E6B9E2AF95EFA00329D22 /* RxSwiftExt.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = RxSwiftExt.xcframework; path = Frameworks/RxSwift/RxSwiftExt.xcframework; sourceTree = "<group>"; };
+		674E6BAF2AF9608200329D22 /* DecibelCore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = DecibelCore.xcframework; path = Frameworks/Decibel/DecibelCore.xcframework; sourceTree = "<group>"; };
 		675F47C224AB6CD200A828F9 /* RegistrationValidateAccountViewControllerNew.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationValidateAccountViewControllerNew.swift; sourceTree = "<group>"; };
 		675F47C824AB747200A828F9 /* PaymentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentViewModel.swift; sourceTree = "<group>"; };
 		675F4AE824AB828000A828F9 /* OutageService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutageService.swift; sourceTree = "<group>"; };
@@ -1671,8 +1676,6 @@
 		67933BA42AEBFF7C00EE75C0 /* OpcoUpdatesHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpcoUpdatesHostingController.swift; sourceTree = "<group>"; };
 		6797115325DD87E3008A0080 /* OutageAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutageAnimation.swift; sourceTree = "<group>"; };
 		6797115A25DD901F008A0080 /* Arc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arc.swift; sourceTree = "<group>"; };
-		679A63162AE2E88B00DC25D7 /* DecibelCore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = DecibelCore.xcframework; sourceTree = "<group>"; };
-		679A631F2AE3142300DC25D7 /* RxCocoa.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = RxCocoa.xcframework; sourceTree = "<group>"; };
 		679A63262AE814EE00DC25D7 /* version_bump.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = version_bump.sh; sourceTree = "<group>"; };
 		679A63272AE8377400DC25D7 /* Version.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Version.xcconfig; sourceTree = "<group>"; };
 		679A63282AE8377400DC25D7 /* Beta.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Beta.xcconfig; sourceTree = "<group>"; };
@@ -1707,9 +1710,6 @@
 		67BFDDD32AF0313F007E7864 /* PromisesObjC.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = PromisesObjC.xcframework; path = "Frameworks/Firebase-7-11/PromisesObjC.xcframework"; sourceTree = "<group>"; };
 		67BFDDD42AF03140007E7864 /* GoogleAppMeasurement.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = GoogleAppMeasurement.xcframework; path = "Frameworks/Firebase-7-11/GoogleAppMeasurement.xcframework"; sourceTree = "<group>"; };
 		67BFDDD52AF03140007E7864 /* FirebaseInstallations.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FirebaseInstallations.xcframework; path = "Frameworks/Firebase-7-11/FirebaseInstallations.xcframework"; sourceTree = "<group>"; };
-		67D04A9F2ADDA4900036479A /* RxSwift.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = RxSwift.xcframework; sourceTree = "<group>"; };
-		67D04AA22ADDA5E40036479A /* RxRelay.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = RxRelay.xcframework; sourceTree = "<group>"; };
-		67D04AB02ADDAB5F0036479A /* RxSwiftExt.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = RxSwiftExt.xcframework; sourceTree = "<group>"; };
 		67D04AB42ADDAFE20036479A /* ActivityTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityTracker.swift; sourceTree = "<group>"; };
 		67D5626224EADA7E00852551 /* GameTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTip.swift; sourceTree = "<group>"; };
 		67D5626624EADA9600852551 /* GameQuiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameQuiz.swift; sourceTree = "<group>"; };
@@ -2217,10 +2217,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				67D04AA42ADDA5E40036479A /* RxRelay.xcframework in Frameworks */,
-				679A63212AE3142400DC25D7 /* RxCocoa.xcframework in Frameworks */,
-				67D04AA12ADDA4900036479A /* RxSwift.xcframework in Frameworks */,
-				67D04AB22ADDAB5F0036479A /* RxSwiftExt.xcframework in Frameworks */,
+				674E6BA02AF95EFA00329D22 /* RxRelay.xcframework in Frameworks */,
+				674E6BA42AF95EFA00329D22 /* RxSwift.xcframework in Frameworks */,
+				674E6BA62AF95EFA00329D22 /* RxSwiftExt.xcframework in Frameworks */,
+				674E6BA22AF95EFA00329D22 /* RxCocoa.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2242,30 +2242,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				67D04ABA2AE2E58E0036479A /* RxSwift.xcframework in Frameworks */,
 				67FC0A0C2AF03B5C00DBE860 /* FirebaseCore.xcframework in Frameworks */,
 				67FC0A102AF03B6100DBE860 /* FirebaseInstallations.xcframework in Frameworks */,
 				6761AC222AD84CC800945554 /* Toast in Frameworks */,
 				67BFDDDC2AF03141007E7864 /* PromisesObjC.xcframework in Frameworks */,
 				67FC0A0E2AF03B5F00DBE860 /* FirebaseCoreDiagnostics.xcframework in Frameworks */,
-				679A63222AE3142700DC25D7 /* RxCocoa.xcframework in Frameworks */,
-				67D04AB82AE2E5890036479A /* RxRelay.xcframework in Frameworks */,
+				674E6BAD2AF95F1000329D22 /* RxSwiftExt.xcframework in Frameworks */,
 				67FC0A0A2AF03B5A00DBE860 /* FirebaseAnalytics.xcframework in Frameworks */,
 				6761AC392AD85CEB00945554 /* MedalliaDigitalSDK in Frameworks */,
 				6761AC2E2AD84DFA00945554 /* Charts in Frameworks */,
 				67FC0A162AF03B6800DBE860 /* GoogleUtilities.xcframework in Frameworks */,
+				674E6BAB2AF95F0D00329D22 /* RxSwift.xcframework in Frameworks */,
+				674E6BA92AF95F0A00329D22 /* RxRelay.xcframework in Frameworks */,
 				6761AC362AD85C8400945554 /* AppCenterDistribute in Frameworks */,
 				67317F3A2AEAFDF40058466D /* EUDesignSystem in Frameworks */,
 				6761AC312AD84E4F00945554 /* XLPagerTabStrip in Frameworks */,
-				679A631B2AE2E8D000DC25D7 /* DecibelCore.xcframework in Frameworks */,
 				6761AC342AD85C8400945554 /* AppCenterCrashes in Frameworks */,
+				674E6BA72AF95F0700329D22 /* RxCocoa.xcframework in Frameworks */,
 				67BFDDDB2AF03141007E7864 /* nanopb.xcframework in Frameworks */,
 				67FC0A142AF03B6600DBE860 /* GoogleDataTransport.xcframework in Frameworks */,
 				6761AC282AD84D8800945554 /* Reachability in Frameworks */,
-				67D04ABC2AE2E5930036479A /* RxSwiftExt.xcframework in Frameworks */,
 				6761AC2B2AD84DB600945554 /* HorizonCalendar in Frameworks */,
 				67FC0A122AF03B6400DBE860 /* GoogleAppMeasurement.xcframework in Frameworks */,
 				6761AC252AD84D2100945554 /* Lottie in Frameworks */,
+				674E6BB12AF9608A00329D22 /* DecibelCore.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4316,15 +4316,15 @@
 				67BFDDCD2AF0313D007E7864 /* GoogleUtilities.xcframework */,
 				67BFDDD22AF0313F007E7864 /* nanopb.xcframework */,
 				67BFDDD32AF0313F007E7864 /* PromisesObjC.xcframework */,
-				679A63162AE2E88B00DC25D7 /* DecibelCore.xcframework */,
+				674E6BAF2AF9608200329D22 /* DecibelCore.xcframework */,
 				823AA55F201247CF009CAEF0 /* XCTest.framework */,
 				E887C9F51ED5D3E1002433A3 /* Accelerate.framework */,
 				E887C9F91ED5D3F1002433A3 /* AudioToolbox.framework */,
 				E887C9F71ED5D3EB002433A3 /* AVFoundation.framework */,
-				679A631F2AE3142300DC25D7 /* RxCocoa.xcframework */,
-				67D04AA22ADDA5E40036479A /* RxRelay.xcframework */,
-				67D04A9F2ADDA4900036479A /* RxSwift.xcframework */,
-				67D04AB02ADDAB5F0036479A /* RxSwiftExt.xcframework */,
+				674E6B9C2AF95EF900329D22 /* RxCocoa.xcframework */,
+				674E6B9B2AF95EF800329D22 /* RxRelay.xcframework */,
+				674E6B9D2AF95EF900329D22 /* RxSwift.xcframework */,
+				674E6B9E2AF95EFA00329D22 /* RxSwiftExt.xcframework */,
 				B55A8B0B1F15644800F63AC3 /* CoreData.framework */,
 				B5AC07411E52A49900BBA4ED /* CoreLocation.framework */,
 				E887C9FB1ED5D3F9002433A3 /* CoreMedia.framework */,
