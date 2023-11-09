@@ -1403,7 +1403,6 @@
 		35E7C7EB2190804E00BA13C6 /* Date+DueBy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+DueBy.swift"; sourceTree = "<group>"; };
 		35F9DD232333C33F00AAA2B2 /* EUMobile-Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EUMobile-Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		35F9DD5F2333C49600AAA2B2 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		35F9DD612333C74100AAA2B2 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		35F9DE50233A583700AAA2B2 /* AnalyticController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticController.swift; sourceTree = "<group>"; };
 		389B0C5F1F17C054005DD0F9 /* UnauthenticatedUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnauthenticatedUserViewController.swift; sourceTree = "<group>"; };
 		4465DE861F1FD0090014537F /* TemplateCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemplateCardView.swift; sourceTree = "<group>"; };
@@ -3332,16 +3331,7 @@
 			path = "Prepaid Card View";
 			sourceTree = "<group>";
 		};
-		35E7C79021907EA200BA13C6 /* Watch */ = {
-			isa = PBXGroup;
-			children = (
-				35F9DD5E2333C47500AAA2B2 /* Configuration */,
-				35E7C7BC21907F2E00BA13C6 /* Resources */,
-			);
-			path = Watch;
-			sourceTree = "<group>";
-		};
-		35E7C79F21907EA400BA13C6 /* Watch Extension */ = {
+		35E7C79021907EA200BA13C6 /* Watch App */ = {
 			isa = PBXGroup;
 			children = (
 				67247FC825D315410024467D /* Components */,
@@ -3349,9 +3339,10 @@
 				67247F0025D2D71E0024467D /* Controllers */,
 				35F9DE4C2339106800AAA2B2 /* Data */,
 				35E7C7EA2190804E00BA13C6 /* Extensions */,
-				35E7C8082190806700BA13C6 /* Configurations */,
+				35F9DD5E2333C47500AAA2B2 /* Configuration */,
+				35E7C7BC21907F2E00BA13C6 /* Resources */,
 			);
-			path = "Watch Extension";
+			path = "Watch App";
 			sourceTree = "<group>";
 		};
 		35E7C7BC21907F2E00BA13C6 /* Resources */ = {
@@ -3369,14 +3360,6 @@
 				35E7C7EB2190804E00BA13C6 /* Date+DueBy.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		35E7C8082190806700BA13C6 /* Configurations */ = {
-			isa = PBXGroup;
-			children = (
-				35F9DD612333C74100AAA2B2 /* Info.plist */,
-			);
-			path = Configurations;
 			sourceTree = "<group>";
 		};
 		35F9DD5E2333C47500AAA2B2 /* Configuration */ = {
@@ -4742,8 +4725,7 @@
 				677958E325E43B4A00A08CC2 /* Shared */,
 				B58B5AC31E4E28740051FD5F /* App */,
 				679A63242AE814EE00DC25D7 /* tools */,
-				35E7C79021907EA200BA13C6 /* Watch */,
-				35E7C79F21907EA400BA13C6 /* Watch Extension */,
+				35E7C79021907EA200BA13C6 /* Watch App */,
 				6716592826F0FBA0004546DE /* UITests */,
 				6716595026F0FBC6004546DE /* UnitTests */,
 				B58B5AC21E4E28740051FD5F /* Products */,
@@ -6609,7 +6591,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = Watch/Configuration/Info.plist;
+				INFOPLIST_FILE = "Watch App/Configuration/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -6664,7 +6646,7 @@
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = Watch/Configuration/Info.plist;
+				INFOPLIST_FILE = "Watch App/Configuration/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -6717,7 +6699,7 @@
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = Watch/Configuration/Info.plist;
+				INFOPLIST_FILE = "Watch App/Configuration/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -6771,7 +6753,7 @@
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = Watch/Configuration/Info.plist;
+				INFOPLIST_FILE = "Watch App/Configuration/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -10374,7 +10356,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = Watch/Configuration/Info.plist;
+				INFOPLIST_FILE = "Watch App/Configuration/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -10570,7 +10552,7 @@
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = Watch/Configuration/Info.plist;
+				INFOPLIST_FILE = "Watch App/Configuration/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -10759,7 +10741,7 @@
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = Watch/Configuration/Info.plist;
+				INFOPLIST_FILE = "Watch App/Configuration/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -10947,7 +10929,7 @@
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = Watch/Configuration/Info.plist;
+				INFOPLIST_FILE = "Watch App/Configuration/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -11178,7 +11160,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = Watch/Configuration/Info.plist;
+				INFOPLIST_FILE = "Watch App/Configuration/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -11375,7 +11357,7 @@
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = Watch/Configuration/Info.plist;
+				INFOPLIST_FILE = "Watch App/Configuration/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -11565,7 +11547,7 @@
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = Watch/Configuration/Info.plist;
+				INFOPLIST_FILE = "Watch App/Configuration/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -11754,7 +11736,7 @@
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = Watch/Configuration/Info.plist;
+				INFOPLIST_FILE = "Watch App/Configuration/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -11985,7 +11967,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = Watch/Configuration/Info.plist;
+				INFOPLIST_FILE = "Watch App/Configuration/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -12182,7 +12164,7 @@
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = Watch/Configuration/Info.plist;
+				INFOPLIST_FILE = "Watch App/Configuration/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -12372,7 +12354,7 @@
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = Watch/Configuration/Info.plist;
+				INFOPLIST_FILE = "Watch App/Configuration/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -12561,7 +12543,7 @@
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = Watch/Configuration/Info.plist;
+				INFOPLIST_FILE = "Watch App/Configuration/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -12792,7 +12774,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = Watch/Configuration/Info.plist;
+				INFOPLIST_FILE = "Watch App/Configuration/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -12989,7 +12971,7 @@
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = Watch/Configuration/Info.plist;
+				INFOPLIST_FILE = "Watch App/Configuration/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -13179,7 +13161,7 @@
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = Watch/Configuration/Info.plist;
+				INFOPLIST_FILE = "Watch App/Configuration/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -13368,7 +13350,7 @@
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = Watch/Configuration/Info.plist;
+				INFOPLIST_FILE = "Watch App/Configuration/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -13599,7 +13581,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = Watch/Configuration/Info.plist;
+				INFOPLIST_FILE = "Watch App/Configuration/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -13795,7 +13777,7 @@
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = Watch/Configuration/Info.plist;
+				INFOPLIST_FILE = "Watch App/Configuration/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -13984,7 +13966,7 @@
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = Watch/Configuration/Info.plist;
+				INFOPLIST_FILE = "Watch App/Configuration/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -14172,7 +14154,7 @@
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = Watch/Configuration/Info.plist;
+				INFOPLIST_FILE = "Watch App/Configuration/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -14785,16 +14767,16 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "git@github.com:scalessec/Toast-Swift.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.0;
+				kind = exactVersion;
+				version = 5.0.1;
 			};
 		};
 		6761AC232AD84D2100945554 /* XCRemoteSwiftPackageReference "lottie-spm" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "git@github.com:airbnb/lottie-spm.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 4.0.0;
+				kind = exactVersion;
+				version = 4.3.3;
 			};
 		};
 		6761AC262AD84D8800945554 /* XCRemoteSwiftPackageReference "Reachability.swift" */ = {
@@ -14833,8 +14815,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "git@github.com:microsoft/appcenter-sdk-apple.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.0;
+				kind = exactVersion;
+				version = 5.0.4;
 			};
 		};
 		6761AC372AD85CEA00945554 /* XCRemoteSwiftPackageReference "digital-ios-sdk" */ = {
