@@ -61,7 +61,7 @@ class RegistrationValidateAccountViewControllerNew: KeyboardAvoidingStickyFooter
         instructionLabel.font = .headline
         instructionLabel.setLineHeight(lineHeight: 24)
         accountInfoLabel.textColor = .neutralDark
-        let accountInfoDesc = Configuration.shared.opco.isPHI ? NSLocalizedString("Account number must be 11 digits long", comment: "") : NSLocalizedString("Account number must be 10 digits long", comment: "")
+        let accountInfoDesc = Configuration.shared.opco.isPHI ? NSLocalizedString("Your 11-digit account number", comment: "") : NSLocalizedString("Your 10-digit account number", comment: "")
         accountInfoLabel.text = NSLocalizedString(accountInfoDesc, comment: "")
         
         segmentedControl.items = [NSLocalizedString("Personal", comment: ""),
@@ -90,7 +90,7 @@ class RegistrationValidateAccountViewControllerNew: KeyboardAvoidingStickyFooter
     }
     
     private func configureTextFields() {
-        accountNumberTextField.placeholder = NSLocalizedString("Account Number*", comment: "")
+        accountNumberTextField.placeholder = NSLocalizedString("Account Number", comment: "")
         accountNumberTextField.textField.autocorrectionType = .no
         accountNumberTextField.setKeyboardType(.numberPad)
         accountNumberTextField.textField.delegate = self
@@ -103,7 +103,7 @@ class RegistrationValidateAccountViewControllerNew: KeyboardAvoidingStickyFooter
             .drive(onNext: { [weak self] accountNumber, hasValidLength in
                 guard let self = self else { return }
                 if !accountNumber.isEmpty && !hasValidLength {
-                    let errorMessage = Configuration.shared.opco.isPHI ? NSLocalizedString("Account number must be 11 digits long", comment: "") : NSLocalizedString("Account number must be 10 digits long", comment: "")
+                    let errorMessage = Configuration.shared.opco.isPHI ? NSLocalizedString("Account number must contain at least 11 digits.", comment: "") : NSLocalizedString("Account number must contain at least 10 digits.", comment: "")
                     self.accountNumberTextField?.setError(errorMessage)
                 }
                 self.accessibilityErrorLabel()
@@ -137,7 +137,7 @@ class RegistrationValidateAccountViewControllerNew: KeyboardAvoidingStickyFooter
         }).disposed(by: disposeBag)
         
         // Phone number
-        phoneNumberTextField.placeholder = NSLocalizedString("Primary Phone Number*", comment: "")
+        phoneNumberTextField.placeholder = NSLocalizedString("Primary Phone Number", comment: "")
         phoneNumberTextField.textField.autocorrectionType = .no
         phoneNumberTextField.setKeyboardType(.phonePad)
         phoneNumberTextField.textField.delegate = self
@@ -166,7 +166,7 @@ class RegistrationValidateAccountViewControllerNew: KeyboardAvoidingStickyFooter
         identifierDescriptionLabel.font = .subheadline
         
         let identifierPlaceholder: String
-        identifierPlaceholder = NSLocalizedString("SSN/Business Tax ID*", comment: "")
+        identifierPlaceholder = NSLocalizedString("SSN/Business Tax ID", comment: "")
         
         identifierTextField.placeholder = NSLocalizedString(identifierPlaceholder, comment: "")
         identifierTextField.textField.autocorrectionType = .no
