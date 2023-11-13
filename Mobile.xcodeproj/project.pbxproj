@@ -174,9 +174,7 @@
 		35C913AD22EB6AA3009DD71A /* ButtonRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C913AC22EB6AA3009DD71A /* ButtonRow.swift */; };
 		35D6B62B231424E900DCD588 /* AlertRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D6B62A231424E900DCD588 /* AlertRow.swift */; };
 		35F9DD3D2333C34200AAA2B2 /* EUMobile-Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 35F9DD232333C33F00AAA2B2 /* EUMobile-Watch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		35F9DD672333C85B00AAA2B2 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7BE21907F2E00BA13C6 /* README.md */; };
 		35F9DD682333C85C00AAA2B2 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7BE21907F2E00BA13C6 /* README.md */; };
-		35F9DD6C2333C8A000AAA2B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7BD21907F2E00BA13C6 /* Assets.xcassets */; };
 		35F9DD6D2333C8A100AAA2B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7BD21907F2E00BA13C6 /* Assets.xcassets */; };
 		35F9DD7C2333D14D00AAA2B2 /* Date+DueBy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7EB2190804E00BA13C6 /* Date+DueBy.swift */; };
 		35F9DD932333D83F00AAA2B2 /* (null) in Sources */ = {isa = PBXBuildFile; };
@@ -559,8 +557,6 @@
 		67BEB6F72AEAF00C006FA08A /* OpcoUpdatesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67BEB6F62AEAF00C006FA08A /* OpcoUpdatesView.swift */; };
 		67BEB6F92AEAF75A006FA08A /* OpcoUpdateDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67BEB6F82AEAF75A006FA08A /* OpcoUpdateDetailView.swift */; };
 		67BEB6FB2AEAF88B006FA08A /* OpcoUpdatesRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67BEB6FA2AEAF88B006FA08A /* OpcoUpdatesRow.swift */; };
-		67BFDDDB2AF03141007E7864 /* nanopb.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67BFDDD22AF0313F007E7864 /* nanopb.xcframework */; };
-		67BFDDDC2AF03141007E7864 /* PromisesObjC.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67BFDDD32AF0313F007E7864 /* PromisesObjC.xcframework */; };
 		67D04AB52ADDAFE30036479A /* ActivityTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D04AB42ADDAFE20036479A /* ActivityTracker.swift */; };
 		67D5626324EADA7E00852551 /* GameTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D5626224EADA7E00852551 /* GameTip.swift */; };
 		67D5626724EADA9700852551 /* GameQuiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D5626624EADA9600852551 /* GameQuiz.swift */; };
@@ -583,13 +579,16 @@
 		67F950FC24BCA111009B5F07 /* RegistrationValidateAccountViewControllerNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F47C224AB6CD200A828F9 /* RegistrationValidateAccountViewControllerNew.swift */; };
 		67F950FD24BCA111009B5F07 /* RegistrationCreateCredentialsViewControllerNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3535363724AC9A3000B428D6 /* RegistrationCreateCredentialsViewControllerNew.swift */; };
 		67F950FE24BCA111009B5F07 /* RegistrationSecurityQuestionsViewControllerNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E1F85724ADA49900574065 /* RegistrationSecurityQuestionsViewControllerNew.swift */; };
-		67FC0A0A2AF03B5A00DBE860 /* FirebaseAnalytics.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67BFDDCF2AF0313E007E7864 /* FirebaseAnalytics.xcframework */; };
-		67FC0A0C2AF03B5C00DBE860 /* FirebaseCore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67BFDDCE2AF0313D007E7864 /* FirebaseCore.xcframework */; };
-		67FC0A0E2AF03B5F00DBE860 /* FirebaseCoreDiagnostics.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67BFDDD12AF0313F007E7864 /* FirebaseCoreDiagnostics.xcframework */; };
-		67FC0A102AF03B6100DBE860 /* FirebaseInstallations.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67BFDDD52AF03140007E7864 /* FirebaseInstallations.xcframework */; };
-		67FC0A122AF03B6400DBE860 /* GoogleAppMeasurement.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67BFDDD42AF03140007E7864 /* GoogleAppMeasurement.xcframework */; };
-		67FC0A142AF03B6600DBE860 /* GoogleDataTransport.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67BFDDD02AF0313E007E7864 /* GoogleDataTransport.xcframework */; };
-		67FC0A162AF03B6800DBE860 /* GoogleUtilities.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67BFDDCD2AF0313D007E7864 /* GoogleUtilities.xcframework */; };
+		67FBB15E2AFD93A800A676B7 /* nanopb.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67FBB1542AFD93A700A676B7 /* nanopb.xcframework */; };
+		67FBB15F2AFD93A800A676B7 /* FirebaseAnalyticsSwift.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67FBB1552AFD93A800A676B7 /* FirebaseAnalyticsSwift.xcframework */; };
+		67FBB1602AFD93A800A676B7 /* GoogleUtilities.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67FBB1562AFD93A800A676B7 /* GoogleUtilities.xcframework */; };
+		67FBB1612AFD93A800A676B7 /* FBLPromises.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67FBB1572AFD93A800A676B7 /* FBLPromises.xcframework */; };
+		67FBB1622AFD93A800A676B7 /* GoogleAppMeasurement.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67FBB1582AFD93A800A676B7 /* GoogleAppMeasurement.xcframework */; };
+		67FBB1632AFD93A800A676B7 /* FirebaseCoreInternal.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67FBB1592AFD93A800A676B7 /* FirebaseCoreInternal.xcframework */; };
+		67FBB1642AFD93A800A676B7 /* GoogleAppMeasurementIdentitySupport.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67FBB15A2AFD93A800A676B7 /* GoogleAppMeasurementIdentitySupport.xcframework */; };
+		67FBB1652AFD93A800A676B7 /* FirebaseInstallations.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67FBB15B2AFD93A800A676B7 /* FirebaseInstallations.xcframework */; };
+		67FBB1662AFD93A800A676B7 /* FirebaseAnalytics.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67FBB15C2AFD93A800A676B7 /* FirebaseAnalytics.xcframework */; };
+		67FBB1672AFD93A800A676B7 /* FirebaseCore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67FBB15D2AFD93A800A676B7 /* FirebaseCore.xcframework */; };
 		8206D0131FABB9AB0056F4CB /* PeakRewardsProgramCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8206D0121FABB9AB0056F4CB /* PeakRewardsProgramCard.swift */; };
 		8206D0171FABC5350056F4CB /* SmartThermostatPeriodCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8206D0161FABC5350056F4CB /* SmartThermostatPeriodCard.swift */; };
 		8206D01B1FABCDD70056F4CB /* TemperatureScaleStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8206D01A1FABCDD70056F4CB /* TemperatureScaleStore.swift */; };
@@ -1675,12 +1674,6 @@
 		67933BA42AEBFF7C00EE75C0 /* OpcoUpdatesHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpcoUpdatesHostingController.swift; sourceTree = "<group>"; };
 		6797115325DD87E3008A0080 /* OutageAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutageAnimation.swift; sourceTree = "<group>"; };
 		6797115A25DD901F008A0080 /* Arc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arc.swift; sourceTree = "<group>"; };
-		679A63262AE814EE00DC25D7 /* version_bump.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = version_bump.sh; sourceTree = "<group>"; };
-		679A63272AE8377400DC25D7 /* Version.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Version.xcconfig; sourceTree = "<group>"; };
-		679A63282AE8377400DC25D7 /* Beta.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Beta.xcconfig; sourceTree = "<group>"; };
-		679A63292AE8377400DC25D7 /* AUT.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = AUT.xcconfig; sourceTree = "<group>"; };
-		679A632A2AE8377400DC25D7 /* RC.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = RC.xcconfig; sourceTree = "<group>"; };
-		679A632B2AE8377500DC25D7 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
 		679A632C2AE9760800DC25D7 /* AppointmentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentResponse.swift; sourceTree = "<group>"; };
 		679A632F2AE9765300DC25D7 /* ReleaseOfInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleaseOfInformation.swift; sourceTree = "<group>"; };
 		679C6EB024D1E84E00535DE7 /* AppointmentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentService.swift; sourceTree = "<group>"; };
@@ -1700,15 +1693,6 @@
 		67BEB6F62AEAF00C006FA08A /* OpcoUpdatesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpcoUpdatesView.swift; sourceTree = "<group>"; };
 		67BEB6F82AEAF75A006FA08A /* OpcoUpdateDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpcoUpdateDetailView.swift; sourceTree = "<group>"; };
 		67BEB6FA2AEAF88B006FA08A /* OpcoUpdatesRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpcoUpdatesRow.swift; sourceTree = "<group>"; };
-		67BFDDCD2AF0313D007E7864 /* GoogleUtilities.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = GoogleUtilities.xcframework; path = "Frameworks/Firebase-7-11/GoogleUtilities.xcframework"; sourceTree = "<group>"; };
-		67BFDDCE2AF0313D007E7864 /* FirebaseCore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FirebaseCore.xcframework; path = "Frameworks/Firebase-7-11/FirebaseCore.xcframework"; sourceTree = "<group>"; };
-		67BFDDCF2AF0313E007E7864 /* FirebaseAnalytics.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FirebaseAnalytics.xcframework; path = "Frameworks/Firebase-7-11/FirebaseAnalytics.xcframework"; sourceTree = "<group>"; };
-		67BFDDD02AF0313E007E7864 /* GoogleDataTransport.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = GoogleDataTransport.xcframework; path = "Frameworks/Firebase-7-11/GoogleDataTransport.xcframework"; sourceTree = "<group>"; };
-		67BFDDD12AF0313F007E7864 /* FirebaseCoreDiagnostics.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FirebaseCoreDiagnostics.xcframework; path = "Frameworks/Firebase-7-11/FirebaseCoreDiagnostics.xcframework"; sourceTree = "<group>"; };
-		67BFDDD22AF0313F007E7864 /* nanopb.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = nanopb.xcframework; path = "Frameworks/Firebase-7-11/nanopb.xcframework"; sourceTree = "<group>"; };
-		67BFDDD32AF0313F007E7864 /* PromisesObjC.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = PromisesObjC.xcframework; path = "Frameworks/Firebase-7-11/PromisesObjC.xcframework"; sourceTree = "<group>"; };
-		67BFDDD42AF03140007E7864 /* GoogleAppMeasurement.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = GoogleAppMeasurement.xcframework; path = "Frameworks/Firebase-7-11/GoogleAppMeasurement.xcframework"; sourceTree = "<group>"; };
-		67BFDDD52AF03140007E7864 /* FirebaseInstallations.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FirebaseInstallations.xcframework; path = "Frameworks/Firebase-7-11/FirebaseInstallations.xcframework"; sourceTree = "<group>"; };
 		67D04AB42ADDAFE20036479A /* ActivityTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityTracker.swift; sourceTree = "<group>"; };
 		67D5626224EADA7E00852551 /* GameTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTip.swift; sourceTree = "<group>"; };
 		67D5626624EADA9600852551 /* GameQuiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameQuiz.swift; sourceTree = "<group>"; };
@@ -1731,6 +1715,21 @@
 		67DDBDB62464632F006CD6EB /* GoogleService-Info-RC-FlavorPEPCO.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-RC-FlavorPEPCO.plist"; sourceTree = "<group>"; };
 		67DDBDBA246463B7006CD6EB /* GoogleService-Info-BETA-FlavorPEPCO.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-BETA-FlavorPEPCO.plist"; sourceTree = "<group>"; };
 		67DDBDBE24646E38006CD6EB /* Color+OpCo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+OpCo.swift"; sourceTree = "<group>"; };
+		67FBB1542AFD93A700A676B7 /* nanopb.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = nanopb.xcframework; path = Frameworks/Firebase/nanopb.xcframework; sourceTree = "<group>"; };
+		67FBB1552AFD93A800A676B7 /* FirebaseAnalyticsSwift.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FirebaseAnalyticsSwift.xcframework; path = Frameworks/Firebase/FirebaseAnalyticsSwift.xcframework; sourceTree = "<group>"; };
+		67FBB1562AFD93A800A676B7 /* GoogleUtilities.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = GoogleUtilities.xcframework; path = Frameworks/Firebase/GoogleUtilities.xcframework; sourceTree = "<group>"; };
+		67FBB1572AFD93A800A676B7 /* FBLPromises.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FBLPromises.xcframework; path = Frameworks/Firebase/FBLPromises.xcframework; sourceTree = "<group>"; };
+		67FBB1582AFD93A800A676B7 /* GoogleAppMeasurement.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = GoogleAppMeasurement.xcframework; path = Frameworks/Firebase/GoogleAppMeasurement.xcframework; sourceTree = "<group>"; };
+		67FBB1592AFD93A800A676B7 /* FirebaseCoreInternal.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FirebaseCoreInternal.xcframework; path = Frameworks/Firebase/FirebaseCoreInternal.xcframework; sourceTree = "<group>"; };
+		67FBB15A2AFD93A800A676B7 /* GoogleAppMeasurementIdentitySupport.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = GoogleAppMeasurementIdentitySupport.xcframework; path = Frameworks/Firebase/GoogleAppMeasurementIdentitySupport.xcframework; sourceTree = "<group>"; };
+		67FBB15B2AFD93A800A676B7 /* FirebaseInstallations.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FirebaseInstallations.xcframework; path = Frameworks/Firebase/FirebaseInstallations.xcframework; sourceTree = "<group>"; };
+		67FBB15C2AFD93A800A676B7 /* FirebaseAnalytics.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FirebaseAnalytics.xcframework; path = Frameworks/Firebase/FirebaseAnalytics.xcframework; sourceTree = "<group>"; };
+		67FBB15D2AFD93A800A676B7 /* FirebaseCore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FirebaseCore.xcframework; path = Frameworks/Firebase/FirebaseCore.xcframework; sourceTree = "<group>"; };
+		67FBB16B2AFE834700A676B7 /* AUT.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = AUT.xcconfig; sourceTree = "<group>"; };
+		67FBB16C2AFE834700A676B7 /* Beta.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Beta.xcconfig; sourceTree = "<group>"; };
+		67FBB16D2AFE834700A676B7 /* RC.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = RC.xcconfig; sourceTree = "<group>"; };
+		67FBB16E2AFE834700A676B7 /* Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
+		67FBB1732AFE841500A676B7 /* Version.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Version.xcconfig; sourceTree = "<group>"; };
 		67FC0A082AF034B500DBE860 /* Firebase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Firebase.h; sourceTree = "<group>"; };
 		67FC0A092AF0358F00DBE860 /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		8206D0121FABB9AB0056F4CB /* PeakRewardsProgramCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeakRewardsProgramCard.swift; sourceTree = "<group>"; };
@@ -2241,30 +2240,31 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				67FC0A0C2AF03B5C00DBE860 /* FirebaseCore.xcframework in Frameworks */,
-				67FC0A102AF03B6100DBE860 /* FirebaseInstallations.xcframework in Frameworks */,
 				6761AC222AD84CC800945554 /* Toast in Frameworks */,
-				67BFDDDC2AF03141007E7864 /* PromisesObjC.xcframework in Frameworks */,
-				67FC0A0E2AF03B5F00DBE860 /* FirebaseCoreDiagnostics.xcframework in Frameworks */,
 				674E6BAD2AF95F1000329D22 /* RxSwiftExt.xcframework in Frameworks */,
-				67FC0A0A2AF03B5A00DBE860 /* FirebaseAnalytics.xcframework in Frameworks */,
 				6761AC392AD85CEB00945554 /* MedalliaDigitalSDK in Frameworks */,
 				6761AC2E2AD84DFA00945554 /* Charts in Frameworks */,
-				67FC0A162AF03B6800DBE860 /* GoogleUtilities.xcframework in Frameworks */,
 				674E6BAB2AF95F0D00329D22 /* RxSwift.xcframework in Frameworks */,
+				67FBB1662AFD93A800A676B7 /* FirebaseAnalytics.xcframework in Frameworks */,
+				67FBB1602AFD93A800A676B7 /* GoogleUtilities.xcframework in Frameworks */,
+				67FBB1622AFD93A800A676B7 /* GoogleAppMeasurement.xcframework in Frameworks */,
 				674E6BA92AF95F0A00329D22 /* RxRelay.xcframework in Frameworks */,
 				6761AC362AD85C8400945554 /* AppCenterDistribute in Frameworks */,
+				67FBB15E2AFD93A800A676B7 /* nanopb.xcframework in Frameworks */,
 				67317F3A2AEAFDF40058466D /* EUDesignSystem in Frameworks */,
+				67FBB1672AFD93A800A676B7 /* FirebaseCore.xcframework in Frameworks */,
 				6761AC312AD84E4F00945554 /* XLPagerTabStrip in Frameworks */,
+				67FBB1652AFD93A800A676B7 /* FirebaseInstallations.xcframework in Frameworks */,
 				6761AC342AD85C8400945554 /* AppCenterCrashes in Frameworks */,
 				674E6BA72AF95F0700329D22 /* RxCocoa.xcframework in Frameworks */,
-				67BFDDDB2AF03141007E7864 /* nanopb.xcframework in Frameworks */,
-				67FC0A142AF03B6600DBE860 /* GoogleDataTransport.xcframework in Frameworks */,
 				6761AC282AD84D8800945554 /* Reachability in Frameworks */,
+				67FBB15F2AFD93A800A676B7 /* FirebaseAnalyticsSwift.xcframework in Frameworks */,
 				6761AC2B2AD84DB600945554 /* HorizonCalendar in Frameworks */,
-				67FC0A122AF03B6400DBE860 /* GoogleAppMeasurement.xcframework in Frameworks */,
+				67FBB1642AFD93A800A676B7 /* GoogleAppMeasurementIdentitySupport.xcframework in Frameworks */,
+				67FBB1612AFD93A800A676B7 /* FBLPromises.xcframework in Frameworks */,
 				6761AC252AD84D2100945554 /* Lottie in Frameworks */,
 				674E6BB12AF9608A00329D22 /* DecibelCore.xcframework in Frameworks */,
+				67FBB1632AFD93A800A676B7 /* FirebaseCoreInternal.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3947,19 +3947,6 @@
 			path = "Outage Animation";
 			sourceTree = "<group>";
 		};
-		679A63242AE814EE00DC25D7 /* tools */ = {
-			isa = PBXGroup;
-			children = (
-				679A63292AE8377400DC25D7 /* AUT.xcconfig */,
-				679A63282AE8377400DC25D7 /* Beta.xcconfig */,
-				679A632A2AE8377400DC25D7 /* RC.xcconfig */,
-				679A632B2AE8377500DC25D7 /* Release.xcconfig */,
-				679A63272AE8377400DC25D7 /* Version.xcconfig */,
-				679A63262AE814EE00DC25D7 /* version_bump.sh */,
-			);
-			path = tools;
-			sourceTree = "<group>";
-		};
 		67A482ED26BC416300FBB0BB /* B2C */ = {
 			isa = PBXGroup;
 			children = (
@@ -4066,6 +4053,7 @@
 		67D04AB32ADDAFC30036479A /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				67FBB1692AFD942100A676B7 /* Firebase */,
 				67D04AB42ADDAFE20036479A /* ActivityTracker.swift */,
 			);
 			path = Vendor;
@@ -4149,12 +4137,10 @@
 		67D73B0D246C743500450B63 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				67FBB16A2AFE82DE00A676B7 /* Configurations */,
 				673BA75C26EBB4DA00EACE5F /* entitlements.entitlements */,
 				8FD3C26C1E52576F005FB1BB /* Info.plist */,
 				B5AC06781E51763200BBA4ED /* Configuration.swift */,
-				67FC0A092AF0358F00DBE860 /* module.modulemap */,
-				67FC0A082AF034B500DBE860 /* Firebase.h */,
-				3547FDDF21E8F33C006F28A7 /* Bridging-Header.h */,
 				82AEF2E31F618F560057E7ED /* Settings.bundle */,
 			);
 			path = "Supporting Files";
@@ -4241,6 +4227,28 @@
 			path = Data;
 			sourceTree = "<group>";
 		};
+		67FBB1692AFD942100A676B7 /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				67FC0A092AF0358F00DBE860 /* module.modulemap */,
+				67FC0A082AF034B500DBE860 /* Firebase.h */,
+				3547FDDF21E8F33C006F28A7 /* Bridging-Header.h */,
+			);
+			path = Firebase;
+			sourceTree = "<group>";
+		};
+		67FBB16A2AFE82DE00A676B7 /* Configurations */ = {
+			isa = PBXGroup;
+			children = (
+				67FBB16B2AFE834700A676B7 /* AUT.xcconfig */,
+				67FBB16C2AFE834700A676B7 /* Beta.xcconfig */,
+				67FBB16D2AFE834700A676B7 /* RC.xcconfig */,
+				67FBB16E2AFE834700A676B7 /* Release.xcconfig */,
+				67FBB1732AFE841500A676B7 /* Version.xcconfig */,
+			);
+			path = Configurations;
+			sourceTree = "<group>";
+		};
 		82A18EB01EBA667900BE9F21 /* Controls */ = {
 			isa = PBXGroup;
 			children = (
@@ -4290,15 +4298,16 @@
 		8FD3C25A1E524511005FB1BB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				67BFDDCF2AF0313E007E7864 /* FirebaseAnalytics.xcframework */,
-				67BFDDCE2AF0313D007E7864 /* FirebaseCore.xcframework */,
-				67BFDDD12AF0313F007E7864 /* FirebaseCoreDiagnostics.xcframework */,
-				67BFDDD52AF03140007E7864 /* FirebaseInstallations.xcframework */,
-				67BFDDD42AF03140007E7864 /* GoogleAppMeasurement.xcframework */,
-				67BFDDD02AF0313E007E7864 /* GoogleDataTransport.xcframework */,
-				67BFDDCD2AF0313D007E7864 /* GoogleUtilities.xcframework */,
-				67BFDDD22AF0313F007E7864 /* nanopb.xcframework */,
-				67BFDDD32AF0313F007E7864 /* PromisesObjC.xcframework */,
+				67FBB1572AFD93A800A676B7 /* FBLPromises.xcframework */,
+				67FBB15C2AFD93A800A676B7 /* FirebaseAnalytics.xcframework */,
+				67FBB1552AFD93A800A676B7 /* FirebaseAnalyticsSwift.xcframework */,
+				67FBB15D2AFD93A800A676B7 /* FirebaseCore.xcframework */,
+				67FBB1592AFD93A800A676B7 /* FirebaseCoreInternal.xcframework */,
+				67FBB15B2AFD93A800A676B7 /* FirebaseInstallations.xcframework */,
+				67FBB1582AFD93A800A676B7 /* GoogleAppMeasurement.xcframework */,
+				67FBB15A2AFD93A800A676B7 /* GoogleAppMeasurementIdentitySupport.xcframework */,
+				67FBB1562AFD93A800A676B7 /* GoogleUtilities.xcframework */,
+				67FBB1542AFD93A700A676B7 /* nanopb.xcframework */,
 				674E6BAF2AF9608200329D22 /* DecibelCore.xcframework */,
 				823AA55F201247CF009CAEF0 /* XCTest.framework */,
 				E887C9F51ED5D3E1002433A3 /* Accelerate.framework */,
@@ -4724,7 +4733,6 @@
 				674A114F2522502200AF0D38 /* README.md */,
 				677958E325E43B4A00A08CC2 /* Shared */,
 				B58B5AC31E4E28740051FD5F /* App */,
-				679A63242AE814EE00DC25D7 /* tools */,
 				35E7C79021907EA200BA13C6 /* Watch App */,
 				6716592826F0FBA0004546DE /* UITests */,
 				6716595026F0FBC6004546DE /* UnitTests */,
@@ -5039,7 +5047,6 @@
 				B58B5ABE1E4E28740051FD5F /* Frameworks */,
 				B58B5ABF1E4E28740051FD5F /* Resources */,
 				35F9DD4D2333C34200AAA2B2 /* Embed Watch Content */,
-				0E9BB58425827FAF00EF6BE3 /* Remove any i386 or x86_64 architectures from linked frameworks */,
 				67D0481C2AD9BD250036479A /* Embed Frameworks */,
 			);
 			buildRules = (
@@ -5072,7 +5079,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1240;
-				LastUpgradeCheck = 1430;
+				LastUpgradeCheck = 1500;
 				ORGANIZATIONNAME = "Exelon Corporation";
 				TargetAttributes = {
 					35F9DD222333C33F00AAA2B2 = {
@@ -5153,10 +5160,8 @@
 				67A9873324FD4C5F00BD46E7 /* (null) in Resources */,
 				C338282824E30B0600F133C5 /* PeakRewardsSummaryMock.json in Resources */,
 				35F9DD682333C85C00AAA2B2 /* README.md in Resources */,
-				35F9DD672333C85B00AAA2B2 /* README.md in Resources */,
 				678B622E24D09A1C009F8A6B /* RegistrationQuestionsMock.json in Resources */,
 				678B621A24CF6AD2009F8A6B /* ValidateRegistrationMock.json in Resources */,
-				35F9DD6C2333C8A000AAA2B2 /* Assets.xcassets in Resources */,
 				C338283524E30D6900F133C5 /* PeakRewardsOverridesMock.json in Resources */,
 				4A398A41271E997600FA7B89 /* WorkdaysMock.json in Resources */,
 			);
@@ -5443,27 +5448,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		0E9BB58425827FAF00EF6BE3 /* Remove any i386 or x86_64 architectures from linked frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Remove any i386 or x86_64 architectures from linked frameworks";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# from https://stackoverflow.com/questions/30547283/submit-to-app-store-issues-unsupported-architecture-x86/41416964#41416964\n\necho \"Target architectures: $ARCHS\"\n\nAPP_PATH=\"${TARGET_BUILD_DIR}/${WRAPPER_NAME}\"\n\nfind \"$APP_PATH\" -name '*.framework' -type d | while read -r FRAMEWORK\ndo\nFRAMEWORK_EXECUTABLE_NAME=$(defaults read \"$FRAMEWORK/Info.plist\" CFBundleExecutable)\nFRAMEWORK_EXECUTABLE_PATH=\"$FRAMEWORK/$FRAMEWORK_EXECUTABLE_NAME\"\necho \"Executable is $FRAMEWORK_EXECUTABLE_PATH\"\necho $(lipo -info \"$FRAMEWORK_EXECUTABLE_PATH\")\n\nFRAMEWORK_TMP_PATH=\"$FRAMEWORK_EXECUTABLE_PATH-tmp\"\n\n# remove simulator's archs if location is not simulator's directory\ncase \"${TARGET_BUILD_DIR}\" in\n*\"iphonesimulator\")\n    echo \"No need to remove archs\"\n    ;;\n*)\n    if $(lipo \"$FRAMEWORK_EXECUTABLE_PATH\" -verify_arch \"i386\") ; then\n    lipo -output \"$FRAMEWORK_TMP_PATH\" -remove \"i386\" \"$FRAMEWORK_EXECUTABLE_PATH\"\n    echo \"i386 architecture removed\"\n    rm \"$FRAMEWORK_EXECUTABLE_PATH\"\n    mv \"$FRAMEWORK_TMP_PATH\" \"$FRAMEWORK_EXECUTABLE_PATH\"\n    fi\n    if $(lipo \"$FRAMEWORK_EXECUTABLE_PATH\" -verify_arch \"x86_64\") ; then\n    lipo -output \"$FRAMEWORK_TMP_PATH\" -remove \"x86_64\" \"$FRAMEWORK_EXECUTABLE_PATH\"\n    echo \"x86_64 architecture removed\"\n    rm \"$FRAMEWORK_EXECUTABLE_PATH\"\n    mv \"$FRAMEWORK_TMP_PATH\" \"$FRAMEWORK_EXECUTABLE_PATH\"\n    fi\n    ;;\nesac\n\necho \"Completed for executable $FRAMEWORK_EXECUTABLE_PATH\"\necho $(lipo -info \"$FRAMEWORK_EXECUTABLE_PATH\")\n\ndone\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		35F9DD2B2333C34100AAA2B2 /* Sources */ = {
@@ -6391,12 +6375,13 @@
 /* Begin XCBuildConfiguration section */
 		0E131751202B583000865819 /* BGE-Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 679A632B2AE8377500DC25D7 /* Release.xcconfig */;
+			baseConfigurationReference = 67FBB16E2AFE834700A676B7 /* Release.xcconfig */;
 			buildSettings = {
 				ACCOUNT_URL = "https://bge.com/MyAccount";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ANON_ASSOCIATED_DOMAIN = bge.com;
 				APP_CENTER_ID = "8bfce822-abdf-4e5c-8425-0897f447692a";
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				ASSOCIATED_DOMAIN = secure.bge.com;
 				BASE_URL = eudapi.bge.com;
 				BUILD_DISPLAY_NAME = BGE;
@@ -6435,6 +6420,7 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				ENVIRONMENT_TIER = PROD;
 				EXCLUDED_SOURCE_FILE_NAMES = "*-Flavor*.*";
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
@@ -6465,12 +6451,13 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "App/Vendor/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "BGE-Release";
 		};
@@ -6491,10 +6478,7 @@
 				ENABLE_BITCODE = NO;
 				ENVIRONMENT_TIER = RELEASE;
 				EXCLUDED_ARCHS = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/App/Vendor/RxSwift",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
@@ -6506,7 +6490,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = "$(VERSION)";
-				MODULEMAP_FILE = "App/Supporting Files/module.modulemap";
+				MODULEMAP_FILE = App/Vendor/Firebase/module.modulemap;
 				OPCO = BGE;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
@@ -6514,10 +6498,10 @@
 				PROVISIONING_PROFILE = "48c6faa5-6279-47c2-ac55-339f55816cb0";
 				PROVISIONING_PROFILE_SPECIFIER = "BGE App Store";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
-				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "App/Vendor/Firebase/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				USER_HEADER_SEARCH_PATHS = "\"App/Supporting Files\"";
+				USER_HEADER_SEARCH_PATHS = "\"App/Vendor/Firebase\"";
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
@@ -10153,12 +10137,13 @@
 		};
 		67A9867624F950F900BD46E7 /* PECO-AUT */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 679A63292AE8377400DC25D7 /* AUT.xcconfig */;
+			baseConfigurationReference = 67FBB16B2AFE834700A676B7 /* AUT.xcconfig */;
 			buildSettings = {
 				ACCOUNT_URL = "https://azstage.peco.com/MyAccount";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ANON_ASSOCIATED_DOMAIN = azstage.peco.com;
 				APP_CENTER_ID = "5396a42c-0b16-4984-af32-ee9957764960";
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				ASSOCIATED_DOMAIN = "azstg-secure.peco.com";
 				BASE_URL = "eudapi-test.peco.com";
 				BUILD_DISPLAY_NAME = PECO;
@@ -10197,6 +10182,7 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				ENVIRONMENT_TIER = AUT;
 				EXCLUDED_SOURCE_FILE_NAMES = "*-Flavor*.*";
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
@@ -10232,11 +10218,12 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "App/Vendor/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "PECO-AUT";
 		};
@@ -10255,10 +10242,7 @@
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
 				EXCLUDED_ARCHS = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/App/Vendor/RxSwift",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
@@ -10270,7 +10254,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = "$(VERSION)";
-				MODULEMAP_FILE = "App/Supporting Files/module.modulemap";
+				MODULEMAP_FILE = App/Vendor/Firebase/module.modulemap;
 				OPCO = PECO;
 				OTHER_LDFLAGS = "$(inherited)";
 				PAYMENT_URL = "https://secure2.paymentus.com/xotp/pm/peco";
@@ -10279,10 +10263,10 @@
 				PROVISIONING_PROFILE = "a8b53b0b-b8ff-4377-a2cc-1922bbd33196";
 				PROVISIONING_PROFILE_SPECIFIER = "Exelon Wildcard Dev Profile";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match InHouse com.exelon.mobile.peco.testing";
-				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "App/Vendor/Firebase/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				USER_HEADER_SEARCH_PATHS = "\"App/Supporting Files\"";
+				USER_HEADER_SEARCH_PATHS = "\"App/Vendor/Firebase\"";
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
@@ -10387,12 +10371,13 @@
 		};
 		67A9868224F9510D00BD46E7 /* PECO-Beta */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 679A63282AE8377400DC25D7 /* Beta.xcconfig */;
+			baseConfigurationReference = 67FBB16C2AFE834700A676B7 /* Beta.xcconfig */;
 			buildSettings = {
 				ACCOUNT_URL = "https://azstage.peco.com/MyAccount";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ANON_ASSOCIATED_DOMAIN = azstage.peco.com;
 				APP_CENTER_ID = "432a1a21-ccbb-4ee9-b3e3-2480090618f5";
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				ASSOCIATED_DOMAIN = "azstg-secure.peco.com";
 				BASE_URL = "eudapi-stage.peco.com";
 				BUILD_DISPLAY_NAME = PECO;
@@ -10431,6 +10416,7 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				ENVIRONMENT_TIER = STAGE;
 				EXCLUDED_SOURCE_FILE_NAMES = "*-Flavor*.*";
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
@@ -10467,11 +10453,12 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_COMPILATION_MODE = singlefile;
-				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "App/Vendor/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "PECO-Beta";
 		};
@@ -10492,11 +10479,7 @@
 				ENABLE_BITCODE = NO;
 				ENVIRONMENT_TIER = BETA;
 				EXCLUDED_ARCHS = "";
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/App/Vendor/RxSwift",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
@@ -10508,7 +10491,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = "$(VERSION)";
-				MODULEMAP_FILE = "App/Supporting Files/module.modulemap";
+				MODULEMAP_FILE = App/Vendor/Firebase/module.modulemap;
 				ONLY_ACTIVE_ARCH = YES;
 				OPCO = PECO;
 				OTHER_LDFLAGS = "$(inherited)";
@@ -10517,10 +10500,10 @@
 				PROVISIONING_PROFILE = "bc06f33e-100c-4311-838a-c74b10fe6132";
 				PROVISIONING_PROFILE_SPECIFIER = "PECO Staging Enterprise Dist";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "PECO Staging Enterprise Dist";
-				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "App/Vendor/Firebase/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				USER_HEADER_SEARCH_PATHS = "\"App/Supporting Files\"";
+				USER_HEADER_SEARCH_PATHS = "\"App/Vendor/Firebase\"";
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
@@ -10580,12 +10563,13 @@
 		};
 		67A9868824F9511500BD46E7 /* PECO-RC */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 679A632A2AE8377400DC25D7 /* RC.xcconfig */;
+			baseConfigurationReference = 67FBB16D2AFE834700A676B7 /* RC.xcconfig */;
 			buildSettings = {
 				ACCOUNT_URL = "https://peco.com/MyAccount";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ANON_ASSOCIATED_DOMAIN = peco.com;
 				APP_CENTER_ID = "fbc9f960-869c-47c4-a765-a650369ffca1";
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				ASSOCIATED_DOMAIN = secure.peco.com;
 				BASE_URL = eudapi.peco.com;
 				BUILD_DISPLAY_NAME = PECO;
@@ -10624,6 +10608,7 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				ENVIRONMENT_TIER = PRODBETA;
 				EXCLUDED_SOURCE_FILE_NAMES = "*-Flavor*.*";
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
@@ -10654,12 +10639,13 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_COMPILATION_MODE = singlefile;
-				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "App/Vendor/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "PECO-RC";
 		};
@@ -10681,10 +10667,7 @@
 				ENABLE_BITCODE = NO;
 				ENVIRONMENT_TIER = RC;
 				EXCLUDED_ARCHS = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/App/Vendor/RxSwift",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
@@ -10696,7 +10679,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = "$(VERSION)";
-				MODULEMAP_FILE = "App/Supporting Files/module.modulemap";
+				MODULEMAP_FILE = App/Vendor/Firebase/module.modulemap;
 				OPCO = PECO;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
@@ -10705,10 +10688,10 @@
 				PROVISIONING_PROFILE_SPECIFIER = "PECO Production Beta Enterprise Dist";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match InHouse com.exelon.mobile.peco.prodbeta";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
-				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "App/Vendor/Firebase/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				USER_HEADER_SEARCH_PATHS = "\"App/Supporting Files\"";
+				USER_HEADER_SEARCH_PATHS = "\"App/Vendor/Firebase\"";
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
@@ -10770,12 +10753,13 @@
 		};
 		67A9868E24F9511D00BD46E7 /* PECO-Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 679A632B2AE8377500DC25D7 /* Release.xcconfig */;
+			baseConfigurationReference = 67FBB16E2AFE834700A676B7 /* Release.xcconfig */;
 			buildSettings = {
 				ACCOUNT_URL = "https://peco.com/MyAccount";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ANON_ASSOCIATED_DOMAIN = peco.com;
 				APP_CENTER_ID = "0a416441-1ad6-4be2-b009-79f8b15f8b58";
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				ASSOCIATED_DOMAIN = secure.peco.com;
 				BASE_URL = eudapi.peco.com;
 				BUILD_DISPLAY_NAME = PECO;
@@ -10814,6 +10798,7 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				ENVIRONMENT_TIER = PROD;
 				EXCLUDED_SOURCE_FILE_NAMES = "*-Flavor*.*";
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
@@ -10844,12 +10829,13 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "App/Vendor/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "PECO-Release";
 		};
@@ -10870,10 +10856,7 @@
 				ENABLE_BITCODE = NO;
 				ENVIRONMENT_TIER = RELEASE;
 				EXCLUDED_ARCHS = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/App/Vendor/RxSwift",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
@@ -10885,7 +10868,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = "$(VERSION)";
-				MODULEMAP_FILE = "App/Supporting Files/module.modulemap";
+				MODULEMAP_FILE = App/Vendor/Firebase/module.modulemap;
 				OPCO = PECO;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
@@ -10893,10 +10876,10 @@
 				PROVISIONING_PROFILE = "48c6faa5-6279-47c2-ac55-339f55816cb0";
 				PROVISIONING_PROFILE_SPECIFIER = "PECO App Store";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
-				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "App/Vendor/Firebase/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				USER_HEADER_SEARCH_PATHS = "\"App/Supporting Files\"";
+				USER_HEADER_SEARCH_PATHS = "\"App/Vendor/Firebase\"";
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
@@ -10957,12 +10940,13 @@
 		};
 		67A986B024FD3E8500BD46E7 /* ACE-AUT */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 679A63292AE8377400DC25D7 /* AUT.xcconfig */;
+			baseConfigurationReference = 67FBB16B2AFE834700A676B7 /* AUT.xcconfig */;
 			buildSettings = {
 				ACCOUNT_URL = "https://azstage.atlanticcityelectric.com/MyAccount";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ANON_ASSOCIATED_DOMAIN = azstage.atlanticcityelectric.com;
 				APP_CENTER_ID = "57d12f65-bf2b-40b5-b707-dd8ebe73edfb";
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				ASSOCIATED_DOMAIN = "azstg-secure.atlanticcityelectric.com";
 				BASE_URL = "eudapi-test.atlanticcityelectric.com";
 				BUILD_DISPLAY_NAME = "AC Electric";
@@ -11001,6 +10985,7 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				ENVIRONMENT_TIER = AUT;
 				EXCLUDED_SOURCE_FILE_NAMES = "*-Flavor*.*";
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
@@ -11036,11 +11021,12 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "App/Vendor/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "ACE-AUT";
 		};
@@ -11059,10 +11045,7 @@
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
 				EXCLUDED_ARCHS = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/App/Vendor/RxSwift",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GOOGLE_ANALYTICS_ID = "UA-76742208-14";
@@ -11075,7 +11058,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = "$(VERSION)";
-				MODULEMAP_FILE = "App/Supporting Files/module.modulemap";
+				MODULEMAP_FILE = App/Vendor/Firebase/module.modulemap;
 				OPCO = ACE;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
@@ -11083,10 +11066,10 @@
 				PROVISIONING_PROFILE = "a8b53b0b-b8ff-4377-a2cc-1922bbd33196";
 				PROVISIONING_PROFILE_SPECIFIER = "Exelon Wildcard Dev Profile";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match InHouse com.exelon.mobile.ace.testing";
-				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "App/Vendor/Firebase/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				USER_HEADER_SEARCH_PATHS = "\"App/Supporting Files\"";
+				USER_HEADER_SEARCH_PATHS = "\"App/Vendor/Firebase\"";
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
@@ -11191,12 +11174,13 @@
 		};
 		67A986BC24FD3E9300BD46E7 /* ACE-Beta */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 679A63282AE8377400DC25D7 /* Beta.xcconfig */;
+			baseConfigurationReference = 67FBB16C2AFE834700A676B7 /* Beta.xcconfig */;
 			buildSettings = {
 				ACCOUNT_URL = "https://azstage.atlanticcityelectric.com/MyAccount";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ANON_ASSOCIATED_DOMAIN = azstage.atlanticcityelectric.com;
 				APP_CENTER_ID = "95dc785e-3617-4005-81f4-42ae3e25d65d";
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				ASSOCIATED_DOMAIN = "azstg-secure.atlanticcityelectric.com";
 				BASE_URL = "eudapi-stage.atlanticcityelectric.com";
 				BUILD_DISPLAY_NAME = "AC Electric";
@@ -11235,6 +11219,7 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				ENVIRONMENT_TIER = STAGE;
 				EXCLUDED_SOURCE_FILE_NAMES = "*-Flavor*.*";
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
@@ -11271,11 +11256,12 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_COMPILATION_MODE = singlefile;
-				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "App/Vendor/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "ACE-Beta";
 		};
@@ -11296,11 +11282,7 @@
 				ENABLE_BITCODE = NO;
 				ENVIRONMENT_TIER = BETA;
 				EXCLUDED_ARCHS = "";
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/App/Vendor/RxSwift",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GOOGLE_ANALYTICS_ID = "UA-76742208-14";
@@ -11313,7 +11295,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = "$(VERSION)";
-				MODULEMAP_FILE = "App/Supporting Files/module.modulemap";
+				MODULEMAP_FILE = App/Vendor/Firebase/module.modulemap;
 				ONLY_ACTIVE_ARCH = YES;
 				OPCO = ACE;
 				OTHER_LDFLAGS = "$(inherited)";
@@ -11322,10 +11304,10 @@
 				PROVISIONING_PROFILE = "bc06f33e-100c-4311-838a-c74b10fe6132";
 				PROVISIONING_PROFILE_SPECIFIER = "ACE Staging Enterprise Dist";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "ACE Staging Enterprise Dist";
-				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "App/Vendor/Firebase/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				USER_HEADER_SEARCH_PATHS = "\"App/Supporting Files\"";
+				USER_HEADER_SEARCH_PATHS = "\"App/Vendor/Firebase\"";
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
@@ -11385,12 +11367,13 @@
 		};
 		67A986C224FD3E9900BD46E7 /* ACE-RC */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 679A632A2AE8377400DC25D7 /* RC.xcconfig */;
+			baseConfigurationReference = 67FBB16D2AFE834700A676B7 /* RC.xcconfig */;
 			buildSettings = {
 				ACCOUNT_URL = "https://atlanticcityelectric.com/MyAccount";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ANON_ASSOCIATED_DOMAIN = atlanticcityelectric.com;
 				APP_CENTER_ID = "e9a6ea32-b142-4414-9e6d-d686f7364d95";
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				ASSOCIATED_DOMAIN = secure.atlanticcityelectric.com;
 				BASE_URL = eudapi.atlanticcityelectric.com;
 				BUILD_DISPLAY_NAME = "AC Electric";
@@ -11429,6 +11412,7 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				ENVIRONMENT_TIER = PRODBETA;
 				EXCLUDED_SOURCE_FILE_NAMES = "*-Flavor*.*";
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
@@ -11459,12 +11443,13 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_COMPILATION_MODE = singlefile;
-				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "App/Vendor/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "ACE-RC";
 		};
@@ -11486,10 +11471,7 @@
 				ENABLE_BITCODE = NO;
 				ENVIRONMENT_TIER = RC;
 				EXCLUDED_ARCHS = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/App/Vendor/RxSwift",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GOOGLE_ANALYTICS_ID = "UA-76742208-14";
@@ -11502,7 +11484,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = "$(VERSION)";
-				MODULEMAP_FILE = "App/Supporting Files/module.modulemap";
+				MODULEMAP_FILE = App/Vendor/Firebase/module.modulemap;
 				OPCO = ACE;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
@@ -11511,10 +11493,10 @@
 				PROVISIONING_PROFILE_SPECIFIER = "ACE Production Beta Enterprise Dist";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match InHouse com.exelon.mobile.ace.prodbeta";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
-				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "App/Vendor/Firebase/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				USER_HEADER_SEARCH_PATHS = "\"App/Supporting Files\"";
+				USER_HEADER_SEARCH_PATHS = "\"App/Vendor/Firebase\"";
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
@@ -11576,12 +11558,13 @@
 		};
 		67A986C824FD3E9F00BD46E7 /* ACE-Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 679A632B2AE8377500DC25D7 /* Release.xcconfig */;
+			baseConfigurationReference = 67FBB16E2AFE834700A676B7 /* Release.xcconfig */;
 			buildSettings = {
 				ACCOUNT_URL = "https://atlanticcityelectric.com/MyAccount";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ANON_ASSOCIATED_DOMAIN = atlanticcityelectric.com;
 				APP_CENTER_ID = "e717a9ba-bed1-443f-8311-9653b4bd058b";
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				ASSOCIATED_DOMAIN = secure.atlanticcityelectric.com;
 				BASE_URL = eudapi.atlanticcityelectric.com;
 				BUILD_DISPLAY_NAME = "AC Electric";
@@ -11620,6 +11603,7 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				ENVIRONMENT_TIER = PROD;
 				EXCLUDED_SOURCE_FILE_NAMES = "*-Flavor*.*";
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
@@ -11650,12 +11634,13 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "App/Vendor/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "ACE-Release";
 		};
@@ -11676,10 +11661,7 @@
 				ENABLE_BITCODE = NO;
 				ENVIRONMENT_TIER = RELEASE;
 				EXCLUDED_ARCHS = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/App/Vendor/RxSwift",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GOOGLE_ANALYTICS_ID = "UA-76742208-14";
@@ -11692,7 +11674,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = "$(VERSION)";
-				MODULEMAP_FILE = "App/Supporting Files/module.modulemap";
+				MODULEMAP_FILE = App/Vendor/Firebase/module.modulemap;
 				OPCO = ACE;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
@@ -11700,10 +11682,10 @@
 				PROVISIONING_PROFILE = "48c6faa5-6279-47c2-ac55-339f55816cb0";
 				PROVISIONING_PROFILE_SPECIFIER = "ACE App Store";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
-				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "App/Vendor/Firebase/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				USER_HEADER_SEARCH_PATHS = "\"App/Supporting Files\"";
+				USER_HEADER_SEARCH_PATHS = "\"App/Vendor/Firebase\"";
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
@@ -11764,12 +11746,13 @@
 		};
 		67A986E924FD41DB00BD46E7 /* Delmarva-AUT */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 679A63292AE8377400DC25D7 /* AUT.xcconfig */;
+			baseConfigurationReference = 67FBB16B2AFE834700A676B7 /* AUT.xcconfig */;
 			buildSettings = {
 				ACCOUNT_URL = "https://azstage.delmarva.com/MyAccount";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ANON_ASSOCIATED_DOMAIN = azstage.delmarva.com;
 				APP_CENTER_ID = "6180db89-0219-4878-98c5-51f0e334f8fe";
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				ASSOCIATED_DOMAIN = "azstg-secure.delmarva.com";
 				BASE_URL = "eudapi-test.delmarva.com";
 				BUILD_DISPLAY_NAME = Delmarva;
@@ -11808,6 +11791,7 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				ENVIRONMENT_TIER = AUT;
 				EXCLUDED_SOURCE_FILE_NAMES = "*-Flavor*.*";
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
@@ -11843,11 +11827,12 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "App/Vendor/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "Delmarva-AUT";
 		};
@@ -11866,10 +11851,7 @@
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
 				EXCLUDED_ARCHS = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/App/Vendor/RxSwift",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GOOGLE_ANALYTICS_ID = "UA-76742208-15";
@@ -11882,7 +11864,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = "$(VERSION)";
-				MODULEMAP_FILE = "App/Supporting Files/module.modulemap";
+				MODULEMAP_FILE = App/Vendor/Firebase/module.modulemap;
 				OPCO = DPL;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
@@ -11890,10 +11872,10 @@
 				PROVISIONING_PROFILE = "a8b53b0b-b8ff-4377-a2cc-1922bbd33196";
 				PROVISIONING_PROFILE_SPECIFIER = "Exelon Wildcard Dev Profile";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match InHouse com.exelon.mobile.delmarva.testing";
-				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "App/Vendor/Firebase/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				USER_HEADER_SEARCH_PATHS = "\"App/Supporting Files\"";
+				USER_HEADER_SEARCH_PATHS = "\"App/Vendor/Firebase\"";
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
@@ -11998,12 +11980,13 @@
 		};
 		67A986F524FD41E900BD46E7 /* Delmarva-Beta */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 679A63282AE8377400DC25D7 /* Beta.xcconfig */;
+			baseConfigurationReference = 67FBB16C2AFE834700A676B7 /* Beta.xcconfig */;
 			buildSettings = {
 				ACCOUNT_URL = "https://azstage.delmarva.com/MyAccount";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ANON_ASSOCIATED_DOMAIN = azstage.delmarva.com;
 				APP_CENTER_ID = "8b361cdc-3267-42de-91d0-b1bae6342067";
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				ASSOCIATED_DOMAIN = "azstg-secure.delmarva.com";
 				BASE_URL = "eudapi-stage.delmarva.com";
 				BUILD_DISPLAY_NAME = Delmarva;
@@ -12042,6 +12025,7 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				ENVIRONMENT_TIER = STAGE;
 				EXCLUDED_SOURCE_FILE_NAMES = "*-Flavor*.*";
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
@@ -12078,11 +12062,12 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_COMPILATION_MODE = singlefile;
-				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "App/Vendor/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "Delmarva-Beta";
 		};
@@ -12103,11 +12088,7 @@
 				ENABLE_BITCODE = NO;
 				ENVIRONMENT_TIER = BETA;
 				EXCLUDED_ARCHS = "";
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/App/Vendor/RxSwift",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GOOGLE_ANALYTICS_ID = "UA-76742208-15";
@@ -12120,7 +12101,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = "$(VERSION)";
-				MODULEMAP_FILE = "App/Supporting Files/module.modulemap";
+				MODULEMAP_FILE = App/Vendor/Firebase/module.modulemap;
 				ONLY_ACTIVE_ARCH = YES;
 				OPCO = DPL;
 				OTHER_LDFLAGS = "$(inherited)";
@@ -12129,10 +12110,10 @@
 				PROVISIONING_PROFILE = "bc06f33e-100c-4311-838a-c74b10fe6132";
 				PROVISIONING_PROFILE_SPECIFIER = "Delmarva Staging Enterprise Dist";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Delmarva Staging Enterprise Dist";
-				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "App/Vendor/Firebase/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				USER_HEADER_SEARCH_PATHS = "\"App/Supporting Files\"";
+				USER_HEADER_SEARCH_PATHS = "\"App/Vendor/Firebase\"";
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
@@ -12192,12 +12173,13 @@
 		};
 		67A986FB24FD41F100BD46E7 /* Delmarva-RC */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 679A632A2AE8377400DC25D7 /* RC.xcconfig */;
+			baseConfigurationReference = 67FBB16D2AFE834700A676B7 /* RC.xcconfig */;
 			buildSettings = {
 				ACCOUNT_URL = "https://delmarva.com/MyAccount";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ANON_ASSOCIATED_DOMAIN = delmarva.com;
 				APP_CENTER_ID = "d3ecc389-d8ad-4806-a5d3-e067b7adb02d";
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				ASSOCIATED_DOMAIN = secure.delmarva.com;
 				BASE_URL = eudapi.delmarva.com;
 				BUILD_DISPLAY_NAME = Delmarva;
@@ -12236,6 +12218,7 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				ENVIRONMENT_TIER = PRODBETA;
 				EXCLUDED_SOURCE_FILE_NAMES = "*-Flavor*.*";
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
@@ -12266,12 +12249,13 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_COMPILATION_MODE = singlefile;
-				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "App/Vendor/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "Delmarva-RC";
 		};
@@ -12293,10 +12277,7 @@
 				ENABLE_BITCODE = NO;
 				ENVIRONMENT_TIER = RC;
 				EXCLUDED_ARCHS = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/App/Vendor/RxSwift",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GOOGLE_ANALYTICS_ID = "UA-76742208-15";
@@ -12309,7 +12290,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = "$(VERSION)";
-				MODULEMAP_FILE = "App/Supporting Files/module.modulemap";
+				MODULEMAP_FILE = App/Vendor/Firebase/module.modulemap;
 				OPCO = DPL;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
@@ -12318,10 +12299,10 @@
 				PROVISIONING_PROFILE_SPECIFIER = "Delmarva Production Beta Enterprise Dist";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match InHouse com.exelon.mobile.delmarva.prodbeta";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
-				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "App/Vendor/Firebase/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				USER_HEADER_SEARCH_PATHS = "\"App/Supporting Files\"";
+				USER_HEADER_SEARCH_PATHS = "\"App/Vendor/Firebase\"";
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
@@ -12383,12 +12364,13 @@
 		};
 		67A9870124FD41F600BD46E7 /* Delmarva-Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 679A632B2AE8377500DC25D7 /* Release.xcconfig */;
+			baseConfigurationReference = 67FBB16E2AFE834700A676B7 /* Release.xcconfig */;
 			buildSettings = {
 				ACCOUNT_URL = "https://delmarva.com/MyAccount";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ANON_ASSOCIATED_DOMAIN = delmarva.com;
 				APP_CENTER_ID = "9f85e63c-c1a6-40de-811b-df4074860f14";
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				ASSOCIATED_DOMAIN = secure.delmarva.com;
 				BASE_URL = eudapi.delmarva.com;
 				BUILD_DISPLAY_NAME = Delmarva;
@@ -12427,6 +12409,7 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				ENVIRONMENT_TIER = PROD;
 				EXCLUDED_SOURCE_FILE_NAMES = "*-Flavor*.*";
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
@@ -12457,12 +12440,13 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "App/Vendor/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "Delmarva-Release";
 		};
@@ -12483,10 +12467,7 @@
 				ENABLE_BITCODE = NO;
 				ENVIRONMENT_TIER = RELEASE;
 				EXCLUDED_ARCHS = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/App/Vendor/RxSwift",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GOOGLE_ANALYTICS_ID = "UA-76742208-15";
@@ -12499,7 +12480,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = "$(VERSION)";
-				MODULEMAP_FILE = "App/Supporting Files/module.modulemap";
+				MODULEMAP_FILE = App/Vendor/Firebase/module.modulemap;
 				OPCO = DPL;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
@@ -12507,10 +12488,10 @@
 				PROVISIONING_PROFILE = "48c6faa5-6279-47c2-ac55-339f55816cb0";
 				PROVISIONING_PROFILE_SPECIFIER = "Delmarva App Store";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
-				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "App/Vendor/Firebase/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				USER_HEADER_SEARCH_PATHS = "\"App/Supporting Files\"";
+				USER_HEADER_SEARCH_PATHS = "\"App/Vendor/Firebase\"";
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
@@ -12571,12 +12552,13 @@
 		};
 		67A9870724FD41FE00BD46E7 /* Pepco-AUT */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 679A63292AE8377400DC25D7 /* AUT.xcconfig */;
+			baseConfigurationReference = 67FBB16B2AFE834700A676B7 /* AUT.xcconfig */;
 			buildSettings = {
 				ACCOUNT_URL = "https://azstage.pepco.com/MyAccount";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ANON_ASSOCIATED_DOMAIN = azstage.pepco.com;
 				APP_CENTER_ID = "0962af30-9abf-4ac5-92fa-358fbbe101af";
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				ASSOCIATED_DOMAIN = "azstg-secure.pepco.com";
 				BASE_URL = "eudapi-test.pepco.com";
 				BUILD_DISPLAY_NAME = Pepco;
@@ -12615,6 +12597,7 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				ENVIRONMENT_TIER = AUT;
 				EXCLUDED_SOURCE_FILE_NAMES = "*-Flavor*.*";
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
@@ -12650,11 +12633,12 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "App/Vendor/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "Pepco-AUT";
 		};
@@ -12673,10 +12657,7 @@
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
 				EXCLUDED_ARCHS = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/App/Vendor/RxSwift",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GOOGLE_ANALYTICS_ID = "UA-76742208-13";
@@ -12689,7 +12670,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = "$(VERSION)";
-				MODULEMAP_FILE = "App/Supporting Files/module.modulemap";
+				MODULEMAP_FILE = App/Vendor/Firebase/module.modulemap;
 				OPCO = PEPCO;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
@@ -12697,10 +12678,10 @@
 				PROVISIONING_PROFILE = "a8b53b0b-b8ff-4377-a2cc-1922bbd33196";
 				PROVISIONING_PROFILE_SPECIFIER = "Exelon Wildcard Dev Profile";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match InHouse com.exelon.mobile.pepco.testing";
-				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "App/Vendor/Firebase/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				USER_HEADER_SEARCH_PATHS = "\"App/Supporting Files\"";
+				USER_HEADER_SEARCH_PATHS = "\"App/Vendor/Firebase\"";
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
@@ -12805,12 +12786,13 @@
 		};
 		67A9871324FD420D00BD46E7 /* Pepco-Beta */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 679A63282AE8377400DC25D7 /* Beta.xcconfig */;
+			baseConfigurationReference = 67FBB16C2AFE834700A676B7 /* Beta.xcconfig */;
 			buildSettings = {
 				ACCOUNT_URL = "https://azstage.pepco.com/MyAccount";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ANON_ASSOCIATED_DOMAIN = azstage.pepco.com;
 				APP_CENTER_ID = "48d86d61-5d68-4757-92db-9c3996f5bc18";
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				ASSOCIATED_DOMAIN = "azstg-secure.pepco.com";
 				BASE_URL = "eudapi-stage.pepco.com";
 				BUILD_DISPLAY_NAME = Pepco;
@@ -12849,6 +12831,7 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				ENVIRONMENT_TIER = STAGE;
 				EXCLUDED_SOURCE_FILE_NAMES = "*-Flavor*.*";
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
@@ -12885,11 +12868,12 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_COMPILATION_MODE = singlefile;
-				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "App/Vendor/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "Pepco-Beta";
 		};
@@ -12910,11 +12894,7 @@
 				ENABLE_BITCODE = NO;
 				ENVIRONMENT_TIER = BETA;
 				EXCLUDED_ARCHS = "";
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/App/Vendor/RxSwift",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GOOGLE_ANALYTICS_ID = "UA-76742208-13";
@@ -12927,7 +12907,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = "$(VERSION)";
-				MODULEMAP_FILE = "App/Supporting Files/module.modulemap";
+				MODULEMAP_FILE = App/Vendor/Firebase/module.modulemap;
 				ONLY_ACTIVE_ARCH = YES;
 				OPCO = PEPCO;
 				OTHER_LDFLAGS = "$(inherited)";
@@ -12936,10 +12916,10 @@
 				PROVISIONING_PROFILE = "bc06f33e-100c-4311-838a-c74b10fe6132";
 				PROVISIONING_PROFILE_SPECIFIER = "Pepco Staging Enterprise Dist";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Pepco Staging Enterprise Dist";
-				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "App/Vendor/Firebase/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				USER_HEADER_SEARCH_PATHS = "\"App/Supporting Files\"";
+				USER_HEADER_SEARCH_PATHS = "\"App/Vendor/Firebase\"";
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
@@ -12999,12 +12979,13 @@
 		};
 		67A9871924FD421400BD46E7 /* Pepco-RC */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 679A632A2AE8377400DC25D7 /* RC.xcconfig */;
+			baseConfigurationReference = 67FBB16D2AFE834700A676B7 /* RC.xcconfig */;
 			buildSettings = {
 				ACCOUNT_URL = "https://pepco.com/MyAccount";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ANON_ASSOCIATED_DOMAIN = pepco.com;
 				APP_CENTER_ID = "689f516c-90e8-48e5-b8a4-a9b51b0f0298";
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				ASSOCIATED_DOMAIN = secure.pepco.com;
 				BASE_URL = eudapi.pepco.com;
 				BUILD_DISPLAY_NAME = Pepco;
@@ -13043,6 +13024,7 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				ENVIRONMENT_TIER = PRODBETA;
 				EXCLUDED_SOURCE_FILE_NAMES = "*-Flavor*.*";
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
@@ -13073,12 +13055,13 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_COMPILATION_MODE = singlefile;
-				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "App/Vendor/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "Pepco-RC";
 		};
@@ -13100,10 +13083,7 @@
 				ENABLE_BITCODE = NO;
 				ENVIRONMENT_TIER = RC;
 				EXCLUDED_ARCHS = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/App/Vendor/RxSwift",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GOOGLE_ANALYTICS_ID = "UA-76742208-13";
@@ -13116,7 +13096,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = "$(VERSION)";
-				MODULEMAP_FILE = "App/Supporting Files/module.modulemap";
+				MODULEMAP_FILE = App/Vendor/Firebase/module.modulemap;
 				OPCO = PEPCO;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
@@ -13125,10 +13105,10 @@
 				PROVISIONING_PROFILE_SPECIFIER = "Pepco Production Beta Enterprise Dist";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match InHouse com.exelon.mobile.pepco.prodbeta";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
-				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "App/Vendor/Firebase/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				USER_HEADER_SEARCH_PATHS = "\"App/Supporting Files\"";
+				USER_HEADER_SEARCH_PATHS = "\"App/Vendor/Firebase\"";
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
@@ -13190,12 +13170,13 @@
 		};
 		67A9871F24FD421C00BD46E7 /* Pepco-Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 679A632B2AE8377500DC25D7 /* Release.xcconfig */;
+			baseConfigurationReference = 67FBB16E2AFE834700A676B7 /* Release.xcconfig */;
 			buildSettings = {
 				ACCOUNT_URL = "https://pepco.com/MyAccount";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ANON_ASSOCIATED_DOMAIN = pepco.com;
 				APP_CENTER_ID = "5e8d65a7-7ffb-46b9-99f1-34d4080f52dd";
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				ASSOCIATED_DOMAIN = secure.pepco.com;
 				BASE_URL = eudapi.pepco.com;
 				BUILD_DISPLAY_NAME = Pepco;
@@ -13234,6 +13215,7 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				ENVIRONMENT_TIER = PROD;
 				EXCLUDED_SOURCE_FILE_NAMES = "*-Flavor*.*";
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
@@ -13264,12 +13246,13 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "App/Vendor/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "Pepco-Release";
 		};
@@ -13290,10 +13273,7 @@
 				ENABLE_BITCODE = NO;
 				ENVIRONMENT_TIER = RELEASE;
 				EXCLUDED_ARCHS = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/App/Vendor/RxSwift",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GOOGLE_ANALYTICS_ID = "UA-76742208-13";
@@ -13306,7 +13286,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = "$(VERSION)";
-				MODULEMAP_FILE = "App/Supporting Files/module.modulemap";
+				MODULEMAP_FILE = App/Vendor/Firebase/module.modulemap;
 				OPCO = PEPCO;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
@@ -13314,10 +13294,10 @@
 				PROVISIONING_PROFILE = "48c6faa5-6279-47c2-ac55-339f55816cb0";
 				PROVISIONING_PROFILE_SPECIFIER = "Pepco App Store";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
-				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "App/Vendor/Firebase/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				USER_HEADER_SEARCH_PATHS = "\"App/Supporting Files\"";
+				USER_HEADER_SEARCH_PATHS = "\"App/Vendor/Firebase\"";
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
@@ -13378,12 +13358,13 @@
 		};
 		67D562F924ED9DD100852551 /* ComEd-AUT */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 679A63292AE8377400DC25D7 /* AUT.xcconfig */;
+			baseConfigurationReference = 67FBB16B2AFE834700A676B7 /* AUT.xcconfig */;
 			buildSettings = {
 				ACCOUNT_URL = "https://azstage.comed.com/MyAccount";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ANON_ASSOCIATED_DOMAIN = azstage.comed.com;
 				APP_CENTER_ID = "10cbbd03-c59b-4a65-ad28-bd1f289cd329";
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				ASSOCIATED_DOMAIN = "azstg-secure.comed.com";
 				BASE_URL = "eudapi-test.comed.com";
 				BUILD_DISPLAY_NAME = ComEd;
@@ -13422,6 +13403,7 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				ENVIRONMENT_TIER = AUT;
 				EXCLUDED_SOURCE_FILE_NAMES = "*-Flavor*.*";
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
@@ -13457,11 +13439,12 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "App/Vendor/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "ComEd-AUT";
 		};
@@ -13480,10 +13463,7 @@
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
 				EXCLUDED_ARCHS = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/App/Vendor/RxSwift",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
@@ -13495,7 +13475,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = "$(VERSION)";
-				MODULEMAP_FILE = "App/Supporting Files/module.modulemap";
+				MODULEMAP_FILE = App/Vendor/Firebase/module.modulemap;
 				OPCO = COMED;
 				OTHER_LDFLAGS = "$(inherited)";
 				PAYMENT_URL = "https://secure2.paymentus.com/xotp/pm/comd";
@@ -13504,10 +13484,10 @@
 				PROVISIONING_PROFILE = "a8b53b0b-b8ff-4377-a2cc-1922bbd33196";
 				PROVISIONING_PROFILE_SPECIFIER = "Exelon Wildcard Dev Profile";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match InHouse com.exelon.mobile.comed.testing";
-				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "App/Vendor/Firebase/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				USER_HEADER_SEARCH_PATHS = "\"App/Supporting Files\"";
+				USER_HEADER_SEARCH_PATHS = "\"App/Vendor/Firebase\"";
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
@@ -13612,12 +13592,13 @@
 		};
 		67D5630524ED9DD500852551 /* ComEd-Beta */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 679A63282AE8377400DC25D7 /* Beta.xcconfig */;
+			baseConfigurationReference = 67FBB16C2AFE834700A676B7 /* Beta.xcconfig */;
 			buildSettings = {
 				ACCOUNT_URL = "https://azstage.comed.com/MyAccount";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ANON_ASSOCIATED_DOMAIN = azstage.comed.com;
 				APP_CENTER_ID = "bf4bfe55-3dfd-423b-acfa-32ef84b3776c";
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				ASSOCIATED_DOMAIN = "azstg-secure.comed.com";
 				BASE_URL = "eudapi-stage.comed.com";
 				BUILD_DISPLAY_NAME = ComEd;
@@ -13656,6 +13637,7 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				ENVIRONMENT_TIER = STAGE;
 				EXCLUDED_SOURCE_FILE_NAMES = "*-Flavor*.*";
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
@@ -13692,11 +13674,12 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_COMPILATION_MODE = singlefile;
-				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "App/Vendor/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "ComEd-Beta";
 		};
@@ -13717,11 +13700,7 @@
 				ENABLE_BITCODE = NO;
 				ENVIRONMENT_TIER = BETA;
 				EXCLUDED_ARCHS = "";
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/App/Vendor/RxSwift",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
@@ -13733,7 +13712,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = "$(VERSION)";
-				MODULEMAP_FILE = "App/Supporting Files/module.modulemap";
+				MODULEMAP_FILE = App/Vendor/Firebase/module.modulemap;
 				ONLY_ACTIVE_ARCH = YES;
 				OPCO = COMED;
 				OTHER_LDFLAGS = "$(inherited)";
@@ -13742,10 +13721,10 @@
 				PROVISIONING_PROFILE = "bc06f33e-100c-4311-838a-c74b10fe6132";
 				PROVISIONING_PROFILE_SPECIFIER = "ComEd Staging Enterprise Dist";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "ComEd Staging Enterprise Dist";
-				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "App/Vendor/Firebase/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				USER_HEADER_SEARCH_PATHS = "\"App/Supporting Files\"";
+				USER_HEADER_SEARCH_PATHS = "\"App/Vendor/Firebase\"";
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
@@ -13805,12 +13784,13 @@
 		};
 		67D5631124ED9DD900852551 /* ComEd-RC */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 679A632A2AE8377400DC25D7 /* RC.xcconfig */;
+			baseConfigurationReference = 67FBB16D2AFE834700A676B7 /* RC.xcconfig */;
 			buildSettings = {
 				ACCOUNT_URL = "https://comed.com/MyAccount";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ANON_ASSOCIATED_DOMAIN = comed.com;
 				APP_CENTER_ID = "c98a5583-5894-4b00-bf91-c0a7822376a9";
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				ASSOCIATED_DOMAIN = secure.comed.com;
 				BASE_URL = eudapi.comed.com;
 				BUILD_DISPLAY_NAME = ComEd;
@@ -13849,6 +13829,7 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				ENVIRONMENT_TIER = PRODBETA;
 				EXCLUDED_SOURCE_FILE_NAMES = "*-Flavor*.*";
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
@@ -13879,12 +13860,13 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_COMPILATION_MODE = singlefile;
-				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "App/Vendor/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "ComEd-RC";
 		};
@@ -13906,10 +13888,7 @@
 				ENABLE_BITCODE = NO;
 				ENVIRONMENT_TIER = RC;
 				EXCLUDED_ARCHS = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/App/Vendor/RxSwift",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
@@ -13921,7 +13900,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = "$(VERSION)";
-				MODULEMAP_FILE = "App/Supporting Files/module.modulemap";
+				MODULEMAP_FILE = App/Vendor/Firebase/module.modulemap;
 				OPCO = COMED;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
@@ -13930,10 +13909,10 @@
 				PROVISIONING_PROFILE_SPECIFIER = "ComEd Production Beta Enterprise Dist";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match InHouse com.exelon.mobile.comed.prodbeta";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
-				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "App/Vendor/Firebase/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				USER_HEADER_SEARCH_PATHS = "\"App/Supporting Files\"";
+				USER_HEADER_SEARCH_PATHS = "\"App/Vendor/Firebase\"";
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
@@ -13995,12 +13974,13 @@
 		};
 		67D5631724ED9DDB00852551 /* ComEd-Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 679A632B2AE8377500DC25D7 /* Release.xcconfig */;
+			baseConfigurationReference = 67FBB16E2AFE834700A676B7 /* Release.xcconfig */;
 			buildSettings = {
 				ACCOUNT_URL = "https://comed.com/MyAccount";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ANON_ASSOCIATED_DOMAIN = comed.com;
 				APP_CENTER_ID = "9f56e08c-6fa5-4209-93a2-d773601a1e45";
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				ASSOCIATED_DOMAIN = secure.comed.com;
 				BASE_URL = eudapi.comed.com;
 				BUILD_DISPLAY_NAME = ComEd;
@@ -14039,6 +14019,7 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				ENVIRONMENT_TIER = PROD;
 				EXCLUDED_SOURCE_FILE_NAMES = "*-Flavor*.*";
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
@@ -14069,12 +14050,13 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "App/Vendor/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "ComEd-Release";
 		};
@@ -14095,10 +14077,7 @@
 				ENABLE_BITCODE = NO;
 				ENVIRONMENT_TIER = RELEASE;
 				EXCLUDED_ARCHS = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/App/Vendor/RxSwift",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
@@ -14110,7 +14089,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = "$(VERSION)";
-				MODULEMAP_FILE = "App/Supporting Files/module.modulemap";
+				MODULEMAP_FILE = App/Vendor/Firebase/module.modulemap;
 				OPCO = COMED;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
@@ -14118,10 +14097,10 @@
 				PROVISIONING_PROFILE = "48c6faa5-6279-47c2-ac55-339f55816cb0";
 				PROVISIONING_PROFILE_SPECIFIER = "ComEd App Store";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
-				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "App/Vendor/Firebase/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				USER_HEADER_SEARCH_PATHS = "\"App/Supporting Files\"";
+				USER_HEADER_SEARCH_PATHS = "\"App/Vendor/Firebase\"";
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
@@ -14182,12 +14161,13 @@
 		};
 		9CEB30CF22612D8500DD725C /* BGE-AUT */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 679A63292AE8377400DC25D7 /* AUT.xcconfig */;
+			baseConfigurationReference = 67FBB16B2AFE834700A676B7 /* AUT.xcconfig */;
 			buildSettings = {
 				ACCOUNT_URL = "https://azstage.bge.com/MyAccount";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ANON_ASSOCIATED_DOMAIN = azstage.bge.com;
 				APP_CENTER_ID = "5555b456-47b1-4288-b4d4-c6cf44b15fb9";
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				ASSOCIATED_DOMAIN = "azstg-secure.bge.com";
 				BASE_URL = "eudapi-test.bge.com";
 				BUILD_DISPLAY_NAME = BGE;
@@ -14226,6 +14206,7 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				ENVIRONMENT_TIER = AUT;
 				EXCLUDED_SOURCE_FILE_NAMES = "*-Flavor*.*";
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
@@ -14261,11 +14242,12 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "App/Vendor/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "BGE-AUT";
 		};
@@ -14284,10 +14266,7 @@
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
 				EXCLUDED_ARCHS = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/App/Vendor/RxSwift",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
@@ -14299,7 +14278,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = "$(VERSION)";
-				MODULEMAP_FILE = "App/Supporting Files/module.modulemap";
+				MODULEMAP_FILE = App/Vendor/Firebase/module.modulemap;
 				OPCO = BGE;
 				OTHER_LDFLAGS = "$(inherited)";
 				PAYMENT_URL = "https://secure2.paymentus.com/xotp/pm/bge";
@@ -14308,10 +14287,10 @@
 				PROVISIONING_PROFILE = "a8b53b0b-b8ff-4377-a2cc-1922bbd33196";
 				PROVISIONING_PROFILE_SPECIFIER = "Exelon Wildcard Dev Profile";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match InHouse com.exelon.mobile.bge.testing";
-				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "App/Vendor/Firebase/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				USER_HEADER_SEARCH_PATHS = "\"App/Supporting Files\"";
+				USER_HEADER_SEARCH_PATHS = "\"App/Vendor/Firebase\"";
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
@@ -14319,12 +14298,13 @@
 		};
 		B58B5AE81E4E28740051FD5F /* BGE-RC */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 679A632A2AE8377400DC25D7 /* RC.xcconfig */;
+			baseConfigurationReference = 67FBB16D2AFE834700A676B7 /* RC.xcconfig */;
 			buildSettings = {
 				ACCOUNT_URL = "https://bge.com/MyAccount";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ANON_ASSOCIATED_DOMAIN = bge.com;
 				APP_CENTER_ID = "bddc73d9-4dfb-421f-a59f-71c08c3647e5";
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				ASSOCIATED_DOMAIN = secure.bge.com;
 				BASE_URL = eudapi.bge.com;
 				BUILD_DISPLAY_NAME = BGE;
@@ -14363,6 +14343,7 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				ENVIRONMENT_TIER = PRODBETA;
 				EXCLUDED_SOURCE_FILE_NAMES = "*-Flavor*.*";
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
@@ -14393,12 +14374,13 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_COMPILATION_MODE = singlefile;
-				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "App/Vendor/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "BGE-RC";
 		};
@@ -14420,10 +14402,7 @@
 				ENABLE_BITCODE = NO;
 				ENVIRONMENT_TIER = RC;
 				EXCLUDED_ARCHS = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/App/Vendor/RxSwift",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
@@ -14435,7 +14414,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = "$(VERSION)";
-				MODULEMAP_FILE = "App/Supporting Files/module.modulemap";
+				MODULEMAP_FILE = App/Vendor/Firebase/module.modulemap;
 				OPCO = BGE;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
@@ -14444,10 +14423,10 @@
 				PROVISIONING_PROFILE_SPECIFIER = "BGE Production Beta Enterprise Dist";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match InHouse com.exelon.mobile.bge.prodbeta";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
-				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "App/Vendor/Firebase/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				USER_HEADER_SEARCH_PATHS = "\"App/Supporting Files\"";
+				USER_HEADER_SEARCH_PATHS = "\"App/Vendor/Firebase\"";
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
@@ -14455,12 +14434,13 @@
 		};
 		B58B5AF61E51497B0051FD5F /* BGE-Beta */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 679A63282AE8377400DC25D7 /* Beta.xcconfig */;
+			baseConfigurationReference = 67FBB16C2AFE834700A676B7 /* Beta.xcconfig */;
 			buildSettings = {
 				ACCOUNT_URL = "https://azstage.bge.com/MyAccount";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ANON_ASSOCIATED_DOMAIN = azstage.bge.com;
 				APP_CENTER_ID = "3bf3242e-af11-4b1e-9242-99dce77bbbc8";
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				ASSOCIATED_DOMAIN = "azstg-secure.bge.com";
 				BASE_URL = "eudapi-stage.bge.com";
 				BUILD_DISPLAY_NAME = BGE;
@@ -14499,6 +14479,7 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				ENVIRONMENT_TIER = STAGE;
 				EXCLUDED_SOURCE_FILE_NAMES = "*-Flavor*.*";
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
@@ -14535,11 +14516,12 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_COMPILATION_MODE = singlefile;
-				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "App/Vendor/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "BGE-Beta";
 		};
@@ -14560,11 +14542,7 @@
 				ENABLE_BITCODE = NO;
 				ENVIRONMENT_TIER = BETA;
 				EXCLUDED_ARCHS = "";
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/App/Vendor/RxSwift",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
@@ -14576,7 +14554,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = "$(VERSION)";
-				MODULEMAP_FILE = "App/Supporting Files/module.modulemap";
+				MODULEMAP_FILE = App/Vendor/Firebase/module.modulemap;
 				ONLY_ACTIVE_ARCH = YES;
 				OPCO = BGE;
 				OTHER_LDFLAGS = "$(inherited)";
@@ -14585,10 +14563,10 @@
 				PROVISIONING_PROFILE = "bc06f33e-100c-4311-838a-c74b10fe6132";
 				PROVISIONING_PROFILE_SPECIFIER = "BGE Staging Enterprise Dist";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "BGE Staging Enterprise Dist";
-				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "App/Vendor/Firebase/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				USER_HEADER_SEARCH_PATHS = "\"App/Supporting Files\"";
+				USER_HEADER_SEARCH_PATHS = "\"App/Vendor/Firebase\"";
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};

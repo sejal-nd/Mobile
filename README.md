@@ -1,8 +1,27 @@
 # Exelon Mobile iOS Application
 
 ## Installation
+
 **Requirements**
-- Xcode: 13.3.1
+- Xcode: 15.0.1
+- [Github](https://www.github.com) account signed in to Xcode.
+
+**Instructions**
+In order for the project to fetch its dependencies you must first log in to your github account on Xcode.  Please follow the steps below which are current as of Xcode 15.0.1:
+
+**Log in to Github Account in Xcode**
+1. Navigate to Xcode -> Settings... -> Accounts
+2. Press the `+` button in the bottom left
+3. Select `Github`
+4. Enter your [Github](https://www.github.com) email address
+5. Generate a PAT on [Github](https://www.github.com) with the permissions that Xcode specifies on that page
+6. Paste that PAT into the Xcode prompt
+7. Select the account you just added to Xcode in the list to the left
+8. CHange the `Clone using:` option to `ssh`
+9. Generate a `id_ed25519` SSH key.  If you need help please see [this guide](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
+10. Once generated add this SSH key to [Github](https://www.github.com)
+11. Select this SSH key in the `SSH Key:` Xcode dropdown menu.
+12. Quit Xcode, reopen and the project should now automatically fetch dependencies.
 
 ## Configurations
 
@@ -14,30 +33,30 @@ Each configuration defines specific values within the project target build setti
 ## Schemes
 
 To support various development environments each OpCo has multiple schemes
-- Automation
+- Automation (AUT)
 - Beta
-- ReleaseCandidate
+- ReleaseCandidate (RC)
 - Release
 
 ## Project URL Path
 
-Navigate to the Debug Menu on the landing screen then select the desired project in the `Project URL Suffix` menu.  Then restart the app.
+Navigate to the Debug Menu on the landing screen then select the desired project in the `Project URL Suffix` menu.  Then restart the app using the `Save & Restart App` button.
 
 ## Git Branching Strategy
 
-The GIT Branching strategy can be found in the URL :
-
+The Git Branching strategy can be found at the following URL:
 https://exelontfs.visualstudio.com/EU-mobile/_wiki/wikis/EU-mobile.wiki/1386/Git-Branching-Strategy
 
 ## Third Party Libraries
 
-Third party libraries are primarily managed using SPM - [Swift Package Manager] (https://github.com/apple/swift-package-manager), in the event that a library needs modification it is integrated directly into the project (Mobile/Vender...).  When neccisary third party libraries are integrated via XCFrameworks, which allow for closed source code added to the project supporting multiple platforms.
+Third party libraries are primarily managed using SPM - [Swift Package Manager] (https://github.com/apple/swift-package-manager), in the event that a library needs modification it is integrated directly into the project (Mobile/Vender...).  When neccisary third party libraries are integrated via XCFrameworks, which allows for closed source code to be added to the project supporting multiple platforms.
 
 **Libraries Integrated Directly:**
 - SimpleKeychain
 
 **Libraries Integrated Via XCFrameworks:**
 - Decibel
+- Firebase
 - RXCocoa
 - RxRelay
 - RXSwift
@@ -52,4 +71,5 @@ Third party libraries are primarily managed using SPM - [Swift Package Manager] 
 - XLPagerTabStrip
 - AppCenter
 - MedalliaDigialSDK
-- Firebase
+
+Note: You must be logged in to a [Github](https://www.github.com) account for the Swift Packages to load.

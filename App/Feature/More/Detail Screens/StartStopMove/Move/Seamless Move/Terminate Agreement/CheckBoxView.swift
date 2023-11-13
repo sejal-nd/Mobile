@@ -12,9 +12,6 @@ extension Color {
     static var primaryDarkBlue: Color {
         return Color("primaryBlue")
     }
-    @nonobjc static var neutralDark: Color {
-        return Color("neutral_dark")
-    }
 }
 
 struct CheckBoxView: View {

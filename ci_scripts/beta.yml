@@ -171,7 +171,7 @@ steps:
   inputs:
     script: |
         bash set_build_number.sh $(build.buildId)
-    workingDirectory: 'tools'
+    workingDirectory: 'ci_scripts'
 
 # Load SPM Cache
 - task: Cache@2

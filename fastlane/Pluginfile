@@ -2,5 +2,5 @@
 #
 # Ensure this file is checked in to source control!
 
-gem 'fastlane-plugin-appcenter', '1.11.0'
+gem 'fastlane-plugin-appcenter', '2.1.1'
 gem 'fastlane-plugin-teams'
