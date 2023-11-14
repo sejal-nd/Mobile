@@ -163,51 +163,57 @@ class LandingViewController: UIViewController {
     }
     
     @IBAction func onSignInPress() {
-        
-        if FeatureFlagUtility.shared.bool(forKey: .isPkceAuthentication) {
-            // Present ASWebAuthentication
-            signInButton.tintWhite = true
-            signInButton.setLoading()
-            signInButton.accessibilityLabel = NSLocalizedString("Loading", comment: "")
-            signInButton.accessibilityViewIsModal = true
-            
-            PKCEAuthenticationService.default.presentLoginForm { [weak self] result in
-                guard let self = self else { return }
-                switch (result) {
-                case .success(let pkceResult):
-                    if pkceResult.tokenResponse != nil {
-                        self.handleLoginSuccess()
-                    } else if pkceResult.redirect == "find_email" {
-                        Log.info("redirect to find email flow")
-                        self.signInButton.reset()
-                        self.signInButton.setTitle("Sign In", for: .normal)
-                        self.signInButton.accessibilityLabel = "Sign In"
-                        self.signInButton.accessibilityViewIsModal = false
-                        
-                        FirebaseUtility.logEvent(.login(parameters: [.forgot_username_press]))
-                        GoogleAnalytics.log(event: .forgotUsernameOffer)
-                        
-                        self.performSegue(withIdentifier: "forgotUsernameSegue", sender: self)
-                    } else {
-                        self.signInButton.reset()
-                        self.signInButton.setTitle("Sign In", for: .normal)
-                        self.signInButton.accessibilityLabel = "Sign In"
-                        self.signInButton.accessibilityViewIsModal = false
-                    }
-                case .failure(let error):
-                    self.signInButton.reset()
-                    self.signInButton.setTitle("Sign In", for: .normal)
-                    self.signInButton.accessibilityLabel = "Sign In"
-                    self.signInButton.accessibilityViewIsModal = false
+        getMaintenanceMode { [weak self] maintenanceMode in
+            if let maintenanceMode = maintenanceMode, maintenanceMode.all {
+                // Maint mode all is on
+                (UIApplication.shared.delegate as? AppDelegate)?.showMaintenanceMode(maintenanceMode)
+            } else {
+                if FeatureFlagUtility.shared.bool(forKey: .isPkceAuthentication) {
+                    // Present ASWebAuthentication
+                    self?.signInButton.tintWhite = true
+                    self?.signInButton.setLoading()
+                    self?.signInButton.accessibilityLabel = NSLocalizedString("Loading", comment: "")
+                    self?.signInButton.accessibilityViewIsModal = true
                     
-                    let sessionError = ASWebAuthenticationSessionError.Code(rawValue: (error as NSError).code)
-                    if sessionError != ASWebAuthenticationSessionError.canceledLogin {
-                        self.showErrorAlertWith(title: nil, message: error.localizedDescription)
+                    PKCEAuthenticationService.default.presentLoginForm { [weak self] result in
+                        guard let self = self else { return }
+                        switch (result) {
+                        case .success(let pkceResult):
+                            if pkceResult.tokenResponse != nil {
+                                self.handleLoginSuccess()
+                            } else if pkceResult.redirect == "find_email" {
+                                Log.info("redirect to find email flow")
+                                self.signInButton.reset()
+                                self.signInButton.setTitle("Sign In", for: .normal)
+                                self.signInButton.accessibilityLabel = "Sign In"
+                                self.signInButton.accessibilityViewIsModal = false
+                                
+                                FirebaseUtility.logEvent(.login(parameters: [.forgot_username_press]))
+                                GoogleAnalytics.log(event: .forgotUsernameOffer)
+                                
+                                self.performSegue(withIdentifier: "forgotUsernameSegue", sender: self)
+                            } else {
+                                self.signInButton.reset()
+                                self.signInButton.setTitle("Sign In", for: .normal)
+                                self.signInButton.accessibilityLabel = "Sign In"
+                                self.signInButton.accessibilityViewIsModal = false
+                            }
+                        case .failure(let error):
+                            self.signInButton.reset()
+                            self.signInButton.setTitle("Sign In", for: .normal)
+                            self.signInButton.accessibilityLabel = "Sign In"
+                            self.signInButton.accessibilityViewIsModal = false
+                            
+                            let sessionError = ASWebAuthenticationSessionError.Code(rawValue: (error as NSError).code)
+                            if sessionError != ASWebAuthenticationSessionError.canceledLogin {
+                                self.showErrorAlertWith(title: nil, message: error.localizedDescription)
+                            }
+                        }
                     }
+                } else {
+                    self?.performSegue(withIdentifier: "loginSegue", sender: self)
                 }
             }
-        } else {
-            performSegue(withIdentifier: "loginSegue", sender: self)
         }
     }
     
