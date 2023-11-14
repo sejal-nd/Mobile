@@ -192,7 +192,7 @@ class UnauthenticatedOutageViewModel {
         AnonymousService.maintenanceMode { (result: Result<MaintenanceMode, Error>) in
             switch result {
             case .success(let maintenanceMode):
-                if !maintenanceMode.all && maintenanceMode.outage {
+                if maintenanceMode.all || maintenanceMode.outage {
                     onOutageOnly(maintenanceMode)
                 } else {
                     onNeither()
