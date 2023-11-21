@@ -7,9 +7,16 @@
 - [Github](https://www.github.com) account signed in to Xcode.
 
 **Instructions**
-In order for the project to fetch its dependencies you must first log in to your github account on Xcode.  Please follow the steps below which are current as of Xcode 15.0.1:
+In order for the project to fetch its dependencies you must first log in to your github account on Xcode.  In addition to this you must also clone the repo from Azure DevOps via SSH. Please follow the steps below which are current as of Xcode 15.0.1:
+
+**Cloning Repo via Azure Devops SSH Key**
+To use SSH authentication with Azure DevOps you should follow [this guide](https://learn.microsoft.com/en-us/azure/devops/repos/git/use-ssh-keys-to-authenticate?view=azure-devops)
+
+Note: Without Azure DevOps SSH setup the project will not be able to fetch its internal dependencies via SPM.
 
 **Log in to Github Account in Xcode**
+Note: If you do not have a github account, create one using your exelon email.  This github account does not need any special permissions.  IT is solely used for open source repositorys.
+
 1. Navigate to Xcode -> Settings... -> Accounts
 2. Press the `+` button in the bottom left
 3. Select `Github`
@@ -17,7 +24,7 @@ In order for the project to fetch its dependencies you must first log in to your
 5. Generate a PAT on [Github](https://www.github.com) with the permissions that Xcode specifies on that page
 6. Paste that PAT into the Xcode prompt
 7. Select the account you just added to Xcode in the list to the left
-8. CHange the `Clone using:` option to `ssh`
+8. Change the `Clone using:` option to `ssh`
 9. Generate a `id_ed25519` SSH key.  If you need help please see [this guide](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
 10. Once generated add this SSH key to [Github](https://www.github.com)
 11. Select this SSH key in the `SSH Key:` Xcode dropdown menu.
