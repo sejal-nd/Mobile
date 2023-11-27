@@ -276,6 +276,7 @@
 		54DF4BD51EE895CF008CF7AD /* RegistrationSecurityQuestionListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DF4BD41EE895CF008CF7AD /* RegistrationSecurityQuestionListViewController.swift */; };
 		54DF4BDA1EE9CBAB008CF7AD /* AccountDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DF4BD91EE9CBAB008CF7AD /* AccountDetailsView.swift */; };
 		54DF4BDE1EE9CBCA008CF7AD /* AccountDetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54DF4BDD1EE9CBCA008CF7AD /* AccountDetailsView.xib */; };
+		6704F85E2B0D01A200474F0E /* View+ScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6704F85D2B0D01A200474F0E /* View+ScreenView.swift */; };
 		670DE2A326CC15FC00D4C863 /* KeychainSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670DE2A026CC15FB00D4C863 /* KeychainSwift.swift */; };
 		670DE2A426CC15FC00D4C863 /* KeychainSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670DE2A026CC15FB00D4C863 /* KeychainSwift.swift */; };
 		670DE2A526CC15FC00D4C863 /* TegKeychainConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670DE2A126CC15FB00D4C863 /* TegKeychainConstants.swift */; };
@@ -1469,6 +1470,7 @@
 		54DF4BD41EE895CF008CF7AD /* RegistrationSecurityQuestionListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationSecurityQuestionListViewController.swift; sourceTree = "<group>"; };
 		54DF4BD91EE9CBAB008CF7AD /* AccountDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountDetailsView.swift; sourceTree = "<group>"; };
 		54DF4BDD1EE9CBCA008CF7AD /* AccountDetailsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccountDetailsView.xib; sourceTree = "<group>"; };
+		6704F85D2B0D01A200474F0E /* View+ScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+ScreenView.swift"; sourceTree = "<group>"; };
 		670DE2A026CC15FB00D4C863 /* KeychainSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainSwift.swift; sourceTree = "<group>"; };
 		670DE2A126CC15FB00D4C863 /* TegKeychainConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TegKeychainConstants.swift; sourceTree = "<group>"; };
 		670DE2A226CC15FC00D4C863 /* KeychainSwiftAccessOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainSwiftAccessOptions.swift; sourceTree = "<group>"; };
@@ -2481,7 +2483,6 @@
 			isa = PBXGroup;
 			children = (
 				67BEB6F52AEAEFC3006FA08A /* OpcoUpdates */,
-				67BEB6F42AEAEF97006FA08A /* AlertsNew */,
 				3090A63D247F8EAF00815EA1 /* EditAccountNickName */,
 				3559C89A22F9C54000481A87 /* Appointments */,
 				352B8D71230D70B5007F8CEE /* Alerts */,
@@ -4031,13 +4032,6 @@
 			path = Google;
 			sourceTree = "<group>";
 		};
-		67BEB6F42AEAEF97006FA08A /* AlertsNew */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = AlertsNew;
-			sourceTree = "<group>";
-		};
 		67BEB6F52AEAEFC3006FA08A /* OpcoUpdates */ = {
 			isa = PBXGroup;
 			children = (
@@ -4723,6 +4717,7 @@
 			isa = PBXGroup;
 			children = (
 				359BDB4F22D77073007002B0 /* FirebaseUtility.swift */,
+				6704F85D2B0D01A200474F0E /* View+ScreenView.swift */,
 			);
 			path = Analytics;
 			sourceTree = "<group>";
@@ -5892,6 +5887,7 @@
 				82E22B5E1F9FC7CE001F1A1B /* EnergyTipTableViewCell.swift in Sources */,
 				9CB8A5ED21DEBF3D00880DE9 /* Logger.swift in Sources */,
 				C372B661275854FA00E38F64 /* OutageTrackerViewModel.swift in Sources */,
+				6704F85E2B0D01A200474F0E /* View+ScreenView.swift in Sources */,
 				6781BCC4271F5D0100FBCD5F /* SafariView.swift in Sources */,
 				EF48B6D82A2F260900F3BB26 /* AccountLookUpValidatePinViewContoller.swift in Sources */,
 				35C9139B22E9EFF1009DD71A /* MiniWalletItemRow.swift in Sources */,

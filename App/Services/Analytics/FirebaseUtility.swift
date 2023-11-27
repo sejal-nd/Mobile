@@ -704,6 +704,19 @@ enum UserProperty: String {
     case gamificationIsOnboarded
 }
 
+// Used for SwiftUI Views
+enum FirebaseScreenView: String {
+    case opcoUpdates
+    
+    var name: String {
+        switch self {
+        case .opcoUpdates:
+            return "opcoUpdates"
+        }
+    }
+}
+
+// Used for UIKit Views
 enum Screen {
     // iOS
     case homeView(className: String)

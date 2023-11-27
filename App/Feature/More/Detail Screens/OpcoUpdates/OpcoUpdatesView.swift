@@ -33,6 +33,7 @@ struct OpcoUpdatesView: View {
         .navigationTitle("Updates")
         .navigationBarTitleDisplayMode(.large)
         .toolbar(.visible)
+        .logScreenView(.opcoUpdates)
     }
 }
 
