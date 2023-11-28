@@ -191,9 +191,11 @@ class UnauthenticatedOutageViewModel {
     func checkForMaintenance(onOutageOnly: @escaping (MaintenanceMode) -> Void, onNeither: @escaping () -> Void) {
         AnonymousService.maintenanceMode { (result: Result<MaintenanceMode, Error>) in
             switch result {
-            case .success(let maintenanceMode):
-                if !maintenanceMode.all && maintenanceMode.outage {
+            case .success(let maintenanceMode):                
+                if maintenanceMode.all && FeatureFlagUtility.shared.bool(forKey: .isAnonOutageGlobal) {
                     onOutageOnly(maintenanceMode)
+                } else if maintenanceMode.all && !FeatureFlagUtility.shared.bool(forKey: .isAnonOutageGlobal) {
+                    onNeither()
                 } else {
                     onNeither()
                 }
