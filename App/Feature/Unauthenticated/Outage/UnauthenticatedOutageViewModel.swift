@@ -194,8 +194,8 @@ class UnauthenticatedOutageViewModel {
             case .success(let maintenanceMode):                
                 if maintenanceMode.all && FeatureFlagUtility.shared.bool(forKey: .isAnonOutageGlobal) {
                     onOutageOnly(maintenanceMode)
-                } else if maintenanceMode.all && !FeatureFlagUtility.shared.bool(forKey: .isAnonOutageGlobal) {
-                    onNeither()
+                } else if maintenanceMode.outage {
+                    onOutageOnly(maintenanceMode)
                 } else {
                     onNeither()
                 }
