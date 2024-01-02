@@ -121,6 +121,11 @@ steps:
 #     provProfileSecureFile: 'Pepco_Staging_Watchkit_App_Enterprise_Dist.mobileprovision'
 #   condition: contains(variables['opco'], 'Pepco')
 
+- task: DownloadSecureFile@1
+  name: appStoreConnectAPIKey
+  inputs:
+    secureFile: 'App_Store_Connect_API_Key.json'
+
 # Install Bundler
 - task: CmdLine@2
   displayName: '⚙️ Install Bundler'
@@ -170,7 +175,7 @@ steps:
   displayName: '🔑 Install Apple Certificates & Provisioning Profiles'
   inputs:
     script: |
-        bundle exec fastlane prepare_enterprise_certs MATCH_PASSWORD:$(MATCH_PASSWORD)
+        bundle exec fastlane prepare_enterprise_certs MATCH_PASSWORD:$(MATCH_PASSWORD) api_key_path:$(appStoreConnectAPIKey.secureFilePath)
 
 # Build Number Bump
 - task: CmdLine@2
