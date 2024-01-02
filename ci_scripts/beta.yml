@@ -28,98 +28,98 @@ steps:
 - checkout: self
 
 # Install Enterprise Distribution Certificate
-- task: InstallAppleCertificate@2
-  displayName: '🔐 Install iOS Enterprise Distribution Certificates'
-  inputs:
-    certSecureFile: 'Exelon iOS Enterprise Distribution - Expires Feb 2024-01-05.p12'
-    certPwd: '$(iOSExelonEnterpriseDistributionP12)'
-    setUpPartitionIdACLForPrivateKey: false
-    keychain: 'temp'
+# - task: InstallAppleCertificate@2
+#   displayName: '🔐 Install iOS Enterprise Distribution Certificates'
+#   inputs:
+#     certSecureFile: 'Exelon iOS Enterprise Distribution - Expires Feb 2024-01-05.p12'
+#     certPwd: '$(iOSExelonEnterpriseDistributionP12)'
+#     setUpPartitionIdACLForPrivateKey: false
+#     keychain: 'temp'
 
-# Install all Beta Provisioning Profiles
-- task: InstallAppleProvisioningProfile@1
-  displayName: 'Install Profile - ACE Beta'
-  inputs:
-    provisioningProfileLocation: 'secureFiles'
-    provProfileSecureFile: 'ACE_Staging_Enterprise_Dist_Expires_2022-01-05.mobileprovision'
-  condition: contains(variables['opco'], 'ACE')
+# # Install all Beta Provisioning Profiles
+# - task: InstallAppleProvisioningProfile@1
+#   displayName: 'Install Profile - ACE Beta'
+#   inputs:
+#     provisioningProfileLocation: 'secureFiles'
+#     provProfileSecureFile: 'ACE_Staging_Enterprise_Dist_Expires_2022-01-05.mobileprovision'
+#   condition: contains(variables['opco'], 'ACE')
 
-- task: InstallAppleProvisioningProfile@1
-  displayName: 'Install Profile - ACE Beta WatchKit App'
-  inputs:
-    provisioningProfileLocation: 'secureFiles'
-    provProfileSecureFile: 'ACE_Staging_Watchkit_App_Enterprise_Dist_Expires_2022-01-05.mobileprovision'
-  condition: contains(variables['opco'], 'ACE')
+# - task: InstallAppleProvisioningProfile@1
+#   displayName: 'Install Profile - ACE Beta WatchKit App'
+#   inputs:
+#     provisioningProfileLocation: 'secureFiles'
+#     provProfileSecureFile: 'ACE_Staging_Watchkit_App_Enterprise_Dist_Expires_2022-01-05.mobileprovision'
+#   condition: contains(variables['opco'], 'ACE')
 
-- task: InstallAppleProvisioningProfile@1
-  displayName: 'Install Profile - BGE Beta'
-  inputs:
-    provisioningProfileLocation: 'secureFiles'
-    provProfileSecureFile: 'BGE_Staging_Enterprise_Dist_Expires_2022-01-05.mobileprovision'
-  condition: contains(variables['opco'], 'BGE')
+# - task: InstallAppleProvisioningProfile@1
+#   displayName: 'Install Profile - BGE Beta'
+#   inputs:
+#     provisioningProfileLocation: 'secureFiles'
+#     provProfileSecureFile: 'BGE_Staging_Enterprise_Dist_Expires_2022-01-05.mobileprovision'
+#   condition: contains(variables['opco'], 'BGE')
 
-- task: InstallAppleProvisioningProfile@1
-  displayName: 'Install Profile - BGE Beta WatchKit App'
-  inputs:
-    provisioningProfileLocation: 'secureFiles'
-    provProfileSecureFile: 'BGE_Staging_Watchkit_App_Enterprise_Dist_Expires_2022-01-05.mobileprovision'
-  condition: contains(variables['opco'], 'BGE')
+# - task: InstallAppleProvisioningProfile@1
+#   displayName: 'Install Profile - BGE Beta WatchKit App'
+#   inputs:
+#     provisioningProfileLocation: 'secureFiles'
+#     provProfileSecureFile: 'BGE_Staging_Watchkit_App_Enterprise_Dist_Expires_2022-01-05.mobileprovision'
+#   condition: contains(variables['opco'], 'BGE')
 
-- task: InstallAppleProvisioningProfile@1
-  displayName: 'Install Profile - ComEd Beta'
-  inputs:
-    provisioningProfileLocation: 'secureFiles'
-    provProfileSecureFile: 'ComEd_Staging_Enterprise_Dist_Expires_2022-01-05.mobileprovision'
-  condition: contains(variables['opco'], 'ComEd')
+# - task: InstallAppleProvisioningProfile@1
+#   displayName: 'Install Profile - ComEd Beta'
+#   inputs:
+#     provisioningProfileLocation: 'secureFiles'
+#     provProfileSecureFile: 'ComEd_Staging_Enterprise_Dist_Expires_2022-01-05.mobileprovision'
+#   condition: contains(variables['opco'], 'ComEd')
 
-- task: InstallAppleProvisioningProfile@1
-  displayName: 'Install Profile - ComEd Beta WatchKit App'
-  inputs:
-    provisioningProfileLocation: 'secureFiles'
-    provProfileSecureFile: 'ComEd_Staging_WatchKit_App_Expires_2022-01-05.mobileprovision'
-  condition: contains(variables['opco'], 'ComEd')
+# - task: InstallAppleProvisioningProfile@1
+#   displayName: 'Install Profile - ComEd Beta WatchKit App'
+#   inputs:
+#     provisioningProfileLocation: 'secureFiles'
+#     provProfileSecureFile: 'ComEd_Staging_WatchKit_App_Expires_2022-01-05.mobileprovision'
+#   condition: contains(variables['opco'], 'ComEd')
 
-- task: InstallAppleProvisioningProfile@1
-  displayName: 'Install Profile - Delmarva Beta'
-  inputs:
-    provisioningProfileLocation: 'secureFiles'
-    provProfileSecureFile: 'Delmarva_Staging_Enterprise_Dist_Expires_2022-01-05.mobileprovision'
-  condition: contains(variables['opco'], 'Delmarva')
+# - task: InstallAppleProvisioningProfile@1
+#   displayName: 'Install Profile - Delmarva Beta'
+#   inputs:
+#     provisioningProfileLocation: 'secureFiles'
+#     provProfileSecureFile: 'Delmarva_Staging_Enterprise_Dist_Expires_2022-01-05.mobileprovision'
+#   condition: contains(variables['opco'], 'Delmarva')
 
-- task: InstallAppleProvisioningProfile@1
-  displayName: 'Install Profile - Delmarva Beta WatchKit App'
-  inputs:
-    provisioningProfileLocation: 'secureFiles'
-    provProfileSecureFile: 'Delmarva_Staging_Watchkit_App_Enterprise_Dist_Expires_2022-01-05.mobileprovision'
-  condition: contains(variables['opco'], 'Delmarva')
+# - task: InstallAppleProvisioningProfile@1
+#   displayName: 'Install Profile - Delmarva Beta WatchKit App'
+#   inputs:
+#     provisioningProfileLocation: 'secureFiles'
+#     provProfileSecureFile: 'Delmarva_Staging_Watchkit_App_Enterprise_Dist_Expires_2022-01-05.mobileprovision'
+#   condition: contains(variables['opco'], 'Delmarva')
 
-- task: InstallAppleProvisioningProfile@1
-  displayName: 'Install Profile - PECO Beta'
-  inputs:
-    provisioningProfileLocation: 'secureFiles'
-    provProfileSecureFile: 'PECO_Staging_Enterprise_Dist_Expires_2022-01-05.mobileprovision'
-  condition: contains(variables['opco'], 'PECO')
+# - task: InstallAppleProvisioningProfile@1
+#   displayName: 'Install Profile - PECO Beta'
+#   inputs:
+#     provisioningProfileLocation: 'secureFiles'
+#     provProfileSecureFile: 'PECO_Staging_Enterprise_Dist_Expires_2022-01-05.mobileprovision'
+#   condition: contains(variables['opco'], 'PECO')
 
-- task: InstallAppleProvisioningProfile@1
-  displayName: 'Install Profile - PECO Beta WatchKit App'
-  inputs:
-    provisioningProfileLocation: 'secureFiles'
-    provProfileSecureFile: 'PECO_Staging_Watchkit_App_Enterprise_Dist_Expires_2022-01-05.mobileprovision'
-  condition: contains(variables['opco'], 'PECO')
+# - task: InstallAppleProvisioningProfile@1
+#   displayName: 'Install Profile - PECO Beta WatchKit App'
+#   inputs:
+#     provisioningProfileLocation: 'secureFiles'
+#     provProfileSecureFile: 'PECO_Staging_Watchkit_App_Enterprise_Dist_Expires_2022-01-05.mobileprovision'
+#   condition: contains(variables['opco'], 'PECO')
 
-- task: InstallAppleProvisioningProfile@1
-  displayName: 'Install Profile - Pepco Beta'
-  inputs:
-    provisioningProfileLocation: 'secureFiles'
-    provProfileSecureFile: 'Pepco_Staging_Enterprise_Dist.mobileprovision'
-  condition: contains(variables['opco'], 'Pepco')
+# - task: InstallAppleProvisioningProfile@1
+#   displayName: 'Install Profile - Pepco Beta'
+#   inputs:
+#     provisioningProfileLocation: 'secureFiles'
+#     provProfileSecureFile: 'Pepco_Staging_Enterprise_Dist.mobileprovision'
+#   condition: contains(variables['opco'], 'Pepco')
 
-- task: InstallAppleProvisioningProfile@1
-  displayName: 'Install Profile - Pepco Beta WatchKit App'
-  inputs:
-    provisioningProfileLocation: 'secureFiles'
-    provProfileSecureFile: 'Pepco_Staging_Watchkit_App_Enterprise_Dist.mobileprovision'
-  condition: contains(variables['opco'], 'Pepco')
+# - task: InstallAppleProvisioningProfile@1
+#   displayName: 'Install Profile - Pepco Beta WatchKit App'
+#   inputs:
+#     provisioningProfileLocation: 'secureFiles'
+#     provProfileSecureFile: 'Pepco_Staging_Watchkit_App_Enterprise_Dist.mobileprovision'
+#   condition: contains(variables['opco'], 'Pepco')
 
 # Install Bundler
 - task: CmdLine@2
@@ -164,6 +164,13 @@ steps:
      
     sshPublicKey: 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKrqa/xQQM3BrscbZZ3CrDoC/poU1Iu1HzwgAzuaf4wX “joeph.erlandson@exeloncorp.com” '
     sshKeySecureFile: 'id_ed25519'
+
+# Install Certs & Provisioning Profiles
+- task: CmdLine@2
+  displayName: '🔑 Install Apple Certificates & Provisioning Profiles'
+  inputs:
+    script: |
+        bundle exec fastlane prepare_enterprise_certs MATCH_PASSWORD:$(MATCH_PASSWORD)
 
 # Build Number Bump
 - task: CmdLine@2
