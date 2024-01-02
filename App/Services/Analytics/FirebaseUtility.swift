@@ -707,11 +707,14 @@ enum UserProperty: String {
 // Used for SwiftUI Views
 enum FirebaseScreenView: String {
     case opcoUpdates
+    case contactUs
     
     var name: String {
         switch self {
         case .opcoUpdates:
             return "opcoUpdates"
+        case .contactUs:
+            return "contactUs"
         }
     }
 }

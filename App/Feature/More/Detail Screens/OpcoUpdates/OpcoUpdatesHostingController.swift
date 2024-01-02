@@ -9,6 +9,7 @@
 import UIKit
 import SwiftUI
 
+// Should we just make this into a generic hosting controller?
 class OpcoUpdatesHostingController<T:View>: UIHostingController<T> {
     var shouldShowLargeTitle = true
     

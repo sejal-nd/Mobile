@@ -443,7 +443,7 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
                         UIApplication.shared.openUrlIfCan(viewModel.moveServiceWebURL)
                     }
                 } else {
-                    performSegue(withIdentifier: "contactUsSegue", sender: nil)
+                    navigationController?.pushViewController(OpcoUpdatesHostingController(rootView: ContactView(), shouldShowLargeTitle: true), animated: true)
                 }
             case 1:
                 if FeatureFlagUtility.shared.bool(forKey: .hasAuthenticatedISUM) {
@@ -470,7 +470,7 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
         case 3:
             switch indexPath.row {
             case 0:
-                performSegue(withIdentifier: "contactUsSegue", sender: nil)
+                navigationController?.pushViewController(OpcoUpdatesHostingController(rootView: ContactView(), shouldShowLargeTitle: true), animated: true)
             case 1:
                 FirebaseUtility.logEvent(.more(parameters: [.billing_videos]))
                 

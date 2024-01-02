@@ -105,8 +105,6 @@ class UnauthenticatedUserViewController: UIViewController, UIGestureRecognizerDe
         if let vc = segue.destination as? OutageMapViewController {
             vc.unauthenticatedExperience = true
             vc.hasPressedStreetlightOutageMapButton = segue.identifier == "streetlightOutageMapSegue" ? true : false
-        } else if let vc = segue.destination as? ContactUsViewController {
-            vc.unauthenticatedExperience = true
         }
     }
     
@@ -247,7 +245,7 @@ extension UnauthenticatedUserViewController: UITableViewDataSource, UITableViewD
                 if FeatureFlagUtility.shared.bool(forKey: .hasUnauthenticatedISUM) {
                     performSegue(withIdentifier: "unauthIDVerificationSegue", sender: nil)
                 } else {
-                    performSegue(withIdentifier: "contactUsSegue", sender: nil)
+                    navigationController?.pushViewController(OpcoUpdatesHostingController(rootView: ContactView(), shouldShowLargeTitle: true), animated: true)
                 }
             case 2:
                 FirebaseUtility.logEvent(.unauth(parameters: [.billing_videos]))
@@ -264,7 +262,7 @@ extension UnauthenticatedUserViewController: UITableViewDataSource, UITableViewD
             case 0:
                 navigationController?.pushViewController(UIHostingController(rootView: OpcoUpdatesView()), animated: true)
             case 1:
-                performSegue(withIdentifier: "contactUsSegue", sender: nil)
+                navigationController?.pushViewController(OpcoUpdatesHostingController(rootView: ContactView(), shouldShowLargeTitle: true), animated: true)
             case 2:
                 FirebaseUtility.logEvent(.unauth(parameters: [.billing_videos]))
                 
