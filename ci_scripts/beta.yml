@@ -174,7 +174,7 @@ steps:
 - task: CmdLine@2
   displayName: '🔑 Install Apple Certificates & Provisioning Profiles'
   inputs:
-    script: 'bundle exec fastlane prepare_enterprise_certs MATCH_PASSWORD:$(MATCH_PASSWORD) api_key_path:$(appStoreConnectAPIKey.secureFilePath)'
+    script: 'bundle exec fastlane prepare_enterprise_certs MATCH_PASSWORD:$(MATCH_PASSWORD) api_key_path:$(appStoreConnectAPIKey.secureFilePath) --verbose'
 
 # Build Number Bump
 - task: CmdLine@2
