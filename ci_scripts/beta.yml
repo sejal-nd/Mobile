@@ -170,17 +170,11 @@ steps:
     sshPublicKey: 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKrqa/xQQM3BrscbZZ3CrDoC/poU1Iu1HzwgAzuaf4wX “joeph.erlandson@exeloncorp.com” '
     sshKeySecureFile: 'id_ed25519'
 
-- task: PowerShell@2
-  displayName: Display version of app
-  inputs:
-    targetType: 'inline'
-    script: 'Write-Host "Version of app: $(MATCH_PASSWORD) $(appStoreConnectAPIKey.secureFilePath)"' 
-
 # Install Certs & Provisioning Profiles
 - task: CmdLine@2
-  displayName: '🔑 Install Apple Certificates & Provisioning Profiles'
+  displayName: '📜 Install Apple Certificates & Provisioning Profiles'
   inputs:
-    script: 'bundle exec fastlane prepare_enterprise_certs MATCH_PASSWORD:$(MATCH_PASSWORD) api_key_path:$(appStoreConnectAPIKey.secureFilePath) --verbose'
+    script: 'bundle exec fastlane prepare_enterprise_certs MATCH_PASSWORD:$(MATCH_PASSWORD) api_key_path:$(appStoreConnectAPIKey.secureFilePath)'
 
 # Build Number Bump
 - task: CmdLine@2
