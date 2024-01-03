@@ -184,7 +184,6 @@
 		35F9DD6C2333C8A000AAA2B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7BD21907F2E00BA13C6 /* Assets.xcassets */; };
 		35F9DD6D2333C8A100AAA2B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7BD21907F2E00BA13C6 /* Assets.xcassets */; };
 		35F9DD7C2333D14D00AAA2B2 /* Date+DueBy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7EB2190804E00BA13C6 /* Date+DueBy.swift */; };
-		35F9DD842333D2B800AAA2B2 /* EUMobile-Watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 35F9DD2F2333C34100AAA2B2 /* EUMobile-Watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		35F9DD932333D83F00AAA2B2 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		35F9DDA22333D87E00AAA2B2 /* AccountsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D340901EBA6A8700BA2D42 /* AccountsStore.swift */; };
 		35F9DDA32333D88400AAA2B2 /* ReportedOutagesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B085C44620FFD49400CE0893 /* ReportedOutagesStore.swift */; };
@@ -812,7 +811,6 @@
 		B5AC06CC1E521B5300BBA4ED /* Assets-FlavorBGE.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06CB1E521B5300BBA4ED /* Assets-FlavorBGE.xcassets */; };
 		B5D415761F3A6C3000AC32B2 /* GoogleService-Info-BETA-FlavorBGE.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5D415751F3A6C3000AC32B2 /* GoogleService-Info-BETA-FlavorBGE.plist */; };
 		B5D415781F3A6C6300AC32B2 /* GoogleService-Info-RELEASE-FlavorBGE.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5D415771F3A6C6300AC32B2 /* GoogleService-Info-RELEASE-FlavorBGE.plist */; };
-		C1FC7DEA2EEE0C8413984CF0 /* Pods_EUMobile_Watch_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4ADF4FF916DE3B2844982F78 /* Pods_EUMobile_Watch_Extension.framework */; };
 		C30079382436637600A9BEB0 /* BGEStrings.strings in Resources */ = {isa = PBXBuildFile; fileRef = C300793A2436637600A9BEB0 /* BGEStrings.strings */; };
 		C300793C2436669F00A9BEB0 /* LocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = C300793B2436669F00A9BEB0 /* LocalizedString.swift */; };
 		C3055B382538F6DE000DB89C /* OutageStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B2E24AB828000A828F9 /* OutageStatus.swift */; };
@@ -1166,13 +1164,6 @@
 			remoteGlobalIDString = 35F9DD222333C33F00AAA2B2;
 			remoteInfo = "BGE-Watch";
 		};
-		35F9DD852333D2B800AAA2B2 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B58B5AB91E4E28740051FD5F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 35F9DD2E2333C34100AAA2B2;
-			remoteInfo = "BGE-Watch Extension";
-		};
 		6716592C26F0FBA0004546DE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B58B5AB91E4E28740051FD5F /* Project object */;
@@ -1199,17 +1190,6 @@
 				35F9DD3D2333C34200AAA2B2 /* EUMobile-Watch.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		35F9DD872333D2B800AAA2B2 /* Embed App Extensions */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 13;
-			files = (
-				35F9DD842333D2B800AAA2B2 /* EUMobile-Watch Extension.appex in Embed App Extensions */,
-			);
-			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -1419,7 +1399,6 @@
 		35E7C7DC2190802C00BA13C6 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		35E7C7EB2190804E00BA13C6 /* Date+DueBy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+DueBy.swift"; sourceTree = "<group>"; };
 		35F9DD232333C33F00AAA2B2 /* EUMobile-Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EUMobile-Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		35F9DD2F2333C34100AAA2B2 /* EUMobile-Watch Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "EUMobile-Watch Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		35F9DD5F2333C49600AAA2B2 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		35F9DD612333C74100AAA2B2 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		35F9DE50233A583700AAA2B2 /* AnalyticController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticController.swift; sourceTree = "<group>"; };
@@ -1479,7 +1458,6 @@
 		4AD0C77D26FCAE9E009DB068 /* USState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USState.swift; sourceTree = "<group>"; };
 		4ADD29EA2718012A00FA7B00 /* MoveFinaledView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveFinaledView.swift; sourceTree = "<group>"; };
 		4ADD29EE2718018300FA7B00 /* MovePendingDisconnectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovePendingDisconnectView.swift; sourceTree = "<group>"; };
-		4ADF4FF916DE3B2844982F78 /* Pods_EUMobile_Watch_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EUMobile_Watch_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AE3467B26E8C76900F4155C /* FinalMailingAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalMailingAddressViewController.swift; sourceTree = "<group>"; };
 		4AE3467D26E8C78200F4155C /* ReviewStopServiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewStopServiceViewController.swift; sourceTree = "<group>"; };
 		4AE3467F26E9CEF600F4155C /* StopService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopService.swift; sourceTree = "<group>"; };
@@ -2313,14 +2291,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		35F9DD2C2333C34100AAA2B2 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C1FC7DEA2EEE0C8413984CF0 /* Pods_EUMobile_Watch_Extension.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		35F9DD592333C3FB00AAA2B2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -4512,7 +4482,6 @@
 				B5AC07391E52A2B900BBA4ED /* SystemConfiguration.framework */,
 				E83F02821FB380700062A348 /* UserNotifications.framework */,
 				277650B6F85C6AC146C5F8C2 /* Pods_EUMobile_Watch.framework */,
-				4ADF4FF916DE3B2844982F78 /* Pods_EUMobile_Watch_Extension.framework */,
 				B8A3A4A7A4BBF2DD357F1C3F /* Pods_EUMobileUITests.framework */,
 				9D644E4E93BE61A753CA9E15 /* Pods_EUMobileUnitTests.framework */,
 				2F3FDD6CD872BFB6C5171060 /* Pods_EUMobile.framework */,
@@ -4940,7 +4909,6 @@
 			children = (
 				B58B5AC11E4E28740051FD5F /* BGE.app */,
 				35F9DD232333C33F00AAA2B2 /* EUMobile-Watch.app */,
-				35F9DD2F2333C34100AAA2B2 /* EUMobile-Watch Extension.appex */,
 				6716592726F0FBA0004546DE /* UITests.xctest */,
 				6716594F26F0FBC6004546DE /* UnitTests.xctest */,
 			);
@@ -5195,39 +5163,19 @@
 			buildPhases = (
 				55C2EBA82601F7D149265A91 /* [CP] Check Pods Manifest.lock */,
 				35F9DD212333C33F00AAA2B2 /* Resources */,
-				35F9DD872333D2B800AAA2B2 /* Embed App Extensions */,
 				35F9DD592333C3FB00AAA2B2 /* Frameworks */,
 				67D5632F24EECD1600852551 /* Set Build Number */,
+				35F9DD2B2333C34100AAA2B2 /* Sources */,
+				8DE5BB4C03A54C48796C44F4 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				35F9DD862333D2B800AAA2B2 /* PBXTargetDependency */,
 			);
 			name = "EUMobile-Watch";
 			productName = "BGE-Watch";
 			productReference = 35F9DD232333C33F00AAA2B2 /* EUMobile-Watch.app */;
-			productType = "com.apple.product-type.application.watchapp2";
-		};
-		35F9DD2E2333C34100AAA2B2 /* EUMobile-Watch Extension */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 35F9DD3E2333C34200AAA2B2 /* Build configuration list for PBXNativeTarget "EUMobile-Watch Extension" */;
-			buildPhases = (
-				9D65B3150EABD7C6A32DF36E /* [CP] Check Pods Manifest.lock */,
-				35F9DD2B2333C34100AAA2B2 /* Sources */,
-				35F9DD2C2333C34100AAA2B2 /* Frameworks */,
-				35F9DD2D2333C34100AAA2B2 /* Resources */,
-				8DE5BB4C03A54C48796C44F4 /* [CP] Embed Pods Frameworks */,
-				67D5633024EECD2200852551 /* Set Build Number */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "EUMobile-Watch Extension";
-			productName = "BGE-Watch Extension";
-			productReference = 35F9DD2F2333C34100AAA2B2 /* EUMobile-Watch Extension.appex */;
-			productType = "com.apple.product-type.watchkit2-extension";
+			productType = "com.apple.product-type.application";
 		};
 		6716592626F0FBA0004546DE /* UITests */ = {
 			isa = PBXNativeTarget;
@@ -5299,18 +5247,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1240;
-				LastUpgradeCheck = 1300;
+				LastUpgradeCheck = 1510;
 				ORGANIZATIONNAME = "Exelon Corporation";
 				TargetAttributes = {
 					35F9DD222333C33F00AAA2B2 = {
 						CreatedOnToolsVersion = 11.0;
 						DevelopmentTeam = 38R4RRBYR8;
 						LastSwiftMigration = 1200;
-						ProvisioningStyle = Manual;
-					};
-					35F9DD2E2333C34100AAA2B2 = {
-						CreatedOnToolsVersion = 11.0;
-						DevelopmentTeam = 38R4RRBYR8;
 						ProvisioningStyle = Manual;
 					};
 					6716592626F0FBA0004546DE = {
@@ -5356,7 +5299,6 @@
 			targets = (
 				B58B5AC01E4E28740051FD5F /* EUMobile */,
 				35F9DD222333C33F00AAA2B2 /* EUMobile-Watch */,
-				35F9DD2E2333C34100AAA2B2 /* EUMobile-Watch Extension */,
 				6716592626F0FBA0004546DE /* UITests */,
 				6716594E26F0FBC6004546DE /* UnitTests */,
 			);
@@ -5368,26 +5310,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				67A9873324FD4C5F00BD46E7 /* (null) in Resources */,
-				35F9DD672333C85B00AAA2B2 /* README.md in Resources */,
-				35F9DD6C2333C8A000AAA2B2 /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		35F9DD2D2333C34100AAA2B2 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				4A398A49271EAD4100FA7B89 /* AccountVerification.json in Resources */,
-				35F9DD682333C85C00AAA2B2 /* README.md in Resources */,
-				C3087B0324BDEE8B005AE544 /* EnergyTipMock.json in Resources */,
-				678B622E24D09A1C009F8A6B /* RegistrationQuestionsMock.json in Resources */,
-				4A398A41271E997600FA7B89 /* WorkdaysMock.json in Resources */,
-				C338283524E30D6900F133C5 /* PeakRewardsOverridesMock.json in Resources */,
-				678B621A24CF6AD2009F8A6B /* ValidateRegistrationMock.json in Resources */,
-				35F9DD6D2333C8A100AAA2B2 /* Assets.xcassets in Resources */,
-				C338282824E30B0600F133C5 /* PeakRewardsSummaryMock.json in Resources */,
 				67D73B00246C72F100450B63 /* (null) in Resources */,
+				4A398A49271EAD4100FA7B89 /* AccountVerification.json in Resources */,
+				C3087B0324BDEE8B005AE544 /* EnergyTipMock.json in Resources */,
+				35F9DD6D2333C8A100AAA2B2 /* Assets.xcassets in Resources */,
+				67A9873324FD4C5F00BD46E7 /* (null) in Resources */,
+				C338282824E30B0600F133C5 /* PeakRewardsSummaryMock.json in Resources */,
+				35F9DD682333C85C00AAA2B2 /* README.md in Resources */,
+				35F9DD672333C85B00AAA2B2 /* README.md in Resources */,
+				678B622E24D09A1C009F8A6B /* RegistrationQuestionsMock.json in Resources */,
+				678B621A24CF6AD2009F8A6B /* ValidateRegistrationMock.json in Resources */,
+				35F9DD6C2333C8A000AAA2B2 /* Assets.xcassets in Resources */,
+				C338283524E30D6900F133C5 /* PeakRewardsOverridesMock.json in Resources */,
+				4A398A41271E997600FA7B89 /* WorkdaysMock.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5780,24 +5715,6 @@
 			shellPath = /bin/sh;
 			shellScript = "git=`sh /etc/profile; which git`\nbundleVersion=`\"$git\" rev-list --all |wc -l`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $bundleVersion\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\n\necho \"EUMobile-Watch Build number set: $bundleVersion\"\n";
 		};
-		67D5633024EECD2200852551 /* Set Build Number */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Set Build Number";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "git=`sh /etc/profile; which git`\nbundleVersion=`\"$git\" rev-list --all |wc -l`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $bundleVersion\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\n\necho \"EUMobile-Watch Extension Build number set: $bundleVersion\"\n";
-		};
 		6FB461DFAD45047C2DB9FEF5 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -5826,7 +5743,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-EUMobile-Watch Extension/Pods-EUMobile-Watch Extension-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-EUMobile-Watch/Pods-EUMobile-Watch-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa-watchOS/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxRelay-watchOS/RxRelay.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-watchOS/RxSwift.framework",
@@ -5841,7 +5758,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-EUMobile-Watch Extension/Pods-EUMobile-Watch Extension-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-EUMobile-Watch/Pods-EUMobile-Watch-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		984123DAE7F244C6575852D0 /* [CP] Embed Pods Frameworks */ = {
@@ -5908,28 +5825,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-UnitTests/Pods-UnitTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		9D65B3150EABD7C6A32DF36E /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-EUMobile-Watch Extension-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A4D596080434B77809DFD18C /* [CP] Embed Pods Frameworks */ = {
@@ -6987,11 +6882,6 @@
 			target = 35F9DD222333C33F00AAA2B2 /* EUMobile-Watch */;
 			targetProxy = 35F9DD3B2333C34200AAA2B2 /* PBXContainerItemProxy */;
 		};
-		35F9DD862333D2B800AAA2B2 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 35F9DD2E2333C34100AAA2B2 /* EUMobile-Watch Extension */;
-			targetProxy = 35F9DD852333D2B800AAA2B2 /* PBXContainerItemProxy */;
-		};
 		6716592D26F0FBA0004546DE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = B58B5AC01E4E28740051FD5F /* EUMobile */;
@@ -7136,7 +7026,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = "$(BUILD_DISPLAY_NAME)";
 				PROVISIONING_PROFILE = "48c6faa5-6279-47c2-ac55-339f55816cb0";
-				PROVISIONING_PROFILE_SPECIFIER = "BGE App Store";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.exelon.mobile.bge";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match AppStore com.exelon.mobile.bge";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
@@ -7149,219 +7039,6 @@
 			};
 			name = "BGE-Release";
 		};
-		35F9DD3F2333C34200AAA2B2 /* BGE-AUT */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 14AA9E852B6C8BA8DFA98DA4 /* Pods-EUMobile-Watch Extension.bge-aut.xcconfig */;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ANON_ASSOCIATED_DOMAIN = azstage.bge.com;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				BUNDLE_ID = com.exelon.mobile.bge.testing.watchkitapp;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = 38R4RRBYR8;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				ENVIRONMENT_TIER = AUT;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
-				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = "$(APP_VERSION)";
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
-				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
-				PRODUCT_NAME = "EUMobile-Watch Extension";
-				PROVISIONING_PROFILE_SPECIFIER = "Exelon Wildcard Dev Profile";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
-				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 7.0;
-			};
-			name = "BGE-AUT";
-		};
-		35F9DD412333C34200AAA2B2 /* BGE-Beta */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = B796B8A214438C8DBF35799F /* Pods-EUMobile-Watch Extension.bge-beta.xcconfig */;
-			buildSettings = {
-				ANON_ASSOCIATED_DOMAIN = azstage.bge.com;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				BUNDLE_ID = com.exelon.mobile.bge.staging.watchkitapp;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 38R4RRBYR8;
-				ENVIRONMENT_TIER = BETA;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
-				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = "$(APP_VERSION)";
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
-				PRODUCT_NAME = "EUMobile-Watch Extension";
-				PROVISIONING_PROFILE_SPECIFIER = "BGE Staging Watchkit WatchkitExtension Enterprise";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
-				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 7.0;
-			};
-			name = "BGE-Beta";
-		};
-		35F9DD432333C34200AAA2B2 /* BGE-RC */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4953FDF36B4164D916A6B19C /* Pods-EUMobile-Watch Extension.bge-rc.xcconfig */;
-			buildSettings = {
-				ALERT_URL = www.bge.com;
-				ANON_ASSOCIATED_DOMAIN = bge.com;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				BUNDLE_ID = com.exelon.mobile.bge.prodbeta.watchkitapp;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 38R4RRBYR8;
-				ENVIRONMENT_TIER = RC;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
-				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = "$(APP_VERSION)";
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
-				PRODUCT_NAME = "EUMobile-Watch Extension";
-				PROVISIONING_PROFILE_SPECIFIER = "BGE Production Beta WatchkitExt Enterprise Dist";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
-				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
-				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 7.0;
-			};
-			name = "BGE-RC";
-		};
-		35F9DD442333C34200AAA2B2 /* BGE-Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = FEF7F9E0320683B5F965A042 /* Pods-EUMobile-Watch Extension.bge-release.xcconfig */;
-			buildSettings = {
-				ALERT_URL = www.bge.com;
-				ANON_ASSOCIATED_DOMAIN = bge.com;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				BUNDLE_ID = com.exelon.mobile.bge.watchkitapp;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = YU7Y757VB5;
-				ENABLE_BITCODE = NO;
-				ENVIRONMENT_TIER = RELEASE;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
-				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = "$(APP_VERSION)";
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
-				PRODUCT_NAME = "EUMobile-Watch Extension";
-				PROVISIONING_PROFILE_SPECIFIER = "BGE Watchkit Extension App Store";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
-				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
-				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 7.0;
-			};
-			name = "BGE-Release";
-		};
 		35F9DD472333C34200AAA2B2 /* BGE-AUT */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1B711F2A3540AD1315F0A0DC /* Pods-EUMobile-Watch.bge-aut.xcconfig */;
@@ -7369,6 +7046,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ANON_ASSOCIATED_DOMAIN = azstage.bge.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				BUNDLE_ID = com.exelon.mobile.bge.testing;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -7424,11 +7102,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks /usr/lib/swift '@executable_path/Frameworks' '@loader_path/Frameworks' @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -7455,6 +7132,7 @@
 			buildSettings = {
 				ANON_ASSOCIATED_DOMAIN = azstage.bge.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -7471,16 +7149,15 @@
 				ENVIRONMENT_TIER = BETA;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks /usr/lib/swift '@executable_path/Frameworks' '@loader_path/Frameworks' @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
-				PROVISIONING_PROFILE_SPECIFIER = "BGE Staging Watchkit App Enterprise Dist";
+				PROVISIONING_PROFILE_SPECIFIER = "match InHouse com.exelon.mobile.bge.staging.watchkitapp";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=watchos*]" = "match InHouse com.exelon.mobile.bge.staging.watchkitapp";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -7501,6 +7178,7 @@
 				ALERT_URL = www.bge.com;
 				ANON_ASSOCIATED_DOMAIN = bge.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -7517,16 +7195,15 @@
 				ENVIRONMENT_TIER = RC;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks /usr/lib/swift '@executable_path/Frameworks' '@loader_path/Frameworks' @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
-				PROVISIONING_PROFILE_SPECIFIER = "BGE Production Beta Watchkit App Enterprise Dist";
+				PROVISIONING_PROFILE_SPECIFIER = "match InHouse com.exelon.mobile.bge.prodbeta.watchkitapp";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=watchos*]" = "match InHouse com.exelon.mobile.bge.prodbeta.watchkitapp";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -7548,6 +7225,7 @@
 				ALERT_URL = www.bge.com;
 				ANON_ASSOCIATED_DOMAIN = bge.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -7565,16 +7243,15 @@
 				ENVIRONMENT_TIER = RELEASE;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks /usr/lib/swift '@executable_path/Frameworks' '@loader_path/Frameworks' @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
-				PROVISIONING_PROFILE_SPECIFIER = "BGE Watchkit App Store";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.exelon.mobile.bge.watchkitapp";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=watchos*]" = "match AppStore com.exelon.mobile.bge.watchkitapp";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -10911,6 +10588,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ANON_ASSOCIATED_DOMAIN = azstage.peco.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				BUNDLE_ID = com.exelon.mobile.peco.testing;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -10966,102 +10644,16 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks /usr/lib/swift '@executable_path/Frameworks' '@loader_path/Frameworks' @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
-				PROVISIONING_PROFILE_SPECIFIER = "Exelon Wildcard Dev Profile";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
-				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 7.0;
-			};
-			name = "PECO-AUT";
-		};
-		67A9867B24F950F900BD46E7 /* PECO-AUT */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = FFC7380BFE6C5CFD8D1C8E71 /* Pods-EUMobile-Watch Extension.peco-aut.xcconfig */;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ANON_ASSOCIATED_DOMAIN = azstage.peco.com;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				BUNDLE_ID = com.exelon.mobile.peco.testing.watchkitapp;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = 38R4RRBYR8;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				ENVIRONMENT_TIER = AUT;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
-				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = "$(APP_VERSION)";
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
-				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
-				PRODUCT_NAME = "EUMobile-Watch Extension";
 				PROVISIONING_PROFILE_SPECIFIER = "Exelon Wildcard Dev Profile";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -11204,7 +10796,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = "$(BUILD_DISPLAY_NAME)";
 				PROVISIONING_PROFILE = "bc06f33e-100c-4311-838a-c74b10fe6132";
-				PROVISIONING_PROFILE_SPECIFIER = "PECO Staging Enterprise Dist";
+				PROVISIONING_PROFILE_SPECIFIER = "match InHouse com.exelon.mobile.peco.staging";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match InHouse com.exelon.mobile.peco.staging";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -11222,6 +10814,7 @@
 			buildSettings = {
 				ANON_ASSOCIATED_DOMAIN = azstage.peco.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -11238,58 +10831,16 @@
 				ENVIRONMENT_TIER = BETA;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks /usr/lib/swift '@executable_path/Frameworks' '@loader_path/Frameworks' @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
-				PROVISIONING_PROFILE_SPECIFIER = "PECO Staging Watchkit App Enterprise Dist";
+				PROVISIONING_PROFILE_SPECIFIER = "match InHouse com.exelon.mobile.peco.staging.watchkitapp";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=watchos*]" = "match InHouse com.exelon.mobile.peco.staging.watchkitapp";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
-				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 7.0;
-			};
-			name = "PECO-Beta";
-		};
-		67A9868724F9510D00BD46E7 /* PECO-Beta */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9D6A7E932D1F627C0C07BDC8 /* Pods-EUMobile-Watch Extension.peco-beta.xcconfig */;
-			buildSettings = {
-				ANON_ASSOCIATED_DOMAIN = azstage.peco.com;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				BUNDLE_ID = com.exelon.mobile.peco.staging.watchkitapp;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 38R4RRBYR8;
-				ENVIRONMENT_TIER = BETA;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
-				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = "$(APP_VERSION)";
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
-				PRODUCT_NAME = "EUMobile-Watch Extension";
-				PROVISIONING_PROFILE_SPECIFIER = "PECO Staging Watchkit WatchkitExtension Enterprise";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -11423,7 +10974,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = "$(BUILD_DISPLAY_NAME)";
 				PROVISIONING_PROFILE = "1b730eab-cc27-4537-9ebf-6b8e34daa7a3";
-				PROVISIONING_PROFILE_SPECIFIER = "PECO Production Beta Enterprise Dist";
+				PROVISIONING_PROFILE_SPECIFIER = "match InHouse com.exelon.mobile.peco.prodbeta";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match InHouse com.exelon.mobile.peco.prodbeta";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
@@ -11443,6 +10994,7 @@
 				ALERT_URL = www.peco.com;
 				ANON_ASSOCIATED_DOMAIN = peco.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -11459,60 +11011,16 @@
 				ENVIRONMENT_TIER = RC;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks /usr/lib/swift '@executable_path/Frameworks' '@loader_path/Frameworks' @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
-				PROVISIONING_PROFILE_SPECIFIER = "PECO Production Beta Watchkit App Enterprise Dist";
+				PROVISIONING_PROFILE_SPECIFIER = "match InHouse com.exelon.mobile.peco.prodbeta.watchkitapp";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=watchos*]" = "match InHouse com.exelon.mobile.peco.prodbeta.watchkitapp";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
-				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
-				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 7.0;
-			};
-			name = "PECO-RC";
-		};
-		67A9868D24F9511500BD46E7 /* PECO-RC */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 69ABACD8EE32B19842409496 /* Pods-EUMobile-Watch Extension.peco-rc.xcconfig */;
-			buildSettings = {
-				ALERT_URL = www.peco.com;
-				ANON_ASSOCIATED_DOMAIN = peco.com;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				BUNDLE_ID = com.exelon.mobile.peco.prodbeta.watchkitapp;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 38R4RRBYR8;
-				ENVIRONMENT_TIER = RC;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
-				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = "$(APP_VERSION)";
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
-				PRODUCT_NAME = "EUMobile-Watch Extension";
-				PROVISIONING_PROFILE_SPECIFIER = "PECO Production Beta WatchkitExt Enterprise Dist";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
@@ -11646,7 +11154,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = "$(BUILD_DISPLAY_NAME)";
 				PROVISIONING_PROFILE = "48c6faa5-6279-47c2-ac55-339f55816cb0";
-				PROVISIONING_PROFILE_SPECIFIER = "PECO App Store";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.exelon.mobile.peco";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match AppStore com.exelon.mobile.peco";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
@@ -11666,6 +11174,7 @@
 				ALERT_URL = www.peco.com;
 				ANON_ASSOCIATED_DOMAIN = peco.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -11683,61 +11192,16 @@
 				ENVIRONMENT_TIER = RELEASE;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks /usr/lib/swift '@executable_path/Frameworks' '@loader_path/Frameworks' @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
-				PROVISIONING_PROFILE_SPECIFIER = "PECO Watchkit App Store";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.exelon.mobile.peco.watchkitapp";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=watchos*]" = "match AppStore com.exelon.mobile.peco.watchkitapp";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
-				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
-				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 7.0;
-			};
-			name = "PECO-Release";
-		};
-		67A9869324F9511D00BD46E7 /* PECO-Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 72529116722E5D2F259DFCC7 /* Pods-EUMobile-Watch Extension.peco-release.xcconfig */;
-			buildSettings = {
-				ALERT_URL = www.peco.com;
-				ANON_ASSOCIATED_DOMAIN = peco.com;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				BUNDLE_ID = com.exelon.mobile.peco.watchkitapp;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = YU7Y757VB5;
-				ENABLE_BITCODE = NO;
-				ENVIRONMENT_TIER = RELEASE;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
-				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = "$(APP_VERSION)";
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
-				PRODUCT_NAME = "EUMobile-Watch Extension";
-				PROVISIONING_PROFILE_SPECIFIER = "PECO Watchkit Extension App Store";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
@@ -11891,6 +11355,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ANON_ASSOCIATED_DOMAIN = azstage.atlanticcityelectric.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				BUNDLE_ID = com.exelon.mobile.ace.testing;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -11946,102 +11411,16 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks /usr/lib/swift '@executable_path/Frameworks' '@loader_path/Frameworks' @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
-				PROVISIONING_PROFILE_SPECIFIER = "Exelon Wildcard Dev Profile";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
-				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 7.0;
-			};
-			name = "ACE-AUT";
-		};
-		67A986B524FD3E8500BD46E7 /* ACE-AUT */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = B8C923DA414D342D5C1F7F71 /* Pods-EUMobile-Watch Extension.ace-aut.xcconfig */;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ANON_ASSOCIATED_DOMAIN = azstage.atlanticcityelectric.com;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				BUNDLE_ID = com.exelon.mobile.ace.testing.watchkitapp;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = 38R4RRBYR8;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				ENVIRONMENT_TIER = AUT;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
-				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = "$(APP_VERSION)";
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
-				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
-				PRODUCT_NAME = "EUMobile-Watch Extension";
 				PROVISIONING_PROFILE_SPECIFIER = "Exelon Wildcard Dev Profile";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -12185,7 +11564,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = "Atlantic City Electric";
 				PROVISIONING_PROFILE = "bc06f33e-100c-4311-838a-c74b10fe6132";
-				PROVISIONING_PROFILE_SPECIFIER = "ACE Staging Enterprise Dist";
+				PROVISIONING_PROFILE_SPECIFIER = "match InHouse com.exelon.mobile.ace.staging";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match InHouse com.exelon.mobile.ace.staging";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -12203,6 +11582,7 @@
 			buildSettings = {
 				ANON_ASSOCIATED_DOMAIN = azstage.atlanticcityelectric.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -12219,58 +11599,16 @@
 				ENVIRONMENT_TIER = BETA;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks /usr/lib/swift '@executable_path/Frameworks' '@loader_path/Frameworks' @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
-				PROVISIONING_PROFILE_SPECIFIER = "ACE Staging Watchkit App Enterprise Dist";
+				PROVISIONING_PROFILE_SPECIFIER = "match InHouse com.exelon.mobile.ace.staging.watchkitapp";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=watchos*]" = "match InHouse com.exelon.mobile.ace.staging.watchkitapp";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
-				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 7.0;
-			};
-			name = "ACE-Beta";
-		};
-		67A986C124FD3E9300BD46E7 /* ACE-Beta */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4958F3FA03A8BE776E455461 /* Pods-EUMobile-Watch Extension.ace-beta.xcconfig */;
-			buildSettings = {
-				ANON_ASSOCIATED_DOMAIN = azstage.atlanticcityelectric.com;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				BUNDLE_ID = com.exelon.mobile.ace.staging.watchkitapp;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 38R4RRBYR8;
-				ENVIRONMENT_TIER = BETA;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
-				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = "$(APP_VERSION)";
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
-				PRODUCT_NAME = "EUMobile-Watch Extension";
-				PROVISIONING_PROFILE_SPECIFIER = "ACE Staging Watchkit WatchkitExtension Enterprise";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -12405,7 +11743,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = "Atlantic City Electric";
 				PROVISIONING_PROFILE = "1b730eab-cc27-4537-9ebf-6b8e34daa7a3";
-				PROVISIONING_PROFILE_SPECIFIER = "ACE Production Beta Enterprise Dist";
+				PROVISIONING_PROFILE_SPECIFIER = "match InHouse com.exelon.mobile.ace.prodbeta";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match InHouse com.exelon.mobile.ace.prodbeta";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
@@ -12425,6 +11763,7 @@
 				ALERT_URL = www.atlanticcityelectric.com;
 				ANON_ASSOCIATED_DOMAIN = atlanticcityelectric.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -12441,60 +11780,16 @@
 				ENVIRONMENT_TIER = RC;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks /usr/lib/swift '@executable_path/Frameworks' '@loader_path/Frameworks' @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
-				PROVISIONING_PROFILE_SPECIFIER = "ACE Production Beta Watchkit App Enterprise Dist";
+				PROVISIONING_PROFILE_SPECIFIER = "match InHouse com.exelon.mobile.ace.prodbeta.watchkitapp";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=watchos*]" = "match InHouse com.exelon.mobile.ace.prodbeta.watchkitapp";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
-				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
-				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 7.0;
-			};
-			name = "ACE-RC";
-		};
-		67A986C724FD3E9900BD46E7 /* ACE-RC */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 14D4A7EEC65155AF56005C10 /* Pods-EUMobile-Watch Extension.ace-rc.xcconfig */;
-			buildSettings = {
-				ALERT_URL = www.atlanticcityelectric.com;
-				ANON_ASSOCIATED_DOMAIN = atlanticcityelectric.com;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				BUNDLE_ID = com.exelon.mobile.ace.prodbeta.watchkitapp;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 38R4RRBYR8;
-				ENVIRONMENT_TIER = RC;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
-				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = "$(APP_VERSION)";
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
-				PRODUCT_NAME = "EUMobile-Watch Extension";
-				PROVISIONING_PROFILE_SPECIFIER = "ACE Production Beta WatchkitExtension Enterprise";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
@@ -12629,7 +11924,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = "Atlantic City Electric";
 				PROVISIONING_PROFILE = "48c6faa5-6279-47c2-ac55-339f55816cb0";
-				PROVISIONING_PROFILE_SPECIFIER = "ACE App Store";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.ifactorconsulting.ace";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match AppStore com.ifactorconsulting.ace";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
@@ -12649,6 +11944,7 @@
 				ALERT_URL = www.atlanticcityelectric.com;
 				ANON_ASSOCIATED_DOMAIN = atlanticcityelectric.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -12666,61 +11962,16 @@
 				ENVIRONMENT_TIER = RELEASE;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks /usr/lib/swift '@executable_path/Frameworks' '@loader_path/Frameworks' @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
-				PROVISIONING_PROFILE_SPECIFIER = "ACE Watchkit App Store";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.ifactorconsulting.ace.watchkitapp";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=watchos*]" = "match AppStore com.ifactorconsulting.ace.watchkitapp";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
-				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
-				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 7.0;
-			};
-			name = "ACE-Release";
-		};
-		67A986CD24FD3E9F00BD46E7 /* ACE-Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8EAC87FC5CEAB583002622C9 /* Pods-EUMobile-Watch Extension.ace-release.xcconfig */;
-			buildSettings = {
-				ALERT_URL = www.atlanticcityelectric.com;
-				ANON_ASSOCIATED_DOMAIN = atlanticcityelectric.com;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				BUNDLE_ID = com.ifactorconsulting.ace.watchkitapp;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = YU7Y757VB5;
-				ENABLE_BITCODE = NO;
-				ENVIRONMENT_TIER = RELEASE;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
-				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = "$(APP_VERSION)";
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
-				PRODUCT_NAME = "EUMobile-Watch Extension";
-				PROVISIONING_PROFILE_SPECIFIER = "ACE Watchkit Extension App Store";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
@@ -12874,6 +12125,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ANON_ASSOCIATED_DOMAIN = azstage.delmarva.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				BUNDLE_ID = com.exelon.mobile.delmarva.testing;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -12929,102 +12181,16 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks /usr/lib/swift '@executable_path/Frameworks' '@loader_path/Frameworks' @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
-				PROVISIONING_PROFILE_SPECIFIER = "Exelon Wildcard Dev Profile";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
-				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 7.0;
-			};
-			name = "Delmarva-AUT";
-		};
-		67A986EE24FD41DB00BD46E7 /* Delmarva-AUT */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = B8556379C7033076121C9420 /* Pods-EUMobile-Watch Extension.delmarva-aut.xcconfig */;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ANON_ASSOCIATED_DOMAIN = azstage.delmarva.com;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				BUNDLE_ID = com.exelon.mobile.delmarva.testing.watchkitapp;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = 38R4RRBYR8;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				ENVIRONMENT_TIER = AUT;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
-				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = "$(APP_VERSION)";
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
-				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
-				PRODUCT_NAME = "EUMobile-Watch Extension";
 				PROVISIONING_PROFILE_SPECIFIER = "Exelon Wildcard Dev Profile";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -13168,7 +12334,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = "Delmarva Power";
 				PROVISIONING_PROFILE = "bc06f33e-100c-4311-838a-c74b10fe6132";
-				PROVISIONING_PROFILE_SPECIFIER = "Delmarva Staging Enterprise Dist";
+				PROVISIONING_PROFILE_SPECIFIER = "match InHouse com.exelon.mobile.delmarva.staging";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match InHouse com.exelon.mobile.delmarva.staging";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -13186,6 +12352,7 @@
 			buildSettings = {
 				ANON_ASSOCIATED_DOMAIN = azstage.delmarva.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -13202,58 +12369,16 @@
 				ENVIRONMENT_TIER = BETA;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks /usr/lib/swift '@executable_path/Frameworks' '@loader_path/Frameworks' @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
-				PROVISIONING_PROFILE_SPECIFIER = "Delmarva Staging Watchkit App Enterprise Dist";
+				PROVISIONING_PROFILE_SPECIFIER = "match InHouse com.exelon.mobile.delmarva.staging.watchkitapp";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=watchos*]" = "match InHouse com.exelon.mobile.delmarva.staging.watchkitapp";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
-				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 7.0;
-			};
-			name = "Delmarva-Beta";
-		};
-		67A986FA24FD41E900BD46E7 /* Delmarva-Beta */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = DD3F10970CFE8096DE30CF58 /* Pods-EUMobile-Watch Extension.delmarva-beta.xcconfig */;
-			buildSettings = {
-				ANON_ASSOCIATED_DOMAIN = azstage.delmarva.com;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				BUNDLE_ID = com.exelon.mobile.delmarva.staging.watchkitapp;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 38R4RRBYR8;
-				ENVIRONMENT_TIER = BETA;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
-				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = "$(APP_VERSION)";
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
-				PRODUCT_NAME = "EUMobile-Watch Extension";
-				PROVISIONING_PROFILE_SPECIFIER = "Delmarva Staging Watchkit WatchkitExtension Ent";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -13388,7 +12513,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = "Delmarva Power";
 				PROVISIONING_PROFILE = "1b730eab-cc27-4537-9ebf-6b8e34daa7a3";
-				PROVISIONING_PROFILE_SPECIFIER = "Delmarva Production Beta Enterprise Dist";
+				PROVISIONING_PROFILE_SPECIFIER = "match InHouse com.exelon.mobile.delmarva.prodbeta";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match InHouse com.exelon.mobile.delmarva.prodbeta";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
@@ -13408,6 +12533,7 @@
 				ALERT_URL = www.delmarva.com;
 				ANON_ASSOCIATED_DOMAIN = delmarva.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -13424,60 +12550,16 @@
 				ENVIRONMENT_TIER = RC;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks /usr/lib/swift '@executable_path/Frameworks' '@loader_path/Frameworks' @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
-				PROVISIONING_PROFILE_SPECIFIER = "Delmarva Production Beta Watchkit App Enterprise";
+				PROVISIONING_PROFILE_SPECIFIER = "match InHouse com.exelon.mobile.delmarva.prodbeta.watchkitapp";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=watchos*]" = "match InHouse com.exelon.mobile.delmarva.prodbeta.watchkitapp";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
-				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
-				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 7.0;
-			};
-			name = "Delmarva-RC";
-		};
-		67A9870024FD41F100BD46E7 /* Delmarva-RC */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = D314742AA20FD452B2744534 /* Pods-EUMobile-Watch Extension.delmarva-rc.xcconfig */;
-			buildSettings = {
-				ALERT_URL = www.delmarva.com;
-				ANON_ASSOCIATED_DOMAIN = delmarva.com;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				BUNDLE_ID = com.exelon.mobile.delmarva.prodbeta.watchkitapp;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 38R4RRBYR8;
-				ENVIRONMENT_TIER = RC;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
-				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = "$(APP_VERSION)";
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
-				PRODUCT_NAME = "EUMobile-Watch Extension";
-				PROVISIONING_PROFILE_SPECIFIER = "Delmarva Production Beta WatchkitExtension Ent";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
@@ -13612,7 +12694,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = "Delmarva Power";
 				PROVISIONING_PROFILE = "48c6faa5-6279-47c2-ac55-339f55816cb0";
-				PROVISIONING_PROFILE_SPECIFIER = "Delmarva App Store";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.ifactorconsulting.delmarva";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match AppStore com.ifactorconsulting.delmarva";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
@@ -13632,6 +12714,7 @@
 				ALERT_URL = www.delmarva.com;
 				ANON_ASSOCIATED_DOMAIN = delmarva.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -13649,61 +12732,16 @@
 				ENVIRONMENT_TIER = RELEASE;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks /usr/lib/swift '@executable_path/Frameworks' '@loader_path/Frameworks' @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
-				PROVISIONING_PROFILE_SPECIFIER = "Delmarva Watchkit App Store";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.ifactorconsulting.delmarva.watchkitapp";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=watchos*]" = "match AppStore com.ifactorconsulting.delmarva.watchkitapp";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
-				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
-				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 7.0;
-			};
-			name = "Delmarva-Release";
-		};
-		67A9870624FD41F600BD46E7 /* Delmarva-Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = EAF277BBEE286DE69A9D3F96 /* Pods-EUMobile-Watch Extension.delmarva-release.xcconfig */;
-			buildSettings = {
-				ALERT_URL = www.delmarva.com;
-				ANON_ASSOCIATED_DOMAIN = delmarva.com;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				BUNDLE_ID = com.ifactorconsulting.delmarva.watchkitapp;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = YU7Y757VB5;
-				ENABLE_BITCODE = NO;
-				ENVIRONMENT_TIER = RELEASE;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
-				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = "$(APP_VERSION)";
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
-				PRODUCT_NAME = "EUMobile-Watch Extension";
-				PROVISIONING_PROFILE_SPECIFIER = "Delmarva Watchkit Extension App Store";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
@@ -13857,6 +12895,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ANON_ASSOCIATED_DOMAIN = azstage.pepco.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				BUNDLE_ID = com.exelon.mobile.pepco.testing;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -13912,102 +12951,16 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks /usr/lib/swift '@executable_path/Frameworks' '@loader_path/Frameworks' @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
-				PROVISIONING_PROFILE_SPECIFIER = "Exelon Wildcard Dev Profile";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
-				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 7.0;
-			};
-			name = "Pepco-AUT";
-		};
-		67A9870C24FD41FE00BD46E7 /* Pepco-AUT */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = F76F143ABFA2600AD8AA8BCA /* Pods-EUMobile-Watch Extension.pepco-aut.xcconfig */;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ANON_ASSOCIATED_DOMAIN = azstage.pepco.com;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				BUNDLE_ID = com.exelon.mobile.pepco.testing.watchkitapp;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = 38R4RRBYR8;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				ENVIRONMENT_TIER = AUT;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
-				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = "$(APP_VERSION)";
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
-				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
-				PRODUCT_NAME = "EUMobile-Watch Extension";
 				PROVISIONING_PROFILE_SPECIFIER = "Exelon Wildcard Dev Profile";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -14151,7 +13104,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = "$(BUILD_DISPLAY_NAME)";
 				PROVISIONING_PROFILE = "bc06f33e-100c-4311-838a-c74b10fe6132";
-				PROVISIONING_PROFILE_SPECIFIER = "Pepco Staging Enterprise Dist";
+				PROVISIONING_PROFILE_SPECIFIER = "match InHouse com.exelon.mobile.pepco.staging";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match InHouse com.exelon.mobile.pepco.staging";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -14169,6 +13122,7 @@
 			buildSettings = {
 				ANON_ASSOCIATED_DOMAIN = azstage.pepco.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -14185,58 +13139,16 @@
 				ENVIRONMENT_TIER = BETA;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks /usr/lib/swift '@executable_path/Frameworks' '@loader_path/Frameworks' @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
-				PROVISIONING_PROFILE_SPECIFIER = "Pepco Staging Watchkit App Enterprise Dist";
+				PROVISIONING_PROFILE_SPECIFIER = "match InHouse com.exelon.mobile.pepco.staging.watchkitapp";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=watchos*]" = "match InHouse com.exelon.mobile.pepco.staging.watchkitapp";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
-				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 7.0;
-			};
-			name = "Pepco-Beta";
-		};
-		67A9871824FD420D00BD46E7 /* Pepco-Beta */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = C60777FE5ADCB51BFE47125E /* Pods-EUMobile-Watch Extension.pepco-beta.xcconfig */;
-			buildSettings = {
-				ANON_ASSOCIATED_DOMAIN = azstage.pepco.com;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				BUNDLE_ID = com.exelon.mobile.pepco.staging.watchkitapp;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 38R4RRBYR8;
-				ENVIRONMENT_TIER = BETA;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
-				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = "$(APP_VERSION)";
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
-				PRODUCT_NAME = "EUMobile-Watch Extension";
-				PROVISIONING_PROFILE_SPECIFIER = "Pepco Staging Watchkit WatchkitExtension Ent";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -14371,7 +13283,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = "$(BUILD_DISPLAY_NAME)";
 				PROVISIONING_PROFILE = "1b730eab-cc27-4537-9ebf-6b8e34daa7a3";
-				PROVISIONING_PROFILE_SPECIFIER = "Pepco Production Beta Enterprise Dist";
+				PROVISIONING_PROFILE_SPECIFIER = "match InHouse com.exelon.mobile.pepco.prodbeta";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match InHouse com.exelon.mobile.pepco.prodbeta";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
@@ -14391,6 +13303,7 @@
 				ALERT_URL = www.pepco.com;
 				ANON_ASSOCIATED_DOMAIN = pepco.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -14407,60 +13320,16 @@
 				ENVIRONMENT_TIER = RC;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks /usr/lib/swift '@executable_path/Frameworks' '@loader_path/Frameworks' @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
-				PROVISIONING_PROFILE_SPECIFIER = "Pepco Production Beta Watchkit App Enterprise Dist";
+				PROVISIONING_PROFILE_SPECIFIER = "match InHouse com.exelon.mobile.pepco.prodbeta.watchkitapp";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=watchos*]" = "match InHouse com.exelon.mobile.pepco.prodbeta.watchkitapp";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
-				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
-				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 7.0;
-			};
-			name = "Pepco-RC";
-		};
-		67A9871E24FD421400BD46E7 /* Pepco-RC */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = F85F65BF77FEDD272401BFA4 /* Pods-EUMobile-Watch Extension.pepco-rc.xcconfig */;
-			buildSettings = {
-				ALERT_URL = www.pepco.com;
-				ANON_ASSOCIATED_DOMAIN = pepco.com;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				BUNDLE_ID = com.exelon.mobile.pepco.prodbeta.watchkitapp;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 38R4RRBYR8;
-				ENVIRONMENT_TIER = RC;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
-				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = "$(APP_VERSION)";
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
-				PRODUCT_NAME = "EUMobile-Watch Extension";
-				PROVISIONING_PROFILE_SPECIFIER = "Pepco Production Beta WatchkitExtension Enterprise";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
@@ -14595,7 +13464,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = "$(BUILD_DISPLAY_NAME)";
 				PROVISIONING_PROFILE = "48c6faa5-6279-47c2-ac55-339f55816cb0";
-				PROVISIONING_PROFILE_SPECIFIER = "Pepco App Store";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.ifactorconsulting.pepco";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match AppStore com.ifactorconsulting.pepco";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
@@ -14615,6 +13484,7 @@
 				ALERT_URL = www.pepco.com;
 				ANON_ASSOCIATED_DOMAIN = pepco.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -14632,61 +13502,16 @@
 				ENVIRONMENT_TIER = RELEASE;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks /usr/lib/swift '@executable_path/Frameworks' '@loader_path/Frameworks' @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
-				PROVISIONING_PROFILE_SPECIFIER = "Pepco Watchkit App Store";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.ifactorconsulting.pepco.watchkitapp";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=watchos*]" = "match AppStore com.ifactorconsulting.pepco.watchkitapp";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
-				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
-				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 7.0;
-			};
-			name = "Pepco-Release";
-		};
-		67A9872424FD421C00BD46E7 /* Pepco-Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 890116DD2022FBBA0702A64E /* Pods-EUMobile-Watch Extension.pepco-release.xcconfig */;
-			buildSettings = {
-				ALERT_URL = www.pepco.com;
-				ANON_ASSOCIATED_DOMAIN = pepco.com;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				BUNDLE_ID = com.ifactorconsulting.pepco.watchkitapp;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = YU7Y757VB5;
-				ENABLE_BITCODE = NO;
-				ENVIRONMENT_TIER = RELEASE;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
-				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = "$(APP_VERSION)";
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
-				PRODUCT_NAME = "EUMobile-Watch Extension";
-				PROVISIONING_PROFILE_SPECIFIER = "Pepco Watchkit Extension App Store";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
@@ -14840,6 +13665,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ANON_ASSOCIATED_DOMAIN = azstage.comed.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				BUNDLE_ID = com.exelon.mobile.comed.testing;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -14895,102 +13721,16 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks /usr/lib/swift '@executable_path/Frameworks' '@loader_path/Frameworks' @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
-				PROVISIONING_PROFILE_SPECIFIER = "Exelon Wildcard Dev Profile";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
-				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 7.0;
-			};
-			name = "ComEd-AUT";
-		};
-		67D562FE24ED9DD100852551 /* ComEd-AUT */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0F03C17FC734CC7FC7F04BB9 /* Pods-EUMobile-Watch Extension.comed-aut.xcconfig */;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ANON_ASSOCIATED_DOMAIN = azstage.comed.com;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				BUNDLE_ID = com.exelon.mobile.comed.testing.watchkitapp;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = 38R4RRBYR8;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				ENVIRONMENT_TIER = AUT;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
-				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = "$(APP_VERSION)";
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
-				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
-				PRODUCT_NAME = "EUMobile-Watch Extension";
 				PROVISIONING_PROFILE_SPECIFIER = "Exelon Wildcard Dev Profile";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -15133,7 +13873,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = "$(BUILD_DISPLAY_NAME)";
 				PROVISIONING_PROFILE = "bc06f33e-100c-4311-838a-c74b10fe6132";
-				PROVISIONING_PROFILE_SPECIFIER = "ComEd Staging Enterprise Dist";
+				PROVISIONING_PROFILE_SPECIFIER = "match InHouse com.exelon.mobile.comed.staging";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match InHouse com.exelon.mobile.comed.staging";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -15151,6 +13891,7 @@
 			buildSettings = {
 				ANON_ASSOCIATED_DOMAIN = azstage.comed.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -15167,58 +13908,16 @@
 				ENVIRONMENT_TIER = BETA;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks /usr/lib/swift '@executable_path/Frameworks' '@loader_path/Frameworks' @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
-				PROVISIONING_PROFILE_SPECIFIER = "ComEd Staging WatchKit App";
+				PROVISIONING_PROFILE_SPECIFIER = "match InHouse com.exelon.mobile.comed.staging.watchkitapp";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=watchos*]" = "match InHouse com.exelon.mobile.comed.staging.watchkitapp";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
-				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 7.0;
-			};
-			name = "ComEd-Beta";
-		};
-		67D5630A24ED9DD500852551 /* ComEd-Beta */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = A4AD181DB795B99260A44DB6 /* Pods-EUMobile-Watch Extension.comed-beta.xcconfig */;
-			buildSettings = {
-				ANON_ASSOCIATED_DOMAIN = azstage.comed.com;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				BUNDLE_ID = com.exelon.mobile.comed.staging.watchkitapp;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 38R4RRBYR8;
-				ENVIRONMENT_TIER = BETA;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
-				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = "$(APP_VERSION)";
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
-				PRODUCT_NAME = "EUMobile-Watch Extension";
-				PROVISIONING_PROFILE_SPECIFIER = "ComEd Staging Watchkit Extension";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -15352,7 +14051,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = "$(BUILD_DISPLAY_NAME)";
 				PROVISIONING_PROFILE = "1b730eab-cc27-4537-9ebf-6b8e34daa7a3";
-				PROVISIONING_PROFILE_SPECIFIER = "ComEd Production Beta Enterprise Dist";
+				PROVISIONING_PROFILE_SPECIFIER = "match InHouse com.exelon.mobile.comed.prodbeta";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match InHouse com.exelon.mobile.comed.prodbeta";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
@@ -15372,6 +14071,7 @@
 				ALERT_URL = www.comed.com;
 				ANON_ASSOCIATED_DOMAIN = comed.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -15388,60 +14088,16 @@
 				ENVIRONMENT_TIER = RC;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks /usr/lib/swift '@executable_path/Frameworks' '@loader_path/Frameworks' @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
-				PROVISIONING_PROFILE_SPECIFIER = "ComEd Production Beta WatchKit App";
+				PROVISIONING_PROFILE_SPECIFIER = "match InHouse com.exelon.mobile.comed.prodbeta.watchkitapp";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=watchos*]" = "match InHouse com.exelon.mobile.comed.prodbeta.watchkitapp";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
-				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
-				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 7.0;
-			};
-			name = "ComEd-RC";
-		};
-		67D5631624ED9DD900852551 /* ComEd-RC */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7BB967F129E086298483BDF8 /* Pods-EUMobile-Watch Extension.comed-rc.xcconfig */;
-			buildSettings = {
-				ALERT_URL = www.comed.com;
-				ANON_ASSOCIATED_DOMAIN = comed.com;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				BUNDLE_ID = com.exelon.mobile.comed.prodbeta.watchkitapp;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 38R4RRBYR8;
-				ENVIRONMENT_TIER = RC;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
-				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = "$(APP_VERSION)";
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
-				PRODUCT_NAME = "EUMobile-Watch Extension";
-				PROVISIONING_PROFILE_SPECIFIER = "ComEd Production Beta WatchKit Extension";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
@@ -15575,7 +14231,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = "$(BUILD_DISPLAY_NAME)";
 				PROVISIONING_PROFILE = "48c6faa5-6279-47c2-ac55-339f55816cb0";
-				PROVISIONING_PROFILE_SPECIFIER = "ComEd App Store";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.iphoneproduction.exelon";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match AppStore com.iphoneproduction.exelon";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
@@ -15595,6 +14251,7 @@
 				ALERT_URL = www.comed.com;
 				ANON_ASSOCIATED_DOMAIN = comed.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -15612,61 +14269,16 @@
 				ENVIRONMENT_TIER = RELEASE;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks /usr/lib/swift '@executable_path/Frameworks' '@loader_path/Frameworks' @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = "$(APP_VERSION)";
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
-				PROVISIONING_PROFILE_SPECIFIER = "ComEd Watchkit App Store";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.iphoneproduction.exelon.watchkitapp";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=watchos*]" = "match AppStore com.iphoneproduction.exelon.watchkitapp";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
-				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
-				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 7.0;
-			};
-			name = "ComEd-Release";
-		};
-		67D5631C24ED9DDB00852551 /* ComEd-Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 09E4372FC8E2C732F2939737 /* Pods-EUMobile-Watch Extension.comed-release.xcconfig */;
-			buildSettings = {
-				ALERT_URL = www.comed.com;
-				ANON_ASSOCIATED_DOMAIN = comed.com;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				BUNDLE_ID = com.iphoneproduction.exelon.watchkitapp;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = YU7Y757VB5;
-				ENABLE_BITCODE = NO;
-				ENVIRONMENT_TIER = RELEASE;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
-				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = "$(APP_VERSION)";
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
-				PRODUCT_NAME = "EUMobile-Watch Extension";
-				PROVISIONING_PROFILE_SPECIFIER = "ComEd Watchkit Extension App Store";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
@@ -15934,7 +14546,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = "$(BUILD_DISPLAY_NAME)";
 				PROVISIONING_PROFILE = "1b730eab-cc27-4537-9ebf-6b8e34daa7a3";
-				PROVISIONING_PROFILE_SPECIFIER = "BGE Production Beta Enterprise Dist";
+				PROVISIONING_PROFILE_SPECIFIER = "match InHouse com.exelon.mobile.bge.prodbeta";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match InHouse com.exelon.mobile.bge.prodbeta";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
@@ -16075,7 +14687,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = "$(BUILD_DISPLAY_NAME)";
 				PROVISIONING_PROFILE = "bc06f33e-100c-4311-838a-c74b10fe6132";
-				PROVISIONING_PROFILE_SPECIFIER = "BGE Staging Enterprise Dist";
+				PROVISIONING_PROFILE_SPECIFIER = "match InHouse com.exelon.mobile.bge.staging";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match InHouse com.exelon.mobile.bge.staging";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -16090,37 +14702,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		35F9DD3E2333C34200AAA2B2 /* Build configuration list for PBXNativeTarget "EUMobile-Watch Extension" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				35F9DD3F2333C34200AAA2B2 /* BGE-AUT */,
-				67A986B524FD3E8500BD46E7 /* ACE-AUT */,
-				67A986EE24FD41DB00BD46E7 /* Delmarva-AUT */,
-				67A9870C24FD41FE00BD46E7 /* Pepco-AUT */,
-				67D562FE24ED9DD100852551 /* ComEd-AUT */,
-				67A9867B24F950F900BD46E7 /* PECO-AUT */,
-				35F9DD412333C34200AAA2B2 /* BGE-Beta */,
-				67A986C124FD3E9300BD46E7 /* ACE-Beta */,
-				67A986FA24FD41E900BD46E7 /* Delmarva-Beta */,
-				67A9871824FD420D00BD46E7 /* Pepco-Beta */,
-				67D5630A24ED9DD500852551 /* ComEd-Beta */,
-				67A9868724F9510D00BD46E7 /* PECO-Beta */,
-				35F9DD432333C34200AAA2B2 /* BGE-RC */,
-				67A986C724FD3E9900BD46E7 /* ACE-RC */,
-				67A9870024FD41F100BD46E7 /* Delmarva-RC */,
-				67A9871E24FD421400BD46E7 /* Pepco-RC */,
-				67D5631624ED9DD900852551 /* ComEd-RC */,
-				67A9868D24F9511500BD46E7 /* PECO-RC */,
-				35F9DD442333C34200AAA2B2 /* BGE-Release */,
-				67A986CD24FD3E9F00BD46E7 /* ACE-Release */,
-				67A9870624FD41F600BD46E7 /* Delmarva-Release */,
-				67A9872424FD421C00BD46E7 /* Pepco-Release */,
-				67D5631C24ED9DDB00852551 /* ComEd-Release */,
-				67A9869324F9511D00BD46E7 /* PECO-Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = "ACE-AUT";
-		};
 		35F9DD462333C34200AAA2B2 /* Build configuration list for PBXNativeTarget "EUMobile-Watch" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
