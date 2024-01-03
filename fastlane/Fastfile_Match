@@ -17,6 +17,8 @@ default_platform(:ios)
     # Install Enterprise Certs
     desc "Verify and install enterprise certs"
     lane :prepare_enterprise_certs do |options|
+      setup_ci
+
       ENV["MATCH_PASSWORD"] = options[:MATCH_PASSWORD]
 
       sync_enterprise_certificates(
@@ -53,7 +55,7 @@ default_platform(:ios)
       ],
         force_for_new_devices: true,
         readonly: true
-      )
+        )
     end
 
     # Generate Enterprise Certs

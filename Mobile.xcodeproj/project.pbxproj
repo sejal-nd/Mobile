@@ -6471,6 +6471,7 @@
 				COMPRESS_PNG_FILES = YES;
 				CURRENT_PROJECT_VERSION = "$(BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = YU7Y757VB5;
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = YU7Y757VB5;
 				ENABLE_BITCODE = NO;
 				ENVIRONMENT_TIER = RELEASE;
 				EXCLUDED_ARCHS = "";
@@ -6492,7 +6493,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = "$(BUILD_DISPLAY_NAME)";
 				PROVISIONING_PROFILE = "48c6faa5-6279-47c2-ac55-339f55816cb0";
-				PROVISIONING_PROFILE_SPECIFIER = "BGE App Store";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.exelon.mobile.bge";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match AppStore com.exelon.mobile.bge";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Vendor/Firebase/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -6638,8 +6640,8 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
-				PROVISIONING_PROFILE_SPECIFIER = "BGE Staging Watchkit App Enterprise Dist";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=watchos*]" = "BGE Staging Watchkit App Enterprise Dist";
+				PROVISIONING_PROFILE_SPECIFIER = "match InHouse com.exelon.mobile.bge.staging.watchkitapp";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=watchos*]" = "match InHouse com.exelon.mobile.bge.staging.watchkitapp";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -6691,7 +6693,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
-				PROVISIONING_PROFILE_SPECIFIER = "BGE Production Beta Watchkit App Enterprise Dist";
+				PROVISIONING_PROFILE_SPECIFIER = "match InHouse com.exelon.mobile.bge.prodbeta.watchkitapp";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=watchos*]" = "match InHouse com.exelon.mobile.bge.prodbeta.watchkitapp";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -6725,6 +6727,7 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = "$(BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = YU7Y757VB5;
+				"DEVELOPMENT_TEAM[sdk=watchos*]" = YU7Y757VB5;
 				ENABLE_BITCODE = NO;
 				ENVIRONMENT_TIER = RELEASE;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -6745,7 +6748,8 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
-				PROVISIONING_PROFILE_SPECIFIER = "BGE Watchkit App Store";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.exelon.mobile.bge.watchkitapp";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=watchos*]" = "match AppStore com.exelon.mobile.bge.watchkitapp";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
@@ -10494,8 +10498,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = "$(BUILD_DISPLAY_NAME)";
 				PROVISIONING_PROFILE = "bc06f33e-100c-4311-838a-c74b10fe6132";
-				PROVISIONING_PROFILE_SPECIFIER = "PECO Staging Enterprise Dist";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "PECO Staging Enterprise Dist";
+				PROVISIONING_PROFILE_SPECIFIER = "match InHouse com.exelon.mobile.peco.staging";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match InHouse com.exelon.mobile.peco.staging";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Vendor/Firebase/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -10543,8 +10547,8 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
-				PROVISIONING_PROFILE_SPECIFIER = "PECO Staging Watchkit App Enterprise Dist";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=watchos*]" = "PECO Staging Watchkit App Enterprise Dist";
+				PROVISIONING_PROFILE_SPECIFIER = "match InHouse com.exelon.mobile.peco.staging.watchkitapp";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=watchos*]" = "match InHouse com.exelon.mobile.peco.staging.watchkitapp";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -10681,7 +10685,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = "$(BUILD_DISPLAY_NAME)";
 				PROVISIONING_PROFILE = "1b730eab-cc27-4537-9ebf-6b8e34daa7a3";
-				PROVISIONING_PROFILE_SPECIFIER = "PECO Production Beta Enterprise Dist";
+				PROVISIONING_PROFILE_SPECIFIER = "match InHouse com.exelon.mobile.peco.prodbeta";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match InHouse com.exelon.mobile.peco.prodbeta";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Vendor/Firebase/Bridging-Header.h";
@@ -10732,7 +10736,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
-				PROVISIONING_PROFILE_SPECIFIER = "PECO Production Beta Watchkit App Enterprise Dist";
+				PROVISIONING_PROFILE_SPECIFIER = "match InHouse com.exelon.mobile.peco.prodbeta.watchkitapp";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=watchos*]" = "match InHouse com.exelon.mobile.peco.prodbeta.watchkitapp";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -10849,6 +10853,7 @@
 				COMPRESS_PNG_FILES = YES;
 				CURRENT_PROJECT_VERSION = "$(BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = YU7Y757VB5;
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = YU7Y757VB5;
 				ENABLE_BITCODE = NO;
 				ENVIRONMENT_TIER = RELEASE;
 				EXCLUDED_ARCHS = "";
@@ -10870,7 +10875,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = "$(BUILD_DISPLAY_NAME)";
 				PROVISIONING_PROFILE = "48c6faa5-6279-47c2-ac55-339f55816cb0";
-				PROVISIONING_PROFILE_SPECIFIER = "PECO App Store";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.exelon.mobile.peco";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match AppStore com.exelon.mobile.peco";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Vendor/Firebase/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -10900,6 +10906,7 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = "$(BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = YU7Y757VB5;
+				"DEVELOPMENT_TEAM[sdk=watchos*]" = YU7Y757VB5;
 				ENABLE_BITCODE = NO;
 				ENVIRONMENT_TIER = RELEASE;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -10920,7 +10927,8 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
-				PROVISIONING_PROFILE_SPECIFIER = "PECO Watchkit App Store";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.exelon.mobile.peco.watchkitapp";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=watchos*]" = "match AppStore com.exelon.mobile.peco.watchkitapp";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
@@ -11298,8 +11306,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = "Atlantic City Electric";
 				PROVISIONING_PROFILE = "bc06f33e-100c-4311-838a-c74b10fe6132";
-				PROVISIONING_PROFILE_SPECIFIER = "ACE Staging Enterprise Dist";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "ACE Staging Enterprise Dist";
+				PROVISIONING_PROFILE_SPECIFIER = "match InHouse com.exelon.mobile.ace.staging";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match InHouse com.exelon.mobile.ace.staging";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Vendor/Firebase/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -11347,8 +11355,8 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
-				PROVISIONING_PROFILE_SPECIFIER = "ACE Staging Watchkit App Enterprise Dist";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=watchos*]" = "ACE Staging Watchkit App Enterprise Dist";
+				PROVISIONING_PROFILE_SPECIFIER = "match InHouse com.exelon.mobile.ace.staging.watchkitapp";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=watchos*]" = "match InHouse com.exelon.mobile.ace.staging.watchkitapp";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -11486,7 +11494,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = "Atlantic City Electric";
 				PROVISIONING_PROFILE = "1b730eab-cc27-4537-9ebf-6b8e34daa7a3";
-				PROVISIONING_PROFILE_SPECIFIER = "ACE Production Beta Enterprise Dist";
+				PROVISIONING_PROFILE_SPECIFIER = "match InHouse com.exelon.mobile.ace.prodbeta";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match InHouse com.exelon.mobile.ace.prodbeta";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Vendor/Firebase/Bridging-Header.h";
@@ -11537,7 +11545,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
-				PROVISIONING_PROFILE_SPECIFIER = "ACE Production Beta Watchkit App Enterprise Dist";
+				PROVISIONING_PROFILE_SPECIFIER = "match InHouse com.exelon.mobile.ace.prodbeta.watchkitapp";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=watchos*]" = "match InHouse com.exelon.mobile.ace.prodbeta.watchkitapp";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -11654,6 +11662,7 @@
 				COMPRESS_PNG_FILES = YES;
 				CURRENT_PROJECT_VERSION = "$(BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = YU7Y757VB5;
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = YU7Y757VB5;
 				ENABLE_BITCODE = NO;
 				ENVIRONMENT_TIER = RELEASE;
 				EXCLUDED_ARCHS = "";
@@ -11676,7 +11685,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = "Atlantic City Electric";
 				PROVISIONING_PROFILE = "48c6faa5-6279-47c2-ac55-339f55816cb0";
-				PROVISIONING_PROFILE_SPECIFIER = "ACE App Store";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.ifactorconsulting.ace";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match AppStore com.ifactorconsulting.ace";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Vendor/Firebase/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -11706,6 +11716,7 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = "$(BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = YU7Y757VB5;
+				"DEVELOPMENT_TEAM[sdk=watchos*]" = YU7Y757VB5;
 				ENABLE_BITCODE = NO;
 				ENVIRONMENT_TIER = RELEASE;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -11726,7 +11737,8 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
-				PROVISIONING_PROFILE_SPECIFIER = "ACE Watchkit App Store";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.ifactorconsulting.ace.watchkitapp";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=watchos*]" = "match AppStore com.ifactorconsulting.ace.watchkitapp";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
@@ -12104,8 +12116,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = "Delmarva Power";
 				PROVISIONING_PROFILE = "bc06f33e-100c-4311-838a-c74b10fe6132";
-				PROVISIONING_PROFILE_SPECIFIER = "Delmarva Staging Enterprise Dist";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Delmarva Staging Enterprise Dist";
+				PROVISIONING_PROFILE_SPECIFIER = "match InHouse com.exelon.mobile.delmarva.staging";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match InHouse com.exelon.mobile.delmarva.staging";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Vendor/Firebase/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -12153,8 +12165,8 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
-				PROVISIONING_PROFILE_SPECIFIER = "Delmarva Staging Watchkit App Enterprise Dist";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=watchos*]" = "Delmarva Staging Watchkit App Enterprise Dist";
+				PROVISIONING_PROFILE_SPECIFIER = "match InHouse com.exelon.mobile.delmarva.staging.watchkitapp";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=watchos*]" = "match InHouse com.exelon.mobile.delmarva.staging.watchkitapp";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -12292,7 +12304,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = "Delmarva Power";
 				PROVISIONING_PROFILE = "1b730eab-cc27-4537-9ebf-6b8e34daa7a3";
-				PROVISIONING_PROFILE_SPECIFIER = "Delmarva Production Beta Enterprise Dist";
+				PROVISIONING_PROFILE_SPECIFIER = "match InHouse com.exelon.mobile.delmarva.prodbeta";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match InHouse com.exelon.mobile.delmarva.prodbeta";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Vendor/Firebase/Bridging-Header.h";
@@ -12343,7 +12355,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
-				PROVISIONING_PROFILE_SPECIFIER = "Delmarva Production Beta Watchkit App Enterprise";
+				PROVISIONING_PROFILE_SPECIFIER = "match InHouse com.exelon.mobile.delmarva.prodbeta.watchkitapp";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=watchos*]" = "match InHouse com.exelon.mobile.delmarva.prodbeta.watchkitapp";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -12460,6 +12472,7 @@
 				COMPRESS_PNG_FILES = YES;
 				CURRENT_PROJECT_VERSION = "$(BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = YU7Y757VB5;
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = YU7Y757VB5;
 				ENABLE_BITCODE = NO;
 				ENVIRONMENT_TIER = RELEASE;
 				EXCLUDED_ARCHS = "";
@@ -12482,7 +12495,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = "Delmarva Power";
 				PROVISIONING_PROFILE = "48c6faa5-6279-47c2-ac55-339f55816cb0";
-				PROVISIONING_PROFILE_SPECIFIER = "Delmarva App Store";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.ifactorconsulting.delmarva";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match AppStore com.ifactorconsulting.delmarva";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Vendor/Firebase/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -12512,6 +12526,7 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = "$(BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = YU7Y757VB5;
+				"DEVELOPMENT_TEAM[sdk=watchos*]" = YU7Y757VB5;
 				ENABLE_BITCODE = NO;
 				ENVIRONMENT_TIER = RELEASE;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -12532,7 +12547,8 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
-				PROVISIONING_PROFILE_SPECIFIER = "Delmarva Watchkit App Store";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.ifactorconsulting.delmarva.watchkitapp";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=watchos*]" = "match AppStore com.ifactorconsulting.delmarva.watchkitapp";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
@@ -12910,8 +12926,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = "$(BUILD_DISPLAY_NAME)";
 				PROVISIONING_PROFILE = "bc06f33e-100c-4311-838a-c74b10fe6132";
-				PROVISIONING_PROFILE_SPECIFIER = "Pepco Staging Enterprise Dist";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Pepco Staging Enterprise Dist";
+				PROVISIONING_PROFILE_SPECIFIER = "match InHouse com.exelon.mobile.pepco.staging";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match InHouse com.exelon.mobile.pepco.staging";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Vendor/Firebase/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -12959,8 +12975,8 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
-				PROVISIONING_PROFILE_SPECIFIER = "Pepco Staging Watchkit App Enterprise Dist";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=watchos*]" = "Pepco Staging Watchkit App Enterprise Dist";
+				PROVISIONING_PROFILE_SPECIFIER = "match InHouse com.exelon.mobile.pepco.staging.watchkitapp";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=watchos*]" = "match InHouse com.exelon.mobile.pepco.staging.watchkitapp";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -13098,7 +13114,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = "$(BUILD_DISPLAY_NAME)";
 				PROVISIONING_PROFILE = "1b730eab-cc27-4537-9ebf-6b8e34daa7a3";
-				PROVISIONING_PROFILE_SPECIFIER = "Pepco Production Beta Enterprise Dist";
+				PROVISIONING_PROFILE_SPECIFIER = "match InHouse com.exelon.mobile.pepco.prodbeta";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match InHouse com.exelon.mobile.pepco.prodbeta";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Vendor/Firebase/Bridging-Header.h";
@@ -13149,7 +13165,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
-				PROVISIONING_PROFILE_SPECIFIER = "Pepco Production Beta Watchkit App Enterprise Dist";
+				PROVISIONING_PROFILE_SPECIFIER = "match InHouse com.exelon.mobile.pepco.prodbeta.watchkitapp";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=watchos*]" = "match InHouse com.exelon.mobile.pepco.prodbeta.watchkitapp";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -13266,6 +13282,7 @@
 				COMPRESS_PNG_FILES = YES;
 				CURRENT_PROJECT_VERSION = "$(BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = YU7Y757VB5;
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = YU7Y757VB5;
 				ENABLE_BITCODE = NO;
 				ENVIRONMENT_TIER = RELEASE;
 				EXCLUDED_ARCHS = "";
@@ -13288,7 +13305,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = "$(BUILD_DISPLAY_NAME)";
 				PROVISIONING_PROFILE = "48c6faa5-6279-47c2-ac55-339f55816cb0";
-				PROVISIONING_PROFILE_SPECIFIER = "Pepco App Store";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.ifactorconsulting.pepco";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match AppStore com.ifactorconsulting.pepco";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Vendor/Firebase/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -13318,6 +13336,7 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = "$(BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = YU7Y757VB5;
+				"DEVELOPMENT_TEAM[sdk=watchos*]" = YU7Y757VB5;
 				ENABLE_BITCODE = NO;
 				ENVIRONMENT_TIER = RELEASE;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -13338,7 +13357,8 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
-				PROVISIONING_PROFILE_SPECIFIER = "Pepco Watchkit App Store";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.ifactorconsulting.pepco.watchkitapp";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=watchos*]" = "match AppStore com.ifactorconsulting.pepco.watchkitapp";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
@@ -13715,8 +13735,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = "$(BUILD_DISPLAY_NAME)";
 				PROVISIONING_PROFILE = "bc06f33e-100c-4311-838a-c74b10fe6132";
-				PROVISIONING_PROFILE_SPECIFIER = "ComEd Staging Enterprise Dist";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "ComEd Staging Enterprise Dist";
+				PROVISIONING_PROFILE_SPECIFIER = "match InHouse com.exelon.mobile.comed.staging";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match InHouse com.exelon.mobile.comed.staging";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Vendor/Firebase/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -13764,8 +13784,8 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
-				PROVISIONING_PROFILE_SPECIFIER = "ComEd Staging WatchKit App";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=watchos*]" = "ComEd Staging WatchKit App";
+				PROVISIONING_PROFILE_SPECIFIER = "match InHouse com.exelon.mobile.comed.staging.watchkitapp";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=watchos*]" = "match InHouse com.exelon.mobile.comed.staging.watchkitapp";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -13902,7 +13922,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = "$(BUILD_DISPLAY_NAME)";
 				PROVISIONING_PROFILE = "1b730eab-cc27-4537-9ebf-6b8e34daa7a3";
-				PROVISIONING_PROFILE_SPECIFIER = "ComEd Production Beta Enterprise Dist";
+				PROVISIONING_PROFILE_SPECIFIER = "match InHouse com.exelon.mobile.comed.prodbeta";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match InHouse com.exelon.mobile.comed.prodbeta";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Vendor/Firebase/Bridging-Header.h";
@@ -13953,7 +13973,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
-				PROVISIONING_PROFILE_SPECIFIER = "ComEd Production Beta WatchKit App";
+				PROVISIONING_PROFILE_SPECIFIER = "match InHouse com.exelon.mobile.comed.prodbeta.watchkitapp";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=watchos*]" = "match InHouse com.exelon.mobile.comed.prodbeta.watchkitapp";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -14070,6 +14090,7 @@
 				COMPRESS_PNG_FILES = YES;
 				CURRENT_PROJECT_VERSION = "$(BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = YU7Y757VB5;
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = YU7Y757VB5;
 				ENABLE_BITCODE = NO;
 				ENVIRONMENT_TIER = RELEASE;
 				EXCLUDED_ARCHS = "";
@@ -14091,7 +14112,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = "$(BUILD_DISPLAY_NAME)";
 				PROVISIONING_PROFILE = "48c6faa5-6279-47c2-ac55-339f55816cb0";
-				PROVISIONING_PROFILE_SPECIFIER = "ComEd App Store";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.iphoneproduction.exelon";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match AppStore com.iphoneproduction.exelon";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Vendor/Firebase/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -14121,6 +14143,7 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = "$(BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = YU7Y757VB5;
+				"DEVELOPMENT_TEAM[sdk=watchos*]" = YU7Y757VB5;
 				ENABLE_BITCODE = NO;
 				ENVIRONMENT_TIER = RELEASE;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -14141,7 +14164,8 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
-				PROVISIONING_PROFILE_SPECIFIER = "ComEd Watchkit App Store";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.iphoneproduction.exelon.watchkitapp";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=watchos*]" = "match AppStore com.iphoneproduction.exelon.watchkitapp";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
@@ -14416,7 +14440,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = "$(BUILD_DISPLAY_NAME)";
 				PROVISIONING_PROFILE = "1b730eab-cc27-4537-9ebf-6b8e34daa7a3";
-				PROVISIONING_PROFILE_SPECIFIER = "BGE Production Beta Enterprise Dist";
+				PROVISIONING_PROFILE_SPECIFIER = "match InHouse com.exelon.mobile.bge.prodbeta";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match InHouse com.exelon.mobile.bge.prodbeta";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Vendor/Firebase/Bridging-Header.h";
@@ -14557,8 +14581,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = "$(BUILD_DISPLAY_NAME)";
 				PROVISIONING_PROFILE = "bc06f33e-100c-4311-838a-c74b10fe6132";
-				PROVISIONING_PROFILE_SPECIFIER = "BGE Staging Enterprise Dist";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "BGE Staging Enterprise Dist";
+				PROVISIONING_PROFILE_SPECIFIER = "match InHouse com.exelon.mobile.bge.staging";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match InHouse com.exelon.mobile.bge.staging";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Vendor/Firebase/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
