@@ -60,11 +60,6 @@ end
 target 'EUMobile-Watch' do
   platform :watchos, '7.0'
   use_frameworks!
-end
-
-target 'EUMobile-Watch Extension' do
-  platform :watchos, '7.0'
-  use_frameworks!
 
   shared_pods
 end

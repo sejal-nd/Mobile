@@ -1,0 +1,134 @@
+
+skip_docs # skip autogenerating the README.md, we are manually writing it
+
+default_platform(:ios)
+  platform :ios do
+
+    # Install appstore Certs
+    desc "Verify and install appstore certs"
+    lane :prepare_app_store_certs do |options|
+      ENV["MATCH_PASSWORD"] = options[:MATCH_PASSWORD]
+
+      sync_appstore_certificates(
+        api_key_path: options[:api_key_path],
+      )
+    end
+
+    # Install Enterprise Certs
+    desc "Verify and install enterprise certs"
+    lane :prepare_enterprise_certs do |options|
+      setup_ci
+
+      ENV["MATCH_PASSWORD"] = options[:MATCH_PASSWORD]
+
+      sync_enterprise_certificates(
+        api_key_path: options[:api_key_path],
+      )
+    end
+    
+
+    # MATCH - enterprise
+
+    # Sync Enterprise Certs
+    desc "Sync enterprise certificates"
+    lane :sync_enterprise_certificates do |options|
+      # enterprise
+      sync_code_signing(
+        api_key_path: options[:api_key_path],
+        team_name: "Exelon Business Services Company, LLC",
+        team_id: "38R4RRBYR8",
+        type: "enterprise",
+        app_identifier: [
+          'com.exelon.mobile.ace.testing', 'com.exelon.mobile.ace.staging', 'com.exelon.mobile.ace.prodbeta',
+          'com.exelon.mobile.bge.testing', 'com.exelon.mobile.bge.staging', 'com.exelon.mobile.bge.prodbeta', 
+          'com.exelon.mobile.comed.testing', 'com.exelon.mobile.comed.staging', 'com.exelon.mobile.comed.prodbeta', 
+          'com.exelon.mobile.delmarva.testing', 'com.exelon.mobile.delmarva.staging', 'com.exelon.mobile.delmarva.prodbeta',
+          'com.exelon.mobile.peco.testing', 'com.exelon.mobile.peco.staging', 'com.exelon.mobile.peco.prodbeta', 
+          'com.exelon.mobile.pepco.testing', 'com.exelon.mobile.pepco.staging', 'com.exelon.mobile.pepco.prodbeta',
+
+          'com.exelon.mobile.ace.testing.watchkitapp', 'com.exelon.mobile.ace.staging.watchkitapp', 'com.exelon.mobile.ace.prodbeta.watchkitapp',
+          'com.exelon.mobile.bge.testing.watchkitapp', 'com.exelon.mobile.bge.staging.watchkitapp', 'com.exelon.mobile.bge.prodbeta.watchkitapp', 
+          'com.exelon.mobile.comed.testing.watchkitapp', 'com.exelon.mobile.comed.staging.watchkitapp', 'com.exelon.mobile.comed.prodbeta.watchkitapp', 
+          'com.exelon.mobile.delmarva.testing.watchkitapp', 'com.exelon.mobile.delmarva.staging.watchkitapp', 'com.exelon.mobile.delmarva.prodbeta.watchkitapp',
+          'com.exelon.mobile.peco.testing.watchkitapp', 'com.exelon.mobile.peco.staging.watchkitapp', 'com.exelon.mobile.peco.prodbeta.watchkitapp', 
+          'com.exelon.mobile.pepco.testing.watchkitapp', 'com.exelon.mobile.pepco.staging.watchkitapp', 'com.exelon.mobile.pepco.prodbeta.watchkitapp',
+      ],
+        force_for_new_devices: true,
+        readonly: true
+        )
+    end
+
+    # Generate Enterprise Certs
+    desc "Generate new enterprise certificates"
+    lane :generate_new_enterprise_certificates do |options|
+      # enterprise
+      sync_code_signing(
+        api_key_path: options[:api_key_path],
+        team_name: "Exelon Business Services Company, LLC",
+        team_id: "38R4RRBYR8",
+        type: "enterprise",
+        app_identifier: [
+          'com.exelon.mobile.ace.testing', 'com.exelon.mobile.ace.staging', 'com.exelon.mobile.ace.prodbeta',
+          'com.exelon.mobile.bge.testing', 'com.exelon.mobile.bge.staging', 'com.exelon.mobile.bge.prodbeta', 
+          'com.exelon.mobile.comed.testing', 'com.exelon.mobile.comed.staging', 'com.exelon.mobile.comed.prodbeta', 
+          'com.exelon.mobile.delmarva.testing', 'com.exelon.mobile.delmarva.staging', 'com.exelon.mobile.delmarva.prodbeta',
+          'com.exelon.mobile.peco.testing', 'com.exelon.mobile.peco.staging', 'com.exelon.mobile.peco.prodbeta', 
+          'com.exelon.mobile.pepco.testing', 'com.exelon.mobile.pepco.staging', 'com.exelon.mobile.pepco.prodbeta',
+
+          'com.exelon.mobile.ace.testing.watchkitapp', 'com.exelon.mobile.ace.staging.watchkitapp', 'com.exelon.mobile.ace.prodbeta.watchkitapp',
+          'com.exelon.mobile.bge.testing.watchkitapp', 'com.exelon.mobile.bge.staging.watchkitapp', 'com.exelon.mobile.bge.prodbeta.watchkitapp', 
+          'com.exelon.mobile.comed.testing.watchkitapp', 'com.exelon.mobile.comed.staging.watchkitapp', 'com.exelon.mobile.comed.prodbeta.watchkitapp', 
+          'com.exelon.mobile.delmarva.testing.watchkitapp', 'com.exelon.mobile.delmarva.staging.watchkitapp', 'com.exelon.mobile.delmarva.prodbeta.watchkitapp',
+          'com.exelon.mobile.peco.testing.watchkitapp', 'com.exelon.mobile.peco.staging.watchkitapp', 'com.exelon.mobile.peco.prodbeta.watchkitapp', 
+          'com.exelon.mobile.pepco.testing.watchkitapp', 'com.exelon.mobile.pepco.staging.watchkitapp', 'com.exelon.mobile.pepco.prodbeta.watchkitapp',
+      ],
+        force_for_new_devices: true,
+        readonly: false
+      )
+    end
+
+
+    # MATCH - appstore
+
+    # Sync appstore certs
+    desc "Sync appstore certificates"
+    lane :sync_appstore_certificates do |options|
+      # appstore
+      sync_code_signing(
+        api_key_path: options[:api_key_path],
+        team_name: "EXELON BUSINESS SERVICES COMPANY, LLC",
+        team_id: "YU7Y757VB5",
+        type: "appstore",
+        app_identifier: [
+          'com.ifactorconsulting.ace', 'com.exelon.mobile.bge', 'com.iphoneproduction.exelon',
+          'com.ifactorconsulting.delmarva', 'com.exelon.mobile.peco', 'com.ifactorconsulting.pepco',
+
+          'com.ifactorconsulting.ace.watchkitapp', 'com.exelon.mobile.bge.watchkitapp', 'com.iphoneproduction.exelon.watchkitapp', 
+          'com.ifactorconsulting.delmarva.watchkitapp', 'com.exelon.mobile.peco.watchkitapp', 'com.ifactorconsulting.pepco.watchkitapp'
+      ],
+        force_for_new_devices: true,
+        readonly: true
+      )
+    end
+
+    # Generate appstore certs
+    desc "Generate new appstore certificates"
+    lane :generate_new_appstore_certificates do |options|
+      # appstore
+      sync_code_signing(
+        api_key_path: options[:api_key_path],
+        team_name: "EXELON BUSINESS SERVICES COMPANY, LLC",
+        team_id: "YU7Y757VB5",
+        type: "appstore",
+        app_identifier: [
+          'com.ifactorconsulting.ace', 'com.exelon.mobile.bge', 'com.iphoneproduction.exelon',
+          'com.ifactorconsulting.delmarva', 'com.exelon.mobile.peco', 'com.ifactorconsulting.pepco',
+
+          'com.ifactorconsulting.ace.watchkitapp', 'com.exelon.mobile.bge.watchkitapp', 'com.iphoneproduction.exelon.watchkitapp', 
+          'com.ifactorconsulting.delmarva.watchkitapp', 'com.exelon.mobile.peco.watchkitapp', 'com.ifactorconsulting.pepco.watchkitapp'
+      ],
+        force_for_new_devices: true,
+        readonly: false
+      )
+    end
+  end

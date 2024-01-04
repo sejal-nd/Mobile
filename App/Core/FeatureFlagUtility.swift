@@ -36,6 +36,7 @@ final class FeatureFlagUtility {
         case isAgentisGasTipsWidget
         case isAgentisProjectedUsageWidget
         case isACEAMI
+        case isAnonOutageGlobal
     }
     
     static let shared = FeatureFlagUtility()
@@ -73,7 +74,8 @@ final class FeatureFlagUtility {
             FeatureFlagKey.isAgentisElectricTipsWidget.rawValue: false,
             FeatureFlagKey.isAgentisGasTipsWidget.rawValue: false,
             FeatureFlagKey.isAgentisProjectedUsageWidget.rawValue: false,
-            FeatureFlagKey.isACEAMI.rawValue: false
+            FeatureFlagKey.isACEAMI.rawValue: false,
+            FeatureFlagKey.isAnonOutageGlobal.rawValue: false
         ]
         
         UserDefaults.standard.setValuesForKeys(appDefaults)
@@ -115,7 +117,8 @@ final class FeatureFlagUtility {
                     FeatureFlagKey.isAgentisElectricTipsWidget.rawValue : featureFlags.isAgentisElectricTipsWidget,
                     FeatureFlagKey.isAgentisGasTipsWidget.rawValue : featureFlags.isAgentisGasTipsWidget,
                     FeatureFlagKey.isAgentisProjectedUsageWidget.rawValue : featureFlags.isAgentisProjectedWidget,
-                    FeatureFlagKey.isACEAMI.rawValue: featureFlags.isACEAMI
+                    FeatureFlagKey.isACEAMI.rawValue: featureFlags.isACEAMI,
+                    FeatureFlagKey.isAnonOutageGlobal.rawValue: featureFlags.isAnonOutageGlobal
                 ]
                 
                 UserDefaults.standard.setValuesForKeys(keyedValues)
