@@ -10,7 +10,8 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-protocol RegistrationViewControllerDelegate: class {
+// class is deprecated so changed to AnyObject
+protocol RegistrationViewControllerDelegate: AnyObject {
     func registrationViewControllerDidRegister(_ registrationViewController: UIViewController)
 }
 
@@ -26,18 +27,22 @@ class RegistrationValidateAccountViewControllerNew: KeyboardAvoidingStickyFooter
     @IBOutlet weak var accountNumberTextField: FloatLabelTextField!
     @IBOutlet weak var phoneNumberTextField: FloatLabelTextField!
     @IBOutlet weak var identifierTextField: FloatLabelTextField!
-    @IBOutlet weak var amountDueTextField: FloatLabelTextField!
-    @IBOutlet weak var dueDateButton: DisclosureButton!
-    @IBOutlet weak var lastBillInformationLabel: UILabel!
+    @IBOutlet weak var accountInfoLabel: UILabel!
+    @IBOutlet weak var accIdentifierTextField: FloatLabelTextField!
+    
+    @IBOutlet weak var personalStackView: UIStackView!
+    @IBOutlet weak var accountStackView: UIStackView!
     
     @IBOutlet weak var illustrationImageView: UIImageView!
     
+    @IBOutlet weak var accountIdentifierDescriptionLabel: UILabel!
     @IBOutlet weak var questionMarkButton: UIButton!
     @IBOutlet weak var identifierDescriptionLabel: UILabel!
     
     @IBOutlet weak var segmentContainer: UIView!
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var segmentedControl: SegmentedControl!
+    @IBOutlet weak var accountSegmentControl: SegmentedControl!
     @IBOutlet weak var continueButton: PrimaryButton!
     
     let viewModel = RegistrationViewModel()
@@ -48,23 +53,28 @@ class RegistrationValidateAccountViewControllerNew: KeyboardAvoidingStickyFooter
         
         title = NSLocalizedString("Register", comment: "")
         addCloseButton()
-
+        illustrationImageView.isHidden = true
         viewModel.validateAccountContinueEnabled.drive(continueButton.rx.isEnabled).disposed(by: disposeBag)
         
         instructionLabel.textColor = .neutralDark
-        instructionLabel.text = NSLocalizedString("To start, let's find your residential or business service account using your personal/business information or bill details.", comment: "")
+        accountIdentifierDescriptionLabel.textColor = .neutralDark
+        instructionLabel.text = NSLocalizedString("To start, let's find your residential or business service account using your personal/business information or account details.", comment: "")
         instructionLabel.font = .headline
         instructionLabel.setLineHeight(lineHeight: 24)
-        lastBillInformationLabel.textColor = .neutralDark
-        lastBillInformationLabel.text = NSLocalizedString("Use one of your last two bills to find the following information:", comment: "")
-        lastBillInformationLabel.font = .headline
+        accountInfoLabel.textColor = .neutralDark
+        let accountInfoDesc = Configuration.shared.opco.isPHI ? NSLocalizedString("Your 11-digit account number", comment: "") : NSLocalizedString("Your 10-digit account number", comment: "")
+        accountInfoLabel.text = NSLocalizedString(accountInfoDesc, comment: "")
         
         segmentedControl.items = [NSLocalizedString("Personal", comment: ""),
-                                  NSLocalizedString("Bill Details", comment: "")]
+                                  NSLocalizedString("Account", comment: "")]
+        
+        accountSegmentControl.items = [NSLocalizedString("SSN/Tax ID", comment: ""),
+                                       NSLocalizedString("Zip Code", comment: "")]
         configureTextFields()
         stackView.setCustomSpacing(20, after: instructionLabel)
         stackView.setCustomSpacing(20, after: segmentContainer)
         segmentedControl.selectedIndex.accept(.zero)
+        accountSegmentControl.selectedIndex.accept(.zero)
         illustrationImageView.image = UIImage(named: "img_resbill")
         viewModel.checkForMaintenance()
     }
@@ -76,7 +86,7 @@ class RegistrationValidateAccountViewControllerNew: KeyboardAvoidingStickyFooter
     }
     
     private func configureTextFields() {
-        accountNumberTextField.placeholder = NSLocalizedString("Account Number*", comment: "")
+        accountNumberTextField.placeholder = NSLocalizedString("Account Number", comment: "")
         accountNumberTextField.textField.autocorrectionType = .no
         accountNumberTextField.setKeyboardType(.numberPad)
         accountNumberTextField.textField.delegate = self
@@ -89,7 +99,7 @@ class RegistrationValidateAccountViewControllerNew: KeyboardAvoidingStickyFooter
             .drive(onNext: { [weak self] accountNumber, hasValidLength in
                 guard let self = self else { return }
                 if !accountNumber.isEmpty && !hasValidLength {
-                    let errorMessage = Configuration.shared.opco.isPHI ? NSLocalizedString("Account number must be 11 digits long", comment: "") : NSLocalizedString("Account number must be 10 digits long", comment: "")
+                    let errorMessage = Configuration.shared.opco.isPHI ? NSLocalizedString("Account number must contain at least 11 digits.", comment: "") : NSLocalizedString("Account number must contain at least 10 digits.", comment: "")
                     self.accountNumberTextField?.setError(errorMessage)
                 }
                 self.accessibilityErrorLabel()
@@ -100,58 +110,30 @@ class RegistrationValidateAccountViewControllerNew: KeyboardAvoidingStickyFooter
             self?.accessibilityErrorLabel()
         }).disposed(by: disposeBag)
         
-        
-        // Total Amount Due
-        amountDueTextField.placeholder = NSLocalizedString("Total Amount Due*", comment: "")
-        amountDueTextField.textField.autocorrectionType = .no
-        amountDueTextField.textField.delegate = self
-        amountDueTextField.textField.isShowingAccessory = true
-        amountDueTextField.setKeyboardType(.decimalPad)
-        amountDueTextField.textField.rx.text.orEmpty.asObservable()
-                   .skip(1)
-                   .subscribe(onNext: { [weak self] entry in
+        accIdentifierTextField.textField.autocorrectionType = .no
+               accIdentifierTextField.setKeyboardType(.numberPad)
+               accIdentifierTextField.textField.delegate = self
+               accIdentifierTextField.textField.isShowingAccessory = true
+               accIdentifierTextField.textField.rx.text.orEmpty.bind(to: viewModel.accountIdentifierNumber).disposed(by: disposeBag)
+               
+               accIdentifierTextField.textField.rx.controlEvent(.editingDidEnd).asDriver()
+                   .withLatestFrom(Driver.zip(viewModel.accountIdentifierNumber.asDriver(), viewModel.accountIdentifierHasValidLength))
+                   .drive(onNext: { [weak self] accountIdentifierNumber, hasValidLength in
                        guard let self = self else { return }
-                       
-                       let amount: Double
-                       let textStr = String(entry.filter { "0123456789".contains($0) })
-                       if let intVal = Double(textStr) {
-                           amount = intVal / 100
-                       } else {
-                           amount = 0
+                       if !accountIdentifierNumber.isEmpty && !hasValidLength {
+                           let errorMessage = self.viewModel.accountSelectedSegmentIndex.value == 0 ? NSLocalizedString("Last 4 Digits of SSN or Tax ID must contain at least 4 digits.", comment: "") : NSLocalizedString("Zip code must contain at least 5 digits.", comment: "")
+                           self.accIdentifierTextField?.setError(errorMessage)
                        }
-                       
-                       self.amountDueTextField.textField.text = amount.currencyString
-                       self.viewModel.totalAmountDue.accept(amount)
-                   })
-                   .disposed(by: disposeBag)
-        
-        // Payment Date
-        if Configuration.shared.opco == .bge {
-            dueDateButton.descriptionText = NSLocalizedString("Issued Date*", comment: "")
-        } else {
-        dueDateButton.descriptionText = NSLocalizedString("Due Date*", comment: "")
-        }
-        dueDateButton.valueLabel.textColor = .middleGray
-        viewModel.paymentDateString.asDriver().drive(dueDateButton.rx.valueText).disposed(by: disposeBag)
-        dueDateButton.titleLabel?.text = ""
-        dueDateButton.rx.touchUpInside.asDriver().drive(onNext: { [weak self] in
-            guard let self = self else { return }
-            self.view.endEditing(true)
-            
-            let calendarVC = CalendarViewController()
-            calendarVC.extendedLayoutIncludesOpaqueBars = true
-            calendarVC.calendar = .opCo
-            calendarVC.delegate = self
-            calendarVC.title = NSLocalizedString("Select Payment Date", comment: "")
-            calendarVC.firstDate = Calendar.current.date(byAdding: .year, value: -10, to: Calendar.current.startOfDay(for: .now))
-            calendarVC.lastDate = Calendar.current.date(byAdding: .year, value: 10, to: Calendar.current.startOfDay(for: .now))
-            calendarVC.selectedDate = Calendar.opCo.startOfDay(for: .now)
-            
-            self.navigationController?.pushViewController(calendarVC, animated: true)
+                       self.accessibilityErrorLabel()
+                   }).disposed(by: disposeBag)
+               
+               accIdentifierTextField?.textField.rx.controlEvent(.editingDidBegin).asDriver().drive(onNext: { [weak self] in
+                   self?.accIdentifierTextField?.setError(nil)
+                   self?.accessibilityErrorLabel()
         }).disposed(by: disposeBag)
         
         // Phone number
-        phoneNumberTextField.placeholder = NSLocalizedString("Primary Phone Number*", comment: "")
+        phoneNumberTextField.placeholder = NSLocalizedString("Primary Phone Number", comment: "")
         phoneNumberTextField.textField.autocorrectionType = .no
         phoneNumberTextField.setKeyboardType(.phonePad)
         phoneNumberTextField.textField.delegate = self
@@ -180,7 +162,7 @@ class RegistrationValidateAccountViewControllerNew: KeyboardAvoidingStickyFooter
         identifierDescriptionLabel.font = .subheadline
         
         let identifierPlaceholder: String
-        identifierPlaceholder = NSLocalizedString("SSN/Business Tax ID*", comment: "")
+        identifierPlaceholder = NSLocalizedString("SSN/Business Tax ID", comment: "")
         
         identifierTextField.placeholder = NSLocalizedString(identifierPlaceholder, comment: "")
         identifierTextField.textField.autocorrectionType = .no
@@ -278,6 +260,21 @@ class RegistrationValidateAccountViewControllerNew: KeyboardAvoidingStickyFooter
         })
     }
     
+    @IBAction func onSegmentValueChanged(_ sender: SegmentedControl) {
+         if sender.selectedIndex.value == .zero {
+             accIdentifierTextField.placeholder = NSLocalizedString("Last 4 Digits of SSN or Tax ID", comment: "")
+             accIdentifierTextField.textField.text = ""
+             accountIdentifierDescriptionLabel.text = NSLocalizedString("Last 4 digits of your Social Security Number or Business Tax ID", comment: "")
+             accIdentifierTextField?.setError(nil)
+         } else {
+             accIdentifierTextField.placeholder = NSLocalizedString("Zip Code", comment: "")
+             accIdentifierTextField.textField.text = ""
+             accountIdentifierDescriptionLabel.text = NSLocalizedString("5 digit zip code", comment: "")
+             accIdentifierTextField?.setError(nil)
+         }
+         viewModel.accountSelectedSegmentIndex.accept(sender.selectedIndex.value)
+     }
+    
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -339,6 +336,9 @@ extension RegistrationValidateAccountViewControllerNew: UITextFieldDelegate {
         } else if textField == accountNumberTextField?.textField {
             let characterSet = CharacterSet(charactersIn: string)
             return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.count <= (Configuration.shared.opco.isPHI ? 11 : 10)
+        }else if textField == accIdentifierTextField?.textField {
+            let characterSet = CharacterSet(charactersIn: string)
+            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.count <= (viewModel.accountSelectedSegmentIndex.value == 0 ? 4 : 5)
         }
         
         return true
@@ -350,21 +350,27 @@ extension RegistrationValidateAccountViewControllerNew: UITextFieldDelegate {
             identifierTextField.isHidden = false
             identifierDescriptionLabel.isHidden = false
             accountNumberView.isHidden = true
-            amountDueTextField.isHidden = true
-            dueDateButton.isHidden = true
-            lastBillInformationLabel.isHidden = true
+            accountSegmentControl.isHidden = true
+            accountInfoLabel.isHidden = true
             illustrationImageView.isHidden = true
+            accountIdentifierDescriptionLabel.isHidden = true
+            accIdentifierTextField.isHidden = true
+            personalStackView.isHidden = false
+            accountStackView.isHidden = true
         } else {
+            personalStackView.isHidden = true
+            accountStackView.isHidden = false
+            accIdentifierTextField.isHidden = false
+            accountIdentifierDescriptionLabel.isHidden = false
             accountNumberView.isHidden = false
-            amountDueTextField.isHidden = false
-            dueDateButton.isHidden = false
+            accountSegmentControl.isHidden = false
             phoneNumberTextField.isHidden = true
             identifierTextField.isHidden = true
             identifierDescriptionLabel.isHidden = true
-            lastBillInformationLabel.isHidden = false
+            accountInfoLabel.isHidden = false
             illustrationImageView.isHidden = false
         }
-        stackView.setCustomSpacing(20, after: lastBillInformationLabel)
+        stackView.setCustomSpacing(20, after: accountInfoLabel)
         viewModel.selectedSegmentIndex.accept(sender.selectedIndex.value)
     }
 }
@@ -379,7 +385,6 @@ extension RegistrationValidateAccountViewControllerNew: CalendarViewDelegate {
     func calendarViewController(_ controller: CalendarViewController, didSelect date: Date) {
         let components = Calendar.opCo.dateComponents([.year, .month, .day], from: date)
         guard let opCoTimeDate = Calendar.opCo.date(from: components) else { return }
-        dueDateButton.valueLabel.textColor = .neutralDark
         viewModel.dueDate.accept(opCoTimeDate.isInToday(calendar: .opCo) ? .now : opCoTimeDate)
     }
 }

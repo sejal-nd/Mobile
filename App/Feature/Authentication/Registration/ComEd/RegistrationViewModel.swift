@@ -18,12 +18,14 @@ class RegistrationViewModel {
     
     let phoneNumber = BehaviorRelay(value: "")
     let identifierNumber = BehaviorRelay(value: "")
+    let accountIdentifierNumber = BehaviorRelay(value: "")
     let accountNumber = BehaviorRelay(value: "")
     let auid = BehaviorRelay(value: "")
     let totalAmountDue =  BehaviorRelay<Double>(value: 0.00)
     let dueDate = BehaviorRelay<Date?>(value: nil)
     var selectedSegmentIndex = BehaviorRelay(value: 0)
-    
+    var accountSelectedSegmentIndex = BehaviorRelay(value: 0)
+
     let firstName = BehaviorRelay<String?>(value: nil)
     let lastName = BehaviorRelay<String?>(value: nil)
     let accountNickname = BehaviorRelay<String?>(value: nil)
@@ -85,9 +87,10 @@ class RegistrationViewModel {
                                                             amountDue: self.dueDate.value?.yyyyMMddString ?? "",
                                                             auid: auid.value)
         } else {
-            validateAccountRequest = ValidateAccountRequest(accountNumber: self.accountNumber.value,
-                                                            billDate: self.dueDate.value?.yyyyMMddString ?? "",
-                                                            amountDue: String(self.totalAmountDue.value))
+            validateAccountRequest = ValidateAccountRequest(identifier: accountIdentifierNumber.value.count == 4 ? accountIdentifierNumber.value : "",
+                                                                        accountNumber: self.accountNumber.value,
+                                                                        zipCode: accountIdentifierNumber.value.count == 5 ? accountIdentifierNumber.value : ""
+                        )
         }
                 
         RegistrationService.validateRegistration(request: validateAccountRequest) { [weak self] result in
@@ -208,9 +211,8 @@ class RegistrationViewModel {
                                     self.identifierIsNumeric,
                                     self.accountNumberHasValidLength,
                                     self.segmentChanged,
-                                    self.amountDueHasValue,
-                                    self.dueDateHasValue)
-        { self.selectedSegmentIndex.value == .zero ?  $0 && $1 && $2 && $4: $3 && $4 && $5 && $6 }
+                                    self.accountIdentifierHasValidLength)
+                                           { self.selectedSegmentIndex.value == .zero ?  $0 && $1 && $2 && $4: $3 && $4 && $5 }
     }()
     
     
@@ -249,6 +251,9 @@ class RegistrationViewModel {
     private(set) lazy var identifierHasFourDigits: Driver<Bool> =
         self.identifierNumber.asDriver().map { $0.count == 4 }
     
+    private(set) lazy var accountIdentifierHasFiveDigits: Driver<Bool> =
+           self.identifierNumber.asDriver().map { $0.count == 5 }
+    
     private(set) lazy var identifierIsNumeric: Driver<Bool> =
         self.identifierNumber.asDriver().map { [weak self] text -> Bool in
             guard let self = self else { return false }
@@ -262,6 +267,13 @@ class RegistrationViewModel {
             let digitsOnlyString = self.extractDigitsFrom(text)
             return Configuration.shared.opco.isPHI ? digitsOnlyString.count == 11 : digitsOnlyString.count == 10
         }
+    
+    private(set) lazy var accountIdentifierHasValidLength: Driver<Bool> =
+            self.accountIdentifierNumber.asDriver().map { [weak self] text -> Bool in
+                guard let self = self else { return false }
+                let digitsOnlyString = self.extractDigitsFrom(text)
+                return self.accountSelectedSegmentIndex.value == .zero ? digitsOnlyString.count == 4 :  digitsOnlyString.count == 5
+            }
     
     private func extractDigitsFrom(_ string: String) -> String {
         return string.components(separatedBy: NSCharacterSet.decimalDigits.inverted).joined(separator: "")
