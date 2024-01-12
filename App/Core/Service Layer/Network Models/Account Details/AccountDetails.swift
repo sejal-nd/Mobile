@@ -34,7 +34,6 @@ public struct AccountDetail: Decodable {
     public var isPartialResult: Bool
     public var isPasswordProtected: Bool
     public var isCashOnly: Bool
-    public var releaseOfInformation: String?
     public var revenueClass: String?
     public var serviceAgreementCount: Int
     public var isSmartEnergyRewardsEnrolled: Bool
@@ -121,6 +120,10 @@ public struct AccountDetail: Decodable {
     }
     
     let prepaidStatus: PrepaidStatus
+
+    
+
+    var releaseOfInformation: ReleaseOfInformation?
     
     enum CodingKeys: String, CodingKey {
         case accountNumber = "accountNumber"
@@ -272,7 +275,7 @@ public struct AccountDetail: Decodable {
         
         self.isCashOnly = try container.decode(Bool.self,
                                                forKey: .isCashOnly)
-        self.releaseOfInformation = try container.decodeIfPresent(String.self,
+        self.releaseOfInformation = try container.decodeIfPresent(ReleaseOfInformation.self,
                                                                   forKey: .releaseOfInformation)
         self.revenueClass = try container.decodeIfPresent(String.self,
                                                           forKey: .revenueClass)

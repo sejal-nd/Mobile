@@ -18,6 +18,7 @@ class ViewBillViewModel {
     var billDate: Date!
     
     var pdfData: Data?
+    var contentType: String!
     var pdfFileUrl: URL?
     var isCurrent: Bool = false
     
@@ -28,6 +29,7 @@ class ViewBillViewModel {
         BillService.fetchBillPdf(accountNumber: AccountsStore.shared.currentAccount.accountNumber, billDate: billDate, documentID: documentID ?? "") { [weak self] result in
             switch result {
             case .success(let billData):
+                self?.contentType = billData.contentType
                 if let pdfData = Data(base64Encoded: billData.imageData, options: NSData.Base64DecodingOptions.ignoreUnknownCharacters) {
                     self?.pdfData = pdfData
                     onSuccess()

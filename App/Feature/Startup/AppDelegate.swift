@@ -66,7 +66,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let _ = FeatureFlagUtility.shared
         //printFonts()
         
-        _ = AlertsStore.shared.alerts // Triggers the loading of alerts from disk
+        _ = PushNotificationStore.shared // Triggers the loading of alerts from disk
         _ = GameTaskStore.shared.tasks // Triggers the loading of GameTasks.json into memory
         
         NotificationCenter.default.addObserver(self, selector: #selector(resetNavigationOnAuthTokenExpire), name: .didReceiveInvalidAuthToken, object: nil)
@@ -112,20 +112,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         let token = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
         Log.info("APNS Device Token: \(token)")
-        let hasRegisteredForPushNotifications = UserDefaults.standard.bool(forKey: UserDefaultKeys.hasRegisteredForPushNotifications)
-        
-        let alertRegistrationRequest = AlertRegistrationRequest(notificationToken: token,
-                                                                notificationProvider: "APNS",
-                                                                mobileClient: AlertRegistrationRequest.MobileClient(id: Bundle.main.bundleIdentifier ?? "",
-                                                                                                                    version: Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? ""),
-                                                                setDefaults: !hasRegisteredForPushNotifications)
-        AlertService.register(request: alertRegistrationRequest) { result in
-            switch result {
-            case .success:
-                Log.info("Registered APNS token")
-                UserDefaults.standard.set(true, forKey: UserDefaultKeys.hasRegisteredForPushNotifications)
-            case .failure(let error):
-                Log.error("Failed to register APNS token with error: \(error.localizedDescription)")
+        UserDefaults.standard.setValue(token, forKey: "apnsToken")
+        if AccountsStore.shared.accounts != nil {
+            let firstAccountNumber: String = AccountsStore.shared.accounts.first?.accountNumber ?? UserDefaultKeys.hasRegisteredForPushNotifications
+            let hasRegisteredForPushNotifications = UserDefaults.standard.bool(forKey: firstAccountNumber)
+            
+            let alertRegistrationRequest = AlertRegistrationRequest(notificationToken: token,
+                                                                    notificationProvider: "APNS",
+                                                                    mobileClient: AlertRegistrationRequest.MobileClient(id: Bundle.main.bundleIdentifier ?? "",
+                                                                                                                        version: Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? ""),
+                                                                    setDefaults: !hasRegisteredForPushNotifications)
+            AlertService.register(request: alertRegistrationRequest) { result in
+                switch result {
+                case .success:
+                    Log.info("Registered APNS token")
+                    UserDefaults.standard.set(true, forKey: firstAccountNumber)
+                case .failure(let error):
+                    Log.error("Failed to register APNS token with error: \(error.localizedDescription)")
+                }
             }
         }
     }
@@ -180,10 +184,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func handlePushNotification(_ userInfo: [AnyHashable: Any], withCompletionHandler completionHandler: ( () -> Void)? = nil) {
-
-        guard let aps = userInfo["aps"] as? [String: Any] else { return }
-        guard let alert = aps["alert"] as? [String: Any] else { return }
-
+        guard let aps = userInfo["aps"] as? [String: Any] else { print("1");return }
+        guard let alert = aps["alert"] as? [String: Any] else { print("2");return }
         var accountNumbers: [String]
         if let accountIds = userInfo["accountIds"] as? [String] {
             accountNumbers = accountIds
@@ -193,9 +195,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             completionHandler?()
             return // Did not get account number or array of account numbers
         }
-
-        let notification = PushNotification(accountNumbers: accountNumbers, title: alert["title"] as? String, message: alert["body"] as? String)
-        AlertsStore.shared.savePushNotification(notification)
+        
+        guard let title = alert["title"] as? String,
+              let body = alert["body"] as? String else {
+            Log.error("Failed to unwrap notification title and body: \(alert)")
+            return
+        }
+        
+        let notification = PushNotification(accountNumbers: accountNumbers,
+                                            title: title,
+                                            message: body)
+        PushNotificationStore.shared.saveNotification(notification)
 
         if UserDefaults.standard.bool(forKey: UserDefaultKeys.inMainApp) || StormModeStatus.shared.isOn {
             NotificationCenter.default.post(name: .didTapOnPushNotification, object: self)
@@ -223,7 +233,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         guard let rootNav = window.rootViewController as? UINavigationController else { return false }
         
         if let guid = getQueryStringParameter(url: url, param: "guid") {
-            UserDefaults.standard.set(guid, forKey: UserDefaultKeys.accountVerificationDeepLinkGuid)            
+            UserDefaults.standard.set(guid, forKey: UserDefaultKeys.accountVerificationDeepLinkGuid)
             FirebaseUtility.logEvent(.register(parameters: [.account_verify]))
         }
         

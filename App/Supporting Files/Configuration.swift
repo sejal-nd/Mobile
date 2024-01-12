@@ -6,6 +6,7 @@
 //  Copyright © 2017 Exelon Corporation. All rights reserved.
 //
 
+
 import Foundation
 
 enum OpCo: String {
@@ -236,10 +237,22 @@ struct Configuration {
     }
     
     var b2cPolicy: String {
-        if FeatureFlagUtility.shared.bool(forKey: .isPkceAuthentication) {
-            return "B2C_1A_SIGNIN_MOBILE"
+        let projectURLRawValue = UserDefaults.standard.string(forKey: "selectedProjectURL") ?? ""
+        let projectURLSuffix = ProjectURLSuffix(rawValue: projectURLRawValue) ?? .none
+        
+        if Configuration.shared.environmentName == .release {
+            if FeatureFlagUtility.shared.bool(forKey: .isPkceAuthentication) {
+                return "B2C_1A_SignIn_Mobile"
+            } else {
+                return "B2C_1A_Signin_ROPC"
+            }
         } else {
-            return "B2C_1A_Signin_ROPC"
+            switch projectURLSuffix {
+            case .cis:
+                return "B2C_1A_SignIn_Mobile"
+            default:
+                return "B2C_1A_Old_SignIn_Mobile"
+            }
         }
     }
     
@@ -431,7 +444,7 @@ struct Configuration {
                         oPowerURLString = "https://s-c-\(projectURLSuffix.projectURLString)-\(accountOpCo.urlString)-ui-01.azurewebsites.net/pages/mobileopower.aspx"
                     }
                 } else {
-                    oPowerURLString = "https://azstg-secure.\(accountOpCo.urlDisplayString).com/pages/mobileopower.aspx"
+                    oPowerURLString = "https://s-secure.\(accountOpCo.urlDisplayString).com/pages/mobileopower.aspx"
                 }
             }
         }
@@ -452,6 +465,7 @@ struct Configuration {
             
             let operatingCompany = OpCo(rawValue: infoPlist.buildFlavor)!
             opco = operatingCompany
+
             paymentusUrl = infoPlist.paymentURL
             myAccountUrl = infoPlist.accountURL
             gaTrackingId = infoPlist.googleAnalyticID
@@ -463,7 +477,6 @@ struct Configuration {
                 let projectTier = ProjectTier(rawValue: projectTierRawValue) ?? .stage
                 switch projectTier {
                 case .dev:
-//                    baseUrl = "xzc-e-n-eudapi-\(operatingCompany.rawValue.lowercased())-d-ams-01.azure-api.net"
                     baseUrl = "eudapi-dev.\(operatingCompany.urlDisplayString).com"
                     oAuthEndpoint = "api-development.exeloncorp.com"
                 case .test:

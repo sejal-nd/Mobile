@@ -72,19 +72,25 @@ class PECOReleaseOfInfoViewController: UIViewController {
     }
     
     @objc func onSubmitPress() {
-        var rowToIntMapping = selectedRowIndex // Address only is mapped correctly
-        if selectedRowIndex == 0 {
-            rowToIntMapping = 1
-        } else if selectedRowIndex == 1 {
-            rowToIntMapping = 0
-        }
-        
         LoadingView.show()
         
         FirebaseUtility.logEvent(.releaseOfInfoSubmit)
         GoogleAnalytics.log(event: .releaseInfoSubmit)
-        
-        AccountService.updatePECOReleaseOfInfoPreference(selectedIndex: rowToIntMapping) { [weak self] result in
+
+        let releaseOfInfoValue: String
+
+        switch selectedRowIndex {
+        case 0:
+            releaseOfInfoValue = ReleaseOfInformation.noInfo.rawValue
+        case 1:
+            releaseOfInfoValue = ReleaseOfInformation.allInfo.rawValue
+        case 2:
+            releaseOfInfoValue = ReleaseOfInformation.addressOnly.rawValue
+        default:
+            return
+        }
+
+        AccountService.updatePECOReleaseOfInfoPreference(selectedPreference: releaseOfInfoValue) { [weak self] result in
             switch result {
             case .success:
                 LoadingView.hide()
@@ -113,16 +119,30 @@ class PECOReleaseOfInfoViewController: UIViewController {
                 case .success(let accountDetail):
                     guard let self = self else { return }
                     if let selectedRelease = accountDetail.releaseOfInformation {
-                        if let releaseOfInfoInt = Int(selectedRelease) {
-                            var intToRowMapping = 2 // Address only is mapped correctly
-                            if releaseOfInfoInt == 1 {
-                                intToRowMapping = 1
-                            } else if releaseOfInfoInt == 2 {
-                                intToRowMapping = 0
-                            }
-                            let indexPath = IndexPath(row: intToRowMapping, section: 0)
-                            self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
+
+                        let releaseOfInfoInt: Int
+                        switch selectedRelease {
+                        case .noInfo:
+                            releaseOfInfoInt = 0
+                        case .allInfo:
+                            releaseOfInfoInt = 1
+                        case .addressOnly:
+                            releaseOfInfoInt = 2
                         }
+
+                        let indexPath = IndexPath(row: releaseOfInfoInt, section: 0)
+                        self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
+
+//                        if let releaseOfInfoInt = Int(selectedRelease) {
+//                            var intToRowMapping = 2 // Address only is mapped correctly
+//                            if releaseOfInfoInt == 1 {
+//                                intToRowMapping = 1
+//                            } else if releaseOfInfoInt == 2 {
+//                                intToRowMapping = 0
+//                            }
+//                            let indexPath = IndexPath(row: intToRowMapping, section: 0)
+//                            self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
+//                        }
                     }
                     self.loadingIndicator.isHidden = true
                     self.tableView.isHidden = false

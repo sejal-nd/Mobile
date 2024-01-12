@@ -26,12 +26,12 @@ public struct Appointment: Decodable {
 // Legacy Logic
 extension Appointment {
     enum Status: String {
-        case scheduled = "Confirmed"
-        case onOurWay = "On Our Way"
-        case enRoute = "En Route"
-        case inProgress = "In Progress"
-        case complete = "Complete"
-        case canceled = "Cancelled"
+        case scheduled = "confirmed"
+        case onOurWay = "on our way"
+        case enRoute = "en route"
+        case inProgress = "in progress"
+        case complete = "complete"
+        case canceled = "cancelled"
         case none
     }
     
@@ -110,5 +110,20 @@ extension Appointment {
     
     var statusType: Status {
         return Status(rawValue: status) ?? .none
+    }
+}
+
+
+class AppointmentFactory {
+    static func buildFrom(appoinmetRes : AppointmentRes) -> [Appointment] {
+        let results = appoinmetRes.data
+        return results?.map{Appointment(
+            id: $0.id!,
+            status: $0.status!,
+            startDate: $0.startDate,
+            timeSlot : $0.propertyParameters?.timeSlot,
+            stopDate: $0.stopDate
+        )
+        } ?? []
     }
 }

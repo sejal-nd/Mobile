@@ -11,7 +11,7 @@ import RxCocoa
 import RxSwiftExt
 
 enum FetchingAccountState {
-	case refresh, switchAccount
+    case refresh, switchAccount
 }
 
 enum MakePaymentStatusTextRouting {
@@ -70,7 +70,7 @@ class BillViewModel {
             let scheduledPayment = AccountService.rx.fetchScheduledPayments(accountNumber: account.accountNumber).map { $0.last }
                 .do(onError: { _ in
                     FirebaseUtility.logEvent(.bill(parameters: [.bill_not_available]))
-                })
+                }).catchErrorJustReturn(nil)
             return Observable.zip(accountDetail, scheduledPayment)
         })
         .do(onNext: { _ in UIAccessibility.post(notification: .screenChanged, argument: nil) })
@@ -192,8 +192,8 @@ class BillViewModel {
         .filter { $0.prepaidStatus == .active }
         .mapTo(())
     
-	func fetchAccountDetail(isRefresh: Bool) {
-		fetchAccountDetail.onNext(isRefresh ? .refresh: .switchAccount)
+    func fetchAccountDetail(isRefresh: Bool) {
+        fetchAccountDetail.onNext(isRefresh ? .refresh: .switchAccount)
     }
     
     private(set) lazy var data = dataEvents.elements()
@@ -210,7 +210,7 @@ class BillViewModel {
     private(set) lazy var scheduledPayment: Driver<PaymentItem?> = data
         .map { $0.1 }
         .asDriver(onErrorDriveWith: Driver.empty())
-	
+    
     // MARK: - Show/Hide Views
     
     private(set) lazy var showMaintenanceMode: Driver<Void> = maintenanceModeEvents.elements()
@@ -786,18 +786,7 @@ class BillViewModel {
     //MARK: - Enrollment
     
     private(set) lazy var showPaperlessEnrolledView: Driver<Bool> = currentAccountDetail.map {
-        // Always hide for ComEd/PECO commercial customers
-        var showPaperlessEnrolledView = false
-        if Configuration.shared.opco.isPHI {
-            showPaperlessEnrolledView = $0.eBillEnrollStatus == .canUnenroll
-        } else {
-            if !$0.isResidential && Configuration.shared.opco != .bge {
-                showPaperlessEnrolledView = false
-            } else {
-                showPaperlessEnrolledView = $0.eBillEnrollStatus == .canUnenroll
-            }
-        }
-        return showPaperlessEnrolledView
+        return $0.eBillEnrollStatus == .canUnenroll
     }
     
     private(set) lazy var showAutoPayEnrolledView: Driver<Bool> = currentAccountDetail.map {
@@ -859,9 +848,9 @@ class BillViewModel {
         // Default to electric
         return false
     }
-	
-	// MARK: - Convenience functions
-	
+    
+    // MARK: - Convenience functions
+    
     private static func isEnrolledText(topText: String, bottomText: String) -> NSAttributedString {
         let mutableText = NSMutableAttributedString(string: topText + "\n" + bottomText)
         let topTextRange = NSMakeRange(0, topText.count)

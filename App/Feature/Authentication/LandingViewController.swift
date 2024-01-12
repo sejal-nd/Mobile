@@ -35,6 +35,21 @@ class LandingViewController: UIViewController {
     
     private var viewDidAppear = false
     
+    private var buildNumber: String {
+        Bundle.main.buildNumber ?? "N/A"
+    }
+    
+    private var selectedTier: String {
+        let tierRawValue = UserDefaults.standard.string(forKey: "selectedProjectTier") ?? "Stage"
+        return tierRawValue.uppercased()
+    }
+    
+    private var selectedProject: String {
+        let projectRawValue = UserDefaults.standard.string(forKey: "selectedProjectURL") ?? "None"
+        let urlString = ProjectURLSuffix(rawValue: projectRawValue)?.projectPath ?? "/None"
+        return urlString
+    }
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -53,11 +68,22 @@ class LandingViewController: UIViewController {
 //        logoBackgroundView.backgroundColor = .primaryColor
         view.backgroundColor = .primaryColor
         
+        
         // Version Label
-        if let version = Bundle.main.versionNumber {
-            versionLabel.text = "Version \(version)"
-        } else {
-            versionLabel.text = nil
+        switch Configuration.shared.environmentName {
+        case .aut, .beta:
+            if let version = Bundle.main.versionNumber {
+                versionLabel.numberOfLines = 0
+                versionLabel.text = "Version \(version) (\(buildNumber))\n\(selectedTier)\(selectedProject)"
+            } else {
+                versionLabel.text = nil
+            }
+        default:
+            if let version = Bundle.main.versionNumber {
+                versionLabel.text = "Version \(version)"
+            } else {
+                versionLabel.text = nil
+            }
         }
         
         // Debug Button
@@ -138,7 +164,8 @@ class LandingViewController: UIViewController {
     
     @IBAction func onSignInPress() {
         self.getMaintenanceMode { [weak self] maintenanceMode in
-            if maintenanceMode?.all ?? false {
+            if let maintenanceMode = maintenanceMode, maintenanceMode.all {
+                // Maint mode all is on
                 (UIApplication.shared.delegate as? AppDelegate)?.showMaintenanceMode(maintenanceMode)
             } else {
                 if FeatureFlagUtility.shared.bool(forKey: .isPkceAuthentication) {

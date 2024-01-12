@@ -16,7 +16,7 @@ extension Reactive where Base == AppointmentService {
             AppointmentService.fetchAppointments(accountNumber: accountNumber, premiseNumber: premiseNumber) { result in
                 switch result {
                 case .success(let appointments):
-                    observer.onNext(appointments)
+                    observer.onNext(AppointmentFactory.buildFrom(appoinmetRes: appointments))
                     observer.onCompleted()
                 case .failure(let error):
                     observer.onError(error)
