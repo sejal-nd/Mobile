@@ -193,6 +193,7 @@ class AppointmentDetailViewModel {
         event.location = AccountsStore.shared.currentAccount.address
         //event.url Coordinate with web for URLs and deep linking
         
+        
         event.startDate = appointment.startTime
         event.endDate = appointment.endTime
         

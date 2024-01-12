@@ -44,9 +44,9 @@ extension Reactive where Base == AccountService {
     }
     
     #if os(iOS)
-    static func updatePECOReleaseOfInfoPreference(accountNumber: String = AccountsStore.shared.currentAccount.accountNumber, selectedIndex: Int) -> Observable<Void> {
+    static func updatePECOReleaseOfInfoPreference(accountNumber: String = AccountsStore.shared.currentAccount.accountNumber, selectedPreference: String) -> Observable<Void> {
         return Observable.create { observer -> Disposable in
-            AccountService.updatePECOReleaseOfInfoPreference(accountNumber: accountNumber, selectedIndex: selectedIndex) { result in
+            AccountService.updatePECOReleaseOfInfoPreference(accountNumber: accountNumber, selectedPreference: selectedPreference) { result in
                 switch result {
                 case .success(_):
                     observer.onNext(())

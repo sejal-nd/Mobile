@@ -185,6 +185,7 @@
 		35F9DD6D2333C8A100AAA2B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7BD21907F2E00BA13C6 /* Assets.xcassets */; };
 		35F9DD7C2333D14D00AAA2B2 /* Date+DueBy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7EB2190804E00BA13C6 /* Date+DueBy.swift */; };
 		35F9DD932333D83F00AAA2B2 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		35F9DD932333D83F00AAA2B2 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		35F9DDA22333D87E00AAA2B2 /* AccountsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D340901EBA6A8700BA2D42 /* AccountsStore.swift */; };
 		35F9DDA32333D88400AAA2B2 /* ReportedOutagesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B085C44620FFD49400CE0893 /* ReportedOutagesStore.swift */; };
 		35F9DDA42333D88800AAA2B2 /* StormModeStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0649A5E214834380041B299 /* StormModeStatus.swift */; };
@@ -1029,6 +1030,8 @@
 		C39E1DD127682C4600569B89 /* OutageService+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39E1DD027682C4500569B89 /* OutageService+Rx.swift */; };
 		C39E1DD227682C4600569B89 /* OutageService+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39E1DD027682C4500569B89 /* OutageService+Rx.swift */; };
 		C39F2B4D253920C60095A8F1 /* PaymentAmountSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3595B25025328E6E006F7EBC /* PaymentAmountSheetViewController.swift */; };
+		C39F4C542980C56D00208EE1 /* ReleaseOfInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39F4C532980C56D00208EE1 /* ReleaseOfInformation.swift */; };
+		C39F4C552980C56D00208EE1 /* ReleaseOfInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39F4C532980C56D00208EE1 /* ReleaseOfInformation.swift */; };
 		C3AF0CE52862057000BA98C4 /* CommercialUsageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3AF0CE42862057000BA98C4 /* CommercialUsageViewModel.swift */; };
 		C3AF0CE72862059400BA98C4 /* CommercialUsageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3AF0CE62862059400BA98C4 /* CommercialUsageViewController.swift */; };
 		C3B5F38525E97EDA005D3740 /* FeatureFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B5F38425E97EDA005D3740 /* FeatureFlags.swift */; };
@@ -1062,6 +1065,8 @@
 		CEA2151D1F79005600689422 /* HomeBillCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2151C1F79005600689422 /* HomeBillCardViewModel.swift */; };
 		CEA215221F7900CC00689422 /* HomeBillCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA215201F7900CC00689422 /* HomeBillCardView.swift */; };
 		CEA215251F7900CC00689422 /* HomeBillCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEA215211F7900CC00689422 /* HomeBillCardView.xib */; };
+		DC912F852A4CDC1900DB1C83 /* AppointmentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC912F842A4CDC1800DB1C83 /* AppointmentResponse.swift */; };
+		DC912F862A4CDC1900DB1C83 /* AppointmentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC912F842A4CDC1800DB1C83 /* AppointmentResponse.swift */; };
 		E71EBE9C26A6EDFB005AE781 /* B2CTokenRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71EBE9B26A6EDFB005AE781 /* B2CTokenRequest.swift */; };
 		E71EBE9D26A6EDFB005AE781 /* B2CTokenRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71EBE9B26A6EDFB005AE781 /* B2CTokenRequest.swift */; };
 		E7F38E0F2760B73700F8711B /* PKCEAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F38E0E2760B73700F8711B /* PKCEAuthenticationService.swift */; };
@@ -2124,6 +2129,7 @@
 		C3943F382799D1B8005E5327 /* PKCEResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKCEResult.swift; sourceTree = "<group>"; };
 		C39E1DCD2767F60100569B89 /* OutageTrackerRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutageTrackerRequest.swift; sourceTree = "<group>"; };
 		C39E1DD027682C4500569B89 /* OutageService+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OutageService+Rx.swift"; sourceTree = "<group>"; };
+		C39F4C532980C56D00208EE1 /* ReleaseOfInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleaseOfInformation.swift; sourceTree = "<group>"; };
 		C3AF0CE42862057000BA98C4 /* CommercialUsageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommercialUsageViewModel.swift; sourceTree = "<group>"; };
 		C3AF0CE62862059400BA98C4 /* CommercialUsageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommercialUsageViewController.swift; sourceTree = "<group>"; };
 		C3B5F38425E97EDA005D3740 /* FeatureFlags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureFlags.swift; sourceTree = "<group>"; };
@@ -2167,6 +2173,7 @@
 		D970D5C958B261B9EA4AD56B /* Pods-UnitTests.delmarva-rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnitTests.delmarva-rc.xcconfig"; path = "Pods/Target Support Files/Pods-UnitTests/Pods-UnitTests.delmarva-rc.xcconfig"; sourceTree = "<group>"; };
 		DB003E5F5FA39B4F617D7774 /* Pods-UITests.ace-rc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UITests.ace-rc.xcconfig"; path = "Pods/Target Support Files/Pods-UITests/Pods-UITests.ace-rc.xcconfig"; sourceTree = "<group>"; };
 		DBE229F6DAA0D7263F768A37 /* Pods-EUMobile.peco-aut.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile.peco-aut.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile/Pods-EUMobile.peco-aut.xcconfig"; sourceTree = "<group>"; };
+		DC912F842A4CDC1800DB1C83 /* AppointmentResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppointmentResponse.swift; sourceTree = "<group>"; };
 		DCC4E5C04DE2F93F0CFEAB8C /* Pods-EUMobile-Watch.pepco-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch.pepco-release.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch/Pods-EUMobile-Watch.pepco-release.xcconfig"; sourceTree = "<group>"; };
 		DD3F10970CFE8096DE30CF58 /* Pods-EUMobile-Watch Extension.delmarva-beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch Extension.delmarva-beta.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch Extension/Pods-EUMobile-Watch Extension.delmarva-beta.xcconfig"; sourceTree = "<group>"; };
 		DD5CF096EF46C400972C7557 /* Pods-UnitTests.delmarva-beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnitTests.delmarva-beta.xcconfig"; path = "Pods/Target Support Files/Pods-UnitTests/Pods-UnitTests.delmarva-beta.xcconfig"; sourceTree = "<group>"; };
@@ -3898,6 +3905,7 @@
 				675F4B2324AB828000A828F9 /* Account.swift */,
 				EF48B6CB2A2F215B00F3BB26 /* ValidatePinResult.swift */,
 				675F4B3424AB828000A828F9 /* AccountLookupResult.swift */,
+				DC912F842A4CDC1800DB1C83 /* AppointmentResponse.swift */,
 				EF48B6CE2A2F216200F3BB26 /* SendPinResult.swift */,
 				673FA0E324C89A1900210BCD /* AccountLookupResults.swift */,
 				C36C394F24ED842B00BA83B6 /* AccountResult.swift */,
@@ -3975,6 +3983,7 @@
 				675F4B0E24AB828000A828F9 /* PremiseInfo.swift */,
 				675F4B0F24AB828000A828F9 /* CustomerInfo.swift */,
 				675F4B1024AB828000A828F9 /* AccountDetails.swift */,
+				C39F4C532980C56D00208EE1 /* ReleaseOfInformation.swift */,
 				C3E377A727696385000D557D /* AccountSummary.swift */,
 				4A12C26A27049034007FFEA6 /* StopServiceResponse.swift */,
 				4A6FB1EB271D8A960048E9F5 /* MoveServiceResponse.swift */,
@@ -5167,6 +5176,9 @@
 				67D5632F24EECD1600852551 /* Set Build Number */,
 				35F9DD2B2333C34100AAA2B2 /* Sources */,
 				8DE5BB4C03A54C48796C44F4 /* [CP] Embed Pods Frameworks */,
+				9D65B3150EABD7C6A32DF36E /* [CP] Check Pods Manifest.lock */,
+				35F9DD2B2333C34100AAA2B2 /* Sources */,
+				FF79B50DFA0030581ADE53CB /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -5310,12 +5322,31 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				67A9873324FD4C5F00BD46E7 /* (null) in Resources */,
+				35F9DD672333C85B00AAA2B2 /* README.md in Resources */,
+				35F9DD6C2333C8A000AAA2B2 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		35F9DD2D2333C34100AAA2B2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				67D73B00246C72F100450B63 /* (null) in Resources */,
 				67D73B00246C72F100450B63 /* (null) in Resources */,
 				4A398A49271EAD4100FA7B89 /* AccountVerification.json in Resources */,
 				C3087B0324BDEE8B005AE544 /* EnergyTipMock.json in Resources */,
 				35F9DD6D2333C8A100AAA2B2 /* Assets.xcassets in Resources */,
 				67A9873324FD4C5F00BD46E7 /* (null) in Resources */,
 				C338282824E30B0600F133C5 /* PeakRewardsSummaryMock.json in Resources */,
+				35F9DD682333C85C00AAA2B2 /* README.md in Resources */,
+				35F9DD672333C85B00AAA2B2 /* README.md in Resources */,
+				678B622E24D09A1C009F8A6B /* RegistrationQuestionsMock.json in Resources */,
+				678B621A24CF6AD2009F8A6B /* ValidateRegistrationMock.json in Resources */,
+				35F9DD6C2333C8A000AAA2B2 /* Assets.xcassets in Resources */,
+				C338283524E30D6900F133C5 /* PeakRewardsOverridesMock.json in Resources */,
+				4A398A41271E997600FA7B89 /* WorkdaysMock.json in Resources */,
+				67D73B00246C72F100450B63 /* (null) in Resources */,
 				35F9DD682333C85C00AAA2B2 /* README.md in Resources */,
 				35F9DD672333C85B00AAA2B2 /* README.md in Resources */,
 				678B622E24D09A1C009F8A6B /* RegistrationQuestionsMock.json in Resources */,
@@ -5981,6 +6012,30 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-EUMobile/Pods-EUMobile-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		FF79B50DFA0030581ADE53CB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-EUMobile-Watch/Pods-EUMobile-Watch-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa-watchOS/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxRelay-watchOS/RxRelay.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift-watchOS/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwiftExt-watchOS/RxSwiftExt.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-EUMobile-Watch/Pods-EUMobile-Watch-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -6077,6 +6132,7 @@
 				C3055BF82538FB11000DB89C /* UsernameRequest.swift in Sources */,
 				C3055B632538F81B000DB89C /* GenericResponse.swift in Sources */,
 				C3055BF62538FB11000DB89C /* BillingHistoryRequest.swift in Sources */,
+				DC912F862A4CDC1900DB1C83 /* AppointmentResponse.swift in Sources */,
 				C3055B5F2538F81B000DB89C /* PaymentResult.swift in Sources */,
 				4A6FB1EF271D94F70048E9F5 /* MoveISUMServiceRequest.swift in Sources */,
 				67247FCE25D33B400024467D /* CardView.swift in Sources */,
@@ -6128,6 +6184,7 @@
 				C3055BDA2538FB11000DB89C /* AccountNicknameRequest.swift in Sources */,
 				C3055BE62538FB11000DB89C /* DailyUsageRequest.swift in Sources */,
 				67247FA625D2FE750024467D /* BillContainerView.swift in Sources */,
+				C39F4C552980C56D00208EE1 /* ReleaseOfInformation.swift in Sources */,
 				C3055B662538F81B000DB89C /* TokenResponse.swift in Sources */,
 				357E2E9626A8391300C0DEDF /* PaymentArrangement.swift in Sources */,
 				C3055BF22538FB11000DB89C /* AutoPayEnrollBGERequest.swift in Sources */,
@@ -6663,6 +6720,7 @@
 				215BD787275ACDE30011F642 /* StatusView.swift in Sources */,
 				358BD21920F8FDAE00DA2012 /* BillImpactView.swift in Sources */,
 				4AE3468426ED96E500F4155C /* WorkdaysResponse.swift in Sources */,
+				C39F4C542980C56D00208EE1 /* ReleaseOfInformation.swift in Sources */,
 				C364A87A2375DC7B00C7D51B /* StateView.swift in Sources */,
 				9C34D74C239EF56500DF7FE2 /* ViewedTipTableViewCell.swift in Sources */,
 				679C6EBE24D1EBCA00535DE7 /* AppointmentService+Rx.swift in Sources */,
@@ -6706,6 +6764,7 @@
 				C3B6556024ABD9790048C64B /* SERResult.swift in Sources */,
 				675F4BA024AB828100A828F9 /* UsernameRequest.swift in Sources */,
 				54C1DEF31F01A1A000290FE5 /* BillingHistoryViewController.swift in Sources */,
+				DC912F852A4CDC1900DB1C83 /* AppointmentResponse.swift in Sources */,
 				4AA4EAD82714A9B800B35F4D /* MoveServiceFlowData.swift in Sources */,
 				E8B956E21F9E947800F8A852 /* SERPTSGraphViewModel.swift in Sources */,
 				9C34D748239EE9FE00DF7FE2 /* GameTaskStore.swift in Sources */,
@@ -10456,7 +10515,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ANON_ASSOCIATED_DOMAIN = azstage.peco.com;
 				APP_CENTER_ID = "5396a42c-0b16-4984-af32-ee9957764960";
-				ASSOCIATED_DOMAIN = "azstg-secure.peco.com";
+				ASSOCIATED_DOMAIN = "s-secure.peco.com";
 				BASE_URL = "eudapi-test.peco.com";
 				BUILD_DISPLAY_NAME = PECO;
 				BUILD_FLAVOR = PECO;
@@ -10676,7 +10735,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ANON_ASSOCIATED_DOMAIN = azstage.peco.com;
 				APP_CENTER_ID = "432a1a21-ccbb-4ee9-b3e3-2480090618f5";
-				ASSOCIATED_DOMAIN = "azstg-secure.peco.com";
+				ASSOCIATED_DOMAIN = "s-secure.peco.com";
 				BASE_URL = "eudapi-stage.peco.com";
 				BUILD_DISPLAY_NAME = PECO;
 				BUILD_FLAVOR = PECO;
@@ -11223,7 +11282,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ANON_ASSOCIATED_DOMAIN = azstage.atlanticcityelectric.com;
 				APP_CENTER_ID = "57d12f65-bf2b-40b5-b707-dd8ebe73edfb";
-				ASSOCIATED_DOMAIN = "azstg-secure.atlanticcityelectric.com";
+				ASSOCIATED_DOMAIN = "s-secure.atlanticcityelectric.com";
 				BASE_URL = "eudapi-test.atlanticcityelectric.com";
 				BUILD_DISPLAY_NAME = "AC Electric";
 				BUILD_FLAVOR = ACE;
@@ -11443,7 +11502,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ANON_ASSOCIATED_DOMAIN = azstage.atlanticcityelectric.com;
 				APP_CENTER_ID = "95dc785e-3617-4005-81f4-42ae3e25d65d";
-				ASSOCIATED_DOMAIN = "azstg-secure.atlanticcityelectric.com";
+				ASSOCIATED_DOMAIN = "s-secure.atlanticcityelectric.com";
 				BASE_URL = "eudapi-stage.atlanticcityelectric.com";
 				BUILD_DISPLAY_NAME = "AC Electric";
 				BUILD_FLAVOR = ACE;
@@ -11993,7 +12052,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ANON_ASSOCIATED_DOMAIN = azstage.delmarva.com;
 				APP_CENTER_ID = "6180db89-0219-4878-98c5-51f0e334f8fe";
-				ASSOCIATED_DOMAIN = "azstg-secure.delmarva.com";
+				ASSOCIATED_DOMAIN = "s-secure.delmarva.com";
 				BASE_URL = "eudapi-test.delmarva.com";
 				BUILD_DISPLAY_NAME = Delmarva;
 				BUILD_FLAVOR = DPL;
@@ -12213,7 +12272,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ANON_ASSOCIATED_DOMAIN = azstage.delmarva.com;
 				APP_CENTER_ID = "8b361cdc-3267-42de-91d0-b1bae6342067";
-				ASSOCIATED_DOMAIN = "azstg-secure.delmarva.com";
+				ASSOCIATED_DOMAIN = "s-secure.delmarva.com";
 				BASE_URL = "eudapi-stage.delmarva.com";
 				BUILD_DISPLAY_NAME = Delmarva;
 				BUILD_FLAVOR = DPL;
@@ -12763,7 +12822,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ANON_ASSOCIATED_DOMAIN = azstage.pepco.com;
 				APP_CENTER_ID = "0962af30-9abf-4ac5-92fa-358fbbe101af";
-				ASSOCIATED_DOMAIN = "azstg-secure.pepco.com";
+				ASSOCIATED_DOMAIN = "s-secure.pepco.com";
 				BASE_URL = "eudapi-test.pepco.com";
 				BUILD_DISPLAY_NAME = Pepco;
 				BUILD_FLAVOR = PEPCO;
@@ -12983,7 +13042,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ANON_ASSOCIATED_DOMAIN = azstage.pepco.com;
 				APP_CENTER_ID = "48d86d61-5d68-4757-92db-9c3996f5bc18";
-				ASSOCIATED_DOMAIN = "azstg-secure.pepco.com";
+				ASSOCIATED_DOMAIN = "s-secure.pepco.com";
 				BASE_URL = "eudapi-stage.pepco.com";
 				BUILD_DISPLAY_NAME = Pepco;
 				BUILD_FLAVOR = PEPCO;
@@ -13533,7 +13592,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ANON_ASSOCIATED_DOMAIN = azstage.comed.com;
 				APP_CENTER_ID = "10cbbd03-c59b-4a65-ad28-bd1f289cd329";
-				ASSOCIATED_DOMAIN = "azstg-secure.comed.com";
+				ASSOCIATED_DOMAIN = "s-secure.comed.com";
 				BASE_URL = "eudapi-test.comed.com";
 				BUILD_DISPLAY_NAME = ComEd;
 				BUILD_FLAVOR = COMED;
@@ -13753,7 +13812,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ANON_ASSOCIATED_DOMAIN = azstage.comed.com;
 				APP_CENTER_ID = "bf4bfe55-3dfd-423b-acfa-32ef84b3776c";
-				ASSOCIATED_DOMAIN = "azstg-secure.comed.com";
+				ASSOCIATED_DOMAIN = "s-secure.comed.com";
 				BASE_URL = "eudapi-stage.comed.com";
 				BUILD_DISPLAY_NAME = ComEd;
 				BUILD_FLAVOR = COMED;
@@ -14300,7 +14359,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ANON_ASSOCIATED_DOMAIN = azstage.bge.com;
 				APP_CENTER_ID = "5555b456-47b1-4288-b4d4-c6cf44b15fb9";
-				ASSOCIATED_DOMAIN = "azstg-secure.bge.com";
+				ASSOCIATED_DOMAIN = "s-secure.bge.com";
 				BASE_URL = "eudapi-test.bge.com";
 				BUILD_DISPLAY_NAME = BGE;
 				BUILD_FLAVOR = BGE;
@@ -14533,6 +14592,7 @@
 				ENABLE_BITCODE = NO;
 				ENVIRONMENT_TIER = RC;
 				EXCLUDED_ARCHS = "";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
@@ -14567,7 +14627,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ANON_ASSOCIATED_DOMAIN = azstage.bge.com;
 				APP_CENTER_ID = "3bf3242e-af11-4b1e-9242-99dce77bbbc8";
-				ASSOCIATED_DOMAIN = "azstg-secure.bge.com";
+				ASSOCIATED_DOMAIN = "s-secure.bge.com";
 				BASE_URL = "eudapi-stage.bge.com";
 				BUILD_DISPLAY_NAME = BGE;
 				BUILD_FLAVOR = BGE;

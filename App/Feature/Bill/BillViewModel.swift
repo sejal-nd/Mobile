@@ -70,7 +70,7 @@ class BillViewModel {
             let scheduledPayment = AccountService.rx.fetchScheduledPayments(accountNumber: account.accountNumber).map { $0.last }
                 .do(onError: { _ in
                     FirebaseUtility.logEvent(.bill(parameters: [.bill_not_available]))
-                })
+                }).catchErrorJustReturn(nil)
             return Observable.zip(accountDetail, scheduledPayment)
         })
         .do(onNext: { _ in UIAccessibility.post(notification: .screenChanged, argument: nil) })
@@ -786,18 +786,7 @@ class BillViewModel {
     //MARK: - Enrollment
     
     private(set) lazy var showPaperlessEnrolledView: Driver<Bool> = currentAccountDetail.map {
-        // Always hide for ComEd/PECO commercial customers
-        var showPaperlessEnrolledView = false
-        if Configuration.shared.opco.isPHI {
-            showPaperlessEnrolledView = $0.eBillEnrollStatus == .canUnenroll
-        } else {
-            if !$0.isResidential && Configuration.shared.opco != .bge {
-                showPaperlessEnrolledView = false
-            } else {
-                showPaperlessEnrolledView = $0.eBillEnrollStatus == .canUnenroll
-            }
-        }
-        return showPaperlessEnrolledView
+        return $0.eBillEnrollStatus == .canUnenroll
     }
     
     private(set) lazy var showAutoPayEnrolledView: Driver<Bool> = currentAccountDetail.map {

@@ -8,7 +8,7 @@
 
 import Foundation
 
-class PushNotification: NSObject, NSCoding {
+class OldPushNotification: NSObject, NSCoding {
     
     struct Keys {
         static let accountNumbers = "pnAccountNumbers"

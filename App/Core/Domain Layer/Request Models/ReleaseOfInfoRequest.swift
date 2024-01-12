@@ -14,8 +14,4 @@ public struct ReleaseOfInfoRequest: Encodable {
     enum CodingKeys: String, CodingKey {
         case value = "release_info_value"
     }
-    
-    init(selectedIndex: Int) {
-        self.value = "0\(selectedIndex + 1)"
-    }
 }
