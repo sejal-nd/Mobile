@@ -9,8 +9,8 @@
 import UIKit
 import RxSwift
 
-protocol AccountLookupToolResultViewControllerDelegate: class {
-    func accountLookupToolDidSelectAccount(accountNumber: String, phoneNumber: String)
+protocol AccountLookupToolResultViewControllerDelegate: AnyObject {
+    func accountLookupToolDidSelectAccount(_ accountLookUpToolResultViewController: UIViewController, didUnmaskUsername username: String)
 }
 
 class AccountLookupToolResultViewController: UIViewController {
@@ -90,15 +90,42 @@ class AccountLookupToolResultViewController: UIViewController {
         }
     }
     
+    
+   // The below method refers to recover/username api call which will accept auid instead of account number as input with phone number for validation with six digit code else it will take account number or identifier with phone number as input.
     @IBAction func onSelectAccountPress() {
         FirebaseUtility.logEvent(.forgotUsername(parameters: [.account_selected_cta]))
-        if let selectedAccount = viewModel.selectedAccount.value {
-            delegate?.accountLookupToolDidSelectAccount(accountNumber: selectedAccount.accountNumber!, phoneNumber: viewModel.phoneNumber.value)
-            dismiss(animated: true, completion: nil)
-        } else if (viewModel.selectedValidatedPinAccount.value != nil) {
-                delegate?.accountLookupToolDidSelectAccount(accountNumber: viewModel.selectedValidatedPinAccount.value?.accountNumber ?? "", phoneNumber: viewModel.phoneNumber.value)
-                dismiss(animated: true, completion: nil)
-            }
+            
+            LoadingView.show()
+            viewModel.validateAccount(onSuccess: { [weak self] in
+                LoadingView.hide()
+                guard let self = self else { return }
+                let scenes = UIApplication.shared.connectedScenes
+                let windowScene = scenes.first as? UIWindowScene
+                let window = windowScene?.windows.first
+                let viewController = window?.rootViewController
+                guard let rootNavVc = viewController as? LargeTitleNavigationController else { return }
+                
+                // once account selection is done user is redirected to find email popup, hence forgot username screen has been removed.
+                for vc in rootNavVc.viewControllers {
+                    guard let dest = vc as? LandingViewController else {
+                        continue
+                    }
+                    self.delegate = dest
+                    
+                    FirebaseUtility.logEvent(.forgotUsername(parameters: [.answer_question_complete]))
+                    
+                    self.delegate?.accountLookupToolDidSelectAccount(self, didUnmaskUsername: self.viewModel.maskedUsernames[self.viewModel.selectedUsernameIndex].email ?? "")
+                    
+                    FirebaseUtility.logEvent(.forgotUsername(parameters: [.verification_complete]))
+                    
+                }
+                self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+            }, onError: { [weak self] (title, message) in
+                LoadingView.hide()
+                let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                self?.present(alertController, animated: true, completion: nil)
+            })
         }
 }
 

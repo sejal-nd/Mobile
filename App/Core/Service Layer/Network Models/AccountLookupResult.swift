@@ -13,6 +13,7 @@ struct AccountLookupResult: Decodable {
     let streetNumber: String?
     let unitNumber: String?
     let streetAddress: String?
+    let auid: String?
     
     enum CodingKeys: String, CodingKey {
         case accountDetails = "AccountDetails"
@@ -20,6 +21,7 @@ struct AccountLookupResult: Decodable {
         case streetNumber = "StreetNumber"
         case unitNumber = "ApartmentUnitNumber"
         case streetAddress = "StreetAddress"
+        case auid = "Auid"
     }
     
     init(from decoder: Decoder) throws {
@@ -30,5 +32,6 @@ struct AccountLookupResult: Decodable {
         streetNumber = try accountDetails.decodeIfPresent(String.self, forKey: .streetNumber)
         unitNumber = try accountDetails.decodeIfPresent(String.self, forKey: .unitNumber)
         streetAddress = try accountDetails.decodeIfPresent(String.self, forKey: .streetAddress)
+        auid = try accountDetails.decodeIfPresent(String.self, forKey: .auid)
     }
 }

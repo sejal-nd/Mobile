@@ -25,11 +25,13 @@ struct AccountDetails: Decodable {
     public  var accountNumber: String?
     public  var streetNumber: String?
     public  var unitNumber: String?
+    public  var auid: String?
     
     enum CodingKeys: String, CodingKey {
         case accountNumber = "account_number"
         case streetNumber = "street"
         case unitNumber = "unit"
+        case auid = "auid"
     }
     
     public init(from decoder: Decoder) throws {
@@ -38,6 +40,7 @@ struct AccountDetails: Decodable {
         self.accountNumber = try container.decodeIfPresent(String.self,forKey: .accountNumber)
         self.streetNumber = try container.decodeIfPresent(String.self,forKey: .streetNumber)
         self.unitNumber = try container.decodeIfPresent(String.self,forKey: .unitNumber)
+        self.auid = try container.decodeIfPresent(String.self, forKey: .auid)
     }
 }
 

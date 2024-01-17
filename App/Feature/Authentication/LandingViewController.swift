@@ -377,3 +377,13 @@ extension LandingViewController: AccountLookUpValidatePinViewControllerDelegate 
         }
     }
 }
+
+extension LandingViewController: AccountLookupToolResultViewControllerDelegate {
+    func accountLookupToolDidSelectAccount(_ accountLookUpToolResultViewController: UIViewController, didUnmaskUsername username: String) {
+        Log.info("unmasked email is \(username)")
+        
+        DispatchQueue.main.async {
+            self.showFindEmailAlert(foundEmail: username)
+        }
+    }
+}

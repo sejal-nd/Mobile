@@ -38,6 +38,10 @@ enum AnonymousService {
         NetworkingLayer.request(router: .recoverMaskedUsername(request: request), completion: completion)
     }
     
+    static func recoverMaskedUsernameWithAuid(request: RecoverMaskedUsernameRequestWithAuid, completion: @escaping (Result<ForgotMaskedUsernames, NetworkingError>) -> ()) {
+        NetworkingLayer.request(router: .recoverMaskedUsernameAuid(request: request), completion: completion)
+    }
+    
     static func recoverUsername(request: RecoverUsernameRequest, completion: @escaping (Result<String, NetworkingError>) -> ()) {
         NetworkingLayer.request(router: .recoverUsername(request: request), completion: completion)
     }

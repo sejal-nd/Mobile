@@ -277,23 +277,10 @@ class ForgotUsernameViewController: KeyboardAvoidingStickyFooterViewController {
             vc.viewModel.identifierNumber.accept(viewModel.identifierNumber.value)
         } else if let navController = segue.destination as? LargeTitleNavigationController,
             let vc = navController.viewControllers.first as? AccountLookupToolViewController {
-            vc.delegate = self
             vc.viewModel.phoneNumber.accept(viewModel.phoneNumber.value)
         } else if let vc = segue.destination as? ForgotUsernameResultViewController {
             vc.viewModel = viewModel
         } 
-    }
-    
-}
-
-extension ForgotUsernameViewController: AccountLookupToolResultViewControllerDelegate {
-
-    func accountLookupToolDidSelectAccount(accountNumber: String, phoneNumber: String) {
-        phoneNumberTextField.textField.text = phoneNumber
-        phoneNumberTextField.textField.sendActions(for: .editingDidEnd)
-        
-        accountNumberTextField.textField.text = accountNumber
-        accountNumberTextField.textField.sendActions(for: .editingDidEnd)
     }
     
 }

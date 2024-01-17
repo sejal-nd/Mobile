@@ -16,7 +16,6 @@ class AccountLookupToolViewController: KeyboardAvoidingStickyFooterViewControlle
     
     let viewModel = AccountLookupToolViewModel()
     
-    weak var delegate: AccountLookupToolResultViewControllerDelegate?
     
     enum LookUpType {
       case lastFour, phone
@@ -138,7 +137,6 @@ class AccountLookupToolViewController: KeyboardAvoidingStickyFooterViewControlle
                 guard let self = self else { return }
                 if self.viewModel.accountLookupResults.count == 1 {
                     let selectedAccount = self.viewModel.accountLookupResults.first!
-                    self.delegate?.accountLookupToolDidSelectAccount(accountNumber: selectedAccount.accountNumber!, phoneNumber: self.viewModel.phoneNumber.value)
                     self.dismiss(animated: true, completion: nil)
                 } else {
                     self.performSegue(withIdentifier: "accountLookupToolResultSegue", sender: self)
@@ -184,11 +182,9 @@ class AccountLookupToolViewController: KeyboardAvoidingStickyFooterViewControlle
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? AccountLookupToolResultViewController {
             vc.viewModel = viewModel
-            vc.delegate = delegate
         }
         else if let vc = segue.destination as? AccountLookUpValidatePinViewController {
             vc.viewModel = viewModel
-            vc.delegate = delegate
         }
     }
     

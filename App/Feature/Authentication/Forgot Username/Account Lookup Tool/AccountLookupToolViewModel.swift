@@ -21,6 +21,31 @@ class AccountLookupToolViewModel {
     var sendCodeResult = SendPinResult()
     let selectedAccount = BehaviorRelay<AccountLookupResult?>(value: nil)
     let selectedValidatedPinAccount = BehaviorRelay<AccountDetails?>(value: nil)
+    var maskedUsernames = [ForgotMaskedUsername]()
+    var selectedUsernameIndex = 0
+        
+    func validateAccount(onSuccess: @escaping () -> Void, onError: @escaping (String, String) -> Void) {
+        let identifier: String? = identifierNumber.value.isEmpty ? nil : identifierNumber.value
+        
+        var recoverMaskedUsernameRequest = RecoverMaskedUsernameRequestWithAuid(phone: "", identifier: "", auid: "", accountNumber: "")
+        
+        if(selectedAccount.value != nil){
+            recoverMaskedUsernameRequest = RecoverMaskedUsernameRequestWithAuid(phone: extractDigitsFrom(phoneNumber.value),identifier: identifier ?? "",auid: "",accountNumber: selectedAccount.value?.accountNumber ?? "")
+        }else if(selectedValidatedPinAccount.value != nil){
+            recoverMaskedUsernameRequest = RecoverMaskedUsernameRequestWithAuid(phone: extractDigitsFrom(phoneNumber.value),identifier: identifier ?? "",auid: selectedValidatedPinAccount.value?.auid ?? "", accountNumber: "")
+        }
+        
+        AnonymousService.recoverMaskedUsernameWithAuid(request: recoverMaskedUsernameRequest) { [weak self]
+            result in switch result {
+            case .success(let recoverMaskedUserNameResult):
+                self?.maskedUsernames = recoverMaskedUserNameResult.maskedUsernames
+                onSuccess()
+            case .failure(let error):
+                onError(error.title, error.description)
+            }
+            
+        }
+    }
     
     func performSearch(onSuccess: @escaping () -> Void, onError: @escaping (String, String) -> Void) {
         let accountLookupRequest = AccountLookupRequest(phone: phoneNumber.value,
