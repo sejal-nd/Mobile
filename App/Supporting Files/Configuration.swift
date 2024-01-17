@@ -463,7 +463,7 @@ struct Configuration {
 //                    baseUrl = "eudapi-dev.\(operatingCompany.urlDisplayString).com"
                     
                     // Hardcoded base url for dev environment as the backend changes are deployed only in the below environment
-                    baseUrl = "d-c-mma-all-api-01.azurewebsites.net"
+                    baseUrl = "t-c-mma-all-api-01.azurewebsites.net"
                     oAuthEndpoint = "api-development.exeloncorp.com"
                 case .test:
                     baseUrl = "eudapi-test.\(operatingCompany.urlDisplayString).com"
