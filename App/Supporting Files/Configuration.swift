@@ -460,10 +460,7 @@ struct Configuration {
                 switch projectTier {
                 case .dev:
 //                    baseUrl = "xzc-e-n-eudapi-\(operatingCompany.rawValue.lowercased())-d-ams-01.azure-api.net"
-//                    baseUrl = "eudapi-dev.\(operatingCompany.urlDisplayString).com"
-                    
-                    // Hardcoded base url for dev environment as the backend changes are deployed only in the below environment
-                    baseUrl = "t-c-mma-all-api-01.azurewebsites.net"
+                    baseUrl = "eudapi-dev.\(operatingCompany.urlDisplayString).com"
                     oAuthEndpoint = "api-development.exeloncorp.com"
                 case .test:
                     baseUrl = "eudapi-test.\(operatingCompany.urlDisplayString).com"
