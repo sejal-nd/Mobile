@@ -46,10 +46,13 @@ default_platform(:ios)
        end
     end
 
+    desc "Prepares pipeline"
+    lane :prepare_ci do 
+      setup_ci
+    end
+
     desc "Package and build the app, resulting in an IPA file"
     lane :package do |options|
-      
-      setup_ci
       xcversion(version: "15.1")
 
       build_app(
