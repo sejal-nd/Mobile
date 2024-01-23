@@ -49,7 +49,7 @@ class OutageTrackerViewModel {
         guard let tracker = outageTracker.value else {
             return true
         }
-        return tracker.isOutageValid
+        return tracker.isOutageValid || hasJustReportedOutage
     }
     var isGasOnly: Bool {
         return outageStatus.value?.isGasOnly ?? false
