@@ -11923,12 +11923,12 @@
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CODE_SIGN_ENTITLEMENTS = "App/Supporting Files/entitlements.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "Apple Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
 				CODE_SIGN_STYLE = Manual;
 				COMPRESS_PNG_FILES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = YU7Y757VB5;
+				"DEVELOPMENT_TEAM[sdk=*]" = YU7Y757VB5;
 				ENABLE_BITCODE = NO;
 				ENVIRONMENT_TIER = RELEASE;
 				EXCLUDED_ARCHS = "";
@@ -11947,7 +11947,7 @@
 				PRODUCT_NAME = "Atlantic City Electric";
 				PROVISIONING_PROFILE = "48c6faa5-6279-47c2-ac55-339f55816cb0";
 				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.ifactorconsulting.ace";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match AppStore com.ifactorconsulting.ace";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=*]" = "match AppStore com.ifactorconsulting.ace";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
