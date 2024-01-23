@@ -5271,6 +5271,7 @@
 					B58B5AC01E4E28740051FD5F = {
 						DevelopmentTeam = 38R4RRBYR8;
 						LastSwiftMigration = 1020;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 0;
@@ -6948,6 +6949,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_ENTITLEMENTS = "App/Supporting Files/entitlements.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Distribution";
+				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -7007,6 +7009,7 @@
 				CODE_SIGN_ENTITLEMENTS = "App/Supporting Files/entitlements.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
+				CODE_SIGN_STYLE = Manual;
 				COMPRESS_PNG_FILES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
@@ -10490,6 +10493,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_ENTITLEMENTS = "App/Supporting Files/entitlements.entitlements";
+				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -10552,6 +10556,7 @@
 				CODE_SIGN_ENTITLEMENTS = "App/Supporting Files/entitlements.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development: Joseph Erlandson (3FBV9PSP2W)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				COMPRESS_PNG_FILES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
@@ -10710,6 +10715,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_ENTITLEMENTS = "App/Supporting Files/entitlements.entitlements";
+				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -10774,6 +10780,7 @@
 				CODE_SIGN_ENTITLEMENTS = "App/Supporting Files/entitlements.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				COMPRESS_PNG_FILES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -10895,6 +10902,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_ENTITLEMENTS = "App/Supporting Files/entitlements.entitlements";
+				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -10955,6 +10963,7 @@
 				CODE_SIGN_ENTITLEMENTS = "App/Supporting Files/entitlements.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				COMPRESS_PNG_FILES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
@@ -11077,6 +11086,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_ENTITLEMENTS = "App/Supporting Files/entitlements.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Distribution";
+				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -11136,6 +11146,7 @@
 				CODE_SIGN_ENTITLEMENTS = "App/Supporting Files/entitlements.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
+				CODE_SIGN_STYLE = Manual;
 				COMPRESS_PNG_FILES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
@@ -11258,6 +11269,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_ENTITLEMENTS = "App/Supporting Files/entitlements.entitlements";
+				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -11320,6 +11332,7 @@
 				CODE_SIGN_ENTITLEMENTS = "App/Supporting Files/entitlements.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development: Joseph Erlandson (3FBV9PSP2W)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				COMPRESS_PNG_FILES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
@@ -11478,6 +11491,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_ENTITLEMENTS = "App/Supporting Files/entitlements.entitlements";
+				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -11542,6 +11556,7 @@
 				CODE_SIGN_ENTITLEMENTS = "App/Supporting Files/entitlements.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				COMPRESS_PNG_FILES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -11664,6 +11679,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_ENTITLEMENTS = "App/Supporting Files/entitlements.entitlements";
+				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -11724,6 +11740,7 @@
 				CODE_SIGN_ENTITLEMENTS = "App/Supporting Files/entitlements.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				COMPRESS_PNG_FILES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
@@ -11846,6 +11863,8 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_ENTITLEMENTS = "App/Supporting Files/entitlements.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Distribution";
+				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -11905,6 +11924,7 @@
 				CODE_SIGN_ENTITLEMENTS = "App/Supporting Files/entitlements.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
+				CODE_SIGN_STYLE = Manual;
 				COMPRESS_PNG_FILES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
@@ -12028,6 +12048,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_ENTITLEMENTS = "App/Supporting Files/entitlements.entitlements";
+				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -12090,6 +12111,7 @@
 				CODE_SIGN_ENTITLEMENTS = "App/Supporting Files/entitlements.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development: Joseph Erlandson (3FBV9PSP2W)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				COMPRESS_PNG_FILES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
@@ -12248,6 +12270,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_ENTITLEMENTS = "App/Supporting Files/entitlements.entitlements";
+				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -12312,6 +12335,7 @@
 				CODE_SIGN_ENTITLEMENTS = "App/Supporting Files/entitlements.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				COMPRESS_PNG_FILES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -12434,6 +12458,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_ENTITLEMENTS = "App/Supporting Files/entitlements.entitlements";
+				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -12494,6 +12519,7 @@
 				CODE_SIGN_ENTITLEMENTS = "App/Supporting Files/entitlements.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				COMPRESS_PNG_FILES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
@@ -12617,6 +12643,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_ENTITLEMENTS = "App/Supporting Files/entitlements.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Distribution";
+				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -12676,6 +12703,7 @@
 				CODE_SIGN_ENTITLEMENTS = "App/Supporting Files/entitlements.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
+				CODE_SIGN_STYLE = Manual;
 				COMPRESS_PNG_FILES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
@@ -12799,6 +12827,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_ENTITLEMENTS = "App/Supporting Files/entitlements.entitlements";
+				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -12861,6 +12890,7 @@
 				CODE_SIGN_ENTITLEMENTS = "App/Supporting Files/entitlements.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development: Joseph Erlandson (3FBV9PSP2W)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				COMPRESS_PNG_FILES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
@@ -13019,6 +13049,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_ENTITLEMENTS = "App/Supporting Files/entitlements.entitlements";
+				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -13083,6 +13114,7 @@
 				CODE_SIGN_ENTITLEMENTS = "App/Supporting Files/entitlements.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				COMPRESS_PNG_FILES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -13205,6 +13237,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_ENTITLEMENTS = "App/Supporting Files/entitlements.entitlements";
+				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -13265,6 +13298,7 @@
 				CODE_SIGN_ENTITLEMENTS = "App/Supporting Files/entitlements.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				COMPRESS_PNG_FILES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
@@ -13388,6 +13422,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_ENTITLEMENTS = "App/Supporting Files/entitlements.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Distribution";
+				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -13447,6 +13482,7 @@
 				CODE_SIGN_ENTITLEMENTS = "App/Supporting Files/entitlements.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
+				CODE_SIGN_STYLE = Manual;
 				COMPRESS_PNG_FILES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
@@ -13570,6 +13606,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_ENTITLEMENTS = "App/Supporting Files/entitlements.entitlements";
+				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -13632,6 +13669,7 @@
 				CODE_SIGN_ENTITLEMENTS = "App/Supporting Files/entitlements.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development: Joseph Erlandson (3FBV9PSP2W)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				COMPRESS_PNG_FILES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
@@ -13790,6 +13828,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_ENTITLEMENTS = "App/Supporting Files/entitlements.entitlements";
+				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -13854,6 +13893,7 @@
 				CODE_SIGN_ENTITLEMENTS = "App/Supporting Files/entitlements.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				COMPRESS_PNG_FILES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -13975,6 +14015,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_ENTITLEMENTS = "App/Supporting Files/entitlements.entitlements";
+				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -14035,6 +14076,7 @@
 				CODE_SIGN_ENTITLEMENTS = "App/Supporting Files/entitlements.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				COMPRESS_PNG_FILES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
@@ -14157,6 +14199,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_ENTITLEMENTS = "App/Supporting Files/entitlements.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Distribution";
+				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -14216,6 +14259,7 @@
 				CODE_SIGN_ENTITLEMENTS = "App/Supporting Files/entitlements.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
+				CODE_SIGN_STYLE = Manual;
 				COMPRESS_PNG_FILES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
@@ -14338,6 +14382,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_ENTITLEMENTS = "App/Supporting Files/entitlements.entitlements";
+				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -14400,6 +14445,7 @@
 				CODE_SIGN_ENTITLEMENTS = "App/Supporting Files/entitlements.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development: Joseph Erlandson (3FBV9PSP2W)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				COMPRESS_PNG_FILES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
@@ -14471,6 +14517,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_ENTITLEMENTS = "App/Supporting Files/entitlements.entitlements";
+				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -14531,6 +14578,7 @@
 				CODE_SIGN_ENTITLEMENTS = "App/Supporting Files/entitlements.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				COMPRESS_PNG_FILES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
@@ -14605,6 +14653,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_ENTITLEMENTS = "App/Supporting Files/entitlements.entitlements";
+				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -14669,6 +14718,7 @@
 				CODE_SIGN_ENTITLEMENTS = "App/Supporting Files/entitlements.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				COMPRESS_PNG_FILES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
