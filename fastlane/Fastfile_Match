@@ -108,6 +108,7 @@ default_platform(:ios)
       ],
         force_for_new_devices: true,
         readonly: true,
+        keychain_name: "fastlane_tmp_keychain-db",
         keychain_password: ""
       )
     end
