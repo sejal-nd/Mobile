@@ -107,7 +107,8 @@ default_platform(:ios)
           'com.ifactorconsulting.delmarva.watchkitapp', 'com.exelon.mobile.peco.watchkitapp', 'com.ifactorconsulting.pepco.watchkitapp'
       ],
         force_for_new_devices: true,
-        readonly: true
+        readonly: true,
+        keychain_password: ""
       )
     end
 
