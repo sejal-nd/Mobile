@@ -113,6 +113,24 @@ default_platform(:ios)
       )
     end
 
+// THIS IS AN ALTERNATIVE TO: Using Setup_ci and specifying keychain name above.
+// The downfall of the current method is that the above sync will not work on a local machine.
+    // create_keychain(
+    //     name: "actiontest_keychain",
+    //     password: "meow",
+    //     default_keychain: true,
+    //     unlock: true,
+    //     timeout: 3600,
+    //     lock_when_sleeps: false
+    // )
+
+    // match(
+    //     type: "appstore",
+    //     readonly: is_ci,
+    //     keychain_name: "actiontest_keychain",
+    //     keychain_password: "meow"
+    // )
+
     # Generate appstore certs
     desc "Generate new appstore certificates"
     lane :generate_new_appstore_certificates do |options|
