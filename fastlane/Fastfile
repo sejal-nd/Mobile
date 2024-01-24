@@ -1,6 +1,8 @@
 
 skip_docs # skip autogenerating the README.md, we are manually writing it
 
+import("Fastfile_Match")
+
 default_platform(:ios)
   platform :ios do
     desc "Upload a pre-built IPA to the App Store and tag release"
@@ -44,9 +46,14 @@ default_platform(:ios)
        end
     end
 
+    desc "Prepares pipeline"
+    lane :prepare_ci do 
+      setup_ci
+    end
+
     desc "Package and build the app, resulting in an IPA file"
     lane :package do |options|
-      xcversion(version: "14.1")
+      xcversion(version: "15.2")
 
       build_app(
         workspace: "Mobile.xcworkspace",
@@ -55,7 +62,7 @@ default_platform(:ios)
         silent: true,
         output_directory: options[:output_directory], # Destination directory. Defaults to current directory.
         output_name: "EUMobile.ipa", # Specify the name of the .ipa file to generate (including file extension)
-        export_options: options[:export_options_path] # Path to export Plist
+        export_method: options[:export_method] # enterprise or app-store
       )
     end
 
