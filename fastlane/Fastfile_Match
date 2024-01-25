@@ -4,6 +4,29 @@ skip_docs # skip autogenerating the README.md, we are manually writing it
 default_platform(:ios)
   platform :ios do
 
+
+     # Prepare CI for Fastlane Match.  This is currently not used.  but is an alternative to specifying the temp keychain currently used in app store sync certs.
+    desc "Prepare CI for Fastlane Match"
+    lane :prepate_ci_unused do |options|
+      ENV["MATCH_PASSWORD"] = options[:MATCH_PASSWORD]
+
+      create_keychain(
+        name: "actiontest_keychain",
+        password: "",
+        default_keychain: true,
+        unlock: true,
+        timeout: 3600,
+        lock_when_sleeps: false
+    )
+
+   # match(
+   #     type: "appstore",
+   #     readonly: is_ci,
+   #     keychain_name: "actiontest_keychain",
+   #     keychain_password: ""
+   # )
+    end
+
     # Install appstore Certs
     desc "Verify and install appstore certs"
     lane :prepare_app_store_certs do |options|
@@ -112,24 +135,6 @@ default_platform(:ios)
         keychain_password: ""
       )
     end
-
-// THIS IS AN ALTERNATIVE TO: Using Setup_ci and specifying keychain name above.
-// The downfall of the current method is that the above sync will not work on a local machine.
-    // create_keychain(
-    //     name: "actiontest_keychain",
-    //     password: "meow",
-    //     default_keychain: true,
-    //     unlock: true,
-    //     timeout: 3600,
-    //     lock_when_sleeps: false
-    // )
-
-    // match(
-    //     type: "appstore",
-    //     readonly: is_ci,
-    //     keychain_name: "actiontest_keychain",
-    //     keychain_password: "meow"
-    // )
 
     # Generate appstore certs
     desc "Generate new appstore certificates"
