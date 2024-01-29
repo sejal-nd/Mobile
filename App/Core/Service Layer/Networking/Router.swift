@@ -491,6 +491,10 @@ public enum Router {
             }
             return queryItems
         case .accountDetails(_, let queryItems):
+            let allQueryItems = [URLQueryItem(name: "excludePA", value: "true")] + queryItems // CIS required this change
+            return allQueryItems
+        case .fetchDueDate:
+            let queryItems = [URLQueryItem(name: "excludePA", value: "true")] // CIS required this change
             return queryItems
         default:
             return nil
