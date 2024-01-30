@@ -10,7 +10,7 @@ import Foundation
 
 public struct RecoverMaskedUsernameRequestWithAuid: Encodable {
     let phone: String
-    let identifier: String
+    var identifier: String? = nil
     var auid: String? = nil
     
     enum CodingKeys: String, CodingKey{

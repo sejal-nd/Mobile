@@ -27,12 +27,12 @@ class AccountLookupToolViewModel {
     func validateAccount(onSuccess: @escaping () -> Void, onError: @escaping (String, String) -> Void) {
         let identifier: String? = identifierNumber.value.isEmpty ? nil : identifierNumber.value
         
-        var recoverMaskedUsernameRequest = RecoverMaskedUsernameRequestWithAuid(phone: "", identifier: "", auid: nil)
+        var recoverMaskedUsernameRequest = RecoverMaskedUsernameRequestWithAuid(phone: "", identifier: nil, auid: nil)
         
         if(selectedAccount.value != nil){
             recoverMaskedUsernameRequest = RecoverMaskedUsernameRequestWithAuid(phone: extractDigitsFrom(phoneNumber.value),identifier: identifier ?? "")
         }else if(selectedValidatedPinAccount.value != nil){
-            recoverMaskedUsernameRequest = RecoverMaskedUsernameRequestWithAuid(phone: extractDigitsFrom(phoneNumber.value),identifier: identifier ?? "",auid: selectedValidatedPinAccount.value?.auid ?? "")
+            recoverMaskedUsernameRequest = RecoverMaskedUsernameRequestWithAuid(phone: extractDigitsFrom(phoneNumber.value),auid: selectedValidatedPinAccount.value?.auid ?? "")
         }
         
         AnonymousService.recoverMaskedUsernameWithAuid(request: recoverMaskedUsernameRequest) { [weak self]
