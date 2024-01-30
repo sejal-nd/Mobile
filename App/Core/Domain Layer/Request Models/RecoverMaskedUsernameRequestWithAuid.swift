@@ -11,13 +11,11 @@ import Foundation
 public struct RecoverMaskedUsernameRequestWithAuid: Encodable {
     let phone: String
     let identifier: String
-    let auid: String?
-    let accountNumber: String?
+    var auid: String? = nil
     
     enum CodingKeys: String, CodingKey{
         case phone
         case identifier
         case auid
-        case accountNumber
     }
 }
