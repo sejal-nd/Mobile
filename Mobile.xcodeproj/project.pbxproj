@@ -511,6 +511,8 @@
 		679A632D2AE9760800DC25D7 /* AppointmentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679A632C2AE9760800DC25D7 /* AppointmentResponse.swift */; };
 		679A63302AE9765300DC25D7 /* ReleaseOfInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679A632F2AE9765300DC25D7 /* ReleaseOfInformation.swift */; };
 		679A63312AE9765300DC25D7 /* ReleaseOfInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679A632F2AE9765300DC25D7 /* ReleaseOfInformation.swift */; };
+		679B55C62B59A6C1001E11EB /* OutageAuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679B55C52B59A6C1001E11EB /* OutageAuthenticationView.swift */; };
+		679B55C82B59A6C9001E11EB /* OutageAuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679B55C72B59A6C9001E11EB /* OutageAuthenticationViewModel.swift */; };
 		679C6EB124D1E84E00535DE7 /* AppointmentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679C6EB024D1E84E00535DE7 /* AppointmentService.swift */; };
 		679C6EBE24D1EBCA00535DE7 /* AppointmentService+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679C6EBD24D1EBCA00535DE7 /* AppointmentService+Rx.swift */; };
 		679C6ED824D1F0A800535DE7 /* Appointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679C6ED724D1F0A800535DE7 /* Appointment.swift */; };
@@ -1677,6 +1679,8 @@
 		6797115A25DD901F008A0080 /* Arc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arc.swift; sourceTree = "<group>"; };
 		679A632C2AE9760800DC25D7 /* AppointmentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentResponse.swift; sourceTree = "<group>"; };
 		679A632F2AE9765300DC25D7 /* ReleaseOfInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleaseOfInformation.swift; sourceTree = "<group>"; };
+		679B55C52B59A6C1001E11EB /* OutageAuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutageAuthenticationView.swift; sourceTree = "<group>"; };
+		679B55C72B59A6C9001E11EB /* OutageAuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutageAuthenticationViewModel.swift; sourceTree = "<group>"; };
 		679C6EB024D1E84E00535DE7 /* AppointmentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentService.swift; sourceTree = "<group>"; };
 		679C6EBD24D1EBCA00535DE7 /* AppointmentService+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppointmentService+Rx.swift"; sourceTree = "<group>"; };
 		679C6ED724D1F0A800535DE7 /* Appointment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appointment.swift; sourceTree = "<group>"; };
@@ -2594,6 +2598,8 @@
 				E881B14E1F5F1A1700067BA1 /* UnauthenticatedOutageValidateAccountViewController.swift */,
 				E89983E01F61F4B0001E2870 /* UnauthenticatedOutageValidateAccountResultViewController.swift */,
 				E881B1521F607DD100067BA1 /* UnauthenticatedOutageViewModel.swift */,
+				679B55C52B59A6C1001E11EB /* OutageAuthenticationView.swift */,
+				679B55C72B59A6C9001E11EB /* OutageAuthenticationViewModel.swift */,
 			);
 			path = Outage;
 			sourceTree = "<group>";
@@ -5917,6 +5923,7 @@
 				E893993D1F86AF1600B9184C /* UIViewDashedBorders.swift in Sources */,
 				675F4CE424AB828200A828F9 /* MinimumVersion.swift in Sources */,
 				4AEB19A726F387AA00879046 /* StopServiceFlowData.swift in Sources */,
+				679B55C82B59A6C9001E11EB /* OutageAuthenticationViewModel.swift in Sources */,
 				21C66E202791EF7F00DC1A07 /* SurveyView.swift in Sources */,
 				9C19983523A9614900250417 /* GameEnrollmentViewController.swift in Sources */,
 				35ACCB4520EA5ECE0022907F /* HomeOutageCardView.swift in Sources */,
@@ -5990,6 +5997,7 @@
 				675F4B6424AB828100A828F9 /* AnonymousService.swift in Sources */,
 				E873DA751EE8699600020D1B /* RadioSelectionTableViewCell.swift in Sources */,
 				E8BCB9BA1EFAE79600779588 /* BGEAutoPayViewModel.swift in Sources */,
+				679B55C62B59A6C1001E11EB /* OutageAuthenticationView.swift in Sources */,
 				21E797F92718541C0063CB84 /* StopLandingViewModel.swift in Sources */,
 				822BBBA11EFC1A01004EBBAB /* WebViewController.swift in Sources */,
 				35ACCB4720EA60F50022907F /* HomeOutageCardViewModel.swift in Sources */,

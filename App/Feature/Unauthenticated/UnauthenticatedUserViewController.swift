@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftUI
+import EUDesignSystem
 
 class UnauthenticatedUserViewController: UIViewController, UIGestureRecognizerDelegate {
     
@@ -100,14 +101,7 @@ class UnauthenticatedUserViewController: UIViewController, UIGestureRecognizerDe
 
         navigationController?.popViewController(animated: true)
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vc = segue.destination as? OutageMapViewController {
-            vc.unauthenticatedExperience = true
-            vc.hasPressedStreetlightOutageMapButton = segue.identifier == "streetlightOutageMapSegue" ? true : false
-        }
-    }
-    
+
     
     // MARK: - Helper
     
@@ -227,9 +221,13 @@ extension UnauthenticatedUserViewController: UITableViewDataSource, UITableViewD
                 FirebaseUtility.logEvent(.unauth(parameters: [.view_outage_press]))
                 performSegue(withIdentifier: "checkOutageValidateAccount", sender: nil)
             case 2:
-                performSegue(withIdentifier: "outageMapSegue", sender: nil)
+                if let outageMapURL = URL(string: outageMapURLString) {
+                    navigationController?.pushViewController(OpcoUpdatesHostingController(rootView: WebView(title: "Outage Map", url: outageMapURL), shouldShowLargeTitle: true), animated: true)
+                }
             case 3:
-                performSegue(withIdentifier: "streetlightOutageMapSegue", sender: nil)
+                if let streetlightOutageMapURL = URL(string: streetlightOutageMapURLString) {
+                    navigationController?.pushViewController(OpcoUpdatesHostingController(rootView: WebView(title: "Street Light Map", url: streetlightOutageMapURL), shouldShowLargeTitle: true), animated: true)
+                }
             default:
                 break
             }
@@ -252,7 +250,9 @@ extension UnauthenticatedUserViewController: UITableViewDataSource, UITableViewD
                 
                 UIApplication.shared.openUrlIfCan(billingVideosUrl)
             case 3:
-                performSegue(withIdentifier: "termPoliciesSegue", sender: nil)
+                if let privacyPolicyURL = Bundle.main.url(forResource: "TermPolicies", withExtension: "html") {
+                    navigationController?.pushViewController(OpcoUpdatesHostingController(rootView: WebView(title: "Policies and Terms", url: privacyPolicyURL), shouldShowLargeTitle: true), animated: true)
+                }
             default:
                 break
             }
@@ -268,7 +268,9 @@ extension UnauthenticatedUserViewController: UITableViewDataSource, UITableViewD
                 
                 UIApplication.shared.openUrlIfCan(billingVideosUrl)
             case 3:
-                performSegue(withIdentifier: "termPoliciesSegue", sender: nil)
+                if let privacyPolicyURL = Bundle.main.url(forResource: "TermPolicies", withExtension: "html") {
+                    navigationController?.pushViewController(OpcoUpdatesHostingController(rootView: WebView(title: "Policies and Terms", url: privacyPolicyURL), shouldShowLargeTitle: true), animated: true)
+                }
             default:
                 break
             }

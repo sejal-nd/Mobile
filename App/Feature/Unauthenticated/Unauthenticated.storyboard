@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Bzu-HN-7Zr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Bzu-HN-7Zr">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -137,10 +137,6 @@
                         <outlet property="tableView" destination="q1B-ah-ptQ" id="sPm-cc-7Ij"/>
                         <segue destination="Rlt-YR-2LD" kind="show" identifier="reportOutageValidateAccount" id="BfY-Mv-qAg"/>
                         <segue destination="Rlt-YR-2LD" kind="show" identifier="checkOutageValidateAccount" id="cyl-oL-1Pd"/>
-                        <segue destination="xij-rH-l9D" kind="show" identifier="termPoliciesSegue" id="A4P-nZ-ker"/>
-                        <segue destination="d4b-V4-IbC" kind="show" identifier="contactUsSegue" id="TrG-VK-aRd"/>
-                        <segue destination="dCN-WB-aNm" kind="show" identifier="outageMapSegue" id="YeF-3B-Hbb"/>
-                        <segue destination="K8w-7J-mC6" kind="show" identifier="streetlightOutageMapSegue" id="oJ4-ti-SQI"/>
                         <segue destination="RPd-sl-6uC" kind="presentation" identifier="unauthIDVerificationSegue" modalPresentationStyle="fullScreen" id="NVW-yv-lc1"/>
                     </connections>
                 </viewController>
@@ -579,40 +575,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dNN-ag-74s" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4027" y="-1424"/>
-        </scene>
-        <!--ContactUsViewController-->
-        <scene sceneID="vEs-1y-YfA">
-            <objects>
-                <viewControllerPlaceholder storyboardName="More" referencedIdentifier="ContactUsViewController" id="d4b-V4-IbC" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="L9E-3Q-kmg" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1280" y="-894"/>
-        </scene>
-        <!--OutageMapViewController-->
-        <scene sceneID="Vft-om-bvs">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Outage" referencedIdentifier="OutageMapViewController" id="dCN-WB-aNm" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="33U-yH-A2E" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1499" y="-818"/>
-        </scene>
-        <!--OutageMapViewController-->
-        <scene sceneID="btd-So-IMG">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Outage" referencedIdentifier="OutageMapViewController" id="K8w-7J-mC6" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="oe2-qw-YvK"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="xou-iQ-Oo5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2316" y="-1003"/>
-        </scene>
-        <!--TermsPoliciesViewController-->
-        <scene sceneID="TYh-Mm-8ts">
-            <objects>
-                <viewControllerPlaceholder storyboardName="More" referencedIdentifier="TermsPoliciesViewController" id="xij-rH-l9D" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="gBK-MN-6oF" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2056" y="-894"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

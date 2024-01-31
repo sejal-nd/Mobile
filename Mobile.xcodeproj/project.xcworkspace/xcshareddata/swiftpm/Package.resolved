@@ -41,8 +41,8 @@
       "kind" : "remoteSourceControl",
       "location" : "git@ssh.dev.azure.com:v3/exelontfs/EU-mobile/EU_iOS_Design_System",
       "state" : {
-        "revision" : "d6153cb008280cb141432031070d8308b6e4825a",
-        "version" : "0.4.0"
+        "revision" : "0cbe5468fe8c9732ee3a891cfd329604471df9e5",
+        "version" : "0.5.0"
       }
     },
     {
